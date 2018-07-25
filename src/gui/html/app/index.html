@@ -19,7 +19,7 @@
                 <div class="toolbar-button-text">Get Mods</div>
             </div>
 
-            <div class="toolWSbar-button" @click="ui.side_sheets.downloads = true" role="button">
+            <div class="toolbar-button" @click="ui.side_sheets.downloads = true" role="button">
                 <div class="toolbar-button-icon">
                     <i class="material-icons">list</i>
                     <span class="toolbar-button-badge">{{downloads.filter(d => d.status === "downloading").length ? downloads.filter(d => d.status === "downloading").length : ""}}</span>
