@@ -1,0 +1,579 @@
+//
+// ui font information
+//
+
+$ui-font-size: 16px;
+$ui-font-family: "Lato", sans-serif;
+
+//
+// ui colours
+//
+
+$ui-background-colour: #fff;
+$ui-text-colour: #222;
+$ui-muted-background-colour: #ddd;
+$ui-muted-text-colour: #999;
+$ui-highlight-background-colour: #bb5599;
+$ui-highlight-text-colour: #fff;
+$ui-cover-colour: rgba(0, 0, 0, 0.5);
+
+$ui-primary-colour-bg: #bb5599;
+$ui-secondary-colour-bg: #999;
+$ui-danger-colour-bg: #eb4d4b;
+$ui-warning-colour-bg: #f0932b;
+$ui-success-colour-bg: #6ab04c;
+
+//
+// transition speeds
+//
+$ui-transition-speed: 0.5s;
+
+//
+// basic resets
+//
+
+* {
+  box-sizing: border-box;
+  user-select: none;
+}
+
+html, body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+//
+// fonts and colours
+//
+
+body {
+  font-family: $ui-font-family;
+  font-size: $ui-font-size;
+  color: $ui-text-colour;
+  background-color: $ui-background-colour;
+  padding-top: 77px;
+}
+
+//
+// general styles
+//
+
+h1, h2, h3, h4, p {
+  margin: 0.25em 0 0.25em 0;
+  cursor: default;
+}
+
+.webview * {
+  cursor: initial;
+}
+
+a {
+  color: $ui-highlight-background-colour;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+hr {
+  margin: 1em 0 1em 0;
+  border: none;
+  border-bottom: 1px solid lighten($ui-text-colour, 75%);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.muted {
+  color: $ui-muted-text-colour;
+}
+
+.nomargin {
+  margin: 0 !important;
+}
+
+//
+// banner styles
+//
+.banner {
+  color: $ui-background-colour;
+  display: flex;
+  height: 64px;
+}
+
+.banner .message {
+  flex-grow: 1;
+  padding: 0 2em 0 2em;
+  cursor: default;
+  background-color: lighten($ui-success-colour-bg, 10%);
+  display: flex;
+  align-items: center;
+}
+
+.banner.clickable .message {
+  cursor: pointer;
+}
+
+.banner .close {
+  background-color: $ui-success-colour-bg;
+  transition: background-color $ui-transition-speed;
+  cursor: pointer;
+  padding: 0 2em 0 2em;
+  line-height: 64px;
+  height: 100%;
+  text-align: center;
+}
+
+.banner .close:hover {
+  background-color: darken($ui-success-colour-bg, 10%);
+}
+
+//
+// toast styles
+//
+
+.toast {
+  font-size: 0.9em;
+  position: fixed;
+  padding: 1em;
+  bottom: 20px;
+  left: 50%;
+  transition: opacity $ui-transition-speed;
+  transform: translateX(-50%);
+  border-radius: 30px;
+  background-color: $ui-cover-colour;
+  color: $ui-background-colour;
+  z-index: 101;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0;
+  text-align: center;
+  max-width: 75%;
+}
+
+.toast.visible {
+  opacity: 1;
+}
+
+//
+// button styles
+//
+
+button {
+  font-family: "Lato", sans-serif;
+  color: #fff;
+  user-select: none;
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.5em 1em;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 3px;
+  text-align: center;
+  font-weight: normal;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: background-color 0.25s;
+}
+
+button.huge {
+  font-size: 1.25em;
+}
+
+button.primary {
+  background-color: $ui-primary-colour-bg;
+}
+
+button.primary:hover {
+  background-color: darken($ui-primary-colour-bg, 10%);
+}
+
+button.secondary {
+  background-color: $ui-background-colour;
+  color: $ui-text-colour;
+}
+
+button.secondary:hover {
+  background-color: darken($ui-background-colour, 10%);
+}
+
+button.danger {
+  background-color: $ui-danger-colour-bg;
+}
+
+button.danger:hover {
+  background-color: darken($ui-danger-colour-bg, 10%);
+}
+
+button.warning {
+  background-color: $ui-warning-colour-bg;
+}
+
+button.warning:hover {
+  background-color: darken($ui-warning-colour-bg, 10%);
+}
+
+button.success {
+  background-color: $ui-success-colour-bg;
+}
+
+button.success:hover {
+  background-color: darken($ui-success-colour-bg, 10%);
+}
+
+//
+// input styles
+//
+input[type="text"], input[type="number"], input[type="url"], textarea {
+  font-family: "Lato", sans-serif;
+  border-radius: 3px;
+  box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.21);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  font-weight: normal;
+  min-width: 350px;
+  padding: 0.5em 1em;
+  cursor: text;
+  font-size: 1em;
+  width: 100%;
+}
+
+//
+// highlight styles
+//
+
+.highlight {
+  border-radius: 3px;
+  padding: 1em;
+  margin: 1em 0 1em 0;
+}
+
+.highlight.danger {
+  background-color: lighten($ui-danger-colour-bg, 25%);
+}
+
+.highlight.warning {
+  background-color: lighten($ui-warning-colour-bg, 25%);
+}
+
+.highlight.success {
+  background-color: lighten($ui-success-colour-bg, 25%);
+}
+
+.highlight.secondary {
+  background-color: lighten($ui-secondary-colour-bg, 25%);
+}
+
+//
+// toolbar styles
+//
+
+.toolbar {
+  width: 100%;
+  background-color: $ui-highlight-background-colour;
+  color: $ui-highlight-text-colour;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.toolbar-group {
+  display: flex;
+  flex-direction: row;
+}
+
+.toolbar-button {
+  user-select: none;
+  cursor: pointer;
+  text-align: center;
+  margin: 0 0.75em 0 0.75em;
+  width: 105px;
+  padding: 1em;
+}
+
+.toolbar-button:first-child {
+  margin-left: 0;
+}
+
+.toolbar-button:last-child {
+  margin-right: 0;
+}
+
+.toolbar-button-icon {
+  font-size: 1.5em;
+}
+
+.toolbar-button-text {
+  font-size: 0.8em;
+}
+
+.toolbar-button-badge {
+  display: inline-block;
+  position: absolute;
+  top: 10px;
+  font-size: 0.4em;
+  line-height: 15px;
+  text-align: center;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #f00;
+}
+
+.toolbar-button-badge:empty {
+  display: none;
+}
+
+//
+// side sheet and modal styles
+//
+
+.side-sheet, .modal {
+  width: 100%;
+}
+
+.side-sheet-background, .modal-background { // covers the entire page to prevent (and discourage attempts at) interaction with other elements
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+  background-color: $ui-cover-colour;
+  display: none;
+}
+
+.modal-background {
+  z-index: 199;
+}
+
+.side-sheet.active .side-sheet-background, .modal.active .modal-background {
+  display: block;
+}
+
+.side-sheet-container { // this is the actual side sheet
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  background-color: $ui-background-colour;
+  color: $ui-text-colour;
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.25);
+}
+
+.side-sheet.left .side-sheet-container, .side-sheet.right .side-sheet-container {
+  width: 75%;
+  min-width: 400px;
+  max-width: 800px;
+  height: 100%;
+}
+
+.side-sheet.left .side-sheet-container {
+  top: 0;
+  left: -800px;
+  transition: left $ui-transition-speed;
+}
+
+.side-sheet.right .side-sheet-container {
+  top: 0;
+  right: -800px;
+  transition: right $ui-transition-speed;
+}
+
+.side-sheet.bottom .side-sheet-container {
+  bottom: -800px;
+  left: 0;
+  transition: bottom $ui-transition-speed;
+  width: 100%;
+  height: 75%;
+}
+
+.side-sheet.active.left .side-sheet-container {
+  left: 0;
+}
+
+.side-sheet.active.right .side-sheet-container {
+  right: 0;
+}
+
+.side-sheet.active.bottom .side-sheet-container {
+  bottom: 0;
+}
+
+.side-sheet-toolbar {
+  display: flex;
+}
+
+.side-sheet-toolbar-group {
+  padding: 0.5em;
+}
+
+.side-sheet-toolbar-group.grow {
+  flex-grow: 1;
+}
+
+.side-sheet-header {
+  padding: 0.5em 0.5em 0.68em 0.5em;
+  font-size: 2em;
+  border-bottom: 1px solid lighten($ui-text-colour, 75%);
+  cursor: default;
+}
+
+.side-sheet-content {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.side-sheet-content:not(webview) {
+  padding: 1em;
+}
+
+.side-sheet-footer {
+  padding: 1em;
+  border-top: 1px solid lighten($ui-text-colour, 75%);
+}
+
+.modal-container {
+  position: fixed;
+  width: 50%;
+  min-width: 400px;
+  max-width: 600px;
+  left: 50%;
+  top: 10%;
+  transform: translateX(-50%);
+  z-index: 200;
+  background-color: $ui-background-colour;
+  color: $ui-text-colour;
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  display: none;
+}
+
+.modal.active .modal-container {
+  display: block;
+  pointer-events: all;
+}
+
+.modal-content {
+  padding: 1em;
+}
+
+//
+// download ui styles
+// progress bars etc.
+//
+
+.progress-bar {
+  width: 100%;
+  height: 20px;
+  background-color: $ui-muted-background-colour;
+  border-radius: 3px;
+}
+
+.progress-bar > .bar {
+  background-color: $ui-highlight-background-colour;
+  border-radius: 3px;
+  width: 0;
+  transition: width $ui-transition-speed;
+}
+
+@keyframes indefinite {
+  from {
+    margin-left: 0;
+  }
+
+  to {
+    margin-left: 80%;
+  }
+}
+
+.progress-bar > .bar.indefinite {
+  position: relative;
+  margin-left: 0;
+  width: 20% !important;
+  animation: indefinite 1s linear infinite alternate;
+}
+
+//
+// monika easter egg styles
+//
+
+// as much as i'd like to have them optimised, electron (?) doesn't like it and tiles monika's face
+//noinspection CssOptimizeSimilarProperties
+.monika {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 200;
+  background-color: #fff;
+  background-image: url(easteregg/monika.png);
+  background-position: center;
+  background-size: cover;
+  display: none;
+}
+
+.monika.active {
+  display: block;
+}
+
+//
+// icon restyle
+//
+button .material-icons {
+  font-size: 16px;
+  vertical-align: middle;
+  line-height: 16px;
+}
+
+//
+// main page content
+//
+.content {
+  padding: 1em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.running-cover { // covers the entire page to prevent (and discourage attempts at) interaction with other elements
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 150;
+  background-color: $ui-cover-colour;
+  color: #fff;
+  padding: 1em;
+  text-align: center;
+  display: none;
+}
+
+.running-cover.active {
+  display: block;
+}
+
+//
+// vue cloak
+//
+
+.cloak {
+  position: fixed;
+  z-index: 300;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $ui-primary-colour-bg;
+  color: $ui-background-colour;
+  padding: 5em;
+  text-align: center;
+  display: none;
+}
+
+[v-cloak] {
+  display: block;
+}

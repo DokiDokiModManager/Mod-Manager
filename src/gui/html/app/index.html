@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Doki Doki Mod Manager!</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Material+Icons" rel="stylesheet">
+    <link href="app.css" rel="stylesheet">
+</head>
+<body>
+<div id="app">
+    <div v-cloak class="cloak">
+        <h1>Loading...</h1>
+    </div>
+    <div class="toolbar" role="toolbar">
+        <div class="toolbar-group">
+            <div class="toolbar-button" @click="ui.side_sheets.install = true" role="button">
+                <div class="toolbar-button-icon"><i class="material-icons">add</i></div>
+                <div class="toolbar-button-text">Get Mods</div>
+            </div>
+
+            <div class="toolWSbar-button" @click="ui.side_sheets.downloads = true" role="button">
+                <div class="toolbar-button-icon">
+                    <i class="material-icons">list</i>
+                    <span class="toolbar-button-badge">{{downloads.filter(d => d.status === "downloading").length ? downloads.filter(d => d.status === "downloading").length : ""}}</span>
+                </div>
+                <div class="toolbar-button-text">Mod Library</div>
+            </div>
+        </div>
+
+        <div class="toolbar-group" v-if="ui.debug_features">
+            <div class="toolbar-button" @click="crashMainProcess" role="button">
+                <div class="toolbar-button-icon"><i class="material-icons">bug_report</i></div>
+                <div class="toolbar-button-text">Debug Crash</div>
+            </div>
+
+            <div class="toolbar-button" @click="openDevTools" role="button">
+                <div class="toolbar-button-icon"><i class="material-icons">code</i></div>
+                <div class="toolbar-button-text">Devtools</div>
+            </div>
+
+            <div class="toolbar-button" @click="ui.side_sheets.uikit = true" role="button">
+                <div class="toolbar-button-icon"><i class="material-icons">format_paint</i></div>
+                <div class="toolbar-button-text">UI Kit</div>
+            </div>
+        </div>
+
+        <div class="toolbar-group">
+            <div class="toolbar-button" @click="ui.side_sheets.settings = true" role="button">
+                <div class="toolbar-button-icon"><i class="material-icons">settings</i></div>
+                <div class="toolbar-button-text">Settings</div>
+            </div>
+
+            <div class="toolbar-button" @click="ui.side_sheets.about = true" role="button">
+                <div class="toolbar-button-icon"><i class="material-icons">info</i></div>
+                <div class="toolbar-button-text">About</div>
+            </div>
+        </div>
+    </div>
+    <div v-if="ui.banner.active" :class="{'banner': true, 'clickable': ui.banner.url}">
+        <div class="message" @click="bannerClick">
+            <div>{{ui.banner.message}}</div>
+        </div>
+        <div class="close" @click="bannerDismiss">Dismiss</div>
+    </div>
+
+    <div class="content">
+        <div>
+            <div v-for="(install, index) in installs" class="highlight nomargin">
+                <h3>{{install.installName}}</h3>
+                <p class="muted">{{install.fullFolderName}}</p>
+                <p>Installed - ready to launch</p>
+                <button class="primary" @click="launchInstall(install.folderName)">Play</button>
+                <button class="secondary" @click="ui.selected_install = index; ui.side_sheets.save_management = true">
+                    Settings
+                </button>
+                <button class="danger" @click="ui.selected_install = index; ui.modals.delete_install = true">Uninstall
+                </button>
+            </div>
+        </div>
+        <div v-if="installs.length === 0" class="muted text-center">
+            <h3>No mods installed</h3>
+            <p>Click "Get Mods" to find some, or "Mod Library" to install one you've already downloaded.</p>
+        </div>
+    </div>
+
+    <div :class="{'toast': true, 'visible': ui.toast.visible}" v-html="ui.toast.message"></div>
+
+    <div :class="{'side-sheet': true, 'active': ui.side_sheets.uikit, 'bottom':true}">
+        <div class="side-sheet-background"></div>
+        <div class="side-sheet-container">
+            <div class="side-sheet-header">
+                UI Kit
+            </div>
+            <div class="side-sheet-content">
+                <p>This is the UI design kit for Doki Doki Mod Manager v2. It contains information on where and when
+                    certain reusable UI elements should be used.</p>
+                <hr>
+                <h1>Header 1</h1>
+                <h2>Header 2</h2>
+                <h3>Header 3</h3>
+                <h4>Header 4</h4>
+                <p>Body copy. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur dignissimos,
+                    veritatis. Accusamus aliquam cum dolor magnam sed! Consequatur corporis cupiditate dolorem ea
+                    incidunt ipsum perspiciatis soluta? Commodi dignissimos molestiae perferendis!</p>
+                <hr>
+                <h3>Contextual alternatives</h3>
+                <p>Most coloured UI elements have contextual alternative colours. These should be used to indicate the
+                    severity of an action or outcome of an event.</p>
+                <ul>
+                    <li>Primary - should represent the main action, like a submit button.</li>
+                    <li>Secondary - should represent an alternative action, like a cancel button.</li>
+                    <li>Danger - should represent a negative or dangerous action, like a deletion.</li>
+                    <li>Warning - should represent a questionable action, like closing the game when it is running.</li>
+                    <li>Success - should represent a positive action, like installing an update.</li>
+                </ul>
+                <hr>
+                <h3>Buttons</h3>
+                <p>This is what the button styles look like.</p>
+                <button class="primary">Primary</button>
+                <button class="secondary">Secondary</button>
+                <button class="danger">Danger</button>
+                <button class="warning">Warning</button>
+                <button class="success">Success</button>
+                <hr>
+                <div class="highlight success">
+                    <h3>Highlight: Success</h3>
+                    <p>Use this to draw attention to actions that aren't usually available. Pair it with the success
+                        button class.</p>
+                    <button class="success">Install Update</button>
+                </div>
+
+                <div class="highlight warning">
+                    <h3>Highlight: Warning</h3>
+                    <p>Use this to draw attention to actions that may be temporarily disruptive. Pair it with the
+                        warning button class.</p>
+                    <button class="warning">Restart Game</button>
+                </div>
+
+                <div class="highlight danger">
+                    <h3>Highlight: Danger</h3>
+                    <p>Use this to draw attention to potentially destructive actions. Pair it with the danger button
+                        class.</p>
+                    <button class="danger">Delete Save File</button>
+                </div>
+
+                <hr>
+
+                <h3>Progress Bars</h3>
+
+                <p>Not Started</p>
+                <div class="progress-bar">
+
+                </div>
+
+                <br>
+
+                <p>25% complete</p>
+                <div class="progress-bar">
+                    <div class="bar" style="width: 25%">&nbsp;</div>
+                </div>
+
+                <br>
+
+                <p>Indefinite</p>
+                <div class="progress-bar">
+                    <div class="bar indefinite">&nbsp;</div>
+                </div>
+
+                <hr>
+
+                <h3>Toast Notifications</h3>
+
+                <p>These are temporary, self-closing, Android-inspired notifications that should be shown to provide
+                    feedback to a user action.</p>
+                <button class="primary" @click="showToast('This is an example of a toast')">Show Example</button>
+
+                <hr>
+
+            </div>
+            <div class="side-sheet-footer">
+                <button class="primary" @click="ui.side_sheets.uikit = false">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <div :class="{'side-sheet': true, 'active': ui.side_sheets.install, 'left':true}">
+        <div class="side-sheet-background"></div>
+        <div class="side-sheet-container">
+            <div class="side-sheet-header">
+                Install a Mod
+            </div>
+            <div class="side-sheet-content">
+                <h3>Import Mod</h3>
+                <p>Find a mod on your PC and import into Doki Doki Mod Manger.</p>
+                <button class="primary" @click="importMod">Import Mod</button>
+                <hr>
+                <h3>Browse for Mods</h3>
+                <p>Browse the internet for mods and download them directly into Doki Doki Mod Manager.</p>
+                <p style="color: red">This feature is experimental and may not work as expected.</p>
+                <button class="primary"
+                        @click="ui.side_sheets.install = false; ui.side_sheets.browser = true; showToast('Find the mods you want to download, and click their download links.')">
+                    Browse
+                    Now
+                </button>
+                <hr>
+                <h3>Install DDLC</h3>
+                <p>If you just want to install DDLC without any mods, you can do that here.</p>
+                <button class="primary"
+                        @click="ui.side_sheets.install = false; ui.selected_mod = null; ui.modals.create_install = true; ui.install_creation.install_name = ''; ui.install_creation.folder_name = '';">
+                    Install DDLC
+                </button>
+            </div>
+            <div class="side-sheet-footer">
+                <button class="primary" @click="ui.side_sheets.install = false">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <div :class="{'side-sheet': true, 'active': ui.side_sheets.browser, 'bottom': true}">
+        <div class="side-sheet-background"></div>
+        <div class="side-sheet-container">
+            <div class="side-sheet-toolbar">
+                <div class="side-sheet-toolbar-group">
+                    <button class="primary" @click="browserCommand('goBack')" title="Back"><i class="material-icons">arrow_back</i>
+                    </button>
+                    <button class="primary" @click="browserCommand('goForward')" title="Forward"><i
+                            class="material-icons">arrow_forward</i></button>
+                </div>
+                <div class="side-sheet-toolbar-group">
+                    <button class="primary" @click="browserCommand('reload')" title="Refresh"><i class="material-icons">refresh</i>
+                    </button>
+                </div>
+                <div class="side-sheet-toolbar-group grow">
+                    <input type="url" v-model="ui.browser.url" @keyup="browserBarHandler" title="URL Bar">
+                </div>
+            </div>
+            <webview id="browser" class="side-sheet-content"
+                     src="https://old.reddit.com/r/DDLCMods/comments/91qt83/the_mod_list/"></webview>
+            <div class="side-sheet-footer">
+                <button class="primary" @click="ui.side_sheets.browser = false">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <div :class="{'side-sheet': true, 'active': ui.side_sheets.downloads, 'left':true}">
+        <div class="side-sheet-background"></div>
+        <div class="side-sheet-container">
+            <div class="side-sheet-header">
+                Mod Library
+            </div>
+            <div class="side-sheet-content">
+                <div v-if="downloads.length + mods.length === 0" class="muted text-center">
+                    <h3>No mods downloaded</h3>
+                    <p>Click "Get Mods" on the main page to find some.</p>
+                </div>
+                <div v-for="download in downloads" v-if="download.status !== 'done'">
+                    <h3>{{download.name}}</h3>
+                    <p v-if="download.status === 'downloading' && download.total_size !== 0">Downloading -
+                        {{roundedPercentage(download.bytes_downloaded, download.total_size)}}% complete</p>
+                    <p v-else-if="download.status === 'downloading'">Downloading - {{download.bytes_downloaded}} bytes
+                        downloaded</p>
+                    <p v-else>Waiting for downloads to complete.</p>
+
+                    <div>
+                        <div class="progress-bar">
+                            <div class="bar indefinite"
+                                 v-if="download.status === 'downloading' && download.total_size === 0">&nbsp;
+                            </div>
+                            <div class="bar" v-else-if="download.status === 'downloading'"
+                                 :style="{'width': (download.bytes_downloaded / download.total_size)*100 + '%'}">&nbsp;
+                            </div>
+                            <div class="bar" v-else></div>
+                        </div>
+                        <br>
+                        <button class="primary">Cancel</button>
+                    </div>
+                    <hr>
+                </div>
+
+                <div v-for="mod in mods">
+                    <h3>{{mod}}</h3>
+                    <p>Ready to install</p>
+                    <button class="primary"
+                            @click="ui.selected_mod = mod; ui.modals.create_install = true; ui.install_creation.install_name = ''; ui.install_creation.folder_name = '';">
+                        Install
+                    </button>
+                    <button class="danger" @click="ui.selected_mod = mod; ui.modals.delete_mod = true;">Delete</button>
+                    <hr>
+                </div>
+            </div>
+            <div class="side-sheet-footer">
+                <button class="primary" @click="ui.side_sheets.downloads = false">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <div :class="{'side-sheet': true, 'active': ui.side_sheets.about, 'right':true}">
+        <div class="side-sheet-background"></div>
+        <div class="side-sheet-container">
+            <div class="side-sheet-header">
+                About
+            </div>
+            <div class="side-sheet-content">
+                <div class="text-center">
+                    <img src="../images/logo.png" width="200" alt="Doki Doki Mod Manager Logo">
+                </div>
+
+                <h3>About</h3>
+                <p>Doki Doki Mod Manager is a community led project to simplify the installation and sharing of mods for
+                    <a
+                            href="javascript:;"
+                            @click="openURL('http://ddlc.moe')">Doki&nbsp;Doki&nbsp;Literature&nbsp;Club</a>,
+                    a free game by Team Salvato.</p>
+
+                <br>
+
+                <h3>Disclaimer</h3>
+                <p>Doki Doki Mod Manager is a fan work of Doki Doki Literature Club! and is not affiliated
+                    with Team Salvato. It is a fan work, as defined by Team Salvato's <a href="javascript:;"
+                                                                                         @click="openURL('http://teamsalvato.com/ip-guidelines/')">IP
+                        Guidelines</a>.</p>
+                <p>Doki Doki Mod Manager does not take responsibility for any damage caused to your files or computer,
+                    as a result of playing a mod or otherwise.</p>
+
+                <hr>
+
+                <div class="text-center">
+                    <img src="../images/discord.png" width="400">
+                    <br>
+                    <p>Join the Doki Doki Mod Manager Discord server and chat with other users.</p>
+                    <br>
+                    <button class="huge success" @click="openURL('https://discord.me/modmanager')">Join Now</button>
+                </div>
+
+                <hr>
+
+                <h3>Thanks To</h3>
+                <p><strong>Poplar<span class="muted">#0666</span></strong> for designing the logo, and much needed
+                    encouragement!</p>
+                <p><strong>Samboy<span class="muted">#0063</span></strong> for creative input!</p>
+                <p>The developers of all the open-source libraries without which this project wouldn't exist, most
+                    notably <strong>Electron</strong>, <strong>Vue</strong>, <strong>yauzl</strong> and <strong>Discord.js</strong>!
+                </p>
+                <p>The <strong>r/DDLCMods</strong> community for supporting the project!</p>
+                <p><strong>Team Salvato</strong> for creating an amazing game and experience!</p>
+                <p>And, most importantly, <strong>you</strong>!</p>
+            </div>
+            <div class="side-sheet-footer">
+                <button class="primary" @click="ui.side_sheets.about = false">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <div :class="{'side-sheet': true, 'active': ui.side_sheets.settings, 'right':true}">
+        <div class="side-sheet-background"></div>
+        <div class="side-sheet-container">
+            <div class="side-sheet-header">
+                Settings
+            </div>
+            <div class="side-sheet-content">
+                <div v-if="ui.update.checked">
+                    <div class="highlight success" v-if="ui.update.info.success && ui.update.available">
+                        <h3>Update</h3>
+                        <p>Version {{ui.update.info.update.updateInfo.version}} is available to install!</p>
+                        <button class="success" @click="installUpdate">Install Now</button>
+                    </div>
+                    <div class="highlight secondary" v-else-if="ui.update.info.success">
+                        <h3>Update</h3>
+                        <p>You are on the latest version of Doki Doki Mod Manager!</p>
+                        <button class="primary" @click="checkUpdate">Check Again</button>
+                    </div>
+                    <div class="highlight warning" v-else>
+                        <h3>Update</h3>
+                        <p>{{ui.update.info.reason}}</p>
+                        <button class="warning" @click="checkUpdate">Check Again</button>
+                    </div>
+                </div>
+            </div>
+            <div class="side-sheet-footer">
+                <button class="primary" @click="ui.side_sheets.settings = false">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div :class="{'side-sheet': true, 'active': ui.side_sheets.onboarding, 'bottom':true}">
+        <div class="side-sheet-background"></div>
+        <div class="side-sheet-container">
+            <div class="side-sheet-header">
+                Welcome to the Literature Club!
+            </div>
+            <div class="side-sheet-content">
+                <div class="text-center" v-if="!ui.onboarding.downloading">
+                    <p>Thanks for downloading Doki Doki Mod Manager! Before we get you started with modding your game,
+                        we need a copy of it first.</p>
+                    <br>
+                    <p>If you already have a copy, you can look for it on your PC. Otherwise, click <em>Download
+                        Now</em> to start downloading the game.</p>
+                    <br>
+                    <p>If you have just upgraded from version 1, all your mods are still here - just select the game's
+                        zip file to get started.</p>
+                    <br>
+                    <button class="huge primary" @click="downloadGame">Download Now</button>
+                    <button class="huge secondary" @click="importGame">Find Game</button>
+                </div>
+                <div v-else>
+                    <div v-if="downloads[0] && downloads[0].status !== 'done'" class="text-center">
+                        <p><strong>Downloading DDLC - {{roundedPercentage(downloads[0].bytes_downloaded,
+                            downloads[0].total_size)}}% complete ({{formatBytes(downloads[0].bytes_downloaded)}} /
+                            {{formatBytes(downloads[0].total_size)}})</strong></p>
+                        <p><strong>Approximately {{calculateETA(downloads[0].bytes_downloaded, downloads[0].total_size,
+                            downloads[0].startTime)}} second(s) remaining</strong></p>
+                        <p><strong>Downloading at {{calculateDownloadSpeed(downloads[0].bytes_downloaded,
+                            downloads[0].startTime, true)}} MB/s</strong></p>
+                        <br>
+                        <p>Once this is done, you will be ready to start installing mods.</p>
+                        <br>
+                        <div class="progress-bar">
+                            <div class="bar indefinite"
+                                 v-if="downloads[0].status === 'downloading' && downloads[0].total_size === 0">&nbsp;
+                            </div>
+                            <div class="bar" v-else-if="downloads[0].status === 'downloading'"
+                                 :style="{'width': (downloads[0].bytes_downloaded / downloads[0].total_size)*100 + '%'}">
+                                &nbsp;
+                            </div>
+                            <div class="bar" v-else></div>
+                        </div>
+                    </div>
+                    <div v-else-if="downloads[0]" class="text-center">
+                        <p>The download has finished, and we're ready to start!</p>
+                        <br>
+                        <button class="huge primary" @click="ui.side_sheets.onboarding = false">Get Started</button>
+                    </div>
+                    <div v-else class="text-center">
+                        Starting download...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div :class="{'side-sheet': true, 'active': ui.side_sheets.save_management, 'left':true}">
+        <div class="side-sheet-background"></div>
+        <div class="side-sheet-container">
+            <div class="side-sheet-header" v-if="selectedInstall">
+                {{selectedInstall.installName}}
+            </div>
+            <div class="side-sheet-content" v-if="selectedInstall">
+                <div class="highlight warning">
+                    <h3>Delete Firstrun Flag</h3>
+                    <p>Deleting the firstrun flag will cause the game to ask if you want to delete your save data when
+                        you next start it up. Some mods may override this behaviour.</p>
+                    <button class="warning" @click="deleteFirstrun(selectedInstall.folderName)">Delete</button>
+                </div>
+
+                <div class="highlight danger">
+                    <h3>Delete Save Data</h3>
+                    <p>Completely erase your save data and start the game from scratch.</p>
+                    <button class="danger" @click="ui.modals.delete_save = true">Delete</button>
+                </div>
+            </div>
+            <div class="side-sheet-footer">
+                <button class="primary" @click="ui.side_sheets.save_management = false">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div :class="{'modal': true, 'active': ui.modals.delete_save}">
+        <div class="modal-background"></div>
+        <div class="modal-container">
+            <div class="modal-content" v-if="selectedInstall">
+                <h3>Delete Save</h3>
+                <p>Are you sure you want to delete the save file of {{selectedInstall.installName}}? It cannot be
+                    recovered.</p>
+                <br>
+                <button class="danger" @click="deleteSave(selectedInstall.folderName); ui.modals.delete_save = false">
+                    Yes
+                </button>
+                <button class="secondary" @click="ui.modals.delete_save = false">No</button>
+            </div>
+        </div>
+    </div>
+
+    <div :class="{'modal': true, 'active': ui.modals.delete_install}">
+        <div class="modal-background"></div>
+        <div class="modal-container">
+            <div class="modal-content" v-if="selectedInstall">
+                <h3>Uninstall</h3>
+                <p>Are you sure you want to uninstall {{selectedInstall.installName}}? Your save data cannot be
+                    recovered.</p>
+                <br>
+                <button class="danger"
+                        @click="deleteInstall(selectedInstall.folderName); ui.modals.delete_install = false">
+                    Yes
+                </button>
+                <button class="secondary" @click="ui.modals.delete_install = false">No</button>
+            </div>
+        </div>
+    </div>
+
+    <div :class="{'modal': true, 'active': ui.modals.delete_mod}">
+        <div class="modal-background"></div>
+        <div class="modal-container">
+            <div class="modal-content" v-if="ui.selected_mod">
+                <h3>Delete Mod</h3>
+                <p>Are you sure you want to delete {{ui.selected_mod}}?</p>
+                <br>
+                <button class="danger"
+                        @click="deleteMod(ui.selected_mod); ui.modals.delete_mod = false">
+                    Yes
+                </button>
+                <button class="secondary" @click="ui.modals.delete_mod = false">No</button>
+            </div>
+        </div>
+    </div>
+
+    <div :class="{'modal': true, 'active': ui.modals.create_install}">
+        <div class="modal-background"></div>
+        <div class="modal-container">
+            <div class="modal-content">
+                <h3>Install Game</h3>
+                <br>
+                <p>Give your game installation a descriptive name.</p>
+                <br>
+                <p v-if="ui.selected_mod">You are installing <strong>{{ui.selected_mod}}</strong></p>
+                <p v-else>You are installing an unmodded copy of Doki Doki Literature Club.</p>
+                <br>
+                <strong>Installation Name</strong>
+                <p><input type="text" v-model="ui.install_creation.install_name" @keyup="generateFolderName" title="Installation Name"></p>
+                <br>
+                <strong>Installation Folder</strong>
+                <p><input type="text" v-model="ui.install_creation.folder_name" title="Installation Folder"></p>
+                <br>
+                <button class="primary"
+                        @click="ui.modals.create_install = false; createInstall(ui.install_creation.folder_name, ui.install_creation.install_name)">
+                    Install
+                </button>
+                <button class="secondary" @click="ui.modals.create_install = false">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div :class="{'modal': true, 'active': ui.loading_modal.display}">
+        <div class="modal-background"></div>
+        <div class="modal-container">
+            <div class="modal-content">
+                <h3>{{ui.loading_modal.title}}</h3>
+                <p>{{ui.loading_modal.message}}</p>
+                <br>
+                <div class="progress-bar">
+                    <div class="bar indefinite">&nbsp;</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div :class="{'monika': true, 'active': ui.monika}"></div>
+    <div :class="{'running-cover': true, 'active': ui.running_cover}">
+        <h1>Doki Doki Literature Club is running</h1>
+        <p>Close the game to make changes to your mods.</p>
+        <p>It may take a while for the game to start, be patient.</p>
+    </div>
+</div>
+
+<audio id="monika" src="easteregg/mscare.ogg" style="display: none;"></audio>
+
+<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    const config = {
+        apiKey: "AIzaSyDInikDCCVFIhpAMPEBaaRmx_p2ZLX-6GY",
+        authDomain: "doki-doki-mod-manager.firebaseapp.com",
+        databaseURL: "https://doki-doki-mod-manager.firebaseio.com",
+        projectId: "doki-doki-mod-manager",
+        storageBucket: "doki-doki-mod-manager.appspot.com",
+        messagingSenderId: "324232265869"
+    };
+    firebase.initializeApp(config);
+</script>
+<script src="../../js/app/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+{
+  "name": "doki-doki-mod-manager",
+  "productName": "Doki Doki Mod Manager!",
+  "description": "Mod Manager for Doki Doki Literature Club!",
+  "author": "Doki Doki Mod Manager! Development Team",
+  "version": "2.0.0-rc3",
+  "homepage": "https://doki.space",
+  "main": "src/common/main.js",
+  "scripts": {
+    "start": "electron .",
+    "start-dev": "electron --inspect=5858 .",
+    "build": "electron-builder",
+    "build-and-publish": "electron-builder -p always"
+  },
+  "dependencies": {
+    "@types/request": "^2.47.1",
+    "ajv": "^6.5.2",
+    "bytes": "^3.0.0",
+    "chalk": "^2.4.1",
+    "discord-rich-presence": "^0.0.7",
+    "electron-is-dev": "latest",
+    "electron-updater": "^3.0.3",
+    "mousetrap": "^1.6.2",
+    "normalize-url": "^3.2.0",
+    "register-scheme": "0.0.2",
+    "request": "^2.87.0",
+    "vue": "^2.5.16",
+    "fs-extra": "latest",
+    "@zudo/unzipper": "latest",
+    "chmodr": "latest",
+    "semver": "latest",
+    "sanitize-filename": "latest",
+    "sha": "latest"
+  },
+  "devDependencies": {
+    "electron": "^2.0.5",
+    "devtron": "^1.4.0",
+    "electron-builder": "^20.15.1"
+  },
+  "build": {
+    "appId": "space.doki.modmanager",
+    "artifactName": "ddmm-${version}-${os}.${ext}",
+    "publish": [
+      {
+        "provider": "github",
+        "repo": "Mod-Manager",
+        "owner": "DokiDokiModManager"
+      }
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "zip"
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ]
+    }
+  }
+}
