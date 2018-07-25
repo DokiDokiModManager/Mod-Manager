@@ -258,7 +258,8 @@
                     <h3>{{download.name}}</h3>
                     <p v-if="download.status === 'downloading' && download.total_size !== 0">Downloading -
                         {{roundedPercentage(download.bytes_downloaded, download.total_size)}}% complete</p>
-                    <p v-else-if="download.status === 'downloading'">Downloading - {{download.bytes_downloaded}} bytes
+                    <p v-else-if="download.status === 'downloading'">Downloading -
+                        {{formatBytes(download.bytes_downloaded)}}
                         downloaded</p>
                     <p v-else>Waiting for downloads to complete.</p>
 
@@ -363,7 +364,8 @@
                     <div class="highlight success" v-if="ui.update.info.success && ui.update.available">
                         <h3>Update</h3>
                         <p>Version {{ui.update.info.update.updateInfo.version}} is available to install!</p>
-                        <button class="success" @click="installUpdate">Install Now</button>
+                        <button class="success" @click="installUpdate" v-if="ui.update.downloaded">Install Now</button>
+                        <p v-else>Downloading update - check back in a minute or so.</p>
                     </div>
                     <div class="highlight secondary" v-else-if="ui.update.info.success">
                         <h3>Update</h3>
@@ -526,7 +528,8 @@
                 <p v-else>You are installing an unmodded copy of Doki Doki Literature Club.</p>
                 <br>
                 <strong>Installation Name</strong>
-                <p><input type="text" v-model="ui.install_creation.install_name" @keyup="generateFolderName" title="Installation Name"></p>
+                <p><input type="text" v-model="ui.install_creation.install_name" @keyup="generateFolderName"
+                          title="Installation Name"></p>
                 <br>
                 <strong>Installation Folder</strong>
                 <p><input type="text" v-model="ui.install_creation.folder_name" title="Installation Folder"></p>

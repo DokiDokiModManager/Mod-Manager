@@ -45,8 +45,12 @@ downloadManager = new DownloadManager();
 richPresence = new RichPresence(DISCORD_APPID);
 richPresence.setIdlePresence();
 
-autoUpdater.autoDownload = false;
+autoUpdater.autoDownload = true;
 autoUpdater.logger = Logger;
+
+autoUpdater.on("update-downloaded", () => {
+   appWin.webContents.send("update downloaded");
+});
 
 function downloadBaseGame() {
     DownloadLinkRetriever.getDownloadLink().then((link: string) => {
@@ -168,11 +172,6 @@ app.on("ready", () => {
 
     // ...and show it when ready
     appWin.on("ready-to-show", () => {
-        // onboarding screen etc
-        if (!fileExists(joinPath(Config.readConfigValue("installFolder"), "ddlc.zip"))) {
-            appWin.webContents.send("show onboarding", true);
-        }
-
         appWin.show();
         Logger.info("App window visible.");
     });
@@ -209,6 +208,10 @@ app.on("ready", () => {
     // page event handlers
     appWin.webContents.on("did-finish-load", () => {
         appWin.webContents.send("install list", InstallList.getInstallList());
+        // onboarding screen etc
+        if (fileExists(joinPath(Config.readConfigValue("installFolder"), "ddlc.zip"))) {
+            appWin.webContents.send("show onboarding", false);
+        }
         checkUpdates();
         readMods();
         if (debug) {

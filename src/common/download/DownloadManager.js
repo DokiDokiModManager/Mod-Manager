@@ -38,7 +38,7 @@ class DownloadManager extends events_1.EventEmitter {
             method: "GET",
             url: firstItem.url,
         }).on("response", (response) => {
-            firstItem.total_size = parseInt(response.headers["content-length"], 10);
+            firstItem.total_size = parseInt(response.headers["content-length"], 10) || 0;
         }).on("data", (chunk) => {
             firstItem.bytes_downloaded += chunk.length;
             if (firstItem.total_size === 0) {
@@ -47,12 +47,11 @@ class DownloadManager extends events_1.EventEmitter {
             else {
                 this.emit("progress", firstItem.bytes_downloaded / firstItem.total_size);
             }
-            if (firstItem.bytes_downloaded >= firstItem.total_size) {
-                firstItem.status = DownloadStatus.DONE;
-                this.emit("download finished");
-                this.emit("progress", 0); // no progress bar
-                this.bumpQueue();
-            }
+        }).on("complete", () => {
+            firstItem.status = DownloadStatus.DONE;
+            this.emit("download finished");
+            this.emit("progress", 0); // no progress bar
+            this.bumpQueue();
         }).pipe(fs_1.createWriteStream(firstItem.saveTo));
     }
     bumpQueue() {

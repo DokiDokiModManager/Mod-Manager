@@ -23,7 +23,7 @@ const vueApp = new Vue({
                 "downloads": false,
                 "about": false,
                 "settings": false,
-                "onboarding": false,
+                "onboarding": true,
                 "install": false,
                 "browser": false,
                 "save_management": false
@@ -44,6 +44,7 @@ const vueApp = new Vue({
             "update": {
                 "checked": false,
                 "available": false,
+                "downloaded": false,
                 "data": null
             },
             "onboarding": {
@@ -235,6 +236,10 @@ ipcRenderer.on("mod list", (_, list) => {
 
 ipcRenderer.on("loading modal", (_, details) => {
     vueApp.ui.loading_modal = details;
+});
+
+ipcRenderer.on("update downloaded", () => {
+    vueApp.ui.update.downloaded = true;
 });
 
 // debug keybind

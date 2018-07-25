@@ -35,8 +35,11 @@ let moniIndex = 0;
 downloadManager = new DownloadManager_1.DownloadManager();
 richPresence = new RichPresence_1.default(DISCORD_APPID);
 richPresence.setIdlePresence();
-electron_updater_1.autoUpdater.autoDownload = false;
+electron_updater_1.autoUpdater.autoDownload = true;
 electron_updater_1.autoUpdater.logger = Logger_1.default;
+electron_updater_1.autoUpdater.on("update-downloaded", () => {
+    appWin.webContents.send("update downloaded");
+});
 function downloadBaseGame() {
     DownloadLinkRetriever_1.default.getDownloadLink().then((link) => {
         downloadManager.queueDownload(link, path_1.join(Config_1.default.readConfigValue("installFolder"), "ddlc.zip"), "Doki Doki Literature Club - Game Files");
@@ -145,10 +148,6 @@ electron_1.app.on("ready", () => {
     appWin.loadURL("file:///" + path_1.join(__dirname, "../gui/html/app/index.html"));
     // ...and show it when ready
     appWin.on("ready-to-show", () => {
-        // onboarding screen etc
-        if (!fs_1.existsSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "ddlc.zip"))) {
-            appWin.webContents.send("show onboarding", true);
-        }
         appWin.show();
         Logger_1.default.info("App window visible.");
     });
@@ -181,6 +180,10 @@ electron_1.app.on("ready", () => {
     // page event handlers
     appWin.webContents.on("did-finish-load", () => {
         appWin.webContents.send("install list", InstallList_1.default.getInstallList());
+        // onboarding screen etc
+        if (fs_1.existsSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "ddlc.zip"))) {
+            appWin.webContents.send("show onboarding", false);
+        }
         checkUpdates();
         readMods();
         if (debug) {
