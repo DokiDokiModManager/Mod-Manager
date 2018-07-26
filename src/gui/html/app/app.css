@@ -401,10 +401,6 @@ button .material-icons {
   background-color: #bb5599;
   color: #fff;
   padding: 5em;
-  text-align: center;
-  display: none; }
-
-[v-cloak] {
-  display: block; }
+  text-align: center; }
 
 /*# sourceMappingURL=app.css.map */

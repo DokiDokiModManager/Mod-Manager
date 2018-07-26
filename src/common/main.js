@@ -180,15 +180,18 @@ electron_1.app.on("ready", () => {
     // page event handlers
     appWin.webContents.on("did-finish-load", () => {
         appWin.webContents.send("install list", InstallList_1.default.getInstallList());
-        // onboarding screen etc
-        if (fs_1.existsSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "ddlc.zip"))) {
-            appWin.webContents.send("show onboarding", false);
-        }
         checkUpdates();
         readMods();
         if (debug) {
             appWin.webContents.executeJavaScript(`vueApp.ui.debug_features = true`);
         }
+        // onboarding screen etc
+        if (fs_1.existsSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "ddlc.zip"))) {
+            appWin.webContents.send("show onboarding", false);
+        }
+        setTimeout(() => {
+            appWin.webContents.send("ready");
+        }, 500); // Avoid showing onboarding when not needed
     });
     // IPC functions
     electron_1.ipcMain.on("open devtools", () => {

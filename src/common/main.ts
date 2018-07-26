@@ -208,15 +208,18 @@ app.on("ready", () => {
     // page event handlers
     appWin.webContents.on("did-finish-load", () => {
         appWin.webContents.send("install list", InstallList.getInstallList());
-        // onboarding screen etc
-        if (fileExists(joinPath(Config.readConfigValue("installFolder"), "ddlc.zip"))) {
-            appWin.webContents.send("show onboarding", false);
-        }
         checkUpdates();
         readMods();
         if (debug) {
             appWin.webContents.executeJavaScript(`vueApp.ui.debug_features = true`);
         }
+        // onboarding screen etc
+        if (fileExists(joinPath(Config.readConfigValue("installFolder"), "ddlc.zip"))) {
+            appWin.webContents.send("show onboarding", false);
+        }
+        setTimeout(() => {
+            appWin.webContents.send("ready");
+        }, 500); // Avoid showing onboarding when not needed
     });
 
     // IPC functions

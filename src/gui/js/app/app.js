@@ -65,7 +65,8 @@ const vueApp = new Vue({
                 "active": false,
                 "message": "",
                 "url": ""
-            }
+            },
+            "ready": false
         },
         "downloads": [],
         "installs": [],
@@ -240,6 +241,10 @@ ipcRenderer.on("loading modal", (_, details) => {
 
 ipcRenderer.on("update downloaded", () => {
     vueApp.ui.update.downloaded = true;
+});
+
+ipcRenderer.on("ready", () => {
+   vueApp.ui.ready = true;
 });
 
 // debug keybind

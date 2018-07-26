@@ -8,12 +8,12 @@ class InstallList {
         const installs = fs_1.readdirSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "installs"));
         return installs.map((install) => {
             const path = path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", install);
-            let installData = { "name": "" };
+            let installData = { name: "" };
             try {
                 installData = JSON.parse(fs_1.readFileSync(path_1.join(path, "install.json")).toString("utf8"));
             }
             catch (e) {
-                installData = install;
+                installData.name = install;
             }
             return {
                 folderName: install,
