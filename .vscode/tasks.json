@@ -1,0 +1,18 @@
+{
+    "version": "0.1.0",
+    "command": "npm",
+    "isShellCommand": true,
+    "suppressTaskName": true,
+    "tasks": [
+        {
+        // Build task, Ctrl+Shift+B
+        "taskName": "build",
+        "isBuildCommand": true,
+        "args": ["run", "transpile"]
+        },
+        {
+        "taskName": "start",
+        "args": ["run", "start-dev"]
+        }
+    ]
+}
