@@ -176,11 +176,8 @@ const vueApp = new Vue({
             ipcRenderer.send("import mod");
             this.ui.side_sheets.install = false;
         },
-        "setDark": function(dark) {
-            if(dark)
-                vueApp.ui.theme = "dark"
-            else
-                vueApp.ui.theme = "light"
+        "cancelDownload": function(id) {
+            ipcRenderer.send("cancel download", id);
         }
     },
     "computed": {

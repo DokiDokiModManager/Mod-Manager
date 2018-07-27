@@ -3,7 +3,7 @@
   "productName": "Doki Doki Mod Manager!",
   "description": "Mod Manager for Doki Doki Literature Club!",
   "author": "Doki Doki Mod Manager! Development Team",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "homepage": "https://doki.space",
   "main": "src/common/main.js",
   "scripts": {
@@ -15,28 +15,26 @@
   },
   "dependencies": {
     "@types/request": "^2.47.1",
-    "ajv": "^6.5.2",
+    "@zudo/unzipper": "latest",
     "bytes": "^3.0.0",
     "chalk": "^2.4.1",
+    "chmodr": "latest",
     "discord-rich-presence": "^0.0.7",
     "electron-is-dev": "latest",
-    "electron-updater": "^3.0.3",
+    "electron-updater": "^3.1.1",
+    "fs-extra": "latest",
     "mousetrap": "^1.6.2",
     "normalize-url": "^3.2.0",
-    "register-scheme": "0.0.2",
     "request": "^2.87.0",
-    "vue": "^2.5.16",
-    "fs-extra": "latest",
-    "@zudo/unzipper": "latest",
-    "chmodr": "latest",
-    "semver": "latest",
     "sanitize-filename": "latest",
-    "sha": "latest"
+    "semver": "latest",
+    "sha": "latest",
+    "vue": "^2.5.16"
   },
   "devDependencies": {
-    "electron": "^2.0.5",
     "devtron": "^1.4.0",
-    "electron-builder": "^20.15.1"
+    "electron": "^2.0.5",
+    "electron-builder": "^20.26.1"
   },
   "build": {
     "appId": "space.doki.modmanager",

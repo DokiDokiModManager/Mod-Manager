@@ -20,6 +20,7 @@ import Logger from "./utilities/Logger";
 import {on as registerProcessEventHandler} from "process";
 import ModInstaller from "./installs/ModInstaller";
 
+const PROTOCOL: string = "ddmm";
 const DISCORD_APPID: string = "453299645725016074";
 const SUPPORTED_PLATFORMS: string[] = [
     "linux", "win32",
@@ -49,8 +50,18 @@ autoUpdater.autoDownload = true;
 autoUpdater.logger = Logger;
 
 autoUpdater.on("update-downloaded", () => {
-   appWin.webContents.send("update downloaded");
+    appWin.webContents.send("update downloaded");
 });
+
+function handleURL(args: string[]) {
+    const handledURL: string = args.pop();
+
+    if (handledURL.startsWith(PROTOCOL + ":")) {
+        const downloadURL: string = handledURL.substring(PROTOCOL.length + 1);
+        // cheat and download the URL. I'm sorry, but it lets me trigger some of the nice download behaviour.
+        appWin.webContents.downloadURL(downloadURL);
+    }
+}
 
 function downloadBaseGame() {
     DownloadLinkRetriever.getDownloadLink().then((link: string) => {
@@ -145,6 +156,18 @@ registerProcessEventHandler("uncaughtException", (error) => {
 DirectoryManager.createDirs(Config.readConfigValue("installFolder"));
 
 app.on("ready", () => {
+    if (app.makeSingleInstance((argv: string[]) => {
+        appWin.restore();
+        appWin.focus();
+        handleURL(argv);
+    })) {
+        Logger.info("Signalled other instance - quitting.");
+        app.quit();
+        return;
+    }
+
+    app.setAsDefaultProtocolClient(PROTOCOL);
+
     if (SUPPORTED_PLATFORMS.indexOf(process.platform) === -1) {
         dialog.showMessageBox({
             detail: "Doki Doki Mod Manager is only supported on Windows and Linux. " +
@@ -513,4 +536,10 @@ app.on("ready", () => {
             }
         });
     });
+
+    ipcMain.on("cancel download", (_, id) => {
+       downloadManager.removeDownload(id);
+    });
+
+    handleURL(process.argv);
 });

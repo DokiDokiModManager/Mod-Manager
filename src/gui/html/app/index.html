@@ -66,7 +66,7 @@
 
     <div class="content">
         <div>
-            <div v-for="(install, index) in installs" class="highlight nomargin">
+            <div v-for="(install, index) in installs">
                 <h3>{{install.installName}}</h3>
                 <p class="muted">{{install.fullFolderName}}</p>
                 <p>Installed - ready to launch</p>
@@ -76,6 +76,7 @@
                 </button>
                 <button class="danger" @click="ui.selected_install = index; ui.modals.delete_install = true">Uninstall
                 </button>
+                <hr>
             </div>
         </div>
         <div v-if="installs.length === 0" class="muted text-center">
@@ -254,7 +255,7 @@
                     <h3>No mods downloaded</h3>
                     <p>Click "Get Mods" on the main page to find some.</p>
                 </div>
-                <div v-for="download in downloads" v-if="download.status !== 'done'">
+                <div v-for="(download, id) in downloads" v-if="download.status !== 'done'">
                     <h3>{{download.name}}</h3>
                     <p v-if="download.status === 'downloading' && download.total_size !== 0">Downloading -
                         {{roundedPercentage(download.bytes_downloaded, download.total_size)}}% complete</p>
@@ -274,7 +275,7 @@
                             <div class="bar" v-else></div>
                         </div>
                         <br>
-                        <button class="primary">Cancel</button>
+                        <button class="primary" @click="cancelDownload(id)">Cancel</button>
                     </div>
                     <hr>
                 </div>

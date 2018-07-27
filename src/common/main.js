@@ -20,6 +20,7 @@ const InstallList_1 = require("./installs/InstallList");
 const Logger_1 = require("./utilities/Logger");
 const process_1 = require("process");
 const ModInstaller_1 = require("./installs/ModInstaller");
+const PROTOCOL = "ddmm";
 const DISCORD_APPID = "453299645725016074";
 const SUPPORTED_PLATFORMS = [
     "linux", "win32",
@@ -40,6 +41,14 @@ electron_updater_1.autoUpdater.logger = Logger_1.default;
 electron_updater_1.autoUpdater.on("update-downloaded", () => {
     appWin.webContents.send("update downloaded");
 });
+function handleURL(args) {
+    const handledURL = args.pop();
+    if (handledURL.startsWith(PROTOCOL + ":")) {
+        const downloadURL = handledURL.substring(PROTOCOL.length + 1);
+        // cheat and download the URL. I'm sorry, but it lets me trigger some of the nice download behaviour.
+        appWin.webContents.downloadURL(downloadURL);
+    }
+}
 function downloadBaseGame() {
     DownloadLinkRetriever_1.default.getDownloadLink().then((link) => {
         downloadManager.queueDownload(link, path_1.join(Config_1.default.readConfigValue("installFolder"), "ddlc.zip"), "Doki Doki Literature Club - Game Files");
@@ -126,6 +135,16 @@ process_1.on("uncaughtException", (error) => {
 });
 DirectoryManager_1.default.createDirs(Config_1.default.readConfigValue("installFolder"));
 electron_1.app.on("ready", () => {
+    if (electron_1.app.makeSingleInstance((argv) => {
+        appWin.restore();
+        appWin.focus();
+        handleURL(argv);
+    })) {
+        Logger_1.default.info("Signalled other instance - quitting.");
+        electron_1.app.quit();
+        return;
+    }
+    electron_1.app.setAsDefaultProtocolClient(PROTOCOL);
     if (SUPPORTED_PLATFORMS.indexOf(process.platform) === -1) {
         electron_1.dialog.showMessageBox({
             detail: "Doki Doki Mod Manager is only supported on Windows and Linux. " +
@@ -431,5 +450,9 @@ electron_1.app.on("ready", () => {
             }
         });
     });
+    electron_1.ipcMain.on("cancel download", (_, id) => {
+        downloadManager.removeDownload(id);
+    });
+    handleURL(process.argv);
 });
 //# sourceMappingURL=main.js.map
