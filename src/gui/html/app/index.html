@@ -8,7 +8,7 @@
     <link href="app.css" rel="stylesheet">
 </head>
 <body>
-<div id="app">
+<div id="app" :class="{'light-theme': ui.theme === 'light', 'dark-theme': ui.theme === 'dark'}">
     <div v-if="!ui.ready" class="cloak">
         <h1>Loading...</h1>
     </div>
@@ -377,6 +377,16 @@
                         <p>{{ui.update.info.reason}}</p>
                         <button class="warning" @click="checkUpdate">Check Again</button>
                     </div>
+                </div>
+                <div class="highlight dark" v-if="ui.theme === 'light'" @click="setDark(true)">
+                    <h3>Toggle Dark Theme</h3>
+                    <p>Switch to the dark theme. Embrace the dark side!</p>
+                    <button class="dark">Switch</button>
+                </div>
+                <div class="highlight" v-else @click="setDark(false)">
+                    <h3>Toggle Dark Theme</h3>
+                    <p>Revoke the dark and switch back to the light theme.</p>
+                    <button class="secondary">Switch</button>
                 </div>
             </div>
             <div class="side-sheet-footer">

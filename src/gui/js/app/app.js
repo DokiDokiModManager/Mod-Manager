@@ -66,7 +66,8 @@ const vueApp = new Vue({
                 "message": "",
                 "url": ""
             },
-            "ready": false
+            "ready": false,
+            "theme": "light",
         },
         "downloads": [],
         "installs": [],
@@ -173,6 +174,12 @@ const vueApp = new Vue({
         "importMod": function() {
             ipcRenderer.send("import mod");
             this.ui.side_sheets.install = false;
+        },
+        "setDark": function(dark) {
+            if(dark)
+                vueApp.ui.theme = "dark"
+            else
+                vueApp.ui.theme = "light"
         }
     },
     "computed": {

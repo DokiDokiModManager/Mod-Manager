@@ -17,8 +17,12 @@ $ui-highlight-background-colour: #bb5599;
 $ui-highlight-text-colour: #fff;
 $ui-cover-colour: rgba(0, 0, 0, 0.5);
 
+$ui-dark-theme-text-colour: #eee;
+$ui-dark-theme-background-colour: #595959;
+
 $ui-primary-colour-bg: #bb5599;
 $ui-secondary-colour-bg: #999;
+$ui-dark-colour-bg: #333;
 $ui-danger-colour-bg: #eb4d4b;
 $ui-warning-colour-bg: #f0932b;
 $ui-success-colour-bg: #6ab04c;
@@ -197,6 +201,14 @@ button.secondary:hover {
   background-color: darken($ui-background-colour, 10%);
 }
 
+button.dark {
+  background-color: $ui-dark-colour-bg;
+}
+
+button.dark:hover {
+  background-color: darken($ui-dark-colour-bg, 10%);
+}
+
 button.danger {
   background-color: $ui-danger-colour-bg;
 }
@@ -261,6 +273,11 @@ input[type="text"], input[type="number"], input[type="url"], textarea {
 
 .highlight.secondary {
   background-color: lighten($ui-secondary-colour-bg, 25%);
+}
+
+.highlight.dark {
+  background-color: lighten($ui-dark-colour-bg, 15%);
+  color: $ui-dark-theme-text-colour;
 }
 
 //
