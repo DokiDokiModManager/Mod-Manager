@@ -378,15 +378,10 @@
                         <button class="warning" @click="checkUpdate">Check Again</button>
                     </div>
                 </div>
-                <div class="highlight dark" v-if="ui.theme === 'light'" @click="setDark(true)">
-                    <h3>Toggle Dark Theme</h3>
-                    <p>Switch to the dark theme. Embrace the dark side!</p>
-                    <button class="dark">Switch</button>
-                </div>
-                <div class="highlight" v-else @click="setDark(false)">
-                    <h3>Toggle Dark Theme</h3>
-                    <p>Revoke the dark and switch back to the light theme.</p>
-                    <button class="secondary">Switch</button>
+                <div class="highlight dark">
+                    <h3>Change Theme</h3>
+                    <p>Don't like the way the app looks? Want to embrace the dark side? Click here to change the app's theme!</p>
+                    <button class="dark" @click="ui.side_sheets.settings = false; ui.side_sheets.theme = true">Change</button>
                 </div>
             </div>
             <div class="side-sheet-footer">
@@ -473,6 +468,30 @@
             </div>
             <div class="side-sheet-footer">
                 <button class="primary" @click="ui.side_sheets.save_management = false">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div :class="{'side-sheet': true, 'active': ui.side_sheets.theme, 'bottom':true}">
+        <div class="side-sheet-background"></div>
+        <div class="side-sheet-container">
+            <div class="side-sheet-header">
+                Theme Switcher
+            </div>
+            <div class="side-sheet-content">
+                <div class="theme-switcher-theme theme-light">
+                    <span class="theme-switcher-theme-name">
+                        Light Theme
+                    </span>
+                </div>
+                <div class="theme-switcher-theme theme-dark">
+                    <span class="theme-switcher-theme-name">
+                        Dark Theme
+                    </span>
+                </div>
+            </div>
+            <div class="side-sheet-footer">
+                <button class="primary" @click="ui.side_sheets.theme = false">Close</button>
             </div>
         </div>
     </div>

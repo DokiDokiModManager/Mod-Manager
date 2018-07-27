@@ -26,7 +26,8 @@ const vueApp = new Vue({
                 "onboarding": true,
                 "install": false,
                 "browser": false,
-                "save_management": false
+                "save_management": false,
+                "theme": false,
             },
             "modals": {
                 "delete_save": false,
