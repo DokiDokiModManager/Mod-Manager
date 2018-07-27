@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "@types/request": "^2.47.1",
-    "ajv": "^6.5.2",
     "bytes": "^3.0.0",
     "chalk": "^2.4.1",
     "discord-rich-presence": "^0.0.7",
@@ -22,7 +21,6 @@
     "electron-updater": "^3.0.3",
     "mousetrap": "^1.6.2",
     "normalize-url": "^3.2.0",
-    "register-scheme": "0.0.2",
     "request": "^2.87.0",
     "vue": "^2.5.16",
     "fs-extra": "latest",

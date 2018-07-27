@@ -66,7 +66,7 @@
 
     <div class="content">
         <div>
-            <div v-for="(install, index) in installs" class="highlight nomargin">
+            <div v-for="(install, index) in installs">
                 <h3>{{install.installName}}</h3>
                 <p class="muted">{{install.fullFolderName}}</p>
                 <p>Installed - ready to launch</p>
@@ -76,6 +76,7 @@
                 </button>
                 <button class="danger" @click="ui.selected_install = index; ui.modals.delete_install = true">Uninstall
                 </button>
+                <hr>
             </div>
         </div>
         <div v-if="installs.length === 0" class="muted text-center">
