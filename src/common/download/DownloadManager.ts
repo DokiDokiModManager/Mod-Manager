@@ -1,10 +1,11 @@
 import {EventEmitter} from "events";
-import {createWriteStream} from "fs";
+import {createWriteStream, unlinkSync} from "fs";
 import * as request from "request";
 import Logger from "../utilities/Logger";
 
 export class DownloadManager extends EventEmitter {
 
+    private currentDownload;
     private queue: IDownload[] = [];
 
     public queueDownload(url: string, saveTo: string, name: string, filename?: string) {
@@ -24,6 +25,10 @@ export class DownloadManager extends EventEmitter {
     }
 
     public removeDownload(id: number) {
+        if (this.queue[id].status === DownloadStatus.DOWNLOADING) {
+            this.currentDownload.abort();
+            unlinkSync(this.queue[id].saveTo);
+        }
         this.queue.splice(this.queue.findIndex((dl) => dl.id === id), 1);
     }
 
@@ -34,13 +39,15 @@ export class DownloadManager extends EventEmitter {
     private downloadFirstItem() {
         const firstItem: IDownload = this.queue.filter((dl) => dl.status !== DownloadStatus.DONE)[0];
 
-        request({
+        this.currentDownload = request({
             headers: {
                 "User-Agent": "DokiDokiModManager (u/zuudo)",
             },
             method: "GET",
             url: firstItem.url,
-        }).on("response", (response) => {
+        });
+
+        this.currentDownload.on("response", (response) => {
             firstItem.total_size = parseInt(response.headers["content-length"], 10) || 0;
         }).on("data", (chunk) => {
             firstItem.bytes_downloaded += chunk.length;

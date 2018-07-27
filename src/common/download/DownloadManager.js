@@ -24,6 +24,10 @@ class DownloadManager extends events_1.EventEmitter {
         this.bumpQueue();
     }
     removeDownload(id) {
+        if (this.queue[id].status === DownloadStatus.DOWNLOADING) {
+            this.currentDownload.abort();
+            fs_1.unlinkSync(this.queue[id].saveTo);
+        }
         this.queue.splice(this.queue.findIndex((dl) => dl.id === id), 1);
     }
     getQueue() {
@@ -31,13 +35,14 @@ class DownloadManager extends events_1.EventEmitter {
     }
     downloadFirstItem() {
         const firstItem = this.queue.filter((dl) => dl.status !== DownloadStatus.DONE)[0];
-        request({
+        this.currentDownload = request({
             headers: {
                 "User-Agent": "DokiDokiModManager (u/zuudo)",
             },
             method: "GET",
             url: firstItem.url,
-        }).on("response", (response) => {
+        });
+        this.currentDownload.on("response", (response) => {
             firstItem.total_size = parseInt(response.headers["content-length"], 10) || 0;
         }).on("data", (chunk) => {
             firstItem.bytes_downloaded += chunk.length;

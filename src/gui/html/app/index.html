@@ -255,7 +255,7 @@
                     <h3>No mods downloaded</h3>
                     <p>Click "Get Mods" on the main page to find some.</p>
                 </div>
-                <div v-for="download in downloads" v-if="download.status !== 'done'">
+                <div v-for="(download, id) in downloads" v-if="download.status !== 'done'">
                     <h3>{{download.name}}</h3>
                     <p v-if="download.status === 'downloading' && download.total_size !== 0">Downloading -
                         {{roundedPercentage(download.bytes_downloaded, download.total_size)}}% complete</p>
@@ -275,7 +275,7 @@
                             <div class="bar" v-else></div>
                         </div>
                         <br>
-                        <button class="primary">Cancel</button>
+                        <button class="primary" @click="cancelDownload(id)">Cancel</button>
                     </div>
                     <hr>
                 </div>

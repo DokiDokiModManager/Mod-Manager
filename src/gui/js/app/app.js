@@ -173,6 +173,9 @@ const vueApp = new Vue({
         "importMod": function() {
             ipcRenderer.send("import mod");
             this.ui.side_sheets.install = false;
+        },
+        "cancelDownload": function(id) {
+            ipcRenderer.send("cancel download", id);
         }
     },
     "computed": {
