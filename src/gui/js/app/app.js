@@ -56,7 +56,8 @@ const vueApp = new Vue({
             },
             "install_creation": {
                 "install_name": "",
-                "folder_name": ""
+                "folder_name": "",
+                "global_save": false
             },
             "selected_install": 0,
             "selected_mod": null,
@@ -178,6 +179,15 @@ const vueApp = new Vue({
         },
         "cancelDownload": function(id) {
             ipcRenderer.send("cancel download", id);
+        },
+        "showInstallDialog": function() {
+            this.ui.install_creation.folder_name = "";
+            this.ui.install_creation.install_name = "";
+            this.ui.install_creation.global_save = false;
+            this.ui.modals.create_install = true;
+        },
+        "openFolder": function(folder) {
+            shell.openItem(folder);
         }
     },
     "computed": {
