@@ -36,6 +36,7 @@ export default class Config {
 
     private static defaultConfig = {
         installFolder: joinPath(app.getPath("documents"), "Doki Doki Mod Manager"),
+        theme: "light",
     };
 
     private static configPath = joinPath(app.getPath("userData"), "config.json");

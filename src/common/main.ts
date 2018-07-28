@@ -240,6 +240,7 @@ app.on("ready", () => {
         if (fileExists(joinPath(Config.readConfigValue("installFolder"), "ddlc.zip"))) {
             appWin.webContents.send("show onboarding", false);
         }
+        appWin.webContents.send("set theme", Config.readConfigValue("theme")); // Defaults to light theme
         setTimeout(() => {
             appWin.webContents.send("ready");
         }, 500); // Avoid showing onboarding when not needed
@@ -542,6 +543,10 @@ app.on("ready", () => {
 
     ipcMain.on("cancel download", (_, id) => {
        downloadManager.removeDownload(id);
+    });
+
+    ipcMain.on("save theme", (_, theme) => {
+        Config.saveConfigValue("theme", theme);
     });
 
     handleURL(process.argv);

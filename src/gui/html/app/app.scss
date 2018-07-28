@@ -17,8 +17,12 @@ $ui-highlight-background-colour: #bb5599;
 $ui-highlight-text-colour: #fff;
 $ui-cover-colour: rgba(0, 0, 0, 0.5);
 
+$ui-dark-theme-text-colour: #eee;
+$ui-dark-theme-background-colour: #595959;
+
 $ui-primary-colour-bg: #bb5599;
 $ui-secondary-colour-bg: #999;
+$ui-dark-colour-bg: #1e1e1e;
 $ui-danger-colour-bg: #eb4d4b;
 $ui-warning-colour-bg: #f0932b;
 $ui-success-colour-bg: #6ab04c;
@@ -197,6 +201,14 @@ button.secondary:hover {
   background-color: darken($ui-background-colour, 10%);
 }
 
+button.dark {
+  background-color: $ui-dark-colour-bg;
+}
+
+button.dark:hover {
+  background-color: darken($ui-dark-colour-bg, 10%);
+}
+
 button.danger {
   background-color: $ui-danger-colour-bg;
 }
@@ -261,6 +273,11 @@ input[type="text"], input[type="number"], input[type="url"], textarea {
 
 .highlight.secondary {
   background-color: lighten($ui-secondary-colour-bg, 25%);
+}
+
+.highlight.dark {
+  background-color: lighten($ui-dark-colour-bg, 15%);
+  color: $ui-dark-theme-text-colour;
 }
 
 //
@@ -571,4 +588,97 @@ button .material-icons {
   color: $ui-background-colour;
   padding: 5em;
   text-align: center;
+}
+
+//
+// Theme Switcher Stuff
+//
+
+.theme-switcher-theme {
+  width: 14rem;
+  height: 6rem;
+  display: inline-flex;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 1rem;
+  align-items: center;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+}
+
+.theme-switcher-theme.theme-dark {
+  background-color: $ui-dark-colour-bg;
+  color: #fff;
+}
+
+.theme-switcher-theme.theme-light {
+  background-color: #fff;
+  color: $ui-text-colour;
+}
+
+.theme-switcher-theme-selected-indicator {
+  box-sizing: border-box;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  height: 20px;
+  width: 20px;
+  right: 20px;
+  background: $ui-highlight-background-colour;
+  border-radius: 4px;
+  color: #fff;
+}
+
+.theme-switcher-theme-selected-indicator-check {
+  transform: rotate(45deg) rotateY(180deg);
+  display: block;
+  margin-left: 2px;
+  margin-top: -1px;
+}
+
+.theme-switcher-theme-selected-indicator-check:after {
+  content: " ";
+}
+
+.theme-switcher-theme.selected .theme-switcher-theme-selected-indicator-check:after {
+  content: "L";
+}
+
+//
+// General Theme Stuff
+//
+
+#app {
+  height: 100%;
+}
+
+//
+// Dark Theme
+//
+
+#app.dark-theme {
+  background: $ui-dark-colour-bg;
+  color: $ui-dark-theme-text-colour;
+
+  .side-sheet-container {
+    background: $ui-dark-colour-bg;
+    color: $ui-dark-theme-text-colour;
+  }
+
+  .highlight:not(.dark) {
+    color: $ui-text-colour;
+  }
+
+  .progress-bar {
+    background-color: lighten($ui-dark-colour-bg, 10%);
+  }
+
+  button.secondary {
+    background-color: lighten($ui-dark-colour-bg, 10%);
+    color: $ui-dark-theme-text-colour;
+  }
 }

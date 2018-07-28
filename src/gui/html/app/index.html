@@ -8,7 +8,7 @@
     <link href="app.css" rel="stylesheet">
 </head>
 <body>
-<div id="app">
+<div id="app" :class="{'light-theme': ui.theme === 'light', 'dark-theme': ui.theme === 'dark'}">
     <div v-if="!ui.ready" class="cloak">
         <h1>Loading...</h1>
     </div>
@@ -379,6 +379,11 @@
                         <button class="warning" @click="checkUpdate">Check Again</button>
                     </div>
                 </div>
+                <div class="highlight dark">
+                    <h3>Change Theme</h3>
+                    <p>Don't like the way the app looks? Want to embrace the dark side? Click here to change the app's theme!</p>
+                    <button class="dark" @click="ui.side_sheets.settings = false; ui.side_sheets.theme = true">Change</button>
+                </div>
             </div>
             <div class="side-sheet-footer">
                 <button class="primary" @click="ui.side_sheets.settings = false">Close</button>
@@ -469,6 +474,36 @@
             </div>
             <div class="side-sheet-footer">
                 <button class="primary" @click="ui.side_sheets.save_management = false">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div :class="{'side-sheet': true, 'active': ui.side_sheets.theme, 'bottom':true}">
+        <div class="side-sheet-background"></div>
+        <div class="side-sheet-container">
+            <div class="side-sheet-header">
+                Theme Switcher
+            </div>
+            <div class="side-sheet-content">
+                <div :class="{'theme-switcher-theme': true, 'selected': ui.theme === 'light', 'theme-light': true}" @click="ui.theme = 'light'; saveThemeConfig()">
+                    <span class="theme-switcher-theme-name">
+                        Light Theme
+                    </span>
+                    <div class="theme-switcher-theme-selected-indicator">
+                        <span class="theme-switcher-theme-selected-indicator-check"></span>
+                    </div>
+                </div>
+                <div :class="{'theme-switcher-theme': true, 'selected': ui.theme === 'dark', 'theme-dark': true}" @click="ui.theme = 'dark'; saveThemeConfig()">
+                    <span class="theme-switcher-theme-name">
+                        Dark Theme
+                    </span>
+                    <div class="theme-switcher-theme-selected-indicator">
+                        <span class="theme-switcher-theme-selected-indicator-check"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="side-sheet-footer">
+                <button class="primary" @click="ui.side_sheets.theme = false">Close</button>
             </div>
         </div>
     </div>

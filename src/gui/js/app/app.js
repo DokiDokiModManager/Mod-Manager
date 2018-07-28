@@ -26,7 +26,8 @@ const vueApp = new Vue({
                 "onboarding": true,
                 "install": false,
                 "browser": false,
-                "save_management": false
+                "save_management": false,
+                "theme": false,
             },
             "modals": {
                 "delete_save": false,
@@ -67,7 +68,8 @@ const vueApp = new Vue({
                 "message": "",
                 "url": ""
             },
-            "ready": false
+            "ready": false,
+            "theme": "light",
         },
         "downloads": [],
         "installs": [],
@@ -186,6 +188,9 @@ const vueApp = new Vue({
         },
         "openFolder": function(folder) {
             shell.openItem(folder);
+        },
+        "saveThemeConfig": function() {
+            ipcRenderer.send("save theme", vueApp.ui.theme);
         }
     },
     "computed": {
@@ -258,6 +263,10 @@ ipcRenderer.on("update downloaded", () => {
 
 ipcRenderer.on("ready", () => {
    vueApp.ui.ready = true;
+});
+
+ipcRenderer.on("set theme", (_, theme) => {
+    vueApp.ui.theme = theme;
 });
 
 // debug keybind
