@@ -145,11 +145,11 @@ button.secondary:hover {
 }
 
 button.dark {
-  background-color: #333;
+  background-color: #1e1e1e;
 }
 
 button.dark:hover {
-  background-color: #1a1a1a;
+  background-color: #050505;
 }
 
 button.danger {
@@ -212,7 +212,7 @@ input[type="text"], input[type="number"], input[type="url"], textarea {
 }
 
 .highlight.dark {
-  background-color: #595959;
+  background-color: #444444;
   color: #eee;
 }
 
@@ -510,7 +510,7 @@ button .material-icons {
 }
 
 .theme-switcher-theme.theme-dark {
-  background-color: #333;
+  background-color: #1e1e1e;
   color: #fff;
 }
 
@@ -550,10 +550,15 @@ button .material-icons {
   content: "L";
 }
 
+#app {
+  height: 100%;
+}
+
 #app.dark-theme {
-  background: #333;
+  background: #1e1e1e;
+  color: #fff;
 }
 
 #app.dark-theme .side-sheet-container {
-  background: #333;
+  background: #1e1e1e;
 }

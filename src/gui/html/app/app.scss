@@ -22,7 +22,7 @@ $ui-dark-theme-background-colour: #595959;
 
 $ui-primary-colour-bg: #bb5599;
 $ui-secondary-colour-bg: #999;
-$ui-dark-colour-bg: #333;
+$ui-dark-colour-bg: #1e1e1e;
 $ui-danger-colour-bg: #eb4d4b;
 $ui-warning-colour-bg: #f0932b;
 $ui-success-colour-bg: #6ab04c;
@@ -652,8 +652,17 @@ button .material-icons {
 // General Theme Stuff
 //
 
+#app {
+  height: 100%;
+}
+
+//
+// Dark Theme
+//
+
 #app.dark-theme {
   background: $ui-dark-colour-bg;
+  color: #fff;
 
   .side-sheet-container {
     background: $ui-dark-colour-bg;

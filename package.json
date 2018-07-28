@@ -7,7 +7,6 @@
   "homepage": "https://doki.space",
   "main": "src/common/main.js",
   "scripts": {
-    "transpile": "tsc",
     "start": "electron .",
     "start-dev": "electron --inspect=5858 .",
     "build": "electron-builder",
