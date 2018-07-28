@@ -10,17 +10,21 @@ export default class InstallList {
         return installs.map((install) => {
             const path: string = joinPath(Config.readConfigValue("installFolder"), "installs", install);
 
-            let installData = {name: ""};
+            let installData;
 
             try {
                 installData = JSON.parse(readFileSync(joinPath(path, "install.json")).toString("utf8"));
             } catch (e) {
-                installData.name = install;
+                installData = {
+                    globalSave: false,
+                    name: "Unknown Installation",
+                };
             }
 
             return {
                 folderName: install,
                 fullFolderName: path,
+                globalSave: installData.globalSave,
                 installName: installData.name,
             };
         });

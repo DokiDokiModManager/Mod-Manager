@@ -311,7 +311,7 @@ app.on("ready", () => {
 
         if (i.getMimeType() !== "application/zip" && !(file && file.endsWith(".zip"))) {
             appWin.webContents.send("show toast",
-                file + " doesn't look like a install zip file. It may require manual installation.");
+                file + " doesn't look like a mod zip file. It may require manual installation.");
         } else {
             appWin.webContents.send("show toast", "Downloading " + file);
 
@@ -331,6 +331,10 @@ app.on("ready", () => {
     // Game launch functions / IPC
 
     ipcMain.on("launch install", (_, dir) => {
+        const installData =
+            JSON.parse(readFileSync(joinPath(Config.readConfigValue("installFolder"),
+                "installs", dir, "install.json")).toString("utf8"));
+
         const gameExecutable = joinPath(Config.readConfigValue("installFolder"),
             "installs",
             dir,
@@ -344,26 +348,25 @@ app.on("ready", () => {
             dir,
             "appdata");
 
+        // If the app uses the global save, don't change the environment variables
+        const env = installData.globalSave ? process.env : Object.assign(process.env, {
+            APPDATA: dataFolder, // Windows
+            HOME: dataFolder, // macOS and Linux
+        });
+
         const procHandle = spawn(gameExecutable, [], {
-            // Overwrite the environments variable to force Ren'Py to save where we want it to.
+            // Overwrite the environment variables to force Ren'Py to save where we want it to.
             // On Windows, the save location is determined by the value of %appdata% but on macOS / Linux
             // it saves based on the home directory location. This can be changed with $HOME but means the save
+            // files cannot be directly ported between operating systems.
             cwd: joinPath(Config.readConfigValue("installFolder"),
                 "installs",
                 dir,
                 "install"),
-            // files cannot be directly ported between operating systems.
-            env: Object.assign(process.env, {
-                APPDATA: dataFolder, // Windows
-                HOME: dataFolder, // macOS and Linux
-            }),
+            env,
         });
 
         let crashFlag: boolean = false;
-
-        const installData =
-            JSON.parse(readFileSync(joinPath(Config.readConfigValue("installFolder"),
-                "installs", dir, "install.json")).toString("utf8"));
 
         richPresence.setPlayingPresence(installData.name);
 

@@ -68,8 +68,8 @@
         <div>
             <div v-for="(install, index) in installs">
                 <h3>{{install.installName}}</h3>
-                <p class="muted">{{install.fullFolderName}}</p>
-                <p>Installed - ready to launch</p>
+                <p><a href="javascript:;" @click="openFolder(install.fullFolderName)">{{install.fullFolderName}}</a></p>
+                <p><span v-if="install.globalSave"><strong>Global Save</strong> - </span>Installed - ready to launch</p>
                 <button class="primary" @click="launchInstall(install.folderName)">Play</button>
                 <button class="secondary" @click="ui.selected_install = index; ui.side_sheets.save_management = true">
                     Settings
@@ -189,7 +189,7 @@
         <div class="side-sheet-background"></div>
         <div class="side-sheet-container">
             <div class="side-sheet-header">
-                Install a Mod
+                Get Mods
             </div>
             <div class="side-sheet-content">
                 <h3>Import Mod</h3>
@@ -208,7 +208,7 @@
                 <h3>Install DDLC</h3>
                 <p>If you just want to install DDLC without any mods, you can do that here.</p>
                 <button class="primary"
-                        @click="ui.side_sheets.install = false; ui.selected_mod = null; ui.modals.create_install = true; ui.install_creation.install_name = ''; ui.install_creation.folder_name = '';">
+                        @click="ui.side_sheets.install = false; ui.selected_mod = null; showInstallDialog();">
                     Install DDLC
                 </button>
             </div>
@@ -284,7 +284,7 @@
                     <h3>{{mod}}</h3>
                     <p>Ready to install</p>
                     <button class="primary"
-                            @click="ui.selected_mod = mod; ui.modals.create_install = true; ui.install_creation.install_name = ''; ui.install_creation.folder_name = '';">
+                            @click="ui.selected_mod = mod; showInstallDialog()">
                         Install
                     </button>
                     <button class="danger" @click="ui.selected_mod = mod; ui.modals.delete_mod = true;">Delete</button>
@@ -456,10 +456,15 @@
                     <button class="warning" @click="deleteFirstrun(selectedInstall.folderName)">Delete</button>
                 </div>
 
-                <div class="highlight danger">
+                <div class="highlight danger" v-if="!selectedInstall.globalSave">
                     <h3>Delete Save Data</h3>
                     <p>Completely erase your save data and start the game from scratch.</p>
                     <button class="danger" @click="ui.modals.delete_save = true">Delete</button>
+                </div>
+                <div class="highlight danger" v-else>
+                    <h3>Delete Save Data</h3>
+                    <p>As this install uses a global save, you cannot delete your save data directly. Either delete the
+                        firstrun flag (if the mod supports it) or delete the save file manually.</p>
                 </div>
             </div>
             <div class="side-sheet-footer">
@@ -489,8 +494,8 @@
         <div class="modal-container">
             <div class="modal-content" v-if="selectedInstall">
                 <h3>Uninstall</h3>
-                <p>Are you sure you want to uninstall {{selectedInstall.installName}}? Your save data cannot be
-                    recovered.</p>
+                <p>Are you sure you want to uninstall {{selectedInstall.installName}}? <span v-if="!selectedInstall.globalSave">Your save data cannot be
+                    recovered.</span></p>
                 <br>
                 <button class="danger"
                         @click="deleteInstall(selectedInstall.folderName); ui.modals.delete_install = false">
@@ -535,8 +540,12 @@
                 <strong>Installation Folder</strong>
                 <p><input type="text" v-model="ui.install_creation.folder_name" title="Installation Folder"></p>
                 <br>
+                <p><label
+                        title="If this box is checked, the game's save data will be shared between other installs of the game, including Steam installs. Uncheck it if you want to keep your save file separate."><input
+                        type="checkbox" v-model="ui.install_creation.global_save"> Use global save</label></p>
+                <br>
                 <button class="primary"
-                        @click="ui.modals.create_install = false; createInstall(ui.install_creation.folder_name, ui.install_creation.install_name)">
+                        @click="ui.modals.create_install = false; createInstall(ui.install_creation.folder_name, ui.install_creation.install_name, ui.install_creation.global_save)">
                     Install
                 </button>
                 <button class="secondary" @click="ui.modals.create_install = false">Cancel</button>
