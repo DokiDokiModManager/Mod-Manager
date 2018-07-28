@@ -485,15 +485,21 @@
                 Theme Switcher
             </div>
             <div class="side-sheet-content">
-                <div class="theme-switcher-theme theme-light">
+                <div :class="{'theme-switcher-theme': true, 'selected': ui.theme === 'light', 'theme-light': true}" @click="ui.theme = 'light'">
                     <span class="theme-switcher-theme-name">
                         Light Theme
                     </span>
+                    <div class="theme-switcher-theme-selected-indicator">
+                        <span class="theme-switcher-theme-selected-indicator-check"></span>
+                    </div>
                 </div>
-                <div class="theme-switcher-theme theme-dark">
+                <div :class="{'theme-switcher-theme': true, 'selected': ui.theme === 'dark', 'theme-dark': true}" @click="ui.theme = 'dark'">
                     <span class="theme-switcher-theme-name">
                         Dark Theme
                     </span>
+                    <div class="theme-switcher-theme-selected-indicator">
+                        <span class="theme-switcher-theme-selected-indicator-check"></span>
+                    </div>
                 </div>
             </div>
             <div class="side-sheet-footer">

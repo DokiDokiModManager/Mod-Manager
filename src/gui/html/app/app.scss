@@ -589,3 +589,73 @@ button .material-icons {
   padding: 5em;
   text-align: center;
 }
+
+//
+// Theme Switcher Stuff
+//
+
+.theme-switcher-theme {
+  width: 14rem;
+  height: 6rem;
+  display: inline-flex;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 1rem;
+  align-items: center;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+}
+
+.theme-switcher-theme.theme-dark {
+  background-color: $ui-dark-colour-bg;
+  color: #fff;
+}
+
+.theme-switcher-theme.theme-light {
+  background-color: #fff;
+  color: $ui-text-colour;
+}
+
+.theme-switcher-theme-selected-indicator {
+  box-sizing: border-box;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  height: 20px;
+  width: 20px;
+  right: 20px;
+  background: $ui-highlight-background-colour;
+  border-radius: 4px;
+  color: #fff;
+}
+
+.theme-switcher-theme-selected-indicator-check {
+  transform: rotate(45deg) rotateY(180deg);
+  display: block;
+  margin-left: 2px;
+  margin-top: -1px;
+}
+
+.theme-switcher-theme-selected-indicator-check:after {
+  content: " ";
+}
+
+.theme-switcher-theme.selected .theme-switcher-theme-selected-indicator-check:after {
+  content: "L";
+}
+
+//
+// General Theme Stuff
+//
+
+#app.dark-theme {
+  background: $ui-dark-colour-bg;
+
+  .side-sheet-container {
+    background: $ui-dark-colour-bg;
+  }
+}
