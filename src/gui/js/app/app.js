@@ -188,6 +188,9 @@ const vueApp = new Vue({
         },
         "openFolder": function(folder) {
             shell.openItem(folder);
+        },
+        "saveThemeConfig": function() {
+            ipcRenderer.send("save theme", vueApp.ui.theme);
         }
     },
     "computed": {
@@ -260,6 +263,10 @@ ipcRenderer.on("update downloaded", () => {
 
 ipcRenderer.on("ready", () => {
    vueApp.ui.ready = true;
+});
+
+ipcRenderer.on("set theme", (_, theme) => {
+    vueApp.ui.theme = theme;
 });
 
 // debug keybind

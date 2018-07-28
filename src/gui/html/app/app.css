@@ -556,9 +556,23 @@ button .material-icons {
 
 #app.dark-theme {
   background: #1e1e1e;
-  color: #fff;
+  color: #eee;
 }
 
 #app.dark-theme .side-sheet-container {
   background: #1e1e1e;
+  color: #eee;
+}
+
+#app.dark-theme .highlight:not(.dark) {
+  color: #222;
+}
+
+#app.dark-theme .progress-bar {
+  background-color: #383838;
+}
+
+#app.dark-theme button.secondary {
+  background-color: #383838;
+  color: #eee;
 }

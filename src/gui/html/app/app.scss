@@ -662,9 +662,23 @@ button .material-icons {
 
 #app.dark-theme {
   background: $ui-dark-colour-bg;
-  color: #fff;
+  color: $ui-dark-theme-text-colour;
 
   .side-sheet-container {
     background: $ui-dark-colour-bg;
+    color: $ui-dark-theme-text-colour;
+  }
+
+  .highlight:not(.dark) {
+    color: $ui-text-colour;
+  }
+
+  .progress-bar {
+    background-color: lighten($ui-dark-colour-bg, 10%);
+  }
+
+  button.secondary {
+    background-color: lighten($ui-dark-colour-bg, 10%);
+    color: $ui-dark-theme-text-colour;
   }
 }

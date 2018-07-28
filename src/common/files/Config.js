@@ -39,6 +39,7 @@ class Config {
 }
 Config.defaultConfig = {
     installFolder: path_1.join(electron_1.app.getPath("documents"), "Doki Doki Mod Manager"),
+    theme: "light",
 };
 Config.configPath = path_1.join(electron_1.app.getPath("userData"), "config.json");
 exports.default = Config;

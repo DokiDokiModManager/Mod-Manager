@@ -208,6 +208,7 @@ electron_1.app.on("ready", () => {
         if (fs_1.existsSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "ddlc.zip"))) {
             appWin.webContents.send("show onboarding", false);
         }
+        appWin.webContents.send("set theme", Config_1.default.readConfigValue("theme")); // Defaults to light theme
         setTimeout(() => {
             appWin.webContents.send("ready");
         }, 500); // Avoid showing onboarding when not needed
@@ -454,6 +455,9 @@ electron_1.app.on("ready", () => {
     });
     electron_1.ipcMain.on("cancel download", (_, id) => {
         downloadManager.removeDownload(id);
+    });
+    electron_1.ipcMain.on("save theme", (_, theme) => {
+        Config_1.default.saveConfigValue("theme", theme);
     });
     handleURL(process.argv);
 });
