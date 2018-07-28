@@ -306,6 +306,8 @@
             <div class="side-sheet-content">
                 <div class="text-center">
                     <img src="../images/logo.png" width="200" alt="Doki Doki Mod Manager Logo">
+                    <br>
+                    <p><strong>Version {{ui.version}}</strong></p>
                 </div>
 
                 <h3>About</h3>
@@ -361,20 +363,28 @@
                 Settings
             </div>
             <div class="side-sheet-content">
+                <p class="text-center">
+                    <strong>You are on version {{ui.version}} of Doki Doki Mod Manager!</strong>
+                </p>
                 <div v-if="ui.update.checked">
                     <div class="highlight success" v-if="ui.update.info.success && ui.update.available">
-                        <h3>Update</h3>
+                        <h3>Update Available</h3>
                         <p>Version {{ui.update.info.update.updateInfo.version}} is available to install!</p>
                         <button class="success" @click="installUpdate" v-if="ui.update.downloaded">Install Now</button>
-                        <p v-else>Downloading update - check back in a minute or so.</p>
+                        <div v-else>
+                            <p>Downloading update - check back in a minute or so.</p>
+                            <div class="progress-bar">
+                                <div class="bar indefinite">&nbsp;</div>
+                            </div>
+                        </div>
                     </div>
                     <div class="highlight secondary" v-else-if="ui.update.info.success">
-                        <h3>Update</h3>
+                        <h3>Up to Date</h3>
                         <p>You are on the latest version of Doki Doki Mod Manager!</p>
                         <button class="primary" @click="checkUpdate">Check Again</button>
                     </div>
                     <div class="highlight warning" v-else>
-                        <h3>Update</h3>
+                        <h3>Unable to Update</h3>
                         <p>{{ui.update.info.reason}}</p>
                         <button class="warning" @click="checkUpdate">Check Again</button>
                     </div>

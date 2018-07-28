@@ -69,11 +69,15 @@ const vueApp = new Vue({
                 "url": ""
             },
             "ready": false,
+<<<<<<< Updated upstream
             "theme": "light",
+=======
+            "version": packageData.version
+>>>>>>> Stashed changes
         },
         "downloads": [],
         "installs": [],
-        "mods": ["DDTAR - Mod Manager.zip"]
+        "mods": []
     },
     "methods": {
         "showToast": function (msg) {

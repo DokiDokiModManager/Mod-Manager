@@ -23,7 +23,7 @@ class RichPresence {
             return;
         }
         this.rp.updatePresence({
-            details: "Version 2.0",
+            // details: "Version 2.0",
             largeImageKey: "logo",
             state: "Managing Mods",
         });
