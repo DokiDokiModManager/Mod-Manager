@@ -120,7 +120,7 @@ registerProcessEventHandler("uncaughtException", (error) => {
     Logger.error("An uncaught exception occurred!");
     Logger.error("Preparing to upload stacktrace...");
 
-    let paste: string = "Doki Doki Mod Manager!\n\n";
+    let paste: string = "Doki Doki Mod Manager! Crash Report\n\n";
     paste += "Timestamp: " + new Date().toISOString() + "\n";
     paste += "Version: " + app.getVersion() + "\n";
     paste += "Platform: " + process.platform + "\n";
@@ -128,8 +128,14 @@ registerProcessEventHandler("uncaughtException", (error) => {
     paste += "Debug Tools: " + (debug ? "Yes" : "No") + "\n";
     paste += "\nSend the link to this page to me on Discord (discord.me/modmanager) for help " +
         "fixing the crash! Tell me what you were doing at the time of the crash.\n";
-    paste += "\nThe stacktrace is below.\n\n";
+    paste += "\nSTACKTRACE:\n\n";
     paste += error.stack;
+    paste += "\n\nCONFIG FILE:\n\n";
+    try {
+        paste += readFileSync(joinPath(app.getPath("userData"), "config.json")).toString("utf8");
+    } catch (e) {
+        paste += "Error reading - " + e.message;
+    }
 
     request({
         body: paste,

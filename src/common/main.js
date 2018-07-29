@@ -102,7 +102,7 @@ process_1.on("uncaughtException", (error) => {
     }
     Logger_1.default.error("An uncaught exception occurred!");
     Logger_1.default.error("Preparing to upload stacktrace...");
-    let paste = "Doki Doki Mod Manager!\n\n";
+    let paste = "Doki Doki Mod Manager! Crash Report\n\n";
     paste += "Timestamp: " + new Date().toISOString() + "\n";
     paste += "Version: " + electron_1.app.getVersion() + "\n";
     paste += "Platform: " + process.platform + "\n";
@@ -110,8 +110,15 @@ process_1.on("uncaughtException", (error) => {
     paste += "Debug Tools: " + (debug ? "Yes" : "No") + "\n";
     paste += "\nSend the link to this page to me on Discord (discord.me/modmanager) for help " +
         "fixing the crash! Tell me what you were doing at the time of the crash.\n";
-    paste += "\nThe stacktrace is below.\n\n";
+    paste += "\nSTACKTRACE:\n\n";
     paste += error.stack;
+    paste += "\n\nCONFIG FILE:\n\n";
+    try {
+        paste += fs_1.readFileSync(path_1.join(electron_1.app.getPath("userData"), "config.json")).toString("utf8");
+    }
+    catch (e) {
+        paste += "Error reading - " + e.message;
+    }
     request({
         body: paste,
         headers: {
