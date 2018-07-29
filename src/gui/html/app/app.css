@@ -41,31 +41,27 @@ hr {
 
 .banner {
   color: #fff;
+  background-color: #87c16e;
   display: flex;
-  height: 64px; }
+  flex-shrink: 0; }
 
 .banner .message {
   flex-grow: 1;
-  padding: 0 2em 0 2em;
+  padding: 1em 2em 1em 2em;
   cursor: default;
-  background-color: #87c16e;
   display: flex;
   align-items: center; }
 
 .banner.clickable .message {
+  flex-grow: 1;
+  flex-basis: auto;
   cursor: pointer; }
 
 .banner .close {
-  background-color: #6ab04c;
-  transition: background-color 0.5s;
   cursor: pointer;
-  padding: 0 2em 0 2em;
-  line-height: 64px;
+  padding: 0;
   height: 100%;
   text-align: center; }
-
-.banner .close:hover {
-  background-color: #558c3d; }
 
 .toast {
   font-size: 0.9em;

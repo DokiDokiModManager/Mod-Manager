@@ -100,36 +100,32 @@ hr {
 //
 .banner {
   color: $ui-background-colour;
+  background-color: lighten($ui-success-colour-bg, 10%);
   display: flex;
-  height: 64px;
+  flex-shrink: 0;
 }
 
 .banner .message {
   flex-grow: 1;
-  padding: 0 2em 0 2em;
+  padding: 1em 2em 1em 2em;
   cursor: default;
-  background-color: lighten($ui-success-colour-bg, 10%);
   display: flex;
   align-items: center;
 }
 
 .banner.clickable .message {
+  flex-grow: 1;
+  flex-basis: auto;
   cursor: pointer;
 }
 
 .banner .close {
-  background-color: $ui-success-colour-bg;
-  transition: background-color $ui-transition-speed;
   cursor: pointer;
-  padding: 0 2em 0 2em;
-  line-height: 64px;
+  padding: 0;
   height: 100%;
   text-align: center;
 }
 
-.banner .close:hover {
-  background-color: darken($ui-success-colour-bg, 10%);
-}
 
 //
 // toast styles
