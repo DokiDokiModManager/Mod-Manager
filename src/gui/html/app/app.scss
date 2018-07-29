@@ -56,7 +56,6 @@ body {
   font-size: $ui-font-size;
   color: $ui-text-colour;
   background-color: $ui-background-colour;
-  padding-top: 77px;
 }
 
 //
@@ -291,9 +290,7 @@ input[type="text"], input[type="number"], input[type="url"], textarea {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  position: fixed;
-  top: 0;
-  left: 0;
+  flex-shrink: 0;
 }
 
 .toolbar-group {
@@ -551,8 +548,9 @@ button .material-icons {
 //
 .content {
   padding: 1em;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
+  flex-grow: 1;
+  overflow-y: scroll;
 }
 
 .running-cover { // covers the entire page to prevent (and discourage attempts at) interaction with other elements
@@ -591,7 +589,16 @@ button .material-icons {
 }
 
 //
-// Theme Switcher Stuff
+// app flexbox
+//
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+//
+// theme switcher styles
 //
 
 .theme-switcher-theme {
@@ -649,11 +656,16 @@ button .material-icons {
 }
 
 //
-// General Theme Stuff
+// Scrollbars
 //
+::-webkit-scrollbar {
+  background-color: transparent;
+  width: 10px;
+}
 
-#app {
-  height: 100%;
+::-webkit-scrollbar-thumb {
+  background-color: rgba(100, 100, 100, 0.5);
+  border-radius: 3px;
 }
 
 //
@@ -673,12 +685,31 @@ button .material-icons {
     color: $ui-text-colour;
   }
 
+  hr, .side-sheet-header, .side-sheet-content, .side-sheet-footer {
+    border-color: lighten($ui-dark-colour-bg, 10%);
+  }
+
   .progress-bar {
     background-color: lighten($ui-dark-colour-bg, 10%);
   }
 
   button.secondary {
     background-color: lighten($ui-dark-colour-bg, 10%);
+    color: $ui-dark-theme-text-colour;
+  }
+
+  .highlight.danger {
+    background-color: darken($ui-danger-colour-bg, 25%);
+    color: $ui-dark-theme-text-colour;
+  }
+
+  .highlight.warning {
+    background-color: darken($ui-warning-colour-bg, 25%);
+    color: $ui-dark-theme-text-colour;
+  }
+
+  .highlight.success {
+    background-color: darken($ui-success-colour-bg, 25%);
     color: $ui-dark-theme-text-colour;
   }
 }
