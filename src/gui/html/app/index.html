@@ -371,7 +371,8 @@
                 <h3>Thanks To</h3>
                 <p><strong>Poplar<span class="muted">#0666</span></strong> for designing the logo, and much needed
                     encouragement!</p>
-                <p><strong>Samboy<span class="muted">#0063</span></strong> for creative input!</p>
+                <p><strong>Samboy<span class="muted">#0063</span></strong> for contributions to the app, including the
+                    dark theme!</p>
                 <p>The developers of all the open-source libraries without which this project wouldn't exist, most
                     notably <strong>Electron</strong>, <strong>Vue</strong>, <strong>yauzl</strong> and <strong>Discord.js</strong>!
                 </p>
@@ -420,8 +421,10 @@
                 </div>
                 <div class="highlight dark">
                     <h3>Change Theme</h3>
-                    <p>Don't like the way the app looks? Want to embrace the dark side? Click here to change the app's theme!</p>
-                    <button class="dark" @click="ui.side_sheets.settings = false; ui.side_sheets.theme = true">Change</button>
+                    <p>Click here to change between a light and dark theme. Embrace the dark side!</p>
+                    <button class="dark" @click="ui.side_sheets.settings = false; ui.side_sheets.theme = true">Change
+                        Theme
+                    </button>
                 </div>
             </div>
             <div class="side-sheet-footer">
@@ -524,7 +527,8 @@
                 Theme Switcher
             </div>
             <div class="side-sheet-content">
-                <div :class="{'theme-switcher-theme': true, 'selected': ui.theme === 'light', 'theme-light': true}" @click="ui.theme = 'light'; saveThemeConfig()">
+                <div :class="{'theme-switcher-theme': true, 'selected': ui.theme === 'light', 'theme-light': true}"
+                     @click="ui.theme = 'light'; saveThemeConfig()">
                     <span class="theme-switcher-theme-name">
                         Light Theme
                     </span>
@@ -532,7 +536,8 @@
                         <span class="theme-switcher-theme-selected-indicator-check"></span>
                     </div>
                 </div>
-                <div :class="{'theme-switcher-theme': true, 'selected': ui.theme === 'dark', 'theme-dark': true}" @click="ui.theme = 'dark'; saveThemeConfig()">
+                <div :class="{'theme-switcher-theme': true, 'selected': ui.theme === 'dark', 'theme-dark': true}"
+                     @click="ui.theme = 'dark'; saveThemeConfig()">
                     <span class="theme-switcher-theme-name">
                         Dark Theme
                     </span>
@@ -568,7 +573,8 @@
         <div class="modal-container">
             <div class="modal-content" v-if="selectedInstall">
                 <h3>Uninstall</h3>
-                <p>Are you sure you want to uninstall {{selectedInstall.installName}}? <span v-if="!selectedInstall.globalSave">Your save data cannot be
+                <p>Are you sure you want to uninstall {{selectedInstall.installName}}? <span
+                        v-if="!selectedInstall.globalSave">Your save data cannot be
                     recovered.</span></p>
                 <br>
                 <button class="danger"

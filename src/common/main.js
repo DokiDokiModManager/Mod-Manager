@@ -102,10 +102,14 @@ process_1.on("uncaughtException", (error) => {
     }
     Logger_1.default.error("An uncaught exception occurred!");
     Logger_1.default.error("Preparing to upload stacktrace...");
-    let paste = "Doki Doki Mod Manager!\n";
+    let paste = "Doki Doki Mod Manager!\n\n";
     paste += "Timestamp: " + new Date().toISOString() + "\n";
     paste += "Version: " + electron_1.app.getVersion() + "\n";
-    paste += "\nSend the link to this page to me for help fixing the crash!\n";
+    paste += "Platform: " + process.platform + "\n";
+    paste += "Args: " + process.argv.join(" ") + "\n";
+    paste += "Debug Tools: " + (debug ? "Yes" : "No") + "\n";
+    paste += "\nSend the link to this page to me on Discord (discord.me/modmanager) for help " +
+        "fixing the crash! Tell me what you were doing at the time of the crash.\n";
     paste += "\nThe stacktrace is below.\n\n";
     paste += error.stack;
     request({
@@ -121,7 +125,7 @@ process_1.on("uncaughtException", (error) => {
                 buttons: ["View Crash Report", "Quit"],
                 defaultId: 1,
                 detail: "A problem occurred in Doki Doki Mod Manager which caused the app to crash. " +
-                    "A crash report has been generated.",
+                    "A crash report has been generated, which will be helpful when fixing the issue.",
                 message: "Doki Doki Mod Manager crashed!",
                 type: "error",
             }, (btn) => {
@@ -282,7 +286,15 @@ electron_1.app.on("ready", () => {
     });
     // Game launch functions / IPC
     electron_1.ipcMain.on("launch install", (_, dir) => {
-        const installData = JSON.parse(fs_1.readFileSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", dir, "install.json")).toString("utf8"));
+        let installData;
+        try {
+            installData =
+                JSON.parse(fs_1.readFileSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", dir, "install.json")).toString("utf8"));
+        }
+        catch (e) {
+            appWin.webContents.send("running cover", false);
+            appWin.webContents.send("show toast", "The game installation appears to be corrupted. Please uninstall it and create a new one.");
+        }
         const gameExecutable = path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", dir, "install", (process.platform === "win32" ? "ddlc.exe" : "DDLC.sh"));
         appWin.webContents.send("running cover", true);
         const dataFolder = path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", dir, "appdata");
