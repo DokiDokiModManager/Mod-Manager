@@ -294,6 +294,7 @@ electron_1.app.on("ready", () => {
         catch (e) {
             appWin.webContents.send("running cover", false);
             appWin.webContents.send("show toast", "The game installation appears to be corrupted. Please uninstall it and create a new one.");
+            return;
         }
         const gameExecutable = path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", dir, "install", (process.platform === "win32" ? "ddlc.exe" : "DDLC.sh"));
         appWin.webContents.send("running cover", true);

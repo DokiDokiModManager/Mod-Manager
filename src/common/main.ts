@@ -347,6 +347,7 @@ app.on("ready", () => {
             appWin.webContents.send("running cover", false);
             appWin.webContents.send("show toast",
                 "The game installation appears to be corrupted. Please uninstall it and create a new one.");
+            return;
         }
 
         const gameExecutable = joinPath(Config.readConfigValue("installFolder"),
