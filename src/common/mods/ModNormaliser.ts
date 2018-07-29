@@ -4,6 +4,8 @@ import DumpAndHopeForTheBest from "./mappers/DumpAndHopeForTheBest";
 import InstallAppropriateFiles from "./mappers/InstallAppropriateFiles";
 import ModManagerFormat from "./mappers/ModManagerFormat";
 import ModTemplateFormat from "./mappers/ModTemplateFormat";
+import {ModMapper} from "./ModMapper";
+import NestedGameFolder from "./mappers/NestedGameFolder";
 
 /*
     This script is intended to take any zip file and try and determine how DDMM should install it, if it is a mod.
@@ -14,7 +16,7 @@ import ModTemplateFormat from "./mappers/ModTemplateFormat";
 /*
     Looks at the file structure of the zip file and attempts to determine what the format of the mod is.
  */
-export function inferMapper(zipPath: string): Promise<IModMapper> {
+export function inferMapper(zipPath: string): Promise<ModMapper> {
     return new Promise((ff, rj) => {
         const zip = unzip(zipPath);
         const structure = [];
@@ -28,8 +30,15 @@ export function inferMapper(zipPath: string): Promise<IModMapper> {
         });
 
         zip.on("close", () => {
-            if (structure.indexOf("mod.json") !== -1 || structure.indexOf("game/") !== -1) {
+            if (structure.indexOf("mod.json") !== -1
+                || structure.indexOf("game/") !== -1) {
                 ff(new ModManagerFormat());
+                return;
+            }
+
+            // DDLCtVN special case
+            if (structure.find((file) => file.startsWith("DDLCtVN"))) {
+                ff(new NestedGameFolder(["scripts.rpa"]));
                 return;
             }
 
@@ -59,8 +68,3 @@ export function inferMapper(zipPath: string): Promise<IModMapper> {
     });
 }
 
-export interface IModMapper {
-    mapFile(path: string): string;
-
-    getFriendlyName(): string;
-}

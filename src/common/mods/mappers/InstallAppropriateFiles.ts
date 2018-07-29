@@ -1,5 +1,5 @@
 import {join as joinPath} from "path";
-import {IModMapper} from "../ModNormaliser";
+import {ModMapper} from "../ModMapper";
 
 /*
     Take files and put them in their appropriate directories.
@@ -7,7 +7,7 @@ import {IModMapper} from "../ModNormaliser";
     This won't work a lot of the time, but at least it's not "dump and hope for the best".
     Wait, that's a thing too!
  */
-export default class InstallAppropriateFiles implements IModMapper {
+export default class InstallAppropriateFiles extends ModMapper {
 
     public mapFile(path: string): string {
         const filename: string = path.split("/").pop();

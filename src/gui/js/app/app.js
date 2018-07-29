@@ -28,6 +28,7 @@ const vueApp = new Vue({
                 "browser": false,
                 "save_management": false,
                 "theme": false,
+                "inference": false
             },
             "modals": {
                 "delete_save": false,
@@ -35,9 +36,7 @@ const vueApp = new Vue({
                 "create_install": false,
                 "delete_mod": false
             },
-            "loading_modal": {
-
-            },
+            "loading_modal": {},
             "toast": {
                 "message": "",
                 "visible": false
@@ -70,7 +69,12 @@ const vueApp = new Vue({
             },
             "ready": false,
             "theme": "light",
-            "version": packageData.version
+            "version": packageData.version,
+            "inference": {
+                "mapper": "",
+                "mod": "",
+                "delete": []
+            }
         },
         "downloads": [],
         "installs": [],
@@ -171,27 +175,30 @@ const vueApp = new Vue({
         "deleteMod": function (mod) {
             ipcRenderer.send("delete mod", mod);
         },
-        "importGame": function() {
+        "importGame": function () {
             ipcRenderer.send("import game");
         },
-        "importMod": function() {
+        "importMod": function () {
             ipcRenderer.send("import mod");
             this.ui.side_sheets.install = false;
         },
-        "cancelDownload": function(id) {
+        "cancelDownload": function (id) {
             ipcRenderer.send("cancel download", id);
         },
-        "showInstallDialog": function() {
+        "showInstallDialog": function () {
             this.ui.install_creation.folder_name = "";
             this.ui.install_creation.install_name = "";
             this.ui.install_creation.global_save = false;
             this.ui.modals.create_install = true;
         },
-        "openFolder": function(folder) {
+        "openFolder": function (folder) {
             shell.openItem(folder);
         },
-        "saveThemeConfig": function() {
+        "saveThemeConfig": function () {
             ipcRenderer.send("save theme", vueApp.ui.theme);
+        },
+        "testInference": function (mod) {
+            ipcRenderer.send("test inference", mod);
         }
     },
     "computed": {
@@ -263,11 +270,15 @@ ipcRenderer.on("update downloaded", () => {
 });
 
 ipcRenderer.on("ready", () => {
-   vueApp.ui.ready = true;
+    vueApp.ui.ready = true;
 });
 
 ipcRenderer.on("set theme", (_, theme) => {
     vueApp.ui.theme = theme;
+});
+
+ipcRenderer.on("inference result", (_, inference) => {
+    vueApp.ui.inference = inference
 });
 
 // debug keybind

@@ -19,6 +19,7 @@ import Logger from "./utilities/Logger";
 
 import {on as registerProcessEventHandler} from "process";
 import ModInstaller from "./installs/ModInstaller";
+import {inferMapper} from "./mods/ModNormaliser";
 
 const PROTOCOL: string = "ddmm";
 const DISCORD_APPID: string = "453299645725016074";
@@ -542,11 +543,22 @@ app.on("ready", () => {
     });
 
     ipcMain.on("cancel download", (_, id) => {
-       downloadManager.removeDownload(id);
+        downloadManager.removeDownload(id);
     });
 
     ipcMain.on("save theme", (_, theme) => {
         Config.saveConfigValue("theme", theme);
+    });
+
+    // Inference debug
+    ipcMain.on("test inference", (_, mod) => {
+        inferMapper(joinPath(Config.readConfigValue("installFolder"), "mods", mod)).then((mapper) => {
+            appWin.webContents.send("inference result", {
+                delete: mapper.getFilesToDelete(),
+                mapper: mapper.getFriendlyName(),
+                mod,
+            });
+        });
     });
 
     handleURL(process.argv);

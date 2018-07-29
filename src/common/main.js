@@ -20,6 +20,7 @@ const InstallList_1 = require("./installs/InstallList");
 const Logger_1 = require("./utilities/Logger");
 const process_1 = require("process");
 const ModInstaller_1 = require("./installs/ModInstaller");
+const ModNormaliser_1 = require("./mods/ModNormaliser");
 const PROTOCOL = "ddmm";
 const DISCORD_APPID = "453299645725016074";
 const SUPPORTED_PLATFORMS = [
@@ -458,6 +459,16 @@ electron_1.app.on("ready", () => {
     });
     electron_1.ipcMain.on("save theme", (_, theme) => {
         Config_1.default.saveConfigValue("theme", theme);
+    });
+    // Inference debug
+    electron_1.ipcMain.on("test inference", (_, mod) => {
+        ModNormaliser_1.inferMapper(path_1.join(Config_1.default.readConfigValue("installFolder"), "mods", mod)).then((mapper) => {
+            appWin.webContents.send("inference result", {
+                delete: mapper.getFilesToDelete(),
+                mapper: mapper.getFriendlyName(),
+                mod,
+            });
+        });
     });
     handleURL(process.argv);
 });

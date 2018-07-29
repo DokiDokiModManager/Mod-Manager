@@ -39,6 +39,11 @@
                 <div class="toolbar-button-text">Devtools</div>
             </div>
 
+            <div class="toolbar-button" @click="ui.side_sheets.inference = true" role="button">
+                <div class="toolbar-button-icon"><i class="material-icons">report</i></div>
+                <div class="toolbar-button-text">Inference</div>
+            </div>
+
             <div class="toolbar-button" @click="ui.side_sheets.uikit = true" role="button">
                 <div class="toolbar-button-icon"><i class="material-icons">format_paint</i></div>
                 <div class="toolbar-button-text">UI Kit</div>
@@ -181,6 +186,30 @@
             </div>
             <div class="side-sheet-footer">
                 <button class="primary" @click="ui.side_sheets.uikit = false">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <div :class="{'side-sheet': true, 'active': ui.side_sheets.inference, 'bottom':true}">
+        <div class="side-sheet-background"></div>
+        <div class="side-sheet-container">
+            <div class="side-sheet-header">
+                Inference Testing
+            </div>
+            <div class="side-sheet-content">
+                <p>Choose a mod to perform inference testing on.</p>
+                <ul>
+                    <li v-for="mod in mods"><a href="javascript:;" @click="testInference(mod)">{{mod}}</a></li>
+                </ul>
+
+                <hr>
+
+                <p>Mod: {{ui.inference.mod}}</p>
+                <p>Mapper: {{ui.inference.mapper}}</p>
+                <p>Delete: {{ui.inference.delete.join(", ")}}</p>
+            </div>
+            <div class="side-sheet-footer">
+                <button class="primary" @click="ui.side_sheets.inference = false">Done</button>
             </div>
         </div>
     </div>

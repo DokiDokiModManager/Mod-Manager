@@ -1,12 +1,12 @@
 import {join as joinPath} from "path";
-import {IModMapper} from "../ModNormaliser";
+import {ModMapper} from "../ModMapper";
 
 /*
     If the mod uses the DDMMv1 mod format, it can be installed 100% of the time without breaking!
     Well, as long as the mod does use the DDMMv1 mod format, and there isn't just a mod.json file sitting
     there for no apparent reason.
  */
-export default class ModManagerFormat implements IModMapper {
+export default class ModManagerFormat extends ModMapper {
 
     public mapFile(path: string): string {
         const baseFolder = path.split("/")[0];

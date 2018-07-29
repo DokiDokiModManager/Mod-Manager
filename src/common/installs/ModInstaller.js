@@ -10,6 +10,10 @@ class ModInstaller {
     static installMod(modPath, installPath) {
         return new Promise((ff, rj) => {
             ModNormaliser_1.inferMapper(modPath).then((mapper) => {
+                for (const file of mapper.getFilesToDelete()) {
+                    Logger_1.default.debug("Deleting " + file);
+                    fs_1.unlinkSync(path_1.join(installPath, "game", file));
+                }
                 const zip = unzip(modPath);
                 Logger_1.default.info("Installing with mapper: " + mapper.getFriendlyName());
                 zip.on("file", (file) => {

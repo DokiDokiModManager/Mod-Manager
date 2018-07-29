@@ -5,6 +5,7 @@ const DumpAndHopeForTheBest_1 = require("./mappers/DumpAndHopeForTheBest");
 const InstallAppropriateFiles_1 = require("./mappers/InstallAppropriateFiles");
 const ModManagerFormat_1 = require("./mappers/ModManagerFormat");
 const ModTemplateFormat_1 = require("./mappers/ModTemplateFormat");
+const NestedGameFolder_1 = require("./mappers/NestedGameFolder");
 /*
     This script is intended to take any zip file and try and determine how DDMM should install it, if it is a mod.
     There's so many different ways mods are packaged, so this won't cover every scenario, but DDMM will allow the user
@@ -24,8 +25,14 @@ function inferMapper(zipPath) {
             structure.push(dir.path);
         });
         zip.on("close", () => {
-            if (structure.indexOf("mod.json") !== -1 || structure.indexOf("game/") !== -1) {
+            if (structure.indexOf("mod.json") !== -1
+                || structure.indexOf("game/") !== -1) {
                 ff(new ModManagerFormat_1.default());
+                return;
+            }
+            // DDLCtVN special case
+            if (structure.find((file) => file.startsWith("DDLCtVN"))) {
+                ff(new NestedGameFolder_1.default(["scripts.rpa"]));
                 return;
             }
             let isModTemplate = false;

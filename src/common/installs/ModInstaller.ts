@@ -1,5 +1,5 @@
 import * as unzip from "@zudo/unzipper";
-import {createWriteStream} from "fs";
+import {createWriteStream, unlinkSync} from "fs";
 import {mkdirsSync} from "fs-extra";
 import {join as joinPath, sep as pathSep} from "path";
 import {inferMapper} from "../mods/ModNormaliser";
@@ -10,6 +10,11 @@ export default class ModInstaller {
     public static installMod(modPath: string, installPath: string) {
         return new Promise((ff, rj) => {
             inferMapper(modPath).then((mapper) => {
+                for (const file of mapper.getFilesToDelete()) {
+                    Logger.debug("Deleting " + file);
+                    unlinkSync(joinPath(installPath, "game", file));
+                }
+
                 const zip = unzip(modPath);
 
                 Logger.info("Installing with mapper: " + mapper.getFriendlyName());
