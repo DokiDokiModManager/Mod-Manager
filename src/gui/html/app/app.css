@@ -474,7 +474,7 @@ button .material-icons {
 #app.dark-theme {
   background: #1e1e1e;
   color: #eee; }
-  #app.dark-theme .side-sheet-container {
+  #app.dark-theme .side-sheet-container, #app.dark-theme .modal-container {
     background: #1e1e1e;
     color: #eee; }
   #app.dark-theme .highlight:not(.dark) {
