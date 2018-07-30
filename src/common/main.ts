@@ -2,7 +2,7 @@ import {spawn} from "child_process";
 import {app, BrowserWindow, dialog, ipcMain, session, shell} from "electron";
 import * as isDev from "electron-is-dev";
 import {autoUpdater} from "electron-updater";
-import {copyFileSync, existsSync, existsSync as fileExists, mkdirSync, readdirSync, readFileSync, unlink} from "fs";
+import {copyFileSync, existsSync as fileExists, mkdirSync, readdirSync, readFileSync, unlink, unlinkSync} from "fs";
 import {remove} from "fs-extra";
 import {join as joinPath, sep as pathSep} from "path";
 import * as request from "request";
@@ -250,7 +250,12 @@ app.on("ready", () => {
         }
         // onboarding screen etc
         if (fileExists(joinPath(Config.readConfigValue("installFolder"), "ddlc.zip"))) {
-            appWin.webContents.send("show onboarding", false);
+            const hash = hashSync(joinPath(Config.readConfigValue("installFolder"), "ddlc.zip"), {algorithm: "sha256"});
+            if (DDLC_HASHES.indexOf(hash) !== -1) {
+                appWin.webContents.send("show onboarding", false);
+            } else {
+                unlinkSync(joinPath(Config.readConfigValue("installFolder"), "ddlc.zip"));
+            }
         }
         appWin.webContents.send("set theme", Config.readConfigValue("theme")); // Defaults to light theme
         setTimeout(() => {
@@ -423,7 +428,7 @@ app.on("ready", () => {
     // Install management functions / IPC
 
     ipcMain.on("create install", (_, meta) => {
-        if (existsSync(joinPath(Config.readConfigValue("installFolder"), "installs", meta.folderName))) {
+        if (fileExists(joinPath(Config.readConfigValue("installFolder"), "installs", meta.folderName))) {
             appWin.webContents.send("show toast",
                 "The folder " + meta.folderName + " already exists. Try a different name.");
             return;
@@ -458,7 +463,7 @@ app.on("ready", () => {
     ipcMain.on("delete firstrun", (_, dir) => {
         const firstrunPath =
             joinPath(Config.readConfigValue("installFolder"), "installs", dir, "install", "game", "firstrun");
-        if (existsSync(firstrunPath)) {
+        if (fileExists(firstrunPath)) {
             unlink(firstrunPath, (err) => {
                 if (!err) {
                     appWin.webContents.send("show toast", "Deleted firstrun flag.");

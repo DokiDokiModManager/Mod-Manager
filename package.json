@@ -3,14 +3,14 @@
   "productName": "Doki Doki Mod Manager!",
   "description": "Mod Manager for Doki Doki Literature Club!",
   "author": "Doki Doki Mod Manager! Development Team",
-  "version": "2.4.2",
+  "version": "2.4.3",
   "homepage": "https://doki.space",
   "main": "src/common/main.js",
   "scripts": {
     "start": "electron .",
     "start-dev": "electron --inspect=5858 .",
-    "build": "electron-builder",
-    "build-and-publish": "electron-builder -p always"
+    "build": "electron-builder -wl",
+    "build-and-publish": "electron-builder -p always -wl"
   },
   "dependencies": {
     "@types/request": "^2.47.1",
@@ -37,7 +37,7 @@
   },
   "build": {
     "appId": "space.doki.modmanager",
-    "artifactName": "ddmm-${version}-${os}.${ext}",
+    "artifactName": "ddmm-${version}-${os}-${arch}.${ext}",
     "publish": [
       {
         "provider": "github",
@@ -47,8 +47,14 @@
     ],
     "win": {
       "target": [
-        "nsis",
-        "zip"
+        {
+          "target": "nsis",
+          "arch": ["x64", "ia32"]
+        },
+        {
+          "target": "nsis",
+          "arch": ["x64", "ia32"]
+        }
       ]
     },
     "linux": {

@@ -216,7 +216,13 @@ electron_1.app.on("ready", () => {
         }
         // onboarding screen etc
         if (fs_1.existsSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "ddlc.zip"))) {
-            appWin.webContents.send("show onboarding", false);
+            const hash = sha_1.getSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "ddlc.zip"), { algorithm: "sha256" });
+            if (DDLC_HASHES.indexOf(hash) !== -1) {
+                appWin.webContents.send("show onboarding", false);
+            }
+            else {
+                fs_1.unlinkSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "ddlc.zip"));
+            }
         }
         appWin.webContents.send("set theme", Config_1.default.readConfigValue("theme")); // Defaults to light theme
         setTimeout(() => {
