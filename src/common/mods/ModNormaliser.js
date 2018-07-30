@@ -24,6 +24,9 @@ function inferMapper(zipPath) {
         zip.on("directory", (dir) => {
             structure.push(dir.path);
         });
+        zip.on("error", (err) => {
+            rj(err);
+        });
         zip.on("close", () => {
             if (structure.indexOf("mod.json") !== -1
                 || structure.indexOf("game/") !== -1) {

@@ -3,7 +3,7 @@
   "productName": "Doki Doki Mod Manager!",
   "description": "Mod Manager for Doki Doki Literature Club!",
   "author": "Doki Doki Mod Manager! Development Team",
-  "version": "2.4.3",
+  "version": "2.4.4",
   "homepage": "https://doki.space",
   "main": "src/common/main.js",
   "scripts": {
@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@types/request": "^2.47.1",
-    "@zudo/unzipper": "latest",
+    "@zudo/unzipper": "0.0.4",
     "bytes": "^3.0.0",
     "chalk": "^2.4.1",
     "chmodr": "latest",
@@ -49,11 +49,17 @@
       "target": [
         {
           "target": "nsis",
-          "arch": ["x64", "ia32"]
+          "arch": [
+            "x64",
+            "ia32"
+          ]
         },
         {
           "target": "zip",
-          "arch": ["x64", "ia32"]
+          "arch": [
+            "x64",
+            "ia32"
+          ]
         }
       ]
     },

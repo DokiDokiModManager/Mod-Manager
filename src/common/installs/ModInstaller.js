@@ -37,6 +37,12 @@ class ModInstaller {
                     ff();
                     Logger_1.default.info("Install completed.");
                 });
+                zip.on("error", (e) => {
+                    Logger_1.default.error("ZIP ERROR: " + e);
+                    rj(e);
+                });
+            }).catch((err) => {
+                rj(err);
             });
         });
     }

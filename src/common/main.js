@@ -119,6 +119,8 @@ process_1.on("uncaughtException", (error) => {
     paste += "Timestamp: " + new Date().toISOString() + "\n";
     paste += "Version: " + electron_1.app.getVersion() + "\n";
     paste += "Platform: " + process.platform + "\n";
+    paste += "Arch: " + process.arch + "\n";
+    paste += "Node Version: " + process.version + "\n";
     paste += "Args: " + process.argv.join(" ") + "\n";
     paste += "Debug Tools: " + (debug ? "Yes" : "No") + "\n";
     paste += "\nSTACKTRACE:\n\n";
@@ -135,7 +137,7 @@ process_1.on("uncaughtException", (error) => {
             "User-Agent": "Doki Doki Mod Manager (u/zuudo)",
         },
         json: {
-            crash: paste
+            crash: paste,
         },
         method: "POST",
         url: "https://us-central1-doki-doki-mod-manager.cloudfunctions.net/postCrashReport",
@@ -361,6 +363,12 @@ electron_1.app.on("ready", () => {
                 Logger_1.default.info("Installing mod!");
                 ModInstaller_1.default.installMod(path_1.join(Config_1.default.readConfigValue("installFolder"), "mods", meta.modZip), path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", normaliseName(meta.folderName), "install")).then(() => {
                     appWin.webContents.send("install list", InstallList_1.default.getInstallList());
+                    appWin.webContents.send("loading modal", {
+                        display: false,
+                    });
+                }).catch((err) => {
+                    appWin.webContents.send("install list", InstallList_1.default.getInstallList());
+                    appWin.webContents.send("show toast", "Failed to install mod - try downloading it again.<br>" + err.message);
                     appWin.webContents.send("loading modal", {
                         display: false,
                     });

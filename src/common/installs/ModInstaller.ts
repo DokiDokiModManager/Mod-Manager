@@ -14,7 +14,6 @@ export default class ModInstaller {
                     Logger.debug("Deleting " + file);
                     unlinkSync(joinPath(installPath, "game", file));
                 }
-
                 const zip = unzip(modPath);
 
                 Logger.info("Installing with mapper: " + mapper.getFriendlyName());
@@ -41,6 +40,13 @@ export default class ModInstaller {
                     ff();
                     Logger.info("Install completed.");
                 });
+
+                zip.on("error", (e) => {
+                    Logger.error("ZIP ERROR: " + e);
+                    rj(e);
+                });
+            }).catch((err) => {
+                rj(err);
             });
         });
     }

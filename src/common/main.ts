@@ -140,6 +140,8 @@ registerProcessEventHandler("uncaughtException", (error) => {
     paste += "Timestamp: " + new Date().toISOString() + "\n";
     paste += "Version: " + app.getVersion() + "\n";
     paste += "Platform: " + process.platform + "\n";
+    paste += "Arch: " + process.arch + "\n";
+    paste += "Node Version: " + process.version + "\n";
     paste += "Args: " + process.argv.join(" ") + "\n";
     paste += "Debug Tools: " + (debug ? "Yes" : "No") + "\n";
     paste += "\nSTACKTRACE:\n\n";
@@ -156,7 +158,7 @@ registerProcessEventHandler("uncaughtException", (error) => {
             "User-Agent": "Doki Doki Mod Manager (u/zuudo)",
         },
         json: {
-            crash: paste
+            crash: paste,
         },
         method: "POST",
         url: "https://us-central1-doki-doki-mod-manager.cloudfunctions.net/postCrashReport",
@@ -350,9 +352,9 @@ app.on("ready", () => {
         let installData;
 
         try {
-         installData =
-            JSON.parse(readFileSync(joinPath(Config.readConfigValue("installFolder"),
-                "installs", dir, "install.json")).toString("utf8"));
+            installData =
+                JSON.parse(readFileSync(joinPath(Config.readConfigValue("installFolder"),
+                    "installs", dir, "install.json")).toString("utf8"));
         } catch (e) {
             appWin.webContents.send("running cover", false);
             appWin.webContents.send("show toast",
@@ -445,6 +447,13 @@ app.on("ready", () => {
                         "install"),
                 ).then(() => {
                     appWin.webContents.send("install list", InstallList.getInstallList());
+                    appWin.webContents.send("loading modal", {
+                        display: false,
+                    });
+                }).catch((err) => {
+                    appWin.webContents.send("install list", InstallList.getInstallList());
+                    appWin.webContents.send("show toast",
+                        "Failed to install mod - try downloading it again.<br>" + err.message);
                     appWin.webContents.send("loading modal", {
                         display: false,
                     });
