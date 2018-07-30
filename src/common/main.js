@@ -139,8 +139,6 @@ process_1.on("uncaughtException", (error) => {
         },
         method: "POST",
         url: "https://us-central1-doki-doki-mod-manager.cloudfunctions.net/postCrashReport",
-    }, (e, r, b) => {
-        process.exit();
     });
 });
 DirectoryManager_1.default.createDirs(Config_1.default.readConfigValue("installFolder"));

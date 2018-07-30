@@ -160,8 +160,6 @@ registerProcessEventHandler("uncaughtException", (error) => {
         },
         method: "POST",
         url: "https://us-central1-doki-doki-mod-manager.cloudfunctions.net/postCrashReport",
-    }, (e, r, b) => {
-        process.exit();
     });
 });
 
