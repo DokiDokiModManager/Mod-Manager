@@ -109,6 +109,8 @@ function readMods() {
 }
 
 registerProcessEventHandler("uncaughtException", (error) => {
+    console.error(error);
+
     if (crashed) {
         return;
     }
@@ -116,6 +118,20 @@ registerProcessEventHandler("uncaughtException", (error) => {
     if (appWin) {
         appWin.hide();
     }
+
+
+    dialog.showMessageBox({
+        buttons: ["Restart", "Quit"],
+        defaultId: 1,
+        detail: "A problem occurred in Doki Doki Mod Manager which caused the app to crash. " +
+            "A crash report has been generated, which will be helpful when fixing the issue.",
+        message: "Doki Doki Mod Manager crashed!",
+        type: "error",
+    }, (btn) => {
+        if (btn === 0) {
+            app.relaunch();
+        }
+    });
 
     Logger.error("An uncaught exception occurred!");
     Logger.error("Preparing to upload stacktrace...");
@@ -126,8 +142,6 @@ registerProcessEventHandler("uncaughtException", (error) => {
     paste += "Platform: " + process.platform + "\n";
     paste += "Args: " + process.argv.join(" ") + "\n";
     paste += "Debug Tools: " + (debug ? "Yes" : "No") + "\n";
-    paste += "\nSend the link to this page to me on Discord (discord.me/modmanager) for help " +
-        "fixing the crash! Tell me what you were doing at the time of the crash.\n";
     paste += "\nSTACKTRACE:\n\n";
     paste += error.stack;
     paste += "\n\nCONFIG FILE:\n\n";
@@ -138,29 +152,16 @@ registerProcessEventHandler("uncaughtException", (error) => {
     }
 
     request({
-        body: paste,
         headers: {
             "User-Agent": "Doki Doki Mod Manager (u/zuudo)",
         },
+        json: {
+            crash: paste
+        },
         method: "POST",
-        url: "https://hastebin.com/documents",
+        url: "https://us-central1-doki-doki-mod-manager.cloudfunctions.net/postCrashReport",
     }, (e, r, b) => {
-        if (!e) {
-            dialog.showMessageBox({
-                buttons: ["View Crash Report", "Quit"],
-                defaultId: 1,
-                detail: "A problem occurred in Doki Doki Mod Manager which caused the app to crash. " +
-                    "A crash report has been generated, which will be helpful when fixing the issue.",
-                message: "Doki Doki Mod Manager crashed!",
-                type: "error",
-            }, (btn) => {
-                if (btn === 0) {
-                    const response: any = JSON.parse(b);
-                    shell.openExternal("https://hastebin.com/raw/" + response.key);
-                }
-                process.exit(1);
-            });
-        }
+        process.exit();
     });
 });
 
