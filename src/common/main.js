@@ -174,7 +174,7 @@ electron_1.app.on("ready", () => {
         width: 1000,
     });
     // Load the app UI
-    appWin.loadURL("file:///" + path_1.join(__dirname, "../gui/html/app/index.html"));
+    appWin.loadURL("file:///" + path_1.join(__dirname, "../gui/html/index.html"));
     // ...and show it when ready
     appWin.on("ready-to-show", () => {
         appWin.show();

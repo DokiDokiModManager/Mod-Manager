@@ -3,7 +3,7 @@
   "productName": "Doki Doki Mod Manager!",
   "description": "Mod Manager for Doki Doki Literature Club!",
   "author": "Doki Doki Mod Manager! Development Team",
-  "version": "2.4.4",
+  "version": "2.4.5",
   "homepage": "https://doki.space",
   "main": "src/common/main.js",
   "scripts": {
@@ -13,6 +13,7 @@
     "build-and-publish": "electron-builder -p always -wl"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.2.0",
     "@types/request": "^2.47.1",
     "@zudo/unzipper": "0.0.4",
     "bytes": "^3.0.0",

@@ -203,7 +203,7 @@ app.on("ready", () => {
     });
 
     // Load the app UI
-    appWin.loadURL("file:///" + joinPath(__dirname, "../gui/html/app/index.html"));
+    appWin.loadURL("file:///" + joinPath(__dirname, "../gui/html/index.html"));
 
     // ...and show it when ready
     appWin.on("ready-to-show", () => {

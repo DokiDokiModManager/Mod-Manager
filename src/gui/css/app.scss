@@ -33,6 +33,24 @@ $ui-success-colour-bg: #6ab04c;
 $ui-transition-speed: 0.5s;
 
 //
+// fonts
+//
+
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/Lato-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  src: url(../fonts/Lato-Bold.ttf);
+}
+
+//
 // basic resets
 //
 
@@ -121,7 +139,7 @@ hr {
 
 .banner .close {
   cursor: pointer;
-  padding: 0;
+  padding: 0.25em;
   height: 100%;
   text-align: center;
 }
@@ -312,7 +330,8 @@ input[type="text"], input[type="number"], input[type="url"], textarea {
 }
 
 .toolbar-button-icon {
-  font-size: 1.5em;
+  font-size: 1.25em;
+  padding: 0.25em;
 }
 
 .toolbar-button-text {
@@ -520,7 +539,7 @@ input[type="text"], input[type="number"], input[type="url"], textarea {
   height: 100%;
   z-index: 200;
   background-color: #fff;
-  background-image: url(easteregg/monika.png);
+  background-image: url(../html/easteregg/monika.png);
   background-position: center;
   background-size: cover;
   display: none;

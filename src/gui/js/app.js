@@ -1,6 +1,6 @@
 const Vue = require("vue/dist/vue");
 
-const packageData = require("../../../../package");
+const packageData = require("../../../package");
 
 const Mousetrap = require("mousetrap");
 const bytes = require("bytes");
