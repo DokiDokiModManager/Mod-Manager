@@ -119,20 +119,6 @@ registerProcessEventHandler("uncaughtException", (error) => {
         appWin.hide();
     }
 
-
-    dialog.showMessageBox({
-        buttons: ["Restart", "Quit"],
-        defaultId: 1,
-        detail: "A problem occurred in Doki Doki Mod Manager which caused the app to crash. " +
-            "A crash report has been generated, which will be helpful when fixing the issue.",
-        message: "Doki Doki Mod Manager crashed!",
-        type: "error",
-    }, (btn) => {
-        if (btn === 0) {
-            app.relaunch();
-        }
-    });
-
     Logger.error("An uncaught exception occurred!");
     Logger.error("Preparing to upload stacktrace...");
 
@@ -153,15 +139,32 @@ registerProcessEventHandler("uncaughtException", (error) => {
         paste += "Error reading - " + e.message;
     }
 
-    request({
-        headers: {
-            "User-Agent": "Doki Doki Mod Manager (u/zuudo)",
-        },
-        json: {
-            crash: paste,
-        },
-        method: "POST",
-        url: "https://us-central1-doki-doki-mod-manager.cloudfunctions.net/postCrashReport",
+    dialog.showMessageBox({
+        buttons: ["View Crash Report", "Quit"],
+        defaultId: 1,
+        detail: "A problem occurred in Doki Doki Mod Manager which caused the app to crash. " +
+        "A crash report has been generated, which will be helpful when fixing the issue.",
+        message: "Doki Doki Mod Manager crashed!",
+        type: "error",
+    }, (btn) => {
+        request({
+            headers: {
+                "User-Agent": "Doki Doki Mod Manager (u/zuudo)",
+            },
+            json: {
+                crash: paste,
+            },
+            method: "POST",
+            url: "https://us-central1-doki-doki-mod-manager.cloudfunctions.net/postCrashReport",
+        }, (e,r,b) => {
+            if (!e) {
+                if (btn === 0) {
+                    shell.openExternal("https://gist.githubusercontent.com/ZudoMC/" + b + "/raw/crash.txt");
+                }
+            }
+
+            app.exit();
+        });
     });
 });
 

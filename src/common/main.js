@@ -101,18 +101,6 @@ process_1.on("uncaughtException", (error) => {
     if (appWin) {
         appWin.hide();
     }
-    electron_1.dialog.showMessageBox({
-        buttons: ["Restart", "Quit"],
-        defaultId: 1,
-        detail: "A problem occurred in Doki Doki Mod Manager which caused the app to crash. " +
-            "A crash report has been generated, which will be helpful when fixing the issue.",
-        message: "Doki Doki Mod Manager crashed!",
-        type: "error",
-    }, (btn) => {
-        if (btn === 0) {
-            electron_1.app.relaunch();
-        }
-    });
     Logger_1.default.error("An uncaught exception occurred!");
     Logger_1.default.error("Preparing to upload stacktrace...");
     let paste = "Doki Doki Mod Manager! Crash Report\n\n";
@@ -132,15 +120,31 @@ process_1.on("uncaughtException", (error) => {
     catch (e) {
         paste += "Error reading - " + e.message;
     }
-    request({
-        headers: {
-            "User-Agent": "Doki Doki Mod Manager (u/zuudo)",
-        },
-        json: {
-            crash: paste,
-        },
-        method: "POST",
-        url: "https://us-central1-doki-doki-mod-manager.cloudfunctions.net/postCrashReport",
+    electron_1.dialog.showMessageBox({
+        buttons: ["View Crash Report", "Quit"],
+        defaultId: 1,
+        detail: "A problem occurred in Doki Doki Mod Manager which caused the app to crash. " +
+            "A crash report has been generated, which will be helpful when fixing the issue.",
+        message: "Doki Doki Mod Manager crashed!",
+        type: "error",
+    }, (btn) => {
+        request({
+            headers: {
+                "User-Agent": "Doki Doki Mod Manager (u/zuudo)",
+            },
+            json: {
+                crash: paste,
+            },
+            method: "POST",
+            url: "https://us-central1-doki-doki-mod-manager.cloudfunctions.net/postCrashReport",
+        }, (e, r, b) => {
+            if (!e) {
+                if (btn === 0) {
+                    electron_1.shell.openExternal("https://gist.githubusercontent.com/ZudoMC/" + b + "/raw/crash.txt");
+                }
+            }
+            electron_1.app.exit();
+        });
     });
 });
 DirectoryManager_1.default.createDirs(Config_1.default.readConfigValue("installFolder"));
