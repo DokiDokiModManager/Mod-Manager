@@ -28,7 +28,8 @@ const vueApp = new Vue({
                 "browser": false,
                 "save_management": false,
                 "theme": false,
-                "inference": false
+                "inference": false,
+                "achievements": false
             },
             "modals": {
                 "delete_save": false,

@@ -20,6 +20,7 @@ import Logger from "./utilities/Logger";
 import {on as registerProcessEventHandler} from "process";
 import ModInstaller from "./installs/ModInstaller";
 import {inferMapper} from "./mods/ModNormaliser";
+import SDKServer from "./sdk/SDKServer";
 
 const PROTOCOL: string = "ddmm";
 const DISCORD_APPID: string = "453299645725016074";
@@ -33,6 +34,7 @@ let appWin: BrowserWindow;
 
 let richPresence: RichPresence;
 let downloadManager: DownloadManager;
+let sdkServer: SDKServer;
 
 let debug: boolean = false;
 
@@ -181,6 +183,7 @@ app.on("ready", () => {
         return;
     }
 
+    app.setAppUserModelId("space.doki.modmanager");
     app.setAsDefaultProtocolClient(PROTOCOL);
 
     if (SUPPORTED_PLATFORMS.indexOf(process.platform) === -1) {
@@ -399,32 +402,18 @@ app.on("ready", () => {
         let crashFlag: boolean = false;
 
         richPresence.setPlayingPresence(installData.name);
-
-        procHandle.stderr.on("data", (d) => {
-            Logger.debug("stderr: " + d);
-        });
-
-        procHandle.stdout.on("data", (d) => {
-            Logger.debug("stdout: " + d);
-
-            // detect monika's fake crash and warnings
-            if (!(d.toString().indexOf("Oh jeez") !== -1 || d.toString().indexOf("Warning") !== -1)) {
-                crashFlag = true;
-            }
-        });
+        sdkServer.setPlaying(dir);
 
         procHandle.on("error", (error) => {
             appWin.webContents.send("running cover", false);
             appWin.webContents.send("show toast",
-                "The game failed to launch..<br>" + error.message);
+                "The game failed to launch.<br>" + error.message);
         });
 
-        procHandle.on("close", (code) => {
+        procHandle.on("close", () => {
             richPresence.setIdlePresence();
             appWin.webContents.send("running cover", false);
-            if (code === 0 && crashFlag) {
-                appWin.webContents.send("show toast", "The game crashed.");
-            }
+            appWin.webContents.send("install list", InstallList.getInstallList());
         });
     });
 
@@ -595,6 +584,8 @@ app.on("ready", () => {
             });
         });
     });
+
+    sdkServer = new SDKServer(41420, "127.0.0.1");
 
     handleURL(process.argv);
 });

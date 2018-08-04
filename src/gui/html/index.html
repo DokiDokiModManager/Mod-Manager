@@ -79,6 +79,7 @@
                 <button class="secondary" @click="ui.selected_install = index; ui.side_sheets.save_management = true">
                     Settings
                 </button>
+                <button class="secondary" v-if="install.achievements" @click="ui.selected_install = index; ui.side_sheets.achievements = true">Achievements</button>
                 <button class="danger" @click="ui.selected_install = index; ui.modals.delete_install = true">Uninstall
                 </button>
                 <hr>
@@ -252,13 +253,15 @@
         <div class="side-sheet-container">
             <div class="side-sheet-toolbar">
                 <div class="side-sheet-toolbar-group">
-                    <button class="primary" @click="browserCommand('goBack')" title="Back"><i class="fas fa-arrow-left"></i>
+                    <button class="primary" @click="browserCommand('goBack')" title="Back"><i
+                            class="fas fa-arrow-left"></i>
                     </button>
                     <button class="primary" @click="browserCommand('goForward')" title="Forward"><i
                             class="fas fa-arrow-right"></i></button>
                 </div>
                 <div class="side-sheet-toolbar-group">
-                    <button class="primary" @click="browserCommand('reload')" title="Refresh"><i class="fas fa-sync-alt"></i>
+                    <button class="primary" @click="browserCommand('reload')" title="Refresh"><i
+                            class="fas fa-sync-alt"></i>
                     </button>
                 </div>
                 <div class="side-sheet-toolbar-group grow">
@@ -516,6 +519,27 @@
             </div>
             <div class="side-sheet-footer">
                 <button class="primary" @click="ui.side_sheets.save_management = false">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div :class="{'side-sheet': true, 'active': ui.side_sheets.achievements, 'left':true}">
+        <div class="side-sheet-background"></div>
+        <div class="side-sheet-container">
+            <div class="side-sheet-header" v-if="selectedInstall && selectedInstall.achievements">
+                Achievements ({{selectedInstall.achievements.filter(a => a.earned).length}} / {{selectedInstall.achievements.length}})
+            </div>
+            <div class="side-sheet-content" v-if="selectedInstall && selectedInstall.achievements">
+                <div v-for="achievement in selectedInstall.achievements" :class="{'muted': !achievement.earned}">
+                    <h3>{{achievement.name}}</h3>
+                    <p>{{achievement.description}}</p>
+                    <p v-if="achievement.earned">Unlocked!</p>
+                    <p v-else>Not unlocked - keep going!</p>
+                    <hr>
+                </div>
+            </div>
+            <div class="side-sheet-footer">
+                <button class="primary" @click="ui.side_sheets.achievements = false">Close</button>
             </div>
         </div>
     </div>

@@ -21,6 +21,7 @@ const Logger_1 = require("./utilities/Logger");
 const process_1 = require("process");
 const ModInstaller_1 = require("./installs/ModInstaller");
 const ModNormaliser_1 = require("./mods/ModNormaliser");
+const SDKServer_1 = require("./sdk/SDKServer");
 const PROTOCOL = "ddmm";
 const DISCORD_APPID = "453299645725016074";
 const SUPPORTED_PLATFORMS = [
@@ -30,6 +31,7 @@ const DDLC_HASHES = ["2a3dd7969a06729a32ace0a6ece5f2327e29bdf460b8b39e6a8b0875e5
 let appWin;
 let richPresence;
 let downloadManager;
+let sdkServer;
 let debug = false;
 let crashed = false;
 let allowClosing = false;
@@ -158,6 +160,7 @@ electron_1.app.on("ready", () => {
         electron_1.app.quit();
         return;
     }
+    electron_1.app.setAppUserModelId("space.doki.modmanager");
     electron_1.app.setAsDefaultProtocolClient(PROTOCOL);
     if (SUPPORTED_PLATFORMS.indexOf(process.platform) === -1) {
         electron_1.dialog.showMessageBox({
@@ -329,26 +332,15 @@ electron_1.app.on("ready", () => {
         });
         let crashFlag = false;
         richPresence.setPlayingPresence(installData.name);
-        procHandle.stderr.on("data", (d) => {
-            Logger_1.default.debug("stderr: " + d);
-        });
-        procHandle.stdout.on("data", (d) => {
-            Logger_1.default.debug("stdout: " + d);
-            // detect monika's fake crash and warnings
-            if (!(d.toString().indexOf("Oh jeez") !== -1 || d.toString().indexOf("Warning") !== -1)) {
-                crashFlag = true;
-            }
-        });
+        sdkServer.setPlaying(dir);
         procHandle.on("error", (error) => {
             appWin.webContents.send("running cover", false);
-            appWin.webContents.send("show toast", "The game failed to launch..<br>" + error.message);
+            appWin.webContents.send("show toast", "The game failed to launch.<br>" + error.message);
         });
-        procHandle.on("close", (code) => {
+        procHandle.on("close", () => {
             richPresence.setIdlePresence();
             appWin.webContents.send("running cover", false);
-            if (code === 0 && crashFlag) {
-                appWin.webContents.send("show toast", "The game crashed.");
-            }
+            appWin.webContents.send("install list", InstallList_1.default.getInstallList());
         });
     });
     // Install management functions / IPC
@@ -504,6 +496,7 @@ electron_1.app.on("ready", () => {
             });
         });
     });
+    sdkServer = new SDKServer_1.default(41420, "127.0.0.1");
     handleURL(process.argv);
 });
 //# sourceMappingURL=main.js.map

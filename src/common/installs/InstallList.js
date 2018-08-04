@@ -19,6 +19,7 @@ class InstallList {
                 };
             }
             return {
+                achievements: installData.achievements,
                 folderName: install,
                 fullFolderName: path,
                 globalSave: installData.globalSave,
