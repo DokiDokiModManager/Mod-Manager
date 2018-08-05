@@ -62,6 +62,7 @@ const vueApp = new Vue({
             "selected_install": 0,
             "selected_mod": null,
             "running_cover": false,
+            "dropping_cover": false,
             "monika": false,
             "banner": {
                 "active": false,
@@ -312,5 +313,19 @@ firebase.database().ref("/global/banner").once("value").then(response => {
     if (localStorage.getItem("last_banner") === vueApp.ui.banner.message) {
         vueApp.ui.banner.active = false;
     }
-
 });
+
+document.body.ondragover = function (e) {
+    e.preventDefault();
+};
+
+
+document.body.ondrop = function (e) {
+    vueApp.ui.dropping_cover = false;
+    e.preventDefault();
+    if (["application/zip", "application/x-zip-compressed"].indexOf(e.dataTransfer.items[0].getAsFile().type) !== -1 || e.dataTransfer.items[0].getAsFile().path.endsWith(".zip")) {
+        ipcRenderer.send("import mod dropped", e.dataTransfer.items[0].getAsFile().path);
+    } else {
+        vueApp.showToast(e.dataTransfer.items[0].getAsFile().name + " is not a mod zip file.");
+    }
+};

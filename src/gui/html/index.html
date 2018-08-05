@@ -366,7 +366,7 @@
                     <br>
                     <p>Join the Doki Doki Mod Manager Discord server and chat with other users.</p>
                     <br>
-                    <button class="huge success" @click="openURL('https://discord.me/modmanager')">Join Now</button>
+                    <button class="huge success" @click="openURL('https://doki.space/discord')">Join Now</button>
                 </div>
 
                 <hr>
@@ -676,6 +676,9 @@
         <h1>Doki Doki Literature Club is running</h1>
         <p>Close the game to make changes to your mods.</p>
         <p>It may take a while for the game to start, be patient.</p>
+    </div>
+    <div :class="{'running-cover': true, 'active': ui.dropping_cover}">
+        <p>Drop mods anywhere to import them.</p>
     </div>
 </div>
 

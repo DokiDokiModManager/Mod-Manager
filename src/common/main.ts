@@ -566,6 +566,13 @@ app.on("ready", () => {
         });
     });
 
+    ipcMain.on("import mod dropped", (_, mod) => {
+        const filename = mod.split(pathSep).pop();
+        copyFileSync(mod, joinPath(Config.readConfigValue("installFolder"), "mods", filename));
+        appWin.webContents.send("show toast", "Imported " + filename + " into the mod library.");
+        readMods();
+    });
+
     ipcMain.on("cancel download", (_, id) => {
         downloadManager.removeDownload(id);
     });

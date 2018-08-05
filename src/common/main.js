@@ -480,6 +480,12 @@ electron_1.app.on("ready", () => {
             }
         });
     });
+    electron_1.ipcMain.on("import mod dropped", (_, mod) => {
+        const filename = mod.split(path_1.sep).pop();
+        fs_1.copyFileSync(mod, path_1.join(Config_1.default.readConfigValue("installFolder"), "mods", filename));
+        appWin.webContents.send("show toast", "Imported " + filename + " into the mod library.");
+        readMods();
+    });
     electron_1.ipcMain.on("cancel download", (_, id) => {
         downloadManager.removeDownload(id);
     });
