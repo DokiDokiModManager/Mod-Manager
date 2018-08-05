@@ -160,6 +160,19 @@ electron_1.app.on("ready", () => {
         electron_1.app.quit();
         return;
     }
+    try {
+        fs_1.writeFileSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "av-test.txt"), "This is a test file for DDMM and can be safely deleted.");
+    }
+    catch (e) {
+        electron_1.dialog.showMessageBox({
+            detail: "Something is interfering with Doki Doki Mod Manager and preventing it " +
+                "from accessing the files it requires to run. This may lead to errors or crashes.\n\n" +
+                "This may be caused by certain antivirus software - try disabling it if you continue to experience " +
+                "problems.\n\n" + e.toString(),
+            message: "You should check this...",
+            type: "warning",
+        });
+    }
     electron_1.app.setAppUserModelId("space.doki.modmanager");
     electron_1.app.setAsDefaultProtocolClient(PROTOCOL);
     if (SUPPORTED_PLATFORMS.indexOf(process.platform) === -1) {
@@ -334,10 +347,12 @@ electron_1.app.on("ready", () => {
         richPresence.setPlayingPresence(installData.name);
         sdkServer.setPlaying(dir);
         procHandle.on("error", (error) => {
+            sdkServer.setPlaying(null);
             appWin.webContents.send("running cover", false);
             appWin.webContents.send("show toast", "The game failed to launch.<br>" + error.message);
         });
         procHandle.on("close", () => {
+            sdkServer.setPlaying(null);
             richPresence.setIdlePresence();
             appWin.webContents.send("running cover", false);
             appWin.webContents.send("install list", InstallList_1.default.getInstallList());

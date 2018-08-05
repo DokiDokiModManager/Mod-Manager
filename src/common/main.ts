@@ -2,7 +2,16 @@ import {spawn} from "child_process";
 import {app, BrowserWindow, dialog, ipcMain, session, shell} from "electron";
 import * as isDev from "electron-is-dev";
 import {autoUpdater} from "electron-updater";
-import {copyFileSync, existsSync as fileExists, mkdirSync, readdirSync, readFileSync, unlink, unlinkSync} from "fs";
+import {
+    copyFileSync,
+    existsSync as fileExists,
+    mkdirSync,
+    readdirSync,
+    readFileSync,
+    unlink,
+    unlinkSync,
+    writeFileSync
+} from "fs";
 import {remove} from "fs-extra";
 import {join as joinPath, sep as pathSep} from "path";
 import * as request from "request";
@@ -145,7 +154,7 @@ registerProcessEventHandler("uncaughtException", (error) => {
         buttons: ["View Crash Report", "Quit"],
         defaultId: 1,
         detail: "A problem occurred in Doki Doki Mod Manager which caused the app to crash. " +
-        "A crash report has been generated, which will be helpful when fixing the issue.",
+            "A crash report has been generated, which will be helpful when fixing the issue.",
         message: "Doki Doki Mod Manager crashed!",
         type: "error",
     }, (btn) => {
@@ -158,7 +167,7 @@ registerProcessEventHandler("uncaughtException", (error) => {
             },
             method: "POST",
             url: "https://us-central1-doki-doki-mod-manager.cloudfunctions.net/postCrashReport",
-        }, (e,r,b) => {
+        }, (e, r, b) => {
             if (!e) {
                 if (btn === 0) {
                     shell.openExternal("https://gist.githubusercontent.com/ZudoMC/" + b + "/raw/crash.txt");
@@ -183,6 +192,20 @@ app.on("ready", () => {
         return;
     }
 
+    try {
+        writeFileSync(joinPath(Config.readConfigValue("installFolder"), "av-test.txt"),
+            "This is a test file for DDMM and can be safely deleted.");
+    } catch (e) {
+        dialog.showMessageBox({
+            detail: "Something is interfering with Doki Doki Mod Manager and preventing it " +
+                "from accessing the files it requires to run. This may lead to errors or crashes.\n\n" +
+                "This may be caused by certain antivirus software - try disabling it if you continue to experience " +
+                "problems.\n\n" + e.toString(),
+            message: "You should check this...",
+            type: "warning",
+        });
+    }
+
     app.setAppUserModelId("space.doki.modmanager");
     app.setAsDefaultProtocolClient(PROTOCOL);
 
@@ -194,6 +217,7 @@ app.on("ready", () => {
             type: "warning",
         });
     }
+
 
     if (isDev) {
         require("devtron").install();
@@ -405,12 +429,14 @@ app.on("ready", () => {
         sdkServer.setPlaying(dir);
 
         procHandle.on("error", (error) => {
+            sdkServer.setPlaying(null);
             appWin.webContents.send("running cover", false);
             appWin.webContents.send("show toast",
                 "The game failed to launch.<br>" + error.message);
         });
 
         procHandle.on("close", () => {
+            sdkServer.setPlaying(null);
             richPresence.setIdlePresence();
             appWin.webContents.send("running cover", false);
             appWin.webContents.send("install list", InstallList.getInstallList());

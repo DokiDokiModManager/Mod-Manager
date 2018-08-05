@@ -79,7 +79,9 @@
                 <button class="secondary" @click="ui.selected_install = index; ui.side_sheets.save_management = true">
                     Settings
                 </button>
-                <button class="secondary" v-if="install.achievements" @click="ui.selected_install = index; ui.side_sheets.achievements = true">Achievements</button>
+                <button class="secondary" v-if="install.achievements"
+                        @click="ui.selected_install = index; ui.side_sheets.achievements = true">Achievements
+                </button>
                 <button class="danger" @click="ui.selected_install = index; ui.modals.delete_install = true">Uninstall
                 </button>
                 <hr>
@@ -447,8 +449,11 @@
                     <p>Thanks for downloading Doki Doki Mod Manager! Before we get you started with modding your game,
                         we need a copy of it first.</p>
                     <br>
-                    <p>If you already have a copy, you can look for it on your PC. Otherwise, click <em>Download
+                    <p>If you already have a copy of DDLC, you can look for it on your PC. Otherwise, click <em>Download
                         Now</em> to start downloading the game.</p>
+                    <br>
+                    <p><strong>You need to have a standalone copy of DDLC as a zip file. If you have only installed
+                        through Steam, you will need to download a new copy of the game.</strong></p>
                     <br>
                     <p>If you have just upgraded from version 1, all your mods are still here - just select the game's
                         zip file to get started.</p>
@@ -527,7 +532,8 @@
         <div class="side-sheet-background"></div>
         <div class="side-sheet-container">
             <div class="side-sheet-header" v-if="selectedInstall && selectedInstall.achievements">
-                Achievements ({{selectedInstall.achievements.filter(a => a.earned).length}} / {{selectedInstall.achievements.length}})
+                Achievements ({{selectedInstall.achievements.filter(a => a.earned).length}} /
+                {{selectedInstall.achievements.length}})
             </div>
             <div class="side-sheet-content" v-if="selectedInstall && selectedInstall.achievements">
                 <div v-for="achievement in selectedInstall.achievements" :class="{'muted': !achievement.earned}">
