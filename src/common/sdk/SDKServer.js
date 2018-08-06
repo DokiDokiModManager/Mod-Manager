@@ -83,7 +83,14 @@ class SDKServer {
             const installData = JSON.parse(fs_1.readFileSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", this.install, "install.json")).toString("utf8"));
             let achievement = installData.achievements.find((achievement) => achievement.id === body.payload.id);
             try {
-                achievement.earned = true;
+                if (!achievement.earned) {
+                    new electron_1.Notification({
+                        title: "Achievement Unlocked!",
+                        body: achievement.name + " - " + achievement.description,
+                        icon: "../../../build/icon.png"
+                    }).show();
+                    achievement.earned = true;
+                }
             }
             catch (e) {
                 res.statusCode = 400;
@@ -92,11 +99,6 @@ class SDKServer {
                 }));
                 return;
             }
-            new electron_1.Notification({
-                title: "Achievement Unlocked!",
-                body: achievement.name + " - " + achievement.description,
-                icon: "../../../build/icon.png"
-            }).show();
             fs_1.writeFileSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", this.install, "install.json"), JSON.stringify(installData));
             res.write(JSON.stringify({
                 "ok": true

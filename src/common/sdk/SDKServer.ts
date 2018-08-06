@@ -111,7 +111,14 @@ export default class SDKServer {
             let achievement = installData.achievements.find((achievement) => achievement.id === body.payload.id);
 
             try {
-                achievement.earned = true;
+                if (!achievement.earned) {
+                    new Notification({
+                        title: "Achievement Unlocked!",
+                        body: achievement.name + " - " + achievement.description,
+                        icon: "../../../build/icon.png"
+                    }).show();
+                    achievement.earned = true;
+                }
             } catch (e) {
                 res.statusCode = 400;
 
@@ -120,12 +127,6 @@ export default class SDKServer {
                 }));
                 return;
             }
-
-            new Notification({
-                title: "Achievement Unlocked!",
-                body: achievement.name + " - " + achievement.description,
-                icon: "../../../build/icon.png"
-            }).show();
 
             writeFileSync(joinPath(Config.readConfigValue("installFolder"),
                 "installs",
