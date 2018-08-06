@@ -76,6 +76,8 @@ export default class SDKServer {
                 name: body.payload.name,
             };
 
+            console.log(installData.achievements, body.payload);
+
             if (!installData.achievements) {
                 installData.achievements = [
                     achievement
@@ -86,6 +88,8 @@ export default class SDKServer {
                         "ok": true,
                         "message": "Achievement already registered."
                     }));
+
+                    return; // really? i forgot this?
                 }
                 installData.achievements.push(achievement);
             }
