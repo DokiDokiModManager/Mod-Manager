@@ -29,7 +29,8 @@ const vueApp = new Vue({
                 "save_management": false,
                 "theme": false,
                 "inference": false,
-                "achievements": false
+                "achievements": false,
+                "feedback": false
             },
             "modals": {
                 "delete_save": false,
@@ -76,6 +77,11 @@ const vueApp = new Vue({
                 "mapper": "",
                 "mod": "",
                 "delete": []
+            },
+            "feedback": {
+                "type": "question",
+                "body": "",
+                "contact": ""
             }
         },
         "downloads": [],
@@ -201,6 +207,17 @@ const vueApp = new Vue({
         },
         "testInference": function (mod) {
             ipcRenderer.send("test inference", mod);
+        },
+        "submitFeedback": function () {
+            if (this.ui.feedback.body.length < 10) {
+                this.showToast("Please be more detailed in your feedback.");
+                return;
+            }
+            ipcRenderer.send("submit feedback", this.ui.feedback);
+            this.ui.feedback.type = "question";
+            this.ui.feedback.body = "";
+            this.ui.feedback.contact = "";
+            this.ui.side_sheets.feedback = false;
         }
     },
     "computed": {

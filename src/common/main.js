@@ -517,6 +517,22 @@ electron_1.app.on("ready", () => {
             });
         });
     });
+    electron_1.ipcMain.on("submit feedback", (_, feedback) => {
+        request({
+            headers: {
+                "User-Agent": "Doki Doki Mod Manager (u/zuudo)",
+            },
+            json: {
+                body: feedback.body,
+                contact: feedback.contact,
+                type: feedback.type,
+            },
+            method: "POST",
+            url: "https://us-central1-doki-doki-mod-manager.cloudfunctions.net/sendFeedback",
+        }, () => {
+            appWin.webContents.send("show toast", "Your feedback has been sent. Thanks for the help!");
+        });
+    });
     sdkServer = new SDKServer_1.default(41420, "127.0.0.1");
     handleURL(process.argv);
 });

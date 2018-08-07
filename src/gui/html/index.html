@@ -51,6 +51,11 @@
         </div>
 
         <div class="toolbar-group">
+            <div class="toolbar-button" @click="ui.side_sheets.feedback = true" role="button">
+                <div class="toolbar-button-icon"><i class="fas fa-comment"></i></div>
+                <div class="toolbar-button-text">Feedback</div>
+            </div>
+
             <div class="toolbar-button" @click="ui.side_sheets.settings = true" role="button">
                 <div class="toolbar-button-icon"><i class="fas fa-cog"></i></div>
                 <div class="toolbar-button-text">Settings</div>
@@ -434,6 +439,46 @@
             </div>
             <div class="side-sheet-footer">
                 <button class="primary" @click="ui.side_sheets.settings = false">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div :class="{'side-sheet': true, 'active': ui.side_sheets.feedback, 'right':true}">
+        <div class="side-sheet-background"></div>
+        <div class="side-sheet-container">
+            <div class="side-sheet-header">
+                Submit Feedback
+            </div>
+            <div class="side-sheet-content">
+                <strong>Feedback Type</strong>
+                <p><label><input type="radio" name="feedback-type" value="question" v-model="ui.feedback.type"> Question</label>
+                    <label><input type="radio" name="feedback-type" value="suggestion" v-model="ui.feedback.type">Suggestion</label>
+                    <label><input type="radio" name="feedback-type" value="bug" v-model="ui.feedback.type"> Bug
+                        Report</label>
+                </p>
+                <div class="highlight success" v-if="ui.feedback.type === 'bug'">
+                    When submitting a bug report, please include the following information:
+                    <ul>
+                        <li>What you did to cause the issue</li>
+                        <li>What you expected to happen</li>
+                        <li>What actually happened</li>
+                        <li>Any relevant crash reports / error messages</li>
+                    </ul>
+                    Thanks for helping to improve Doki Doki Mod Manager!
+                </div>
+                <br>
+                <strong>Feedback</strong>
+                <p><textarea v-model="ui.feedback.body" title="Enter your feedback here."
+                             placeholder="Enter your feedback here." rows="5" maxlength="1000"></textarea></p>
+                <br>
+                <strong>Contact Details</strong>
+                <p><input type="text" v-model="ui.feedback.contact" title="Contact details" maxlength="64"></p>
+                <p>If you want me to get in contact with you regarding this feedback, add an email address, Reddit
+                    username or Discord tag. I read every piece of feedback I receive.</p>
+            </div>
+            <div class="side-sheet-footer">
+                <button class="primary" @click="submitFeedback">Submit</button>
+                <button class="secondary" @click="ui.side_sheets.feedback = false">Cancel</button>
             </div>
         </div>
     </div>
