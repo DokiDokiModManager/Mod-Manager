@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const child_process_1 = require("child_process");
+const crypto_1 = require("crypto");
 const electron_1 = require("electron");
 const isDev = require("electron-is-dev");
 const electron_updater_1 = require("electron-updater");
@@ -12,7 +13,6 @@ const normaliseName = require("sanitize-filename");
 const sha_1 = require("sha");
 const RichPresence_1 = require("./discord/RichPresence");
 const DownloadLinkRetriever_1 = require("./download/DownloadLinkRetriever");
-const DownloadManager_1 = require("./download/DownloadManager");
 const Config_1 = require("./files/Config");
 const DirectoryManager_1 = require("./files/DirectoryManager");
 const InstallCreator_1 = require("./installs/InstallCreator");
@@ -30,13 +30,12 @@ const SUPPORTED_PLATFORMS = [
 const DDLC_HASHES = ["2a3dd7969a06729a32ace0a6ece5f2327e29bdf460b8b39e6a8b0875e545632e"];
 let appWin;
 let richPresence;
-let downloadManager;
 let sdkServer;
 let debug = false;
 let crashed = false;
 let allowClosing = false;
 let moniIndex = 0;
-downloadManager = new DownloadManager_1.DownloadManager();
+const downloads = new Map();
 richPresence = new RichPresence_1.default(DISCORD_APPID);
 richPresence.setIdlePresence();
 electron_updater_1.autoUpdater.autoDownload = true;
@@ -54,7 +53,7 @@ function handleURL(args) {
 }
 function downloadBaseGame() {
     DownloadLinkRetriever_1.default.getDownloadLink().then((link) => {
-        downloadManager.queueDownload(link, path_1.join(Config_1.default.readConfigValue("installFolder"), "ddlc.zip"), "Doki Doki Literature Club - Game Files");
+        appWin.webContents.downloadURL(link);
     }).catch((e) => {
         console.log(e);
     });
@@ -206,8 +205,7 @@ electron_1.app.on("ready", () => {
     });
     // prevent accidental closes
     appWin.on("close", (e) => {
-        if (!allowClosing &&
-            downloadManager.getQueue().filter((dl) => dl.status === DownloadManager_1.DownloadStatus.DOWNLOADING).length > 0) {
+        if (!allowClosing && downloads.size !== 0) {
             e.preventDefault();
             electron_1.dialog.showMessageBox({
                 buttons: ["Quit Anyway", "Cancel"],
@@ -286,34 +284,50 @@ electron_1.app.on("ready", () => {
         electron_updater_1.autoUpdater.quitAndInstall(false, true);
     });
     // Download manager functions / IPC
-    setInterval(() => {
-        if (appWin) {
-            appWin.webContents.send("download queue", downloadManager.getQueue());
-        }
-    }, 100);
-    electron_1.ipcMain.on("remove download", (_, id) => {
-        downloadManager.removeDownload(id);
-    });
     electron_1.ipcMain.on("download game", () => {
         downloadBaseGame();
     });
-    electron_1.session.defaultSession.on("will-download", (e, i) => {
-        e.preventDefault();
-        const file = i.getFilename();
-        const url = i.getURL();
-        if (i.getMimeType() !== "application/zip" && !(file && file.endsWith(".zip"))) {
-            appWin.webContents.send("show toast", file + " doesn't look like a mod zip file. It may require manual installation.");
+    electron_1.session.defaultSession.on("will-download", (e, item) => {
+        const file = item.getFilename();
+        const url = item.getURL();
+        appWin.webContents.send("show toast", "Downloading " + file);
+        if (file.match(/^ddlc-(mac|win)\.zip$/)) {
+            item.setSavePath(path_1.join(Config_1.default.readConfigValue("installFolder"), "ddlc.zip"));
         }
         else {
-            appWin.webContents.send("show toast", "Downloading " + file);
-            downloadManager.queueDownload(url, path_1.join(Config_1.default.readConfigValue("installFolder"), "mods", file), file, file);
+            item.setSavePath(path_1.join(Config_1.default.readConfigValue("installFolder"), "mods", file));
         }
-    });
-    downloadManager.on("progress", (progress) => {
-        appWin.setProgressBar(progress);
-    });
-    downloadManager.on("download finished", () => {
-        readMods();
+        const id = crypto_1.randomBytes(32).toString("hex");
+        downloads.set(id, item);
+        item.on("updated", (_, state) => {
+            if (downloads.size === 1) {
+                appWin.webContents.send("download progress", {
+                    downloading: true,
+                    has_download_completed: false,
+                    filename: item.getFilename(),
+                    received_bytes: item.getReceivedBytes(),
+                    total_bytes: item.getTotalBytes(),
+                });
+            }
+            else {
+                appWin.webContents.send("download progress", {
+                    downloading: true,
+                    has_download_completed: false,
+                    filename: downloads.size + " items",
+                    received_bytes: Array.from(downloads.values()).reduce((a, b) => a + b.getReceivedBytes(), 0),
+                    total_bytes: Array.from(downloads.values()).reduce((a, b) => a + b.getTotalBytes(), 0),
+                });
+            }
+        });
+        item.once("done", (_, state) => {
+            downloads.delete(id);
+            appWin.webContents.send("download progress", {
+                downloading: false,
+                has_download_completed: true,
+                received_bytes: 0,
+                total_bytes: 1,
+            });
+        });
     });
     // Game launch functions / IPC
     electron_1.ipcMain.on("launch install", (_, dir) => {
@@ -343,7 +357,6 @@ electron_1.app.on("ready", () => {
             cwd: path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", dir, "install"),
             env,
         });
-        let crashFlag = false;
         richPresence.setPlayingPresence(installData.name);
         sdkServer.setPlaying(dir);
         procHandle.on("error", (error) => {
@@ -500,9 +513,6 @@ electron_1.app.on("ready", () => {
         fs_1.copyFileSync(mod, path_1.join(Config_1.default.readConfigValue("installFolder"), "mods", filename));
         appWin.webContents.send("show toast", "Imported " + filename + " into the mod library.");
         readMods();
-    });
-    electron_1.ipcMain.on("cancel download", (_, id) => {
-        downloadManager.removeDownload(id);
     });
     electron_1.ipcMain.on("save theme", (_, theme) => {
         Config_1.default.saveConfigValue("theme", theme);

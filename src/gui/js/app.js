@@ -4,7 +4,6 @@ const packageData = require("../../../package");
 
 const Mousetrap = require("mousetrap");
 const bytes = require("bytes");
-const normaliseURL = require("normalize-url");
 
 const {ipcRenderer, remote} = require("electron");
 const {shell, dialog} = remote;
@@ -25,7 +24,6 @@ const vueApp = new Vue({
                 "settings": false,
                 "onboarding": true,
                 "install": false,
-                "browser": false,
                 "save_management": false,
                 "theme": false,
                 "inference": false,
@@ -51,9 +49,6 @@ const vueApp = new Vue({
             },
             "onboarding": {
                 "downloading": false
-            },
-            "browser": {
-                "url": "Loading browser"
             },
             "install_creation": {
                 "install_name": "",
@@ -84,9 +79,15 @@ const vueApp = new Vue({
                 "contact": ""
             }
         },
-        "downloads": [],
         "installs": [],
-        "mods": []
+        "mods": [],
+        "download": {
+            "downloading": false,
+            "has_download_completed": false,
+            "filename": "",
+            "total_bytes": 1,
+            "received_bytes": 0
+        }
     },
     "methods": {
         "showToast": function (msg) {
@@ -118,34 +119,12 @@ const vueApp = new Vue({
                 decimalPlaces: 0
             });
         },
-        "calculateDownloadSpeed": function (downloadedBytes, startTime, round) { // in mb/s
-            const speed = (downloadedBytes / (1000 * 1000)) / ((Date.now() / 1000) - startTime) || 0;
-            if (round) {
-                return (Math.floor((speed * 10)) / 10).toFixed(1);
-            } else {
-                return speed;
-            }
-        },
-        "calculateETA": function (downloadedBytes, totalBytes, startTime) {
-            const speed = this.calculateDownloadSpeed(downloadedBytes, startTime);
-            if (speed === 0) return "∞";
-            return Math.floor(((totalBytes - downloadedBytes) / (1000 * 1000)) / speed) + 1; // don't tell anyone you saw this
-        },
         "removeDownload": function (id) {
             ipcRenderer.send("remove download", id);
         },
         "downloadGame": function () {
             this.ui.onboarding.downloading = true;
             ipcRenderer.send("download game");
-        },
-        "browserCommand": function (command) {
-            document.querySelector("#browser")[command]();
-        },
-        "browserBarHandler": function (e) {
-            if (e.keyCode === 13) {
-                document.querySelector("#browser").loadURL(normaliseURL(this.ui.browser.url));
-                this.ui.browser.url = normaliseURL(this.ui.browser.url);
-            }
         },
         "launchInstall": function (dir) {
             ipcRenderer.send("launch install", dir);
@@ -247,14 +226,6 @@ ipcRenderer.on("update info", (_, info) => {
     }
 });
 
-ipcRenderer.on("download queue", (_, queue) => {
-    vueApp.downloads = queue;
-});
-
-ipcRenderer.on("download completed", (_, queue) => {
-    vueApp.completed_downloads = queue;
-});
-
 ipcRenderer.on("show onboarding", (_, show) => {
     vueApp.ui.side_sheets.onboarding = show;
 });
@@ -266,10 +237,6 @@ ipcRenderer.on("show monika", () => {
 
 ipcRenderer.on("running cover", (_, show) => {
     vueApp.ui.running_cover = show;
-});
-
-ipcRenderer.on("show crash", () => {
-    // do nothing for now
 });
 
 ipcRenderer.on("install list", (_, list) => {
@@ -300,6 +267,10 @@ ipcRenderer.on("inference result", (_, inference) => {
     vueApp.ui.inference = inference
 });
 
+ipcRenderer.on("download progress", (_, progress) => {
+    vueApp.download = progress;
+});
+
 // debug keybind
 Mousetrap.bind("j u s t m o n i k a", () => {
     ipcRenderer.send("enable debug");
@@ -307,22 +278,6 @@ Mousetrap.bind("j u s t m o n i k a", () => {
 
 document.querySelector("#monika").addEventListener("ended", () => {
     vueApp.ui.monika = false;
-});
-
-document.querySelector("#browser").addEventListener("will-navigate", evt => {
-    if (!(evt.url.startsWith("data:"))) {
-        vueApp.ui.browser.url = evt.url;
-    }
-});
-
-document.querySelector("#browser").addEventListener("did-stop-loading", () => {
-    if (!(document.querySelector("#browser").getURL().startsWith("data:"))) {
-        vueApp.ui.browser.url = document.querySelector("#browser").getURL();
-    }
-});
-
-document.querySelector("#browser").addEventListener("did-fail-load", evt => {
-    document.querySelector("#browser").loadURL("data:text/html;base64," + btoa(`<h1>Error loading page</h1><p>${evt.errorDescription}</p><p>Please try loading a different page.</p>`));
 });
 
 firebase.database().ref("/global/banner").once("value").then(response => {
@@ -335,7 +290,6 @@ firebase.database().ref("/global/banner").once("value").then(response => {
 document.body.ondragover = function (e) {
     e.preventDefault();
 };
-
 
 document.body.ondrop = function (e) {
     vueApp.ui.dropping_cover = false;

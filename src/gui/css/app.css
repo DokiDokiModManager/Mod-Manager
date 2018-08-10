@@ -421,7 +421,6 @@ input[type=text], input[type=number], input[type=url], textarea {
   background-color: #bb5599;
   border-radius: 3px;
   width: 0;
-  transition: width 0.5s;
 }
 
 @keyframes indefinite {
@@ -603,6 +602,20 @@ button .material-icons {
 #app.dark-theme .highlight.success {
   background-color: #345726;
   color: #eee;
+}
+
+.download-progress {
+  color: #fff;
+  background-color: #87c16e;
+  display: flex;
+  flex-shrink: 0;
+}
+
+.download-progress .bar {
+  background-color: #6ab04c;
+  text-align: left;
+  padding: 0.5em;
+  white-space: nowrap;
 }
 
 /*# sourceMappingURL=app.css.map */

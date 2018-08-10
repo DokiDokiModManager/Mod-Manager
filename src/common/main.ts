@@ -1,4 +1,5 @@
 import {spawn} from "child_process";
+import {randomBytes} from "crypto";
 import {app, BrowserWindow, dialog, ipcMain, session, shell} from "electron";
 import * as isDev from "electron-is-dev";
 import {autoUpdater} from "electron-updater";
@@ -10,7 +11,7 @@ import {
     readFileSync,
     unlink,
     unlinkSync,
-    writeFileSync
+    writeFileSync,
 } from "fs";
 import {remove} from "fs-extra";
 import {join as joinPath, sep as pathSep} from "path";
@@ -19,7 +20,6 @@ import * as normaliseName from "sanitize-filename";
 import {getSync as hashSync} from "sha";
 import RichPresence from "./discord/RichPresence";
 import DownloadLinkRetriever from "./download/DownloadLinkRetriever";
-import {DownloadManager, DownloadStatus} from "./download/DownloadManager";
 import Config from "./files/Config";
 import DirectoryManager from "./files/DirectoryManager";
 import InstallCreator from "./installs/InstallCreator";
@@ -42,7 +42,6 @@ const DDLC_HASHES = ["2a3dd7969a06729a32ace0a6ece5f2327e29bdf460b8b39e6a8b0875e5
 let appWin: BrowserWindow;
 
 let richPresence: RichPresence;
-let downloadManager: DownloadManager;
 let sdkServer: SDKServer;
 
 let debug: boolean = false;
@@ -53,7 +52,7 @@ let allowClosing: boolean = false;
 
 let moniIndex: number = 0;
 
-downloadManager = new DownloadManager();
+const downloads = new Map();
 
 richPresence = new RichPresence(DISCORD_APPID);
 richPresence.setIdlePresence();
@@ -77,8 +76,7 @@ function handleURL(args: string[]) {
 
 function downloadBaseGame() {
     DownloadLinkRetriever.getDownloadLink().then((link: string) => {
-        downloadManager.queueDownload(link,
-            joinPath(Config.readConfigValue("installFolder"), "ddlc.zip"), "Doki Doki Literature Club - Game Files");
+        appWin.webContents.downloadURL(link);
     }).catch((e) => {
         console.log(e);
     });
@@ -218,7 +216,6 @@ app.on("ready", () => {
         });
     }
 
-
     if (isDev) {
         require("devtron").install();
     }
@@ -248,8 +245,7 @@ app.on("ready", () => {
 
     // prevent accidental closes
     appWin.on("close", (e) => {
-        if (!allowClosing &&
-            downloadManager.getQueue().filter((dl) => dl.status === DownloadStatus.DOWNLOADING).length > 0) {
+        if (!allowClosing && downloads.size !== 0) {
             e.preventDefault();
             dialog.showMessageBox({
                 buttons: ["Quit Anyway", "Cancel"],
@@ -337,43 +333,57 @@ app.on("ready", () => {
 
     // Download manager functions / IPC
 
-    setInterval(() => {
-        if (appWin) {
-            appWin.webContents.send("download queue", downloadManager.getQueue());
-        }
-    }, 100);
-
-    ipcMain.on("remove download", (_, id) => {
-        downloadManager.removeDownload(id);
-    });
-
     ipcMain.on("download game", () => {
         downloadBaseGame();
     });
 
-    session.defaultSession.on("will-download", (e, i) => {
-        e.preventDefault();
+    session.defaultSession.on("will-download", (e, item) => {
+        const file = item.getFilename();
+        const url = item.getURL();
 
-        const file = i.getFilename();
-        const url = i.getURL();
+        appWin.webContents.send("show toast", "Downloading " + file);
 
-        if (i.getMimeType() !== "application/zip" && !(file && file.endsWith(".zip"))) {
-            appWin.webContents.send("show toast",
-                file + " doesn't look like a mod zip file. It may require manual installation.");
+        if (file.match(/^ddlc-(mac|win)\.zip$/)) {
+            item.setSavePath(joinPath(Config.readConfigValue("installFolder"), "ddlc.zip"));
         } else {
-            appWin.webContents.send("show toast", "Downloading " + file);
-
-            downloadManager.queueDownload(url, joinPath(Config.readConfigValue("installFolder"), "mods", file),
-                file, file);
+            item.setSavePath(joinPath(Config.readConfigValue("installFolder"), "mods", file));
         }
-    });
 
-    downloadManager.on("progress", (progress) => {
-        appWin.setProgressBar(progress);
-    });
+        const id: string = randomBytes(32).toString("hex");
 
-    downloadManager.on("download finished", () => {
-        readMods();
+        downloads.set(id, item);
+
+        item.on("updated", (_, state) => {
+            if (downloads.size === 1) {
+                appWin.webContents.send("download progress", {
+                    downloading: true,
+                    has_download_completed: false,
+                    filename: item.getFilename(),
+                    received_bytes: item.getReceivedBytes(),
+                    total_bytes: item.getTotalBytes(),
+                });
+            } else {
+                appWin.webContents.send("download progress", {
+                    downloading: true,
+                    has_download_completed: false,
+                    filename: downloads.size + " items",
+                    received_bytes:
+                        Array.from(downloads.values()).reduce((a, b) => a + b.getReceivedBytes(), 0),
+                    total_bytes:
+                        Array.from(downloads.values()).reduce((a, b) => a + b.getTotalBytes(), 0),
+                });
+            }
+        });
+
+        item.once("done", (_, state) => {
+            downloads.delete(id);
+            appWin.webContents.send("download progress", {
+                downloading: false,
+                has_download_completed: true,
+                received_bytes: 0,
+                total_bytes: 1,
+            });
+        });
     });
 
     // Game launch functions / IPC
@@ -422,8 +432,6 @@ app.on("ready", () => {
                 "install"),
             env,
         });
-
-        let crashFlag: boolean = false;
 
         richPresence.setPlayingPresence(installData.name);
         sdkServer.setPlaying(dir);
@@ -597,10 +605,6 @@ app.on("ready", () => {
         copyFileSync(mod, joinPath(Config.readConfigValue("installFolder"), "mods", filename));
         appWin.webContents.send("show toast", "Imported " + filename + " into the mod library.");
         readMods();
-    });
-
-    ipcMain.on("cancel download", (_, id) => {
-        downloadManager.removeDownload(id);
     });
 
     ipcMain.on("save theme", (_, theme) => {

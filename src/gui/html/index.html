@@ -22,7 +22,6 @@
             <div class="toolbar-button" @click="ui.side_sheets.downloads = true" role="button">
                 <div class="toolbar-button-icon">
                     <i class="fas fa-cloud-download-alt"></i>
-                    <span class="toolbar-button-badge">{{downloads.filter(d => d.status === "downloading").length ? downloads.filter(d => d.status === "downloading").length : ""}}</span>
                 </div>
                 <div class="toolbar-button-text">Mod Library</div>
             </div>
@@ -95,6 +94,13 @@
         <div v-if="installs.length === 0" class="muted text-center">
             <h3>No mods installed</h3>
             <p>Click "Get Mods" to find some, or "Mod Library" to install one you've already downloaded.</p>
+        </div>
+    </div>
+
+    <div class="download-progress" v-if="download.downloading">
+        <div class="bar" :style="{'width': roundedPercentage(download.received_bytes, download.total_bytes) + '%'}">
+            Downloading {{download.filename}} - {{roundedPercentage(download.received_bytes, download.total_bytes) +
+            '%'}}
         </div>
     </div>
 
@@ -233,52 +239,20 @@
                 <p>Find a mod on your PC and import into Doki Doki Mod Manger.</p>
                 <button class="primary" @click="importMod">Import Mod</button>
                 <hr>
-                <h3>Browse for Mods</h3>
-                <p>Browse the internet for mods and download them directly into Doki Doki Mod Manager.</p>
-                <p style="color: red">This feature is experimental and may not work as expected.</p>
-                <button class="primary"
-                        @click="ui.side_sheets.install = false; ui.side_sheets.browser = true; showToast('Find the mods you want to download, and click their download links.')">
-                    Browse
-                    Now
-                </button>
-                <hr>
                 <h3>Install DDLC</h3>
                 <p>If you just want to install DDLC without any mods, you can do that here.</p>
                 <button class="primary"
                         @click="ui.side_sheets.install = false; ui.selected_mod = null; showInstallDialog();">
                     Install DDLC
                 </button>
+                <div class="highlight warning">
+                    The mod browser has been removed in version 2.7.0. For more information, see
+                    <a href="javascript:;"
+                       @click="openURL('https://www.reddit.com/comments/965tav/')">the update post</a>.
+                </div>
             </div>
             <div class="side-sheet-footer">
                 <button class="primary" @click="ui.side_sheets.install = false">Done</button>
-            </div>
-        </div>
-    </div>
-
-    <div :class="{'side-sheet': true, 'active': ui.side_sheets.browser, 'bottom': true}">
-        <div class="side-sheet-background"></div>
-        <div class="side-sheet-container">
-            <div class="side-sheet-toolbar">
-                <div class="side-sheet-toolbar-group">
-                    <button class="primary" @click="browserCommand('goBack')" title="Back"><i
-                            class="fas fa-arrow-left"></i>
-                    </button>
-                    <button class="primary" @click="browserCommand('goForward')" title="Forward"><i
-                            class="fas fa-arrow-right"></i></button>
-                </div>
-                <div class="side-sheet-toolbar-group">
-                    <button class="primary" @click="browserCommand('reload')" title="Refresh"><i
-                            class="fas fa-sync-alt"></i>
-                    </button>
-                </div>
-                <div class="side-sheet-toolbar-group grow">
-                    <input type="url" v-model="ui.browser.url" @keyup="browserBarHandler" title="URL Bar">
-                </div>
-            </div>
-            <webview id="browser" class="side-sheet-content"
-                     src="https://old.reddit.com/r/DDLCMods/comments/91qt83/the_mod_list/"></webview>
-            <div class="side-sheet-footer">
-                <button class="primary" @click="ui.side_sheets.browser = false">Done</button>
             </div>
         </div>
     </div>
@@ -290,35 +264,10 @@
                 Mod Library
             </div>
             <div class="side-sheet-content">
-                <div v-if="downloads.length + mods.length === 0" class="muted text-center">
+                <div v-if=" mods.length === 0" class="muted text-center">
                     <h3>No mods downloaded</h3>
                     <p>Click "Get Mods" on the main page to find some.</p>
                 </div>
-                <div v-for="(download, id) in downloads" v-if="download.status !== 'done'">
-                    <h3>{{download.name}}</h3>
-                    <p v-if="download.status === 'downloading' && download.total_size !== 0">Downloading -
-                        {{roundedPercentage(download.bytes_downloaded, download.total_size)}}% complete</p>
-                    <p v-else-if="download.status === 'downloading'">Downloading -
-                        {{formatBytes(download.bytes_downloaded)}}
-                        downloaded</p>
-                    <p v-else>Waiting for downloads to complete.</p>
-
-                    <div>
-                        <div class="progress-bar">
-                            <div class="bar indefinite"
-                                 v-if="download.status === 'downloading' && download.total_size === 0">&nbsp;
-                            </div>
-                            <div class="bar" v-else-if="download.status === 'downloading'"
-                                 :style="{'width': (download.bytes_downloaded / download.total_size)*100 + '%'}">&nbsp;
-                            </div>
-                            <div class="bar" v-else></div>
-                        </div>
-                        <br>
-                        <button class="primary" @click="cancelDownload(id)">Cancel</button>
-                    </div>
-                    <hr>
-                </div>
-
                 <div v-for="mod in mods">
                     <h3>{{mod}}</h3>
                     <p>Ready to install</p>
@@ -507,35 +456,26 @@
                     <button class="huge secondary" @click="importGame">Find Game</button>
                 </div>
                 <div v-else>
-                    <div v-if="downloads[0] && downloads[0].status !== 'done'" class="text-center">
-                        <p><strong>Downloading DDLC - {{roundedPercentage(downloads[0].bytes_downloaded,
-                            downloads[0].total_size)}}% complete ({{formatBytes(downloads[0].bytes_downloaded)}} /
-                            {{formatBytes(downloads[0].total_size)}})</strong></p>
-                        <p><strong>Approximately {{calculateETA(downloads[0].bytes_downloaded, downloads[0].total_size,
-                            downloads[0].startTime)}} second(s) remaining</strong></p>
-                        <p><strong>Downloading at {{calculateDownloadSpeed(downloads[0].bytes_downloaded,
-                            downloads[0].startTime, true)}} MB/s</strong></p>
-                        <br>
-                        <p>Once this is done, you will be ready to start installing mods.</p>
+                    <div v-if="download.downloading" class="text-center">
+                        <p><strong>Downloading DDLC - {{roundedPercentage(download.received_bytes, download.total_bytes)
+                            + '%'}} complete</strong></p>
                         <br>
                         <div class="progress-bar">
-                            <div class="bar indefinite"
-                                 v-if="downloads[0].status === 'downloading' && downloads[0].total_size === 0">&nbsp;
-                            </div>
-                            <div class="bar" v-else-if="downloads[0].status === 'downloading'"
-                                 :style="{'width': (downloads[0].bytes_downloaded / downloads[0].total_size)*100 + '%'}">
+                            <div :class="{'bar':true, 'indefinite': download.total_bytes === 0}"
+                                 :style="{'width': roundedPercentage(download.received_bytes, download.total_bytes) + '%'}">
                                 &nbsp;
                             </div>
-                            <div class="bar" v-else></div>
                         </div>
                     </div>
-                    <div v-else-if="downloads[0]" class="text-center">
-                        <p>The download has finished, and we're ready to start!</p>
+                    <div v-else-if="download.has_download_completed" class="text-center">
+                        <p>DDLC has finished downloading, and we're ready to start!</p>
                         <br>
-                        <button class="huge primary" @click="ui.side_sheets.onboarding = false">Get Started</button>
+                        <p>
+                            <button class="huge primary" @click="ui.side_sheets.onboarding = false">Get Started</button>
+                        </p>
                     </div>
                     <div v-else class="text-center">
-                        Starting download...
+                        Download starting...
                     </div>
                 </div>
             </div>

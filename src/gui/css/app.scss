@@ -504,7 +504,6 @@ input[type="text"], input[type="number"], input[type="url"], textarea {
   background-color: $ui-highlight-background-colour;
   border-radius: 3px;
   width: 0;
-  transition: width $ui-transition-speed;
 }
 
 @keyframes indefinite {
@@ -726,4 +725,18 @@ button .material-icons {
     background-color: darken($ui-success-colour-bg, 25%);
     color: $ui-dark-theme-text-colour;
   }
+}
+
+.download-progress {
+  color: $ui-background-colour;
+  background-color: lighten($ui-success-colour-bg, 10%);
+  display: flex;
+  flex-shrink: 0;
+}
+
+.download-progress .bar {
+  background-color: $ui-success-colour-bg;
+  text-align: left;
+  padding: 0.5em;
+  white-space: nowrap;
 }
