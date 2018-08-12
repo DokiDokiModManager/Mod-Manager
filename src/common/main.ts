@@ -357,16 +357,16 @@ app.on("ready", () => {
             if (downloads.size === 1) {
                 appWin.webContents.send("download progress", {
                     downloading: true,
-                    has_download_completed: false,
                     filename: item.getFilename(),
+                    has_download_completed: false,
                     received_bytes: item.getReceivedBytes(),
                     total_bytes: item.getTotalBytes(),
                 });
             } else {
                 appWin.webContents.send("download progress", {
                     downloading: true,
-                    has_download_completed: false,
                     filename: downloads.size + " items",
+                    has_download_completed: false,
                     received_bytes:
                         Array.from(downloads.values()).reduce((a, b) => a + b.getReceivedBytes(), 0),
                     total_bytes:
@@ -377,6 +377,8 @@ app.on("ready", () => {
 
         item.once("done", (_, state) => {
             downloads.delete(id);
+            readMods();
+            appWin.webContents.send("show toast", item.getFilename() + " has finished downloading.");
             appWin.webContents.send("download progress", {
                 downloading: false,
                 has_download_completed: true,

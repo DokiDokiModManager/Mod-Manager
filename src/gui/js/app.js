@@ -81,6 +81,7 @@ const vueApp = new Vue({
         },
         "installs": [],
         "mods": [],
+        "recommended_mods": {},
         "download": {
             "downloading": false,
             "has_download_completed": false,
@@ -197,6 +198,9 @@ const vueApp = new Vue({
             this.ui.feedback.body = "";
             this.ui.feedback.contact = "";
             this.ui.side_sheets.feedback = false;
+        },
+        "downloadMod": function (url) {
+            window.location.href = url;
         }
     },
     "computed": {
@@ -280,11 +284,15 @@ document.querySelector("#monika").addEventListener("ended", () => {
     vueApp.ui.monika = false;
 });
 
-firebase.database().ref("/global/banner").once("value").then(response => {
+firebase.database().ref("/global/banner").on("value", response => {
     vueApp.ui.banner = response.val();
     if (localStorage.getItem("last_banner") === vueApp.ui.banner.message) {
         vueApp.ui.banner.active = false;
     }
+});
+
+firebase.database().ref("/global/recommended_mods").once("value").then(response => {
+    vueApp.recommended_mods = response.val();
 });
 
 document.body.ondragover = function (e) {

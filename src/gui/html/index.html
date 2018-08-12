@@ -100,7 +100,7 @@
     <div class="download-progress" v-if="download.downloading">
         <div class="bar" :style="{'width': roundedPercentage(download.received_bytes, download.total_bytes) + '%'}">
             Downloading {{download.filename}} - {{roundedPercentage(download.received_bytes, download.total_bytes) +
-            '%'}}
+            '%'}} complete.
         </div>
     </div>
 
@@ -245,10 +245,17 @@
                         @click="ui.side_sheets.install = false; ui.selected_mod = null; showInstallDialog();">
                     Install DDLC
                 </button>
-                <div class="highlight warning">
-                    The mod browser has been removed in version 2.7.0. For more information, see
-                    <a href="javascript:;"
-                       @click="openURL('https://www.reddit.com/comments/965tav/')">the update post</a>.
+                <hr>
+                <h3>Curated Mods</h3>
+                <p>Don't know what to play? Try one of these recommended mods.</p>
+                <br>
+                <div v-for="mod in recommended_mods">
+                    <h4>{{mod.name}}</h4>
+                    <p>By <strong>{{mod.author}}</strong></p>
+                    <p>{{mod.description}}</p>
+                    <p style="color: red" v-if="mod.content_warning">{{mod.content_warning}}</p>
+                    <p><button class="primary" @click="downloadMod(mod.url); ui.side_sheets.install = false;">Download</button></p>
+                    <br>
                 </div>
             </div>
             <div class="side-sheet-footer">
