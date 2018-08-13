@@ -4,6 +4,7 @@ const packageData = require("../../../package");
 
 const Mousetrap = require("mousetrap");
 const bytes = require("bytes");
+const Fuse = require("fuse.js");
 
 const {ipcRenderer, remote} = require("electron");
 const {shell, dialog} = remote;
@@ -11,6 +12,8 @@ const {shell, dialog} = remote;
 const semver = require("semver");
 
 let toastTimeout = -1;
+
+let installListSearch, modListSearch;
 
 const vueApp = new Vue({
     "el": "#app",
@@ -55,7 +58,7 @@ const vueApp = new Vue({
                 "folder_name": "",
                 "global_save": false
             },
-            "selected_install": 0,
+            "selected_install": null,
             "selected_mod": null,
             "running_cover": false,
             "dropping_cover": false,
@@ -77,6 +80,10 @@ const vueApp = new Vue({
                 "type": "question",
                 "body": "",
                 "contact": ""
+            },
+            "search": {
+                "installs": "",
+                "mods": ""
             }
         },
         "installs": [],
@@ -205,14 +212,28 @@ const vueApp = new Vue({
     },
     "computed": {
         "selectedInstall": function () {
-            if (this.ui.selected_install !== -1) {
-                return this.installs[this.ui.selected_install];
+            if (this.ui.selected_install) {
+                return this.installs.find(install => install.folderName === this.ui.selected_install);
             } else {
                 return {
                     "name": "Doki Doki Literature Club!",
                     "filename": null,
                     "directory": "ddlc"
                 }
+            }
+        },
+        "filteredInstalls": function () {
+            if (!installListSearch || !this.ui.search.installs) {
+                return this.installs;
+            } else {
+                return installListSearch.search(this.ui.search.installs);
+            }
+        },
+        "filteredMods": function () {
+            if (!modListSearch || !this.ui.search.mods) {
+                return this.mods;
+            } else {
+                return modListSearch.search(this.ui.search.mods).map(mod => this.mods[mod]);
             }
         }
     }
@@ -245,10 +266,21 @@ ipcRenderer.on("running cover", (_, show) => {
 
 ipcRenderer.on("install list", (_, list) => {
     vueApp.installs = list;
+    installListSearch = new Fuse(list, {
+        "shouldSort": true,
+        "keys": [
+            "installName"
+        ],
+        "threshold": 0.4
+    });
 });
 
 ipcRenderer.on("mod list", (_, list) => {
     vueApp.mods = list;
+    modListSearch = new Fuse(list, {
+        "shouldSort": true,
+        "threshold": 0.4
+    });
 });
 
 ipcRenderer.on("loading modal", (_, details) => {

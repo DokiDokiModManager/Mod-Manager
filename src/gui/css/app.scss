@@ -259,6 +259,11 @@ input[type="text"], input[type="number"], input[type="url"], textarea {
   cursor: text;
   font-size: 1em;
   width: 100%;
+  outline: none;
+}
+
+input:focus {
+  border-color: $ui-highlight-background-colour;
 }
 
 //
@@ -564,6 +569,13 @@ button .material-icons {
   width: 100%;
   flex-grow: 1;
   overflow-y: scroll;
+  flex-basis: 100%;
+}
+
+.search {
+  padding: 0.5em;
+  width: 100%;
+  flex-grow: 1;
 }
 
 .running-cover { // covers the entire page to prevent (and discourage attempts at) interaction with other elements
