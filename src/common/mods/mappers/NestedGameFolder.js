@@ -10,7 +10,7 @@ class NestedGameFolder extends ModMapper_1.ModMapper {
     mapFile(path) {
         const pathParts = path.split("/");
         pathParts[0] = "game";
-        return pathParts.join(path_1.sep); // ignore it
+        return pathParts.join(path_1.sep);
     }
     getFriendlyName() {
         return "Nested Game Folder";

@@ -6,6 +6,7 @@ const InstallAppropriateFiles_1 = require("./mappers/InstallAppropriateFiles");
 const ModManagerFormat_1 = require("./mappers/ModManagerFormat");
 const ModTemplateFormat_1 = require("./mappers/ModTemplateFormat");
 const NestedGameFolder_1 = require("./mappers/NestedGameFolder");
+const Logger_1 = require("../utilities/Logger");
 /*
     This script is intended to take any zip file and try and determine how DDMM should install it, if it is a mod.
     There's so many different ways mods are packaged, so this won't cover every scenario, but DDMM will allow the user
@@ -42,10 +43,13 @@ function inferMapper(zipPath) {
             let onlyRenpy = true;
             for (const path of structure) {
                 const pathParts = path.split("/");
+                Logger_1.default.debug(path);
                 if (pathParts[1] === "game") {
                     isModTemplate = true;
                 }
-                if (!path.match(/\.rp(y|yc|a)$/)) {
+                if (!path.endsWith("/") &&
+                    !path.match(/\.rp(y|yc|a)$/i) &&
+                    !path.match(/\.(txt|md|html|pdf|docx)$/i)) {
                     onlyRenpy = false;
                 }
             }

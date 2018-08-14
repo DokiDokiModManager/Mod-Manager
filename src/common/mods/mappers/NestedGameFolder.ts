@@ -12,7 +12,7 @@ export default class NestedGameFolder extends ModMapper {
 
         pathParts[0] = "game";
 
-        return pathParts.join(pathSep); // ignore it
+        return pathParts.join(pathSep);
     }
 
     public getFriendlyName(): string {
