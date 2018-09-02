@@ -163,7 +163,7 @@ input[type="text"], input[type="number"], input[type="url"], textarea {
   width: 100%;
   outline: none; }
 
-input:focus {
+input:focus, textarea:focus {
   border-color: #bb5599; }
 
 .highlight {
@@ -366,22 +366,6 @@ input:focus {
   width: 20% !important;
   animation: indefinite 1s linear infinite alternate; }
 
-.monika {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 200;
-  background-color: #fff;
-  background-image: url(../html/easteregg/monika.png);
-  background-position: center;
-  background-size: cover;
-  display: none; }
-
-.monika.active {
-  display: block; }
-
 button .material-icons {
   font-size: 16px;
   vertical-align: middle;
@@ -510,6 +494,9 @@ button .material-icons {
     color: #eee; }
   #app.dark-theme .highlight.success {
     background-color: #345726;
+    color: #eee; }
+  #app.dark-theme input, #app.dark-theme textarea {
+    background-color: #383838;
     color: #eee; }
 
 .download-progress {

@@ -1,6 +1,7 @@
 const Vue = require("vue/dist/vue");
 
 const packageData = require("../../../package");
+const Language = require("../../common/i18n/i18n");
 
 const Mousetrap = require("mousetrap");
 const bytes = require("bytes");
@@ -10,6 +11,8 @@ const {ipcRenderer, remote} = require("electron");
 const {shell, dialog} = remote;
 
 const semver = require("semver");
+
+const i18n = Language(remote.app.getLocale());
 
 let toastTimeout = -1;
 
@@ -61,8 +64,6 @@ const vueApp = new Vue({
             "selected_install": null,
             "selected_mod": null,
             "running_cover": false,
-            "dropping_cover": false,
-            "monika": false,
             "banner": {
                 "active": false,
                 "message": "",
@@ -98,6 +99,7 @@ const vueApp = new Vue({
         }
     },
     "methods": {
+        "_": i18n,
         "showToast": function (msg) {
             this.ui.toast.message = msg;
             this.ui.toast.visible = true;
@@ -255,10 +257,6 @@ ipcRenderer.on("show onboarding", (_, show) => {
     vueApp.ui.side_sheets.onboarding = show;
 });
 
-ipcRenderer.on("show monika", () => {
-    vueApp.ui.monika = true;
-    document.querySelector("#monika").play();
-});
 
 ipcRenderer.on("running cover", (_, show) => {
     vueApp.ui.running_cover = show;
@@ -310,10 +308,6 @@ ipcRenderer.on("download progress", (_, progress) => {
 // debug keybind
 Mousetrap.bind("j u s t m o n i k a", () => {
     ipcRenderer.send("enable debug");
-});
-
-document.querySelector("#monika").addEventListener("ended", () => {
-    vueApp.ui.monika = false;
 });
 
 firebase.database().ref("/global/banner").on("value", response => {
