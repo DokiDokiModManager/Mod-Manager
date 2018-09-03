@@ -1,6 +1,7 @@
 const Vue = require("vue/dist/vue");
 
 const packageData = require("../../../package");
+const Language = require("../../common/i18n/i18n");
 
 const Mousetrap = require("mousetrap");
 const bytes = require("bytes");
@@ -10,6 +11,8 @@ const {ipcRenderer, remote} = require("electron");
 const {shell, dialog} = remote;
 
 const semver = require("semver");
+
+const i18n = Language(remote.app.getLocale());
 
 let toastTimeout = -1;
 
@@ -61,8 +64,6 @@ const vueApp = new Vue({
             "selected_install": null,
             "selected_mod": null,
             "running_cover": false,
-            "dropping_cover": false,
-            "monika": false,
             "banner": {
                 "active": false,
                 "message": "",
@@ -98,6 +99,7 @@ const vueApp = new Vue({
         }
     },
     "methods": {
+        "_": i18n,
         "showToast": function (msg) {
             this.ui.toast.message = msg;
             this.ui.toast.visible = true;
@@ -113,7 +115,7 @@ const vueApp = new Vue({
             if (e.ctrlKey) {
                 ipcRenderer.send("debug crash");
             } else {
-                vueApp.showToast("Hold CTRL while clicking to induce a crash.");
+                vueApp.showToast(i18n("debug_crash.toast_prompt"));
             }
         },
         "openURL": function (url) {
@@ -197,7 +199,7 @@ const vueApp = new Vue({
         },
         "submitFeedback": function () {
             if (this.ui.feedback.body.length < 10) {
-                this.showToast("Please be more detailed in your feedback.");
+                this.showToast(i18n("feedback.toast_too_short"));
                 return;
             }
             ipcRenderer.send("submit feedback", this.ui.feedback);
@@ -255,10 +257,6 @@ ipcRenderer.on("show onboarding", (_, show) => {
     vueApp.ui.side_sheets.onboarding = show;
 });
 
-ipcRenderer.on("show monika", () => {
-    vueApp.ui.monika = true;
-    document.querySelector("#monika").play();
-});
 
 ipcRenderer.on("running cover", (_, show) => {
     vueApp.ui.running_cover = show;
@@ -312,10 +310,6 @@ Mousetrap.bind("j u s t m o n i k a", () => {
     ipcRenderer.send("enable debug");
 });
 
-document.querySelector("#monika").addEventListener("ended", () => {
-    vueApp.ui.monika = false;
-});
-
 firebase.database().ref("/global/banner").on("value", response => {
     vueApp.ui.banner = response.val();
     if (localStorage.getItem("last_banner") === vueApp.ui.banner.message) {
@@ -332,11 +326,10 @@ document.body.ondragover = function (e) {
 };
 
 document.body.ondrop = function (e) {
-    vueApp.ui.dropping_cover = false;
     e.preventDefault();
     if (["application/zip", "application/x-zip-compressed"].indexOf(e.dataTransfer.items[0].getAsFile().type) !== -1 || e.dataTransfer.items[0].getAsFile().path.endsWith(".zip")) {
         ipcRenderer.send("import mod dropped", e.dataTransfer.items[0].getAsFile().path);
     } else {
-        vueApp.showToast(e.dataTransfer.items[0].getAsFile().name + " is not a mod zip file.");
+        vueApp.showToast(i18n("mod_import.toast_invalid", e.dataTransfer.items[0].getAsFile().name));
     }
 };

@@ -19,6 +19,7 @@ const InstallCreator_1 = require("./installs/InstallCreator");
 const InstallList_1 = require("./installs/InstallList");
 const Logger_1 = require("./utilities/Logger");
 const process_1 = require("process");
+const Language = require("./i18n/i18n");
 const ModInstaller_1 = require("./installs/ModInstaller");
 const ModNormaliser_1 = require("./mods/ModNormaliser");
 const SDKServer_1 = require("./sdk/SDKServer");
@@ -31,10 +32,10 @@ const DDLC_HASHES = ["2a3dd7969a06729a32ace0a6ece5f2327e29bdf460b8b39e6a8b0875e5
 let appWin;
 let richPresence;
 let sdkServer;
+const i18n = Language(electron_1.app.getLocale());
 let debug = false;
 let crashed = false;
 let allowClosing = false;
-let moniIndex = 0;
 const downloads = new Map();
 richPresence = new RichPresence_1.default(DISCORD_APPID);
 richPresence.setIdlePresence();
@@ -76,7 +77,7 @@ function checkUpdates() {
         }).catch((e) => {
             Logger_1.default.warn("Error checking for updates");
             appWin.webContents.send("update info", {
-                reason: "We can't check for updates right now. Please check your internet connection and try again.",
+                reason: i18n("update_error.offline"),
                 success: false,
             });
         });
@@ -84,8 +85,7 @@ function checkUpdates() {
     else {
         Logger_1.default.warn("Not checking for updates in a dev environment");
         appWin.webContents.send("update info", {
-            reason: "Update checks cannot be performed when Doki Doki Mod Manager is being run in development mode. " +
-                "You can pull the latest changes from Git instead.",
+            reason: i18n("update_error.devmode"),
             success: false,
         });
     }
@@ -122,11 +122,10 @@ process_1.on("uncaughtException", (error) => {
         paste += "Error reading - " + e.message;
     }
     electron_1.dialog.showMessageBox({
-        buttons: ["View Crash Report", "Quit"],
+        buttons: [i18n("crash_reporter.button_view_crash"), i18n("crash_reporter.button_quit")],
         defaultId: 1,
-        detail: "A problem occurred in Doki Doki Mod Manager which caused the app to crash. " +
-            "A crash report has been generated, which will be helpful when fixing the issue.",
-        message: "Doki Doki Mod Manager crashed!",
+        detail: i18n("crash_reporter.dialog_message"),
+        message: i18n("crash_reporter.dialog_title"),
         type: "error",
     }, (btn) => {
         request({
@@ -164,11 +163,8 @@ electron_1.app.on("ready", () => {
     }
     catch (e) {
         electron_1.dialog.showMessageBox({
-            detail: "Something is interfering with Doki Doki Mod Manager and preventing it " +
-                "from accessing the files it requires to run. This may lead to errors or crashes.\n\n" +
-                "This may be caused by certain antivirus software - try disabling it if you continue to experience " +
-                "problems.\n\n" + e.toString(),
-            message: "You should check this...",
+            detail: i18n("av_checker.dialog_message", e.toString()),
+            message: i18n("av_checker.dialog_title"),
             type: "warning",
         });
     }
@@ -176,9 +172,8 @@ electron_1.app.on("ready", () => {
     electron_1.app.setAsDefaultProtocolClient(PROTOCOL);
     if (SUPPORTED_PLATFORMS.indexOf(process.platform) === -1) {
         electron_1.dialog.showMessageBox({
-            detail: "Doki Doki Mod Manager is only supported on Windows and Linux. " +
-                "We'll try launching anyway, but please don't send any bug reports to me as they will be ignored.",
-            message: "Your operating system is not supported.",
+            detail: i18n("platform_test.dialog_message"),
+            message: i18n("platform_test.dialog_title"),
             type: "warning",
         });
     }
@@ -190,6 +185,9 @@ electron_1.app.on("ready", () => {
     appWin = new electron_1.BrowserWindow({
         height: 700,
         show: false,
+        webPreferences: {
+            textAreasAreResizable: false,
+        },
         width: 1000,
     });
     // Load the app UI
@@ -210,8 +208,8 @@ electron_1.app.on("ready", () => {
             electron_1.dialog.showMessageBox({
                 buttons: ["Quit Anyway", "Cancel"],
                 defaultId: 1,
-                detail: "If you quit now, these downloads cannot be recovered.",
-                message: "There are still downloads in progress",
+                detail: i18n("download_warning.dialog_message"),
+                message: i18n("download_warning.dialog_title"),
             }, (button) => {
                 if (button === 0) {
                     allowClosing = true;
@@ -229,7 +227,7 @@ electron_1.app.on("ready", () => {
         appWin.webContents.send("install list", InstallList_1.default.getInstallList());
         checkUpdates();
         readMods();
-        if (debug) {
+        if (debug || isDev) {
             appWin.webContents.executeJavaScript(`vueApp.ui.debug_features = true`);
         }
         // onboarding screen etc
@@ -254,23 +252,13 @@ electron_1.app.on("ready", () => {
         });
     });
     electron_1.ipcMain.on("enable debug", () => {
-        moniIndex += 1;
-        if (debug) {
-            if (moniIndex === 3) {
-                appWin.webContents.send("show monika");
-            }
-            else if (moniIndex === 2) {
-                appWin.webContents.send("show toast", "Please stop playing with my heart. I don't want to come back.");
-            }
-            else {
-                appWin.webContents.send("show toast", "There's nothing else to see here.");
-            }
+        if (debug || isDev) {
+            appWin.webContents.send("show toast", i18n("debug.toast_already_enabled"));
         }
         else {
             debug = true;
             appWin.webContents.executeJavaScript(`vueApp.ui.debug_features = true`);
-            appWin.webContents.send("show toast", "Debugging features enabled. Do not send me bug reports unless" +
-                " you can reproduce your issue without them turned on.");
+            appWin.webContents.send("show toast", i18n("debug.toast_enabled"));
             Logger_1.default.info("Development mode enabled.");
         }
     });
@@ -312,7 +300,7 @@ electron_1.app.on("ready", () => {
             else {
                 appWin.webContents.send("download progress", {
                     downloading: true,
-                    filename: downloads.size + " items",
+                    filename: i18n("downloads.name_multiple", downloads.size),
                     has_download_completed: false,
                     received_bytes: Array.from(downloads.values()).reduce((a, b) => a + b.getReceivedBytes(), 0),
                     total_bytes: Array.from(downloads.values()).reduce((a, b) => a + b.getTotalBytes(), 0),
@@ -322,7 +310,7 @@ electron_1.app.on("ready", () => {
         item.once("done", (_, state) => {
             downloads.delete(id);
             readMods();
-            appWin.webContents.send("show toast", item.getFilename() + " has finished downloading.");
+            appWin.webContents.send("show toast", i18n("downloads.toast_complete", item.getFilename()));
             appWin.webContents.send("download progress", {
                 downloading: false,
                 has_download_completed: true,
@@ -340,7 +328,7 @@ electron_1.app.on("ready", () => {
         }
         catch (e) {
             appWin.webContents.send("running cover", false);
-            appWin.webContents.send("show toast", "The game installation appears to be corrupted. Please uninstall it and create a new one.");
+            appWin.webContents.send("show toast", i18n("install_launch.toast_corrupt"));
             return;
         }
         const gameExecutable = path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", dir, "install", (process.platform === "win32" ? "ddlc.exe" : "DDLC.sh"));
@@ -364,7 +352,7 @@ electron_1.app.on("ready", () => {
         procHandle.on("error", (error) => {
             sdkServer.setPlaying(null);
             appWin.webContents.send("running cover", false);
-            appWin.webContents.send("show toast", "The game failed to launch.<br>" + error.message);
+            appWin.webContents.send("show toast", i18n("install_launch.toast_launch_error"));
         });
         procHandle.on("close", () => {
             sdkServer.setPlaying(null);
@@ -376,13 +364,13 @@ electron_1.app.on("ready", () => {
     // Install management functions / IPC
     electron_1.ipcMain.on("create install", (_, meta) => {
         if (fs_1.existsSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", meta.folderName))) {
-            appWin.webContents.send("show toast", "The folder " + meta.folderName + " already exists. Try a different name.");
+            appWin.webContents.send("show toast", i18n("install_creation.toast_folder_exists", meta.folderName));
             return;
         }
         appWin.webContents.send("loading modal", {
             display: true,
-            message: "Please wait while the game installs. This may take up to a minute.",
-            title: "Installing Game",
+            message: i18n("install_creation.modal_message"),
+            title: i18n("install_creation.modal_title"),
         });
         InstallCreator_1.default.createInstall(normaliseName(meta.folderName), meta.installName, meta.globalSave).then(() => {
             if (meta.modZip) {
@@ -394,7 +382,7 @@ electron_1.app.on("ready", () => {
                     });
                 }).catch((err) => {
                     appWin.webContents.send("install list", InstallList_1.default.getInstallList());
-                    appWin.webContents.send("show toast", "Failed to install mod - try downloading it again.<br>" + err.message);
+                    appWin.webContents.send("show toast", i18n("install_creation.toast_zip_error"));
                     appWin.webContents.send("loading modal", {
                         display: false,
                     });
@@ -413,15 +401,15 @@ electron_1.app.on("ready", () => {
         if (fs_1.existsSync(firstrunPath)) {
             fs_1.unlink(firstrunPath, (err) => {
                 if (!err) {
-                    appWin.webContents.send("show toast", "Deleted firstrun flag.");
+                    appWin.webContents.send("show toast", i18n("firstrun_delete.toast_success"));
                 }
                 else {
-                    appWin.webContents.send("show toast", "Failed to delete firstrun flag.<br>" + err.message);
+                    appWin.webContents.send("show toast", i18n("firstrun_delete.toast_error"));
                 }
             });
         }
         else {
-            appWin.webContents.send("show toast", "Firstrun flag does not exist.");
+            appWin.webContents.send("show toast", i18n("firstrun_delete.toast_nonexistent"));
         }
     });
     electron_1.ipcMain.on("delete save", (_, dir) => {
@@ -429,18 +417,18 @@ electron_1.app.on("ready", () => {
         fs_extra_1.remove(savePath, (err) => {
             if (!err) {
                 fs_1.mkdirSync(savePath);
-                appWin.webContents.send("show toast", "Deleted save data.");
+                appWin.webContents.send("show toast", i18n("save_delete.toast_success"));
             }
             else {
-                appWin.webContents.send("show toast", "Failed to delete save data.<br>" + err.message);
+                appWin.webContents.send("show toast", i18n("save_delete.toast_error"));
             }
         });
     });
     electron_1.ipcMain.on("delete install", (_, dir) => {
         appWin.webContents.send("loading modal", {
             display: true,
-            message: "Please wait while the game is removed.",
-            title: "Uninstalling Game",
+            message: i18n("install_delete.modal_message"),
+            title: i18n("install_delete.modal_title"),
         });
         const installPath = path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", dir);
         fs_extra_1.remove(installPath, (err) => {
@@ -448,10 +436,10 @@ electron_1.app.on("ready", () => {
                 display: false,
             });
             if (!err) {
-                appWin.webContents.send("show toast", "Uninstalled.");
+                appWin.webContents.send("show toast", i18n("install_delete.toast_success"));
             }
             else {
-                appWin.webContents.send("show toast", "Failed to uninstall.<br>" + err.message);
+                appWin.webContents.send("show toast", i18n("install_delete.toast_error"));
             }
             appWin.webContents.send("install list", InstallList_1.default.getInstallList());
         });
@@ -459,10 +447,10 @@ electron_1.app.on("ready", () => {
     electron_1.ipcMain.on("delete mod", (_, mod) => {
         fs_1.unlink(path_1.join(Config_1.default.readConfigValue("installFolder"), "mods", mod), (err) => {
             if (err) {
-                appWin.webContents.send("show toast", "Failed to delete mod.<br>" + err.message);
+                appWin.webContents.send("show toast", i18n("mod_delete.toast_error"));
             }
             else {
-                appWin.webContents.send("show toast", "Deleted " + mod);
+                appWin.webContents.send("show toast", i18n("mod_delete.toast_success", mod));
             }
             readMods();
         });
@@ -470,14 +458,14 @@ electron_1.app.on("ready", () => {
     // Importing the game and mods
     electron_1.ipcMain.on("import game", () => {
         electron_1.dialog.showOpenDialog(appWin, {
-            buttonLabel: "Import",
+            buttonLabel: i18n("game_import.button_import"),
             filters: [
                 {
                     extensions: ["zip"],
-                    name: "DDLC",
+                    name: i18n("game_import.description_game"),
                 },
             ],
-            title: "Find a copy of DDLC v1.1.1",
+            title: i18n("game_import.title"),
         }, (files) => {
             if (files && files[0]) {
                 const hash = sha_1.getSync(files[0], { algorithm: "sha256" });
@@ -486,26 +474,26 @@ electron_1.app.on("ready", () => {
                     appWin.webContents.send("show onboarding", false);
                 }
                 else {
-                    appWin.webContents.send("show toast", "That doesn't look like a copy of DDLC. Make sure you are installing version 1.1.1");
+                    appWin.webContents.send("show toast", i18n("game_import.toast_error"));
                 }
             }
         });
     });
     electron_1.ipcMain.on("import mod", () => {
         electron_1.dialog.showOpenDialog(appWin, {
-            buttonLabel: "Import",
+            buttonLabel: i18n("mod_import.button_import"),
             filters: [
                 {
                     extensions: ["zip"],
-                    name: "DDLC Mod",
+                    name: i18n("mod_import.description_mod"),
                 },
             ],
-            title: "Find the mod you want to install.",
+            title: i18n("mod_import.title"),
         }, (files) => {
             if (files && files[0]) {
                 const filename = files[0].split(path_1.sep).pop();
                 fs_1.copyFileSync(files[0], path_1.join(Config_1.default.readConfigValue("installFolder"), "mods", filename));
-                appWin.webContents.send("show toast", "Imported " + filename + " into the mod library.");
+                appWin.webContents.send("show toast", i18n("mod_import.toast_success", filename));
                 readMods();
             }
         });
@@ -513,7 +501,7 @@ electron_1.app.on("ready", () => {
     electron_1.ipcMain.on("import mod dropped", (_, mod) => {
         const filename = mod.split(path_1.sep).pop();
         fs_1.copyFileSync(mod, path_1.join(Config_1.default.readConfigValue("installFolder"), "mods", filename));
-        appWin.webContents.send("show toast", "Imported " + filename + " into the mod library.");
+        appWin.webContents.send("show toast", i18n("mod_import.toast_success", filename));
         readMods();
     });
     electron_1.ipcMain.on("save theme", (_, theme) => {
@@ -542,7 +530,7 @@ electron_1.app.on("ready", () => {
             method: "POST",
             url: "https://us-central1-doki-doki-mod-manager.cloudfunctions.net/sendFeedback",
         }, () => {
-            appWin.webContents.send("show toast", "Your feedback has been sent. Thanks for the help!");
+            appWin.webContents.send("show toast", i18n("feedback.toast_sent"));
         });
     });
     sdkServer = new SDKServer_1.default(41420, "127.0.0.1");

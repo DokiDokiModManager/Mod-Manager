@@ -80,6 +80,11 @@ body {
 // general styles
 //
 
+// hide the scrollbar that appears when the app is launching, which exposes some of the vue directives
+body::-webkit-scrollbar {
+  display: none;
+}
+
 h1, h2, h3, h4, p {
   margin: 0.25em 0 0.25em 0;
   cursor: default;
@@ -262,7 +267,7 @@ input[type="text"], input[type="number"], input[type="url"], textarea {
   outline: none;
 }
 
-input:focus {
+input:focus, textarea:focus {
   border-color: $ui-highlight-background-colour;
 }
 
@@ -529,30 +534,6 @@ input:focus {
 }
 
 //
-// monika easter egg styles
-//
-
-// as much as i'd like to have them optimised, electron (?) doesn't like it and tiles monika's face
-//noinspection CssOptimizeSimilarProperties
-.monika {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 200;
-  background-color: #fff;
-  background-image: url(../html/easteregg/monika.png);
-  background-position: center;
-  background-size: cover;
-  display: none;
-}
-
-.monika.active {
-  display: block;
-}
-
-//
 // icon restyle
 //
 button .material-icons {
@@ -735,6 +716,11 @@ button .material-icons {
 
   .highlight.success {
     background-color: darken($ui-success-colour-bg, 25%);
+    color: $ui-dark-theme-text-colour;
+  }
+
+  input, textarea {
+    background-color: lighten($ui-dark-colour-bg, 10%);
     color: $ui-dark-theme-text-colour;
   }
 }

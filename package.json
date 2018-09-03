@@ -3,13 +3,13 @@
   "productName": "Doki Doki Mod Manager!",
   "description": "Mod Manager for Doki Doki Literature Club!",
   "author": "Zudo",
-  "version": "2.9.1",
+  "version": "2.10.0",
   "homepage": "https://doki.space",
   "main": "src/common/main.js",
   "scripts": {
     "start": "electron .",
     "start-dev": "electron --inspect=5858 .",
-    "build": "electron-builder",
+    "build": "electron-builder -wl",
     "build-and-publish": "electron-builder -p always -wl"
   },
   "dependencies": {
@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "devtron": "^1.4.0",
-    "electron": "^2.0.5",
+    "electron": "latest",
     "electron-builder": "^20.26.1"
   },
   "build": {
@@ -66,6 +66,8 @@
       ]
     },
     "linux": {
+      "category": "Game",
+      "icon": "build/icon.png",
       "target": [
         {
           "target": "AppImage",

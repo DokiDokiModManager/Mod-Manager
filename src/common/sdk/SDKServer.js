@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const electron_1 = require("electron");
-const http_1 = require("http");
 const fs_1 = require("fs");
+const http_1 = require("http");
 const path_1 = require("path");
 const Config_1 = require("../files/Config");
 class SDKServer {
@@ -22,7 +22,7 @@ class SDKServer {
                 if (data.length > 1e6) {
                     res.statusCode = 413;
                     res.write(JSON.stringify({
-                        "error": "Request body too large."
+                        error: "Request body too large.",
                     }));
                     res.end();
                 }
@@ -35,7 +35,7 @@ class SDKServer {
                 catch (e) {
                     res.statusCode = 400;
                     res.write(JSON.stringify({
-                        "error": "Invalid request."
+                        error: "Invalid request.",
                     }));
                 }
                 res.end();
@@ -44,7 +44,7 @@ class SDKServer {
         else {
             res.statusCode = 405;
             res.write(JSON.stringify({
-                "error": "Method " + req.method + " not allowed."
+                error: "Method " + req.method + " not allowed.",
             }));
             res.end();
         }
@@ -61,14 +61,14 @@ class SDKServer {
             console.log(installData.achievements, body.payload);
             if (!installData.achievements) {
                 installData.achievements = [
-                    achievement
+                    achievement,
                 ];
             }
             else {
-                if (installData.achievements.find((achievement) => achievement.id === body.payload.id)) {
+                if (installData.achievements.find((ach) => ach.id === body.payload.id)) {
                     res.write(JSON.stringify({
-                        "ok": true,
-                        "message": "Achievement already registered."
+                        message: "Achievement already registered.",
+                        ok: true,
                     }));
                     return; // really? i forgot this?
                 }
@@ -76,18 +76,18 @@ class SDKServer {
             }
             fs_1.writeFileSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", this.install, "install.json"), JSON.stringify(installData));
             res.write(JSON.stringify({
-                "ok": true
+                ok: true,
             }));
         }
         else if (body.method === "earn achievement") {
             const installData = JSON.parse(fs_1.readFileSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", this.install, "install.json")).toString("utf8"));
-            let achievement = installData.achievements.find((achievement) => achievement.id === body.payload.id);
+            const achievement = installData.achievements.find((ach) => ach.id === body.payload.id);
             try {
                 if (!achievement.earned) {
                     new electron_1.Notification({
-                        title: "Achievement Unlocked!",
                         body: achievement.name + " - " + achievement.description,
-                        icon: "../../../build/icon.png"
+                        icon: "../../../build/icon.png",
+                        title: "Achievement Unlocked!",
                     }).show();
                     achievement.earned = true;
                 }
@@ -95,32 +95,32 @@ class SDKServer {
             catch (e) {
                 res.statusCode = 400;
                 res.write(JSON.stringify({
-                    "error": "Achievement not registered."
+                    error: "Achievement not registered.",
                 }));
                 return;
             }
             fs_1.writeFileSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", this.install, "install.json"), JSON.stringify(installData));
             res.write(JSON.stringify({
-                "ok": true
+                ok: true,
             }));
         }
         else if (body.method === "ping") {
             if (this.install) {
                 res.write(JSON.stringify({
-                    "ok": true
+                    ok: true,
                 }));
             }
             else {
                 res.statusCode = 400;
                 res.write(JSON.stringify({
-                    "error": "No game running."
+                    error: "No game running.",
                 }));
             }
         }
         else {
             res.statusCode = 404;
             res.write(JSON.stringify({
-                "error": "Invalid method."
+                error: "Invalid method.",
             }));
         }
         res.end();

@@ -16,53 +16,53 @@
         <div class="toolbar-group">
             <div class="toolbar-button" @click="ui.side_sheets.install = true" role="button">
                 <div class="toolbar-button-icon"><i class="fas fa-plus"></i></div>
-                <div class="toolbar-button-text">Get Mods</div>
+                <div class="toolbar-button-text">{{_("toolbar.button_get_mods")}}</div>
             </div>
 
             <div class="toolbar-button" @click="ui.side_sheets.downloads = true" role="button">
                 <div class="toolbar-button-icon">
                     <i class="fas fa-cloud-download-alt"></i>
                 </div>
-                <div class="toolbar-button-text">Mod Library</div>
+                <div class="toolbar-button-text">{{_("toolbar.button_mod_library")}}</div>
             </div>
         </div>
 
         <div class="toolbar-group" v-if="ui.debug_features">
             <div class="toolbar-button" @click="crashMainProcess" role="button">
                 <div class="toolbar-button-icon"><i class="fas fa-bug"></i></div>
-                <div class="toolbar-button-text">Debug Crash</div>
+                <div class="toolbar-button-text">{{_("toolbar.button_debug_crash")}}</div>
             </div>
 
             <div class="toolbar-button" @click="openDevTools" role="button">
                 <div class="toolbar-button-icon"><i class="fas fa-code"></i></div>
-                <div class="toolbar-button-text">Devtools</div>
+                <div class="toolbar-button-text">{{_("toolbar.button_devtools")}}</div>
             </div>
 
             <div class="toolbar-button" @click="ui.side_sheets.inference = true" role="button">
                 <div class="toolbar-button-icon"><i class="fas fa-search"></i></div>
-                <div class="toolbar-button-text">Inference</div>
+                <div class="toolbar-button-text">{{_("toolbar.button_inference")}}</div>
             </div>
 
             <div class="toolbar-button" @click="ui.side_sheets.uikit = true" role="button">
                 <div class="toolbar-button-icon"><i class="fas fa-palette"></i></div>
-                <div class="toolbar-button-text">UI Kit</div>
+                <div class="toolbar-button-text">{{_("toolbar.button_ui_kit")}}</div>
             </div>
         </div>
 
         <div class="toolbar-group">
             <div class="toolbar-button" @click="ui.side_sheets.feedback = true" role="button">
                 <div class="toolbar-button-icon"><i class="fas fa-comment"></i></div>
-                <div class="toolbar-button-text">Feedback</div>
+                <div class="toolbar-button-text">{{_("toolbar.button_feedback")}}</div>
             </div>
 
             <div class="toolbar-button" @click="ui.side_sheets.settings = true" role="button">
                 <div class="toolbar-button-icon"><i class="fas fa-cog"></i></div>
-                <div class="toolbar-button-text">Settings</div>
+                <div class="toolbar-button-text">{{_("toolbar.button_settings")}}</div>
             </div>
 
             <div class="toolbar-button" @click="ui.side_sheets.about = true" role="button">
                 <div class="toolbar-button-icon"><i class="fas fa-info-circle"></i></div>
-                <div class="toolbar-button-text">About</div>
+                <div class="toolbar-button-text">{{_("toolbar.button_about")}}</div>
             </div>
         </div>
     </div>
@@ -74,7 +74,7 @@
     </div>
 
     <div class="search">
-        <input type="text" title="Search installed mods" placeholder="Search installed mods..."
+        <input type="text" :title="_('install.placeholder_search')" :placeholder="_('install.placeholder_search')"
                v-model="ui.search.installs" @focus="ui.search.installs = ''">
     </div>
 
@@ -83,33 +83,38 @@
             <div v-for="install in filteredInstalls">
                 <h3>{{install.installName}}</h3>
                 <p><a href="javascript:;" @click="openFolder(install.fullFolderName)">{{install.fullFolderName}}</a></p>
-                <p><span v-if="install.globalSave"><strong>Global Save</strong> - </span>Installed - ready to launch</p>
-                <button class="primary" @click="launchInstall(install.folderName)">Play</button>
-                <button class="secondary" @click="ui.selected_install = install.folderName; ui.side_sheets.save_management = true">
-                    Settings
+                <p><span v-if="install.globalSave"><strong>{{_("install.status_global_save")}}</strong> - </span>{{_("install.status_installed")}}
+                </p>
+                <button class="primary" @click="launchInstall(install.folderName)">{{_("install.button_play")}}</button>
+                <button class="secondary"
+                        @click="ui.selected_install = install.folderName; ui.side_sheets.save_management = true">
+                    {{_("install.button_settings")}}
                 </button>
                 <button class="secondary" v-if="install.achievements"
-                        @click="ui.selected_install = install.folderName; ui.side_sheets.achievements = true">Achievements
+                        @click="ui.selected_install = install.folderName; ui.side_sheets.achievements = true">
+                    {{_("install.button_achievements")}}
                 </button>
-                <button class="danger" @click="ui.selected_install = install.folderName; ui.modals.delete_install = true">Uninstall
+                <button class="danger"
+                        @click="ui.selected_install = install.folderName; ui.modals.delete_install = true">
+                    {{_("install.button_uninstall")}}
                 </button>
                 <hr>
             </div>
         </div>
         <div v-if="filteredInstalls.length === 0 && installs.length > 0" class="muted text-center">
-            <h3>No results found</h3>
-            <p>Try a different search.</p>
+            <h3>{{_("install.error_no_results_heading")}}</h3>
+            <p>{{_("install.error_no_results_description")}}</p>
         </div>
         <div v-if="installs.length === 0" class="muted text-center">
-            <h3>No mods installed</h3>
-            <p>Click "Get Mods" to find some, or "Mod Library" to install one you've already downloaded.</p>
+            <h3>{{_("install.error_no_installs_heading")}}</h3>
+            <p>{{_("install.error_no_installs_description")}}</p>
         </div>
     </div>
 
     <div class="download-progress" v-if="download.downloading">
         <div class="bar" :style="{'width': roundedPercentage(download.received_bytes, download.total_bytes) + '%'}">
-            Downloading {{download.filename}} - {{roundedPercentage(download.received_bytes, download.total_bytes) +
-            '%'}} complete.
+            {{_("download.message_progress", download.filename, roundedPercentage(download.received_bytes,
+            download.total_bytes))}}
         </div>
     </div>
 
@@ -119,9 +124,12 @@
         <div class="side-sheet-background"></div>
         <div class="side-sheet-container">
             <div class="side-sheet-header">
-                UI Kit
+                {{_("ui_kit.title")}}
             </div>
             <div class="side-sheet-content">
+                <div class="highlight danger">
+                    <p>This UI kit is intended to demonstrate UI components, and does not have any translations.</p>
+                </div>
                 <p>This is the UI design kit for Doki Doki Mod Manager v2. It contains information on where and when
                     certain reusable UI elements should be used.</p>
                 <hr>
@@ -208,7 +216,7 @@
 
             </div>
             <div class="side-sheet-footer">
-                <button class="primary" @click="ui.side_sheets.uikit = false">Done</button>
+                <button class="primary" @click="ui.side_sheets.uikit = false">{{_("side_sheet_buttons.done")}}</button>
             </div>
         </div>
     </div>
@@ -217,22 +225,24 @@
         <div class="side-sheet-background"></div>
         <div class="side-sheet-container">
             <div class="side-sheet-header">
-                Inference Testing
+                {{_("inference.title")}}
             </div>
             <div class="side-sheet-content">
-                <p>Choose a mod to perform inference testing on.</p>
+                <p>{{_("inference.message_select")}}</p>
+
                 <ul>
                     <li v-for="mod in mods"><a href="javascript:;" @click="testInference(mod)">{{mod}}</a></li>
                 </ul>
 
                 <hr>
 
-                <p>Mod: {{ui.inference.mod}}</p>
-                <p>Mapper: {{ui.inference.mapper}}</p>
-                <p>Delete: {{ui.inference.delete.join(", ")}}</p>
+                <p>{{_("inference.message_mod", ui.inference.mod)}}</p>
+                <p>{{_("inference.message_mapper", ui.inference.mapper)}}</p>
+                <p>{{_("inference.message_delete", ui.inference.delete.join(", "))}}</p>
             </div>
             <div class="side-sheet-footer">
-                <button class="primary" @click="ui.side_sheets.inference = false">Done</button>
+                <button class="primary" @click="ui.side_sheets.inference = false">{{_("side_sheet_buttons.done")}}
+                </button>
             </div>
         </div>
     </div>
@@ -241,38 +251,39 @@
         <div class="side-sheet-background"></div>
         <div class="side-sheet-container">
             <div class="side-sheet-header">
-                Get Mods
+                {{_("install_menu.title")}}
             </div>
             <div class="side-sheet-content">
-                <h3>Import Mod</h3>
-                <p>Find a mod on your PC and import into Doki Doki Mod Manger.</p>
-                <button class="primary" @click="importMod">Import Mod</button>
+                <h3>{{_("install_menu.subtitle_import")}}</h3>
+                <p>{{_("install_menu.description_import")}}</p>
+                <button class="primary" @click="importMod">{{_("install_menu.button_import")}}</button>
                 <hr>
-                <h3>Install DDLC</h3>
-                <p>If you just want to install DDLC without any mods, you can do that here.</p>
+                <h3>{{_("install_menu.subtitle_install_vanilla")}}</h3>
+                <p>{{_("install_menu.description_install_vanilla")}}</p>
                 <button class="primary"
                         @click="ui.side_sheets.install = false; ui.selected_mod = null; showInstallDialog();">
-                    Install DDLC
+                    {{_("install_menu.button_install_vanilla")}}
                 </button>
                 <hr>
-                <h3>Curated Mods</h3>
-                <p>Don't know what to play? Try one of these recommended mods.</p>
+                <h3>{{_("install_menu.subtitle_download_curated")}}</h3>
+                <p>{{_("install_menu.description_download_curated")}}</p>
                 <br>
                 <div v-for="mod in recommended_mods">
                     <h4>{{mod.name}}</h4>
-                    <p>By <strong>{{mod.author}}</strong></p>
+                    <p>{{_("install_menu.description_mod_author", mod.author)}}</p>
                     <p>{{mod.description}}</p>
                     <p style="color: red" v-if="mod.content_warning">{{mod.content_warning}}</p>
                     <p>
                         <button class="primary" @click="downloadMod(mod.url); ui.side_sheets.install = false;">
-                            Download
+                            {{_("install_menu.button_download_curated")}}
                         </button>
                     </p>
                     <br>
                 </div>
             </div>
             <div class="side-sheet-footer">
-                <button class="primary" @click="ui.side_sheets.install = false">Done</button>
+                <button class="primary" @click="ui.side_sheets.install = false">{{_("side_sheet_buttons.done")}}
+                </button>
             </div>
         </div>
     </div>
@@ -281,33 +292,37 @@
         <div class="side-sheet-background"></div>
         <div class="side-sheet-container">
             <div class="side-sheet-header">
-                Mod Library
+                {{_("mod_library.title")}}
             </div>
             <div class="side-sheet-content">
-                <input type="text" title="Search mod library" placeholder="Search mod library..."
+                <input type="text" :title="_('mod_library.placeholder_search')"
+                       :placeholder="_('mod_library.placeholder_search')"
                        v-model="ui.search.mods" @focus="ui.search.mods = ''">
                 <hr>
                 <div v-if="filteredMods.length === 0 && mods.length > 0" class="muted text-center">
-                    <h3>No results found</h3>
-                    <p>Try a different search.</p>
+                    <h3>{{_("mod_library.error_no_results_heading")}}</h3>
+                    <p>{{_("mod_library.error_no_results_description")}}</p>
                 </div>
                 <div v-if="mods.length === 0" class="muted text-center">
-                    <h3>No mods downloaded</h3>
-                    <p>Click "Get Mods" on the main page to find some.</p>
+                    <h3>{{_("mod_library.error_no_mods_heading")}}</h3>
+                    <p>{{_("mod_library.error_no_mods_description")}}</p>
                 </div>
                 <div v-for="mod in filteredMods">
                     <h3>{{mod}}</h3>
-                    <p>Ready to install</p>
+                    <p>{{_("mod_library.status_ready")}}</p>
                     <button class="primary"
                             @click="ui.selected_mod = mod; showInstallDialog()">
-                        Install
+                        {{_("mod_library.button_install")}}
                     </button>
-                    <button class="danger" @click="ui.selected_mod = mod; ui.modals.delete_mod = true;">Delete</button>
+                    <button class="danger" @click="ui.selected_mod = mod; ui.modals.delete_mod = true;">
+                        {{_("mod_library.button_delete")}}
+                    </button>
                     <hr>
                 </div>
             </div>
             <div class="side-sheet-footer">
-                <button class="primary" @click="ui.side_sheets.downloads = false">Done</button>
+                <button class="primary" @click="ui.side_sheets.downloads = false">{{_("side_sheet_buttons.done")}}
+                </button>
             </div>
         </div>
     </div>
@@ -322,52 +337,33 @@
                 <div class="text-center">
                     <img src="../images/logo.png" width="200" alt="Doki Doki Mod Manager Logo">
                     <br>
-                    <p><strong>Version {{ui.version}}</strong></p>
+                    <p><strong>{{_("about.message_version", ui.version)}}</strong></p>
                 </div>
-
-                <h3>About</h3>
-                <p>Doki Doki Mod Manager is a community led project to simplify the installation and sharing of mods for
-                    <a
-                            href="javascript:;"
-                            @click="openURL('http://ddlc.moe')">Doki&nbsp;Doki&nbsp;Literature&nbsp;Club</a>,
-                    a free game by Team Salvato.</p>
 
                 <br>
 
-                <h3>Disclaimer</h3>
-                <p>Doki Doki Mod Manager is a fan work of Doki Doki Literature Club! and is not affiliated
-                    with Team Salvato. It is a fan work, as defined by Team Salvato's <a href="javascript:;"
-                                                                                         @click="openURL('http://teamsalvato.com/ip-guidelines/')">IP
-                        Guidelines</a>.</p>
-                <p>Doki Doki Mod Manager does not take responsibility for any damage caused to your files or computer,
-                    as a result of playing a mod or otherwise.</p>
+                <p>{{_("about.message_about")}}</p>
+
+                <br>
+
+                <h3>{{_("about.subtitle_disclaimer")}}</h3>
+                <p>{{_("about.message_disclaimer_1")}}</p>
+                <p>{{_("about.message_disclaimer_2")}}</p>
 
                 <hr>
 
                 <div class="text-center">
-                    <img src="../images/discord.png" width="400">
+                    <img src="../images/discord.png" width="400" alt="Discord Logo">
                     <br>
-                    <p>Join the Doki Doki Mod Manager Discord server and chat with other users.</p>
+                    <p>{{_("about.message_discord")}}</p>
                     <br>
-                    <button class="huge success" @click="openURL('https://doki.space/discord')">Join Now</button>
+                    <button class="huge success" @click="openURL('https://doki.space/discord')">
+                        {{_("about.button_discord")}}
+                    </button>
                 </div>
-
-                <hr>
-
-                <h3>Thanks To</h3>
-                <p><strong>Poplar<span class="muted">#0666</span></strong> for designing the logo, and much needed
-                    encouragement!</p>
-                <p><strong>Samboy<span class="muted">#0063</span></strong> for contributions to the app, including the
-                    dark theme!</p>
-                <p>The developers of all the open-source libraries without which this project wouldn't exist, most
-                    notably <strong>Electron</strong>, <strong>Vue</strong>, <strong>yauzl</strong> and <strong>Discord.js</strong>!
-                </p>
-                <p>The <strong>r/DDLCMods</strong> community for supporting the project!</p>
-                <p><strong>Team Salvato</strong> for creating an amazing game and experience!</p>
-                <p>And, most importantly, <strong>you</strong>!</p>
             </div>
             <div class="side-sheet-footer">
-                <button class="primary" @click="ui.side_sheets.about = false">Done</button>
+                <button class="primary" @click="ui.side_sheets.about = false">{{_("side_sheet_buttons.done")}}</button>
             </div>
         </div>
     </div>
@@ -376,45 +372,48 @@
         <div class="side-sheet-background"></div>
         <div class="side-sheet-container">
             <div class="side-sheet-header">
-                Settings
+                {{_("settings.title")}}
             </div>
             <div class="side-sheet-content">
                 <p class="text-center">
-                    <strong>You are on version {{ui.version}} of Doki Doki Mod Manager!</strong>
+                    <strong>{{_("settings.message_version", ui.version)}}</strong>
                 </p>
                 <div v-if="ui.update.checked">
                     <div class="highlight success" v-if="ui.update.info.success && ui.update.available">
-                        <h3>Update Available</h3>
-                        <p>Version {{ui.update.info.update.updateInfo.version}} is available to install!</p>
-                        <button class="success" @click="installUpdate" v-if="ui.update.downloaded">Install Now</button>
+                        <h3>{{_("settings.status_update_available")}}</h3>
+                        <p>{{_("settings.description_update_available", ui.update.info.update.updateInfo.version)}}</p>
+                        <button class="success" @click="installUpdate" v-if="ui.update.downloaded">
+                            {{_("settings.button_update_install")}}
+                        </button>
                         <div v-else>
-                            <p>Downloading update - check back in a minute or so.</p>
+                            <p>{{_("settings.status_update_downloading")}}</p>
                             <div class="progress-bar">
                                 <div class="bar indefinite">&nbsp;</div>
                             </div>
                         </div>
                     </div>
                     <div class="highlight secondary" v-else-if="ui.update.info.success">
-                        <h3>Up to Date</h3>
-                        <p>You are on the latest version of Doki Doki Mod Manager!</p>
-                        <button class="primary" @click="checkUpdate">Check Again</button>
+                        <h3>{{_("settings.status_update_latest")}}</h3>
+                        <p>{{_("settings.description_update_latest")}}</p>
+                        <button class="primary" @click="checkUpdate">{{_("settings.button_update_retry")}}</button>
                     </div>
                     <div class="highlight warning" v-else>
-                        <h3>Unable to Update</h3>
+                        <h3>{{_("settings.status_update_error")}}</h3>
                         <p>{{ui.update.info.reason}}</p>
-                        <button class="warning" @click="checkUpdate">Check Again</button>
+                        <button class="warning" @click="checkUpdate">{{_("settings.button_update_retry")}}</button>
                     </div>
                 </div>
                 <div class="highlight dark">
-                    <h3>Change Theme</h3>
-                    <p>Click here to change between a light and dark theme. Embrace the dark side!</p>
-                    <button class="dark" @click="ui.side_sheets.settings = false; ui.side_sheets.theme = true">Change
-                        Theme
+                    <h3>{{_("settings.subtitle_theme_switcher")}}</h3>
+                    <p>{{_("settings.description_theme_switcher")}}</p>
+                    <button class="dark" @click="ui.side_sheets.settings = false; ui.side_sheets.theme = true">
+                        {{_("settings.button_theme_switcher")}}
                     </button>
                 </div>
             </div>
             <div class="side-sheet-footer">
-                <button class="primary" @click="ui.side_sheets.settings = false">Close</button>
+                <button class="primary" @click="ui.side_sheets.settings = false">{{_("side_sheet_buttons.done")}}
+                </button>
             </div>
         </div>
     </div>
@@ -423,38 +422,40 @@
         <div class="side-sheet-background"></div>
         <div class="side-sheet-container">
             <div class="side-sheet-header">
-                Submit Feedback
+                {{_("feedback.title")}}
             </div>
             <div class="side-sheet-content">
-                <strong>Feedback Type</strong>
-                <p><label><input type="radio" name="feedback-type" value="question" v-model="ui.feedback.type"> Question</label>
-                    <label><input type="radio" name="feedback-type" value="suggestion" v-model="ui.feedback.type">Suggestion</label>
-                    <label><input type="radio" name="feedback-type" value="bug" v-model="ui.feedback.type"> Bug
-                        Report</label>
+                <strong>{{_("feedback.label_feedback_type")}}</strong>
+                <p><label><input type="radio" name="feedback-type" value="question" v-model="ui.feedback.type">
+                    {{_("feedback.label_feedback_type_question")}}</label>
+                    <label><input type="radio" name="feedback-type" value="suggestion" v-model="ui.feedback.type">
+                        {{_("feedback.label_feedback_type_suggestion")}}</label>
+                    <label><input type="radio" name="feedback-type" value="bug" v-model="ui.feedback.type">
+                        {{_("feedback.label_feedback_type_bug")}}</label>
                 </p>
                 <div class="highlight success" v-if="ui.feedback.type === 'bug'">
-                    When submitting a bug report, please include the following information:
+                    {{_("feedback.description_bug_format_intro")}}
                     <ul>
-                        <li>What you did to cause the issue</li>
-                        <li>What you expected to happen</li>
-                        <li>What actually happened</li>
-                        <li>Any relevant crash reports / error messages</li>
+                        <li>{{_("feedback.description_bug_format_point1")}}</li>
+                        <li>{{_("feedback.description_bug_format_point2")}}</li>
+                        <li>{{_("feedback.description_bug_format_point3")}}</li>
+                        <li>{{_("feedback.description_bug_format_point4")}}</li>
                     </ul>
-                    Thanks for helping to improve Doki Doki Mod Manager!
                 </div>
                 <br>
-                <strong>Feedback</strong>
-                <p><textarea v-model="ui.feedback.body" title="Enter your feedback here."
-                             placeholder="Enter your feedback here." rows="5" maxlength="1000"></textarea></p>
+                <strong>{{_("feedback.label_feedback")}}</strong>
+                <p><textarea v-model="ui.feedback.body" title=""
+                             :placeholder="_('feedback.placeholder_feedback')" rows="5" maxlength="1000"></textarea></p>
                 <br>
-                <strong>Contact Details</strong>
-                <p><input type="text" v-model="ui.feedback.contact" title="Contact details" maxlength="64"></p>
-                <p>If you want me to get in contact with you regarding this feedback, add an email address, Reddit
-                    username or Discord tag. I read every piece of feedback I receive.</p>
+                <strong>{{_("feedback.label_contact")}}</strong>
+                <p><input type="text" v-model="ui.feedback.contact" :placeholder="_('feedback.placeholder_contact')"
+                          :title="_('feedback.placeholder_contact')" maxlength="64"></p>
+                <p>{{_("feedback.description_contact")}}</p>
             </div>
             <div class="side-sheet-footer">
-                <button class="primary" @click="submitFeedback">Submit</button>
-                <button class="secondary" @click="ui.side_sheets.feedback = false">Cancel</button>
+                <button class="primary" @click="submitFeedback">{{_("side_sheet_buttons.submit")}}</button>
+                <button class="secondary" @click="ui.side_sheets.feedback = false">{{_("side_sheet_buttons.cancel")}}
+                </button>
             </div>
         </div>
     </div>
@@ -463,29 +464,23 @@
         <div class="side-sheet-background"></div>
         <div class="side-sheet-container">
             <div class="side-sheet-header">
-                Welcome to the Literature Club!
+                {{_("onboarding.title")}}
             </div>
             <div class="side-sheet-content">
                 <div class="text-center" v-if="!ui.onboarding.downloading">
-                    <p>Thanks for downloading Doki Doki Mod Manager! Before we get you started with modding your game,
-                        we need a copy of it first.</p>
+                    <p>{{_("onboarding.paragraph_1")}}</p>
                     <br>
-                    <p>If you already have a copy of DDLC, you can look for it on your PC. Otherwise, click <em>Download
-                        Now</em> to start downloading the game.</p>
+                    <p>{{_("onboarding.paragraph_2")}}</p>
                     <br>
-                    <p><strong>You need to have a standalone copy of DDLC as a zip file. If you have only installed
-                        through Steam, you will need to download a new copy of the game.</strong></p>
+                    <p><strong>{{_("onboarding.paragraph_steam")}}</strong></p>
                     <br>
-                    <p>If you have just upgraded from version 1, all your mods are still here - just select the game's
-                        zip file to get started.</p>
-                    <br>
-                    <button class="huge primary" @click="downloadGame">Download Now</button>
-                    <button class="huge secondary" @click="importGame">Find Game</button>
+                    <button class="huge primary" @click="downloadGame">{{_("onboarding.button_download")}}</button>
+                    <button class="huge secondary" @click="importGame">{{_("onboarding.button_find")}}</button>
                 </div>
                 <div v-else>
                     <div v-if="download.downloading" class="text-center">
-                        <p><strong>Downloading DDLC - {{roundedPercentage(download.received_bytes, download.total_bytes)
-                            + '%'}} complete</strong></p>
+                        <p><strong>{{_("onboarding.message_downloading", roundedPercentage(download.received_bytes,
+                            download.total_bytes))}}</strong></p>
                         <br>
                         <div class="progress-bar">
                             <div :class="{'bar':true, 'indefinite': download.total_bytes === 0}"
@@ -495,14 +490,16 @@
                         </div>
                     </div>
                     <div v-else-if="download.has_download_completed" class="text-center">
-                        <p>DDLC has finished downloading, and we're ready to start!</p>
+                        <p>{{_("onboarding.message_complete")}}</p>
                         <br>
                         <p>
-                            <button class="huge primary" @click="ui.side_sheets.onboarding = false">Get Started</button>
+                            <button class="huge primary" @click="ui.side_sheets.onboarding = false">
+                                {{_("onboarding.button_start")}}
+                            </button>
                         </p>
                     </div>
                     <div v-else class="text-center">
-                        Download starting...
+                        {{_("onboarding.message_starting")}}
                     </div>
                 </div>
             </div>
@@ -517,25 +514,28 @@
             </div>
             <div class="side-sheet-content" v-if="selectedInstall">
                 <div class="highlight warning">
-                    <h3>Delete Firstrun Flag</h3>
-                    <p>Deleting the firstrun flag will cause the game to ask if you want to delete your save data when
-                        you next start it up. Some mods may override this behaviour.</p>
-                    <button class="warning" @click="deleteFirstrun(selectedInstall.folderName)">Delete</button>
+                    <h3>{{_("save_management.subtitle_firstrun_delete")}}</h3>
+                    <p>{{_("save_management.description_firstrun_delete")}}</p>
+                    <button class="warning" @click="deleteFirstrun(selectedInstall.folderName)">
+                        {{_("save_management.button_firstrun_delete")}}
+                    </button>
                 </div>
 
-                <div class="highlight danger" v-if="!selectedInstall.globalSave">
-                    <h3>Delete Save Data</h3>
-                    <p>Completely erase your save data and start the game from scratch.</p>
-                    <button class="danger" @click="ui.modals.delete_save = true">Delete</button>
-                </div>
-                <div class="highlight danger" v-else>
-                    <h3>Delete Save Data</h3>
-                    <p>As this install uses a global save, you cannot delete your save data directly. Either delete the
-                        firstrun flag (if the mod supports it) or delete the save file manually.</p>
+                <div class="highlight danger">
+                    <h3>{{_("save_management.subtitle_save_delete")}}</h3>
+                    <div v-if="!selectedInstall.globalSave">
+                        <p>{{_("save_management.description_save_delete")}}</p>
+                        <button class="danger" @click="ui.modals.delete_save = true">
+                            {{_("save_management.button_save_delete")}}
+                        </button>
+                    </div>
+                    <p v-else>{{_("save_management.description_save_delete_global")}}</p>
                 </div>
             </div>
             <div class="side-sheet-footer">
-                <button class="primary" @click="ui.side_sheets.save_management = false">Close</button>
+                <button class="primary" @click="ui.side_sheets.save_management = false">
+                    {{_("side_sheet_buttons.done")}}
+                </button>
             </div>
         </div>
     </div>
@@ -544,20 +544,22 @@
         <div class="side-sheet-background"></div>
         <div class="side-sheet-container">
             <div class="side-sheet-header" v-if="selectedInstall && selectedInstall.achievements">
-                Achievements ({{selectedInstall.achievements.filter(a => a.earned).length}} /
-                {{selectedInstall.achievements.length}})
+                {{_("achievements.title", selectedInstall.achievements.filter(a => a.earned).length,
+                selectedInstall.achievements.length)}}
             </div>
             <div class="side-sheet-content" v-if="selectedInstall && selectedInstall.achievements">
                 <div v-for="achievement in selectedInstall.achievements" :class="{'muted': !achievement.earned}">
                     <h3>{{achievement.name}}</h3>
                     <p>{{achievement.description}}</p>
-                    <p v-if="achievement.earned">Unlocked!</p>
-                    <p v-else>Not unlocked - keep going!</p>
+                    <p v-if="achievement.earned">{{_("achievements.status_unlocked")}}</p>
+                    <p v-else>{{_("achievements.status_locked")}}</p>
                     <hr>
                 </div>
             </div>
             <div class="side-sheet-footer">
-                <button class="primary" @click="ui.side_sheets.achievements = false">Close</button>
+                <button class="primary" @click="ui.side_sheets.achievements = false">
+                    {{_("side_sheet_buttons.done")}}
+                </button>
             </div>
         </div>
     </div>
@@ -566,13 +568,13 @@
         <div class="side-sheet-background"></div>
         <div class="side-sheet-container">
             <div class="side-sheet-header">
-                Theme Switcher
+                {{_("theme_switcher.title")}}
             </div>
             <div class="side-sheet-content">
                 <div :class="{'theme-switcher-theme': true, 'selected': ui.theme === 'light', 'theme-light': true}"
                      @click="ui.theme = 'light'; saveThemeConfig()">
                     <span class="theme-switcher-theme-name">
-                        Light Theme
+                        {{_("theme_switcher.button_light")}}
                     </span>
                     <div class="theme-switcher-theme-selected-indicator">
                         <span class="theme-switcher-theme-selected-indicator-check"></span>
@@ -581,7 +583,7 @@
                 <div :class="{'theme-switcher-theme': true, 'selected': ui.theme === 'dark', 'theme-dark': true}"
                      @click="ui.theme = 'dark'; saveThemeConfig()">
                     <span class="theme-switcher-theme-name">
-                        Dark Theme
+                        {{_("theme_switcher.button_dark")}}
                     </span>
                     <div class="theme-switcher-theme-selected-indicator">
                         <span class="theme-switcher-theme-selected-indicator-check"></span>
@@ -589,7 +591,7 @@
                 </div>
             </div>
             <div class="side-sheet-footer">
-                <button class="primary" @click="ui.side_sheets.theme = false">Close</button>
+                <button class="primary" @click="ui.side_sheets.theme = false">{{_("side_sheet_buttons.done")}}</button>
             </div>
         </div>
     </div>
@@ -598,14 +600,15 @@
         <div class="modal-background"></div>
         <div class="modal-container">
             <div class="modal-content" v-if="selectedInstall">
-                <h3>Delete Save</h3>
-                <p>Are you sure you want to delete the save file of {{selectedInstall.installName}}? It cannot be
-                    recovered.</p>
+                <h3>{{_("save_delete_modal.title")}}</h3>
+                <p>{{_("save_delete_modal.body", selectedInstall.installName)}}</p>
                 <br>
                 <button class="danger" @click="deleteSave(selectedInstall.folderName); ui.modals.delete_save = false">
-                    Yes
+                    {{_("side_sheet_buttons.yes")}}
                 </button>
-                <button class="secondary" @click="ui.modals.delete_save = false">No</button>
+                <button class="secondary" @click="ui.modals.delete_save = false">
+                    {{_("side_sheet_buttons.no")}}
+                </button>
             </div>
         </div>
     </div>
@@ -614,16 +617,18 @@
         <div class="modal-background"></div>
         <div class="modal-container">
             <div class="modal-content" v-if="selectedInstall">
-                <h3>Uninstall</h3>
-                <p>Are you sure you want to uninstall {{selectedInstall.installName}}? <span
-                        v-if="!selectedInstall.globalSave">Your save data cannot be
-                    recovered.</span></p>
+                <h3>{{_("uninstall_modal.title")}}</h3>
+                <p>
+                    {{_("uninstall_modal.body", selectedInstall.installName)}}
+                    <span v-if="!selectedInstall.globalSave">{{_("uninstall_modal.body_local_save")}}</span>
+                </p>
                 <br>
                 <button class="danger"
                         @click="deleteInstall(selectedInstall.folderName); ui.modals.delete_install = false">
-                    Yes
+                    {{_("side_sheet_buttons.yes")}}
                 </button>
-                <button class="secondary" @click="ui.modals.delete_install = false">No</button>
+                <button class="secondary" @click="ui.modals.delete_install = false">{{_("side_sheet_buttons.no")}}
+                </button>
             </div>
         </div>
     </div>
@@ -632,14 +637,16 @@
         <div class="modal-background"></div>
         <div class="modal-container">
             <div class="modal-content" v-if="ui.selected_mod">
-                <h3>Delete Mod</h3>
-                <p>Are you sure you want to delete {{ui.selected_mod}}?</p>
+                <h3>{{_("mod_delete_modal.title")}}</h3>
+                <p>{{_("mod_delete_modal.body", ui.selected_mod)}}</p>
                 <br>
                 <button class="danger"
                         @click="deleteMod(ui.selected_mod); ui.modals.delete_mod = false">
-                    Yes
+                    {{_("side_sheet_buttons.yes")}}
                 </button>
-                <button class="secondary" @click="ui.modals.delete_mod = false">No</button>
+                <button class="secondary" @click="ui.modals.delete_mod = false">
+                    {{_("side_sheet_buttons.no")}}
+                </button>
             </div>
         </div>
     </div>
@@ -648,29 +655,30 @@
         <div class="modal-background"></div>
         <div class="modal-container">
             <div class="modal-content">
-                <h3>Install Game</h3>
+                <h3>{{_("create_install_modal.title")}}</h3>
                 <br>
-                <p>Give your game installation a descriptive name.</p>
+                <p>{{_("create_install_modal.message_descriptive")}}</p>
                 <br>
-                <p v-if="ui.selected_mod">You are installing <strong>{{ui.selected_mod}}</strong></p>
-                <p v-else>You are installing an unmodded copy of Doki Doki Literature Club.</p>
+                <p v-if="ui.selected_mod">{{_("create_install_modal.message_installing_mod", ui.selected_mod)}}</p>
+                <p v-else>{{_("create_install_modal.message_installing_vanilla")}}</p>
                 <br>
-                <strong>Installation Name</strong>
+                <strong>{{_("create_install_modal.label_install_name")}}</strong>
                 <p><input type="text" v-model="ui.install_creation.install_name" @keyup="generateFolderName"
-                          title="Installation Name"></p>
+                          :title="_('create_install_modal.label_install_name')"></p>
                 <br>
-                <strong>Installation Folder</strong>
-                <p><input type="text" v-model="ui.install_creation.folder_name" title="Installation Folder"></p>
+                <strong>{{_("create_install_modal.label_install_folder")}}</strong>
+                <p><input type="text" v-model="ui.install_creation.folder_name"
+                          :title="_('create_install_modal.label_install_folder')"></p>
                 <br>
-                <p><label
-                        title="If this box is checked, the game's save data will be shared between other installs of the game, including Steam installs. Uncheck it if you want to keep your save file separate."><input
-                        type="checkbox" v-model="ui.install_creation.global_save"> Use global save</label></p>
+                <p><label :title="_('create_install_modal.description_global_save')"><input type="checkbox"
+                                                                                            v-model="ui.install_creation.global_save">
+                    {{_("create_install_modal.label_global_save")}}</label></p>
                 <br>
                 <button class="primary"
                         @click="ui.modals.create_install = false; createInstall(ui.install_creation.folder_name, ui.install_creation.install_name, ui.install_creation.global_save)">
-                    Install
+                    {{_("side_sheet_buttons.install")}}
                 </button>
-                <button class="secondary" @click="ui.modals.create_install = false">Cancel</button>
+                <button class="secondary" @click="ui.modals.create_install = false">{{_("side_sheet_buttons.cancel")}}</button>
             </div>
         </div>
     </div>
@@ -689,18 +697,14 @@
         </div>
     </div>
 
-    <div :class="{'monika': true, 'active': ui.monika}"></div>
     <div :class="{'running-cover': true, 'active': ui.running_cover}">
-        <h1>Doki Doki Literature Club is running</h1>
-        <p>Close the game to make changes to your mods.</p>
-        <p>It may take a while for the game to start, be patient.</p>
-    </div>
-    <div :class="{'running-cover': true, 'active': ui.dropping_cover}">
-        <p>Drop mods anywhere to import them.</p>
+        <h1>{{_("running_cover.title")}}</h1>
+        <p>{{_("running_cover.message_close_game")}}</p>
+        <p>
+            <button class="primary">{{_("running_cover.button_browse_files")}}</button>
+        </p>
     </div>
 </div>
-
-<audio id="monika" src="easteregg/mscare.ogg" style="display: none;"></audio>
 
 <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
 <script>
