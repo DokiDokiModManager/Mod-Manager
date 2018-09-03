@@ -80,6 +80,11 @@ body {
 // general styles
 //
 
+// hide the scrollbar that appears when the app is launching, which exposes some of the vue directives
+body::-webkit-scrollbar {
+  display: none;
+}
+
 h1, h2, h3, h4, p {
   margin: 0.25em 0 0.25em 0;
   cursor: default;

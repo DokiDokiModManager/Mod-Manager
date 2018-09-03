@@ -185,6 +185,9 @@ electron_1.app.on("ready", () => {
     appWin = new electron_1.BrowserWindow({
         height: 700,
         show: false,
+        webPreferences: {
+            textAreasAreResizable: false,
+        },
         width: 1000,
     });
     // Load the app UI
@@ -366,8 +369,8 @@ electron_1.app.on("ready", () => {
         }
         appWin.webContents.send("loading modal", {
             display: true,
-            message: i18n("install_creation.modal_title"),
-            title: i18n("install_creation.modal_message"),
+            message: i18n("install_creation.modal_message"),
+            title: i18n("install_creation.modal_title"),
         });
         InstallCreator_1.default.createInstall(normaliseName(meta.folderName), meta.installName, meta.globalSave).then(() => {
             if (meta.modZip) {
@@ -424,8 +427,8 @@ electron_1.app.on("ready", () => {
     electron_1.ipcMain.on("delete install", (_, dir) => {
         appWin.webContents.send("loading modal", {
             display: true,
-            message: i18n("install_delete.modal_title"),
-            title: i18n("install_delete.modal_message"),
+            message: i18n("install_delete.modal_message"),
+            title: i18n("install_delete.modal_title"),
         });
         const installPath = path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", dir);
         fs_extra_1.remove(installPath, (err) => {

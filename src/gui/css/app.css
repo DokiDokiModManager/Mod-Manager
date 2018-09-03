@@ -23,6 +23,9 @@ body {
   color: #222;
   background-color: #fff; }
 
+body::-webkit-scrollbar {
+  display: none; }
+
 h1, h2, h3, h4, p {
   margin: 0.25em 0 0.25em 0;
   cursor: default; }

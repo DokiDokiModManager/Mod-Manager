@@ -8,8 +8,8 @@
   "main": "src/common/main.js",
   "scripts": {
     "start": "electron .",
-    "start-dev": "electron --inspect=5858 . --lang=ru",
-    "build": "electron-builder",
+    "start-dev": "electron --inspect=5858 .",
+    "build": "electron-builder -wl",
     "build-and-publish": "electron-builder -p always -wl"
   },
   "dependencies": {
@@ -66,6 +66,8 @@
       ]
     },
     "linux": {
+      "category": "Game",
+      "icon": "build/icon.png",
       "target": [
         {
           "target": "AppImage",

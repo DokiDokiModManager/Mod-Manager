@@ -115,7 +115,7 @@ const vueApp = new Vue({
             if (e.ctrlKey) {
                 ipcRenderer.send("debug crash");
             } else {
-                vueApp.showToast("Hold CTRL while clicking to induce a crash.");
+                vueApp.showToast(i18n("debug_crash.toast_prompt"));
             }
         },
         "openURL": function (url) {
@@ -199,7 +199,7 @@ const vueApp = new Vue({
         },
         "submitFeedback": function () {
             if (this.ui.feedback.body.length < 10) {
-                this.showToast("Please be more detailed in your feedback.");
+                this.showToast(i18n("feedback.toast_too_short"));
                 return;
             }
             ipcRenderer.send("submit feedback", this.ui.feedback);
@@ -326,11 +326,10 @@ document.body.ondragover = function (e) {
 };
 
 document.body.ondrop = function (e) {
-    vueApp.ui.dropping_cover = false;
     e.preventDefault();
     if (["application/zip", "application/x-zip-compressed"].indexOf(e.dataTransfer.items[0].getAsFile().type) !== -1 || e.dataTransfer.items[0].getAsFile().path.endsWith(".zip")) {
         ipcRenderer.send("import mod dropped", e.dataTransfer.items[0].getAsFile().path);
     } else {
-        vueApp.showToast(e.dataTransfer.items[0].getAsFile().name + " is not a mod zip file.");
+        vueApp.showToast(i18n("mod_import.toast_invalid", e.dataTransfer.items[0].getAsFile().name));
     }
 };
