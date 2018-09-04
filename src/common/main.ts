@@ -45,7 +45,7 @@ let appWin: BrowserWindow;
 let richPresence: RichPresence;
 let sdkServer: SDKServer;
 
-const i18n = Language(app.getLocale());
+let i18n = Language("en-GB");
 
 let debug: boolean = false;
 
@@ -179,6 +179,7 @@ registerProcessEventHandler("uncaughtException", (error) => {
 DirectoryManager.createDirs(Config.readConfigValue("installFolder"));
 
 app.on("ready", () => {
+    i18n = Language(app.getLocale());
     if (app.makeSingleInstance((argv: string[]) => {
         appWin.restore();
         appWin.focus();

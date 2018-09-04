@@ -32,7 +32,7 @@ const DDLC_HASHES = ["2a3dd7969a06729a32ace0a6ece5f2327e29bdf460b8b39e6a8b0875e5
 let appWin;
 let richPresence;
 let sdkServer;
-const i18n = Language(electron_1.app.getLocale());
+let i18n = Language("en-GB");
 let debug = false;
 let crashed = false;
 let allowClosing = false;
@@ -149,6 +149,7 @@ process_1.on("uncaughtException", (error) => {
 });
 DirectoryManager_1.default.createDirs(Config_1.default.readConfigValue("installFolder"));
 electron_1.app.on("ready", () => {
+    i18n = Language(electron_1.app.getLocale());
     if (electron_1.app.makeSingleInstance((argv) => {
         appWin.restore();
         appWin.focus();
