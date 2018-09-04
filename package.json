@@ -9,8 +9,8 @@
   "scripts": {
     "start": "electron .",
     "start-dev": "electron --inspect=5858 .",
-    "build": "electron-builder -w",
-    "build-mp": "electron-builder -wml",
+    "build": "electron-builder",
+    "build-mp": "electron-builder -wl",
     "build-and-publish": "electron-builder -p always -wl"
   },
   "dependencies": {
@@ -85,6 +85,10 @@
           ]
         }
       ]
+    },
+    "mac": {
+      "category": "public.app-category.games",
+      "target": ["dmg"]
     }
   }
 }
