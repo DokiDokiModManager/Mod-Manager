@@ -9,7 +9,8 @@
   "scripts": {
     "start": "electron .",
     "start-dev": "electron --inspect=5858 .",
-    "build": "electron-builder -wl",
+    "build": "electron-builder -w",
+    "build-mp": "electron-builder -wml",
     "build-and-publish": "electron-builder -p always -wl"
   },
   "dependencies": {
