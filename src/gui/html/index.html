@@ -85,7 +85,7 @@
                 <p><a href="javascript:;" @click="openFolder(install.fullFolderName)">{{install.fullFolderName}}</a></p>
                 <p><span v-if="install.globalSave"><strong>{{_("install.status_global_save")}}</strong> - </span>{{_("install.status_installed")}}
                 </p>
-                <button class="primary" @click="launchInstall(install.folderName)">{{_("install.button_play")}}</button>
+                <button class="primary" @click="launchInstall(install)">{{_("install.button_play")}}</button>
                 <button class="secondary"
                         @click="ui.selected_install = install.folderName; ui.side_sheets.save_management = true">
                     {{_("install.button_settings")}}
@@ -701,7 +701,7 @@
         <h1>{{_("running_cover.title")}}</h1>
         <p>{{_("running_cover.message_close_game")}}</p>
         <p>
-            <button class="primary">{{_("running_cover.button_browse_files")}}</button>
+            <button class="primary" @click="openFolder(selectedInstall.fullFolderName)">{{_("running_cover.button_browse_files")}}</button>
         </p>
     </div>
 </div>
