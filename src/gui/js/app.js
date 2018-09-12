@@ -85,7 +85,8 @@ const vueApp = new Vue({
             "search": {
                 "installs": "",
                 "mods": ""
-            }
+            },
+            "running_install": null
         },
         "installs": [],
         "mods": [],
@@ -136,8 +137,9 @@ const vueApp = new Vue({
             this.ui.onboarding.downloading = true;
             ipcRenderer.send("download game");
         },
-        "launchInstall": function (dir) {
-            ipcRenderer.send("launch install", dir);
+        "launchInstall": function (install) {
+            this.ui.running_install = install;
+            ipcRenderer.send("launch install", install.folderName);
         },
         "deleteFirstrun": function (dir) {
             ipcRenderer.send("delete firstrun", dir);
@@ -214,8 +216,12 @@ const vueApp = new Vue({
     },
     "computed": {
         "selectedInstall": function () {
-            if (this.ui.selected_install) {
-                return this.installs.find(install => install.folderName === this.ui.selected_install);
+            const context = this.ui;
+            const {selected_install, running_install} = context;
+            if (selected_install) {
+                return this.installs.find(install => install.folderName === selected_install);
+            } if (running_install) {
+                return running_install;
             } else {
                 return {
                     "name": "Doki Doki Literature Club!",
