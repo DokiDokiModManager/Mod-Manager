@@ -47,6 +47,7 @@ export function inferMapper(zipPath: string): Promise<ModMapper> {
                 return;
             }
 
+            let isNested: boolean = false;
             let isModTemplate: boolean = false;
             let onlyRenpy: boolean = true;
 
@@ -59,6 +60,10 @@ export function inferMapper(zipPath: string): Promise<ModMapper> {
                     isModTemplate = true;
                 }
 
+                if (["mod_assets", "python-packages", "saves", "audio.rpa"].indexOf(pathParts[1]) !== -1) {
+                    isNested = true;
+                }
+
                 if (!path.endsWith("/") &&
                     !path.match(/\.rp(y|yc|a)$/i) &&
                     !path.match(/\.(txt|md|html|pdf|docx)$/i)) {
@@ -68,6 +73,8 @@ export function inferMapper(zipPath: string): Promise<ModMapper> {
 
             if (isModTemplate) {
                 ff(new ModTemplateFormat());
+            } else if (isNested) {
+                ff(new NestedGameFolder());
             } else if (!onlyRenpy) {
                 ff(new DumpAndHopeForTheBest());
             } else {

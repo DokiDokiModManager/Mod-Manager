@@ -39,6 +39,7 @@ function inferMapper(zipPath) {
                 ff(new NestedGameFolder_1.default(["scripts.rpa"]));
                 return;
             }
+            let isNested = false;
             let isModTemplate = false;
             let onlyRenpy = true;
             for (const path of structure) {
@@ -46,6 +47,9 @@ function inferMapper(zipPath) {
                 Logger_1.default.debug(path);
                 if (pathParts[1] === "game") {
                     isModTemplate = true;
+                }
+                if (["mod_assets", "python-packages", "saves", "audio.rpa"].indexOf(pathParts[1]) !== -1) {
+                    isNested = true;
                 }
                 if (!path.endsWith("/") &&
                     !path.match(/\.rp(y|yc|a)$/i) &&
@@ -55,6 +59,9 @@ function inferMapper(zipPath) {
             }
             if (isModTemplate) {
                 ff(new ModTemplateFormat_1.default());
+            }
+            else if (isNested) {
+                ff(new NestedGameFolder_1.default());
             }
             else if (!onlyRenpy) {
                 ff(new DumpAndHopeForTheBest_1.default());
