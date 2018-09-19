@@ -23,7 +23,6 @@ const Language = require("./i18n/i18n");
 const ModInstaller_1 = require("./installs/ModInstaller");
 const ModNormaliser_1 = require("./mods/ModNormaliser");
 const SDKServer_1 = require("./sdk/SDKServer");
-const PROTOCOL = "ddmm";
 const DISCORD_APPID = "453299645725016074";
 const SUPPORTED_PLATFORMS = [
     "linux", "win32",
@@ -44,19 +43,55 @@ electron_updater_1.autoUpdater.logger = Logger_1.default;
 electron_updater_1.autoUpdater.on("update-downloaded", () => {
     appWin.webContents.send("update downloaded");
 });
-function handleURL(args) {
-    const handledURL = args.pop();
-    if (handledURL.startsWith(PROTOCOL + ":")) {
-        const downloadURL = handledURL.substring(PROTOCOL.length + 1);
-        // cheat and download the URL. I'm sorry, but it lets me trigger some of the nice download behaviour.
-        appWin.webContents.downloadURL(downloadURL);
-    }
-}
 function downloadBaseGame() {
     DownloadLinkRetriever_1.default.getDownloadLink().then((link) => {
         appWin.webContents.downloadURL(link);
     }).catch((e) => {
         console.log(e);
+    });
+}
+function launchGame(dir) {
+    let installData;
+    appWin.minimize();
+    try {
+        installData =
+            JSON.parse(fs_1.readFileSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", dir, "install.json")).toString("utf8"));
+    }
+    catch (e) {
+        appWin.webContents.send("running cover", false);
+        appWin.webContents.send("show toast", i18n("install_launch.toast_corrupt"));
+        return;
+    }
+    const gameExecutable = path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", dir, "install", (process.platform === "win32" ? "ddlc.exe" : "DDLC.sh"));
+    appWin.webContents.send("running cover", true);
+    const dataFolder = path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", dir, "appdata");
+    // If the app uses the global save, don't change the environment variables
+    const env = installData.globalSave ? process.env : Object.assign(process.env, {
+        APPDATA: dataFolder,
+        HOME: dataFolder,
+    });
+    const procHandle = child_process_1.spawn(gameExecutable, [], {
+        // Overwrite the environment variables to force Ren'Py to save where we want it to.
+        // On Windows, the save location is determined by the value of %appdata% but on macOS / Linux
+        // it saves based on the home directory location. This can be changed with $HOME but means the save
+        // files cannot be directly ported between operating systems.
+        cwd: path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", dir, "install"),
+        env,
+    });
+    richPresence.setPlayingPresence(installData.name);
+    sdkServer.setPlaying(dir);
+    procHandle.on("error", (error) => {
+        sdkServer.setPlaying(null);
+        appWin.webContents.send("running cover", false);
+        appWin.webContents.send("show toast", i18n("install_launch.toast_launch_error"));
+        appWin.restore();
+    });
+    procHandle.on("close", () => {
+        sdkServer.setPlaying(null);
+        richPresence.setIdlePresence();
+        appWin.webContents.send("running cover", false);
+        appWin.webContents.send("install list", InstallList_1.default.getInstallList());
+        appWin.restore();
     });
 }
 function checkUpdates() {
@@ -153,7 +188,6 @@ electron_1.app.on("ready", () => {
     if (electron_1.app.makeSingleInstance((argv) => {
         appWin.restore();
         appWin.focus();
-        handleURL(argv);
     })) {
         Logger_1.default.info("Signalled other instance - quitting.");
         electron_1.app.quit();
@@ -170,7 +204,6 @@ electron_1.app.on("ready", () => {
         });
     }
     electron_1.app.setAppUserModelId("space.doki.modmanager");
-    electron_1.app.setAsDefaultProtocolClient(PROTOCOL);
     if (SUPPORTED_PLATFORMS.indexOf(process.platform) === -1) {
         electron_1.dialog.showMessageBox({
             detail: i18n("platform_test.dialog_message"),
@@ -245,6 +278,10 @@ electron_1.app.on("ready", () => {
         setTimeout(() => {
             appWin.webContents.send("ready");
         }, 500); // Avoid showing onboarding when not needed
+        let toLaunch = process.argv.pop();
+        if (fs_1.existsSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", toLaunch))) {
+            launchGame(toLaunch);
+        }
     });
     // IPC functions
     electron_1.ipcMain.on("open devtools", () => {
@@ -322,45 +359,7 @@ electron_1.app.on("ready", () => {
     });
     // Game launch functions / IPC
     electron_1.ipcMain.on("launch install", (_, dir) => {
-        let installData;
-        try {
-            installData =
-                JSON.parse(fs_1.readFileSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", dir, "install.json")).toString("utf8"));
-        }
-        catch (e) {
-            appWin.webContents.send("running cover", false);
-            appWin.webContents.send("show toast", i18n("install_launch.toast_corrupt"));
-            return;
-        }
-        const gameExecutable = path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", dir, "install", (process.platform === "win32" ? "ddlc.exe" : "DDLC.sh"));
-        appWin.webContents.send("running cover", true);
-        const dataFolder = path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", dir, "appdata");
-        // If the app uses the global save, don't change the environment variables
-        const env = installData.globalSave ? process.env : Object.assign(process.env, {
-            APPDATA: dataFolder,
-            HOME: dataFolder,
-        });
-        const procHandle = child_process_1.spawn(gameExecutable, [], {
-            // Overwrite the environment variables to force Ren'Py to save where we want it to.
-            // On Windows, the save location is determined by the value of %appdata% but on macOS / Linux
-            // it saves based on the home directory location. This can be changed with $HOME but means the save
-            // files cannot be directly ported between operating systems.
-            cwd: path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", dir, "install"),
-            env,
-        });
-        richPresence.setPlayingPresence(installData.name);
-        sdkServer.setPlaying(dir);
-        procHandle.on("error", (error) => {
-            sdkServer.setPlaying(null);
-            appWin.webContents.send("running cover", false);
-            appWin.webContents.send("show toast", i18n("install_launch.toast_launch_error"));
-        });
-        procHandle.on("close", () => {
-            sdkServer.setPlaying(null);
-            richPresence.setIdlePresence();
-            appWin.webContents.send("running cover", false);
-            appWin.webContents.send("install list", InstallList_1.default.getInstallList());
-        });
+        launchGame(dir);
     });
     // Install management functions / IPC
     electron_1.ipcMain.on("create install", (_, meta) => {
@@ -535,6 +534,5 @@ electron_1.app.on("ready", () => {
         });
     });
     sdkServer = new SDKServer_1.default(41420, "127.0.0.1");
-    handleURL(process.argv);
 });
 //# sourceMappingURL=main.js.map
