@@ -236,8 +236,14 @@ DirectoryManager.createDirs(Config.readConfigValue("installFolder"));
 app.on("ready", () => {
     i18n = Language(app.getLocale());
     if (app.makeSingleInstance((argv: string[]) => {
-        appWin.restore();
-        appWin.focus();
+        let toLaunch = argv.pop();
+        if ([".", ".."].indexOf(toLaunch) === -1 && existsSync(joinPath(Config.readConfigValue("installFolder"),
+            "installs", toLaunch))) {
+            launchGame(toLaunch);
+        } else {
+            appWin.restore();
+            appWin.focus();
+        }
     })) {
         Logger.info("Signalled other instance - quitting.");
         app.quit();
@@ -280,6 +286,8 @@ app.on("ready", () => {
         },
         width: 1000,
     });
+
+    appWin.minimize();
 
     // Load the app UI
     appWin.loadFile(joinPath(__dirname, "../gui/html/index.html"));
@@ -344,6 +352,8 @@ app.on("ready", () => {
         if ([".", ".."].indexOf(toLaunch) === -1 && existsSync(joinPath(Config.readConfigValue("installFolder"),
             "installs", toLaunch))) {
             launchGame(toLaunch);
+        } else {
+            appWin.restore();
         }
     });
 
@@ -649,11 +659,16 @@ app.on("ready", () => {
             ]
         }, (file) => {
             if (file) {
-                shell.writeShortcutLink(file, "create", {
+                Logger.debug("Writing shortcut to " + file);
+                console.log(process.argv0, process.argv);
+                if (shell.writeShortcutLink(file, "create", {
                     args: opts.installDir,
-                    target: process.argv[0]
-                });
-                appWin.webContents.send("show toast", i18n("shortcut.toast_success"));
+                    target: process.argv0
+                })) {
+                    appWin.webContents.send("show toast", i18n("shortcut.toast_success"));
+                } else {
+                    appWin.webContents.send("show toast", i18n("shortcut.toast_fail"));
+                }
             }
         });
     });

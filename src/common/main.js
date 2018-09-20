@@ -186,8 +186,14 @@ DirectoryManager_1.default.createDirs(Config_1.default.readConfigValue("installF
 electron_1.app.on("ready", () => {
     i18n = Language(electron_1.app.getLocale());
     if (electron_1.app.makeSingleInstance((argv) => {
-        appWin.restore();
-        appWin.focus();
+        let toLaunch = argv.pop();
+        if ([".", ".."].indexOf(toLaunch) === -1 && fs_1.existsSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", toLaunch))) {
+            launchGame(toLaunch);
+        }
+        else {
+            appWin.restore();
+            appWin.focus();
+        }
     })) {
         Logger_1.default.info("Signalled other instance - quitting.");
         electron_1.app.quit();
@@ -224,6 +230,7 @@ electron_1.app.on("ready", () => {
         },
         width: 1000,
     });
+    appWin.minimize();
     // Load the app UI
     appWin.loadFile(path_1.join(__dirname, "../gui/html/index.html"));
     // ...and show it when ready
@@ -281,6 +288,9 @@ electron_1.app.on("ready", () => {
         let toLaunch = process.argv.pop();
         if ([".", ".."].indexOf(toLaunch) === -1 && fs_1.existsSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", toLaunch))) {
             launchGame(toLaunch);
+        }
+        else {
+            appWin.restore();
         }
     });
     // IPC functions
@@ -552,11 +562,17 @@ electron_1.app.on("ready", () => {
             ]
         }, (file) => {
             if (file) {
-                electron_1.shell.writeShortcutLink(file, "create", {
+                Logger_1.default.debug("Writing shortcut to " + file);
+                console.log(process.argv0, process.argv);
+                if (electron_1.shell.writeShortcutLink(file, "create", {
                     args: opts.installDir,
-                    target: process.argv[0]
-                });
-                appWin.webContents.send("show toast", i18n("shortcut.toast_success"));
+                    target: process.argv0
+                })) {
+                    appWin.webContents.send("show toast", i18n("shortcut.toast_success"));
+                }
+                else {
+                    appWin.webContents.send("show toast", i18n("shortcut.toast_fail"));
+                }
             }
         });
     });
