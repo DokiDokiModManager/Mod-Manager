@@ -545,15 +545,16 @@ electron_1.app.on("ready", () => {
             electron_1.dialog.showErrorBox("Shortcut creation is only supported on Windows", "Nice try.");
             return;
         }
-        electron_1.dialog.showOpenDialog(appWin, {
-            buttonLabel: i18n("shortcut.button_select"),
+        electron_1.dialog.showSaveDialog(appWin, {
             title: i18n("shortcut.dialog_title"),
-            properties: ["openDirectory"],
-        }, (files) => {
-            if (files && files[0]) {
-                electron_1.shell.writeShortcutLink(path_1.join(files[0], opts.installName + ".lnk"), "create", {
+            filters: [
+                { name: "Shortcut", extensions: ["lnk"] }
+            ]
+        }, (file) => {
+            if (file) {
+                electron_1.shell.writeShortcutLink(file, "create", {
                     args: opts.installDir,
-                    target: process.argv[0],
+                    target: process.argv[0]
                 });
                 appWin.webContents.send("show toast", i18n("shortcut.toast_success"));
             }

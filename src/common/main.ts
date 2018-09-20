@@ -642,15 +642,16 @@ app.on("ready", () => {
             return;
         }
 
-        dialog.showOpenDialog(appWin, {
-            buttonLabel: i18n("shortcut.button_select"),
+        dialog.showSaveDialog(appWin, {
             title: i18n("shortcut.dialog_title"),
-            properties: ["openDirectory"],
-        }, (files) => {
-            if (files && files[0]) {
-                shell.writeShortcutLink(joinPath(files[0], opts.installName + ".lnk"), "create", {
+            filters: [
+                {name: "Shortcut", extensions: ["lnk"]}
+            ]
+        }, (file) => {
+            if (file) {
+                shell.writeShortcutLink(file, "create", {
                     args: opts.installDir,
-                    target: process.argv[0],
+                    target: process.argv[0]
                 });
                 appWin.webContents.send("show toast", i18n("shortcut.toast_success"));
             }

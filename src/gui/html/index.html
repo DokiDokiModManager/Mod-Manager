@@ -90,7 +90,7 @@
                         @click="ui.selected_install = install.folderName; ui.side_sheets.save_management = true">
                     {{_("install.button_settings")}}
                 </button>
-                <button class="secondary" v-if="ui.platform === 'win32'" @click="createShortcut(install.fullFolderName, install.installName)">
+                <button class="secondary" v-if="ui.platform === 'win32'" @click="createShortcut(install.folderName, install.installName)">
                     {{_("install.button_shortcut")}}
                 </button>
                 <button class="secondary" v-if="install.achievements"
