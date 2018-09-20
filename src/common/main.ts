@@ -341,7 +341,7 @@ app.on("ready", () => {
         }, 500); // Avoid showing onboarding when not needed
 
         let toLaunch = process.argv.pop();
-        if (existsSync(joinPath(Config.readConfigValue("installFolder"),
+        if ([".", ".."].indexOf(toLaunch) === -1 && existsSync(joinPath(Config.readConfigValue("installFolder"),
             "installs", toLaunch))) {
             launchGame(toLaunch);
         }

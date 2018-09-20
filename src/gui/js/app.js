@@ -86,7 +86,8 @@ const vueApp = new Vue({
                 "installs": "",
                 "mods": ""
             },
-            "running_install": null
+            "running_install": null,
+            "platform": process.platform
         },
         "installs": [],
         "mods": [],
