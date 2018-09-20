@@ -15,6 +15,7 @@
     "status_global_save": "Global Save",
     "status_installed": "Installed - ready to launch",
     "button_play": "Play",
+    "button_shortcut": "Create Shortcut",
     "button_settings": "Settings",
     "button_achievements": "Achievements",
     "button_uninstall": "Uninstall",
@@ -248,6 +249,11 @@
   },
   "debug_crash": {
     "toast_prompt": "Hold CTRL while clicking to induce a crash."
+  },
+  "shortcut": {
+    "dialog_title": "Where would you like to place the shortcut?",
+    "button_select": "Select",
+    "toast_success": "Shortcut created."
   },
   "locale": "The current language is set to English (UK) - en_GB"
 }

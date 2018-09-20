@@ -86,7 +86,8 @@ const vueApp = new Vue({
                 "installs": "",
                 "mods": ""
             },
-            "running_install": null
+            "running_install": null,
+            "platform": process.platform
         },
         "installs": [],
         "mods": [],
@@ -212,6 +213,9 @@ const vueApp = new Vue({
         },
         "downloadMod": function (url) {
             window.location.href = url;
+        },
+        "createShortcut": function (installDir, installName) {
+            ipcRenderer.send("create shortcut", {installDir, installName});
         }
     },
     "computed": {
