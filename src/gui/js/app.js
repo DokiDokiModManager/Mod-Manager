@@ -213,6 +213,9 @@ const vueApp = new Vue({
         },
         "downloadMod": function (url) {
             window.location.href = url;
+        },
+        "createShortcut": function (installDir, installName) {
+            ipcRenderer.send("create shortcut", {installDir, installName});
         }
     },
     "computed": {
