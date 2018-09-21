@@ -231,7 +231,17 @@ registerProcessEventHandler("uncaughtException", (error) => {
     });
 });
 
-DirectoryManager.createDirs(Config.readConfigValue("installFolder"));
+console.log(Config.readConfigValue("installFolder", true));
+console.log(Config.readConfigValue("installFolder"));
+if (!Config.readConfigValue("installFolder", true) && existsSync(joinPath(app.getPath("documents"), "Doki Doki Mod Manager"))) {
+    console.log("Old documents folder location");
+    DirectoryManager.createDirs(Config.readConfigValue("installFolder"));
+    Config.saveConfigValue("installFolder", joinPath(app.getPath("documents"), "Doki Doki Mod Manager"));
+} else {
+    console.log("New install location");
+    DirectoryManager.createDirs(Config.readConfigValue("installFolder"));
+    Config.saveConfigValue("installFolder", Config.readConfigValue("installFolder"));
+}
 
 app.on("ready", () => {
     i18n = Language(app.getLocale());
@@ -667,7 +677,7 @@ app.on("ready", () => {
                 })) {
                     appWin.webContents.send("show toast", i18n("shortcut.toast_success"));
                 } else {
-                    appWin.webContents.send("show toast", i18n("shortcut.toast_fail"));
+                    appWin.webContents.send("show toast", i18n("shortcut.toast_error"));
                 }
             }
         });

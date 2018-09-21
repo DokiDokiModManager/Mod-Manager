@@ -252,8 +252,8 @@
   },
   "shortcut": {
     "dialog_title": "Where would you like to place the shortcut?",
-    "button_select": "Select",
-    "toast_success": "Shortcut created."
+    "toast_success": "Shortcut created.",
+    "toast_error": "Could not create the shortcut."
   },
   "locale": "The current language is set to English (UK) - en_GB"
 }
