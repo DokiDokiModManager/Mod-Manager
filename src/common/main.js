@@ -33,6 +33,7 @@ let richPresence;
 let sdkServer;
 let i18n = Language("en-GB");
 let debug = false;
+let running = false;
 let crashed = false;
 let allowClosing = false;
 const downloads = new Map();
@@ -51,6 +52,9 @@ function downloadBaseGame() {
     });
 }
 function launchGame(dir) {
+    if (running)
+        return;
+    running = true;
     let installData;
     appWin.minimize();
     try {
@@ -85,6 +89,7 @@ function launchGame(dir) {
         appWin.webContents.send("running cover", false);
         appWin.webContents.send("show toast", i18n("install_launch.toast_launch_error"));
         appWin.restore();
+        running = false;
     });
     procHandle.on("close", () => {
         sdkServer.setPlaying(null);
@@ -92,6 +97,7 @@ function launchGame(dir) {
         appWin.webContents.send("running cover", false);
         appWin.webContents.send("install list", InstallList_1.default.getInstallList());
         appWin.restore();
+        running = false;
     });
 }
 function checkUpdates() {

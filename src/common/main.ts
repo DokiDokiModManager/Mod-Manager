@@ -48,6 +48,8 @@ let i18n = Language("en-GB");
 
 let debug: boolean = false;
 
+let running: boolean = false;
+
 let crashed: boolean = false;
 
 let allowClosing: boolean = false;
@@ -73,6 +75,10 @@ function downloadBaseGame() {
 }
 
 function launchGame(dir) {
+    if (running) return;
+
+    running = true;
+
     let installData;
 
     appWin.minimize();
@@ -127,6 +133,8 @@ function launchGame(dir) {
         appWin.webContents.send("show toast", i18n("install_launch.toast_launch_error"));
 
         appWin.restore();
+
+        running = false;
     });
 
     procHandle.on("close", () => {
@@ -135,6 +143,8 @@ function launchGame(dir) {
         appWin.webContents.send("running cover", false);
         appWin.webContents.send("install list", InstallList.getInstallList());
         appWin.restore();
+
+        running = false;
     });
 }
 
