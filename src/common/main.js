@@ -241,6 +241,7 @@ electron_1.app.on("ready", () => {
     // Instantiate the main app window
     appWin = new electron_1.BrowserWindow({
         height: 700,
+        icon: path_1.join(__dirname, "../../../build/icon.png"),
         show: false,
         webPreferences: {
             textAreasAreResizable: false,

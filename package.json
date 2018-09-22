@@ -3,7 +3,7 @@
   "productName": "Doki Doki Mod Manager!",
   "description": "Mod Manager for Doki Doki Literature Club!",
   "author": "u/zuudo",
-  "version": "2.13.0",
+  "version": "2.13.1",
   "homepage": "https://doki.space",
   "main": "src/common/main.js",
   "scripts": {
