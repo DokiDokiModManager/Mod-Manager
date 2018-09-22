@@ -274,6 +274,7 @@ app.on("ready", () => {
     // Instantiate the main app window
     appWin = new BrowserWindow({
         height: 700,
+        icon: joinPath(__dirname, "../../../build/icon.png"),
         show: false,
         webPreferences: {
             textAreasAreResizable: false,
