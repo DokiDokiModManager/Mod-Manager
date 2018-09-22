@@ -33,6 +33,7 @@ let richPresence;
 let sdkServer;
 let i18n = Language("en-GB");
 let debug = false;
+let running = false;
 let crashed = false;
 let allowClosing = false;
 const downloads = new Map();
@@ -51,6 +52,9 @@ function downloadBaseGame() {
     });
 }
 function launchGame(dir) {
+    if (running)
+        return;
+    running = true;
     let installData;
     appWin.minimize();
     try {
@@ -85,6 +89,7 @@ function launchGame(dir) {
         appWin.webContents.send("running cover", false);
         appWin.webContents.send("show toast", i18n("install_launch.toast_launch_error"));
         appWin.restore();
+        running = false;
     });
     procHandle.on("close", () => {
         sdkServer.setPlaying(null);
@@ -92,6 +97,7 @@ function launchGame(dir) {
         appWin.webContents.send("running cover", false);
         appWin.webContents.send("install list", InstallList_1.default.getInstallList());
         appWin.restore();
+        running = false;
     });
 }
 function checkUpdates() {
@@ -182,12 +188,29 @@ process_1.on("uncaughtException", (error) => {
         });
     });
 });
-DirectoryManager_1.default.createDirs(Config_1.default.readConfigValue("installFolder"));
+console.log(Config_1.default.readConfigValue("installFolder", true));
+console.log(Config_1.default.readConfigValue("installFolder"));
+if (!Config_1.default.readConfigValue("installFolder", true) && fs_1.existsSync(path_1.join(electron_1.app.getPath("documents"), "Doki Doki Mod Manager"))) {
+    console.log("Old documents folder location");
+    DirectoryManager_1.default.createDirs(Config_1.default.readConfigValue("installFolder"));
+    Config_1.default.saveConfigValue("installFolder", path_1.join(electron_1.app.getPath("documents"), "Doki Doki Mod Manager"));
+}
+else {
+    console.log("New install location");
+    DirectoryManager_1.default.createDirs(Config_1.default.readConfigValue("installFolder"));
+    Config_1.default.saveConfigValue("installFolder", Config_1.default.readConfigValue("installFolder"));
+}
 electron_1.app.on("ready", () => {
     i18n = Language(electron_1.app.getLocale());
     if (electron_1.app.makeSingleInstance((argv) => {
-        appWin.restore();
-        appWin.focus();
+        let toLaunch = argv.pop();
+        if ([".", ".."].indexOf(toLaunch) === -1 && fs_1.existsSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", toLaunch))) {
+            launchGame(toLaunch);
+        }
+        else {
+            appWin.restore();
+            appWin.focus();
+        }
     })) {
         Logger_1.default.info("Signalled other instance - quitting.");
         electron_1.app.quit();
@@ -224,6 +247,7 @@ electron_1.app.on("ready", () => {
         },
         width: 1000,
     });
+    appWin.minimize();
     // Load the app UI
     appWin.loadFile(path_1.join(__dirname, "../gui/html/index.html"));
     // ...and show it when ready
@@ -279,8 +303,11 @@ electron_1.app.on("ready", () => {
             appWin.webContents.send("ready");
         }, 500); // Avoid showing onboarding when not needed
         let toLaunch = process.argv.pop();
-        if (fs_1.existsSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", toLaunch))) {
+        if ([".", ".."].indexOf(toLaunch) === -1 && fs_1.existsSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", toLaunch))) {
             launchGame(toLaunch);
+        }
+        else {
+            appWin.restore();
         }
     });
     // IPC functions
@@ -518,12 +545,19 @@ electron_1.app.on("ready", () => {
         });
     });
     electron_1.ipcMain.on("submit feedback", (_, feedback) => {
+        let details = feedback.body + "\n\n";
+        details += "Version: " + electron_1.app.getVersion() + "\n";
+        details += "Platform: " + process.platform + "\n";
+        details += "Arch: " + process.arch + "\n";
+        details += "Node Version: " + process.version + "\n";
+        details += "Args: " + process.argv.join(" ") + "\n";
+        details += "Debug Tools: " + (debug ? "Yes" : "No") + "\n";
         request({
             headers: {
                 "User-Agent": "Doki Doki Mod Manager (u/zuudo)",
             },
             json: {
-                body: feedback.body,
+                body: details,
                 contact: feedback.contact,
                 type: feedback.type,
             },
@@ -531,6 +565,32 @@ electron_1.app.on("ready", () => {
             url: "https://us-central1-doki-doki-mod-manager.cloudfunctions.net/sendFeedback",
         }, () => {
             appWin.webContents.send("show toast", i18n("feedback.toast_sent"));
+        });
+    });
+    electron_1.ipcMain.on("create shortcut", (_, opts) => {
+        if (process.platform !== "win32") {
+            electron_1.dialog.showErrorBox("Shortcut creation is only supported on Windows", "Nice try.");
+            return;
+        }
+        electron_1.dialog.showSaveDialog(appWin, {
+            title: i18n("shortcut.dialog_title"),
+            filters: [
+                { name: "Shortcut", extensions: ["lnk"] }
+            ]
+        }, (file) => {
+            if (file) {
+                Logger_1.default.debug("Writing shortcut to " + file);
+                console.log(process.argv0, process.argv);
+                if (electron_1.shell.writeShortcutLink(file, "create", {
+                    args: opts.installDir,
+                    target: process.argv0
+                })) {
+                    appWin.webContents.send("show toast", i18n("shortcut.toast_success"));
+                }
+                else {
+                    appWin.webContents.send("show toast", i18n("shortcut.toast_error"));
+                }
+            }
         });
     });
     sdkServer = new SDKServer_1.default(41420, "127.0.0.1");

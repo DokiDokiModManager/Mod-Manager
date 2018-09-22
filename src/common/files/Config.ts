@@ -1,22 +1,23 @@
 import {app} from "electron";
+import {mkdirsSync} from "fs-extra";
 import {existsSync as fileExists, readFileSync, writeFileSync} from "fs";
-import {join as joinPath} from "path";
+import {join as joinPath, sep as pathSep} from "path";
 
 export default class Config {
 
-    public static readConfigValue(key: string) {
+    public static readConfigValue(key: string, noDefault?: boolean) {
         if (fileExists(this.configPath)) {
             const contents: string = readFileSync(this.configPath).toString("utf8");
             const config: object = JSON.parse(contents);
             if (config[key]) {
                 return config[key];
-            } else if (this.defaultConfig[key]) {
+            } else if (!noDefault && this.defaultConfig[key]) {
                 return this.defaultConfig[key];
             } else {
                 return undefined;
             }
         } else {
-            if (this.defaultConfig[key]) {
+            if (!noDefault && this.defaultConfig[key]) {
                 return this.defaultConfig[key];
             } else {
                 return undefined;
@@ -31,11 +32,12 @@ export default class Config {
             config = JSON.parse(contents);
         }
         config[key] = value;
+        mkdirsSync(this.configPath.split(pathSep).slice(0, -1).join(pathSep));
         writeFileSync(this.configPath, JSON.stringify(config));
     }
 
     private static defaultConfig = {
-        installFolder: joinPath(app.getPath("documents"), "Doki Doki Mod Manager"),
+        installFolder: joinPath(app.getPath("userData"), "GameData"),
         theme: "light",
     };
 

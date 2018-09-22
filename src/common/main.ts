@@ -48,6 +48,8 @@ let i18n = Language("en-GB");
 
 let debug: boolean = false;
 
+let running: boolean = false;
+
 let crashed: boolean = false;
 
 let allowClosing: boolean = false;
@@ -73,6 +75,10 @@ function downloadBaseGame() {
 }
 
 function launchGame(dir) {
+    if (running) return;
+
+    running = true;
+
     let installData;
 
     appWin.minimize();
@@ -127,6 +133,8 @@ function launchGame(dir) {
         appWin.webContents.send("show toast", i18n("install_launch.toast_launch_error"));
 
         appWin.restore();
+
+        running = false;
     });
 
     procHandle.on("close", () => {
@@ -135,6 +143,8 @@ function launchGame(dir) {
         appWin.webContents.send("running cover", false);
         appWin.webContents.send("install list", InstallList.getInstallList());
         appWin.restore();
+
+        running = false;
     });
 }
 
@@ -231,13 +241,29 @@ registerProcessEventHandler("uncaughtException", (error) => {
     });
 });
 
-DirectoryManager.createDirs(Config.readConfigValue("installFolder"));
+console.log(Config.readConfigValue("installFolder", true));
+console.log(Config.readConfigValue("installFolder"));
+if (!Config.readConfigValue("installFolder", true) && existsSync(joinPath(app.getPath("documents"), "Doki Doki Mod Manager"))) {
+    console.log("Old documents folder location");
+    DirectoryManager.createDirs(Config.readConfigValue("installFolder"));
+    Config.saveConfigValue("installFolder", joinPath(app.getPath("documents"), "Doki Doki Mod Manager"));
+} else {
+    console.log("New install location");
+    DirectoryManager.createDirs(Config.readConfigValue("installFolder"));
+    Config.saveConfigValue("installFolder", Config.readConfigValue("installFolder"));
+}
 
 app.on("ready", () => {
     i18n = Language(app.getLocale());
     if (app.makeSingleInstance((argv: string[]) => {
-        appWin.restore();
-        appWin.focus();
+        let toLaunch = argv.pop();
+        if ([".", ".."].indexOf(toLaunch) === -1 && existsSync(joinPath(Config.readConfigValue("installFolder"),
+            "installs", toLaunch))) {
+            launchGame(toLaunch);
+        } else {
+            appWin.restore();
+            appWin.focus();
+        }
     })) {
         Logger.info("Signalled other instance - quitting.");
         app.quit();
@@ -281,6 +307,8 @@ app.on("ready", () => {
         },
         width: 1000,
     });
+
+    appWin.minimize();
 
     // Load the app UI
     appWin.loadFile(joinPath(__dirname, "../gui/html/index.html"));
@@ -342,9 +370,11 @@ app.on("ready", () => {
         }, 500); // Avoid showing onboarding when not needed
 
         let toLaunch = process.argv.pop();
-        if (existsSync(joinPath(Config.readConfigValue("installFolder"),
+        if ([".", ".."].indexOf(toLaunch) === -1 && existsSync(joinPath(Config.readConfigValue("installFolder"),
             "installs", toLaunch))) {
             launchGame(toLaunch);
+        } else {
+            appWin.restore();
         }
     });
 
@@ -612,12 +642,21 @@ app.on("ready", () => {
     });
 
     ipcMain.on("submit feedback", (_, feedback) => {
+        let details = feedback.body + "\n\n";
+
+        details += "Version: " + app.getVersion() + "\n";
+        details += "Platform: " + process.platform + "\n";
+        details += "Arch: " + process.arch + "\n";
+        details += "Node Version: " + process.version + "\n";
+        details += "Args: " + process.argv.join(" ") + "\n";
+        details += "Debug Tools: " + (debug ? "Yes" : "No") + "\n";
+
         request({
             headers: {
                 "User-Agent": "Doki Doki Mod Manager (u/zuudo)",
             },
             json: {
-                body: feedback.body,
+                body: details,
                 contact: feedback.contact,
                 type: feedback.type,
             },
@@ -625,6 +664,33 @@ app.on("ready", () => {
             url: "https://us-central1-doki-doki-mod-manager.cloudfunctions.net/sendFeedback",
         }, () => {
             appWin.webContents.send("show toast", i18n("feedback.toast_sent"));
+        });
+    });
+
+    ipcMain.on("create shortcut", (_, opts) => {
+        if (process.platform !== "win32") {
+            dialog.showErrorBox("Shortcut creation is only supported on Windows", "Nice try.");
+            return;
+        }
+
+        dialog.showSaveDialog(appWin, {
+            title: i18n("shortcut.dialog_title"),
+            filters: [
+                {name: "Shortcut", extensions: ["lnk"]}
+            ]
+        }, (file) => {
+            if (file) {
+                Logger.debug("Writing shortcut to " + file);
+                console.log(process.argv0, process.argv);
+                if (shell.writeShortcutLink(file, "create", {
+                    args: opts.installDir,
+                    target: process.argv0
+                })) {
+                    appWin.webContents.send("show toast", i18n("shortcut.toast_success"));
+                } else {
+                    appWin.webContents.send("show toast", i18n("shortcut.toast_error"));
+                }
+            }
         });
     });
 
