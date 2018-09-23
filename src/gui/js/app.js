@@ -87,7 +87,8 @@ const vueApp = new Vue({
                 "mods": ""
             },
             "running_install": null,
-            "platform": process.platform
+            "platform": process.platform,
+            "mod_submit_url": "https://docs.google.com/forms/d/e/1FAIpQLSd7jwBCw_0PWQGkGF_-sey0FRAsrouPX2QtDsfqDEDv2MLN5g/viewform?usp=sf_link"
         },
         "installs": [],
         "mods": [],

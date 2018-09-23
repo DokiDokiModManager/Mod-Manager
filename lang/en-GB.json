@@ -114,7 +114,8 @@
     "placeholder_contact": "How do you want me to get in contact with you?",
     "description_contact": "If you want me to get in contact with you regarding this feedback, add an email address, Reddit username or Discord tag. I read every piece of feedback I receive.",
     "toast_sent": "Your feedback has been sent. Thanks for the help!",
-    "toast_too_short": "Please be more detailed in your feedback."
+    "toast_too_short": "Please be more detailed in your feedback.",
+    "description_mod_submission": "Want your mod featured? Click here to submit it!"
   },
   "onboarding": {
     "title": "Welcome to the Literature Club!",

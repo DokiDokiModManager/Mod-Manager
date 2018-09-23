@@ -271,6 +271,8 @@
                 <h3>{{_("install_menu.subtitle_download_curated")}}</h3>
                 <p>{{_("install_menu.description_download_curated")}}</p>
                 <br>
+                <p><a href="javascript:;" @click="openURL(ui.mod_submit_url)">{{_("feedback.description_mod_submission")}}</a></p>
+                <br>
                 <div v-for="mod in recommended_mods">
                     <h4>{{mod.name}}</h4>
                     <p>{{_("install_menu.description_mod_author", mod.author)}}</p>
@@ -428,6 +430,8 @@
                 {{_("feedback.title")}}
             </div>
             <div class="side-sheet-content">
+                <p><a href="javascript:;" @click="openURL(ui.mod_submit_url)">{{_("feedback.description_mod_submission")}}</a></p>
+                <br>
                 <strong>{{_("feedback.label_feedback_type")}}</strong>
                 <p><label><input type="radio" name="feedback-type" value="question" v-model="ui.feedback.type">
                     {{_("feedback.label_feedback_type_question")}}</label>
