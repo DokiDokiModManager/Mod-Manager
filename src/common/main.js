@@ -303,13 +303,6 @@ electron_1.app.on("ready", () => {
         setTimeout(() => {
             appWin.webContents.send("ready");
         }, 500); // Avoid showing onboarding when not needed
-        let toLaunch = process.argv.pop();
-        if ([".", ".."].indexOf(toLaunch) === -1 && fs_1.existsSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", toLaunch))) {
-            launchGame(toLaunch);
-        }
-        else {
-            appWin.restore();
-        }
     });
     // IPC functions
     electron_1.ipcMain.on("open devtools", () => {
@@ -595,5 +588,12 @@ electron_1.app.on("ready", () => {
         });
     });
     sdkServer = new SDKServer_1.default(41420, "127.0.0.1");
+    let toLaunch = process.argv.pop();
+    if ([".", ".."].indexOf(toLaunch) === -1 && fs_1.existsSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", toLaunch))) {
+        launchGame(toLaunch);
+    }
+    else {
+        appWin.restore();
+    }
 });
 //# sourceMappingURL=main.js.map

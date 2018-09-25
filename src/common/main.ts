@@ -368,14 +368,6 @@ app.on("ready", () => {
         setTimeout(() => {
             appWin.webContents.send("ready");
         }, 500); // Avoid showing onboarding when not needed
-
-        let toLaunch = process.argv.pop();
-        if ([".", ".."].indexOf(toLaunch) === -1 && existsSync(joinPath(Config.readConfigValue("installFolder"),
-            "installs", toLaunch))) {
-            launchGame(toLaunch);
-        } else {
-            appWin.restore();
-        }
     });
 
     // IPC functions
@@ -465,6 +457,7 @@ app.on("ready", () => {
             });
         });
     });
+
 
     // Game launch functions / IPC
 
@@ -695,4 +688,12 @@ app.on("ready", () => {
     });
 
     sdkServer = new SDKServer(41420, "127.0.0.1");
+
+    let toLaunch = process.argv.pop();
+    if ([".", ".."].indexOf(toLaunch) === -1 && existsSync(joinPath(Config.readConfigValue("installFolder"),
+        "installs", toLaunch))) {
+        launchGame(toLaunch);
+    } else {
+        appWin.restore();
+    }
 });
