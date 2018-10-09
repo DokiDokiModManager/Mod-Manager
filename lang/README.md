@@ -4,6 +4,10 @@ Thanks for your interest in helping Doki Doki Mod Manager support more languages
 
 ## How to translate
 
+## i18n Manager
+
+If you point [i18n Manager](https://github.com/gilmarsquinelato/i18n-manager/releases) at the `lang` folder, it should work out of the box.
+
 ### Translating - the basics
 
 Every currently available language has its own `.json` file. For example, English (UK) is `en-GB.json` and Russian is `ru.json`.
