@@ -182,7 +182,7 @@
   },
   "crash_reporter": {
     "dialog_title": "Doki Doki Mod Manager crashed!",
-    "dialog_message": "A problem occurred in Doki Doki Mod Manager which caused the app to crash. A crash report has been generated, which will be helpful when fixing the issue.",
+    "dialog_message": "A problem occurred in Doki Doki Mod Ma/nager which caused the app to crash. A crash report has been generated, which will be helpful when fixing the issue.",
     "button_view_crash": "View Crash Report",
     "button_quit": "Quit"
   },

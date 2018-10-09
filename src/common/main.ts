@@ -25,6 +25,8 @@ import DirectoryManager from "./files/DirectoryManager";
 import InstallCreator from "./installs/InstallCreator";
 import InstallList from "./installs/InstallList";
 import Logger from "./utilities/Logger";
+// @ts-ignore ???
+import * as Sentry from '@sentry/electron';
 
 import {on as registerProcessEventHandler} from "process";
 import * as Language from "./i18n/i18n";
@@ -65,6 +67,8 @@ autoUpdater.logger = Logger;
 autoUpdater.on("update-downloaded", () => {
     appWin.webContents.send("update downloaded");
 });
+
+Sentry.init({dsn: 'https://bf0edf3f287344d4969e3171c33af4ea@sentry.io/1297252'});
 
 function downloadBaseGame() {
     DownloadLinkRetriever.getDownloadLink().then((link: string) => {
@@ -188,56 +192,20 @@ registerProcessEventHandler("uncaughtException", (error) => {
     if (crashed) {
         return;
     }
+
     crashed = true;
+
     if (appWin) {
         appWin.hide();
     }
 
-    Logger.error("An uncaught exception occurred!");
-    Logger.error("Preparing to upload stacktrace...");
-
-    let paste: string = "Doki Doki Mod Manager! Crash Report\n\n";
-    paste += "Timestamp: " + new Date().toISOString() + "\n";
-    paste += "Version: " + app.getVersion() + "\n";
-    paste += "Platform: " + process.platform + "\n";
-    paste += "Arch: " + process.arch + "\n";
-    paste += "Node Version: " + process.version + "\n";
-    paste += "Args: " + process.argv.join(" ") + "\n";
-    paste += "Debug Tools: " + (debug ? "Yes" : "No") + "\n";
-    paste += "\nSTACKTRACE:\n\n";
-    paste += error.stack;
-    paste += "\n\nCONFIG FILE:\n\n";
-    try {
-        paste += readFileSync(joinPath(app.getPath("userData"), "config.json")).toString("utf8");
-    } catch (e) {
-        paste += "Error reading - " + e.message;
-    }
-
     dialog.showMessageBox({
-        buttons: [i18n("crash_reporter.button_view_crash"), i18n("crash_reporter.button_quit")],
-        defaultId: 1,
+        buttons: [i18n("crash_reporter.button_quit")],
         detail: i18n("crash_reporter.dialog_message"),
         message: i18n("crash_reporter.dialog_title"),
         type: "error",
-    }, (btn) => {
-        request({
-            headers: {
-                "User-Agent": "Doki Doki Mod Manager (u/zuudo)",
-            },
-            json: {
-                crash: paste,
-            },
-            method: "POST",
-            url: "https://us-central1-doki-doki-mod-manager.cloudfunctions.net/postCrashReport",
-        }, (e, r, b) => {
-            if (!e) {
-                if (btn === 0) {
-                    shell.openExternal("https://gist.githubusercontent.com/ZudoMC/" + b + "/raw/crash.txt");
-                }
-            }
-
-            app.exit();
-        });
+    }, () => {
+        app.exit()
     });
 });
 
