@@ -520,6 +520,14 @@
                 {{selectedInstall.installName}}
             </div>
             <div class="side-sheet-content" v-if="selectedInstall">
+                <div>
+                    <h3>{{_("save_management.subtitle_rename")}}</h3>
+                    <p>{{_("save_management.description_rename")}}</p>
+                    <p><input type="text" v-model="ui.new_install_name" :placeholder="_('save_management.placeholder_rename')"></p>
+                    <button class="primary" @click="renameInstall(ui.new_install_name)">
+                        {{_("save_management.button_rename")}}
+                    </button>
+                </div>
                 <div class="highlight warning">
                     <h3>{{_("save_management.subtitle_firstrun_delete")}}</h3>
                     <p>{{_("save_management.description_firstrun_delete")}}</p>

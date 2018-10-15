@@ -136,7 +136,11 @@
     "subtitle_save_delete": "Delete Save Data",
     "description_save_delete": "Completely erase your save data and start the game from scratch.",
     "description_save_delete_global": "As this install uses a global save, you cannot delete your save data directly. Either delete the firstrun flag (if the mod supports it) or delete the save file manually.",
-    "button_save_delete": "Delete"
+    "button_save_delete": "Delete",
+    "subtitle_rename": "Rename",
+    "description_rename": "Change the name of this install.",
+    "placeholder_rename": "Enter the new name...",
+    "button_rename": "Rename"
   },
   "achievements": {
     "title": "Achievements ({0} / {1})",
@@ -182,7 +186,7 @@
   },
   "crash_reporter": {
     "dialog_title": "Doki Doki Mod Manager crashed!",
-    "dialog_message": "A problem occurred in Doki Doki Mod Ma/nager which caused the app to crash. A crash report has been generated, which will be helpful when fixing the issue.",
+    "dialog_message": "A problem occurred in Doki Doki Mod Manager which caused the app to crash. A crash report has been generated, which will be helpful when fixing the issue.",
     "button_view_crash": "View Crash Report",
     "button_quit": "Quit"
   },

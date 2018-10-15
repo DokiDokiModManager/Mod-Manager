@@ -221,18 +221,20 @@ if (!Config.readConfigValue("installFolder", true) && existsSync(joinPath(app.ge
     Config.saveConfigValue("installFolder", Config.readConfigValue("installFolder"));
 }
 
+app.on("second-instance", (_, argv) => {
+    let toLaunch = argv.pop();
+    if ([".", ".."].indexOf(toLaunch) === -1 && existsSync(joinPath(Config.readConfigValue("installFolder"),
+        "installs", toLaunch))) {
+        launchGame(toLaunch);
+    } else {
+        appWin.restore();
+        appWin.focus();
+    }
+});
+
 app.on("ready", () => {
     i18n = Language(app.getLocale());
-    if (app.makeSingleInstance((argv: string[]) => {
-        let toLaunch = argv.pop();
-        if ([".", ".."].indexOf(toLaunch) === -1 && existsSync(joinPath(Config.readConfigValue("installFolder"),
-            "installs", toLaunch))) {
-            launchGame(toLaunch);
-        } else {
-            appWin.restore();
-            appWin.focus();
-        }
-    })) {
+    if (!app.requestSingleInstanceLock()) {
         Logger.info("Signalled other instance - quitting.");
         app.quit();
         return;
@@ -500,6 +502,16 @@ app.on("ready", () => {
                 appWin.webContents.send("show toast", i18n("save_delete.toast_error"));
             }
         });
+    });
+
+    ipcMain.on("rename install", (_, data) => {
+        console.log(data);
+        const dataPath =
+            joinPath(Config.readConfigValue("installFolder"), "installs", data.install, "install.json");
+
+        let installData = JSON.parse(readFileSync(dataPath).toString("utf-8"));
+        installData.name = data.name;
+        writeFileSync(dataPath, JSON.stringify(installData));
     });
 
     ipcMain.on("delete install", (_, dir) => {

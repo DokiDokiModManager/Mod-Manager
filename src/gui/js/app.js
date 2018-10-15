@@ -88,7 +88,8 @@ const vueApp = new Vue({
             },
             "running_install": null,
             "platform": process.platform,
-            "mod_submit_url": "https://docs.google.com/forms/d/e/1FAIpQLSd7jwBCw_0PWQGkGF_-sey0FRAsrouPX2QtDsfqDEDv2MLN5g/viewform?usp=sf_link"
+            "mod_submit_url": "https://docs.google.com/forms/d/e/1FAIpQLSd7jwBCw_0PWQGkGF_-sey0FRAsrouPX2QtDsfqDEDv2MLN5g/viewform?usp=sf_link",
+            "new_install_name": ""
         },
         "installs": [],
         "mods": [],
@@ -217,6 +218,17 @@ const vueApp = new Vue({
         },
         "createShortcut": function (installDir, installName) {
             ipcRenderer.send("create shortcut", {installDir, installName});
+        },
+        "renameInstall": function (name) {
+            if (name.trim().length < 1) {
+                return;
+            }
+            ipcRenderer.send("rename install", {
+                install: this.ui.selected_install,
+                name
+            });
+            this.selectedInstall.installName = name;
+            this.ui.new_install_name = "";
         }
     },
     "computed": {
