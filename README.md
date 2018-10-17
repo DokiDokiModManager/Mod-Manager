@@ -1,4 +1,4 @@
-# Doki Doki Mod Manager [![Build Status](https://travis-ci.org/DokiDokiModManager/Mod-Manager.svg?branch=master)](https://travis-ci.org/DokiDokiModManager/Mod-Manager)
+# Doki Doki Mod Manager [![Build Status](https://travis-ci.org/DokiDokiModManager/Mod-Manager.svg?branch=master)](https://travis-ci.org/DokiDokiModManager/Mod-Manager) [![Greenkeeper badge](https://badges.greenkeeper.io/DokiDokiModManager/Mod-Manager.svg)](https://greenkeeper.io/)
 
 Doki Doki Mod Manager is, as the name implies, a mod manager for Doki Doki Literature Club!
 
