@@ -26,7 +26,7 @@
     "fs-extra": "latest",
     "fuse.js": "^3.2.1",
     "mousetrap": "^1.6.2",
-    "normalize-url": "^3.2.0",
+    "normalize-url": "^4.0.0",
     "request": "^2.87.0",
     "sanitize-filename": "latest",
     "semver": "latest",
