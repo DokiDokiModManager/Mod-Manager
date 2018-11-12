@@ -155,15 +155,13 @@ process_1.on("uncaughtException", (error) => {
         electron_1.app.exit();
     });
 });
-console.log(Config_1.default.readConfigValue("installFolder", true));
-console.log(Config_1.default.readConfigValue("installFolder"));
 if (!Config_1.default.readConfigValue("installFolder", true) && fs_1.existsSync(path_1.join(electron_1.app.getPath("documents"), "Doki Doki Mod Manager"))) {
-    console.log("Old documents folder location");
+    Logger_1.default.info("Old documents folder location");
     DirectoryManager_1.default.createDirs(Config_1.default.readConfigValue("installFolder"));
     Config_1.default.saveConfigValue("installFolder", path_1.join(electron_1.app.getPath("documents"), "Doki Doki Mod Manager"));
 }
 else {
-    console.log("New install location");
+    Logger_1.default.info("New install location");
     DirectoryManager_1.default.createDirs(Config_1.default.readConfigValue("installFolder"));
     Config_1.default.saveConfigValue("installFolder", Config_1.default.readConfigValue("installFolder"));
 }

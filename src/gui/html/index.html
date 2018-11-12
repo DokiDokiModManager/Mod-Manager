@@ -84,13 +84,15 @@
                 <h3>{{install.installName}}</h3>
                 <p><a href="javascript:;" @click="openFolder(install.fullFolderName)">{{install.fullFolderName}}</a></p>
                 <p><span v-if="install.globalSave"><strong>{{_("install.status_global_save")}}</strong> - </span>{{_("install.status_installed")}}
+                    <span v-if="install.version === '3'">({{_("install.status_legacy_install")}})</span>
                 </p>
                 <button class="primary" @click="launchInstall(install)">{{_("install.button_play")}}</button>
                 <button class="secondary"
                         @click="ui.selected_install = install.folderName; ui.side_sheets.save_management = true">
                     {{_("install.button_settings")}}
                 </button>
-                <button class="secondary" v-if="ui.platform === 'win32'" @click="createShortcut(install.folderName, install.installName)">
+                <button class="secondary" v-if="ui.platform === 'win32'"
+                        @click="createShortcut(install.folderName, install.installName)">
                     {{_("install.button_shortcut")}}
                 </button>
                 <button class="secondary" v-if="install.achievements"
@@ -271,7 +273,8 @@
                 <h3>{{_("install_menu.subtitle_download_curated")}}</h3>
                 <p>{{_("install_menu.description_download_curated")}}</p>
                 <br>
-                <p><a href="javascript:;" @click="openURL(ui.mod_submit_url)">{{_("feedback.description_mod_submission")}}</a></p>
+                <p><a href="javascript:;" @click="openURL(ui.mod_submit_url)">{{_("feedback.description_mod_submission")}}</a>
+                </p>
                 <br>
                 <div v-for="mod in recommended_mods">
                     <h4>{{mod.name}}</h4>
@@ -430,7 +433,8 @@
                 {{_("feedback.title")}}
             </div>
             <div class="side-sheet-content">
-                <p><a href="javascript:;" @click="openURL(ui.mod_submit_url)">{{_("feedback.description_mod_submission")}}</a></p>
+                <p><a href="javascript:;" @click="openURL(ui.mod_submit_url)">{{_("feedback.description_mod_submission")}}</a>
+                </p>
                 <br>
                 <strong>{{_("feedback.label_feedback_type")}}</strong>
                 <p><label><input type="radio" name="feedback-type" value="question" v-model="ui.feedback.type">
@@ -523,7 +527,8 @@
                 <div>
                     <h3>{{_("save_management.subtitle_rename")}}</h3>
                     <p>{{_("save_management.description_rename")}}</p>
-                    <p><input type="text" v-model="ui.new_install_name" :placeholder="_('save_management.placeholder_rename')"></p>
+                    <p><input type="text" v-model="ui.new_install_name"
+                              :placeholder="_('save_management.placeholder_rename')"></p>
                     <button class="primary" @click="renameInstall(ui.new_install_name)">
                         {{_("save_management.button_rename")}}
                     </button>
@@ -693,7 +698,8 @@
                         @click="ui.modals.create_install = false; createInstall(ui.install_creation.folder_name, ui.install_creation.install_name, ui.install_creation.global_save)">
                     {{_("side_sheet_buttons.install")}}
                 </button>
-                <button class="secondary" @click="ui.modals.create_install = false">{{_("side_sheet_buttons.cancel")}}</button>
+                <button class="secondary" @click="ui.modals.create_install = false">{{_("side_sheet_buttons.cancel")}}
+                </button>
             </div>
         </div>
     </div>
@@ -716,7 +722,9 @@
         <h1>{{_("running_cover.title")}}</h1>
         <p>{{_("running_cover.message_close_game")}}</p>
         <p>
-            <button class="primary" @click="openFolder(selectedInstall.fullFolderName)">{{_("running_cover.button_browse_files")}}</button>
+            <button class="primary" @click="openFolder(selectedInstall.fullFolderName)">
+                {{_("running_cover.button_browse_files")}}
+            </button>
         </p>
     </div>
 </div>
