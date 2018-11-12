@@ -21,7 +21,7 @@
     "chmodr": "latest",
     "discord-rich-presence": "^0.0.7",
     "electron-is-dev": "latest",
-    "electron-updater": "^3.1.1",
+    "electron-updater": "^3.2.0",
     "fs-extra": "latest",
     "fuse.js": "^3.2.1",
     "mousetrap": "^1.6.2",
