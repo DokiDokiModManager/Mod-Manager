@@ -704,19 +704,21 @@
         </div>
     </div>
 
-    <div :class="{'modal': true, 'active': ui.loading_modal.display}">
+    <div :class="{'modal': true, 'active': ui.modals.changelog}">
         <div class="modal-background"></div>
         <div class="modal-container">
             <div class="modal-content">
-                <h3>{{ui.loading_modal.title}}</h3>
-                <p>{{ui.loading_modal.message}}</p>
+                <h3>{{_("changelog.modal_title")}}</h3>
+                <div v-html="ui.changelog"></div>
                 <br>
-                <div class="progress-bar">
-                    <div class="bar indefinite">&nbsp;</div>
-                </div>
+                <button class="primary"
+                        @click="ui.modals.changelog = false">
+                    {{_("changelog.button_close")}}
+                </button>
             </div>
         </div>
     </div>
+
 
     <div :class="{'running-cover': true, 'active': ui.running_cover}">
         <h1>{{_("running_cover.title")}}</h1>

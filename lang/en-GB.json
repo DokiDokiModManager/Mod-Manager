@@ -261,5 +261,9 @@
     "toast_success": "Shortcut created.",
     "toast_error": "Could not create the shortcut."
   },
+  "changelog": {
+    "modal_title": "What's new?",
+    "button_close": "Close"
+  },
   "locale": "The current language is set to English (UK) - en_GB"
 }

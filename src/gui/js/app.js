@@ -6,6 +6,7 @@ const Language = require("../../common/i18n/i18n");
 const Mousetrap = require("mousetrap");
 const bytes = require("bytes");
 const Fuse = require("fuse.js");
+const markdown = require("markdown").markdown;
 
 const {ipcRenderer, remote} = require("electron");
 const {shell, dialog} = remote;
@@ -40,7 +41,8 @@ const vueApp = new Vue({
                 "delete_save": false,
                 "delete_install": false,
                 "create_install": false,
-                "delete_mod": false
+                "delete_mod": false,
+                "changelog": false
             },
             "loading_modal": {},
             "toast": {
@@ -89,7 +91,8 @@ const vueApp = new Vue({
             "running_install": null,
             "platform": process.platform,
             "mod_submit_url": "https://docs.google.com/forms/d/e/1FAIpQLSd7jwBCw_0PWQGkGF_-sey0FRAsrouPX2QtDsfqDEDv2MLN5g/viewform?usp=sf_link",
-            "new_install_name": ""
+            "new_install_name": "",
+            "changelog": ""
         },
         "installs": [],
         "mods": [],
@@ -356,3 +359,11 @@ document.body.ondrop = function (e) {
         vueApp.showToast(i18n("mod_import.toast_invalid", e.dataTransfer.items[0].getAsFile().name));
     }
 };
+
+if (localStorage.getItem("last_changelog") !== packageData.version) {
+    localStorage.setItem("last_changelog", packageData.version);
+    fetch("https://api.github.com/repos/DokiDokiModManager/Mod-Manager/releases/latest").then(res => res.json()).then(res => {
+       vueApp.ui.changelog = markdown.toHTML(res.body);
+       vueApp.ui.modals.changelog = true;
+    });
+}
