@@ -84,7 +84,6 @@
                 <h3>{{install.installName}}</h3>
                 <p><a href="javascript:;" @click="openFolder(install.fullFolderName)">{{install.fullFolderName}}</a></p>
                 <p><span v-if="install.globalSave"><strong>{{_("install.status_global_save")}}</strong> - </span>{{_("install.status_installed")}}
-                    <span v-if="install.version === '3'">({{_("install.status_legacy_install")}})</span>
                 </p>
                 <button class="primary" @click="launchInstall(install)">{{_("install.button_play")}}</button>
                 <button class="secondary"

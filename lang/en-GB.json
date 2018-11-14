@@ -13,7 +13,6 @@
   "install": {
     "placeholder_search": "Search installed mods...",
     "status_global_save": "Global Save",
-    "status_legacy_install": "legacy",
     "status_installed": "Installed - ready to launch",
     "button_play": "Play",
     "button_shortcut": "Create Shortcut",
