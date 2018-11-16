@@ -1,0 +1,62 @@
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/Lato-Regular.ttf); }
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  src: url(../fonts/Lato-Bold.ttf); }
+* {
+  box-sizing: border-box;
+  user-select: none; }
+
+html, body {
+  height: 100%;
+  padding: 0;
+  margin: 0; }
+
+body {
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+  color: #222;
+  background-color: #fff; }
+
+body::-webkit-scrollbar {
+  display: none; }
+
+h1, h2, h3, h4, p {
+  margin: 0.25em 0 0.25em 0;
+  cursor: default; }
+
+.container {
+  display: flex; }
+
+hr {
+  margin: 1em 0 1em 0;
+  border: none;
+  border-bottom: 1px solid #e1e1e1; }
+
+.navbar {
+  background-color: #bb5599;
+  color: #fff;
+  height: 100vh;
+  overflow-y: auto; }
+
+.nav-button {
+  text-align: center;
+  padding: 1em 2em;
+  cursor: pointer; }
+
+.nav-button.active {
+  background-color: #9e3f7e; }
+
+.nav-button p {
+  cursor: pointer; }
+
+.content {
+  flex-grow: 1;
+  padding: 1em; }
+
+/*# sourceMappingURL=app.css.map */

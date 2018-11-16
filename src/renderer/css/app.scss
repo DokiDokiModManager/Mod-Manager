@@ -1,0 +1,134 @@
+//
+// ui font information
+//
+
+$ui-font-size: 16px;
+$ui-font-family: "Lato", sans-serif;
+
+//
+// ui colours
+//
+
+$ui-background-colour: #fff;
+$ui-text-colour: #222;
+$ui-muted-background-colour: #ddd;
+$ui-muted-text-colour: #999;
+$ui-highlight-background-colour: #bb5599;
+$ui-highlight-text-colour: #fff;
+$ui-cover-colour: rgba(0, 0, 0, 0.5);
+
+$ui-dark-theme-text-colour: #eee;
+$ui-dark-theme-background-colour: #595959;
+
+$ui-primary-colour-bg: #bb5599;
+$ui-secondary-colour-bg: #999;
+$ui-dark-colour-bg: #1e1e1e;
+$ui-danger-colour-bg: #eb4d4b;
+$ui-warning-colour-bg: #f0932b;
+$ui-success-colour-bg: #6ab04c;
+
+//
+// transition speeds
+//
+$ui-transition-speed: 0.5s;
+
+//
+// fonts
+//
+
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/Lato-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  src: url(../fonts/Lato-Bold.ttf);
+}
+
+//
+// basic resets
+//
+
+* {
+  box-sizing: border-box;
+  user-select: none;
+}
+
+html, body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+//
+// fonts and colours
+//
+
+body {
+  font-family: $ui-font-family;
+  font-size: $ui-font-size;
+  color: $ui-text-colour;
+  background-color: $ui-background-colour;
+}
+
+//
+// general styles
+//
+
+// hide the scrollbar
+body::-webkit-scrollbar {
+  display: none;
+}
+
+h1, h2, h3, h4, p {
+  margin: 0.25em 0 0.25em 0;
+  cursor: default;
+}
+
+.container {
+  display: flex;
+}
+
+hr {
+  margin: 1em 0 1em 0;
+  border: none;
+  border-bottom: 1px solid lighten($ui-text-colour, 75%);
+}
+
+//
+// navbar
+//
+.navbar {
+  background-color: $ui-highlight-background-colour;
+  color: $ui-highlight-text-colour;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.nav-button {
+  text-align: center;
+  padding: 1em 2em;
+  cursor: pointer;
+}
+
+.nav-button.active {
+  background-color: darken($ui-highlight-background-colour, 10%);
+}
+
+.nav-button p {
+  cursor: pointer;
+}
+
+//
+// page content
+//
+
+.content {
+  flex-grow: 1;
+  padding: 1em;
+}

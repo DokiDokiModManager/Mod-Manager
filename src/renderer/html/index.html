@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Doki Doki Mod Manager</title>
+
+    <link href="../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+
+<div id="app">
+    <div class="container">
+        <div class="navbar">
+            <span v-for="(t, id) in tabs" @click="switchTab(id)">
+                <ddmm-nav-button :icon="t.icon" :active="tab === id">{{t.name}}</ddmm-nav-button>
+            </span>
+        </div>
+        <div class="content">
+            <component v-bind:is="tabs[tab].component"></component>
+        </div>
+    </div>
+</div>
+
+<script src="../../../node_modules/vue/dist/vue.js"></script>
+<script src="../js/components/NavButton.js"></script>
+<script src="../js/components/HomeTab.js"></script>
+<script src="../js/app.js"></script>
+</body>
+</html>
