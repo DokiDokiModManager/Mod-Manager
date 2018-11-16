@@ -106,8 +106,11 @@ hr {
 .navbar {
   background-color: $ui-highlight-background-colour;
   color: $ui-highlight-text-colour;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   overflow-y: auto;
+  font-size: 0.8em;
+  flex-shrink: 0;
 }
 
 .nav-button {
@@ -131,4 +134,96 @@ hr {
 .content {
   flex-grow: 1;
   padding: 1em;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+//
+// columns
+//
+
+.columns {
+  display: flex;
+}
+
+.column {
+  padding: 1em;
+}
+
+.columns.by3 .column {
+  flex-basis: 33.3%;
+}
+
+//
+// button styles
+//
+
+button {
+  font-family: "Lato", sans-serif;
+  color: #fff;
+  user-select: none;
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.5em 1em;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 3px;
+  text-align: center;
+  font-weight: normal;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: background-color 0.25s;
+}
+
+button.huge {
+  font-size: 1.25em;
+}
+
+button.primary {
+  background-color: $ui-primary-colour-bg;
+}
+
+button.primary:hover {
+  background-color: darken($ui-primary-colour-bg, 10%);
+}
+
+button.secondary {
+  background-color: $ui-background-colour;
+  color: $ui-text-colour;
+}
+
+button.secondary:hover {
+  background-color: darken($ui-background-colour, 10%);
+}
+
+button.dark {
+  background-color: $ui-dark-colour-bg;
+}
+
+button.dark:hover {
+  background-color: darken($ui-dark-colour-bg, 10%);
+}
+
+button.danger {
+  background-color: $ui-danger-colour-bg;
+}
+
+button.danger:hover {
+  background-color: darken($ui-danger-colour-bg, 10%);
+}
+
+button.warning {
+  background-color: $ui-warning-colour-bg;
+}
+
+button.warning:hover {
+  background-color: darken($ui-warning-colour-bg, 10%);
+}
+
+button.success {
+  background-color: $ui-success-colour-bg;
+}
+
+button.success:hover {
+  background-color: darken($ui-success-colour-bg, 10%);
 }

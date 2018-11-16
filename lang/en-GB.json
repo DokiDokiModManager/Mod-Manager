@@ -1,3 +1,14 @@
 {
-  
+  "home": {
+    "tab_title": "Welcome back!",
+    "tab_subtitle": "You're running version {0} of Doki Doki Mod Manager.",
+
+    "section_resume_title": "Resume playing",
+    "section_resume_subtitle": "Pick up where you left off with {0}.",
+    "section_resume_button": "Launch",
+
+    "section_discover_title": "Find something new",
+    "section_discover_subtitle": "Here are some mods we think you should play!",
+    "section_discover_button_download": "Download"
+  }
 }

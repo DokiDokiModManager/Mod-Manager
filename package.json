@@ -9,7 +9,7 @@
   "main": "src/main/index.js",
   "scripts": {
     "start": "electron .",
-    "start-dev": "electron --inspect=5858 .",
+    "start-dev": "NODE_ENV=development electron --inspect=5858 .",
     "release": "electron-builder"
   },
   "dependencies": {
@@ -17,6 +17,7 @@
     "vue": "^2.5.17"
   },
   "devDependencies": {
+    "devtron": "^1.4.0",
     "electron": "^3.0.9"
   },
   "build": {

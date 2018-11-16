@@ -41,8 +41,11 @@ hr {
 .navbar {
   background-color: #bb5599;
   color: #fff;
-  height: 100vh;
-  overflow-y: auto; }
+  min-height: 100vh;
+  height: 100%;
+  overflow-y: auto;
+  font-size: 0.8em;
+  flex-shrink: 0; }
 
 .nav-button {
   text-align: center;
@@ -57,6 +60,73 @@ hr {
 
 .content {
   flex-grow: 1;
+  padding: 1em;
+  height: 100vh;
+  overflow-y: auto; }
+
+.columns {
+  display: flex; }
+
+.column {
   padding: 1em; }
+
+.columns.by3 .column {
+  flex-basis: 33.3%; }
+
+button {
+  font-family: "Lato", sans-serif;
+  color: #fff;
+  user-select: none;
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.5em 1em;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 3px;
+  text-align: center;
+  font-weight: normal;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: background-color 0.25s; }
+
+button.huge {
+  font-size: 1.25em; }
+
+button.primary {
+  background-color: #bb5599; }
+
+button.primary:hover {
+  background-color: #9e3f7e; }
+
+button.secondary {
+  background-color: #fff;
+  color: #222; }
+
+button.secondary:hover {
+  background-color: #e6e6e6; }
+
+button.dark {
+  background-color: #1e1e1e; }
+
+button.dark:hover {
+  background-color: #050505; }
+
+button.danger {
+  background-color: #eb4d4b; }
+
+button.danger:hover {
+  background-color: #e6201d; }
+
+button.warning {
+  background-color: #f0932b; }
+
+button.warning:hover {
+  background-color: #d97a0f; }
+
+button.success {
+  background-color: #6ab04c; }
+
+button.success:hover {
+  background-color: #558c3d; }
 
 /*# sourceMappingURL=app.css.map */

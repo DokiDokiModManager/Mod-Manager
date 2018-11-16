@@ -1,7 +1,7 @@
 import {join as joinPath} from "path";
 import {readFileSync, existsSync} from "fs";
 
-const DEFAULT_LOCALE = joinPath(__dirname, "../../../lang/", "en-GB" + ".json");
+const DEFAULT_LOCALE = joinPath(__dirname, "../../lang/", "en-GB" + ".json");
 
 export default class I18n {
     private readonly language: string;

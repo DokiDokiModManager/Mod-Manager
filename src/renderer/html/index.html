@@ -17,14 +17,30 @@
             </span>
         </div>
         <div class="content">
-            <component v-bind:is="tabs[tab].component"></component>
+            <component v-bind:is="tabs[tab].component" :recommended_mods="recommended_mods" :ddmm_version="ddmm_version"></component>
         </div>
     </div>
 </div>
 
+
+<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    const config = {
+        apiKey: "AIzaSyDInikDCCVFIhpAMPEBaaRmx_p2ZLX-6GY",
+        authDomain: "doki-doki-mod-manager.firebaseapp.com",
+        databaseURL: "https://doki-doki-mod-manager.firebaseio.com",
+        projectId: "doki-doki-mod-manager",
+        storageBucket: "doki-doki-mod-manager.appspot.com",
+        messagingSenderId: "324232265869"
+    };
+    firebase.initializeApp(config);
+</script>
+
 <script src="../../../node_modules/vue/dist/vue.js"></script>
 <script src="../js/components/NavButton.js"></script>
 <script src="../js/components/HomeTab.js"></script>
+<script src="../js/components/AboutTab.js"></script>
 <script src="../js/app.js"></script>
 </body>
 </html>

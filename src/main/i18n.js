@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const path_1 = require("path");
 const fs_1 = require("fs");
-const DEFAULT_LOCALE = path_1.join(__dirname, "../../../lang/", "en-GB" + ".json");
+const DEFAULT_LOCALE = path_1.join(__dirname, "../../lang/", "en-GB" + ".json");
 class I18n {
     constructor(language) {
         this.ignoreFlag = false;

@@ -24,7 +24,18 @@ api.restart = function () {
     ipcRenderer.send("restart");
 };
 
+api.translate = function(key, ...args) {
+    return ipcRenderer.sendSync("translate", {
+       "key": key,
+       "args": args
+    });
+};
+
 // Application version
 api.version = packageData.version;
 
 global.ddmm = api;
+
+if (process.env.NODE_ENV === "development") {
+    window.__devtron = {require: require, process: process};
+}
