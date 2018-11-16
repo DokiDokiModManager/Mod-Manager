@@ -9,7 +9,7 @@
   "main": "src/main/index.js",
   "scripts": {
     "start": "electron .",
-    "start-dev": "NODE_ENV=development electron --inspect=5858 .",
+    "start-dev": "electron --inspect=5858 .",
     "release": "electron-builder"
   },
   "dependencies": {

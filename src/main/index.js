@@ -4,27 +4,36 @@ const electron_1 = require("electron");
 const path_1 = require("path");
 const modlist_1 = require("./modlist");
 const i18n_1 = require("./i18n");
-// permanent reference to the main app window
+// Permanent reference to the main app window
 let appWindow;
 const lang = new i18n_1.default(electron_1.app.getLocale());
+// region IPC functions
+// Restaart the app
 electron_1.ipcMain.on("restart", () => {
     electron_1.app.relaunch();
     electron_1.app.quit();
 });
+// Retrieves a list of mods
 electron_1.ipcMain.on("get modlist", () => {
     appWindow.webContents.send("got modlist", modlist_1.default.getModList());
 });
+// Handler for renderer process localisation functions
 electron_1.ipcMain.on("translate", (ev, query) => {
     let passArgs = query.args;
     passArgs.unshift(query.key);
     ev.returnValue = lang.translate.apply(lang, passArgs);
 });
+// Open external URLs
+electron_1.ipcMain.on("open url", (ev, url) => {
+    electron_1.shell.openExternal(url);
+});
+// endregion
 // App initialisation options
 electron_1.app.on("ready", () => {
     appWindow = new electron_1.BrowserWindow({
         title: "Doki Doki Mod Manager",
-        width: 800,
-        height: 600,
+        width: 1000,
+        height: 800,
         webPreferences: {
             nodeIntegration: false,
             preload: path_1.join(__dirname, "../renderer/js-preload/preload.js") // contains all the IPC scripts

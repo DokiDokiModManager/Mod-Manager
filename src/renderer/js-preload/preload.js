@@ -24,10 +24,16 @@ api.restart = function () {
     ipcRenderer.send("restart");
 };
 
-api.translate = function(key, ...args) {
+// Open URL in browser
+api.openURL = function (url) {
+    ipcRenderer.send("open url", url);
+};
+
+// Localisation function
+api.translate = function (key, ...args) {
     return ipcRenderer.sendSync("translate", {
-       "key": key,
-       "args": args
+        "key": key,
+        "args": args
     });
 };
 

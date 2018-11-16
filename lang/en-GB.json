@@ -2,13 +2,21 @@
   "home": {
     "tab_title": "Welcome back!",
     "tab_subtitle": "You're running version {0} of Doki Doki Mod Manager.",
-
     "section_resume_title": "Resume playing",
     "section_resume_subtitle": "Pick up where you left off with {0}.",
     "section_resume_button": "Launch",
-
     "section_discover_title": "Find something new",
     "section_discover_subtitle": "Here are some mods we think you should play!",
     "section_discover_button_download": "Download"
+  },
+  "about": {
+    "description": "Doki Doki Mod Manager is a community-developed project that helps you find, install and play mods for Doki Doki Literature Club, a free Visual Novel game by Team Salvato.",
+    "title_disclaimer": "Disclaimer",
+    "disclaimer_1": "Doki Doki Mod Manager is a fan work of Doki Doki Literature Club! and is not affiliated with Team Salvato. It is a fan work, as defined by Team Salvato's IP Guidelines.",
+    "disclaimer_2": "Doki Doki Mod Manager does not take responsibility for any damage caused to your files or computer, as a result of playing a mod or otherwise. It is up to you to ensure mods are safe to play.",
+    "title_socials": "Get in touch",
+    "social_discord": "Join the DDMM Discord Server",
+    "social_reddit": "Message me on Reddit",
+    "social_email": "Send me an email"
   }
 }

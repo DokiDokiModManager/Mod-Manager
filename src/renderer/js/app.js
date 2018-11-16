@@ -2,6 +2,9 @@ if (!localStorage.getItem("last_tab")) {
     localStorage.setItem("last_tab", "home");
 }
 
+Vue.config.devtools = false;
+Vue.config.productionTip = false;
+
 const app = new Vue({
     "el": "#app",
     "data": {

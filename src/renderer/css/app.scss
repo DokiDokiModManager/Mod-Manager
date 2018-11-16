@@ -76,6 +76,16 @@ body {
   background-color: $ui-background-colour;
 }
 
+a {
+  color: $ui-highlight-background-colour;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a > .fas, .fab {
+  font-weight: normal;
+}
+
 //
 // general styles
 //
