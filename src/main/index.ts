@@ -10,7 +10,7 @@ const lang: I18n = new I18n(app.getLocale());
 
 // region IPC functions
 
-// Restaart the app
+// Restart the app
 ipcMain.on("restart", () => {
     app.relaunch();
     app.quit();
@@ -37,6 +37,8 @@ ipcMain.on("open url", (ev: IpcMessageEvent, url: string) => {
 
 // App initialisation options
 app.on("ready", () => {
+
+    app.setAppUserModelId("space.doki.modmanager");
 
     appWindow = new BrowserWindow({
         title: "Doki Doki Mod Manager",

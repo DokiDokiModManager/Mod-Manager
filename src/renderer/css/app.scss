@@ -154,6 +154,8 @@ hr {
 
 .columns {
   display: flex;
+  overflow-x: scroll;
+  flex-wrap: nowrap;
 }
 
 .column {
@@ -162,6 +164,7 @@ hr {
 
 .columns.by3 .column {
   flex-basis: 33.3%;
+  flex-shrink: 0;
 }
 
 //

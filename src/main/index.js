@@ -8,7 +8,7 @@ const i18n_1 = require("./i18n");
 let appWindow;
 const lang = new i18n_1.default(electron_1.app.getLocale());
 // region IPC functions
-// Restaart the app
+// Restart the app
 electron_1.ipcMain.on("restart", () => {
     electron_1.app.relaunch();
     electron_1.app.quit();
@@ -30,6 +30,7 @@ electron_1.ipcMain.on("open url", (ev, url) => {
 // endregion
 // App initialisation options
 electron_1.app.on("ready", () => {
+    electron_1.app.setAppUserModelId("space.doki.modmanager");
     appWindow = new electron_1.BrowserWindow({
         title: "Doki Doki Mod Manager",
         width: 1000,

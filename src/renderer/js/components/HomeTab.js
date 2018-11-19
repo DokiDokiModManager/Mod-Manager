@@ -14,12 +14,14 @@ const HomeTab = Vue.component("ddmm-home-tab", {
     <h2>{{_("home.section_discover_title")}}</h2>
     <p>{{_("home.section_discover_subtitle")}}</p>
     <br>
-    <div v-for="mod in recommended_mods">
-        <h3>{{mod.name}}</h3>
-        <p>{{mod.description}}</p>
-        <p v-if="mod.content_warning" style="color: firebrick;">{{mod.content_warning}}</p>
-        <p><button class="primary">{{_("home.section_discover_button_download")}}</button></p>
-        <br>
+    <div class="columns by3">
+        <div v-for="mod in recommended_mods" class="column">
+            <h3>{{mod.name}}</h3>
+            <p><button class="primary">{{_("home.section_discover_button_download")}}</button></p>
+            <p>{{mod.description}}</p>
+            <p v-if="mod.content_warning" style="color: firebrick;">{{mod.content_warning}}</p>
+            <br>
+        </div>
     </div>
 </div>
 </div>`,
