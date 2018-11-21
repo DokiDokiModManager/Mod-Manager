@@ -18,5 +18,8 @@
     "social_discord": "Join the DDMM Discord Server",
     "social_reddit": "Message me on Reddit",
     "social_email": "Send me an email"
+  },
+  "mods": {
+    "tab_title": "Mods"
   }
 }

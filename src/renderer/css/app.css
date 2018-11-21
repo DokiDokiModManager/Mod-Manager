@@ -31,8 +31,12 @@ a {
 a > .fas, .fab {
   font-weight: normal; }
 
-body::-webkit-scrollbar {
-  display: none; }
+::-webkit-scrollbar {
+  background-color: transparent; }
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 3px; }
 
 h1, h2, h3, h4, p {
   margin: 0.25em 0 0.25em 0;

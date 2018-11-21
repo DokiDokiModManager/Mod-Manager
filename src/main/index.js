@@ -2,11 +2,16 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const electron_1 = require("electron");
 const path_1 = require("path");
-const modlist_1 = require("./modlist");
+const mod_list_1 = require("./mod_list");
 const i18n_1 = require("./i18n");
+const install_list_1 = require("./install_list");
+// region Flags and references
 // Permanent reference to the main app window
 let appWindow;
+// Flag for allowing the app window to be closed
+let windowClosable = true;
 const lang = new i18n_1.default(electron_1.app.getLocale());
+// endregion
 // region IPC functions
 // Restart the app
 electron_1.ipcMain.on("restart", () => {
@@ -15,7 +20,11 @@ electron_1.ipcMain.on("restart", () => {
 });
 // Retrieves a list of mods
 electron_1.ipcMain.on("get modlist", () => {
-    appWindow.webContents.send("got modlist", modlist_1.default.getModList());
+    appWindow.webContents.send("got modlist", mod_list_1.default.getModList());
+});
+// Retrieves a list of installs
+electron_1.ipcMain.on("get installs", () => {
+    appWindow.webContents.send("got installs", install_list_1.default.getInstallList());
 });
 // Handler for renderer process localisation functions
 electron_1.ipcMain.on("translate", (ev, query) => {
@@ -27,18 +36,34 @@ electron_1.ipcMain.on("translate", (ev, query) => {
 electron_1.ipcMain.on("open url", (ev, url) => {
     electron_1.shell.openExternal(url);
 });
+// Toggle closeable flag
+electron_1.ipcMain.on("closable", (ev, flag) => {
+    windowClosable = flag;
+    appWindow.setClosable(flag);
+});
 // endregion
-// App initialisation options
+// region App initialisation
 electron_1.app.on("ready", () => {
     electron_1.app.setAppUserModelId("space.doki.modmanager");
     appWindow = new electron_1.BrowserWindow({
         title: "Doki Doki Mod Manager",
         width: 1000,
         height: 800,
+        minWidth: 800,
+        minHeight: 600,
         webPreferences: {
             nodeIntegration: false,
             preload: path_1.join(__dirname, "../renderer/js-preload/preload.js") // contains all the IPC scripts
         },
+    });
+    appWindow.on("close", (ev) => {
+        if (!windowClosable) {
+            ev.preventDefault();
+        }
+    });
+    appWindow.on("closed", () => {
+        appWindow = null;
+        electron_1.app.quit();
     });
     appWindow.setMenuBarVisibility(false);
     if (process.env.NODE_ENV === "development") {
@@ -46,4 +71,5 @@ electron_1.app.on("ready", () => {
     }
     appWindow.loadFile(path_1.join(__dirname, "../renderer/html/index.html"));
 });
+// endregion
 //# sourceMappingURL=index.js.map

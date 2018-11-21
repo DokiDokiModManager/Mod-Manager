@@ -19,6 +19,16 @@ ipcRenderer.on("got modlist", (ev, list) => {
     api.emit("mod list", list);
 });
 
+// Called when the UI wants to refresh the install list
+api.refreshInstallList = function () {
+    ipcRenderer.send("get installs");
+};
+
+// Fires an event on the DDMM object when the install list has been retrieved
+ipcRenderer.on("got installs", (ev, list) => {
+    api.emit("install list", list);
+});
+
 // Restart
 api.restart = function () {
     ipcRenderer.send("restart");
@@ -35,6 +45,10 @@ api.translate = function (key, ...args) {
         "key": key,
         "args": args
     });
+};
+
+api.setWindowClosable = function(flag) {
+    ipcRenderer.send("closable", flag);
 };
 
 // Application version

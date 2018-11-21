@@ -1,12 +1,20 @@
 import {app, BrowserWindow, ipcMain, IpcMessageEvent, shell} from "electron";
 import {join as joinPath} from "path";
-import ModList from "./modlist";
+import ModList from "./mod_list";
 import I18n from "./i18n";
+import InstallList from "./install_list";
+
+// region Flags and references
 
 // Permanent reference to the main app window
 let appWindow: BrowserWindow;
 
+// Flag for allowing the app window to be closed
+let windowClosable: boolean = true;
+
 const lang: I18n = new I18n(app.getLocale());
+
+// endregion
 
 // region IPC functions
 
@@ -21,6 +29,11 @@ ipcMain.on("get modlist", () => {
     appWindow.webContents.send("got modlist", ModList.getModList());
 });
 
+// Retrieves a list of installs
+ipcMain.on("get installs", () => {
+    appWindow.webContents.send("got installs", InstallList.getInstallList());
+});
+
 // Handler for renderer process localisation functions
 ipcMain.on("translate", (ev: IpcMessageEvent, query: { key: string, args: string[] }) => {
     let passArgs: string[] = query.args;
@@ -33,9 +46,15 @@ ipcMain.on("open url", (ev: IpcMessageEvent, url: string) => {
     shell.openExternal(url);
 });
 
+// Toggle closeable flag
+ipcMain.on("closable", (ev: IpcMessageEvent, flag: boolean) => {
+    windowClosable = flag;
+    appWindow.setClosable(flag);
+});
+
 // endregion
 
-// App initialisation options
+// region App initialisation
 app.on("ready", () => {
 
     app.setAppUserModelId("space.doki.modmanager");
@@ -44,10 +63,23 @@ app.on("ready", () => {
         title: "Doki Doki Mod Manager",
         width: 1000,
         height: 800,
+        minWidth: 800,
+        minHeight: 600,
         webPreferences: {
             nodeIntegration: false,
             preload: joinPath(__dirname, "../renderer/js-preload/preload.js") // contains all the IPC scripts
         },
+    });
+
+    appWindow.on("close", (ev) => {
+        if (!windowClosable) {
+            ev.preventDefault();
+        }
+    });
+
+    appWindow.on("closed", () => {
+        appWindow = null;
+        app.quit();
     });
 
     appWindow.setMenuBarVisibility(false);
@@ -58,3 +90,4 @@ app.on("ready", () => {
 
     appWindow.loadFile(joinPath(__dirname, "../renderer/html/index.html"));
 });
+// endregion

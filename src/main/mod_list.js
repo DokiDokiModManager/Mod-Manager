@@ -14,4 +14,4 @@ class ModList {
     }
 }
 exports.default = ModList;
-//# sourceMappingURL=modlist.js.map
+//# sourceMappingURL=mod_list.js.map
