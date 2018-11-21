@@ -19,7 +19,8 @@ const app = new Vue({
         "recommended_mods": {},
         "banner": {},
         "ddmm_version": ddmm.version,
-        "mod_list": []
+        "mod_list": [],
+        "install_list": []
     },
     "methods": {
         "switchTab": function (tab) {

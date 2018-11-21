@@ -5,6 +5,7 @@ const path_1 = require("path");
 const mod_list_1 = require("./mod_list");
 const i18n_1 = require("./i18n");
 const install_list_1 = require("./install_list");
+const install_launcher_1 = require("./install_launcher");
 // region Flags and references
 // Permanent reference to the main app window
 let appWindow;
@@ -40,6 +41,25 @@ electron_1.ipcMain.on("open url", (ev, url) => {
 electron_1.ipcMain.on("closable", (ev, flag) => {
     windowClosable = flag;
     appWindow.setClosable(flag);
+});
+// Launch install
+electron_1.ipcMain.on("launch install", (ev, folderName) => {
+    appWindow.webContents.send("running cover", {
+        display: true,
+        dismissable: false,
+        title: lang.translate("running_cover.running.title"),
+        description: lang.translate("running_cover.running.description")
+    });
+    install_launcher_1.default.launchInstall(folderName).then(() => {
+        appWindow.webContents.send("running cover", { display: false });
+    }).catch(err => {
+        appWindow.webContents.send("running cover", {
+            display: true,
+            dismissable: true,
+            title: lang.translate("running_cover.error.title"),
+            description: err
+        });
+    });
 });
 // endregion
 // region App initialisation

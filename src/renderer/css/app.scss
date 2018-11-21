@@ -163,12 +163,14 @@ hr {
 }
 
 .column {
-  padding: 1em;
+  flex-basis: 300px;
+  padding: 0.5em;
+  flex-shrink: 0;
+  flex-grow: 0;
 }
 
 .columns.by3 .column {
   flex-basis: 33.3%;
-  flex-shrink: 0;
 }
 
 //

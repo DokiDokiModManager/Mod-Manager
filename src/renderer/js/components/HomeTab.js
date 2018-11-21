@@ -14,7 +14,7 @@ const HomeTab = Vue.component("ddmm-home-tab", {
     <h2>{{_("home.section_discover_title")}}</h2>
     <p>{{_("home.section_discover_subtitle")}}</p>
     <br>
-    <div class="columns by3">
+    <div class="columns" data-flex-basis="200px">
         <div v-for="mod in recommended_mods" class="column">
             <h3>{{mod.name}}</h3>
             <p><button class="primary">{{_("home.section_discover_button_download")}}</button></p>

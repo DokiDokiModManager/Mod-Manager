@@ -29,7 +29,11 @@ ipcRenderer.on("got installs", (ev, list) => {
     api.emit("install list", list);
 });
 
-// Restart
+api.launchInstall = function (folderName) {
+    ipcRenderer.send("launch install", folderName);
+};
+
+// Restart the app
 api.restart = function () {
     ipcRenderer.send("restart");
 };
@@ -47,7 +51,7 @@ api.translate = function (key, ...args) {
     });
 };
 
-api.setWindowClosable = function(flag) {
+api.setWindowClosable = function (flag) {
     ipcRenderer.send("closable", flag);
 };
 

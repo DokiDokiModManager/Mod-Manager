@@ -5,18 +5,18 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
     "template": `
 <div>
     <h1>{{_("mods.tab_title")}}</h1>
-    <p>untranslated yoikes</p>
+    <p>{{_("mods.tab_subtitle")}}</p>
     <hr>
     <div v-for="install in install_list">
-        <h3>{{install.name}}</h3>
-        <p><i class="fas fa-check fa-fw" style="color: green"></i> ready to play</p>
-        <p><button class="primary">play</button></p>
+        <h2>{{install.name}}</h2>
+        <p><i class="fas fa-check fa-fw" style="color: #6ab04c;"></i> {{_("mods.install.status_ready")}}</p>
+        <p><button class="primary">{{_("mods.install.button_play")}}</button></p>
         <br>
     </div>
     <div v-for="mod in mod_list">
-        <h3>{{mod}}</h3>
-        <p><i class="fas fa-download fa-fw" style="color: orange"></i> downloaded</p>
-        <p><button class="primary">install</button></p>
+        <h2>{{mod}}</h2>
+        <p><i class="fas fa-download fa-fw" style="color: #f0932b;"></i> {{_("mods.mod.status_downloaded")}}</p>
+        <p><button class="primary">{{_("mods.mod.button_install")}}</button></p>
         <br>
     </div>
 </div>`,

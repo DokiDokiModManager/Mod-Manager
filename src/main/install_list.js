@@ -12,21 +12,21 @@ class InstallList {
     static getInstallList() {
         // find and read the folders
         const installFolder = path_1.join(config_1.default.readConfigValue("installFolder"), "installs");
+        console.log("Reading installs from " + installFolder);
         const installs = fs_1.readdirSync(installFolder);
         let returned = [];
         for (let folder of installs) {
             const dataFilePath = path_1.join(installFolder, folder, "install.json");
-            if (fs_1.existsSync(dataFilePath)) {
-                try {
-                    const fileContents = fs_1.readFileSync(dataFilePath, "utf8");
-                    const data = JSON.parse(fileContents);
-                    if (data.name && data.globalSave) {
-                        returned.push(new Install_1.default(data.name, folder, data.globalSave));
-                    }
+            try {
+                const fileContents = fs_1.readFileSync(dataFilePath, "utf8");
+                const data = JSON.parse(fileContents);
+                if (data.name) {
+                    returned.push(new Install_1.default(data.name, folder, data.globalSave));
                 }
-                catch (e) {
-                    // do nothing, the folder should be ignored
-                }
+            }
+            catch (e) {
+                console.warn("Failed to read install data from " + dataFilePath, e);
+                // do nothing, the folder should be ignored
             }
         }
         return returned;

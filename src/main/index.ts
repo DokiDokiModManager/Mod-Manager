@@ -3,6 +3,7 @@ import {join as joinPath} from "path";
 import ModList from "./mod_list";
 import I18n from "./i18n";
 import InstallList from "./install_list";
+import InstallLauncher from "./install_launcher";
 
 // region Flags and references
 
@@ -50,6 +51,26 @@ ipcMain.on("open url", (ev: IpcMessageEvent, url: string) => {
 ipcMain.on("closable", (ev: IpcMessageEvent, flag: boolean) => {
     windowClosable = flag;
     appWindow.setClosable(flag);
+});
+
+// Launch install
+ipcMain.on("launch install", (ev: IpcMessageEvent, folderName: string) => {
+    appWindow.webContents.send("running cover", {
+        display: true,
+        dismissable: false,
+        title: lang.translate("running_cover.running.title"),
+        description: lang.translate("running_cover.running.description")
+    });
+    InstallLauncher.launchInstall(folderName).then(() => {
+        appWindow.webContents.send("running cover", {display: false});
+    }).catch(err => {
+        appWindow.webContents.send("running cover", {
+            display: true,
+            dismissable: true,
+            title: lang.translate("running_cover.error.title"),
+            description: err
+        });
+    });
 });
 
 // endregion

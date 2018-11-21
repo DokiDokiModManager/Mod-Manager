@@ -20,6 +20,31 @@
     "social_email": "Send me an email"
   },
   "mods": {
-    "tab_title": "Mods"
+    "tab_title": "Mods",
+    "tab_subtitle": "Which mod do you want to play next?",
+    "install": {
+      "status_ready": "Ready to play",
+      "button_play": "Play"
+    },
+    "mod": {
+      "status_downloaded": "Downloaded",
+      "button_install": "Install"
+    }
+  },
+  "errors": {
+    "launch": {
+      "install_missing": "The install could not be found.",
+      "install_corrupt": "The install is incomplete or corrupt.",
+      "install_crashed": "The game failed to launch or crashed."
+    }
+  },
+  "running_cover": {
+    "running": {
+      "title": "DDLC is running",
+      "description": "Close the game to make changes to your mods."
+    },
+    "error": {
+      "title": "Something went wrong"
+    }
   }
 }
