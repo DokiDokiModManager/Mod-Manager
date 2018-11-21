@@ -17,6 +17,7 @@ const app = new Vue({
             "about": {"name": "About", "icon": "info", "component": "ddmm-about-tab"}
         },
         "recommended_mods": {},
+        "banner": {},
         "ddmm_version": ddmm.version
     },
     "methods": {
@@ -29,4 +30,8 @@ const app = new Vue({
 
 firebase.database().ref("/global/recommended_mods").once("value").then(response => {
     app.recommended_mods = response.val();
+});
+
+firebase.database().ref("/global/banner").once("value").then(response => {
+    app.banner = response.val();
 });
