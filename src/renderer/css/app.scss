@@ -104,6 +104,10 @@ h1, h2, h3, h4, p {
   cursor: default;
 }
 
+small {
+  color: $ui-muted-text-colour;
+}
+
 .container {
   display: flex;
 }
@@ -245,4 +249,20 @@ button.success {
 
 button.success:hover {
   background-color: darken($ui-success-colour-bg, 10%);
+}
+
+//
+// running cover - overlayed when the game is running
+//
+.running-cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 2em;
+  text-align: center;
 }

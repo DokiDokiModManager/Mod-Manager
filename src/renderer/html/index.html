@@ -12,6 +12,9 @@
 <body>
 
 <div id="app">
+    <ddmm-running-cover :display="running_cover.display" :dismissable="running_cover.dismissable"
+                        :title="running_cover.title"
+                        :description="running_cover.description"></ddmm-running-cover>
     <div class="container">
         <div class="navbar">
             <span v-for="(t, id) in tabs" @click="switchTab(id)">
@@ -51,6 +54,7 @@
 <script src="../js/components/HomeTab.js"></script>
 <script src="../js/components/ModsTab.js"></script>
 <script src="../js/components/AboutTab.js"></script>
+<script src="../js/components/RunningCover.js"></script>
 <script src="../js/app.js"></script>
 </body>
 </html>

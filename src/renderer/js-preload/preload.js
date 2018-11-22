@@ -29,6 +29,12 @@ ipcRenderer.on("got installs", (ev, list) => {
     api.emit("install list", list);
 });
 
+// Fires an event when the running cover should be shown / hidden
+ipcRenderer.on("running cover", (ev, data) => {
+   console.log("Running cover updated", data);
+   api.emit("running cover", data);
+});
+
 api.launchInstall = function (folderName) {
     ipcRenderer.send("launch install", folderName);
 };

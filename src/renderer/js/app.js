@@ -20,7 +20,8 @@ const app = new Vue({
         "banner": {},
         "ddmm_version": ddmm.version,
         "mod_list": [],
-        "install_list": []
+        "install_list": [],
+        "running_cover": {"display": false, "dismissable": false, "title": "", "description": ""}
     },
     "methods": {
         "switchTab": function (tab) {
@@ -46,6 +47,10 @@ ddmm.on("mod list", mods => {
 ddmm.on("install list", installs => {
     console.log("Received " + installs.length + " installs.");
     app.install_list = installs;
+});
+
+ddmm.on("running cover", data => {
+   app.running_cover = data;
 });
 
 ddmm.refreshModList();
