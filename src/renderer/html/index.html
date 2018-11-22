@@ -14,7 +14,9 @@
 <div id="app">
     <ddmm-running-cover :display="running_cover.display" :dismissable="running_cover.dismissable"
                         :title="running_cover.title"
-                        :description="running_cover.description"></ddmm-running-cover>
+                        :description="running_cover.description"
+                        @dismissed="running_cover.display = false"
+    ></ddmm-running-cover>
     <div class="container">
         <div class="navbar">
             <span v-for="(t, id) in tabs" @click="switchTab(id)">

@@ -49,9 +49,9 @@ small {
   display: flex; }
 
 hr {
-  margin: 1em 0 1em 0;
   border: none;
-  border-bottom: 1px solid #e1e1e1; }
+  border-bottom: 1px solid #e1e1e1;
+  padding-right: 1em; }
 
 .navbar {
   background-color: #bb5599;

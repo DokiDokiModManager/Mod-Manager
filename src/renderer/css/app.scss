@@ -113,9 +113,9 @@ small {
 }
 
 hr {
-  margin: 1em 0 1em 0;
   border: none;
   border-bottom: 1px solid lighten($ui-text-colour, 75%);
+  padding-right: 1em;
 }
 
 //

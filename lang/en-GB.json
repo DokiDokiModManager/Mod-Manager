@@ -12,22 +12,31 @@
   "about": {
     "description": "Doki Doki Mod Manager is a community-developed project that helps you find, install and play mods for Doki Doki Literature Club, a free Visual Novel game by Team Salvato.",
     "title_disclaimer": "Disclaimer",
-    "disclaimer_1": "Doki Doki Mod Manager is a fan work of Doki Doki Literature Club! and is not affiliated with Team Salvato. It is a fan work, as defined by Team Salvato's IP Guidelines.",
+    "disclaimer_1": "Doki Doki Mod Manager is a fan work of Doki Doki Literature Club and is not affiliated with Team Salvato. It is a fan work, as defined by Team Salvato's IP Guidelines.",
     "disclaimer_2": "Doki Doki Mod Manager does not take responsibility for any damage caused to your files or computer, as a result of playing a mod or otherwise. It is up to you to ensure mods are safe to play.",
     "title_socials": "Get in touch",
     "social_discord": "Join the DDMM Discord Server",
     "social_reddit": "Message me on Reddit",
-    "social_email": "Send me an email"
+    "social_email": "Send me an email",
+    "title_support": "Support Development",
+    "description_support": "Doki Doki Mod Manager will always be free to download and use. If you like it and want to help me keep it updated, consider supporting me in one of the following ways.",
+    "support_donate": "Make a one-off donation",
+    "support_steelseries": "Get 10% off SteelSeries gaming peripherals (affiliate link)",
+    "support_code": "Contribute to the project (code or translations)"
   },
   "mods": {
     "tab_title": "Mods",
     "tab_subtitle": "Which mod do you want to play next?",
     "install": {
-      "status_ready": "Ready to play",
+      "status_ready": "Installed",
+      "status_global_save": "Global Save",
+      "description_installed": "The game is fully installed and is ready to be played.",
+      "description_global_save": "This installation of the game shares save data with standalone copies of DDLC, the Steam version of DDLC, and other installations with global save enabled.",
       "button_play": "Play"
     },
     "mod": {
       "status_downloaded": "Downloaded",
+      "description_downloaded": "The mod has been downloaded, but hasn't been installed into a copy of DDLC yet.",
       "button_install": "Install"
     }
   },

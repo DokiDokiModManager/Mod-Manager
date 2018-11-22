@@ -67,14 +67,20 @@ electron_1.app.on("ready", () => {
     electron_1.app.setAppUserModelId("space.doki.modmanager");
     appWindow = new electron_1.BrowserWindow({
         title: "Doki Doki Mod Manager",
-        width: 1000,
-        height: 800,
+        width: 800,
+        height: 600,
         minWidth: 800,
         minHeight: 600,
         webPreferences: {
             nodeIntegration: false,
             preload: path_1.join(__dirname, "../renderer/js-preload/preload.js") // contains all the IPC scripts
         },
+        show: false
+    });
+    appWindow.webContents.on("did-finish-load", () => {
+        if (!appWindow.isVisible()) {
+            appWindow.show();
+        }
     });
     appWindow.on("close", (ev) => {
         if (!windowClosable) {

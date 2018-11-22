@@ -82,14 +82,21 @@ app.on("ready", () => {
 
     appWindow = new BrowserWindow({
         title: "Doki Doki Mod Manager",
-        width: 1000,
-        height: 800,
+        width: 800,
+        height: 600,
         minWidth: 800,
         minHeight: 600,
         webPreferences: {
             nodeIntegration: false,
             preload: joinPath(__dirname, "../renderer/js-preload/preload.js") // contains all the IPC scripts
         },
+        show: false
+    });
+
+    appWindow.webContents.on("did-finish-load", () => {
+        if (!appWindow.isVisible()) {
+            appWindow.show();
+        }
     });
 
     appWindow.on("close", (ev) => {
