@@ -177,4 +177,24 @@ button.success:hover {
   border-color: #bb5599;
   color: #bb5599; }
 
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 98; }
+
+.modal {
+  position: fixed;
+  background-color: #fff;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  top: 1em;
+  z-index: 99;
+  padding: 1em;
+  border-radius: 3px; }
+
 /*# sourceMappingURL=app.css.map */

@@ -1,4 +1,4 @@
-import {app, BrowserWindow, ipcMain, IpcMessageEvent, shell, dialog} from "electron";
+import {app, BrowserWindow, ipcMain, IpcMessageEvent, shell, dialog, Notification} from "electron";
 import {join as joinPath} from "path";
 import ModList from "./mod_list";
 import I18n from "./i18n";
@@ -88,6 +88,16 @@ ipcMain.on("browse mods", (ev: IpcMessageEvent) => {
 // endregion
 
 // region App initialisation
+process.on("uncaughtException", () => {
+    const crashNotif = new Notification({
+        title: lang.translate("exceptions.main_crash_notification.title"),
+        body: lang.translate("exceptions.main_crash_notification.body"),
+    });
+
+    crashNotif.show();
+    app.quit();
+});
+
 app.on("ready", () => {
 
     app.setAppUserModelId("space.doki.modmanager");
@@ -120,6 +130,25 @@ app.on("ready", () => {
         if (!windowClosable) {
             ev.preventDefault();
         }
+    });
+
+    appWindow.webContents.on("crashed", () => {
+        const crashNotif = new Notification({
+            title: lang.translate("exceptions.renderer_crash_notification.title"),
+            body: lang.translate("exceptions.renderer_crash_notification.body"),
+        });
+
+        crashNotif.show();
+        app.quit();
+    });
+
+    appWindow.on("unresponsive", () => {
+        const freezeNotif = new Notification({
+            title: lang.translate("exceptions.renderer_freeze_notification.title"),
+            body: lang.translate("exceptions.renderer_freeze_notification.body"),
+        });
+
+        freezeNotif.show();
     });
 
     appWindow.on("closed", () => {

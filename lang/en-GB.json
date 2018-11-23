@@ -63,5 +63,19 @@
     "error": {
       "title": "Something went wrong"
     }
+  },
+  "exceptions": {
+    "renderer_crash_notification": {
+      "title": "Something went wrong",
+      "body": "some descriptive text"
+    },
+    "renderer_freeze_notification": {
+      "title": "Something went wrong agane",
+      "body": "close it if it goes wrong idk"
+    },
+    "main_crash_notification": {
+      "title": "App crashed",
+      "body": "i really need to think of what to write here"
+    }
   }
 }

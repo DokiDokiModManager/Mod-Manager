@@ -261,7 +261,7 @@ button.success:hover {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: $ui-cover-colour;
   color: #fff;
   padding: 2em;
   text-align: center;
@@ -288,4 +288,29 @@ button.success:hover {
 .drop-target.dragging {
   border-color: $ui-highlight-background-colour;
   color: $ui-highlight-background-colour;
+}
+
+//
+// modals
+//
+.modal-backdrop {
+  background-color: $ui-cover-colour;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 98;
+}
+
+.modal {
+  position: fixed;
+  background-color: $ui-background-colour;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  top: 1em;
+  z-index: 99;
+  padding: 1em;
+  border-radius: 3px;
 }

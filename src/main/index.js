@@ -74,6 +74,14 @@ electron_1.ipcMain.on("browse mods", (ev) => {
 });
 // endregion
 // region App initialisation
+process.on("uncaughtException", () => {
+    const crashNotif = new electron_1.Notification({
+        title: lang.translate("exceptions.main_crash_notification.title"),
+        body: lang.translate("exceptions.main_crash_notification.body"),
+    });
+    crashNotif.show();
+    electron_1.app.quit();
+});
 electron_1.app.on("ready", () => {
     electron_1.app.setAppUserModelId("space.doki.modmanager");
     appWindow = new electron_1.BrowserWindow({
@@ -101,6 +109,21 @@ electron_1.app.on("ready", () => {
         if (!windowClosable) {
             ev.preventDefault();
         }
+    });
+    appWindow.webContents.on("crashed", () => {
+        const crashNotif = new electron_1.Notification({
+            title: lang.translate("exceptions.renderer_crash_notification.title"),
+            body: lang.translate("exceptions.renderer_crash_notification.body"),
+        });
+        crashNotif.show();
+        electron_1.app.quit();
+    });
+    appWindow.on("unresponsive", () => {
+        const freezeNotif = new electron_1.Notification({
+            title: lang.translate("exceptions.renderer_freeze_notification.title"),
+            body: lang.translate("exceptions.renderer_freeze_notification.body"),
+        });
+        freezeNotif.show();
     });
     appWindow.on("closed", () => {
         appWindow = null;
