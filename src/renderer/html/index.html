@@ -17,6 +17,7 @@
                         :description="running_cover.description"
                         @dismissed="running_cover.display = false"
     ></ddmm-running-cover>
+    <ddmm-drop-cover :display="drop_cover"></ddmm-drop-cover>
     <div class="container">
         <div class="navbar">
             <span v-for="(t, id) in tabs" @click="switchTab(id)">
@@ -57,6 +58,7 @@
 <script src="../js/components/ModsTab.js"></script>
 <script src="../js/components/AboutTab.js"></script>
 <script src="../js/components/RunningCover.js"></script>
+<script src="../js/components/DropCover.js"></script>
 <script src="../js/app.js"></script>
 </body>
 </html>

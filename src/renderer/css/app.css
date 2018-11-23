@@ -149,7 +149,7 @@ button.success {
 button.success:hover {
   background-color: #558c3d; }
 
-.running-cover {
+.cover {
   position: fixed;
   top: 0;
   left: 0;

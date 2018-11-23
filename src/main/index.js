@@ -77,6 +77,10 @@ electron_1.app.on("ready", () => {
         },
         show: false
     });
+    appWindow.webContents.on("will-navigate", ev => {
+        console.warn("Prevented navigation from app container");
+        ev.preventDefault(); // prevent navigation
+    });
     appWindow.webContents.on("did-finish-load", () => {
         if (!appWindow.isVisible()) {
             appWindow.show();

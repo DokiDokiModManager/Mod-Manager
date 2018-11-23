@@ -21,7 +21,8 @@ const app = new Vue({
         "ddmm_version": ddmm.version,
         "mod_list": [],
         "install_list": [],
-        "running_cover": {"display": false, "dismissable": false, "title": "", "description": ""}
+        "running_cover": {"display": false, "dismissable": false, "title": "", "description": ""},
+        "drop_cover": false
     },
     "methods": {
         "switchTab": function (tab) {
@@ -31,27 +32,40 @@ const app = new Vue({
     }
 });
 
+// load recommended mods
 firebase.database().ref("/global/recommended_mods").once("value").then(response => {
     app.recommended_mods = response.val();
 });
 
+// load announcement banner
 firebase.database().ref("/global/banner").once("value").then(response => {
     app.banner = response.val();
 });
 
+// update mod list
 ddmm.on("mod list", mods => {
-    console.log("Received " + mods.length  + " mods.");
+    console.log("Received " + mods.length + " mods.");
     app.mod_list = mods;
 });
 
+// update install list
 ddmm.on("install list", installs => {
     console.log("Received " + installs.length + " installs.");
     app.install_list = installs;
 });
 
+// show / hide running cover
 ddmm.on("running cover", data => {
-   app.running_cover = data;
+    app.running_cover = data;
 });
 
+document.body.addEventListener("dragover", ev => {
+    ev.preventDefault();
+    ev.stopPropagation();
+    console.log(ev);
+    app.drop_cover = true;
+});
+
+// load mod / install list on first load
 ddmm.refreshModList();
 ddmm.refreshInstallList();
