@@ -12,7 +12,7 @@ const app = new Vue({
         "tabs": {
             "home": {"name": "Home", "icon": "home", "component": "ddmm-home-tab"},
             "mods": {"name": "Mods", "icon": "list", "component": "ddmm-mods-tab"},
-            "sayonika": {"name": "Sayonika", "icon": "download"},
+            "sayonika": {"name": "Sayonika", "icon": "download", "component": "ddmm-sayonika-tab"},
             "settings": {"name": "Settings", "icon": "cog"},
             "about": {"name": "About", "icon": "info", "component": "ddmm-about-tab"}
         },

@@ -86,10 +86,10 @@ electron_1.app.on("ready", () => {
     electron_1.app.setAppUserModelId("space.doki.modmanager");
     appWindow = new electron_1.BrowserWindow({
         title: "Doki Doki Mod Manager",
-        width: 800,
-        height: 600,
-        minWidth: 800,
-        minHeight: 600,
+        width: 1000,
+        height: 800,
+        minWidth: 1000,
+        minHeight: 800,
         webPreferences: {
             sandbox: true,
             nodeIntegration: false,
