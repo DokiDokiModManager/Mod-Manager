@@ -5,9 +5,9 @@
     THIS CODE HAS FULL ACCESS TO THE NODE.JS RUNTIME! Be careful.
  */
 
-const packageData = require("../../../package");
-const {ipcRenderer} = require("electron");
-const EventEmitter = require("events");
+const {ipcRenderer, remote} = require("electron");
+const EventEmitter = remote.require("events");
+const packageData = remote.require("../../package");
 
 const api = new EventEmitter();
 
@@ -33,8 +33,8 @@ ipcRenderer.on("got installs", (ev, list) => {
 
 // Fires an event when the running cover should be shown / hidden
 ipcRenderer.on("running cover", (ev, data) => {
-   console.log("Running cover updated", data);
-   api.emit("running cover", data);
+    console.log("Running cover updated", data);
+    api.emit("running cover", data);
 });
 
 api.launchInstall = function (folderName) {
@@ -51,7 +51,7 @@ api.openURL = function (url) {
     ipcRenderer.send("open url", url);
 };
 
-api.browseForMod = function() {
+api.browseForMod = function () {
     ipcRenderer.send("browse mods");
 };
 
@@ -70,8 +70,21 @@ api.setWindowClosable = function (flag) {
 // Application version
 api.version = packageData.version;
 
+// make the API visible to the renderer
 global.ddmm = api;
 
-if (process.env.NODE_ENV === "development") {
-    window.__devtron = {require: require, process: process};
-}
+
+console.log(`%c
+      _       _    _                            
+     | |     | |  (_)                           
+   __| | ___ | | ___   ___ _ __   __ _  ___ ___ 
+  / _\` |/ _ \\| |/ / | / __| '_ \\ / _\` |/ __/ _ \\
+ | (_| | (_) |   <| |_\\__ \\ |_) | (_| | (_|  __/
+  \\__,_|\\___/|_|\\_\\_(_)___/ .__/ \\__,_|\\___\\___|
+                          | |                   
+                          |_|                   
+
+Welcome, traveller.
+
+Before you type anything here, make sure you know what you're doing. Certain commands could bork your install.
+`, "background-color: black; color: #0f0; padding: 1em; font-size: 12px;");

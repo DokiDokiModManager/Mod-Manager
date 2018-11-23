@@ -109,6 +109,7 @@ app.on("ready", () => {
         minWidth: 800,
         minHeight: 600,
         webPreferences: {
+            sandbox: true,
             nodeIntegration: false,
             preload: joinPath(__dirname, "../renderer/js-preload/preload.js") // contains all the IPC scripts
         },
@@ -157,10 +158,6 @@ app.on("ready", () => {
     });
 
     appWindow.setMenuBarVisibility(false);
-
-    if (process.env.NODE_ENV === "development") {
-        require("devtron").install();
-    }
 
     appWindow.loadFile(joinPath(__dirname, "../renderer/html/index.html"));
 });

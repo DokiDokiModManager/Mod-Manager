@@ -1,6 +1,6 @@
 /*
     A component representing a generic (buttons only) modal
- \*/
+ */
 const Modal = Vue.component("ddmm-modal", {
     "template": `
         <div v-if="visible">

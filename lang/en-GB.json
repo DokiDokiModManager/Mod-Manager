@@ -66,16 +66,16 @@
   },
   "exceptions": {
     "renderer_crash_notification": {
-      "title": "Something went wrong",
-      "body": "some descriptive text"
+      "title": "Doki Doki Mod Manager crashed",
+      "body": "The problem has been reported. Please restart and try again. [R]"
     },
     "renderer_freeze_notification": {
-      "title": "Something went wrong agane",
-      "body": "close it if it goes wrong idk"
+      "title": "Doki Doki Mod Manager has stopped responding",
+      "body": "You may need to force quit the app."
     },
     "main_crash_notification": {
-      "title": "App crashed",
-      "body": "i really need to think of what to write here"
+      "title": "Doki Doki Mod Manager crashed",
+      "body": "The problem has been reported. Please restart and try again. [M]"
     }
   }
 }

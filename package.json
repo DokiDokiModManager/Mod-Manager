@@ -8,8 +8,8 @@
   "license": "MIT",
   "main": "src/main/index.js",
   "scripts": {
-    "start": "electron .",
-    "start-dev": "electron --inspect=5858 .",
+    "start": "electron . --enable-sandbox",
+    "start-dev": "electron --inspect=5858 . --enable-sandbox",
     "release": "electron-builder"
   },
   "dependencies": {
@@ -17,7 +17,6 @@
     "vue": "^2.5.17"
   },
   "devDependencies": {
-    "devtron": "^1.4.0",
     "electron": "^3.0.10"
   },
   "build": {
