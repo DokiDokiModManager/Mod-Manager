@@ -6,7 +6,13 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
 <div>
     <h1>{{_("mods.tab_title")}}</h1>
     <p>{{_("mods.tab_subtitle")}}</p>
-    <hr>
+    
+    <br>
+    
+    <ddmm-drop-target @files="handleDroppedFiles" @click="browseForMod"></ddmm-drop-target>
+    
+    <br>
+    
     <div v-for="install in install_list">
         <h2>{{install.name}} <small>{{install.folderName}}</small></h2>
         <p style="cursor: help;">
@@ -29,6 +35,10 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             return ddmm.translate.apply(null, arguments);
         },
         "launchInstall": ddmm.launchInstall,
-        "openURL": ddmm.openURL
+        "openURL": ddmm.openURL,
+        "handleDroppedFiles": function (files) {
+            console.log(files);
+        },
+        "browseForMod": ddmm.browseForMod
     }
 });

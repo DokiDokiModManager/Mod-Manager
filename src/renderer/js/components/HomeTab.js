@@ -6,11 +6,11 @@ const HomeTab = Vue.component("ddmm-home-tab", {
 <div>
     <h1>{{_("home.tab_title")}}</h1>
     <p>{{_("home.tab_subtitle", ddmm_version)}}</p>
-    <hr>
+    <br>
     <h2>{{_("home.section_resume_title")}}</h2>
     <p>{{_("home.section_resume_subtitle", "MOD_NAME_HERE")}}</p>
     <p><button class="primary">{{_("home.section_resume_button")}}</button></p>
-    <hr>
+    <br>
     <h2>{{_("home.section_discover_title")}}</h2>
     <p>{{_("home.section_discover_subtitle")}}</p>
     <br>

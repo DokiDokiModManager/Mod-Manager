@@ -1,4 +1,4 @@
-import {app, BrowserWindow, ipcMain, IpcMessageEvent, shell} from "electron";
+import {app, BrowserWindow, ipcMain, IpcMessageEvent, shell, dialog} from "electron";
 import {join as joinPath} from "path";
 import ModList from "./mod_list";
 import I18n from "./i18n";
@@ -55,6 +55,7 @@ ipcMain.on("closable", (ev: IpcMessageEvent, flag: boolean) => {
 
 // Launch install
 ipcMain.on("launch install", (ev: IpcMessageEvent, folderName: string) => {
+    appWindow.minimize(); // minimise the window to draw attention to the fact another window will be appearing
     appWindow.webContents.send("running cover", {
         display: true,
         dismissable: false,
@@ -62,14 +63,25 @@ ipcMain.on("launch install", (ev: IpcMessageEvent, folderName: string) => {
         description: lang.translate("running_cover.running.description")
     });
     InstallLauncher.launchInstall(folderName).then(() => {
+        appWindow.restore(); // show DDMM again
         appWindow.webContents.send("running cover", {display: false});
     }).catch(err => {
+        appWindow.restore();
         appWindow.webContents.send("running cover", {
             display: true,
             dismissable: true,
             title: lang.translate("running_cover.error.title"),
             description: err
         });
+    });
+});
+
+// Browse for a mod
+ipcMain.on("browse mods", (ev: IpcMessageEvent) => {
+    dialog.showOpenDialog(appWindow, {
+        buttonLabel: lang.translate("mods.browse_dialog.button_label"),
+        title: lang.translate("mods.browse_dialog.title"),
+        filters: [{extensions: ["zip"], name: lang.translate("mods.browse_dialog.file_format_name")}]
     });
 });
 

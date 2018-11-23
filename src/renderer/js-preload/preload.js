@@ -1,6 +1,8 @@
 /*
     The preload script contains all of the IPC logic to communicate with the main process.
     It avoids exposing node context to the renderer process which could lead to e.g. self-XSS
+
+    THIS CODE HAS FULL ACCESS TO THE NODE.JS RUNTIME! Be careful.
  */
 
 const packageData = require("../../../package");
@@ -47,6 +49,10 @@ api.restart = function () {
 // Open URL in browser
 api.openURL = function (url) {
     ipcRenderer.send("open url", url);
+};
+
+api.browseForMod = function() {
+    ipcRenderer.send("browse mods");
 };
 
 // Localisation function

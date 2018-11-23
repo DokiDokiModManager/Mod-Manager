@@ -159,6 +159,22 @@ button.success:hover {
   background-color: rgba(0, 0, 0, 0.5);
   color: #fff;
   padding: 2em;
-  text-align: center; }
+  text-align: center;
+  z-index: 99; }
+
+.drop-target {
+  border: 5px dashed #ddd;
+  color: #ddd;
+  text-align: center;
+  padding: 1em;
+  border-radius: 5px;
+  cursor: pointer !important; }
+
+.drop-target * {
+  pointer-events: none; }
+
+.drop-target.dragging {
+  border-color: #bb5599;
+  color: #bb5599; }
 
 /*# sourceMappingURL=app.css.map */

@@ -44,6 +44,7 @@ electron_1.ipcMain.on("closable", (ev, flag) => {
 });
 // Launch install
 electron_1.ipcMain.on("launch install", (ev, folderName) => {
+    appWindow.minimize(); // minimise the window to draw attention to the fact another window will be appearing
     appWindow.webContents.send("running cover", {
         display: true,
         dismissable: false,
@@ -51,14 +52,24 @@ electron_1.ipcMain.on("launch install", (ev, folderName) => {
         description: lang.translate("running_cover.running.description")
     });
     install_launcher_1.default.launchInstall(folderName).then(() => {
+        appWindow.restore(); // show DDMM again
         appWindow.webContents.send("running cover", { display: false });
     }).catch(err => {
+        appWindow.restore();
         appWindow.webContents.send("running cover", {
             display: true,
             dismissable: true,
             title: lang.translate("running_cover.error.title"),
             description: err
         });
+    });
+});
+// Browse for a mod
+electron_1.ipcMain.on("browse mods", (ev) => {
+    electron_1.dialog.showOpenDialog(appWindow, {
+        buttonLabel: lang.translate("mods.browse_dialog.button_label"),
+        title: lang.translate("mods.browse_dialog.title"),
+        filters: [{ extensions: ["zip"], name: lang.translate("mods.browse_dialog.file_format_name") }]
     });
 });
 // endregion

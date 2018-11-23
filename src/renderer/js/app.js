@@ -59,13 +59,6 @@ ddmm.on("running cover", data => {
     app.running_cover = data;
 });
 
-document.body.addEventListener("dragover", ev => {
-    ev.preventDefault();
-    ev.stopPropagation();
-    console.log(ev);
-    app.drop_cover = true;
-});
-
 // load mod / install list on first load
 ddmm.refreshModList();
 ddmm.refreshInstallList();

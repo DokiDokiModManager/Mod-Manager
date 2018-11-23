@@ -6,10 +6,7 @@ const AboutTab = Vue.component("ddmm-about-tab", {
 <div>
     <img src="../images/ddmm.png" width="200" style="float: right">
     
-    <h1>about</h1>
-    <p>blah</p>
-    
-    <hr>
+    <h1>{{_("about.tab_title")}}</h1>
     
     <p>{{_("about.description")}}</p>
     
@@ -18,6 +15,7 @@ const AboutTab = Vue.component("ddmm-about-tab", {
     <h2>{{_("about.title_socials")}}</h2>
     
     <p><a href="javascript:;" @click="openURL('https://doki.space/discord')"><i class="fab fa-discord fa-fw"></i> {{_("about.social_discord")}}</a></p>
+    <p><a href="javascript:;" @click="openURL('https://twitter.com/DokiMod')"><i class="fab fa-twitter fa-fw"></i> {{_("about.social_twitter")}}</a></p>
     <p><a href="javascript:;" @click="openURL('https://reddit.com/u/zuudo')"><i class="fab fa-reddit fa-fw"></i> {{_("about.social_reddit")}}</a></p>
     <p><a href="javascript:;" @click="openURL('mailto:zudo@doki.space')"><i class="fas fa-envelope fa-fw"></i> {{_("about.social_email")}}</a></p>
     
