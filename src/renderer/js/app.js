@@ -1,8 +1,7 @@
-if (!localStorage.getItem("last_tab")) {
-    localStorage.setItem("last_tab", "home");
-}
 
 const CHANGELOG_DATA_REGEX = /({[^]+})/gm;
+
+const PURIST_ENABLED = ddmm.readConfigValue("puristMode");
 
 function parseChangelogData(postBody) {
     const matches = CHANGELOG_DATA_REGEX.exec(postBody);
@@ -23,13 +22,13 @@ Vue.config.productionTip = false;
 const app = new Vue({
     "el": "#app",
     "data": {
-        "tab": localStorage.getItem("last_tab"),
+        "tab": (PURIST_ENABLED ? "mods" : "home"),
         "tabs": {
-            "home": {"name": "Home", "icon": "home", "component": "ddmm-home-tab"},
-            "mods": {"name": "Mods", "icon": "list", "component": "ddmm-mods-tab"},
-            "sayonika": {"name": "Sayonika", "icon": "download", "component": "ddmm-sayonika-tab"},
-            "settings": {"name": "Settings", "icon": "cog"},
-            "about": {"name": "About", "icon": "info", "component": "ddmm-about-tab"}
+            "home": {"name": "Home", "icon": "home", "component": "ddmm-home-tab", "purist_enabled": false},
+            "mods": {"name": "Mods", "icon": "list", "component": "ddmm-mods-tab", "purist_enabled": true},
+            "sayonika": {"name": "Sayonika", "icon": "download", "component": "ddmm-sayonika-tab", "purist_enabled": false},
+            "settings": {"name": "Settings", "icon": "cog", "component": "ddmm-settings-tab", "purist_enabled": true},
+            "about": {"name": "About", "icon": "info", "component": "ddmm-about-tab", "purist_enabled": true}
         },
         "recommended_mods": {},
         "banner": {},
@@ -39,6 +38,7 @@ const app = new Vue({
         "running_cover": {"display": false, "dismissable": false, "title": "", "description": ""},
         "drop_cover": false,
         "changelog": [],
+        "purist": PURIST_ENABLED,
         "modals": {
             "changelog": false
         }
@@ -48,7 +48,6 @@ const app = new Vue({
             return ddmm.translate.apply(null, arguments);
         },
         "switchTab": function (tab) {
-            localStorage.setItem("last_tab", tab);
             this.tab = tab;
         },
         "showModal": function (modal) {

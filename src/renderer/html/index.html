@@ -19,7 +19,7 @@
                         @dismissed="running_cover.display = false">
     </ddmm-running-cover>
 
-    <ddmm-modal :title="_('changelog.modal_title')" :visible="modals.changelog" :buttons="[{'clazz': 'primary', 'id': 'close', 'text': 'close'}]" @button="modals.changelog = false">
+    <ddmm-modal :title="_('changelog.modal_title')" :visible="modals.changelog" :buttons="[{'clazz': 'primary', 'id': 'close', 'text': _('changelog.button_close')}]" @button="modals.changelog = false">
         <div v-for="entry in changelog">
             <h3>{{entry.name}}</h3>
             <div v-if="entry.details">
@@ -49,12 +49,13 @@
                     </ul>
                 </div>
             </div>
+            <hr>
         </div>
     </ddmm-modal>
 
     <div class="container">
         <div class="navbar">
-            <span v-for="(t, id) in tabs" @click="switchTab(id)">
+            <span v-for="(t, id) in tabs" @click="switchTab(id)" v-if="(t.purist_enabled || !purist)">
                 <ddmm-nav-button :icon="t.icon" :active="tab === id">{{t.name}}</ddmm-nav-button>
             </span>
         </div>
@@ -89,14 +90,15 @@
 
 <script src="../../../node_modules/vue/dist/vue.js"></script>
 
-<script src="../js/components/NavButton.js"></script>
-<script src="../js/components/HomeTab.js"></script>
-<script src="../js/components/ModsTab.js"></script>
-<script src="../js/components/SayonikaTab.js"></script>
-<script src="../js/components/AboutTab.js"></script>
-<script src="../js/components/RunningCover.js"></script>
-<script src="../js/components/DropTarget.js"></script>
-<script src="../js/components/Modal.js"></script>
+<script src="../js/components/parts/NavButton.js"></script>
+<script src="../js/components/tabs/HomeTab.js"></script>
+<script src="../js/components/tabs/ModsTab.js"></script>
+<script src="../js/components/tabs/SayonikaTab.js"></script>
+<script src="../js/components/tabs/SettingsTab.js"></script>
+<script src="../js/components/tabs/AboutTab.js"></script>
+<script src="../js/components/parts/RunningCover.js"></script>
+<script src="../js/components/parts/DropTarget.js"></script>
+<script src="../js/components/parts/Modal.js"></script>
 
 <script src="../js/app.js"></script>
 </body>

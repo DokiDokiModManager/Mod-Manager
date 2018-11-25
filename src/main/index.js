@@ -6,6 +6,7 @@ const mod_list_1 = require("./mod_list");
 const i18n_1 = require("./i18n");
 const install_list_1 = require("./install_list");
 const install_launcher_1 = require("./install_launcher");
+const config_1 = require("./config");
 // region Flags and references
 // Permanent reference to the main app window
 let appWindow;
@@ -41,6 +42,13 @@ electron_1.ipcMain.on("open url", (ev, url) => {
 electron_1.ipcMain.on("closable", (ev, flag) => {
     windowClosable = flag;
     appWindow.setClosable(flag);
+});
+// Config IPC functions
+electron_1.ipcMain.on("save config", (ev, configData) => {
+    config_1.default.saveConfigValue(configData.key, configData.value);
+});
+electron_1.ipcMain.on("read config", (ev, key) => {
+    ev.returnValue = config_1.default.readConfigValue(key);
 });
 // Launch install
 electron_1.ipcMain.on("launch install", (ev, folderName) => {

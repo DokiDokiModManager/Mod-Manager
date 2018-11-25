@@ -51,6 +51,7 @@ api.openURL = function (url) {
     ipcRenderer.send("open url", url);
 };
 
+// Open a browse dialog for mods to be imported
 api.browseForMod = function () {
     ipcRenderer.send("browse mods");
 };
@@ -63,8 +64,19 @@ api.translate = function (key, ...args) {
     });
 };
 
+// Toggle the ability to close the DDMM window to prevent loss of data
 api.setWindowClosable = function (flag) {
     ipcRenderer.send("closable", flag);
+};
+
+// Change a setting in config
+api.saveConfigValue = function(k, v) {
+  ipcRenderer.send("save config", {"key": k, "value": v});
+};
+
+// Read a setting from config
+api.readConfigValue = function(k) {
+    return ipcRenderer.sendSync("read config", k);
 };
 
 // Application version

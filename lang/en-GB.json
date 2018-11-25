@@ -58,6 +58,14 @@
     "tab_subtitle": "Find and download new mods.",
     "nyi_description": "Integration with the Sayonika mod database is coming soon! While you wait, please download your mods from their respective authors."
   },
+  "settings": {
+    "tab_title": "Settings",
+    "tab_subtitle": "Configure Doki Doki Mod Manager.",
+    "purist_title": "Purist Mode",
+    "purist_description": "Purist Mode disables Discord integration, achievements and several non-essential parts of the UI. Get to your mods faster.",
+    "purist_button_enable": "Enable and Restart",
+    "purist_button_disable": "Disable and Restart"
+  },
   "errors": {
     "launch": {
       "install_missing": "The install could not be found.",

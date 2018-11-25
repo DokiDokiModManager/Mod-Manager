@@ -320,3 +320,13 @@ button.success:hover {
   max-height: 600px;
   overflow-y: auto;
 }
+
+//
+// settings
+//
+
+.setting {
+  background-color: $ui-muted-background-colour;
+  padding: 1em;
+  border-radius: 3px;
+}

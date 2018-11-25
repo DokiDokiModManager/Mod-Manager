@@ -244,4 +244,10 @@ button.success:hover {
   overflow-y: auto;
 }
 
+.setting {
+  background-color: #ddd;
+  padding: 1em;
+  border-radius: 3px;
+}
+
 /*# sourceMappingURL=app.css.map */

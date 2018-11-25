@@ -4,6 +4,7 @@ import ModList from "./mod_list";
 import I18n from "./i18n";
 import InstallList from "./install_list";
 import InstallLauncher from "./install_launcher";
+import Config from "./config";
 
 // region Flags and references
 
@@ -51,6 +52,15 @@ ipcMain.on("open url", (ev: IpcMessageEvent, url: string) => {
 ipcMain.on("closable", (ev: IpcMessageEvent, flag: boolean) => {
     windowClosable = flag;
     appWindow.setClosable(flag);
+});
+
+// Config IPC functions
+ipcMain.on("save config", (ev: IpcMessageEvent, configData: { key: string, value: any}) => {
+   Config.saveConfigValue(configData.key, configData.value);
+});
+
+ipcMain.on("read config", (ev: IpcMessageEvent, key: string) => {
+   ev.returnValue = Config.readConfigValue(key);
 });
 
 // Launch install
