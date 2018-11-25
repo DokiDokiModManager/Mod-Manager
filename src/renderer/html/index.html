@@ -18,6 +18,40 @@
                         :description="running_cover.description"
                         @dismissed="running_cover.display = false">
     </ddmm-running-cover>
+
+    <ddmm-modal :title="_('changelog.modal_title')" :visible="modals.changelog" :buttons="[{'clazz': 'primary', 'id': 'close', 'text': 'close'}]" @button="modals.changelog = false">
+        <div v-for="entry in changelog">
+            <h3>{{entry.name}}</h3>
+            <div v-if="entry.details">
+                <!--suppress JSDeprecatedSymbols (webstorm is drunk) -->
+                <p>{{entry.details.summary}}</p>
+
+                <br>
+
+                <div v-if="entry.details.new">
+                    <h4>{{_("changelog.section_new")}}</h4>
+                    <ul>
+                        <li v-for="item in entry.details.new">{{item}}</li>
+                    </ul>
+                </div>
+
+                <div v-if="entry.details.bugs">
+                    <h4>{{_("changelog.section_bugs")}}</h4>
+                    <ul>
+                        <li v-for="item in entry.details.bugs">{{item}}</li>
+                    </ul>
+                </div>
+
+                <div v-if="entry.details.removed">
+                    <h4>{{_("changelog.section_removed")}}</h4>
+                    <ul>
+                        <li v-for="item in entry.details.removed">{{item}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </ddmm-modal>
+
     <div class="container">
         <div class="navbar">
             <span v-for="(t, id) in tabs" @click="switchTab(id)">
@@ -27,10 +61,11 @@
         <div class="content">
             <component
                     v-bind:is="tabs[tab].component"
-                    :recommended_mods="recommended_mods"
                     :ddmm_version="ddmm_version"
                     :mod_list="mod_list"
-                    :install_list="install_list">
+                    :install_list="install_list"
+                    @show_modal="showModal"
+            >
             </component>
         </div>
     </div>

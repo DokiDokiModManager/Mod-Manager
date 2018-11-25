@@ -2,56 +2,69 @@
   font-family: "Lato";
   font-style: normal;
   font-weight: 400;
-  src: url(../fonts/Lato-Regular.ttf); }
+  src: url(../fonts/Lato-Regular.ttf);
+}
 @font-face {
   font-family: "Lato";
   font-style: normal;
   font-weight: 700;
-  src: url(../fonts/Lato-Bold.ttf); }
+  src: url(../fonts/Lato-Bold.ttf);
+}
 * {
   box-sizing: border-box;
-  user-select: none; }
+  user-select: none;
+}
 
 html, body {
   height: 100%;
   padding: 0;
-  margin: 0; }
+  margin: 0;
+}
 
 body {
   font-family: "Lato", sans-serif;
   font-size: 16px;
   color: #222;
-  background-color: #fff; }
+  background-color: #fff;
+}
 
 a {
   color: #bb5599;
   text-decoration: none;
-  font-weight: bold; }
+  font-weight: bold;
+}
 
 a > .fas, .fab {
-  font-weight: normal; }
+  font-weight: normal;
+}
 
 ::-webkit-scrollbar {
-  background-color: transparent; }
+  background-color: transparent;
+}
 
 ::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0.25);
-  border-radius: 3px; }
+  border-radius: 3px;
+}
 
 h1, h2, h3, h4, p {
   margin: 0.25em 0 0.25em 0;
-  cursor: default; }
+  cursor: default;
+}
 
 small {
-  color: #999; }
+  color: #999;
+}
 
 .container {
-  display: flex; }
+  display: flex;
+}
 
 hr {
   border: none;
   border-bottom: 1px solid #e1e1e1;
-  padding-right: 1em; }
+  padding-right: 1em;
+}
 
 .navbar {
   background-color: #bb5599;
@@ -60,38 +73,46 @@ hr {
   height: 100%;
   overflow-y: auto;
   font-size: 0.8em;
-  flex-shrink: 0; }
+  flex-shrink: 0;
+}
 
 .nav-button {
   text-align: center;
   padding: 1em 2em;
-  cursor: pointer; }
+  cursor: pointer;
+}
 
 .nav-button.active {
-  background-color: #9e3f7e; }
+  background-color: #9e3f7e;
+}
 
 .nav-button p {
-  cursor: pointer; }
+  cursor: pointer;
+}
 
 .content {
   flex-grow: 1;
   padding: 1em;
   height: 100vh;
-  overflow-y: auto; }
+  overflow-y: auto;
+}
 
 .columns {
   display: flex;
   overflow-x: scroll;
-  flex-wrap: nowrap; }
+  flex-wrap: nowrap;
+}
 
 .column {
   flex-basis: 300px;
   padding: 0.5em;
   flex-shrink: 0;
-  flex-grow: 0; }
+  flex-grow: 0;
+}
 
 .columns.by3 .column {
-  flex-basis: 33.3%; }
+  flex-basis: 33.3%;
+}
 
 button {
   font-family: "Lato", sans-serif;
@@ -107,47 +128,61 @@ button {
   font-weight: normal;
   outline: none;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  transition: background-color 0.25s; }
+  transition: background-color 0.25s;
+}
 
 button.huge {
-  font-size: 1.25em; }
+  font-size: 1.25em;
+}
 
 button.primary {
-  background-color: #bb5599; }
+  background-color: #bb5599;
+}
 
 button.primary:hover {
-  background-color: #9e3f7e; }
+  background-color: #9e3f7e;
+}
 
 button.secondary {
   background-color: #fff;
-  color: #222; }
+  color: #222;
+}
 
 button.secondary:hover {
-  background-color: #e6e6e6; }
+  background-color: #e6e6e6;
+}
 
 button.dark {
-  background-color: #1e1e1e; }
+  background-color: #1e1e1e;
+}
 
 button.dark:hover {
-  background-color: #050505; }
+  background-color: #050505;
+}
 
 button.danger {
-  background-color: #eb4d4b; }
+  background-color: #eb4d4b;
+}
 
 button.danger:hover {
-  background-color: #e6201d; }
+  background-color: #e6201d;
+}
 
 button.warning {
-  background-color: #f0932b; }
+  background-color: #f0932b;
+}
 
 button.warning:hover {
-  background-color: #d97a0f; }
+  background-color: #d97a0f;
+}
 
 button.success {
-  background-color: #6ab04c; }
+  background-color: #6ab04c;
+}
 
 button.success:hover {
-  background-color: #558c3d; }
+  background-color: #558c3d;
+}
 
 .cover {
   position: fixed;
@@ -160,7 +195,8 @@ button.success:hover {
   color: #fff;
   padding: 2em;
   text-align: center;
-  z-index: 99; }
+  z-index: 99;
+}
 
 .drop-target {
   border: 5px dashed #ddd;
@@ -168,14 +204,17 @@ button.success:hover {
   text-align: center;
   padding: 1em;
   border-radius: 5px;
-  cursor: pointer !important; }
+  cursor: pointer !important;
+}
 
 .drop-target * {
-  pointer-events: none; }
+  pointer-events: none;
+}
 
 .drop-target.dragging {
   border-color: #bb5599;
-  color: #bb5599; }
+  color: #bb5599;
+}
 
 .modal-backdrop {
   background-color: rgba(0, 0, 0, 0.5);
@@ -184,7 +223,8 @@ button.success:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 98; }
+  z-index: 98;
+}
 
 .modal {
   position: fixed;
@@ -195,6 +235,13 @@ button.success:hover {
   top: 1em;
   z-index: 99;
   padding: 1em;
-  border-radius: 3px; }
+  border-radius: 3px;
+}
+
+.modal-content {
+  height: 50vh;
+  max-height: 600px;
+  overflow-y: auto;
+}
 
 /*# sourceMappingURL=app.css.map */

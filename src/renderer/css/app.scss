@@ -314,3 +314,9 @@ button.success:hover {
   padding: 1em;
   border-radius: 3px;
 }
+
+.modal-content {
+  height: 50vh;
+  max-height: 600px;
+  overflow-y: auto;
+}

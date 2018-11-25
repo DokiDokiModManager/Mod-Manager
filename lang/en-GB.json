@@ -2,12 +2,17 @@
   "home": {
     "tab_title": "Welcome back!",
     "tab_subtitle": "You're running version {0} of Doki Doki Mod Manager.",
+    "link_changelog": "View the changelog.",
     "section_resume_title": "Resume playing",
     "section_resume_subtitle": "Pick up where you left off with {0}.",
-    "section_resume_button": "Launch",
-    "section_discover_title": "Find something new",
-    "section_discover_subtitle": "Here are some exceptionally good mods that you should play!",
-    "section_discover_button_download": "Download"
+    "section_resume_button": "Launch"
+  },
+  "changelog": {
+    "modal_title": "Changelog",
+    "section_new": "New Features",
+    "section_bugs": "Bugs Fixed",
+    "section_removed": "Removed",
+    "button_close": "Close"
   },
   "about": {
     "tab_title": "About",
@@ -51,7 +56,7 @@
   "sayonika": {
     "tab_title": "Sayonika",
     "tab_subtitle": "Find and download new mods.",
-    "nyi_description": "Integration with the Sayonika mod database is coming soon™! While you wait, please download your mods from their respective authors."
+    "nyi_description": "Integration with the Sayonika mod database is coming soon! While you wait, please download your mods from their respective authors."
   },
   "errors": {
     "launch": {

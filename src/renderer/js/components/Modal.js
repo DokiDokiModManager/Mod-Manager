@@ -8,7 +8,7 @@ const Modal = Vue.component("ddmm-modal", {
             <div class="modal">
                 <h2>{{title}}</h2>
                 <br>
-                <slot></slot>
+                <div class="modal-content"><slot></slot></div>
                 <br>
                 <p style="text-align: right;"><span v-for="button in buttons"><button :class="[button.clazz]" @click="$emit('button', button.id)">{{button.text}}</button> </span></p>
             </div>
