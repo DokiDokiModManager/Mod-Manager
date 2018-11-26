@@ -29,7 +29,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
     <div v-for="mod in mod_list">
         <h2>{{mod}}</h2>
         <p><span style="cursor: help;" :title="_('mods.mod.description_downloaded')"><i class="fas fa-download fa-fw" style="color: #f0932b;"></i> {{_("mods.mod.status_downloaded")}}</span></p>
-        <p><button class="primary">{{_("mods.mod.button_install")}}</button></p>
+        <p><button class="primary" @click="$emit('install_mod', getCanonicalPathToMod(mod))">{{_("mods.mod.button_install")}}</button></p>
         <br>
     </div>
 </div>`,
@@ -57,6 +57,9 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
         "refreshList": function () {
             ddmm.refreshInstallList();
             ddmm.refreshModList();
+        },
+        "getCanonicalPathToMod": function (filename) {
+            return ddmm.joinPath(ddmm.readConfigValue("installFolder"), "mods", filename);
         }
     }
 });

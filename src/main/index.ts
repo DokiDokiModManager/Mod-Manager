@@ -67,6 +67,7 @@ ipcMain.on("read config", (ev: IpcMessageEvent, key: string) => {
 
 // Launch install
 ipcMain.on("launch install", (ev: IpcMessageEvent, folderName: string) => {
+    Config.saveConfigValue("lastLaunchedInstall", folderName);
     appWindow.minimize(); // minimise the window to draw attention to the fact another window will be appearing
     appWindow.webContents.send("running cover", {
         display: true,
@@ -147,7 +148,12 @@ app.on("ready", () => {
 
     app.setAppUserModelId("space.doki.modmanager");
 
-    app.requestSingleInstanceLock();
+    if (!app.requestSingleInstanceLock()) {
+        // we should quit, as another instance is running
+        console.log("App already running.");
+        app.quit();
+        return; // avoid running for longer than needed
+    }
 
 
     appWindow = new BrowserWindow({

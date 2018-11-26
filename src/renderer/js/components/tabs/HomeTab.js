@@ -7,7 +7,7 @@ const HomeTab = Vue.component("ddmm-home-tab", {
     <h1>{{_("home.tab_title")}}</h1>
     <p>{{_("home.tab_subtitle", ddmm_version)}} <a href="javascript:;" @click="$emit('show_modal', 'changelog')">{{_("home.link_changelog")}}</a></p>
     <br>
-    <div v-if="lastInstall">
+    <div v-if="lastInstall" class="highlight">
         <h2>{{_("home.section_resume_title")}}</h2>
         <p>{{_("home.section_resume_subtitle", lastInstall.name)}}</p>
         <p><button class="primary" @click="launchInstall(lastInstall.folder)">{{_("home.section_resume_button")}}</button></p>

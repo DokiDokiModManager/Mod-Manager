@@ -106,8 +106,8 @@ ddmm.on("running cover", data => {
     app.running_cover = data;
 });
 
-// load changelog TODO: replace with actual repo
-fetch("https://api.github.com/repos/ZudoMC/test-repo/releases").then(r => r.json()).then(releases => {
+// load changelog
+fetch("https://api.github.com/repos/DokiDokiModManager/Mod-Manager/releases").then(r => r.json()).then(releases => {
     app.changelog = releases.map(release => {
         return {
             "name": release.name,

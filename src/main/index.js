@@ -54,6 +54,7 @@ electron_1.ipcMain.on("read config", (ev, key) => {
 });
 // Launch install
 electron_1.ipcMain.on("launch install", (ev, folderName) => {
+    config_1.default.saveConfigValue("lastLaunchedInstall", folderName);
     appWindow.minimize(); // minimise the window to draw attention to the fact another window will be appearing
     appWindow.webContents.send("running cover", {
         display: true,
@@ -126,7 +127,12 @@ electron_1.app.on("second-instance", () => {
 });
 electron_1.app.on("ready", () => {
     electron_1.app.setAppUserModelId("space.doki.modmanager");
-    electron_1.app.requestSingleInstanceLock();
+    if (!electron_1.app.requestSingleInstanceLock()) {
+        // we should quit, as another instance is running
+        console.log("App already running.");
+        electron_1.app.quit();
+        return; // avoid running for longer than needed
+    }
     appWindow = new electron_1.BrowserWindow({
         title: "Doki Doki Mod Manager",
         width: 1200,

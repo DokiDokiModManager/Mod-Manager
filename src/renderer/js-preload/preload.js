@@ -8,6 +8,7 @@
 const {ipcRenderer, remote} = require("electron");
 const EventEmitter = remote.require("events");
 const packageData = remote.require("../../package");
+const path = remote.require("path");
 
 const api = new EventEmitter();
 
@@ -87,6 +88,9 @@ api.readConfigValue = function(k) {
 
 // Application version
 api.version = packageData.version;
+
+// Join paths
+api.joinPath = path.join;
 
 // make the API visible to the renderer
 global.ddmm = api;

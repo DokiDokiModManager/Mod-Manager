@@ -52,13 +52,14 @@
                     </ul>
                 </div>
             </div>
+            <div v-else>No changelog available</div>
             <hr>
         </div>
     </ddmm-modal>
 
     <ddmm-modal :title="_('install_modal.title')"
                 :visible="modals.install.visible"
-                :buttons="[{'clazz': 'secondary', 'id': 'cancel', 'text': _('install_modal.button_cancel')}, {'clazz': 'primary', 'id': 'install', 'text': _('install_modal.button_install')}]"
+                :buttons="[{'clazz': 'primary', 'id': 'install', 'text': _('install_modal.button_install')}, {'clazz': 'secondary', 'id': 'cancel', 'text': _('install_modal.button_cancel')}]"
                 @button="handleInstallModalButton">
         <p v-if="!modals.install.mod">{{_("install_modal.description_vanilla")}}</p>
         <p v-else>{{_("install_modal.description_modded", modals.install.mod)}}</p>

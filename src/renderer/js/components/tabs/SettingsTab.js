@@ -8,7 +8,7 @@ const SettingsTab = Vue.component("ddmm-settings-tab", {
     <p>{{_("settings.tab_subtitle")}}</p>
     <br>
     
-    <div class="setting">
+    <div class="highlight">
         <h2>{{_("settings.purist_title")}}</h2>
         <p>{{_("settings.purist_description")}}</p>
         <p>
