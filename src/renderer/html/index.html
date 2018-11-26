@@ -19,7 +19,10 @@
                         @dismissed="running_cover.display = false">
     </ddmm-running-cover>
 
-    <ddmm-modal :title="_('changelog.modal_title')" :visible="modals.changelog" :buttons="[{'clazz': 'primary', 'id': 'close', 'text': _('changelog.button_close')}]" @button="modals.changelog = false">
+    <ddmm-modal :title="_('changelog.modal_title')"
+            :visible="modals.changelog"
+            :buttons="[{'clazz': 'primary', 'id': 'close', 'text': _('changelog.button_close')}]"
+            @button="modals.changelog = false">
         <div v-for="entry in changelog">
             <h3>{{entry.name}}</h3>
             <div v-if="entry.details">
@@ -53,6 +56,31 @@
         </div>
     </ddmm-modal>
 
+    <ddmm-modal :title="_('install_modal.title')"
+                :visible="modals.install.visible"
+                :buttons="[{'clazz': 'primary', 'id': 'install', 'text': _('install_modal.button_install')}, {'clazz': 'secondary', 'id': 'cancel', 'text': _('install_modal.button_cancel')}]">
+        <p v-if="!modals.install.mod">{{_("install_modal.description_vanilla")}}</p>
+        <p v-else>{{_("install_modal.description_modded", modals.install.mod)}}</p>
+
+        <br>
+
+        <p><label for="ddmm-install-name-box">{{_("install_modal.label_install_name")}}</label></p>
+        <p><input type="text" id="ddmm-install-name-box" @keyup="generateInstallFolderName" v-model="modals.install.install_name"></p>
+
+        <br>
+
+        <p><label for="ddmm-install-folder-box">{{_("install_modal.label_folder_name")}}</label></p>
+        <p><input type="text" id="ddmm-install-folder-box" v-model="modals.install.folder_name"></p>
+
+        <br>
+
+        <p><label><input type="checkbox"> {{_("install_modal.label_global_save")}}</label></p>
+
+        <br>
+
+        <p>{{_("install_modal.description_global_save")}}</p>
+    </ddmm-modal>
+
     <div class="container">
         <div class="navbar">
             <span v-for="(t, id) in tabs" @click="switchTab(id)" v-if="(t.purist_enabled || !purist)">
@@ -66,6 +94,7 @@
                     :mod_list="mod_list"
                     :install_list="install_list"
                     @show_modal="showModal"
+                    @install_mod="showInstallDialog"
             >
             </component>
         </div>

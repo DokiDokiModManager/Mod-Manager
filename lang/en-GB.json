@@ -82,6 +82,17 @@
       "title": "Something went wrong"
     }
   },
+  "install_modal": {
+    "title": "Install Game",
+    "description_vanilla": "You are installing a copy of DDLC without any mods.",
+    "description_modded": "You are installing {0}.",
+    "label_install_name": "Install Name",
+    "label_folder_name": "Folder Name",
+    "label_global_save": "Global Save",
+    "description_global_save": "Enable global save to share this installation's save data with standalone and Steam versions of DDLC. This may cause issues with other mods.",
+    "button_install": "Install",
+    "button_cancel": "Cancel"
+  },
   "exceptions": {
     "renderer_crash_notification": {
       "title": "Doki Doki Mod Manager crashed",

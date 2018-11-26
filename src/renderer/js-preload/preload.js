@@ -37,8 +37,14 @@ ipcRenderer.on("running cover", (ev, data) => {
     api.emit("running cover", data);
 });
 
+// Launches an install
 api.launchInstall = function (folderName) {
     ipcRenderer.send("launch install", folderName);
+};
+
+// Creates an install
+api.createInstall = function(folderName, installName, globalSave) {
+    ipcRenderer.send("create install", {folderName, installName, globalSave});
 };
 
 // Restart the app
@@ -53,7 +59,7 @@ api.openURL = function (url) {
 
 // Open a browse dialog for mods to be imported
 api.browseForMod = function () {
-    ipcRenderer.send("browse mods");
+    return ipcRenderer.sendSync("browse mods");
 };
 
 // Localisation function
@@ -86,17 +92,6 @@ api.version = packageData.version;
 global.ddmm = api;
 
 
-console.log(`%c
-  _____        _    _   _____        _    _   __  __           _   __  __                                   
- |  __ \\      | |  (_) |  __ \\      | |  (_) |  \\/  |         | | |  \\/  |                                  
- | |  | | ___ | | ___  | |  | | ___ | | ___  | \\  / | ___   __| | | \\  / | __ _ _ __   __ _  __ _  ___ _ __ 
- | |  | |/ _ \\| |/ / | | |  | |/ _ \\| |/ / | | |\\/| |/ _ \\ / _\` | | |\\/| |/ _\` | '_ \\ / _\` |/ _\` |/ _ \\ '__|
- | |__| | (_) |   <| | | |__| | (_) |   <| | | |  | | (_) | (_| | | |  | | (_| | | | | (_| | (_| |  __/ |   
- |_____/ \\___/|_|\\_\\_| |_____/ \\___/|_|\\_\\_| |_|  |_|\\___/ \\__,_| |_|  |_|\\__,_|_| |_|\\__,_|\\__, |\\___|_|   
-                                                                                             __/ |          
-                                                                                            |___/                        
+console.warn(`Welcome, traveller.
 
-Welcome, traveller.
-
-Before you type anything here, make sure you know what you're doing. Certain commands could bork your install.
-`, "background-color: black; color: #0f0; padding: 1em; font-size: 12px;");
+Before you type anything here, make sure you know what you're doing. Certain commands could bork your install.`);

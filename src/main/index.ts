@@ -5,6 +5,7 @@ import I18n from "./i18n";
 import InstallList from "./install_list";
 import InstallLauncher from "./install_launcher";
 import Config from "./config";
+import InstallCreator from "./install_creator";
 
 // region Flags and references
 
@@ -91,7 +92,16 @@ ipcMain.on("browse mods", (ev: IpcMessageEvent) => {
     dialog.showOpenDialog(appWindow, {
         buttonLabel: lang.translate("mods.browse_dialog.button_label"),
         title: lang.translate("mods.browse_dialog.title"),
-        filters: [{extensions: ["zip"], name: lang.translate("mods.browse_dialog.file_format_name")}]
+        filters: [{extensions: ["zip"], name: lang.translate("mods.browse_dialog.file_format_name")}],
+    }, (filePaths: string[]) => {
+        ev.returnValue = filePaths;
+    });
+});
+
+// Trigger install creation
+ipcMain.on("create install", (ev: IpcMessageEvent, install: {folderName: string, installName: string, globalSave: boolean}) => {
+    InstallCreator.createInstall(install.folderName, install.installName, install.globalSave).then(() => {
+        appWindow.webContents.send("got installs", InstallList.getInstallList());
     });
 });
 

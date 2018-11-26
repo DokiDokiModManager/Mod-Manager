@@ -14,7 +14,9 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.5.0",
-    "vue": "^2.5.17"
+    "vue": "^2.5.17",
+    "chmodr": "latest",
+    "@zudo/unzipper": "latest"
   },
   "devDependencies": {
     "electron": "^3.0.10"

@@ -5,12 +5,12 @@ import Config from "./config";
 export default class ModList {
 
     /**
-     * Reads the mod directory and returns the contents
+     * Reads the mod directory and returns the contents (filtered to only include .zip files)
      * @returns string[] A list of mod filenames
      */
     static getModList(): string[] {
         const modFolder: string = joinPath(Config.readConfigValue("installFolder"), "mods");
 
-        return readdirSync(modFolder);
+        return readdirSync(modFolder).filter(fn => fn.endsWith(".zip"));
     }
 }

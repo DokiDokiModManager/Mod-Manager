@@ -40,7 +40,14 @@ const app = new Vue({
         "changelog": [],
         "purist": PURIST_ENABLED,
         "modals": {
-            "changelog": false
+            "changelog": false,
+            "install": {
+                "visible": false,
+                "install_name": "",
+                "folder_name": "",
+                "global_save": false,
+                "mod": null
+            }
         }
     },
     "methods": {
@@ -52,6 +59,17 @@ const app = new Vue({
         },
         "showModal": function (modal) {
             this.modals[modal] = true;
+        },
+        "showInstallDialog": function (path) {
+            this.modals.install.visible = true;
+            this.modals.install.mod = path;
+        },
+        "generateInstallFolderName": function () {
+            this.modals.install.folder_name = this.modals.install.install_name
+                .trim()
+                .toLowerCase()
+                .replace(/ /g, "-")
+                .replace(/-+/g, "-");
         }
     }
 });

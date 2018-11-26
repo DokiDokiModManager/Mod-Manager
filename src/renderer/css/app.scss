@@ -252,6 +252,27 @@ button.success:hover {
 }
 
 //
+// input styles
+//
+input[type="text"], input[type="number"], input[type="url"], textarea {
+  font-family: "Lato", sans-serif;
+  border-radius: 3px;
+  box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.21);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  font-weight: normal;
+  min-width: 350px;
+  padding: 0.5em 1em;
+  cursor: text;
+  font-size: 1em;
+  width: 100%;
+  outline: none;
+}
+
+input:focus, textarea:focus {
+  border-color: $ui-highlight-background-colour;
+}
+
+//
 // overlay that is displayed when the game is running etc.
 //
 .cover {

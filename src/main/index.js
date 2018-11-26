@@ -7,6 +7,7 @@ const i18n_1 = require("./i18n");
 const install_list_1 = require("./install_list");
 const install_launcher_1 = require("./install_launcher");
 const config_1 = require("./config");
+const install_creator_1 = require("./install_creator");
 // region Flags and references
 // Permanent reference to the main app window
 let appWindow;
@@ -77,7 +78,15 @@ electron_1.ipcMain.on("browse mods", (ev) => {
     electron_1.dialog.showOpenDialog(appWindow, {
         buttonLabel: lang.translate("mods.browse_dialog.button_label"),
         title: lang.translate("mods.browse_dialog.title"),
-        filters: [{ extensions: ["zip"], name: lang.translate("mods.browse_dialog.file_format_name") }]
+        filters: [{ extensions: ["zip"], name: lang.translate("mods.browse_dialog.file_format_name") }],
+    }, (filePaths) => {
+        ev.returnValue = filePaths;
+    });
+});
+// Trigger install creation
+electron_1.ipcMain.on("create install", (ev, install) => {
+    install_creator_1.default.createInstall(install.folderName, install.installName, install.globalSave).then(() => {
+        appWindow.webContents.send("got installs", install_list_1.default.getInstallList());
     });
 });
 // endregion
