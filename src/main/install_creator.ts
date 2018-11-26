@@ -18,53 +18,57 @@ export default class InstallCreator {
             console.log("Creating clean install in " + folderName);
             const canonicalPath = joinPath(Config.readConfigValue("installFolder"), "installs", folderName);
 
-            // create the install and appdata directories
-            mkdirsSync(joinPath(canonicalPath, "appdata"));
-            mkdirsSync(joinPath(canonicalPath, "install"));
+            try {
+                // create the install and appdata directories
+                mkdirsSync(joinPath(canonicalPath, "appdata"));
+                mkdirsSync(joinPath(canonicalPath, "install"));
 
-            // extract the game from the zip file
-            const zip = unzip(joinPath(Config.readConfigValue("installFolder"), "ddlc.zip"));
+                // extract the game from the zip file
+                const zip = unzip(joinPath(Config.readConfigValue("installFolder"), "ddlc.zip"));
 
-            zip.on("file", (file) => {
-                console.log("Extracting " + file.path);
+                zip.on("file", (file) => {
+                    console.log("Extracting " + file.path);
 
-                // get the new path
-                const pathParts = file.path.split("/");
-                pathParts.shift(); // remove the base ddlc directory
-                const fileName = pathParts.pop();
-                mkdirsSync(joinPath(canonicalPath, "install", pathParts.join(pathSep)));
+                    // get the new path
+                    const pathParts = file.path.split("/");
+                    pathParts.shift(); // remove the base ddlc directory
+                    const fileName = pathParts.pop();
+                    mkdirsSync(joinPath(canonicalPath, "install", pathParts.join(pathSep)));
 
-                // write the file
-                file.openStream((err, stream) => {
-                    if (err) {
-                        rj(err);
-                    }
-                    stream.pipe(createWriteStream(joinPath(
-                        canonicalPath,
-                        "install",
-                        pathParts.join(pathSep), fileName)));
-                });
-            });
-
-            zip.on("close", () => {
-                console.log("Install completed.");
-
-                // write the install data file
-                writeFileSync(joinPath(canonicalPath, "install.json"), JSON.stringify({
-                    globalSave,
-                    mod: null,
-                    name: installName,
-                }));
-
-                if (process.platform !== "win32") {
-                    // make the directory executable for *nix users
-                    chmodr(joinPath(canonicalPath, "install"), 0o774, () => { // it needs to be octal!
-                        ff();
+                    // write the file
+                    file.openStream((err, stream) => {
+                        if (err) {
+                            rj(err);
+                        }
+                        stream.pipe(createWriteStream(joinPath(
+                            canonicalPath,
+                            "install",
+                            pathParts.join(pathSep), fileName)));
                     });
-                } else {
-                    ff();
-                }
-            });
+                });
+
+                zip.on("close", () => {
+                    console.log("Install completed.");
+
+                    // write the install data file
+                    writeFileSync(joinPath(canonicalPath, "install.json"), JSON.stringify({
+                        globalSave,
+                        mod: null,
+                        name: installName,
+                    }));
+
+                    if (process.platform !== "win32") {
+                        // make the directory executable for *nix users
+                        chmodr(joinPath(canonicalPath, "install"), 0o774, () => { // it needs to be octal!
+                            ff();
+                        });
+                    } else {
+                        ff();
+                    }
+                });
+            } catch (e) {
+                rj(e);
+            }
         });
     }
 }

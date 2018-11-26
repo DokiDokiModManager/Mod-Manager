@@ -16,7 +16,7 @@
     <ddmm-running-cover :display="running_cover.display" :dismissable="running_cover.dismissable"
                         :title="running_cover.title"
                         :description="running_cover.description"
-                        @dismissed="running_cover.display = false">
+                        @dismissed="running_cover.display = false; $forceUpdate()">
     </ddmm-running-cover>
 
     <ddmm-modal :title="_('changelog.modal_title')"
@@ -58,23 +58,24 @@
 
     <ddmm-modal :title="_('install_modal.title')"
                 :visible="modals.install.visible"
-                :buttons="[{'clazz': 'primary', 'id': 'install', 'text': _('install_modal.button_install')}, {'clazz': 'secondary', 'id': 'cancel', 'text': _('install_modal.button_cancel')}]">
+                :buttons="[{'clazz': 'secondary', 'id': 'cancel', 'text': _('install_modal.button_cancel')}, {'clazz': 'primary', 'id': 'install', 'text': _('install_modal.button_install')}]"
+                @button="handleInstallModalButton">
         <p v-if="!modals.install.mod">{{_("install_modal.description_vanilla")}}</p>
         <p v-else>{{_("install_modal.description_modded", modals.install.mod)}}</p>
 
         <br>
 
         <p><label for="ddmm-install-name-box">{{_("install_modal.label_install_name")}}</label></p>
-        <p><input type="text" id="ddmm-install-name-box" @keyup="generateInstallFolderName" v-model="modals.install.install_name"></p>
+        <p><input type="text" id="ddmm-install-name-box" @keyup="generateInstallFolderName" v-model="modals.install.install_name" maxlength="64"></p>
 
         <br>
 
         <p><label for="ddmm-install-folder-box">{{_("install_modal.label_folder_name")}}</label></p>
-        <p><input type="text" id="ddmm-install-folder-box" v-model="modals.install.folder_name"></p>
+        <p><input type="text" id="ddmm-install-folder-box" v-model="modals.install.folder_name" maxlength="32"></p>
 
         <br>
 
-        <p><label><input type="checkbox"> {{_("install_modal.label_global_save")}}</label></p>
+        <p><label><input type="checkbox" v-model="modals.install.global_save"> {{_("install_modal.label_global_save")}}</label></p>
 
         <br>
 

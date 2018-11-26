@@ -17,44 +17,49 @@ class InstallCreator {
         return new Promise((ff, rj) => {
             console.log("Creating clean install in " + folderName);
             const canonicalPath = path_1.join(config_1.default.readConfigValue("installFolder"), "installs", folderName);
-            // create the install and appdata directories
-            fs_extra_1.mkdirsSync(path_1.join(canonicalPath, "appdata"));
-            fs_extra_1.mkdirsSync(path_1.join(canonicalPath, "install"));
-            // extract the game from the zip file
-            const zip = unzip(path_1.join(config_1.default.readConfigValue("installFolder"), "ddlc.zip"));
-            zip.on("file", (file) => {
-                console.log("Extracting " + file.path);
-                // get the new path
-                const pathParts = file.path.split("/");
-                pathParts.shift(); // remove the base ddlc directory
-                const fileName = pathParts.pop();
-                fs_extra_1.mkdirsSync(path_1.join(canonicalPath, "install", pathParts.join(path_1.sep)));
-                // write the file
-                file.openStream((err, stream) => {
-                    if (err) {
-                        rj(err);
-                    }
-                    stream.pipe(fs_1.createWriteStream(path_1.join(canonicalPath, "install", pathParts.join(path_1.sep), fileName)));
-                });
-            });
-            zip.on("close", () => {
-                console.log("Install completed.");
-                // write the install data file
-                fs_1.writeFileSync(path_1.join(canonicalPath, "install.json"), JSON.stringify({
-                    globalSave,
-                    mod: null,
-                    name: installName,
-                }));
-                if (process.platform !== "win32") {
-                    // make the directory executable for *nix users
-                    chmodr(path_1.join(canonicalPath, "install"), 0o774, () => {
-                        ff();
+            try {
+                // create the install and appdata directories
+                fs_extra_1.mkdirsSync(path_1.join(canonicalPath, "appdata"));
+                fs_extra_1.mkdirsSync(path_1.join(canonicalPath, "install"));
+                // extract the game from the zip file
+                const zip = unzip(path_1.join(config_1.default.readConfigValue("installFolder"), "ddlc.zip"));
+                zip.on("file", (file) => {
+                    console.log("Extracting " + file.path);
+                    // get the new path
+                    const pathParts = file.path.split("/");
+                    pathParts.shift(); // remove the base ddlc directory
+                    const fileName = pathParts.pop();
+                    fs_extra_1.mkdirsSync(path_1.join(canonicalPath, "install", pathParts.join(path_1.sep)));
+                    // write the file
+                    file.openStream((err, stream) => {
+                        if (err) {
+                            rj(err);
+                        }
+                        stream.pipe(fs_1.createWriteStream(path_1.join(canonicalPath, "install", pathParts.join(path_1.sep), fileName)));
                     });
-                }
-                else {
-                    ff();
-                }
-            });
+                });
+                zip.on("close", () => {
+                    console.log("Install completed.");
+                    // write the install data file
+                    fs_1.writeFileSync(path_1.join(canonicalPath, "install.json"), JSON.stringify({
+                        globalSave,
+                        mod: null,
+                        name: installName,
+                    }));
+                    if (process.platform !== "win32") {
+                        // make the directory executable for *nix users
+                        chmodr(path_1.join(canonicalPath, "install"), 0o774, () => {
+                            ff();
+                        });
+                    }
+                    else {
+                        ff();
+                    }
+                });
+            }
+            catch (e) {
+                rj(e);
+            }
         });
     }
 }

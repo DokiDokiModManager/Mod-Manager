@@ -63,13 +63,23 @@ const app = new Vue({
         "showInstallDialog": function (path) {
             this.modals.install.visible = true;
             this.modals.install.mod = path;
+            this.modals.install.folder_name = "";
+            this.modals.install.install_name = "";
         },
         "generateInstallFolderName": function () {
             this.modals.install.folder_name = this.modals.install.install_name
                 .trim()
                 .toLowerCase()
-                .replace(/ /g, "-")
-                .replace(/-+/g, "-");
+                .replace(/\W/g, "-")
+                .replace(/-+/g, "-")
+                .substring(0, 32);
+        },
+        "handleInstallModalButton": function (button) {
+            if (button === "install") {
+                ddmm.createInstall(this.modals.install.folder_name, this.modals.install.install_name, this.modals.install.global_save);
+            }
+
+            this.modals.install.visible = false;
         }
     }
 });

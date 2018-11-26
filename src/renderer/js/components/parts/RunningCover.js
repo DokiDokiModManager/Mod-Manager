@@ -7,9 +7,15 @@ const RunningCover = Vue.component("ddmm-running-cover", {
     <h1>{{title}}</h1>
     <p>{{description}}</p>
     <div v-if="dismissable">
-        <button @click="$emit('dismissed')" class="danger">close this (untranslated)</button>
+        <br>
+        <button @click="$emit('dismissed')" class="danger">{{_("errors.launch.button_close_cover")}}</button>
     </div>
 </div>
         `,
-    "props": ["display", "dismissable", "title", "description"]
+    "props": ["display", "dismissable", "title", "description"],
+    "methods": {
+        "_": function () {
+            return ddmm.translate.apply(null, arguments);
+        }
+    }
 });

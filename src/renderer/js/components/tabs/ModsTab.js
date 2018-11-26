@@ -38,11 +38,17 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
         "openURL": ddmm.openURL,
         "handleDroppedFiles": function (files) {
             const filePath = files[0].path;
-            this.$emit("install_mod", filePath);
+            console.log(filePath);
+            if (filePath && filePath.endsWith(".zip")) {
+                this.$emit("install_mod", filePath);
+            }
         },
         "browseForMod": function () {
-            const filePath = ddmm.browseForMod();
-            this.$emit("install_mod", filePath);
+            const filePath = ddmm.browseForMod()[0];
+            console.log(filePath);
+            if (filePath && filePath.endsWith(".zip")) {
+                this.$emit("install_mod", filePath);
+            }
         }
     }
 });

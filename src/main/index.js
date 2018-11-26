@@ -62,9 +62,11 @@ electron_1.ipcMain.on("launch install", (ev, folderName) => {
     });
     install_launcher_1.default.launchInstall(folderName).then(() => {
         appWindow.restore(); // show DDMM again
+        appWindow.focus();
         appWindow.webContents.send("running cover", { display: false });
     }).catch(err => {
         appWindow.restore();
+        appWindow.focus();
         appWindow.webContents.send("running cover", {
             display: true,
             dismissable: true,
@@ -85,8 +87,12 @@ electron_1.ipcMain.on("browse mods", (ev) => {
 });
 // Trigger install creation
 electron_1.ipcMain.on("create install", (ev, install) => {
+    windowClosable = false;
+    appWindow.setClosable(false);
     install_creator_1.default.createInstall(install.folderName, install.installName, install.globalSave).then(() => {
         appWindow.webContents.send("got installs", install_list_1.default.getInstallList());
+        windowClosable = true;
+        appWindow.setClosable(true);
     });
 });
 // endregion
@@ -99,14 +105,20 @@ process.on("uncaughtException", () => {
     crashNotif.show();
     electron_1.app.quit();
 });
+electron_1.app.on("second-instance", () => {
+    appWindow.restore();
+    appWindow.focus();
+});
 electron_1.app.on("ready", () => {
     electron_1.app.setAppUserModelId("space.doki.modmanager");
+    electron_1.app.requestSingleInstanceLock();
     appWindow = new electron_1.BrowserWindow({
         title: "Doki Doki Mod Manager",
         width: 1200,
         height: 800,
         minWidth: 1000,
-        minHeight: 800,
+        minHeight: 600,
+        maximizable: true,
         webPreferences: {
             sandbox: true,
             nodeIntegration: false,

@@ -70,7 +70,8 @@
     "launch": {
       "install_missing": "The install could not be found.",
       "install_corrupt": "The install is incomplete or corrupt.",
-      "install_crashed": "The game failed to launch or crashed."
+      "install_crashed": "The game failed to launch or crashed.",
+      "button_close_cover": "Close"
     }
   },
   "running_cover": {
