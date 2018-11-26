@@ -43,8 +43,8 @@ api.launchInstall = function (folderName) {
 };
 
 // Creates an install
-api.createInstall = function(folderName, installName, globalSave) {
-    ipcRenderer.send("create install", {folderName, installName, globalSave});
+api.createInstall = function(folderName, installName, globalSave, mod) {
+    ipcRenderer.send("create install", {folderName, installName, globalSave, mod});
 };
 
 // Restart the app

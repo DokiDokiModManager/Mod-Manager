@@ -25,6 +25,11 @@ export default class InstallLauncher {
                 rj(lang.translate("errors.launch.install_corrupt"));
             }
 
+            Config.saveConfigValue("lastInstall", {
+                "name": installData.name,
+                "folder": folderName
+            });
+
             if (existsSync(installFolder)) {
                 // get the path to the game executable, .exe on windows and .sh on macOS / Linux
                 const gameExecutable: string = joinPath(installFolder, "install", (process.platform === "win32" ? "ddlc.exe" : "DDLC.sh"));

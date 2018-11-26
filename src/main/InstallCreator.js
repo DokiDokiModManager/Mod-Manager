@@ -64,4 +64,4 @@ class InstallCreator {
     }
 }
 exports.default = InstallCreator;
-//# sourceMappingURL=install_creator.js.map
+//# sourceMappingURL=InstallCreator.js.map

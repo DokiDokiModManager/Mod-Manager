@@ -33,4 +33,4 @@ class InstallList {
     }
 }
 exports.default = InstallList;
-//# sourceMappingURL=install_list.js.map
+//# sourceMappingURL=InstallList.js.map

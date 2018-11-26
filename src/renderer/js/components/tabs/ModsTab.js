@@ -13,6 +13,10 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
     
     <br>
     
+    <p><button class="success" @click="$emit('install_mod', null)">{{_("mods.button_vanilla_install")}}</button> <button class="secondary" @click="refreshList">{{_("mods.button_refresh")}}</button></p>
+    
+    <br>
+    
     <div v-for="install in install_list">
         <h2>{{install.name}} <small>{{install.folderName}}</small></h2>
         <p>
@@ -49,6 +53,10 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             if (filePath && filePath.endsWith(".zip")) {
                 this.$emit("install_mod", filePath);
             }
+        },
+        "refreshList": function () {
+            ddmm.refreshInstallList();
+            ddmm.refreshModList();
         }
     }
 });

@@ -23,6 +23,10 @@ class InstallLauncher {
             catch (e) {
                 rj(lang.translate("errors.launch.install_corrupt"));
             }
+            config_1.default.saveConfigValue("lastInstall", {
+                "name": installData.name,
+                "folder": folderName
+            });
             if (fs_1.existsSync(installFolder)) {
                 // get the path to the game executable, .exe on windows and .sh on macOS / Linux
                 const gameExecutable = path_1.join(installFolder, "install", (process.platform === "win32" ? "ddlc.exe" : "DDLC.sh"));
@@ -55,4 +59,4 @@ class InstallLauncher {
     }
 }
 exports.default = InstallLauncher;
-//# sourceMappingURL=install_launcher.js.map
+//# sourceMappingURL=InstallLauncher.js.map

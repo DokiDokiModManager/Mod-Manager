@@ -14,16 +14,29 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.5.0",
-    "vue": "^2.5.17",
+    "@zudo/unzipper": "latest",
     "chmodr": "latest",
-    "@zudo/unzipper": "latest"
+    "fs-extra": "^7.0.1",
+    "vue": "^2.5.17"
   },
   "devDependencies": {
-    "electron": "^3.0.10"
+    "electron": "^3.0.10",
+    "electron-builder": "^20.36.2"
   },
   "build": {
     "appId": "space.doki.modmanager",
     "artifactName": "ddmm-${version}-${os}-${arch}.${ext}",
+    "files": [
+      "!**/*.ts",
+      "!**/*.map",
+      "!**/fontawesome-free/svgs",
+      "!**/fontawesome-free/sprites",
+      "!**/fontawesome-free/svgs",
+      "!**/fontawesome-free/js",
+      "!**/fontawesome-free/less",
+      "!**/fontawesome-free/scss",
+      "!**/vue/src"
+    ],
     "publish": [
       {
         "provider": "github",

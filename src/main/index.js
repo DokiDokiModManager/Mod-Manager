@@ -2,12 +2,13 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const electron_1 = require("electron");
 const path_1 = require("path");
-const mod_list_1 = require("./mod_list");
+const ModList_1 = require("./ModList");
 const i18n_1 = require("./i18n");
-const install_list_1 = require("./install_list");
-const install_launcher_1 = require("./install_launcher");
+const InstallList_1 = require("./InstallList");
+const InstallLauncher_1 = require("./InstallLauncher");
 const config_1 = require("./config");
-const install_creator_1 = require("./install_creator");
+const InstallCreator_1 = require("./InstallCreator");
+const ModInstaller_1 = require("./mod/ModInstaller");
 // region Flags and references
 // Permanent reference to the main app window
 let appWindow;
@@ -23,11 +24,11 @@ electron_1.ipcMain.on("restart", () => {
 });
 // Retrieves a list of mods
 electron_1.ipcMain.on("get modlist", () => {
-    appWindow.webContents.send("got modlist", mod_list_1.default.getModList());
+    appWindow.webContents.send("got modlist", ModList_1.default.getModList());
 });
 // Retrieves a list of installs
 electron_1.ipcMain.on("get installs", () => {
-    appWindow.webContents.send("got installs", install_list_1.default.getInstallList());
+    appWindow.webContents.send("got installs", InstallList_1.default.getInstallList());
 });
 // Handler for renderer process localisation functions
 electron_1.ipcMain.on("translate", (ev, query) => {
@@ -60,7 +61,7 @@ electron_1.ipcMain.on("launch install", (ev, folderName) => {
         title: lang.translate("running_cover.running.title"),
         description: lang.translate("running_cover.running.description")
     });
-    install_launcher_1.default.launchInstall(folderName).then(() => {
+    InstallLauncher_1.default.launchInstall(folderName).then(() => {
         appWindow.restore(); // show DDMM again
         appWindow.focus();
         appWindow.webContents.send("running cover", { display: false });
@@ -89,10 +90,24 @@ electron_1.ipcMain.on("browse mods", (ev) => {
 electron_1.ipcMain.on("create install", (ev, install) => {
     windowClosable = false;
     appWindow.setClosable(false);
-    install_creator_1.default.createInstall(install.folderName, install.installName, install.globalSave).then(() => {
-        appWindow.webContents.send("got installs", install_list_1.default.getInstallList());
-        windowClosable = true;
-        appWindow.setClosable(true);
+    console.log(install.mod);
+    InstallCreator_1.default.createInstall(install.folderName, install.installName, install.globalSave).then(() => {
+        if (!install.mod) {
+            appWindow.webContents.send("got installs", InstallList_1.default.getInstallList());
+            windowClosable = true;
+            appWindow.setClosable(true);
+        }
+        else {
+            ModInstaller_1.default.installMod(install.mod, path_1.join(config_1.default.readConfigValue("installFolder"), "installs", install.folderName, "install")).then(() => {
+                appWindow.webContents.send("got installs", InstallList_1.default.getInstallList());
+                windowClosable = true;
+                appWindow.setClosable(true);
+            }).catch(e => {
+                // TODO: handle error
+            });
+        }
+    }).catch(e => {
+        // TODO: handle error
     });
 });
 // endregion

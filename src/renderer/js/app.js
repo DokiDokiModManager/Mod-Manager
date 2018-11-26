@@ -76,7 +76,7 @@ const app = new Vue({
         },
         "handleInstallModalButton": function (button) {
             if (button === "install") {
-                ddmm.createInstall(this.modals.install.folder_name, this.modals.install.install_name, this.modals.install.global_save);
+                ddmm.createInstall(this.modals.install.folder_name, this.modals.install.install_name, this.modals.install.global_save, this.modals.install.mod);
             }
 
             this.modals.install.visible = false;

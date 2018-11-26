@@ -34,6 +34,8 @@
   "mods": {
     "tab_title": "Mods",
     "tab_subtitle": "Which mod do you want to play next?",
+    "button_vanilla_install": "Install DDLC without mods",
+    "button_refresh": "Refresh",
     "description_drop": "Drag a mod here, or click to browse for mods.",
     "install": {
       "status_ready": "Installed",

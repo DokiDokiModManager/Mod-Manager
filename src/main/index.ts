@@ -1,11 +1,12 @@
 import {app, BrowserWindow, ipcMain, IpcMessageEvent, shell, dialog, Notification} from "electron";
 import {join as joinPath} from "path";
-import ModList from "./mod_list";
+import ModList from "./ModList";
 import I18n from "./i18n";
-import InstallList from "./install_list";
-import InstallLauncher from "./install_launcher";
+import InstallList from "./InstallList";
+import InstallLauncher from "./InstallLauncher";
 import Config from "./config";
-import InstallCreator from "./install_creator";
+import InstallCreator from "./InstallCreator";
+import ModInstaller from "./mod/ModInstaller";
 
 // region Flags and references
 
@@ -56,12 +57,12 @@ ipcMain.on("closable", (ev: IpcMessageEvent, flag: boolean) => {
 });
 
 // Config IPC functions
-ipcMain.on("save config", (ev: IpcMessageEvent, configData: { key: string, value: any}) => {
-   Config.saveConfigValue(configData.key, configData.value);
+ipcMain.on("save config", (ev: IpcMessageEvent, configData: { key: string, value: any }) => {
+    Config.saveConfigValue(configData.key, configData.value);
 });
 
 ipcMain.on("read config", (ev: IpcMessageEvent, key: string) => {
-   ev.returnValue = Config.readConfigValue(key);
+    ev.returnValue = Config.readConfigValue(key);
 });
 
 // Launch install
@@ -101,13 +102,26 @@ ipcMain.on("browse mods", (ev: IpcMessageEvent) => {
 });
 
 // Trigger install creation
-ipcMain.on("create install", (ev: IpcMessageEvent, install: {folderName: string, installName: string, globalSave: boolean}) => {
+ipcMain.on("create install", (ev: IpcMessageEvent, install: { folderName: string, installName: string, globalSave: boolean, mod: string }) => {
     windowClosable = false;
     appWindow.setClosable(false);
+    console.log(install.mod);
     InstallCreator.createInstall(install.folderName, install.installName, install.globalSave).then(() => {
-        appWindow.webContents.send("got installs", InstallList.getInstallList());
-        windowClosable = true;
-        appWindow.setClosable(true);
+        if (!install.mod) {
+            appWindow.webContents.send("got installs", InstallList.getInstallList());
+            windowClosable = true;
+            appWindow.setClosable(true);
+        } else {
+            ModInstaller.installMod(install.mod, joinPath(Config.readConfigValue("installFolder"), "installs", install.folderName, "install")).then(() => {
+                appWindow.webContents.send("got installs", InstallList.getInstallList());
+                windowClosable = true;
+                appWindow.setClosable(true);
+            }).catch(e => {
+                // TODO: handle error
+            });
+        }
+    }).catch(e => {
+        // TODO: handle error
     });
 });
 
@@ -125,8 +139,8 @@ process.on("uncaughtException", () => {
 });
 
 app.on("second-instance", () => {
-   appWindow.restore();
-   appWindow.focus();
+    appWindow.restore();
+    appWindow.focus();
 });
 
 app.on("ready", () => {
