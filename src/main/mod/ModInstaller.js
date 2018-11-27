@@ -14,6 +14,7 @@ class ModInstaller {
     static installMod(modPath, installPath) {
         return new Promise((ff, rj) => {
             // determine how we should deal with files
+            console.log("Preparing to install mod from " + modPath);
             ModNormaliser_1.inferMapper(modPath).then((mapper) => {
                 // delete files that need to be removed (e.g. with DDLCtVN)
                 for (const file of mapper.getFilesToDelete()) {
@@ -52,6 +53,7 @@ class ModInstaller {
                     rj(e);
                 });
             }).catch((err) => {
+                console.log(err);
                 rj(err);
             });
         });

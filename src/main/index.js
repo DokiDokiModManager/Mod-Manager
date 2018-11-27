@@ -17,6 +17,11 @@ let windowClosable = true;
 const lang = new i18n_1.default(electron_1.app.getLocale());
 // endregion
 // region IPC functions
+function showError(title, body, stacktrace, fatal) {
+    appWindow.webContents.send("error message", {
+        title, body, fatal, stacktrace
+    });
+}
 // Restart the app
 electron_1.ipcMain.on("restart", () => {
     electron_1.app.relaunch();
@@ -91,7 +96,6 @@ electron_1.ipcMain.on("browse mods", (ev) => {
 electron_1.ipcMain.on("create install", (ev, install) => {
     windowClosable = false;
     appWindow.setClosable(false);
-    console.log(install.mod);
     InstallCreator_1.default.createInstall(install.folderName, install.installName, install.globalSave).then(() => {
         if (!install.mod) {
             appWindow.webContents.send("got installs", InstallList_1.default.getInstallList());
@@ -103,23 +107,26 @@ electron_1.ipcMain.on("create install", (ev, install) => {
                 appWindow.webContents.send("got installs", InstallList_1.default.getInstallList());
                 windowClosable = true;
                 appWindow.setClosable(true);
-            }).catch(e => {
-                // TODO: handle error
+            }).catch((e) => {
+                showError(lang.translate("exceptions.mod_install_notification.title"), lang.translate("exceptions.mod_install_notification.body"), e.toString(), false);
+                windowClosable = false;
+                appWindow.setClosable(false);
             });
         }
-    }).catch(e => {
-        // TODO: handle error
+    }).catch((e) => {
+        showError(lang.translate("exceptions.game_install_notification.title"), lang.translate("exceptions.game_install_notification.body"), e.toString(), false);
+        windowClosable = false;
+        appWindow.setClosable(false);
     });
+});
+// crash for debugging
+electron_1.ipcMain.on("debug crash", () => {
+    throw new Error("User forced debug crash with DevTools");
 });
 // endregion
 // region App initialisation
-process.on("uncaughtException", () => {
-    const crashNotif = new electron_1.Notification({
-        title: lang.translate("exceptions.main_crash_notification.title"),
-        body: lang.translate("exceptions.main_crash_notification.body"),
-    });
-    crashNotif.show();
-    electron_1.app.quit();
+process.on("uncaughtException", (e) => {
+    showError(lang.translate("exceptions.main_crash_notification.title"), lang.translate("exceptions.main_crash_notification.body"), e.toString(), true);
 });
 electron_1.app.on("second-instance", () => {
     appWindow.restore();

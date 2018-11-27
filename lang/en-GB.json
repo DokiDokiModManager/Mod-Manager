@@ -97,17 +97,29 @@
     "button_cancel": "Cancel"
   },
   "exceptions": {
+    "description_stacktrace": "Detailed information about the error is listed below.",
+    "button_ok": "OK",
+    "button_restart": "Restart",
+    "button_quit": "Quit",
     "renderer_crash_notification": {
       "title": "Doki Doki Mod Manager crashed",
-      "body": "The problem has been reported. Please restart and try again. [R]"
+      "body": "The problem has been reported. Please restart the app and try again."
     },
     "renderer_freeze_notification": {
       "title": "Doki Doki Mod Manager has stopped responding",
-      "body": "You may need to force quit the app."
+      "body": "You may need to force quit the app if it doesn't respond soon."
     },
     "main_crash_notification": {
       "title": "Doki Doki Mod Manager crashed",
-      "body": "The problem has been reported. Please restart and try again. [M]"
+      "body": "The problem has been reported. Please restart and try again."
+    },
+    "mod_install_notification": {
+      "title": "An error occurred while installing a mod",
+      "body": "Please try downloading the mod again. If this is a recurring issue, let me know via the contact links on the About page. Please don't contact the mod developer."
+    },
+    "game_install_notification": {
+      "title": "An error occurred while installing the game",
+      "body": "Please try again. If this is a recurring issue, try downloading DDLC again or let me know via the contact links on the About page."
     }
   }
 }

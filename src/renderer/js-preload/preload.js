@@ -86,6 +86,16 @@ api.readConfigValue = function(k) {
     return ipcRenderer.sendSync("read config", k);
 };
 
+// Crash the app, for testing
+api.crash = function() {
+    ipcRenderer.send("debug crash");
+};
+
+// Handler for crashes / errors
+ipcRenderer.on("error message", (ev, data) => {
+    api.emit("error", data);
+});
+
 // Application version
 api.version = packageData.version;
 

@@ -14,6 +14,7 @@ export default class ModInstaller {
     public static installMod(modPath: string, installPath: string) {
         return new Promise((ff, rj) => {
             // determine how we should deal with files
+            console.log("Preparing to install mod from " + modPath);
             inferMapper(modPath).then((mapper) => {
                 // delete files that need to be removed (e.g. with DDLCtVN)
                 for (const file of mapper.getFilesToDelete()) {
@@ -57,6 +58,7 @@ export default class ModInstaller {
                     rj(e);
                 });
             }).catch((err) => {
+                console.log(err);
                 rj(err);
             });
         });

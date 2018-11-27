@@ -22,6 +22,12 @@ const lang: I18n = new I18n(app.getLocale());
 
 // region IPC functions
 
+function showError(title: string, body: string, stacktrace: string, fatal: boolean) {
+    appWindow.webContents.send("error message", {
+        title, body, fatal, stacktrace
+    });
+}
+
 // Restart the app
 ipcMain.on("restart", () => {
     app.relaunch();
@@ -106,7 +112,6 @@ ipcMain.on("browse mods", (ev: IpcMessageEvent) => {
 ipcMain.on("create install", (ev: IpcMessageEvent, install: { folderName: string, installName: string, globalSave: boolean, mod: string }) => {
     windowClosable = false;
     appWindow.setClosable(false);
-    console.log(install.mod);
     InstallCreator.createInstall(install.folderName, install.installName, install.globalSave).then(() => {
         if (!install.mod) {
             appWindow.webContents.send("got installs", InstallList.getInstallList());
@@ -117,26 +122,44 @@ ipcMain.on("create install", (ev: IpcMessageEvent, install: { folderName: string
                 appWindow.webContents.send("got installs", InstallList.getInstallList());
                 windowClosable = true;
                 appWindow.setClosable(true);
-            }).catch(e => {
-                // TODO: handle error
+            }).catch((e: Error) => {
+                showError(
+                    lang.translate("exceptions.mod_install_notification.title"),
+                    lang.translate("exceptions.mod_install_notification.body"),
+                    e.toString(),
+                    false
+                );
+                windowClosable = false;
+                appWindow.setClosable(false);
             });
         }
-    }).catch(e => {
-        // TODO: handle error
+    }).catch((e: Error) => {
+        showError(
+            lang.translate("exceptions.game_install_notification.title"),
+            lang.translate("exceptions.game_install_notification.body"),
+            e.toString(),
+            false
+        );
+        windowClosable = false;
+        appWindow.setClosable(false);
     });
+});
+
+// crash for debugging
+ipcMain.on("debug crash", () => {
+   throw new Error("User forced debug crash with DevTools")
 });
 
 // endregion
 
 // region App initialisation
-process.on("uncaughtException", () => {
-    const crashNotif = new Notification({
-        title: lang.translate("exceptions.main_crash_notification.title"),
-        body: lang.translate("exceptions.main_crash_notification.body"),
-    });
-
-    crashNotif.show();
-    app.quit();
+process.on("uncaughtException", (e: Error) => {
+    showError(
+        lang.translate("exceptions.main_crash_notification.title"),
+        lang.translate("exceptions.main_crash_notification.body"),
+        e.toString(),
+        true
+    );
 });
 
 app.on("second-instance", () => {

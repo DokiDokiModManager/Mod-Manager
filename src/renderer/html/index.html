@@ -16,7 +16,7 @@
     <ddmm-running-cover :display="running_cover.display" :dismissable="running_cover.dismissable"
                         :title="running_cover.title"
                         :description="running_cover.description"
-                        @dismissed="running_cover.display = false; $forceUpdate()">
+                        @dismissed="running_cover.display = false">
     </ddmm-running-cover>
 
     <ddmm-modal :title="_('changelog.modal_title')"
@@ -81,6 +81,16 @@
         <br>
 
         <p>{{_("install_modal.description_global_save")}}</p>
+    </ddmm-modal>
+
+    <ddmm-modal :title="modals.error.title"
+                :visible="modals.error.visible"
+                :buttons="modals.error.fatal ? [{'id': 'quit', 'text': _('exceptions.button_quit'), 'clazz': 'danger'}, {'id': 'restart', 'text': _('exceptions.button_restart'), 'clazz': 'secondary'}] : [{'id': 'ok', 'text': _('exceptions.button_ok'), 'clazz': 'primary'}]"
+                @button="handleErrorButton">
+        <p>{{modals.error.body}}</p>
+        <br>
+        <p><strong>{{_("exceptions.description_stacktrace")}}</strong></p>
+        <pre v-if="modals.error.stacktrace">{{modals.error.stacktrace}}</pre>
     </ddmm-modal>
 
     <div class="container">

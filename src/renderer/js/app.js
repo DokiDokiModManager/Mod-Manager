@@ -47,6 +47,13 @@ const app = new Vue({
                 "folder_name": "",
                 "global_save": false,
                 "mod": null
+            },
+            "error": {
+                "title": "",
+                "body": "",
+                "fatal": false,
+                "visible": false,
+                "stacktrace": ""
             }
         }
     },
@@ -80,6 +87,15 @@ const app = new Vue({
             }
 
             this.modals.install.visible = false;
+        },
+        "handleErrorButton": function (button) {
+            if (button === "restart") {
+                ddmm.restart();
+            } else if (button === "quit") {
+                window.close();
+            } else {
+                this.modals.error.visible = false;
+            }
         }
     }
 });
@@ -103,7 +119,19 @@ ddmm.on("install list", installs => {
 
 // show / hide running cover
 ddmm.on("running cover", data => {
-    app.running_cover = data;
+    app.running_cover.display = data.display;
+    app.running_cover.description = data.description;
+    app.running_cover.dismissable = data.dismissable;
+    app.running_cover.title = data.title;
+});
+
+// show error messages
+ddmm.on("error", data => {
+    app.modals.error.body = data.body;
+    app.modals.error.title = data.title;
+    app.modals.error.fatal = data.fatal;
+    app.modals.error.stacktrace = data.stacktrace;
+    app.modals.error.visible = true;
 });
 
 // load changelog
