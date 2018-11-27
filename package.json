@@ -20,6 +20,7 @@
     "vue": "^2.5.17"
   },
   "devDependencies": {
+    "@sentry/cli": "^1.36.4",
     "electron": "^3.0.10",
     "electron-builder": "^20.36.2"
   },

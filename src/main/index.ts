@@ -1,4 +1,4 @@
-import {app, BrowserWindow, ipcMain, IpcMessageEvent, shell, dialog, Notification} from "electron";
+import {app, BrowserWindow, ipcMain, IpcMessageEvent, shell, dialog, Notification, crashReporter} from "electron";
 import {join as joinPath} from "path";
 import ModList from "./ModList";
 import I18n from "./i18n";
@@ -8,9 +8,24 @@ import Config from "./config";
 import InstallCreator from "./InstallCreator";
 import ModInstaller from "./mod/ModInstaller";
 
+// region Crash reporting
+crashReporter.start({
+    companyName: "DDMM",
+    productName: "DokiDokiModManager",
+    ignoreSystemCrashHandler: true,
+    extra: {
+        "purist_mode": Config.readConfigValue("puristMode"),
+        "install_directory": Config.readConfigValue("installFolder")
+    },
+    uploadToServer: true,
+    submitURL: "https://sentry.io/api/1297252/minidump/?sentry_key=bf0edf3f287344d4969e3171c33af4ea"
+});
+// endregion
+
 // region Flags and references
 
 // Permanent reference to the main app window
+
 let appWindow: BrowserWindow;
 
 // Flag for allowing the app window to be closed
@@ -152,7 +167,6 @@ ipcMain.on("debug crash", () => {
 
 // endregion
 
-// region App initialisation
 process.on("uncaughtException", (e: Error) => {
     showError(
         lang.translate("exceptions.main_crash_notification.title"),
@@ -162,6 +176,7 @@ process.on("uncaughtException", (e: Error) => {
     );
 });
 
+// region App initialisation
 app.on("second-instance", () => {
     appWindow.restore();
     appWindow.focus();

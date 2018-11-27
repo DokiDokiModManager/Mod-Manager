@@ -9,6 +9,19 @@ const InstallLauncher_1 = require("./InstallLauncher");
 const config_1 = require("./config");
 const InstallCreator_1 = require("./InstallCreator");
 const ModInstaller_1 = require("./mod/ModInstaller");
+// region Crash reporting
+electron_1.crashReporter.start({
+    companyName: "DDMM",
+    productName: "DokiDokiModManager",
+    ignoreSystemCrashHandler: true,
+    extra: {
+        "purist_mode": config_1.default.readConfigValue("puristMode"),
+        "install_directory": config_1.default.readConfigValue("installFolder")
+    },
+    uploadToServer: true,
+    submitURL: "https://sentry.io/api/1297252/minidump/?sentry_key=bf0edf3f287344d4969e3171c33af4ea"
+});
+// endregion
 // region Flags and references
 // Permanent reference to the main app window
 let appWindow;
@@ -124,10 +137,10 @@ electron_1.ipcMain.on("debug crash", () => {
     throw new Error("User forced debug crash with DevTools");
 });
 // endregion
-// region App initialisation
 process.on("uncaughtException", (e) => {
     showError(lang.translate("exceptions.main_crash_notification.title"), lang.translate("exceptions.main_crash_notification.body"), e.toString(), true);
 });
+// region App initialisation
 electron_1.app.on("second-instance", () => {
     appWindow.restore();
     appWindow.focus();

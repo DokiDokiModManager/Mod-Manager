@@ -100,10 +100,12 @@ const app = new Vue({
     }
 });
 
+if (typeof firebase !== "undefined") {
 // load announcement banner
-firebase.database().ref("/global/banner").once("value").then(response => {
-    app.banner = response.val();
-});
+    firebase.database().ref("/global/banner").once("value").then(response => {
+        app.banner = response.val();
+    });
+}
 
 // update mod list
 ddmm.on("mod list", mods => {
