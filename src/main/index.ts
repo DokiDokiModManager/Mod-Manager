@@ -41,6 +41,9 @@ function showError(title: string, body: string, stacktrace: string, fatal: boole
     appWindow.webContents.send("error message", {
         title, body, fatal, stacktrace
     });
+
+    windowClosable = true;
+    appWindow.setClosable(true);
 }
 
 // Restart the app
@@ -144,8 +147,6 @@ ipcMain.on("create install", (ev: IpcMessageEvent, install: { folderName: string
                     e.toString(),
                     false
                 );
-                windowClosable = false;
-                appWindow.setClosable(false);
             });
         }
     }).catch((e: Error) => {
@@ -155,8 +156,6 @@ ipcMain.on("create install", (ev: IpcMessageEvent, install: { folderName: string
             e.toString(),
             false
         );
-        windowClosable = false;
-        appWindow.setClosable(false);
     });
 });
 

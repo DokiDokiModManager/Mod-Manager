@@ -34,6 +34,8 @@ function showError(title, body, stacktrace, fatal) {
     appWindow.webContents.send("error message", {
         title, body, fatal, stacktrace
     });
+    windowClosable = true;
+    appWindow.setClosable(true);
 }
 // Restart the app
 electron_1.ipcMain.on("restart", () => {
@@ -122,14 +124,10 @@ electron_1.ipcMain.on("create install", (ev, install) => {
                 appWindow.setClosable(true);
             }).catch((e) => {
                 showError(lang.translate("exceptions.mod_install_notification.title"), lang.translate("exceptions.mod_install_notification.body"), e.toString(), false);
-                windowClosable = false;
-                appWindow.setClosable(false);
             });
         }
     }).catch((e) => {
         showError(lang.translate("exceptions.game_install_notification.title"), lang.translate("exceptions.game_install_notification.body"), e.toString(), false);
-        windowClosable = false;
-        appWindow.setClosable(false);
     });
 });
 // crash for debugging
