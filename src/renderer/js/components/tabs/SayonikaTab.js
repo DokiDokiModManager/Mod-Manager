@@ -1,10 +1,11 @@
 /*
     A component representing the Sayonika tab
  */
+// noinspection HtmlUnknownTarget
 const SayonikaTab = Vue.component("ddmm-sayonika-tab", {
     "template": `
         <div>
-            <img src="../images/sayonika-logo.svg" height="65">
+            <img src="../images/sayonika-logo.svg" height="65" alt="Sayonika Logo">
             
             <ul class="tabs">
                 <li v-for="t in tabs" :class="{'active': t.id === tab}" @click="tab = t.id"><a href="javascript:;">{{t.name}}</a></li>
