@@ -18,6 +18,13 @@ Builds for Windows and Linux (AppImage) are available on the [Releases page](htt
 
 macOS is not currently supported and **does not work whatsoever**. However, it is on the agenda.
 
+## Debug tools
+
+Set the following environment variables to enable debugging features.
+
+* `DDMM_LANG_PROOF` - adds prefixes to all localised strings.
+* `DDMM_DEVTOOLS` - opens devtools on launch
+
 ## Run from source
 
 For the latest changes, or if you want to contribute, you can run DDMM from source.

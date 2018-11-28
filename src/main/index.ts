@@ -287,7 +287,11 @@ app.on("ready", () => {
         app.quit();
     });
 
-    appWindow.setMenuBarVisibility(false);
+    appWindow.setMenu(null);
+
+    if (process.env.DDMM_DEVTOOLS) {
+        appWindow.webContents.openDevTools({mode: "detach"});
+    }
 
     appWindow.loadFile(joinPath(__dirname, "../renderer/html/index.html"));
 });

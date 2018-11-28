@@ -224,7 +224,10 @@ electron_1.app.on("ready", () => {
         appWindow = null;
         electron_1.app.quit();
     });
-    appWindow.setMenuBarVisibility(false);
+    appWindow.setMenu(null);
+    if (process.env.DDMM_DEVTOOLS) {
+        appWindow.webContents.openDevTools({ mode: "detach" });
+    }
     appWindow.loadFile(path_1.join(__dirname, "../renderer/html/index.html"));
 });
 // endregion

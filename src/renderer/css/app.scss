@@ -95,7 +95,7 @@ a > .fas, .fab {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(0,0,0,0.25);
+  background-color: rgba(0, 0, 0, 0.25);
   border-radius: 3px;
 }
 
@@ -350,4 +350,28 @@ input:focus, textarea:focus {
   background-color: $ui-muted-background-colour;
   padding: 1em;
   border-radius: 3px;
+}
+
+//
+// sayonika tabs
+//
+.tabs {
+  list-style: none;
+  padding-left: 0;
+}
+
+.tabs li {
+  display: inline-block;
+}
+
+.tabs a {
+  display: block;
+  padding: 0.5em 1em;
+  border-radius: 3px;
+  margin: 0 0.5em;
+}
+
+.tabs li.active a {
+  background-color: $ui-highlight-background-colour;
+  color: $ui-background-colour;
 }

@@ -4,9 +4,28 @@
 const SayonikaTab = Vue.component("ddmm-sayonika-tab", {
     "template": `
         <div>
-            <img src="../images/sayonika-logo.svg" height="65">   
+            <img src="../images/sayonika-logo.svg" height="65">
+            
+            <ul class="tabs">
+                <li v-for="t in tabs" :class="{'active': t.id === tab}" @click="tab = t.id"><a href="javascript:;">{{t.name}}</a></li>
+            </ul>
+            
+            <div v-if="tab === 'home'">
+            
+             </div>
         </div>
     `,
+    "data": function () {
+        return {
+            "tab": "home",
+            "tabs": [
+                {"name": "Home", "id": "home"},
+                {"name": "Popular", "id": "popular"},
+                {"name": "Recent", "id": "recent"},
+                {"name": "Search", "id": "search"}
+            ]
+        }
+    },
     "methods": {
         "_": function () {
             return ddmm.translate.apply(null, arguments);

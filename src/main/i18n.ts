@@ -55,7 +55,7 @@ export default class I18n {
         if (!current) {
             return "[ERROR] No translation found for " + key;
         } else {
-            return "[i18n] " +this.formatString(current, args);
+            return (process.env.DDMM_LANG_PROOF ? "[translated] " : "") + this.formatString(current, args);
         }
     };
 }
