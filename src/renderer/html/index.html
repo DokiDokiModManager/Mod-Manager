@@ -90,7 +90,7 @@
         <p>{{modals.error.body}}</p>
         <br>
         <p><strong>{{_("exceptions.description_stacktrace")}}</strong></p>
-        <pre v-if="modals.error.stacktrace">{{modals.error.stacktrace}}</pre>
+        <p v-if="modals.error.stacktrace">{{modals.error.stacktrace}}</p>
     </ddmm-modal>
 
     <div class="container">

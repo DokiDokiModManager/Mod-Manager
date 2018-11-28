@@ -4,11 +4,12 @@ const electron_1 = require("electron");
 const path_1 = require("path");
 const ModList_1 = require("./ModList");
 const i18n_1 = require("./i18n");
-const InstallList_1 = require("./InstallList");
-const InstallLauncher_1 = require("./InstallLauncher");
+const InstallList_1 = require("./install/InstallList");
+const InstallLauncher_1 = require("./install/InstallLauncher");
 const config_1 = require("./config");
-const InstallCreator_1 = require("./InstallCreator");
+const InstallCreator_1 = require("./install/InstallCreator");
 const ModInstaller_1 = require("./mod/ModInstaller");
+const InstallManager_1 = require("./install/InstallManager");
 // region Crash reporting
 electron_1.crashReporter.start({
     companyName: "DDMM",
@@ -130,14 +131,34 @@ electron_1.ipcMain.on("create install", (ev, install) => {
         showError(lang.translate("exceptions.game_install_notification.title"), lang.translate("exceptions.game_install_notification.body"), e.toString(), false);
     });
 });
-// crash for debugging
+// Delete an install permanently
+electron_1.ipcMain.on("delete install", (ev, folderName) => {
+    InstallManager_1.default.deleteInstall(folderName).then(() => {
+        appWindow.webContents.send("got installs", InstallList_1.default.getInstallList());
+    }).catch((e) => {
+        showError(lang.translate("exceptions.install_delete_notification.title"), lang.translate("exceptions.install_delete_notification.body"), e.toString(), false);
+    });
+});
+// Delete a save file for an install
+electron_1.ipcMain.on("delete save", (ev, folderName) => {
+    InstallManager_1.default.deleteSaveData(folderName).then(() => {
+        appWindow.webContents.send("got installs", InstallList_1.default.getInstallList());
+    }).catch((e) => {
+        showError(lang.translate("exceptions.save_delete_notification.title"), lang.translate("exceptions.save_delete_notification.body"), e.toString(), false);
+    });
+});
+// Crash for debugging
 electron_1.ipcMain.on("debug crash", () => {
     throw new Error("User forced debug crash with DevTools");
 });
 // endregion
+// region Global exception handler
 process.on("uncaughtException", (e) => {
+    console.log("Uncaught exception occurred - treating this as a crash.");
+    console.error(e);
     showError(lang.translate("exceptions.main_crash_notification.title"), lang.translate("exceptions.main_crash_notification.body"), e.toString(), true);
 });
+// endregion
 // region App initialisation
 electron_1.app.on("second-instance", () => {
     appWindow.restore();

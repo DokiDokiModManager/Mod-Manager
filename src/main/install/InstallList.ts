@@ -1,7 +1,7 @@
-import Install from "./types/Install";
 import {join as joinPath} from "path";
-import Config from "./config";
 import {readdirSync, readFileSync} from "fs";
+import Install from "../types/Install";
+import Config from "../config";
 
 export default class InstallList {
 
@@ -28,7 +28,8 @@ export default class InstallList {
                     returned.push(new Install(data.name, folder, data.globalSave));
                 }
             } catch (e) {
-                console.warn("Failed to read install data from " + dataFilePath, e);
+                console.info("Failed to read install data from " + dataFilePath, e.message);
+                console.log("Ignoring the folder.");
                 // do nothing, the folder should be ignored
             }
         }

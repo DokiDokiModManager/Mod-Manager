@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const path_1 = require("path");
-const config_1 = require("./config");
 const fs_1 = require("fs");
-const i18n_1 = require("./i18n");
 const electron_1 = require("electron");
 const child_process_1 = require("child_process");
+const i18n_1 = require("../i18n");
+const config_1 = require("../config");
 const lang = new i18n_1.default(electron_1.app.getLocale());
 class InstallLauncher {
     /**

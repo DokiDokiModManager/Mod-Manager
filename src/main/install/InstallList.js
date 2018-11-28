@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const Install_1 = require("./types/Install");
 const path_1 = require("path");
-const config_1 = require("./config");
 const fs_1 = require("fs");
+const Install_1 = require("../types/Install");
+const config_1 = require("../config");
 class InstallList {
     /**
      * Reads the install directory and returns information on each install
@@ -25,7 +25,8 @@ class InstallList {
                 }
             }
             catch (e) {
-                console.warn("Failed to read install data from " + dataFilePath, e);
+                console.info("Failed to read install data from " + dataFilePath, e.message);
+                console.log("Ignoring the folder.");
                 // do nothing, the folder should be ignored
             }
         }

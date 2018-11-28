@@ -2,11 +2,12 @@ import {app, BrowserWindow, ipcMain, IpcMessageEvent, shell, dialog, Notificatio
 import {join as joinPath} from "path";
 import ModList from "./ModList";
 import I18n from "./i18n";
-import InstallList from "./InstallList";
-import InstallLauncher from "./InstallLauncher";
+import InstallList from "./install/InstallList";
+import InstallLauncher from "./install/InstallLauncher";
 import Config from "./config";
-import InstallCreator from "./InstallCreator";
+import InstallCreator from "./install/InstallCreator";
 import ModInstaller from "./mod/ModInstaller";
+import InstallManager from "./install/InstallManager";
 
 // region Crash reporting
 crashReporter.start({
@@ -159,14 +160,45 @@ ipcMain.on("create install", (ev: IpcMessageEvent, install: { folderName: string
     });
 });
 
-// crash for debugging
+// Delete an install permanently
+ipcMain.on("delete install", (ev: IpcMessageEvent, folderName: string) => {
+    InstallManager.deleteInstall(folderName).then(() => {
+        appWindow.webContents.send("got installs", InstallList.getInstallList());
+    }).catch((e: Error) => {
+        showError(
+            lang.translate("exceptions.install_delete_notification.title"),
+            lang.translate("exceptions.install_delete_notification.body"),
+            e.toString(),
+            false
+        );
+    });
+});
+
+// Delete a save file for an install
+ipcMain.on("delete save", (ev: IpcMessageEvent, folderName: string) => {
+    InstallManager.deleteSaveData(folderName).then(() => {
+        appWindow.webContents.send("got installs", InstallList.getInstallList());
+    }).catch((e: Error) => {
+        showError(
+            lang.translate("exceptions.save_delete_notification.title"),
+            lang.translate("exceptions.save_delete_notification.body"),
+            e.toString(),
+            false
+        );
+    });
+});
+
+// Crash for debugging
 ipcMain.on("debug crash", () => {
-   throw new Error("User forced debug crash with DevTools")
+    throw new Error("User forced debug crash with DevTools")
 });
 
 // endregion
 
+// region Global exception handler
 process.on("uncaughtException", (e: Error) => {
+    console.log("Uncaught exception occurred - treating this as a crash.");
+    console.error(e);
     showError(
         lang.translate("exceptions.main_crash_notification.title"),
         lang.translate("exceptions.main_crash_notification.body"),
@@ -174,6 +206,7 @@ process.on("uncaughtException", (e: Error) => {
         true
     );
 });
+// endregion
 
 // region App initialisation
 app.on("second-instance", () => {

@@ -44,7 +44,7 @@ api.launchInstall = function (folderName) {
 };
 
 // Creates an install
-api.createInstall = function(folderName, installName, globalSave, mod) {
+api.createInstall = function (folderName, installName, globalSave, mod) {
     ipcRenderer.send("create install", {folderName, installName, globalSave, mod});
 };
 
@@ -77,18 +77,28 @@ api.setWindowClosable = function (flag) {
 };
 
 // Change a setting in config
-api.saveConfigValue = function(k, v) {
-  ipcRenderer.send("save config", {"key": k, "value": v});
+api.saveConfigValue = function (k, v) {
+    ipcRenderer.send("save config", {"key": k, "value": v});
 };
 
 // Read a setting from config
-api.readConfigValue = function(k) {
+api.readConfigValue = function (k) {
     return ipcRenderer.sendSync("read config", k);
 };
 
 // Crash the app, for testing
-api.crash = function() {
+api.crash = function () {
     ipcRenderer.send("debug crash");
+};
+
+// Delete install
+api.deleteInstall = function (folderName) {
+    ipcRenderer.send("delete install", folderName);
+};
+
+// Delete save data
+api.deleteSaveData = function (folderName) {
+    ipcRenderer.send("delete save", folderName);
 };
 
 // Handler for crashes / errors

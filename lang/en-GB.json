@@ -71,7 +71,7 @@
   "errors": {
     "launch": {
       "install_missing": "The install could not be found.",
-      "install_corrupt": "The install is incomplete or corrupt.",
+      "install_corrupt": "The install is incomplete, corrupt or can't be read for some reason.",
       "install_crashed": "The game failed to launch or crashed.",
       "button_close_cover": "Close"
     }
@@ -120,6 +120,14 @@
     "game_install_notification": {
       "title": "An error occurred while installing the game",
       "body": "Please try again. If this is a recurring issue, try downloading DDLC again or let me know via the contact links on the About page."
+    },
+    "install_delete_notification": {
+      "title": "An error occurred while uninstalling the game",
+      "body": "Please refresh the mod list and try again. If this is a recurring issue, let me know via the contact links on the About page."
+    },
+    "save_delete_notification": {
+      "title": "An error occurred while clearing your save data.",
+      "body": "Please try again. If this is a recurring issue, let me know via the contact links on the About page."
     }
   }
 }

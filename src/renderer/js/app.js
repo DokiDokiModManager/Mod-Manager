@@ -1,4 +1,3 @@
-
 const CHANGELOG_DATA_REGEX = /({[^]+})/gm;
 
 const PURIST_ENABLED = ddmm.readConfigValue("puristMode");
@@ -26,7 +25,12 @@ const app = new Vue({
         "tabs": {
             "home": {"name": "Home", "icon": "home", "component": "ddmm-home-tab", "purist_enabled": false},
             "mods": {"name": "Mods", "icon": "list", "component": "ddmm-mods-tab", "purist_enabled": true},
-            "sayonika": {"name": "Sayonika", "icon": "download", "component": "ddmm-sayonika-tab", "purist_enabled": false},
+            "sayonika": {
+                "name": "Sayonika",
+                "icon": "download",
+                "component": "ddmm-sayonika-tab",
+                "purist_enabled": false
+            },
             "settings": {"name": "Settings", "icon": "cog", "component": "ddmm-settings-tab", "purist_enabled": true},
             "about": {"name": "About", "icon": "info", "component": "ddmm-about-tab", "purist_enabled": true}
         },
@@ -101,7 +105,7 @@ const app = new Vue({
 });
 
 if (typeof firebase !== "undefined") {
-// load announcement banner
+    // load announcement banner
     firebase.database().ref("/global/banner").once("value").then(response => {
         app.banner = response.val();
     });
