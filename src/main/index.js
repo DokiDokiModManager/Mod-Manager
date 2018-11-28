@@ -24,6 +24,8 @@ electron_1.crashReporter.start({
 });
 // endregion
 // region Flags and references
+// User agent for API requests
+const USER_AGENT = "DokiDokiModManager/" + electron_1.app.getVersion() + " (zudo@doki.space)";
 // Permanent reference to the main app window
 let appWindow;
 // Flag for allowing the app window to be closed
@@ -172,6 +174,7 @@ electron_1.app.on("ready", () => {
         electron_1.app.quit();
         return; // avoid running for longer than needed
     }
+    // create browser window
     appWindow = new electron_1.BrowserWindow({
         title: "Doki Doki Mod Manager",
         width: 1200,
@@ -186,6 +189,8 @@ electron_1.app.on("ready", () => {
         },
         show: false
     });
+    // set user agent so web services can contact me if necessary
+    appWindow.webContents.setUserAgent(USER_AGENT);
     appWindow.webContents.on("will-navigate", ev => {
         console.warn("Prevented navigation from app container");
         ev.preventDefault(); // prevent navigation

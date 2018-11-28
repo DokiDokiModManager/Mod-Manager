@@ -25,8 +25,10 @@ crashReporter.start({
 
 // region Flags and references
 
-// Permanent reference to the main app window
+// User agent for API requests
+const USER_AGENT = "DokiDokiModManager/" + app.getVersion() + " (zudo@doki.space)";
 
+// Permanent reference to the main app window
 let appWindow: BrowserWindow;
 
 // Flag for allowing the app window to be closed
@@ -225,7 +227,7 @@ app.on("ready", () => {
         return; // avoid running for longer than needed
     }
 
-
+    // create browser window
     appWindow = new BrowserWindow({
         title: "Doki Doki Mod Manager",
         width: 1200,
@@ -240,6 +242,9 @@ app.on("ready", () => {
         },
         show: false
     });
+
+    // set user agent so web services can contact me if necessary
+    appWindow.webContents.setUserAgent(USER_AGENT);
 
     appWindow.webContents.on("will-navigate", ev => {
         console.warn("Prevented navigation from app container");

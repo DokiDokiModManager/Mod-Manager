@@ -4,15 +4,7 @@
 const SayonikaTab = Vue.component("ddmm-sayonika-tab", {
     "template": `
         <div>
-            <img src="../images/sayonika_full_body_maintenance.png" width="400" style="float: right;">
-           
-            <h1>{{_("sayonika.tab_title")}}</h1>
-            <p>{{_("sayonika.tab_subtitle")}}</p>
-           
-            <br>
-           
-            <p><strong>{{_("sayonika.nyi_description")}}</strong></p>
-            
+            <img src="../images/sayonika-logo.svg" height="65">   
         </div>
     `,
     "methods": {
@@ -21,3 +13,21 @@ const SayonikaTab = Vue.component("ddmm-sayonika-tab", {
         }
     }
 });
+
+const SAYONIKA_BASE_URL = "https://sayonika.moe.invalid/api/v1/";
+
+function callSayonikaAPI(endpoint, method, body) {
+    return new Promise((ff, rj) => {
+        fetch(SAYONIKA_BASE_URL + endpoint, {
+            "method": (method ? method : "GET"),
+            "body": (body ? JSON.stringify(body) : undefined),
+            "headers": {
+                "Content-Type": "application/json"
+            }
+        }).then(r => r.json()).then(r => {
+            ff(r);
+        }).catch(e => {
+            rj(e);
+        });
+    });
+}

@@ -6,9 +6,6 @@
 
     <link href="../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/app.css">
-
-    <link rel="prefetch" href="../images/ddmm.png" as="image">
-    <link rel="prefetch" href="../images/sayonika_full_body_maintenance.png" as="image">
 </head>
 <body>
 
@@ -94,7 +91,7 @@
     </ddmm-modal>
 
     <ddmm-modal :title="_('uninstall_modal.title')"
-                :visible="true"
+                :visible="false"
                 :buttons="[{'id': 'uninstall', 'clazz': 'danger', 'text': _('uninstall_modal.button_uninstall')}, {'id': 'cancel', 'clazz': 'secondary', 'text': _('uninstall_modal.button_cancel')}]">
         <p>{{_("uninstall_modal.description_1")}}</p>
         <br>
