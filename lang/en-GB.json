@@ -1,4 +1,11 @@
 {
+  "sidebar": {
+    "home": "Home",
+    "mods": "Mods",
+    "sayonika": "Sayonika",
+    "settings": "Settings",
+    "about": "About"
+  },
   "home": {
     "tab_title": "Welcome back!",
     "tab_subtitle": "You're running version {0} of Doki Doki Mod Manager.",
@@ -42,7 +49,8 @@
       "status_global_save": "Global Save",
       "description_installed": "The game is fully installed and is ready to be played.",
       "description_global_save": "This installation of the game shares save data with standalone copies of DDLC, the Steam version of DDLC, and other installations with global save enabled.",
-      "button_play": "Play"
+      "button_play": "Play",
+      "button_uninstall": "Uninstall"
     },
     "mod": {
       "status_downloaded": "Downloaded",
@@ -94,6 +102,13 @@
     "label_global_save": "Global Save",
     "description_global_save": "Enable global save to share this installation's save data with standalone and Steam versions of DDLC. This may cause issues with other mods.",
     "button_install": "Install",
+    "button_cancel": "Cancel"
+  },
+  "uninstall_modal": {
+    "title": "Uninstall?",
+    "description_1": "Are you sure you want to uninstall {0}? Your save data will be deleted.",
+    "description_2": "If you want to reinstall the mod, you will need a copy of the zip file.",
+    "button_uninstall": "Uninstall",
     "button_cancel": "Cancel"
   },
   "exceptions": {

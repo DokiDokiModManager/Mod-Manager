@@ -23,13 +23,20 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             <span style="cursor: help;" :title="_('mods.install.description_installed')"><i class="fas fa-check fa-fw" style="color: #6ab04c;"></i> {{_("mods.install.status_ready")}}</span>
             <span style="cursor: help;" v-if="install.globalSave" :title="_('mods.install.description_global_save')"> &dash; {{_("mods.install.status_global_save")}}</span>
         </p>
-        <p><button class="primary" @click="launchInstall(install.folderName)">{{_("mods.install.button_play")}}</button></p>
+        <p>
+            <button class="primary" @click="launchInstall(install.folderName)">{{_("mods.install.button_play")}}</button>
+            <button class="secondary">rename</button>
+            <button class="danger">{{_("mods.install.button_uninstall")}}</button>
+        </p>
         <br>
     </div>
     <div v-for="mod in mod_list">
         <h2>{{mod}}</h2>
         <p><span style="cursor: help;" :title="_('mods.mod.description_downloaded')"><i class="fas fa-download fa-fw" style="color: #f0932b;"></i> {{_("mods.mod.status_downloaded")}}</span></p>
-        <p><button class="primary" @click="$emit('install_mod', getCanonicalPathToMod(mod))">{{_("mods.mod.button_install")}}</button></p>
+        <p>
+            <button class="primary" @click="$emit('install_mod', getCanonicalPathToMod(mod))">{{_("mods.mod.button_install")}}</button>
+            <button class="danger">delete</button>
+        </p>
         <br>
     </div>
 </div>`,
@@ -48,10 +55,13 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             }
         },
         "browseForMod": function () {
-            const filePath = ddmm.browseForMod()[0];
-            console.log(filePath);
-            if (filePath && filePath.endsWith(".zip")) {
-                this.$emit("install_mod", filePath);
+            const files = ddmm.browseForMod();
+            if (files && files[0]) {
+                const filePath = files[0];
+
+                if (filePath && filePath.endsWith(".zip")) {
+                    this.$emit("install_mod", filePath);
+                }
             }
         },
         "refreshList": function () {

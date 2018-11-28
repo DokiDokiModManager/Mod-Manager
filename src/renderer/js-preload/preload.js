@@ -116,6 +116,7 @@ api.joinPath = path.join;
 global.ddmm = api;
 
 
-console.warn(`Welcome, traveller.
+console.info(`%cWarning! This is the developer console!
 
-Before you type anything here, make sure you know what you're doing. Certain commands could bork your install.`);
+Before you type anything here, make sure you know what you're doing. Certain commands could do damage to your game installs or even your computer.`,
+    "font-size: 16px");

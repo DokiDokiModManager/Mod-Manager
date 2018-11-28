@@ -46,7 +46,7 @@ class I18n {
             return "[ERROR] No translation found for " + key;
         }
         else {
-            return this.formatString(current, args);
+            return "[i18n] " + this.formatString(current, args);
         }
     }
     ;
