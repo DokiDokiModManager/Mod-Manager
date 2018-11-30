@@ -50,6 +50,9 @@
       "description_installed": "The game is fully installed and is ready to be played.",
       "description_global_save": "This installation of the game shares save data with standalone copies of DDLC, the Steam version of DDLC, and other installations with global save enabled.",
       "button_play": "Play",
+      "button_rename": "Rename",
+      "button_shortcut": "Create Shortcut",
+      "button_delete_save": "Delete Save",
       "button_uninstall": "Uninstall"
     },
     "mod": {
@@ -107,8 +110,15 @@
   "uninstall_modal": {
     "title": "Uninstall?",
     "description_1": "Are you sure you want to uninstall {0}? Your save data will be deleted.",
-    "description_2": "If you want to reinstall the mod, you will need a copy of the zip file.",
+    "description_2": "If you want to reinstall a mod, you will need a copy of its zip file.",
     "button_uninstall": "Uninstall",
+    "button_cancel": "Cancel"
+  },
+  "save_delete_modal": {
+    "title": "Delete save data?",
+    "description_1": "Are you sure you want to delete the save data of {0}? Your progress will be lost.",
+    "description_2": "The game will remain installed, but you will have to start over again.",
+    "button_delete": "Delete",
     "button_cancel": "Cancel"
   },
   "exceptions": {

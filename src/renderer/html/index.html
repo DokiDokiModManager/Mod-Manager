@@ -90,14 +90,6 @@
         <p v-if="modals.error.stacktrace">{{modals.error.stacktrace}}</p>
     </ddmm-modal>
 
-    <ddmm-modal :title="_('uninstall_modal.title')"
-                :visible="false"
-                :buttons="[{'id': 'uninstall', 'clazz': 'danger', 'text': _('uninstall_modal.button_uninstall')}, {'id': 'cancel', 'clazz': 'secondary', 'text': _('uninstall_modal.button_cancel')}]">
-        <p>{{_("uninstall_modal.description_1")}}</p>
-        <br>
-        <p>{{_("uninstall_modal.description_2")}}</p>
-    </ddmm-modal>
-
     <div class="container">
         <div class="navbar">
             <span v-for="(t, id) in tabs" @click="switchTab(id)" v-if="(t.purist_enabled || !purist)">

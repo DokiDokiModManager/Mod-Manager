@@ -4,6 +4,24 @@
 const ModsTab = Vue.component("ddmm-mods-tab", {
     "template": `
 <div>
+    <ddmm-modal :title="_('uninstall_modal.title')"
+                :visible="modals.uninstall"
+                :buttons="[{'id': 'uninstall', 'clazz': 'danger', 'text': _('uninstall_modal.button_uninstall')}, {'id': 'cancel', 'clazz': 'secondary', 'text': _('uninstall_modal.button_cancel')}]"
+                @button="handleUninstallButtonClick">
+        <p v-if="selectedInstall">{{_("uninstall_modal.description_1", selectedInstall.name)}}</p>
+        <br>
+        <p>{{_("uninstall_modal.description_2")}}</p>
+    </ddmm-modal>
+    
+    <ddmm-modal :title="_('save_delete_modal.title')"
+                :visible="modals.save_delete"
+                :buttons="[{'id': 'delete', 'clazz': 'warning', 'text': _('save_delete_modal.button_delete')}, {'id': 'cancel', 'clazz': 'secondary', 'text': _('save_delete_modal.button_cancel')}]"
+                @button="handleSaveDeleteButtonClick">
+        <p v-if="selectedInstall">{{_("save_delete_modal.description_1", selectedInstall.name)}}</p>
+        <br>
+        <p>{{_("save_delete_modal.description_2")}}</p>
+    </ddmm-modal>
+    
     <h1>{{_("mods.tab_title")}}</h1>
     <p>{{_("mods.tab_subtitle")}}</p>
     
@@ -25,8 +43,10 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
         </p>
         <p>
             <button class="primary" @click="launchInstall(install.folderName)">{{_("mods.install.button_play")}}</button>
-            <button class="secondary">rename</button>
-            <button class="danger">{{_("mods.install.button_uninstall")}}</button>
+            <button class="secondary">{{_("mods.install.button_rename")}}</button>
+            <button class="secondary">{{_("mods.install.button_shortcut")}}</button>
+            <button class="warning" @click="deleteSave(install.folderName)">{{_("mods.install.button_delete_save")}}</button>
+            <button class="danger" @click="uninstall(install.folderName)">{{_("mods.install.button_uninstall")}}</button>
         </p>
         <br>
     </div>
@@ -41,6 +61,20 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
     </div>
 </div>`,
     "props": ["ddmm_version", "mod_list", "install_list"],
+    "data": function () {
+        return {
+            "selected_install": null,
+            "modals": {
+                "uninstall": false,
+                "save_delete": false
+            }
+        }
+    },
+    "computed": {
+        "selectedInstall": function () {
+            return this.install_list.find(i => i.folderName === this.selected_install);
+        }
+    },
     "methods": {
         "_": function () {
             return ddmm.translate.apply(null, arguments);
@@ -70,6 +104,26 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
         },
         "getCanonicalPathToMod": function (filename) {
             return ddmm.joinPath(ddmm.readConfigValue("installFolder"), "mods", filename);
+        },
+        "uninstall": function (folderName) {
+            this.selected_install = folderName;
+            this.modals.uninstall = true;
+        },
+        "deleteSave": function (folderName) {
+            this.selected_install = folderName;
+            this.modals.save_delete = true;
+        },
+        "handleUninstallButtonClick": function (button) {
+            if (button === "uninstall") {
+                ddmm.deleteInstall(this.selected_install);
+            }
+            this.modals.uninstall = false;
+        },
+        "handleSaveDeleteButtonClick": function (button) {
+            if (button === "delete") {
+                ddmm.deleteSaveData(this.selected_install);
+            }
+            this.modals.save_delete = false;
         }
     }
 });
