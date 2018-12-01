@@ -10,7 +10,8 @@
   "scripts": {
     "start": "electron . --enable-sandbox",
     "start-dev": "electron --inspect=5858 . --enable-sandbox",
-    "release": "electron-builder"
+    "release": "electron-builder",
+    "test": "mocha"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.5.0",
@@ -22,7 +23,8 @@
   "devDependencies": {
     "@sentry/cli": "^1.36.4",
     "electron": "^3.0.10",
-    "electron-builder": "^20.36.2"
+    "electron-builder": "^20.36.2",
+    "mocha": "^5.2.0"
   },
   "build": {
     "appId": "space.doki.modmanager",
