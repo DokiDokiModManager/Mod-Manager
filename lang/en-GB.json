@@ -64,12 +64,17 @@
       "title": "Browse for a mod to install",
       "button_label": "Install",
       "file_format_name": "Archive files"
+    },
+    "shortcut": {
+      "dialog_title": "Where do you want to place the shortcut?",
+      "file_format_name": "Shortcut",
+      "error_title": "An error occurred while making the shortcut",
+      "error_message": "The shortcut could not be created."
     }
   },
   "sayonika": {
     "tab_title": "Sayonika",
-    "tab_subtitle": "Find and download new mods.",
-    "nyi_description": "Integration with the Sayonika mod database is coming soon! While you wait, please download your mods from their respective authors."
+    "tab_subtitle": "Find and download new mods."
   },
   "settings": {
     "tab_title": "Settings",

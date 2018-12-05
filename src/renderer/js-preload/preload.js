@@ -101,6 +101,11 @@ api.deleteSaveData = function (folderName) {
     ipcRenderer.send("delete save", folderName);
 };
 
+// Create shortcut
+api.createShortcut = function (folderName) {
+    ipcRenderer.send("create shortcut", folderName);
+};
+
 // Handler for crashes / errors
 ipcRenderer.on("error message", (ev, data) => {
     api.emit("error", data);

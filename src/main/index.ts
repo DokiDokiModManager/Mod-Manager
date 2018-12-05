@@ -55,6 +55,34 @@ function showError(title: string, body: string, stacktrace: string, fatal: boole
     appWindow.setClosable(true);
 }
 
+function launchInstall(folderName) {
+    Config.saveConfigValue("lastLaunchedInstall", folderName);
+    appWindow.minimize(); // minimise the window to draw attention to the fact another window will be appearing
+    appWindow.webContents.send("running cover", {
+        display: true,
+        dismissable: false,
+        title: lang.translate("running_cover.running.title"),
+        description: lang.translate("running_cover.running.description")
+    });
+    richPresence.setPlayingStatus(folderName);
+    InstallLauncher.launchInstall(folderName).then(() => {
+        richPresence.setIdleStatus();
+        appWindow.restore(); // show DDMM again
+        appWindow.focus();
+        appWindow.webContents.send("running cover", {display: false});
+    }).catch(err => {
+        richPresence.setIdleStatus();
+        appWindow.restore();
+        appWindow.focus();
+        appWindow.webContents.send("running cover", {
+            display: true,
+            dismissable: true,
+            title: lang.translate("running_cover.error.title"),
+            description: err
+        });
+    });
+}
+
 // Restart the app
 ipcMain.on("restart", () => {
     app.relaunch();
@@ -100,31 +128,7 @@ ipcMain.on("read config", (ev: IpcMessageEvent, key: string) => {
 
 // Launch install
 ipcMain.on("launch install", (ev: IpcMessageEvent, folderName: string) => {
-    Config.saveConfigValue("lastLaunchedInstall", folderName);
-    appWindow.minimize(); // minimise the window to draw attention to the fact another window will be appearing
-    appWindow.webContents.send("running cover", {
-        display: true,
-        dismissable: false,
-        title: lang.translate("running_cover.running.title"),
-        description: lang.translate("running_cover.running.description")
-    });
-    richPresence.setPlayingStatus(folderName);
-    InstallLauncher.launchInstall(folderName).then(() => {
-        richPresence.setIdleStatus();
-        appWindow.restore(); // show DDMM again
-        appWindow.focus();
-        appWindow.webContents.send("running cover", {display: false});
-    }).catch(err => {
-        richPresence.setIdleStatus();
-        appWindow.restore();
-        appWindow.focus();
-        appWindow.webContents.send("running cover", {
-            display: true,
-            dismissable: true,
-            title: lang.translate("running_cover.error.title"),
-            description: err
-        });
-    });
+    launchInstall(folderName);
 });
 
 // Browse for a mod
@@ -202,6 +206,36 @@ ipcMain.on("delete save", (ev: IpcMessageEvent, folderName: string) => {
     });
 });
 
+// desktop shortcut creation
+ipcMain.on("create shortcut", (ev: IpcMessageEvent, folderName: string) => {
+    if (process.platform !== "win32") {
+        dialog.showErrorBox("Shortcut creation is only supported on Windows", "Nice try.");
+        return;
+    }
+
+    dialog.showSaveDialog(appWindow, {
+        title: lang.translate("mods.shortcut.dialog_title"),
+        filters: [
+            {name: lang.translate("mods.shortcut.file_format_name"), extensions: ["lnk"]}
+        ]
+    }, (file) => {
+        if (file) {
+            console.log("Writing shortcut to " + file);
+            if (!shell.writeShortcutLink(file, "create", {
+                args: "ddmm://launch-install/" + folderName,
+                target: process.argv0
+            })) {
+                showError(
+                    lang.translate("mods.shortcut.error_title"),
+                    lang.translate("mods.shortcut.error_message"),
+                    null,
+                    false
+                );
+            }
+        }
+    });
+});
+
 // Crash for debugging
 ipcMain.on("debug crash", () => {
     throw new Error("User forced debug crash with DevTools")
@@ -233,11 +267,14 @@ app.on("ready", () => {
     app.setAppUserModelId("space.doki.modmanager");
 
     if (!app.requestSingleInstanceLock()) {
+
         // we should quit, as another instance is running
         console.log("App already running.");
         app.quit();
         return; // avoid running for longer than needed
     }
+
+    app.setAsDefaultProtocolClient("ddmm");
 
     // create browser window
     appWindow = new BrowserWindow({
@@ -297,6 +334,20 @@ app.on("ready", () => {
     appWindow.on("closed", () => {
         appWindow = null;
         app.quit();
+    });
+
+    appWindow.on("ready-to-show", () => {
+        const lastArg: string = process.argv.pop();
+
+        // logic for handling various command line arguments
+        if (lastArg.startsWith("ddmm://")) {
+            const command: string = lastArg.split("ddmm://")[1];
+
+            if (command.startsWith("launch-install/")) {
+                const installFolder: string = command.split("launch-install/")[1];
+                launchInstall(installFolder);
+            }
+        }
     });
 
     appWindow.setMenu(null);

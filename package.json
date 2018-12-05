@@ -14,12 +14,13 @@
     "test": "mocha"
   },
   "dependencies": {
+    "7zip-bin": "^4.1.0",
     "@fortawesome/fontawesome-free": "^5.5.0",
     "@zudo/unzipper": "^0.0.4",
     "chmodr": "^1.2.0",
+    "discord-rich-presence": "^0.0.7",
     "fs-extra": "^7.0.1",
-    "vue": "^2.5.17",
-    "discord-rich-presence": "^0.0.7"
+    "vue": "^2.5.17"
   },
   "devDependencies": {
     "@sentry/cli": "^1.36.4",

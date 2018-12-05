@@ -44,6 +44,33 @@ function showError(title, body, stacktrace, fatal) {
     windowClosable = true;
     appWindow.setClosable(true);
 }
+function launchInstall(folderName) {
+    Config_1.default.saveConfigValue("lastLaunchedInstall", folderName);
+    appWindow.minimize(); // minimise the window to draw attention to the fact another window will be appearing
+    appWindow.webContents.send("running cover", {
+        display: true,
+        dismissable: false,
+        title: lang.translate("running_cover.running.title"),
+        description: lang.translate("running_cover.running.description")
+    });
+    richPresence.setPlayingStatus(folderName);
+    InstallLauncher_1.default.launchInstall(folderName).then(() => {
+        richPresence.setIdleStatus();
+        appWindow.restore(); // show DDMM again
+        appWindow.focus();
+        appWindow.webContents.send("running cover", { display: false });
+    }).catch(err => {
+        richPresence.setIdleStatus();
+        appWindow.restore();
+        appWindow.focus();
+        appWindow.webContents.send("running cover", {
+            display: true,
+            dismissable: true,
+            title: lang.translate("running_cover.error.title"),
+            description: err
+        });
+    });
+}
 // Restart the app
 electron_1.ipcMain.on("restart", () => {
     electron_1.app.relaunch();
@@ -81,31 +108,7 @@ electron_1.ipcMain.on("read config", (ev, key) => {
 });
 // Launch install
 electron_1.ipcMain.on("launch install", (ev, folderName) => {
-    Config_1.default.saveConfigValue("lastLaunchedInstall", folderName);
-    appWindow.minimize(); // minimise the window to draw attention to the fact another window will be appearing
-    appWindow.webContents.send("running cover", {
-        display: true,
-        dismissable: false,
-        title: lang.translate("running_cover.running.title"),
-        description: lang.translate("running_cover.running.description")
-    });
-    richPresence.setPlayingStatus(folderName);
-    InstallLauncher_1.default.launchInstall(folderName).then(() => {
-        richPresence.setIdleStatus();
-        appWindow.restore(); // show DDMM again
-        appWindow.focus();
-        appWindow.webContents.send("running cover", { display: false });
-    }).catch(err => {
-        richPresence.setIdleStatus();
-        appWindow.restore();
-        appWindow.focus();
-        appWindow.webContents.send("running cover", {
-            display: true,
-            dismissable: true,
-            title: lang.translate("running_cover.error.title"),
-            description: err
-        });
-    });
+    launchInstall(folderName);
 });
 // Browse for a mod
 electron_1.ipcMain.on("browse mods", (ev) => {
@@ -159,6 +162,29 @@ electron_1.ipcMain.on("delete save", (ev, folderName) => {
         showError(lang.translate("exceptions.save_delete_notification.title"), lang.translate("exceptions.save_delete_notification.body"), e.toString(), false);
     });
 });
+// desktop shortcut creation
+electron_1.ipcMain.on("create shortcut", (ev, folderName) => {
+    if (process.platform !== "win32") {
+        electron_1.dialog.showErrorBox("Shortcut creation is only supported on Windows", "Nice try.");
+        return;
+    }
+    electron_1.dialog.showSaveDialog(appWindow, {
+        title: lang.translate("mods.shortcut.dialog_title"),
+        filters: [
+            { name: lang.translate("mods.shortcut.file_format_name"), extensions: ["lnk"] }
+        ]
+    }, (file) => {
+        if (file) {
+            console.log("Writing shortcut to " + file);
+            if (!electron_1.shell.writeShortcutLink(file, "create", {
+                args: "ddmm://launch-install/" + folderName,
+                target: process.argv0
+            })) {
+                showError(lang.translate("mods.shortcut.error_title"), lang.translate("mods.shortcut.error_message"), null, false);
+            }
+        }
+    });
+});
 // Crash for debugging
 electron_1.ipcMain.on("debug crash", () => {
     throw new Error("User forced debug crash with DevTools");
@@ -184,6 +210,7 @@ electron_1.app.on("ready", () => {
         electron_1.app.quit();
         return; // avoid running for longer than needed
     }
+    electron_1.app.setAsDefaultProtocolClient("ddmm");
     // create browser window
     appWindow = new electron_1.BrowserWindow({
         title: "Doki Doki Mod Manager",
@@ -233,6 +260,17 @@ electron_1.app.on("ready", () => {
     appWindow.on("closed", () => {
         appWindow = null;
         electron_1.app.quit();
+    });
+    appWindow.on("ready-to-show", () => {
+        const lastArg = process.argv.pop();
+        // logic for handling various command line arguments
+        if (lastArg.startsWith("ddmm://")) {
+            const command = lastArg.split("ddmm://")[1];
+            if (command.startsWith("launch-install/")) {
+                const installFolder = command.split("launch-install/")[1];
+                launchInstall(installFolder);
+            }
+        }
     });
     appWindow.setMenu(null);
     if (process.env.DDMM_DEVTOOLS) {

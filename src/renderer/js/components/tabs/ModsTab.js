@@ -44,7 +44,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
         <p>
             <button class="primary" @click="launchInstall(install.folderName)">{{_("mods.install.button_play")}}</button>
             <button class="secondary">{{_("mods.install.button_rename")}}</button>
-            <button class="secondary">{{_("mods.install.button_shortcut")}}</button>
+            <button class="secondary" @click="createShortcut(install.folderName)">{{_("mods.install.button_shortcut")}}</button>
             <button class="warning" @click="deleteSave(install.folderName)">{{_("mods.install.button_delete_save")}}</button>
             <button class="danger" @click="uninstall(install.folderName)">{{_("mods.install.button_uninstall")}}</button>
         </p>
@@ -80,6 +80,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             return ddmm.translate.apply(null, arguments);
         },
         "launchInstall": ddmm.launchInstall,
+        "createShortcut": ddmm.createShortcut,
         "openURL": ddmm.openURL,
         "handleDroppedFiles": function (files) {
             const filePath = files[0].path;
