@@ -91,7 +91,7 @@
     </ddmm-modal>
 
     <div class="container">
-        <div class="navbar">
+        <div :class="{'navbar': true, 'collapsed': collapsed_navbar}">
             <span v-for="(t, id) in tabs" @click="switchTab(id)" v-if="(t.purist_enabled || !purist)">
                 <ddmm-nav-button :icon="t.icon" :active="tab === id">{{t.name}}</ddmm-nav-button>
             </span>

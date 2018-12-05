@@ -3,11 +3,16 @@ import {app} from "electron";
 import Config from "../utils/Config";
 
 export default class DiscordManager {
-    private readonly client: any;
+    private client: any;
 
     constructor(appID: string) {
         if (!Config.readConfigValue("puristMode")) {
             this.client = makeClient(appID);
+
+            this.client.on("error", e => {
+                this.client = null;
+                console.log("Could not enable Rich Presence: " + e.message);
+            });
         }
     }
 

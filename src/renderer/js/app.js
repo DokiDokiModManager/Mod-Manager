@@ -23,11 +23,31 @@ const app = new Vue({
     "data": {
         "tab": (PURIST_ENABLED ? "mods" : "home"),
         "tabs": {
-            "home": {"name": ddmm.translate("sidebar.home"), "icon": "home", "component": "ddmm-home-tab", "purist_enabled": false},
-            "mods": {"name": ddmm.translate("sidebar.mods"), "icon": "list", "component": "ddmm-mods-tab", "purist_enabled": true},
+            "home": {
+                "name": ddmm.translate("sidebar.home"),
+                "icon": "home",
+                "component": "ddmm-home-tab",
+                "purist_enabled": false
+            },
+            "mods": {
+                "name": ddmm.translate("sidebar.mods"),
+                "icon": "list",
+                "component": "ddmm-mods-tab",
+                "purist_enabled": true
+            },
             // "sayonika": {"name": ddmm.translate("sidebar.sayonika"), "icon": "download", "component": "ddmm-sayonika-tab", "purist_enabled": false},
-            "settings": {"name": ddmm.translate("sidebar.settings"), "icon": "cog", "component": "ddmm-settings-tab", "purist_enabled": true},
-            "about": {"name": ddmm.translate("sidebar.about"), "icon": "info", "component": "ddmm-about-tab", "purist_enabled": true}
+            "settings": {
+                "name": ddmm.translate("sidebar.settings"),
+                "icon": "cog",
+                "component": "ddmm-settings-tab",
+                "purist_enabled": true
+            },
+            "about": {
+                "name": ddmm.translate("sidebar.about"),
+                "icon": "info",
+                "component": "ddmm-about-tab",
+                "purist_enabled": true
+            }
         },
         "recommended_mods": {},
         "banner": {},
@@ -54,7 +74,8 @@ const app = new Vue({
                 "visible": false,
                 "stacktrace": ""
             }
-        }
+        },
+        "collapsed_navbar": false
     },
     "methods": {
         "_": function () {
@@ -143,6 +164,18 @@ fetch("https://api.github.com/repos/DokiDokiModManager/Mod-Manager/releases").th
             "details": parseChangelogData(release.body)
         }
     });
+});
+
+document.addEventListener("keydown", e => {
+    const key = e.key;
+    if (parseInt(key)) {
+        const tabNo = parseInt(key) - 1;
+        if (tabNo >= 0 && tabNo < Object.keys(app.tabs).length) {
+            app.tab = Object.keys(app.tabs)[tabNo];
+        }
+    } else if (key === "m") {
+        app.collapsed_navbar = !app.collapsed_navbar;
+    }
 });
 
 // load mod / install list on first load

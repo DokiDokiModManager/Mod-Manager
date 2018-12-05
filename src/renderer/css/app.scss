@@ -127,8 +127,19 @@ hr {
   min-height: 100vh;
   height: 100%;
   overflow-y: auto;
+  overflow-x: hidden;
   font-size: 0.8em;
   flex-shrink: 0;
+  transition: width 0.5s;
+}
+
+.navbar.collapsed .nav-button p {
+  display: none;
+}
+
+.navbar.collapsed .nav-button {
+  padding: 1em;
+  font-size: 0.75em;
 }
 
 .nav-button {

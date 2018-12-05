@@ -79,8 +79,8 @@
   "settings": {
     "tab_title": "Settings",
     "tab_subtitle": "Configure Doki Doki Mod Manager.",
-    "purist_title": "Purist Mode",
-    "purist_description": "Purist Mode disables Discord integration, achievements and several non-essential parts of the UI. Get to your mods faster.",
+    "purist_title": "Minimalist Mode",
+    "purist_description": "Minimalist Mode disables Discord integration, achievements and several non-essential parts of the UI. Get to your mods faster.",
     "purist_button_enable": "Enable and Restart",
     "purist_button_disable": "Disable and Restart"
   },

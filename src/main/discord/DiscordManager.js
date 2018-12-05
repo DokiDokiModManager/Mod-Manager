@@ -7,6 +7,10 @@ class DiscordManager {
     constructor(appID) {
         if (!Config_1.default.readConfigValue("puristMode")) {
             this.client = makeClient(appID);
+            this.client.on("error", e => {
+                this.client = null;
+                console.log("Could not enable Rich Presence: " + e.message);
+            });
         }
     }
     setIdleStatus() {
