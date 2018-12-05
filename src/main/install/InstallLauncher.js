@@ -4,8 +4,8 @@ const path_1 = require("path");
 const fs_1 = require("fs");
 const electron_1 = require("electron");
 const child_process_1 = require("child_process");
-const i18n_1 = require("../i18n");
-const config_1 = require("../config");
+const i18n_1 = require("../utils/i18n");
+const Config_1 = require("../utils/Config");
 const lang = new i18n_1.default(electron_1.app.getLocale());
 class InstallLauncher {
     /**
@@ -14,7 +14,7 @@ class InstallLauncher {
      */
     static launchInstall(folderName) {
         return new Promise((ff, rj) => {
-            const installFolder = path_1.join(config_1.default.readConfigValue("installFolder"), "installs", folderName);
+            const installFolder = path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", folderName);
             let installData;
             try {
                 installData =
@@ -23,7 +23,7 @@ class InstallLauncher {
             catch (e) {
                 rj(lang.translate("errors.launch.install_corrupt"));
             }
-            config_1.default.saveConfigValue("lastInstall", {
+            Config_1.default.saveConfigValue("lastInstall", {
                 "name": installData.name,
                 "folder": folderName
             });

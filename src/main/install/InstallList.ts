@@ -1,7 +1,7 @@
 import {join as joinPath} from "path";
 import {readdirSync, readFileSync} from "fs";
 import Install from "../types/Install";
-import Config from "../config";
+import Config from "../utils/Config";
 
 export default class InstallList {
 

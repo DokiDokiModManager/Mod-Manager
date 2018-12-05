@@ -1,10 +1,10 @@
 import {app, BrowserWindow, ipcMain, IpcMessageEvent, shell, dialog, Notification, crashReporter} from "electron";
 import {join as joinPath} from "path";
-import ModList from "./ModList";
-import I18n from "./i18n";
+import ModList from "./mod/ModList";
+import I18n from "./utils/i18n";
 import InstallList from "./install/InstallList";
 import InstallLauncher from "./install/InstallLauncher";
-import Config from "./config";
+import Config from "./utils/Config";
 import InstallCreator from "./install/InstallCreator";
 import ModInstaller from "./mod/ModInstaller";
 import InstallManager from "./install/InstallManager";

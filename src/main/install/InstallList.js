@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const path_1 = require("path");
 const fs_1 = require("fs");
 const Install_1 = require("../types/Install");
-const config_1 = require("../config");
+const Config_1 = require("../utils/Config");
 class InstallList {
     /**
      * Reads the install directory and returns information on each install
@@ -11,7 +11,7 @@ class InstallList {
      */
     static getInstallList() {
         // find and read the folders
-        const installFolder = path_1.join(config_1.default.readConfigValue("installFolder"), "installs");
+        const installFolder = path_1.join(Config_1.default.readConfigValue("installFolder"), "installs");
         console.log("Reading installs from " + installFolder);
         const installs = fs_1.readdirSync(installFolder);
         let returned = [];

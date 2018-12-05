@@ -1,6 +1,6 @@
 import {readdirSync} from "fs";
 import {join as joinPath} from "path";
-import Config from "./config";
+import Config from "../utils/Config";
 
 export default class ModList {
 

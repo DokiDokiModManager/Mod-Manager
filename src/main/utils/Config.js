@@ -59,4 +59,4 @@ Config.defaultConfig = {
 };
 Config.configPath = path_1.join(electron_1.app.getPath("userData"), "config.json");
 exports.default = Config;
-//# sourceMappingURL=config.js.map
+//# sourceMappingURL=Config.js.map

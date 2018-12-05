@@ -2,8 +2,8 @@ import {join as joinPath} from "path";
 import {existsSync, readFileSync} from "fs";
 import {app} from "electron";
 import {spawn} from "child_process";
-import I18n from "../i18n";
-import Config from "../config";
+import I18n from "../utils/i18n";
+import Config from "../utils/Config";
 
 const lang: I18n = new I18n(app.getLocale());
 

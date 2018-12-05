@@ -63,7 +63,7 @@
     "browse_dialog": {
       "title": "Browse for a mod to install",
       "button_label": "Install",
-      "file_format_name": "Archive files (.zip, .7z, .rar)"
+      "file_format_name": "Archive files"
     }
   },
   "sayonika": {

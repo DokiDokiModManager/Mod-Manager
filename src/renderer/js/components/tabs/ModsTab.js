@@ -137,5 +137,5 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
 });
 
 function isArchive(filename) {
-    return (ddmm.platform === "win32") ? ["zip", "rar", "7z"].filter(ext => filename.endsWith("." + ext)).length > 0 : filename.endsWith(".zip");
+    return ["zip", "rar", "7z", "gz"].filter(ext => filename.endsWith("." + ext)).length > 0;
 }

@@ -3,7 +3,7 @@ import * as chmodr from "chmodr";
 import {createWriteStream, writeFileSync} from "fs";
 import {mkdirsSync} from "fs-extra";
 import {join as joinPath, sep as pathSep} from "path";
-import Config from "../config";
+import Config from "../utils/Config";
 
 export default class InstallCreator {
 

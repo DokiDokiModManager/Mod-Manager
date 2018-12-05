@@ -1,6 +1,6 @@
 import {remove, emptyDir} from "fs-extra";
 import {join as joinPath} from "path";
-import Config from "../config";
+import Config from "../utils/Config";
 import {existsSync} from "fs";
 
 export default class InstallManager {

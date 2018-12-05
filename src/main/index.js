@@ -2,11 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const electron_1 = require("electron");
 const path_1 = require("path");
-const ModList_1 = require("./ModList");
-const i18n_1 = require("./i18n");
+const ModList_1 = require("./mod/ModList");
+const i18n_1 = require("./utils/i18n");
 const InstallList_1 = require("./install/InstallList");
 const InstallLauncher_1 = require("./install/InstallLauncher");
-const config_1 = require("./config");
+const Config_1 = require("./utils/Config");
 const InstallCreator_1 = require("./install/InstallCreator");
 const ModInstaller_1 = require("./mod/ModInstaller");
 const InstallManager_1 = require("./install/InstallManager");
@@ -16,8 +16,8 @@ electron_1.crashReporter.start({
     productName: "DokiDokiModManager",
     ignoreSystemCrashHandler: true,
     extra: {
-        "purist_mode": config_1.default.readConfigValue("puristMode"),
-        "install_directory": config_1.default.readConfigValue("installFolder")
+        "purist_mode": Config_1.default.readConfigValue("puristMode"),
+        "install_directory": Config_1.default.readConfigValue("installFolder")
     },
     uploadToServer: true,
     submitURL: "https://sentry.io/api/1297252/minidump/?sentry_key=bf0edf3f287344d4969e3171c33af4ea"
@@ -70,14 +70,14 @@ electron_1.ipcMain.on("closable", (ev, flag) => {
 });
 // Config IPC functions
 electron_1.ipcMain.on("save config", (ev, configData) => {
-    config_1.default.saveConfigValue(configData.key, configData.value);
+    Config_1.default.saveConfigValue(configData.key, configData.value);
 });
 electron_1.ipcMain.on("read config", (ev, key) => {
-    ev.returnValue = config_1.default.readConfigValue(key);
+    ev.returnValue = Config_1.default.readConfigValue(key);
 });
 // Launch install
 electron_1.ipcMain.on("launch install", (ev, folderName) => {
-    config_1.default.saveConfigValue("lastLaunchedInstall", folderName);
+    Config_1.default.saveConfigValue("lastLaunchedInstall", folderName);
     appWindow.minimize(); // minimise the window to draw attention to the fact another window will be appearing
     appWindow.webContents.send("running cover", {
         display: true,
@@ -124,7 +124,7 @@ electron_1.ipcMain.on("create install", (ev, install) => {
             appWindow.setClosable(true);
         }
         else {
-            ModInstaller_1.default.installMod(install.mod, path_1.join(config_1.default.readConfigValue("installFolder"), "installs", install.folderName, "install")).then(() => {
+            ModInstaller_1.default.installMod(install.mod, path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", install.folderName, "install")).then(() => {
                 appWindow.webContents.send("got installs", InstallList_1.default.getInstallList());
                 windowClosable = true;
                 appWindow.setClosable(true);
