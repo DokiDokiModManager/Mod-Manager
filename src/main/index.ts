@@ -29,6 +29,9 @@ crashReporter.start({
 // User agent for API requests
 const USER_AGENT = "DokiDokiModManager/" + app.getVersion() + " (zudo@doki.space)";
 
+// The last argument, might be a ddmm:// url
+const lastArg: string = process.argv.pop();
+
 // Permanent reference to the main app window
 let appWindow: BrowserWindow;
 
@@ -257,9 +260,23 @@ process.on("uncaughtException", (e: Error) => {
 // endregion
 
 // region App initialisation
-app.on("second-instance", () => {
+function handleURL(forcedArg?: string) {
+    // logic for handling various command line arguments
+    const url = forcedArg ? forcedArg : lastArg;
+    if (url.startsWith("ddmm://")) {
+        const command: string = url.split("ddmm://")[1];
+
+        if (command.startsWith("launch-install/")) {
+            const installFolder: string = command.split("launch-install/")[1];
+            launchInstall(installFolder);
+        }
+    }
+}
+
+app.on("second-instance", (ev: Event, argv: string[]) => {
     appWindow.restore();
     appWindow.focus();
+    handleURL(argv.pop());
 });
 
 app.on("ready", () => {
@@ -337,17 +354,7 @@ app.on("ready", () => {
     });
 
     appWindow.on("ready-to-show", () => {
-        const lastArg: string = process.argv.pop();
-
-        // logic for handling various command line arguments
-        if (lastArg.startsWith("ddmm://")) {
-            const command: string = lastArg.split("ddmm://")[1];
-
-            if (command.startsWith("launch-install/")) {
-                const installFolder: string = command.split("launch-install/")[1];
-                launchInstall(installFolder);
-            }
-        }
+        handleURL();
     });
 
     appWindow.setMenu(null);

@@ -27,6 +27,8 @@ electron_1.crashReporter.start({
 // region Flags and references
 // User agent for API requests
 const USER_AGENT = "DokiDokiModManager/" + electron_1.app.getVersion() + " (zudo@doki.space)";
+// The last argument, might be a ddmm:// url
+const lastArg = process.argv.pop();
 // Permanent reference to the main app window
 let appWindow;
 // Discord rich presence
@@ -198,9 +200,21 @@ process.on("uncaughtException", (e) => {
 });
 // endregion
 // region App initialisation
-electron_1.app.on("second-instance", () => {
+function handleURL(forcedArg) {
+    // logic for handling various command line arguments
+    const url = forcedArg ? forcedArg : lastArg;
+    if (url.startsWith("ddmm://")) {
+        const command = url.split("ddmm://")[1];
+        if (command.startsWith("launch-install/")) {
+            const installFolder = command.split("launch-install/")[1];
+            launchInstall(installFolder);
+        }
+    }
+}
+electron_1.app.on("second-instance", (ev, argv) => {
     appWindow.restore();
     appWindow.focus();
+    handleURL(argv.pop());
 });
 electron_1.app.on("ready", () => {
     electron_1.app.setAppUserModelId("space.doki.modmanager");
@@ -262,15 +276,7 @@ electron_1.app.on("ready", () => {
         electron_1.app.quit();
     });
     appWindow.on("ready-to-show", () => {
-        const lastArg = process.argv.pop();
-        // logic for handling various command line arguments
-        if (lastArg.startsWith("ddmm://")) {
-            const command = lastArg.split("ddmm://")[1];
-            if (command.startsWith("launch-install/")) {
-                const installFolder = command.split("launch-install/")[1];
-                launchInstall(installFolder);
-            }
-        }
+        handleURL();
     });
     appWindow.setMenu(null);
     if (process.env.DDMM_DEVTOOLS) {
