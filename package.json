@@ -15,10 +15,11 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.5.0",
-    "@zudo/unzipper": "latest",
-    "chmodr": "latest",
+    "@zudo/unzipper": "^0.0.4",
+    "chmodr": "^1.2.0",
     "fs-extra": "^7.0.1",
-    "vue": "^2.5.17"
+    "vue": "^2.5.17",
+    "discord-rich-presence": "^0.0.7"
   },
   "devDependencies": {
     "@sentry/cli": "^1.36.4",

@@ -8,6 +8,7 @@ import Config from "./utils/Config";
 import InstallCreator from "./install/InstallCreator";
 import ModInstaller from "./mod/ModInstaller";
 import InstallManager from "./install/InstallManager";
+import DiscordManager from "./discord/DiscordManager";
 
 // region Crash reporting
 crashReporter.start({
@@ -30,6 +31,11 @@ const USER_AGENT = "DokiDokiModManager/" + app.getVersion() + " (zudo@doki.space
 
 // Permanent reference to the main app window
 let appWindow: BrowserWindow;
+
+// Discord rich presence
+let richPresence: DiscordManager = new DiscordManager("453299645725016074");
+
+richPresence.setIdleStatus();
 
 // Flag for allowing the app window to be closed
 let windowClosable: boolean = true;
@@ -102,11 +108,14 @@ ipcMain.on("launch install", (ev: IpcMessageEvent, folderName: string) => {
         title: lang.translate("running_cover.running.title"),
         description: lang.translate("running_cover.running.description")
     });
+    richPresence.setPlayingStatus(folderName);
     InstallLauncher.launchInstall(folderName).then(() => {
+        richPresence.setIdleStatus();
         appWindow.restore(); // show DDMM again
         appWindow.focus();
         appWindow.webContents.send("running cover", {display: false});
     }).catch(err => {
+        richPresence.setIdleStatus();
         appWindow.restore();
         appWindow.focus();
         appWindow.webContents.send("running cover", {

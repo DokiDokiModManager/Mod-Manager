@@ -10,6 +10,7 @@ const Config_1 = require("./utils/Config");
 const InstallCreator_1 = require("./install/InstallCreator");
 const ModInstaller_1 = require("./mod/ModInstaller");
 const InstallManager_1 = require("./install/InstallManager");
+const DiscordManager_1 = require("./discord/DiscordManager");
 // region Crash reporting
 electron_1.crashReporter.start({
     companyName: "DDMM",
@@ -28,6 +29,9 @@ electron_1.crashReporter.start({
 const USER_AGENT = "DokiDokiModManager/" + electron_1.app.getVersion() + " (zudo@doki.space)";
 // Permanent reference to the main app window
 let appWindow;
+// Discord rich presence
+let richPresence = new DiscordManager_1.default("453299645725016074");
+richPresence.setIdleStatus();
 // Flag for allowing the app window to be closed
 let windowClosable = true;
 const lang = new i18n_1.default(electron_1.app.getLocale());
@@ -85,11 +89,14 @@ electron_1.ipcMain.on("launch install", (ev, folderName) => {
         title: lang.translate("running_cover.running.title"),
         description: lang.translate("running_cover.running.description")
     });
+    richPresence.setPlayingStatus(folderName);
     InstallLauncher_1.default.launchInstall(folderName).then(() => {
+        richPresence.setIdleStatus();
         appWindow.restore(); // show DDMM again
         appWindow.focus();
         appWindow.webContents.send("running cover", { display: false });
     }).catch(err => {
+        richPresence.setIdleStatus();
         appWindow.restore();
         appWindow.focus();
         appWindow.webContents.send("running cover", {
