@@ -109,6 +109,9 @@ ipcRenderer.on("error message", (ev, data) => {
 // Application version
 api.version = packageData.version;
 
+// System platform
+api.platform = process.platform;
+
 // Join paths
 api.joinPath = path.join;
 

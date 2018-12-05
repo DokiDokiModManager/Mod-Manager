@@ -32,8 +32,10 @@ For the latest changes, or if you want to contribute, you can run DDMM from sour
     $ git clone https://github.com/DokiDokiModManager/Mod-Manager
     $ yarn && yarn start
 
-## License
+## Licenses and Acknowledgements
 
 Doki Doki Mod Manager is licensed under the [MIT License](LICENSE.txt). Contributions are welcomed!
 
-[Sayonika assets](https://github.com/Sayo-nika/Press) licensed under [CC BY-NC 3.0](https://github.com/Sayo-nika/Press/blob/master/LICENSE).
+[Sayonika assets](https://github.com/Sayo-nika/Press) licensed under [CC BY-NC-SA](https://github.com/Sayo-nika/Press/blob/master/LICENSE).
+
+[7-Zip (7za.exe)](https://www.7-zip.org/) licensed under [GNU LGPL](https://www.7-zip.org/license.txt).

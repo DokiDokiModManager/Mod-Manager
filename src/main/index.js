@@ -105,7 +105,10 @@ electron_1.ipcMain.on("browse mods", (ev) => {
     electron_1.dialog.showOpenDialog(appWindow, {
         buttonLabel: lang.translate("mods.browse_dialog.button_label"),
         title: lang.translate("mods.browse_dialog.title"),
-        filters: [{ extensions: ["zip"], name: lang.translate("mods.browse_dialog.file_format_name") }],
+        filters: [{
+                extensions: ["zip", "gz", "tar", "rar", "7z"],
+                name: lang.translate("mods.browse_dialog.file_format_name")
+            }],
     }, (filePaths) => {
         ev.returnValue = filePaths;
     });

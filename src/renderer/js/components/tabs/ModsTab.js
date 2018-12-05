@@ -84,8 +84,12 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
         "handleDroppedFiles": function (files) {
             const filePath = files[0].path;
             console.log(filePath);
-            if (filePath && filePath.endsWith(".zip")) {
-                this.$emit("install_mod", filePath);
+            if (filePath) {
+                if (isArchive(filePath)) {
+                    this.$emit("install_mod", filePath);
+                } else {
+                    // TODO: error message
+                }
             }
         },
         "browseForMod": function () {
@@ -93,8 +97,12 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             if (files && files[0]) {
                 const filePath = files[0];
 
-                if (filePath && filePath.endsWith(".zip")) {
-                    this.$emit("install_mod", filePath);
+                if (filePath) {
+                    if (isArchive(filePath)) {
+                        this.$emit("install_mod", filePath);
+                    } else {
+                        // TODO: error message
+                    }
                 }
             }
         },
@@ -127,3 +135,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
         }
     }
 });
+
+function isArchive(filename) {
+    return (ddmm.platform === "win32") ? ["zip", "rar", "7z"].filter(ext => filename.endsWith("." + ext)).length > 0 : filename.endsWith(".zip");
+}

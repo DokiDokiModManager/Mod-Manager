@@ -63,7 +63,7 @@
     "browse_dialog": {
       "title": "Browse for a mod to install",
       "button_label": "Install",
-      "file_format_name": "Mod zip files"
+      "file_format_name": "Archive files (.zip, .7z, .rar)"
     }
   },
   "sayonika": {
@@ -110,7 +110,7 @@
   "uninstall_modal": {
     "title": "Uninstall?",
     "description_1": "Are you sure you want to uninstall {0}? Your save data will be deleted.",
-    "description_2": "If you want to reinstall a mod, you will need a copy of its zip file.",
+    "description_2": "If you want to reinstall a mod, you will need to keep a copy of it.",
     "button_uninstall": "Uninstall",
     "button_cancel": "Cancel"
   },

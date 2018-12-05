@@ -25,7 +25,7 @@ const app = new Vue({
         "tabs": {
             "home": {"name": ddmm.translate("sidebar.home"), "icon": "home", "component": "ddmm-home-tab", "purist_enabled": false},
             "mods": {"name": ddmm.translate("sidebar.mods"), "icon": "list", "component": "ddmm-mods-tab", "purist_enabled": true},
-            "sayonika": {"name": ddmm.translate("sidebar.sayonika"), "icon": "download", "component": "ddmm-sayonika-tab", "purist_enabled": false},
+            // "sayonika": {"name": ddmm.translate("sidebar.sayonika"), "icon": "download", "component": "ddmm-sayonika-tab", "purist_enabled": false},
             "settings": {"name": ddmm.translate("sidebar.settings"), "icon": "cog", "component": "ddmm-settings-tab", "purist_enabled": true},
             "about": {"name": ddmm.translate("sidebar.about"), "icon": "info", "component": "ddmm-about-tab", "purist_enabled": true}
         },
