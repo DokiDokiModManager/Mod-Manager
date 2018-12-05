@@ -296,8 +296,8 @@ app.on("ready", () => {
     // create browser window
     appWindow = new BrowserWindow({
         title: "Doki Doki Mod Manager",
-        width: 1000,
-        height: 600,
+        width: 1024,
+        height: 768,
         minWidth: 1000,
         minHeight: 600,
         maximizable: true,

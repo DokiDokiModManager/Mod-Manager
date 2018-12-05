@@ -11,6 +11,8 @@ export default class ModList {
     static getModList(): string[] {
         const modFolder: string = joinPath(Config.readConfigValue("installFolder"), "mods");
 
-        return readdirSync(modFolder).filter(fn => fn.endsWith(".zip"));
+        return readdirSync(modFolder).filter(fn => {
+            return ["zip", "rar", "7z", "gz"].filter(ext => fn.endsWith("." + ext)).length > 0;
+        });
     }
 }

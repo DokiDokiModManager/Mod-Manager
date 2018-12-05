@@ -35,7 +35,12 @@ const app = new Vue({
                 "component": "ddmm-mods-tab",
                 "purist_enabled": true
             },
-            // "sayonika": {"name": ddmm.translate("sidebar.sayonika"), "icon": "download", "component": "ddmm-sayonika-tab", "purist_enabled": false},
+            "sayonika": {
+                "name": ddmm.translate("sidebar.sayonika"),
+                "icon": "download",
+                "component": "ddmm-sayonika-tab",
+                "purist_enabled": false
+            },
             "settings": {
                 "name": ddmm.translate("sidebar.settings"),
                 "icon": "cog",

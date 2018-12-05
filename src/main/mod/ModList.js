@@ -10,7 +10,9 @@ class ModList {
      */
     static getModList() {
         const modFolder = path_1.join(Config_1.default.readConfigValue("installFolder"), "mods");
-        return fs_1.readdirSync(modFolder).filter(fn => fn.endsWith(".zip"));
+        return fs_1.readdirSync(modFolder).filter(fn => {
+            return ["zip", "rar", "7z", "gz"].filter(ext => fn.endsWith("." + ext)).length > 0;
+        });
     }
 }
 exports.default = ModList;
