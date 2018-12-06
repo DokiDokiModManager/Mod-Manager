@@ -1,143 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+
     <title>Doki Doki Mod Manager</title>
 
-    <link href="../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="../css/app.css">
 </head>
 <body>
-
 <div id="app">
-    <ddmm-running-cover :display="running_cover.display" :dismissable="running_cover.dismissable"
-                        :title="running_cover.title"
-                        :description="running_cover.description"
-                        @dismissed="running_cover.display = false">
-    </ddmm-running-cover>
-
-    <ddmm-modal :title="_('changelog.modal_title')"
-            :visible="modals.changelog"
-            :buttons="[{'clazz': 'primary', 'id': 'close', 'text': _('changelog.button_close')}]"
-            @button="modals.changelog = false">
-        <div v-for="entry in changelog">
-            <h3>{{entry.name}}</h3>
-            <div v-if="entry.details">
-                <!--suppress JSDeprecatedSymbols (webstorm is drunk) -->
-                <p>{{entry.details.summary}}</p>
-
-                <br>
-
-                <div v-if="entry.details.new">
-                    <h4>{{_("changelog.section_new")}}</h4>
-                    <ul>
-                        <li v-for="item in entry.details.new">{{item}}</li>
-                    </ul>
-                </div>
-
-                <div v-if="entry.details.bugs">
-                    <h4>{{_("changelog.section_bugs")}}</h4>
-                    <ul>
-                        <li v-for="item in entry.details.bugs">{{item}}</li>
-                    </ul>
-                </div>
-
-                <div v-if="entry.details.removed">
-                    <h4>{{_("changelog.section_removed")}}</h4>
-                    <ul>
-                        <li v-for="item in entry.details.removed">{{item}}</li>
-                    </ul>
-                </div>
-            </div>
-            <div v-else>No changelog available</div>
-            <hr>
+    <div class="window-buttons">
+        <div><i class="far fa-window-minimize"></i></div>
+        <div><i class="far fa-window-maximize"></i></div>
+        <div><i class="fas fa-times"></i></div>
+    </div>
+    <div class="navbar">
+        <div class="nav-brand">
+            <img src="../images/ddmm.png" height="50">
         </div>
-    </ddmm-modal>
-
-    <ddmm-modal :title="_('install_modal.title')"
-                :visible="modals.install.visible"
-                :buttons="[{'clazz': 'primary', 'id': 'install', 'text': _('install_modal.button_install')}, {'clazz': 'secondary', 'id': 'cancel', 'text': _('install_modal.button_cancel')}]"
-                @button="handleInstallModalButton">
-        <p v-if="!modals.install.mod">{{_("install_modal.description_vanilla")}}</p>
-        <p v-else>{{_("install_modal.description_modded", modals.install.mod)}}</p>
-
-        <br>
-
-        <p><label for="ddmm-install-name-box">{{_("install_modal.label_install_name")}}</label></p>
-        <p><input type="text" id="ddmm-install-name-box" @keyup="generateInstallFolderName" v-model="modals.install.install_name" maxlength="64"></p>
-
-        <br>
-
-        <p><label for="ddmm-install-folder-box">{{_("install_modal.label_folder_name")}}</label></p>
-        <p><input type="text" id="ddmm-install-folder-box" v-model="modals.install.folder_name" maxlength="32"></p>
-
-        <br>
-
-        <p><label><input type="checkbox" v-model="modals.install.global_save"> {{_("install_modal.label_global_save")}}</label></p>
-
-        <br>
-
-        <p>{{_("install_modal.description_global_save")}}</p>
-    </ddmm-modal>
-
-    <ddmm-modal :title="modals.error.title"
-                :visible="modals.error.visible"
-                :buttons="modals.error.fatal ? [{'id': 'quit', 'text': _('exceptions.button_quit'), 'clazz': 'danger'}, {'id': 'restart', 'text': _('exceptions.button_restart'), 'clazz': 'secondary'}] : [{'id': 'ok', 'text': _('exceptions.button_ok'), 'clazz': 'primary'}]"
-                @button="handleErrorButton">
-        <p>{{modals.error.body}}</p>
-        <br>
-        <p><strong>{{_("exceptions.description_stacktrace")}}</strong></p>
-        <p v-if="modals.error.stacktrace">{{modals.error.stacktrace}}</p>
-    </ddmm-modal>
-
-    <div class="container">
-        <div :class="{'navbar': true, 'collapsed': collapsed_navbar}">
-            <span v-for="(t, id) in tabs" @click="switchTab(id)" v-if="(t.purist_enabled || !purist)">
-                <ddmm-nav-button :icon="t.icon" :active="tab === id">{{t.name}}</ddmm-nav-button>
-            </span>
-        </div>
-        <div class="content">
-            <component
-                    v-bind:is="tabs[tab].component"
-                    :ddmm_version="ddmm_version"
-                    :mod_list="mod_list"
-                    :install_list="install_list"
-                    @show_modal="showModal"
-                    @install_mod="showInstallDialog"
-            >
-            </component>
+        <div class="nav-links">
+            <div class="active">Home</div>
+            <div>Mods</div>
+            <div>Sayonika</div>
+            <div>Settings</div>
+            <div>About</div>
         </div>
     </div>
 </div>
-
-
-<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-database.js"></script>
-<script>
-    // Initialize Firebase
-    const config = {
-        apiKey: "AIzaSyDInikDCCVFIhpAMPEBaaRmx_p2ZLX-6GY",
-        authDomain: "doki-doki-mod-manager.firebaseapp.com",
-        databaseURL: "https://doki-doki-mod-manager.firebaseio.com",
-        projectId: "doki-doki-mod-manager",
-        storageBucket: "doki-doki-mod-manager.appspot.com",
-        messagingSenderId: "324232265869"
-    };
-    firebase.initializeApp(config);
-</script>
-
-<script src="../../../node_modules/vue/dist/vue.js"></script>
-
-<script src="../js/components/parts/NavButton.js"></script>
-<script src="../js/components/tabs/HomeTab.js"></script>
-<script src="../js/components/tabs/ModsTab.js"></script>
-<script src="../js/components/tabs/SayonikaTab.js"></script>
-<script src="../js/components/tabs/SettingsTab.js"></script>
-<script src="../js/components/tabs/AboutTab.js"></script>
-<script src="../js/components/parts/RunningCover.js"></script>
-<script src="../js/components/parts/DropTarget.js"></script>
-<script src="../js/components/parts/Modal.js"></script>
-
-<script src="../js/app.js"></script>
 </body>
 </html>

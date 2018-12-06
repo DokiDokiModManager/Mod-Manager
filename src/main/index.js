@@ -253,6 +253,7 @@ electron_1.app.on("ready", () => {
         minWidth: 1000,
         minHeight: 600,
         maximizable: true,
+        frame: false,
         webPreferences: {
             sandbox: true,
             nodeIntegration: false,
