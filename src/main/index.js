@@ -11,6 +11,7 @@ const InstallCreator_1 = require("./install/InstallCreator");
 const ModInstaller_1 = require("./mod/ModInstaller");
 const InstallManager_1 = require("./install/InstallManager");
 const DiscordManager_1 = require("./discord/DiscordManager");
+const fs_extra_1 = require("fs-extra");
 // region Crash reporting
 electron_1.crashReporter.start({
     companyName: "DDMM",
@@ -184,6 +185,25 @@ electron_1.ipcMain.on("create shortcut", (ev, folderName) => {
             })) {
                 showError(lang.translate("mods.shortcut.error_title"), lang.translate("mods.shortcut.error_message"), null, false);
             }
+        }
+    });
+});
+electron_1.ipcMain.on("move install", () => {
+    electron_1.dialog.showOpenDialog(appWindow, {
+        title: "select folder",
+        properties: ["openDirectory"]
+    }, filePaths => {
+        if (filePaths && filePaths[0]) {
+            const oldInstallFolder = Config_1.default.readConfigValue("installFolder");
+            const newInstallFolder = filePaths[0];
+            Config_1.default.saveConfigValue("installFolder", newInstallFolder);
+            fs_extra_1.move(oldInstallFolder, newInstallFolder, e => {
+                if (e) {
+                    electron_1.dialog.showErrorBox("failed to move", "add translations please :c");
+                }
+                electron_1.app.relaunch();
+                electron_1.app.quit();
+            });
         }
     });
 });

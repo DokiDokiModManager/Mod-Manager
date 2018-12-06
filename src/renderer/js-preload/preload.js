@@ -106,6 +106,11 @@ api.createShortcut = function (folderName) {
     ipcRenderer.send("create shortcut", folderName);
 };
 
+// Move install folder
+api.beginMoveInstall = function () {
+    ipcRenderer.send("move install");
+};
+
 // Handler for crashes / errors
 ipcRenderer.on("error message", (ev, data) => {
     api.emit("error", data);

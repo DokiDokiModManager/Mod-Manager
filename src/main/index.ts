@@ -9,6 +9,7 @@ import InstallCreator from "./install/InstallCreator";
 import ModInstaller from "./mod/ModInstaller";
 import InstallManager from "./install/InstallManager";
 import DiscordManager from "./discord/DiscordManager";
+import {move} from "fs-extra";
 
 // region Crash reporting
 crashReporter.start({
@@ -235,6 +236,26 @@ ipcMain.on("create shortcut", (ev: IpcMessageEvent, folderName: string) => {
                     false
                 );
             }
+        }
+    });
+});
+
+ipcMain.on("move install", () => {
+    dialog.showOpenDialog(appWindow, {
+        title: "select folder",
+        properties: ["openDirectory"]
+    }, filePaths => {
+        if (filePaths && filePaths[0]) {
+            const oldInstallFolder: string = Config.readConfigValue("installFolder");
+            const newInstallFolder: string = filePaths[0];
+            Config.saveConfigValue("installFolder", newInstallFolder);
+            move(oldInstallFolder, newInstallFolder, e => {
+                if (e) {
+                    dialog.showErrorBox("failed to move", "add translations please :c");
+                }
+                app.relaunch();
+                app.quit();
+            });
         }
     });
 });

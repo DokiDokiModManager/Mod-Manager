@@ -82,7 +82,11 @@
     "purist_title": "Minimalist Mode",
     "purist_description": "Minimalist Mode disables Discord integration, achievements and several non-essential parts of the UI. Get to your mods faster.",
     "purist_button_enable": "Enable and Restart",
-    "purist_button_disable": "Disable and Restart"
+    "purist_button_disable": "Disable and Restart",
+    "install_move_title": "Install Folder",
+    "install_move_description": "Move your game installations to a different location. This will require a full restart.",
+    "install_move_current": "Current location: {0}",
+    "install_move_button": "Choose New Location"
   },
   "errors": {
     "launch": {

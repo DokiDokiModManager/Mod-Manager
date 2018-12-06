@@ -16,11 +16,23 @@ const SettingsTab = Vue.component("ddmm-settings-tab", {
             <button v-else class="primary" @click="setPuristMode(false)">{{_("settings.purist_button_disable")}}</button>
         </p>
     </div>
+    
+    <br>
+    
+    <div class="highlight">
+        <h2>{{_("settings.install_move_title")}}</h2>
+        <p>{{_("settings.install_move_description")}}</p>
+        <p>{{_("settings.install_move_current", installFolder)}}</p>
+        <p>
+            <button class="primary" @click="moveInstall">{{_("settings.install_move_button")}}</button>
+        </p>
+    </div>
 </div>
         `,
     "props": ["ddmm_version"],
     "computed": {
-        "purist": () => !!ddmm.readConfigValue("puristMode")
+        "purist": () => !!ddmm.readConfigValue("puristMode"),
+        "installFolder": () => ddmm.readConfigValue("installFolder")
     },
     "methods": {
         "_": function () {
@@ -29,6 +41,7 @@ const SettingsTab = Vue.component("ddmm-settings-tab", {
         "setPuristMode": function (on) {
             ddmm.saveConfigValue("puristMode", on);
             ddmm.restart();
-        }
+        },
+        "moveInstall": ddmm.beginMoveInstall
     }
 });
