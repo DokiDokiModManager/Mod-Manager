@@ -1,10 +1,22 @@
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Open Sans Bold"), local("OpenSans-Bold"), url(../fonts/OpenSans-Bold.ttf);
+}
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Open Sans Regular"), local("OpenSans-Regular"), url(../fonts/OpenSans-Regular.ttf);
+}
 * {
   box-sizing: border-box;
 }
 
 html, body {
   margin: 0;
-  font-family: "Segoe UI", sans-serif;
+  font-family: "Open Sans", sans-serif;
   user-select: none;
 }
 
@@ -142,7 +154,7 @@ p {
 }
 
 .mod-viewer-mod-display {
-  flex-grow: 1;
+  width: 75%;
   padding: 1em;
 }
 
@@ -161,6 +173,11 @@ p {
   overflow-x: hidden;
   text-overflow: ellipsis;
   border-radius: 3px;
+  transition: color 0.25s;
+}
+
+.mod-view-mod-list-entry:hover {
+  color: #fff;
 }
 
 .mod-view-mod-list-entry.active {
@@ -168,8 +185,24 @@ p {
   color: #fff;
 }
 
+.screenshots {
+  max-width: 100%;
+  overflow-x: scroll;
+  display: flex;
+}
+
+.screenshots img {
+  flex-shrink: 0;
+  flex-grow: 0;
+  display: block;
+  width: 192px;
+  height: 108px;
+  padding: 0.5em;
+  cursor: pointer;
+}
+
 button {
-  font-family: "Segoe UI", sans-serif;
+  font-family: "Open Sans", sans-serif;
   color: #fff;
   user-select: none;
   display: inline-block;

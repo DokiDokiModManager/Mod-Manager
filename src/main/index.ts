@@ -74,6 +74,7 @@ function launchInstall(folderName) {
         appWindow.restore(); // show DDMM again
         appWindow.focus();
         appWindow.webContents.send("running cover", {display: false});
+        appWindow.webContents.send("got installs", InstallList.getInstallList());
     }).catch(err => {
         richPresence.setIdleStatus();
         appWindow.restore();
@@ -113,6 +114,11 @@ ipcMain.on("translate", (ev: IpcMessageEvent, query: { key: string, args: string
 // Open external URLs
 ipcMain.on("open url", (ev: IpcMessageEvent, url: string) => {
     shell.openExternal(url);
+});
+
+// Show file in file manager
+ipcMain.on("show file", (ev: IpcMessageEvent, path: string) => {
+    shell.showItemInFolder(path);
 });
 
 // Toggle closeable flag
@@ -240,6 +246,7 @@ ipcMain.on("create shortcut", (ev: IpcMessageEvent, folderName: string) => {
     });
 });
 
+// move installation folder
 ipcMain.on("move install", () => {
     dialog.showOpenDialog(appWindow, {
         title: "select folder",

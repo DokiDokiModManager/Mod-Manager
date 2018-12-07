@@ -11,6 +11,8 @@ $ui-success-colour-bg: #6ab04c;
 
 $ui-highlight-gradient: linear-gradient(315deg, rgba(187, 85, 153, 0.5), rgba(73, 50, 64, 0.5));
 
+@import "fonts";
+
 // region Overrides
 * {
   box-sizing: border-box;
@@ -18,7 +20,7 @@ $ui-highlight-gradient: linear-gradient(315deg, rgba(187, 85, 153, 0.5), rgba(73
 
 html, body {
   margin: 0;
-  font-family: "Segoe UI", sans-serif;
+  font-family: "Open Sans", sans-serif;
   user-select: none;
 }
 
@@ -167,7 +169,7 @@ p {
 }
 
 .mod-viewer-mod-display {
-  flex-grow: 1;
+  width: 75%;
   padding: 1em;
 }
 
@@ -186,6 +188,11 @@ p {
   overflow-x: hidden;
   text-overflow: ellipsis;
   border-radius: 3px;
+  transition: color 0.25s;
+}
+
+.mod-view-mod-list-entry:hover {
+  color: $ui-highlight-text-colour;
 }
 
 .mod-view-mod-list-entry.active {
@@ -193,12 +200,28 @@ p {
   color: $ui-highlight-text-colour;
 }
 
+.screenshots {
+  max-width: 100%;
+  overflow-x: scroll;
+  display: flex;
+}
+
+.screenshots img {
+  flex-shrink: 0;
+  flex-grow: 0;
+  display: block;
+  width: 192px;
+  height: 108px;
+  padding: 0.5em;
+  cursor: pointer;
+}
+
 // endregion
 
 // region buttons
 
 button {
-  font-family: "Segoe UI", sans-serif;
+  font-family: "Open Sans", sans-serif;
   color: $ui-highlight-text-colour;
   user-select: none;
   display: inline-block;

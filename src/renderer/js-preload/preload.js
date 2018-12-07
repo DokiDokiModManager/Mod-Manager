@@ -9,6 +9,7 @@ const {ipcRenderer, remote} = require("electron");
 const EventEmitter = remote.require("events");
 const packageData = remote.require("../../package");
 const path = remote.require("path");
+const fileUrl = remote.require("file-url");
 
 const api = new EventEmitter();
 
@@ -68,6 +69,11 @@ api.app.openURL = function (url) {
     ipcRenderer.send("open url", url);
 };
 
+// Show file in file manager
+api.app.showFile = function (path) {
+    ipcRenderer.send("show file", path);
+};
+
 // Crash the app, for testing
 api.app.crash = function () {
     ipcRenderer.send("debug crash");
@@ -80,6 +86,9 @@ api.translate = function (key, ...args) {
         "args": args
     });
 };
+
+// Path to URL conversion
+api.pathToFile = fileUrl;
 
 // Toggle the ability to close the DDMM window to prevent loss of data
 api.window.setWindowClosable = function (flag) {
@@ -102,19 +111,23 @@ api.window.maximise = function () {
 
 // Minimise window
 api.window.minimise = function () {
-  remote.getCurrentWindow().minimize();
+    remote.getCurrentWindow().minimize();
 };
 
 // Show right click for install
-api.window.handleInstallRightClick = function(folderName, mouseX, mouseY) {
-  remote.Menu.buildFromTemplate([
-      {label: "launch"},
-      {label: "delete save"},
-      {label: "uninstall"}
-  ]).popup({
-      x: mouseX,
-      y: mouseY
-  });
+api.window.handleInstallRightClick = function (folderName, mouseX, mouseY) {
+    remote.Menu.buildFromTemplate([
+        {label: api.translate("renderer.tab_mods.mod_contextmenu.launch")},
+        {type: "separator"},
+        {label: api.translate("renderer.tab_mods.mod_contextmenu.rename")},
+        {label: api.translate("renderer.tab_mods.mod_contextmenu.shortcut")},
+        {type: "separator"},
+        {label: api.translate("renderer.tab_mods.mod_contextmenu.delete_save")},
+        {label: api.translate("renderer.tab_mods.mod_contextmenu.uninstall")}
+    ]).popup({
+        x: mouseX,
+        y: mouseY
+    });
 };
 
 // Change a setting in config

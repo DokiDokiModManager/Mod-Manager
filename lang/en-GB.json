@@ -16,15 +16,21 @@
       "list": {
         "header_new": "Get Started",
         "link_install_mod": "Install a Mod",
-        "link_install_vanilla": "Install DDLC without mods",
+        "link_install_vanilla": "Install DDLC (no mods)",
         "header_installed": "Installed",
         "header_downloaded": "Downloaded"
       },
+      "mod_contextmenu": {
+        "launch": "Launch",
+        "rename": "Rename",
+        "shortcut": "Create Shortcut",
+        "delete_save": "Delete Save Data",
+        "uninstall": "Uninstall"
+      },
       "mod": {
         "button_launch": "Launch",
-        "button_rename": "Rename",
-        "button_delete_save": "Delete Save",
-        "button_uninstall": "Uninstall"
+        "title_screenshots": "{0} screenshots",
+        "description_screenshots": "Press S while playing to take a screenshot."
       }
     }
   }
