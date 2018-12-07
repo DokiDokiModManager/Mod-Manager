@@ -1,6 +1,10 @@
+const DEFAULT_BG = "../images/ddlc-background.png";
+
 const app = new Vue({
     "el": "#app",
     "data": {
+        "background_image": DEFAULT_BG,
+        "app_version": ddmm.version,
         "system_platform": ddmm.platform,
         "tab": "mods",
         "tabs": [

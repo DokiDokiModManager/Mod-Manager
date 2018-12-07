@@ -3,6 +3,10 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
 <div class="page-content">
     <div class="mod-viewer-pane">
         <div class="mod-viewer-mod-list">
+            <div class="mod-view-mod-list-title">{{_("renderer.tab_mods.list.header_new")}}</div>
+            <div class="mod-view-mod-list-entry" @click="browseForMod">{{_("renderer.tab_mods.list.link_install_mod")}}</div>
+            <div class="mod-view-mod-list-entry">{{_("renderer.tab_mods.list.link_install_vanilla")}}</div>
+            <br>
             <div class="mod-view-mod-list-title">{{_("renderer.tab_mods.list.header_installed")}}</div>
             <div :class="{'mod-view-mod-list-entry': true, 'active': selected_item.id === install.folderName && selected_item.type === 'install'}" v-for="install in installs" @click="selectItem(install.folderName, 'install')" @mouseup="handleInstallRightClick(install.folderName, $event)">{{install.name}}</div>
             <br>
@@ -16,7 +20,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 
                 <br>
                 
-                <p><button class="success" @click="launchInstall(selectedInstall.folderName)">{{_("renderer.tab_mods.mod.button_launch")}}</button></p>
+                <p><button class="success" @click="launchInstall(selectedInstall.folderName)">{{_("renderer.tab_mods.mod.button_launch")}}</button> <button class="secondary">{{_("renderer.tab_mods.mod.button_rename")}}</button> <button class="secondary">{{_("renderer.tab_mods.mod.button_delete_save")}}</button> <button class="danger">{{_("renderer.tab_mods.mod.button_uninstall")}}</button></p>
             </div>
             <div v-else-if="selected_item.type === 'mod'">
                 <h1>{{selected_item.id}}</h1>
@@ -38,7 +42,9 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
     },
     "methods": {
         "_": ddmm.translate,
+        "browseForMod": ddmm.mods.browseForMod,
         "selectItem": function (id, type) {
+            if (this.selected_item.id === id && this.selected_item.type === type) return;
             this.selected_item.id = id;
             this.selected_item.type = type;
             localStorage.setItem("mod_list_last_id", id);
@@ -57,6 +63,12 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
         },
         "launchInstall": function (install) {
             ddmm.mods.launchInstall(install);
+        },
+        "_refreshInstallList": function (installs) {
+            this.installs = installs;
+        },
+        "_refreshModList": function (mods) {
+            this.mods = mods;
         }
     },
     "computed": {
@@ -67,11 +79,11 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
     "mounted": function () {
         ddmm.mods.refreshInstallList();
         ddmm.mods.refreshModList();
-        ddmm.on("install list", installs => {
-            this.installs = installs;
-        });
-        ddmm.on("mod list", mods => {
-            this.mods = mods;
-        });
+        ddmm.on("install list", this._refreshInstallList);
+        ddmm.on("mod list", this._refreshModList);
+    },
+    "unmounted": function () {
+        ddmm.off("install list", this._refreshInstallList);
+        ddmm.off("mod list", this._refreshModList);
     }
 });

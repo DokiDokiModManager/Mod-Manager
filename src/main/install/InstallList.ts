@@ -24,8 +24,19 @@ export default class InstallList {
             try {
                 const fileContents: string = readFileSync(dataFilePath, "utf8");
                 const data: any = JSON.parse(fileContents);
+
+                let screenshots: string[] = [];
+
+                try {
+                    screenshots = readdirSync(joinPath(installFolder, folder, "install")).filter(fn => {
+                        return fn.match(/^screenshot(\d+)\.png$/);
+                    });
+                } catch (e) {
+                    console.log("Could not load screenshots due to an IO error", e.message);
+                }
+
                 if (data.name) {
-                    returned.push(new Install(data.name, folder, data.globalSave));
+                    returned.push(new Install(data.name, folder, data.globalSave, screenshots));
                 }
             } catch (e) {
                 console.info("Failed to read install data from " + dataFilePath, e.message);

@@ -1,13 +1,15 @@
-$ui-background-colour: #fff;
-$ui-text-colour: #222;
-$ui-muted-background-colour: #ddd;
-$ui-muted-text-colour: #999;
+$ui-background-colour: #111;
+$ui-text-colour: #ddd;
+$ui-highlight-text-colour: #fff;
+$ui-muted-text-colour: #aaa;
 $ui-primary-colour-bg: #bb5599;
 $ui-secondary-colour-bg: #999;
 $ui-dark-colour-bg: #1e1e1e;
 $ui-danger-colour-bg: #eb4d4b;
 $ui-warning-colour-bg: #f0932b;
 $ui-success-colour-bg: #6ab04c;
+
+$ui-highlight-gradient: linear-gradient(315deg, rgba(187, 85, 153, 0.5), rgba(73, 50, 64, 0.5));
 
 // region Overrides
 * {
@@ -24,15 +26,52 @@ html, body, #app {
   height: 100%;
 }
 
+body {
+  background-color: $ui-background-colour;
+  color: $ui-text-colour;
+}
+
+#app {
+  background-size: cover;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.99) 90%), url(../images/ddlc-background.png);
+}
+
+::-webkit-scrollbar {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 3px;
+}
+
 // endregion
 
-// region Navbar
+// region Navbar / titlebar
+.titlebar {
+  color: $ui-highlight-text-colour;
+  -webkit-app-region: drag;
+  text-align: right;
+  padding: 0.5em;
+  display: flex;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.app-title {
+  padding: 0.5em;
+  font-size: 1.25em;
+}
+
+// macOS adjust title position
+.os-darwin .app-title {
+  padding-left: 100px;
+}
 
 .navbar {
-  background-image: linear-gradient(315deg, #bb5599, #493240);
-  color: $ui-background-colour;
-  -webkit-app-region: drag;
+  color: $ui-highlight-text-colour;
   display: flex;
+  flex-shrink: 0;
 }
 
 .navbar > div {
@@ -54,19 +93,28 @@ html, body, #app {
   height: 100%;
   padding: 0.5em;
   -webkit-app-region: no-drag;
-  color: #ccc;
+  color: $ui-muted-text-colour;
   cursor: pointer;
+  transition: color 0.25s, text-shadow 0.25s;
+}
+
+.nav-links div:hover {
+  color: $ui-highlight-text-colour;
 }
 
 .nav-links div.active {
-  color: #fff;
+  color: $ui-highlight-text-colour;
   text-shadow: 0 0 10px #fff;
 }
 
+// macOS hide buttons
+.os-darwin .window-buttons {
+  visibility: hidden;
+}
+
 .window-buttons {
-  z-index: 99;
   display: flex;
-  color: #fff;
+  color: $ui-highlight-text-colour;
   font-weight: bold;
   padding: 0.1em;
   -webkit-app-region: no-drag;
@@ -86,7 +134,7 @@ html, body, #app {
 }
 
 .page-content {
-  flex-grow: 1;
+  height: calc(100% - 63px - 67px);
 }
 
 h1, h2, h3, h4 {
@@ -94,9 +142,14 @@ h1, h2, h3, h4 {
   font-weight: 500;
 }
 
+small {
+  font-size: 0.6em;
+}
+
 p {
   margin: 0;
 }
+
 // endregion
 
 // region Mod list
@@ -108,8 +161,9 @@ p {
 
 .mod-viewer-mod-list {
   width: 25%;
-  height: 100%;
+  max-height: 100%;
   padding: 1em;
+  overflow-y: scroll;
 }
 
 .mod-viewer-mod-display {
@@ -135,8 +189,8 @@ p {
 }
 
 .mod-view-mod-list-entry.active {
-  background-color: $ui-primary-colour-bg;
-  color: $ui-background-colour;
+  background-image: $ui-highlight-gradient;
+  color: $ui-highlight-text-colour;
 }
 
 // endregion
@@ -145,7 +199,7 @@ p {
 
 button {
   font-family: "Segoe UI", sans-serif;
-  color: $ui-background-colour;
+  color: $ui-highlight-text-colour;
   user-select: none;
   display: inline-block;
   text-decoration: none;
@@ -212,4 +266,5 @@ button.success {
 button.success:hover {
   background-color: darken($ui-success-colour-bg, 10%);
 }
+
 // endregion

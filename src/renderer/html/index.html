@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="../css/app.css">
 </head>
 <body>
-<div id="app">
-    <div class="navbar">
-        <div class="nav-links">
-            <div v-for="t in tabs" :class="{'active': t.id === tab}" @click="tab = t.id">{{t.name}}</div>
+<div id="app" :class="['os-'+system_platform]">
+    <div class="titlebar">
+        <div class="app-title">
+            Doki Doki Mod Manager <small>v{{app_version}}</small>
         </div>
         <div class="window-buttons">
             <div @click="windowMinimise" :title="_('renderer.window_controls.minimise')"><i class="far fa-window-minimize"></i></div>
@@ -20,8 +20,15 @@
             <div @click="windowClose" :title="_('renderer.window_controls.close')"><i class="fas fa-times"></i></div>
         </div>
     </div>
+    <component
+            :is="currentTabComponent"
+    ></component>
+    <div class="navbar">
+        <div class="nav-links">
+            <div v-for="t in tabs" :class="{'active': t.id === tab}" @click="tab = t.id">{{t.name}}</div>
+        </div>
+    </div>
 
-    <component :is="currentTabComponent"></component>
 </div>
 <script src="../../../node_modules/vue/dist/vue.js"></script>
 <script src="../js/components/tabs/ModsTab.js"></script>

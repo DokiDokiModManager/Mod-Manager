@@ -8,17 +8,23 @@
       "tab_about": "About"
     },
     "window_controls": {
-      "button_close": "Close",
-      "button_maximise": "Maximise",
-      "button_minimise": "Minimise"
+      "close": "Close",
+      "maximise": "Maximise",
+      "minimise": "Minimise"
     },
     "tab_mods": {
       "list": {
+        "header_new": "Get Started",
+        "link_install_mod": "Install a Mod",
+        "link_install_vanilla": "Install DDLC without mods",
         "header_installed": "Installed",
         "header_downloaded": "Downloaded"
       },
       "mod": {
-        "button_launch": "Launch"
+        "button_launch": "Launch",
+        "button_rename": "Rename",
+        "button_delete_save": "Delete Save",
+        "button_uninstall": "Uninstall"
       }
     }
   }

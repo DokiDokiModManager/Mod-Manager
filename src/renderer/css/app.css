@@ -12,11 +12,48 @@ html, body, #app {
   height: 100%;
 }
 
-.navbar {
-  background-image: linear-gradient(315deg, #bb5599, #493240);
+body {
+  background-color: #111;
+  color: #ddd;
+}
+
+#app {
+  background-size: cover;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.99) 90%), url(../images/ddlc-background.png);
+}
+
+::-webkit-scrollbar {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 3px;
+}
+
+.titlebar {
   color: #fff;
   -webkit-app-region: drag;
+  text-align: right;
+  padding: 0.5em;
   display: flex;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.app-title {
+  padding: 0.5em;
+  font-size: 1.25em;
+}
+
+.os-darwin .app-title {
+  padding-left: 100px;
+}
+
+.navbar {
+  color: #fff;
+  display: flex;
+  flex-shrink: 0;
 }
 
 .navbar > div {
@@ -38,8 +75,13 @@ html, body, #app {
   height: 100%;
   padding: 0.5em;
   -webkit-app-region: no-drag;
-  color: #ccc;
+  color: #aaa;
   cursor: pointer;
+  transition: color 0.25s, text-shadow 0.25s;
+}
+
+.nav-links div:hover {
+  color: #fff;
 }
 
 .nav-links div.active {
@@ -47,8 +89,11 @@ html, body, #app {
   text-shadow: 0 0 10px #fff;
 }
 
+.os-darwin .window-buttons {
+  visibility: hidden;
+}
+
 .window-buttons {
-  z-index: 99;
   display: flex;
   color: #fff;
   font-weight: bold;
@@ -67,12 +112,16 @@ html, body, #app {
 }
 
 .page-content {
-  flex-grow: 1;
+  height: calc(100% - 63px - 67px);
 }
 
 h1, h2, h3, h4 {
   margin: 0;
   font-weight: 500;
+}
+
+small {
+  font-size: 0.6em;
 }
 
 p {
@@ -87,8 +136,9 @@ p {
 
 .mod-viewer-mod-list {
   width: 25%;
-  height: 100%;
+  max-height: 100%;
   padding: 1em;
+  overflow-y: scroll;
 }
 
 .mod-viewer-mod-display {
@@ -100,7 +150,7 @@ p {
   padding: 0.25em 0.25em 0;
   font-weight: bold;
   text-transform: uppercase;
-  color: #999;
+  color: #aaa;
 }
 
 .mod-view-mod-list-entry {
@@ -114,7 +164,7 @@ p {
 }
 
 .mod-view-mod-list-entry.active {
-  background-color: #bb5599;
+  background-image: linear-gradient(315deg, rgba(187, 85, 153, 0.5), rgba(73, 50, 64, 0.5));
   color: #fff;
 }
 
@@ -148,12 +198,12 @@ button.primary:hover {
 }
 
 button.secondary {
-  background-color: #fff;
-  color: #222;
+  background-color: #111;
+  color: #ddd;
 }
 
 button.secondary:hover {
-  background-color: #e6e6e6;
+  background-color: black;
 }
 
 button.dark {

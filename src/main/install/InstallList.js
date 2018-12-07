@@ -20,8 +20,17 @@ class InstallList {
             try {
                 const fileContents = fs_1.readFileSync(dataFilePath, "utf8");
                 const data = JSON.parse(fileContents);
+                let screenshots = [];
+                try {
+                    screenshots = fs_1.readdirSync(path_1.join(installFolder, folder, "install")).filter(fn => {
+                        return fn.match(/^screenshot(\d+)\.png$/);
+                    });
+                }
+                catch (e) {
+                    console.log("Could not load screenshots due to an IO error", e.message);
+                }
                 if (data.name) {
-                    returned.push(new Install_1.default(data.name, folder, data.globalSave));
+                    returned.push(new Install_1.default(data.name, folder, data.globalSave, screenshots));
                 }
             }
             catch (e) {
