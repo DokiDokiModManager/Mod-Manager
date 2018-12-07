@@ -1,7 +1,7 @@
 const app = new Vue({
     "el": "#app",
     "data": {
-        "systemPlatform": ddmm.platform,
+        "system_platform": ddmm.platform,
         "tab": "mods",
         "tabs": [
             {"id": "mods", "name": ddmm.translate("renderer.tabs.tab_mods"), "component": "ddmm-mods-tab"},
@@ -16,6 +16,7 @@ const app = new Vue({
         }
     },
     "methods": {
+        "_": ddmm.translate,
         "windowMaximise": ddmm.window.maximise,
         "windowClose": ddmm.window.close,
         "windowMinimise": ddmm.window.minimise

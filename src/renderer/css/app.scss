@@ -1,3 +1,14 @@
+$ui-background-colour: #fff;
+$ui-text-colour: #222;
+$ui-muted-background-colour: #ddd;
+$ui-muted-text-colour: #999;
+$ui-primary-colour-bg: #bb5599;
+$ui-secondary-colour-bg: #999;
+$ui-dark-colour-bg: #1e1e1e;
+$ui-danger-colour-bg: #eb4d4b;
+$ui-warning-colour-bg: #f0932b;
+$ui-success-colour-bg: #6ab04c;
+
 // region Overrides
 * {
   box-sizing: border-box;
@@ -19,7 +30,7 @@ html, body, #app {
 
 .navbar {
   background-image: linear-gradient(315deg, #bb5599, #493240);
-  color: #fff;
+  color: $ui-background-colour;
   -webkit-app-region: drag;
   display: flex;
 }
@@ -98,6 +109,7 @@ p {
 .mod-viewer-mod-list {
   width: 25%;
   height: 100%;
+  padding: 1em;
 }
 
 .mod-viewer-mod-display {
@@ -109,16 +121,95 @@ p {
   padding: 0.25em 0.25em 0;
   font-weight: bold;
   text-transform: uppercase;
-  color: #444;
+  color: $ui-muted-text-colour;
 }
 
 .mod-view-mod-list-entry {
-  padding: 0.25em;
+  padding: 0.25em 0.5em;
   cursor: pointer;
   width: 100%;
   white-space: nowrap;
   overflow-x: hidden;
   text-overflow: ellipsis;
+  border-radius: 3px;
 }
 
+.mod-view-mod-list-entry.active {
+  background-color: $ui-primary-colour-bg;
+  color: $ui-background-colour;
+}
+
+// endregion
+
+// region buttons
+
+button {
+  font-family: "Segoe UI", sans-serif;
+  color: $ui-background-colour;
+  user-select: none;
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.5em 1em;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 3px;
+  text-align: center;
+  font-weight: normal;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: background-color 0.25s;
+}
+
+button.huge {
+  font-size: 1.25em;
+}
+
+button.primary {
+  background-color: $ui-primary-colour-bg;
+}
+
+button.primary:hover {
+  background-color: darken($ui-primary-colour-bg, 10%);
+}
+
+button.secondary {
+  background-color: $ui-background-colour;
+  color: $ui-text-colour;
+}
+
+button.secondary:hover {
+  background-color: darken($ui-background-colour, 10%);
+}
+
+button.dark {
+  background-color: $ui-dark-colour-bg;
+}
+
+button.dark:hover {
+  background-color: darken($ui-dark-colour-bg, 10%);
+}
+
+button.danger {
+  background-color: $ui-danger-colour-bg;
+}
+
+button.danger:hover {
+  background-color: darken($ui-danger-colour-bg, 10%);
+}
+
+button.warning {
+  background-color: $ui-warning-colour-bg;
+}
+
+button.warning:hover {
+  background-color: darken($ui-warning-colour-bg, 10%);
+}
+
+button.success {
+  background-color: $ui-success-colour-bg;
+}
+
+button.success:hover {
+  background-color: darken($ui-success-colour-bg, 10%);
+}
 // endregion

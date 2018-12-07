@@ -105,6 +105,18 @@ api.window.minimise = function () {
   remote.getCurrentWindow().minimize();
 };
 
+// Show right click for install
+api.window.handleInstallRightClick = function(folderName, mouseX, mouseY) {
+  remote.Menu.buildFromTemplate([
+      {label: "launch"},
+      {label: "delete save"},
+      {label: "uninstall"}
+  ]).popup({
+      x: mouseX,
+      y: mouseY
+  });
+};
+
 // Change a setting in config
 api.config.saveConfigValue = function (k, v) {
     ipcRenderer.send("save config", {"key": k, "value": v});

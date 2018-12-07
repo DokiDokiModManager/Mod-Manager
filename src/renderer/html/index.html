@@ -15,9 +15,9 @@
             <div v-for="t in tabs" :class="{'active': t.id === tab}" @click="tab = t.id">{{t.name}}</div>
         </div>
         <div class="window-buttons">
-            <div @click="windowMinimise"><i class="far fa-window-minimize"></i></div>
-            <div @click="windowMaximise"><i class="far fa-window-maximize"></i></div>
-            <div @click="windowClose"><i class="fas fa-times"></i></div>
+            <div @click="windowMinimise" :title="_('renderer.window_controls.minimise')"><i class="far fa-window-minimize"></i></div>
+            <div @click="windowMaximise" :title="_('renderer.window_controls.maximise')"><i class="far fa-window-maximize"></i></div>
+            <div @click="windowClose" :title="_('renderer.window_controls.close')"><i class="fas fa-times"></i></div>
         </div>
     </div>
 

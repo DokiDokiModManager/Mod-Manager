@@ -6,6 +6,20 @@
       "tab_store": "Store",
       "tab_settings": "Options",
       "tab_about": "About"
+    },
+    "window_controls": {
+      "button_close": "Close",
+      "button_maximise": "Maximise",
+      "button_minimise": "Minimise"
+    },
+    "tab_mods": {
+      "list": {
+        "header_installed": "Installed",
+        "header_downloaded": "Downloaded"
+      },
+      "mod": {
+        "button_launch": "Launch"
+      }
     }
   }
 }
