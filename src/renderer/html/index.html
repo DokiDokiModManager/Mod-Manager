@@ -10,23 +10,21 @@
 </head>
 <body>
 <div id="app">
-    <div class="window-buttons">
-        <div><i class="far fa-window-minimize"></i></div>
-        <div><i class="far fa-window-maximize"></i></div>
-        <div><i class="fas fa-times"></i></div>
-    </div>
     <div class="navbar">
-        <div class="nav-brand">
-            <img src="../images/ddmm.png" height="50">
-        </div>
         <div class="nav-links">
-            <div class="active">Home</div>
-            <div>Mods</div>
-            <div>Sayonika</div>
-            <div>Settings</div>
-            <div>About</div>
+            <div v-for="t in tabs" :class="{'active': t.id === tab}" @click="tab = t.id">{{t.name}}</div>
+        </div>
+        <div class="window-buttons">
+            <div @click="windowMinimise"><i class="far fa-window-minimize"></i></div>
+            <div @click="windowMaximise"><i class="far fa-window-maximize"></i></div>
+            <div @click="windowClose"><i class="fas fa-times"></i></div>
         </div>
     </div>
+
+    <component :is="currentTabComponent"></component>
 </div>
+<script src="../../../node_modules/vue/dist/vue.js"></script>
+<script src="../js/components/tabs/ModsTab.js"></script>
+<script src="../js/app.js"></script>
 </body>
 </html>

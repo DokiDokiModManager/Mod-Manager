@@ -249,7 +249,7 @@ electron_1.app.on("ready", () => {
     appWindow = new electron_1.BrowserWindow({
         title: "Doki Doki Mod Manager",
         width: 1024,
-        height: 768,
+        height: 600,
         minWidth: 1000,
         minHeight: 600,
         maximizable: true,

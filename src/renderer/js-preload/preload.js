@@ -12,20 +12,40 @@ const path = remote.require("path");
 
 const api = new EventEmitter();
 
+api.mods = {};
+api.app = {};
+api.window = {};
+api.config = {};
+
 // Called when the UI wants to refresh the mod list
-api.refreshModList = function () {
+api.mods.refreshModList = function () {
     ipcRenderer.send("get modlist");
+};
+
+// Called when the UI wants to refresh the install list
+api.mods.refreshInstallList = function () {
+    ipcRenderer.send("get installs");
+};
+
+// Open a browse dialog for mods to be imported
+api.mods.browseForMod = function () {
+    return ipcRenderer.sendSync("browse mods");
+};
+
+// Launches an install
+api.mods.launchInstall = function (folderName) {
+    ipcRenderer.send("launch install", folderName);
+};
+
+// Creates an install
+api.mods.createInstall = function (folderName, installName, globalSave, mod) {
+    ipcRenderer.send("create install", {folderName, installName, globalSave, mod});
 };
 
 // Fires an event on the DDMM object when the mod list has been retrieved
 ipcRenderer.on("got modlist", (ev, list) => {
     api.emit("mod list", list);
 });
-
-// Called when the UI wants to refresh the install list
-api.refreshInstallList = function () {
-    ipcRenderer.send("get installs");
-};
 
 // Fires an event on the DDMM object when the install list has been retrieved
 ipcRenderer.on("got installs", (ev, list) => {
@@ -38,29 +58,19 @@ ipcRenderer.on("running cover", (ev, data) => {
     api.emit("running cover", data);
 });
 
-// Launches an install
-api.launchInstall = function (folderName) {
-    ipcRenderer.send("launch install", folderName);
-};
-
-// Creates an install
-api.createInstall = function (folderName, installName, globalSave, mod) {
-    ipcRenderer.send("create install", {folderName, installName, globalSave, mod});
-};
-
 // Restart the app
-api.restart = function () {
+api.app.restart = function () {
     ipcRenderer.send("restart");
 };
 
 // Open URL in browser
-api.openURL = function (url) {
+api.app.openURL = function (url) {
     ipcRenderer.send("open url", url);
 };
 
-// Open a browse dialog for mods to be imported
-api.browseForMod = function () {
-    return ipcRenderer.sendSync("browse mods");
+// Crash the app, for testing
+api.app.crash = function () {
+    ipcRenderer.send("debug crash");
 };
 
 // Localisation function
@@ -72,42 +82,56 @@ api.translate = function (key, ...args) {
 };
 
 // Toggle the ability to close the DDMM window to prevent loss of data
-api.setWindowClosable = function (flag) {
+api.window.setWindowClosable = function (flag) {
     ipcRenderer.send("closable", flag);
 };
 
+// Close window
+api.window.close = function () {
+    remote.getCurrentWindow().close();
+};
+
+// Maximise or restore window
+api.window.maximise = function () {
+    if (remote.getCurrentWindow().isMaximized()) {
+        remote.getCurrentWindow().restore();
+    } else {
+        remote.getCurrentWindow().maximize();
+    }
+};
+
+// Minimise window
+api.window.minimise = function () {
+  remote.getCurrentWindow().minimize();
+};
+
 // Change a setting in config
-api.saveConfigValue = function (k, v) {
+api.config.saveConfigValue = function (k, v) {
     ipcRenderer.send("save config", {"key": k, "value": v});
 };
 
 // Read a setting from config
-api.readConfigValue = function (k) {
+api.config.readConfigValue = function (k) {
     return ipcRenderer.sendSync("read config", k);
 };
 
-// Crash the app, for testing
-api.crash = function () {
-    ipcRenderer.send("debug crash");
-};
-
 // Delete install
-api.deleteInstall = function (folderName) {
+api.mods.deleteInstall = function (folderName) {
     ipcRenderer.send("delete install", folderName);
 };
 
 // Delete save data
-api.deleteSaveData = function (folderName) {
+api.mods.deleteSaveData = function (folderName) {
     ipcRenderer.send("delete save", folderName);
 };
 
 // Create shortcut
-api.createShortcut = function (folderName) {
+api.mods.createShortcut = function (folderName) {
     ipcRenderer.send("create shortcut", folderName);
 };
 
 // Move install folder
-api.beginMoveInstall = function () {
+api.app.beginMoveInstall = function () {
     ipcRenderer.send("move install");
 };
 
@@ -127,7 +151,6 @@ api.joinPath = path.join;
 
 // make the API visible to the renderer
 global.ddmm = api;
-
 
 console.info(`%cWarning! This is the developer console!
 

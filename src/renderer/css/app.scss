@@ -8,29 +8,12 @@ html, body {
   user-select: none;
 }
 
-// region Window Buttons
-.window-buttons {
-  position: fixed;
-  right: 0;
-  top: 0;
-  display: flex;
-  color: #fff;
-  font-weight: bold;
-  padding: 0.1em;
-}
-
-.window-buttons div {
-  padding: 0.5em;
-}
-// endregion
-
 // region Navbar
 
 .navbar {
   background-image: linear-gradient(315deg, #bb5599, #493240);
   color: #fff;
   -webkit-app-region: drag;
-  font-size: 1.5em;
   display: flex;
 }
 
@@ -42,10 +25,11 @@ html, body {
   vertical-align: middle;
 }
 
-
 .nav-links {
   display: flex;
   height: 100%;
+  font-size: 1.5em;
+  flex-grow: 1;
 }
 
 .nav-links div {
@@ -61,4 +45,25 @@ html, body {
   text-shadow: 0 0 10px #fff;
 }
 
+.window-buttons {
+  z-index: 99;
+  display: flex;
+  color: #fff;
+  font-weight: bold;
+  padding: 0.1em;
+  -webkit-app-region: no-drag;
+}
+
+.window-buttons div {
+  padding: 0.5em;
+  cursor: pointer;
+}
+
+// endregion
+
+// region Content
+h1, h2, h3, h4 {
+  margin: 0;
+  font-weight: 500;
+}
 // endregion
