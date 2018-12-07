@@ -259,6 +259,7 @@ electron_1.app.on("ready", () => {
             nodeIntegration: false,
             preload: path_1.join(__dirname, "../renderer/js-preload/preload.js") // contains all the IPC scripts
         },
+        titleBarStyle: "hiddenInset",
         show: false
     });
     // set user agent so web services can contact me if necessary

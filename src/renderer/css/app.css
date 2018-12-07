@@ -8,6 +8,10 @@ html, body {
   user-select: none;
 }
 
+html, body, #app {
+  height: 100%;
+}
+
 .navbar {
   background-image: linear-gradient(315deg, #bb5599, #493240);
   color: #fff;
@@ -26,7 +30,7 @@ html, body {
 .nav-links {
   display: flex;
   height: 100%;
-  font-size: 1.5em;
+  font-size: 1.25em;
   flex-grow: 1;
 }
 
@@ -57,9 +61,54 @@ html, body {
   cursor: pointer;
 }
 
+#app {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  flex-grow: 1;
+}
+
 h1, h2, h3, h4 {
   margin: 0;
   font-weight: 500;
+}
+
+p {
+  margin: 0;
+}
+
+.mod-viewer-pane {
+  display: flex;
+  height: 100%;
+  flex-grow: 1;
+}
+
+.mod-viewer-mod-list {
+  width: 25%;
+  height: 100%;
+}
+
+.mod-viewer-mod-display {
+  flex-grow: 1;
+  padding: 1em;
+}
+
+.mod-view-mod-list-title {
+  padding: 0.25em 0.25em 0;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #444;
+}
+
+.mod-view-mod-list-entry {
+  padding: 0.25em;
+  cursor: pointer;
+  width: 100%;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 }
 
 /*# sourceMappingURL=app.css.map */

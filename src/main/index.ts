@@ -328,6 +328,7 @@ app.on("ready", () => {
             nodeIntegration: false,
             preload: joinPath(__dirname, "../renderer/js-preload/preload.js") // contains all the IPC scripts
         },
+        titleBarStyle: "hiddenInset",
         show: false
     });
 
