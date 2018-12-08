@@ -88,7 +88,6 @@ body {
   padding: 0.5em;
   -webkit-app-region: no-drag;
   color: #aaa;
-  cursor: pointer;
   transition: color 0.25s, text-shadow 0.25s;
 }
 
@@ -107,15 +106,20 @@ body {
 
 .window-buttons {
   display: flex;
-  color: #fff;
+  color: #ddd;
   font-weight: bold;
   padding: 0.1em;
   -webkit-app-region: no-drag;
+  transition: color 0.25s;
 }
 
 .window-buttons div {
   padding: 0.5em;
-  cursor: pointer;
+  transition: color 0.25s;
+}
+
+.window-buttons div:hover {
+  color: #fff;
 }
 
 #app {
@@ -167,7 +171,6 @@ p {
 
 .mod-view-mod-list-entry {
   padding: 0.25em 0.5em;
-  cursor: pointer;
   width: 100%;
   white-space: nowrap;
   overflow-x: hidden;
@@ -209,7 +212,6 @@ button {
   text-decoration: none;
   padding: 0.5em 1em;
   font-size: 14px;
-  cursor: pointer;
   border-radius: 3px;
   text-align: center;
   font-weight: normal;
