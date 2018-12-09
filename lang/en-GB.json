@@ -20,14 +20,25 @@
         "header_installed": "Installed",
         "header_downloaded": "Downloaded"
       },
-      "mod_contextmenu": {
+      "install_contextmenu": {
         "launch": "Launch",
         "rename": "Rename",
         "shortcut": "Create Shortcut",
         "delete_save": "Delete Save Data",
         "uninstall": "Uninstall"
       },
-      "mod": {
+      "mod_contextmenu": {
+        "install": "Install",
+        "rename": "Rename",
+        "delete": "Delete"
+      },
+      "uninstall_confirmation": {
+        "message": "Are you sure you want to uninstall {0}?",
+        "details": "Your save data will be deleted, and you will need a copy of the mod to install it again.",
+        "button_affirmative": "Uninstall",
+        "button_negative": "Cancel"
+      },
+      "install": {
         "button_launch": "Launch",
         "title_screenshots": "{0} screenshots",
         "description_screenshots": "Press S while playing to take a screenshot."

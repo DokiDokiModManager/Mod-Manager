@@ -8,10 +8,21 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             <div class="mod-view-mod-list-entry">{{_("renderer.tab_mods.list.link_install_vanilla")}}</div>
             <br>
             <div class="mod-view-mod-list-title">{{_("renderer.tab_mods.list.header_installed")}}</div>
-            <div :class="{'mod-view-mod-list-entry': true, 'active': selected_item.id === install.folderName && selected_item.type === 'install'}" v-for="install in installs" @click="selectItem(install.folderName, 'install')" @dblclick="launchInstall(install.folderName)" @mouseup="handleInstallRightClick(install.folderName, $event)">{{install.name}}</div>
+            <div 
+                :class="{'mod-view-mod-list-entry': true, 'active': selected_item.id === install.folderName && selected_item.type === 'install'}"
+                 v-for="install in installs"
+                  @dblclick="launchInstall(install.folderName)"
+                  @mouseup="handleInstallClick(install.folderName, $event)"
+                  :title="getPathToInstall(install.folderName)"
+                  >{{install.name}}</div>
             <br>
             <div class="mod-view-mod-list-title">{{_("renderer.tab_mods.list.header_downloaded")}}</div>
-            <div :class="{'mod-view-mod-list-entry': true, 'active': selected_item.id === mod && selected_item.type === 'mod'}" v-for="mod in mods" @click="selectItem(mod, 'mod')">{{mod}}</div>
+            <div
+                :class="{'mod-view-mod-list-entry': true, 'active': selected_item.id === mod && selected_item.type === 'mod'}" 
+                v-for="mod in mods"
+                @mouseup="handleModClick(mod, $event)"
+                :title="getPathToMod(mod)"
+                >{{mod}}</div>
         </div>
         <div class="mod-viewer-mod-display">
             <div v-if="selected_item.type === 'install' && selectedInstall">
@@ -20,12 +31,12 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 
                 <br>
                 
-                <p><button class="success" @click="launchInstall(selectedInstall.folderName)">{{_("renderer.tab_mods.mod.button_launch")}}</button></p>
+                <p><button class="success" @click="launchInstall(selectedInstall.folderName)">{{_("renderer.tab_mods.install.button_launch")}}</button></p>
                 
                 <br>
                 
-                <h2>{{_("renderer.tab_mods.mod.title_screenshots", selectedInstall.screenshots.length)}}</h2>
-                <p>{{_("renderer.tab_mods.mod.description_screenshots")}}</p>
+                <h2>{{_("renderer.tab_mods.install.title_screenshots", selectedInstall.screenshots.length)}}</h2>
+                <p>{{_("renderer.tab_mods.install.description_screenshots")}}</p>
                 
                 <br>
                 
@@ -61,9 +72,16 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             localStorage.setItem("mod_list_last_id", id);
             localStorage.setItem("mod_list_last_type", type);
         },
-        "handleInstallRightClick": function (installFolder, ev) {
+        "handleInstallClick": function (installFolder, ev) {
+            this.selectItem(installFolder, "install");
             if (ev.button === 2) {
                 ddmm.window.handleInstallRightClick(installFolder, ev.clientX, ev.clientY);
+            }
+        },
+        "handleModClick": function (filename, ev) {
+            this.selectItem(filename, "mod");
+            if (ev.button === 2) {
+                ddmm.window.handleModRightClick(filename, ev.clientX, ev.clientY);
             }
         },
         "getPathToInstall": function (installFolder) {

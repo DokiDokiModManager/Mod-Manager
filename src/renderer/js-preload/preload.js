@@ -13,10 +13,18 @@ const fileUrl = remote.require("file-url");
 
 const api = new EventEmitter();
 
+api.dialog = {};
 api.mods = {};
 api.app = {};
 api.window = {};
 api.config = {};
+
+// Confirmation dialog
+api.dialog.confirm = function (message, detail, affirmative, negative, type) {
+    return remote.dialog.showMessageBox({
+        message, detail, buttons: [affirmative, negative], title: "Doki Doki Mod Manager", type: type
+    }) === 0;
+};
 
 // Called when the UI wants to refresh the mod list
 api.mods.refreshModList = function () {
@@ -117,13 +125,41 @@ api.window.minimise = function () {
 // Show right click for install
 api.window.handleInstallRightClick = function (folderName, mouseX, mouseY) {
     remote.Menu.buildFromTemplate([
-        {label: api.translate("renderer.tab_mods.mod_contextmenu.launch")},
+        {
+            label: api.translate("renderer.tab_mods.install_contextmenu.launch"), click: () => {
+                api.mods.launchInstall(folderName)
+            }, accelerator: "enter"
+        },
         {type: "separator"},
-        {label: api.translate("renderer.tab_mods.mod_contextmenu.rename")},
-        {label: api.translate("renderer.tab_mods.mod_contextmenu.shortcut")},
+        {label: api.translate("renderer.tab_mods.install_contextmenu.rename"), accelerator: "F2"},
+        {
+            label: api.translate("renderer.tab_mods.install_contextmenu.shortcut"), click: () => {
+                api.mods.createShortcut(folderName)
+            }
+        },
         {type: "separator"},
-        {label: api.translate("renderer.tab_mods.mod_contextmenu.delete_save")},
-        {label: api.translate("renderer.tab_mods.mod_contextmenu.uninstall")}
+        {label: api.translate("renderer.tab_mods.install_contextmenu.delete_save")},
+        {
+            label: api.translate("renderer.tab_mods.install_contextmenu.uninstall"),
+            accelerator: "delete",
+            click: () => {
+                api.dialog.confirm()
+            }
+        }
+    ]).popup({
+        x: mouseX,
+        y: mouseY
+    });
+};
+
+// Show right click for mod
+api.window.handleModRightClick = function (filename, mouseX, mouseY) {
+    remote.Menu.buildFromTemplate([
+        {label: api.translate("renderer.tab_mods.mod_contextmenu.install"), accelerator: "enter"},
+        {type: "separator"},
+        {label: api.translate("renderer.tab_mods.mod_contextmenu.rename"), accelerator: "F2"},
+        {type: "separator"},
+        {label: api.translate("renderer.tab_mods.mod_contextmenu.delete"), accelerator: "delete"}
     ]).popup({
         x: mouseX,
         y: mouseY
