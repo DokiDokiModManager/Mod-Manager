@@ -207,6 +207,9 @@ api.version = packageData.version;
 // System platform
 api.platform = process.platform;
 
+// Environment variables
+api.env = process.env;
+
 // Join paths
 api.joinPath = path.join;
 

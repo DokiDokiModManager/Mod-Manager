@@ -1,9 +1,7 @@
-const DEFAULT_BG = "../images/ddlc-background.png";
-
 const app = new Vue({
     "el": "#app",
     "data": {
-        "background_image": DEFAULT_BG,
+        "app_name": "Doki Doki Mod Manager",
         "app_version": ddmm.version,
         "system_platform": ddmm.platform,
         "tab": "mods",
@@ -26,3 +24,8 @@ const app = new Vue({
         "windowMinimise": ddmm.window.minimise
     }
 });
+
+if (ddmm.env.DDMM_INCOGNITO) {
+    app.app_name = "App Name";
+    document.querySelector("#app").style.backgroundImage = "none";
+}

@@ -110,7 +110,6 @@ body {
   font-weight: bold;
   padding: 0.1em;
   -webkit-app-region: no-drag;
-  transition: color 0.25s;
 }
 
 .window-buttons div {

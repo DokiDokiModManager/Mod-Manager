@@ -23,7 +23,8 @@ macOS is not currently supported and **does not work whatsoever**. However, it i
 Set the following environment variables to enable debugging features.
 
 * `DDMM_LANG_PROOF` - adds prefixes to all localised strings.
-* `DDMM_DEVTOOLS` - opens devtools on launch
+* `DDMM_DEVTOOLS` - opens devtools on launch.
+* `DDMM_INCOGNITO` - removes background from app, and name from titlebar.
 
 ## Run from source
 

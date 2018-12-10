@@ -12,7 +12,7 @@
 <div id="app" :class="['os-'+system_platform]">
     <div class="titlebar">
         <div class="app-title">
-            Doki Doki Mod Manager <small>v{{app_version}}</small>
+            <span>{{app_name}}</span> <small>v{{app_version}}</small>
         </div>
         <div class="window-buttons">
             <div @click="windowMinimise" :title="_('renderer.window_controls.minimise')"><i class="far fa-window-minimize"></i></div>
