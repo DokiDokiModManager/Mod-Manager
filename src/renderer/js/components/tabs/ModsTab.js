@@ -41,7 +41,8 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 <br>
                 
                 <div class="screenshots">
-                    <img v-for="img in selectedInstall.screenshots" :src="getURLToScreenshot(selectedInstall.folderName, img)" @click="openScreenshot(selectedInstall.folderName, img)" width="150">
+                    <!--suppress RequiredAttributes, HtmlRequiredAltAttribute -->
+                    <img v-for="img in selectedInstall.screenshots" :alt="img" :src="getURLToScreenshot(selectedInstall.folderName, img)" @click="openScreenshot(selectedInstall.folderName, img)" width="150">
                 </div>
             </div>
             <div v-else-if="selected_item.type === 'mod'">
@@ -100,10 +101,20 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             ddmm.mods.launchInstall(install);
         },
         "_refreshInstallList": function (installs) {
+            // Event handler for refreshed install list
             this.installs = installs;
         },
         "_refreshModList": function (mods) {
+            // Event handler for refreshed mod list
             this.mods = mods;
+        },
+        "_keyPressHandler": function (e) {
+            // Handles key press events for installs / mods
+            if (this.selectedInstall) {
+                if (e.key === "Enter") {
+                    ddmm.mods.launchInstall(this.selectedInstall.folderName);
+                }
+            }
         }
     },
     "computed": {
@@ -116,9 +127,11 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
         ddmm.mods.refreshModList();
         ddmm.on("install list", this._refreshInstallList);
         ddmm.on("mod list", this._refreshModList);
+        document.body.addEventListener("keyup", this._keyPressHandler);
     },
-    "unmounted": function () {
+    "destroyed": function () {
         ddmm.off("install list", this._refreshInstallList);
         ddmm.off("mod list", this._refreshModList);
+        document.body.removeEventListener("keyup", this._keyPressHandler);
     }
 });
