@@ -292,3 +292,31 @@ button.success:hover {
 }
 
 // endregion
+
+// region inputs
+.form-group {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+input[type="text"], input[type="number"], input[type="url"], textarea {
+  font-family: "Open Sans", sans-serif;
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px solid $ui-dark-colour-bg;
+  color: $ui-text-colour;
+  font-weight: normal;
+  min-width: 350px;
+  padding: 0.5em 1em;
+  cursor: text;
+  font-size: 1em;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.25s;
+}
+
+input:focus, textarea:focus {
+  border-color: $ui-muted-text-colour;
+}
+
+// endregion

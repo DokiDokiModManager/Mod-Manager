@@ -4,6 +4,7 @@ const app = new Vue({
         "app_name": "Doki Doki Mod Manager",
         "app_version": ddmm.version,
         "system_platform": ddmm.platform,
+        "app_updating": false,
         "tab": "mods",
         "tabs": [
             {"id": "mods", "name": ddmm.translate("renderer.tabs.tab_mods"), "component": "ddmm-mods-tab"},

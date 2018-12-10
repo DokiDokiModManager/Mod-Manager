@@ -15,9 +15,10 @@
             <span>{{app_name}}</span> <small>v{{app_version}}</small>
         </div>
         <div class="window-buttons">
-            <div @click="windowMinimise" :title="_('renderer.window_controls.minimise')"><i class="far fa-window-minimize"></i></div>
-            <div @click="windowMaximise" :title="_('renderer.window_controls.maximise')"><i class="far fa-window-maximize"></i></div>
-            <div @click="windowClose" :title="_('renderer.window_controls.close')"><i class="fas fa-times"></i></div>
+            <div v-if="app_updating" :title="_('renderer.window_controls.update_spinner')"><i class="fas fa-sync fa-spin"></i></div>
+            <div @click="windowMinimise" :title="_('renderer.window_controls.minimise')"><i class="far fa-window-minimize fa-fw"></i></div>
+            <div @click="windowMaximise" :title="_('renderer.window_controls.maximise')"><i class="far fa-window-maximize fa-fw"></i></div>
+            <div @click="windowClose" :title="_('renderer.window_controls.close')"><i class="fas fa-times fa-fw"></i></div>
         </div>
     </div>
     <component
