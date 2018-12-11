@@ -1,7 +1,18 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const electron_1 = require("electron");
+const fs_extra_1 = require("fs-extra");
 const path_1 = require("path");
+// One of my major regrets in life is putting an ! at the end of the application name
+// This should allow me to use a sane directory name but not break old installs.
+if (fs_extra_1.existsSync(path_1.join(electron_1.app.getPath("appData"), "Doki Doki Mod Manager!"))) {
+    console.log("Overriding app data path");
+    electron_1.app.setPath("userData", path_1.join(electron_1.app.getPath("appData"), "Doki Doki Mod Manager!"));
+}
+else {
+    electron_1.app.setPath("userData", path_1.join(electron_1.app.getPath("appData"), "DokiDokiModManager"));
+}
+electron_1.app.setName("Doki Doki Mod Manager!");
 const ModList_1 = require("./mod/ModList");
 const i18n_1 = require("./utils/i18n");
 const InstallList_1 = require("./install/InstallList");
@@ -11,7 +22,6 @@ const InstallCreator_1 = require("./install/InstallCreator");
 const ModInstaller_1 = require("./mod/ModInstaller");
 const InstallManager_1 = require("./install/InstallManager");
 const DiscordManager_1 = require("./discord/DiscordManager");
-const fs_extra_1 = require("fs-extra");
 const DownloadManager_1 = require("./net/DownloadManager");
 // region Crash reporting
 electron_1.crashReporter.start({

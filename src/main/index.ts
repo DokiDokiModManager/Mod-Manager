@@ -1,5 +1,18 @@
 import {app, BrowserWindow, ipcMain, IpcMessageEvent, shell, dialog, Notification, crashReporter} from "electron";
+import {move, existsSync, mkdirpSync} from "fs-extra";
 import {join as joinPath} from "path";
+
+// One of my major regrets in life is putting an ! at the end of the application name
+// This should allow me to use a sane directory name but not break old installs.
+if (existsSync(joinPath(app.getPath("appData"), "Doki Doki Mod Manager!"))) {
+    console.log("Overriding app data path");
+    app.setPath("userData", joinPath(app.getPath("appData"), "Doki Doki Mod Manager!"));
+} else {
+    app.setPath("userData", joinPath(app.getPath("appData"), "DokiDokiModManager"));
+}
+
+app.setName("Doki Doki Mod Manager!");
+
 import ModList from "./mod/ModList";
 import I18n from "./utils/i18n";
 import InstallList from "./install/InstallList";
@@ -9,9 +22,7 @@ import InstallCreator from "./install/InstallCreator";
 import ModInstaller from "./mod/ModInstaller";
 import InstallManager from "./install/InstallManager";
 import DiscordManager from "./discord/DiscordManager";
-import {move, existsSync, mkdirpSync} from "fs-extra";
 import DownloadManager from "./net/DownloadManager";
-import DDLCDownloader from "./net/DDLCDownloader";
 
 // region Crash reporting
 crashReporter.start({

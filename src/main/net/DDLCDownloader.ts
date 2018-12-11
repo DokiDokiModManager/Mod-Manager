@@ -1,8 +1,8 @@
 import * as request from "request";
 
-const DDLC_URL = "https://teamsalvato.itch.io/ddlc/file/";
+const DDLC_URL: string = "https://teamsalvato.itch.io/ddlc/file/";
 
-const DOWNLOAD_CODE = process.platform === "darwin" ? "594901" : "594897";
+const DOWNLOAD_CODE: string = process.platform === "darwin" ? "594901" : "594897";
 
 export default class DDLCDownloader {
 

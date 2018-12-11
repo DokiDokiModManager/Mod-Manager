@@ -1,7 +1,7 @@
 {
   "name": "doki-doki-mod-manager",
-  "productName": "Doki Doki Mod Manager!",
-  "description": "Mod Manager for Doki Doki Literature Club!",
+  "productName": "Doki Doki Mod Manager",
+  "description": "Mod Manager for Doki Doki Literature Club",
   "author": "u/zuudo",
   "version": "3.0.0",
   "homepage": "https://doki.space",
@@ -21,6 +21,7 @@
     "discord-rich-presence": "^0.0.7",
     "file-url": "^2.0.2",
     "fs-extra": "^7.0.1",
+    "request": "^2.88.0",
     "vue": "^2.5.17"
   },
   "devDependencies": {
