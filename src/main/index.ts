@@ -10,6 +10,8 @@ import ModInstaller from "./mod/ModInstaller";
 import InstallManager from "./install/InstallManager";
 import DiscordManager from "./discord/DiscordManager";
 import {move, existsSync, mkdirpSync} from "fs-extra";
+import DownloadManager from "./net/DownloadManager";
+import DDLCDownloader from "./net/DDLCDownloader";
 
 // region Crash reporting
 crashReporter.start({
@@ -40,6 +42,9 @@ let appWindow: BrowserWindow;
 let richPresence: DiscordManager = new DiscordManager("453299645725016074");
 
 richPresence.setIdleStatus();
+
+// Download manager
+let downloadManager: DownloadManager;
 
 // Flag for allowing the app window to be closed
 let windowClosable: boolean = true;
@@ -346,6 +351,14 @@ app.on("ready", () => {
         titleBarStyle: "hiddenInset",
         show: false
     });
+
+    // Activate download manager
+    downloadManager = new DownloadManager(appWindow);
+
+    // TODO: implement this as an actual feature
+    // DDLCDownloader.getDownloadLink().then(link => {
+    //     downloadManager.downloadFile(link, "C:\\DDMM\\ddlc.zip");
+    // });
 
     // set user agent so web services can contact me if necessary
     appWindow.webContents.setUserAgent(USER_AGENT);

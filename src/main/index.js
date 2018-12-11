@@ -12,6 +12,7 @@ const ModInstaller_1 = require("./mod/ModInstaller");
 const InstallManager_1 = require("./install/InstallManager");
 const DiscordManager_1 = require("./discord/DiscordManager");
 const fs_extra_1 = require("fs-extra");
+const DownloadManager_1 = require("./net/DownloadManager");
 // region Crash reporting
 electron_1.crashReporter.start({
     companyName: "DDMM",
@@ -35,6 +36,8 @@ let appWindow;
 // Discord rich presence
 let richPresence = new DiscordManager_1.default("453299645725016074");
 richPresence.setIdleStatus();
+// Download manager
+let downloadManager;
 // Flag for allowing the app window to be closed
 let windowClosable = true;
 const lang = new i18n_1.default(electron_1.app.getLocale());
@@ -274,6 +277,12 @@ electron_1.app.on("ready", () => {
         titleBarStyle: "hiddenInset",
         show: false
     });
+    // Activate download manager
+    downloadManager = new DownloadManager_1.default(appWindow);
+    // TODO: implement this as an actual feature
+    // DDLCDownloader.getDownloadLink().then(link => {
+    //     downloadManager.downloadFile(link, "C:\\DDMM\\ddlc.zip");
+    // });
     // set user agent so web services can contact me if necessary
     appWindow.webContents.setUserAgent(USER_AGENT);
     appWindow.webContents.on("will-navigate", ev => {
