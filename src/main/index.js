@@ -250,6 +250,12 @@ electron_1.app.on("ready", () => {
         electron_1.app.quit();
         return; // avoid running for longer than needed
     }
+    if (!fs_extra_1.existsSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "mods")) ||
+        !fs_extra_1.existsSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "installs"))) {
+        console.log("Creating directory structure");
+        fs_extra_1.mkdirpSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "mods"));
+        fs_extra_1.mkdirpSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "installs"));
+    }
     electron_1.app.setAsDefaultProtocolClient("ddmm");
     // create browser window
     appWindow = new electron_1.BrowserWindow({

@@ -8,7 +8,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 :class="{'mod-view-mod-list-entry': true, 'active': selected_item.type === 'create'}"
                 @click="selectItem('', 'create')">{{_("renderer.tab_mods.list.link_install")}}</div>
             <br>
-            <div class="mod-view-mod-list-title">{{_("renderer.tab_mods.list.header_installed")}}</div>
+            <div class="mod-view-mod-list-title" v-if="installs.length > 0">{{_("renderer.tab_mods.list.header_installed")}}</div>
             <div 
                 :class="{'mod-view-mod-list-entry': true, 'active': selected_item.id === install.folderName && selected_item.type === 'install'}"
                  v-for="install in installs"
@@ -17,7 +17,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                   :title="getPathToInstall(install.folderName)"
                   >{{install.name}}</div>
             <br>
-            <div class="mod-view-mod-list-title">{{_("renderer.tab_mods.list.header_downloaded")}}</div>
+            <div class="mod-view-mod-list-title" v-if="mods.length > 0">{{_("renderer.tab_mods.list.header_downloaded")}}</div>
             <div
                 :class="{'mod-view-mod-list-entry': true, 'active': selected_item.id === mod && selected_item.type === 'mod'}" 
                 v-for="mod in mods"
@@ -57,16 +57,16 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 
                 <div class="form-group">
                     <p><label>{{_("renderer.tab_mods.install_creation.label_install_name")}}</label></p>
-                    <p><input type="text" :placeholder="_('renderer.tab_mods.install_creation.label_install_name')"></p>
+                    <p><input type="text" :placeholder="_('renderer.tab_mods.install_creation.label_install_name')" v-model="install_creation.install_name" @keyup="generateInstallFolderName"></p>
                 </div>
                 
                 <div class="form-group">
                     <p><label>{{_("renderer.tab_mods.install_creation.label_folder_name")}}</label></p>
-                    <p><input type="text" :placeholder="_('renderer.tab_mods.install_creation.label_folder_name')"></p>
+                    <p><input type="text" :placeholder="_('renderer.tab_mods.install_creation.label_folder_name')" v-model="install_creation.folder_name"></p>
                 </div>
                 
                 <div class="form-group">
-                    <p><label><input type="checkbox"> {{_("renderer.tab_mods.install_creation.label_global_save")}}</label></p>
+                    <p><label><input type="checkbox" v-model="install_creation.global_save"> {{_("renderer.tab_mods.install_creation.label_global_save")}}</label></p>
                 </div>
                 
                 <p>
@@ -88,6 +88,11 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             "selected_item": {
                 "id": sessionStorage.getItem("mod_list_last_id"),
                 "type": sessionStorage.getItem("mod_list_last_type")
+            },
+            "install_creation": {
+                "install_name": "",
+                "folder_name": "",
+                "global_save": false
             }
         }
     },
@@ -127,6 +132,14 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
         },
         "launchInstall": function (install) {
             ddmm.mods.launchInstall(install);
+        },
+        "generateInstallFolderName": function () {
+            this.install_creation.folder_name = this.install_creation.install_name
+                .trim()
+                .toLowerCase()
+                .replace(/\W/g, "-")
+                .replace(/-+/g, "-")
+                .substring(0, 32);
         },
         "_refreshInstallList": function (installs) {
             // Event handler for refreshed install list

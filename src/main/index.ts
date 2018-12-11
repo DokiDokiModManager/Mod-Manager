@@ -9,7 +9,7 @@ import InstallCreator from "./install/InstallCreator";
 import ModInstaller from "./mod/ModInstaller";
 import InstallManager from "./install/InstallManager";
 import DiscordManager from "./discord/DiscordManager";
-import {move} from "fs-extra";
+import {move, existsSync, mkdirpSync} from "fs-extra";
 
 // region Crash reporting
 crashReporter.start({
@@ -308,7 +308,6 @@ app.on("second-instance", (ev: Event, argv: string[]) => {
 });
 
 app.on("ready", () => {
-
     app.setAppUserModelId("space.doki.modmanager");
 
     if (!app.requestSingleInstanceLock()) {
@@ -317,6 +316,15 @@ app.on("ready", () => {
         console.log("App already running.");
         app.quit();
         return; // avoid running for longer than needed
+    }
+
+    if (
+        !existsSync(joinPath(Config.readConfigValue("installFolder"), "mods")) ||
+        !existsSync(joinPath(Config.readConfigValue("installFolder"), "installs"))
+    ) {
+        console.log("Creating directory structure");
+        mkdirpSync(joinPath(Config.readConfigValue("installFolder"), "mods"));
+        mkdirpSync(joinPath(Config.readConfigValue("installFolder"), "installs"));
     }
 
     app.setAsDefaultProtocolClient("ddmm");
