@@ -75,7 +75,9 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                     {{_("renderer.tab_mods.install_creation.description_vanilla")}}
                 </p>
                 
-                <div class="form-group"><button class="primary">{{_("renderer.tab_mods.install_creation.button_install")}}</button></div>
+                <div class="form-group"><button class="primary" @click="createInstallSubmit" :disabled="is_installing">{{_("renderer.tab_mods.install_creation.button_install")}}</button></div>
+                
+                <p v-if="is_installing"><i class="fas fa-spinner fa-spin"></i> {{_("renderer.tab_mods.install_creation.status_installing")}}</p>
             </div>
         </div>
     </div>
@@ -85,6 +87,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
         return {
             "installs": [],
             "mods": [],
+            "is_installing": false,
             "selected_item": {
                 "id": sessionStorage.getItem("mod_list_last_id"),
                 "type": sessionStorage.getItem("mod_list_last_type")
@@ -140,6 +143,15 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 .replace(/\W/g, "-")
                 .replace(/-+/g, "-")
                 .substring(0, 32);
+        },
+        "createInstallSubmit": function() {
+            if (this.is_installing) return;
+            this.is_installing = true;
+            ddmm.mods.createInstall(this.install_creation.folder_name, this.install_creation.install_name, this.install_creation.global_save, null);
+            ddmm.once("install list", () => {
+                this.is_installing = false;
+                this.selectItem(this.install_creation.folder_name, "install");
+            });
         },
         "_refreshInstallList": function (installs) {
             // Event handler for refreshed install list

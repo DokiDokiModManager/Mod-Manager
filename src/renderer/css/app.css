@@ -272,6 +272,10 @@ button.success:hover {
   background-color: #558c3d;
 }
 
+button[disabled], button[disabled]:hover {
+  background-color: #aaa;
+}
+
 .form-group {
   margin-top: 1em;
   margin-bottom: 1em;

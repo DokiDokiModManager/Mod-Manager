@@ -291,6 +291,10 @@ button.success:hover {
   background-color: darken($ui-success-colour-bg, 10%);
 }
 
+button[disabled], button[disabled]:hover {
+  background-color: $ui-muted-text-colour;
+}
+
 // endregion
 
 // region inputs

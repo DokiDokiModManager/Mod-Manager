@@ -53,7 +53,8 @@
         "description_vanilla_global_save": "A clean copy of DDLC will be created. The save data will be shared with other copies of the game (e.g. Steam)",
         "description_modded": "A copy of DDLC will be created, and the mod {0} will be installed.  The save data will be separate from any other copy of the game.",
         "description_modded_global_save": "A copy of DDLC will be created, and the mod {0} will be installed.  The save data will be shared with other copies of the game (e.g. Steam)",
-        "button_install": "Install"
+        "button_install": "Install",
+        "status_installing": "Installing game..."
       }
     }
   }
