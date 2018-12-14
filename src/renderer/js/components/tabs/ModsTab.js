@@ -120,7 +120,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
     "methods": {
         "_": ddmm.translate,
         "browseForMod": ddmm.mods.browseForMod,
-        "showCreateInstall": function(mod) {
+        "showCreateInstall": function (mod) {
             if (this.selected_item.type === "create") return;
             this.install_creation.install_name = "";
             this.install_creation.folder_name = "";
@@ -176,7 +176,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 this.install_creation.mod = mod;
             }
         },
-        "createInstallSubmit": function() {
+        "createInstallSubmit": function () {
             if (this.is_installing) return;
             this.is_installing = true;
             ddmm.mods.createInstall(this.install_creation.folder_name, this.install_creation.install_name, this.install_creation.global_save, this.install_creation.mod);
@@ -189,8 +189,15 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             // Event handler for refreshed install list
             this.installs = installs;
 
-            if (!this.selected_item.id && installs.length > 0) {
-                this.selectItem(installs[0].folderName, "install");
+            // select something to avoid leaving a blank area
+            if (!this.selected_item.id) {
+                if (installs.length > 0) {
+                    // select the first install
+                    this.selectItem(installs[0].folderName, "install");
+                } else {
+                    // select the install creation page
+                    this.selectItem("", "create");
+                }
             }
         },
         "_refreshModList": function (mods) {

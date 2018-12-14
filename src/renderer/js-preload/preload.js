@@ -207,6 +207,11 @@ api.app.beginMoveInstall = function () {
     ipcRenderer.send("move install");
 };
 
+// Get available backgrounds
+api.app.getBackgrounds = function () {
+    return ipcRenderer.sendSync("get backgrounds");
+};
+
 // Handler for crashes / errors
 ipcRenderer.on("error message", (ev, data) => {
     api.emit("error", data);

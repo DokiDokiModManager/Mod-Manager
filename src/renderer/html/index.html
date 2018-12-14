@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/app.css">
 </head>
 <body>
-<div id="app" :class="['os-'+system_platform]">
+<div id="app" :class="['os-'+system_platform]" :style="{'background-image': backgroundImageStyle}">
     <div class="titlebar">
         <div class="app-title">
             <span>{{app_name}}</span> <small>v{{app_version}}</small>
@@ -23,6 +23,7 @@
     </div>
     <component
             :is="currentTabComponent"
+            @set_background="setBackground"
     ></component>
     <div class="navbar">
         <div class="nav-links">

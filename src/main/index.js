@@ -226,6 +226,10 @@ electron_1.ipcMain.on("move install", () => {
         }
     });
 });
+// Get available backgrounds
+electron_1.ipcMain.on("get backgrounds", (ev) => {
+    ev.returnValue = fs_extra_1.readdirSync(path_1.join(__dirname, "../renderer/images/backgrounds"));
+});
 // Crash for debugging
 electron_1.ipcMain.on("debug crash", () => {
     throw new Error("User forced debug crash with DevTools");

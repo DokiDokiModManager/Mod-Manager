@@ -73,6 +73,12 @@
 
         "header_application": "Application",
         "link_storage": "Storage Location"
+      },
+
+      "section_backgrounds": {
+        "title": "Backgrounds",
+        "subtitle": "Customise your copy of Doki Doki Mod Manager with one of these backgrounds.",
+        "button_none": "No Background"
       }
     }
   }

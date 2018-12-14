@@ -1,5 +1,5 @@
 import {app, BrowserWindow, ipcMain, IpcMessageEvent, shell, dialog, Notification, crashReporter} from "electron";
-import {move, existsSync, mkdirpSync} from "fs-extra";
+import {move, existsSync, mkdirpSync, readdirSync} from "fs-extra";
 import {join as joinPath} from "path";
 
 // One of my major regrets in life is putting an ! at the end of the application name
@@ -281,6 +281,11 @@ ipcMain.on("move install", () => {
             });
         }
     });
+});
+
+// Get available backgrounds
+ipcMain.on("get backgrounds", (ev: IpcMessageEvent) => {
+    ev.returnValue = readdirSync(joinPath(__dirname, "../renderer/images/backgrounds"));
 });
 
 // Crash for debugging

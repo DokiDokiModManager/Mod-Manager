@@ -52,7 +52,7 @@ export default class Config {
      */
     private static defaultConfig = {
         installFolder: joinPath(app.getPath("userData"), "GameData"),
-        theme: "light",
+        background: "default.png"
     };
 
     private static configPath = joinPath(app.getPath("userData"), "config.json");
