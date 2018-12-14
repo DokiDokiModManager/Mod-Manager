@@ -130,6 +130,10 @@ body {
   height: calc(100% - 63px - 67px);
 }
 
+.text-container {
+  padding: 1em;
+}
+
 h1, h2, h3, h4 {
   margin: 0;
   font-weight: 500;

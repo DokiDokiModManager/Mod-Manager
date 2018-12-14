@@ -9,7 +9,7 @@ const app = new Vue({
         "tabs": [
             {"id": "mods", "name": ddmm.translate("renderer.tabs.tab_mods"), "component": "ddmm-mods-tab"},
             {"id": "store", "name": ddmm.translate("renderer.tabs.tab_store"), "component": "ddmm-store-tab"},
-            {"id": "settings", "name": ddmm.translate("renderer.tabs.tab_settings"), "component": "ddmm-settings-tab"},
+            {"id": "options", "name": ddmm.translate("renderer.tabs.tab_options"), "component": "ddmm-options-tab"},
             {"id": "about", "name": ddmm.translate("renderer.tabs.tab_about"), "component": "ddmm-about-tab"}
         ]
     },
