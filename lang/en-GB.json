@@ -65,7 +65,14 @@
     "tab_options": {
       "list": {
         "header_appearance": "Appearance",
-        "link_background": "Background"
+        "link_background": "Background",
+
+        "header_enhancements": "Enhancements",
+        "link_sdk": "Achievements",
+        "link_discord": "Discord",
+
+        "header_application": "Application",
+        "link_storage": "Storage Location"
       }
     }
   }
