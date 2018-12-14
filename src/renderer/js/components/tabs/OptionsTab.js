@@ -35,6 +35,12 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
             "backgrounds": ddmm.app.getBackgrounds(),
             "menu": [
                 {
+                    "header": ddmm.translate("renderer.tab_options.list.header_application"),
+                    "contents": [
+                        {"title": ddmm.translate("renderer.tab_options.list.link_storage"), "id": "storage"}
+                    ]
+                },
+                {
                     "header": ddmm.translate("renderer.tab_options.list.header_appearance"),
                     "contents": [
                         {"title": ddmm.translate("renderer.tab_options.list.link_background"), "id": "background"}
@@ -45,12 +51,6 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
                     "contents": [
                         {"title": ddmm.translate("renderer.tab_options.list.link_sdk"), "id": "sdk"},
                         {"title": ddmm.translate("renderer.tab_options.list.link_discord"), "id": "discord"}
-                    ]
-                },
-                {
-                    "header": ddmm.translate("renderer.tab_options.list.header_application"),
-                    "contents": [
-                        {"title": ddmm.translate("renderer.tab_options.list.link_storage"), "id": "storage"}
                     ]
                 }
             ]
