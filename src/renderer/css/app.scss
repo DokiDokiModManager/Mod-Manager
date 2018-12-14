@@ -173,7 +173,9 @@ p {
 
 .mod-viewer-mod-display {
   width: 75%;
-  padding: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+  overflow-y: auto;
 }
 
 .mod-view-mod-list-title {

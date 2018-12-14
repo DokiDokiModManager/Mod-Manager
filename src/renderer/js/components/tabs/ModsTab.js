@@ -6,7 +6,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             <div class="mod-view-mod-list-title">{{_("renderer.tab_mods.list.header_new")}}</div>
             <div
                 :class="{'mod-view-mod-list-entry': true, 'active': selected_item.type === 'create'}"
-                @click="selectItem('', 'create')">{{_("renderer.tab_mods.list.link_install")}}</div>
+                @click="showCreateInstall()">{{_("renderer.tab_mods.list.link_install")}}</div>
             <br>
             <div class="mod-view-mod-list-title" v-if="installs.length > 0">{{_("renderer.tab_mods.list.header_installed")}}</div>
             <div 
@@ -49,6 +49,10 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             <div v-else-if="selected_item.type === 'mod'">
                 <h1>{{selected_item.id}}</h1>
                 <p>{{getPathToMod(selected_item.id)}}</p>
+                
+                <br>
+                
+                <p><button class="success" @click="showCreateInstall(getPathToMod(selected_item.id))">{{_("renderer.tab_mods.mod.button_install")}}</button></p>
             </div>
             <div v-else-if="selected_item.type === 'create'">
                 <h1>{{_("renderer.tab_mods.install_creation.title")}}</h1>
@@ -66,13 +70,26 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 </div>
                 
                 <div class="form-group">
+                    <p><label>{{_("renderer.tab_mods.install_creation.label_mod")}}</label></p>
+                    <p><input type="text" :placeholder="_('renderer.tab_mods.install_creation.description_mod')" v-model="install_creation.mod" readonly @click="installCreationSelectMod"></p>
+                </div>
+                
+                <div class="form-group">
                     <p><label><input type="checkbox" v-model="install_creation.global_save"> {{_("renderer.tab_mods.install_creation.label_global_save")}}</label></p>
                 </div>
                 
                 <p>
                     <strong>{{_("renderer.tab_mods.install_creation.header_summary")}}</strong>
                     <br>
-                    {{_("renderer.tab_mods.install_creation.description_vanilla")}}
+                    <template v-if="install_creation.mod">
+                        <span v-if="install_creation.global_save">{{_("renderer.tab_mods.install_creation.description_modded_global_save")}}</span>
+                        <span v-else>{{_("renderer.tab_mods.install_creation.description_modded")}}</span>
+                    </template>
+                    <template v-else>
+                        <span v-if="install_creation.global_save">{{_("renderer.tab_mods.install_creation.description_vanilla_global_save")}}</span>
+                        <span v-else>{{_("renderer.tab_mods.install_creation.description_vanilla")}}</span>
+                    </template>
+                    
                 </p>
                 
                 <div class="form-group"><button class="primary" @click="createInstallSubmit" :disabled="is_installing">{{_("renderer.tab_mods.install_creation.button_install")}}</button></div>
@@ -95,13 +112,22 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             "install_creation": {
                 "install_name": "",
                 "folder_name": "",
-                "global_save": false
+                "global_save": false,
+                "mod": ""
             }
         }
     },
     "methods": {
         "_": ddmm.translate,
         "browseForMod": ddmm.mods.browseForMod,
+        "showCreateInstall": function(mod) {
+            if (this.selected_item.type === "create") return;
+            this.install_creation.install_name = "";
+            this.install_creation.folder_name = "";
+            this.install_creation.global_save = false;
+            this.install_creation.mod = mod || "";
+            this.selectItem("", "create");
+        },
         "selectItem": function (id, type) {
             if (this.selected_item.id === id && this.selected_item.type === type) return;
             this.selected_item.id = id;
@@ -144,10 +170,16 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 .replace(/-+/g, "-")
                 .substring(0, 32);
         },
+        "installCreationSelectMod": function () {
+            const mod = ddmm.mods.browseForMod();
+            if (mod) {
+                this.install_creation.mod = mod;
+            }
+        },
         "createInstallSubmit": function() {
             if (this.is_installing) return;
             this.is_installing = true;
-            ddmm.mods.createInstall(this.install_creation.folder_name, this.install_creation.install_name, this.install_creation.global_save, null);
+            ddmm.mods.createInstall(this.install_creation.folder_name, this.install_creation.install_name, this.install_creation.global_save, this.install_creation.mod);
             ddmm.once("install list", () => {
                 this.is_installing = false;
                 this.selectItem(this.install_creation.folder_name, "install");

@@ -43,16 +43,21 @@
         "title_screenshots": "{0} screenshots",
         "description_screenshots": "Press S while playing to take a screenshot."
       },
+      "mod": {
+        "button_install": "Install"
+      },
       "install_creation": {
         "title": "Install DDLC",
         "label_install_name": "Install Name",
         "label_folder_name": "Folder Name",
         "label_global_save": "Global Save",
+        "label_mod": "Mod",
+        "description_mod": "Click to browse for a mod.",
         "header_summary": "Summary",
         "description_vanilla": "A clean copy of DDLC will be created. The save data will be separate from any other copy of the game.",
         "description_vanilla_global_save": "A clean copy of DDLC will be created. The save data will be shared with other copies of the game (e.g. Steam)",
-        "description_modded": "A copy of DDLC will be created, and the mod {0} will be installed.  The save data will be separate from any other copy of the game.",
-        "description_modded_global_save": "A copy of DDLC will be created, and the mod {0} will be installed.  The save data will be shared with other copies of the game (e.g. Steam)",
+        "description_modded": "A copy of DDLC will be created, and the mod will be installed.  The save data will be separate from any other copy of the game.",
+        "description_modded_global_save": "A copy of DDLC will be created, and the mod will be installed.  The save data will be shared with other copies of the game (e.g. Steam)",
         "button_install": "Install",
         "status_installing": "Installing game..."
       }
