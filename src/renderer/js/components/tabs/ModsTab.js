@@ -188,6 +188,10 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
         "_refreshInstallList": function (installs) {
             // Event handler for refreshed install list
             this.installs = installs;
+
+            if (!this.selected_item.id && installs.length > 0) {
+                this.selectItem(installs[0].folderName, "install");
+            }
         },
         "_refreshModList": function (mods) {
             // Event handler for refreshed mod list

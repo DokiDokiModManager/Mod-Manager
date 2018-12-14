@@ -61,6 +61,12 @@
         "button_install": "Install",
         "status_installing": "Installing game..."
       }
+    },
+    "tab_options": {
+      "list": {
+        "header_appearance": "Appearance",
+        "link_background": "Background"
+      }
     }
   }
 }
