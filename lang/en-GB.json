@@ -76,9 +76,10 @@
       },
 
       "section_backgrounds": {
-        "title": "Backgrounds",
+        "title": "Background",
         "subtitle": "Customise your copy of Doki Doki Mod Manager with one of these backgrounds.",
-        "button_none": "No Background"
+        "button_none": "No Background",
+        "description_credit": "Original DDLC backgrounds courtesy of Team Salvato. Other backgrounds courtesy of reckonusm and famous1622."
       }
     }
   }

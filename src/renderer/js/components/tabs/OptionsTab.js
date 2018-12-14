@@ -24,6 +24,10 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
                 <br>
                 
                 <button class="danger" @click="setBackground('none')">{{_("renderer.tab_options.section_backgrounds.button_none")}}</button>
+                
+                <br><br>
+                
+                <p>{{_("renderer.tab_options.section_backgrounds.description_credit")}}</p>
             </div>
         </div>
     </div>

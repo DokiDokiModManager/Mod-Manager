@@ -206,6 +206,7 @@ p {
   height: 108px;
   padding: 0.5em;
   cursor: pointer;
+  -webkit-user-drag: none;
 }
 
 button {
