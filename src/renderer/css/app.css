@@ -130,7 +130,7 @@ body {
 }
 
 .text-container {
-  padding: 1em;
+  padding: 0 1.5em;
 }
 
 h1, h2, h3, h4 {
@@ -155,7 +155,8 @@ p {
 .mod-viewer-mod-list {
   width: 25%;
   max-height: 100%;
-  padding: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
   overflow-y: scroll;
 }
 

@@ -74,13 +74,29 @@
         "header_application": "Application",
         "link_storage": "Storage Location"
       },
-
       "section_backgrounds": {
         "title": "Background",
         "subtitle": "Customise your copy of Doki Doki Mod Manager with one of these backgrounds.",
         "button_none": "No Background",
         "description_credit": "Original DDLC backgrounds courtesy of Team Salvato. Other backgrounds courtesy of reckonusm and famous1622."
       }
+    },
+    "tab_about": {
+      "title": "About",
+      "description": "Doki Doki Mod Manager is a community-developed project that helps you find, install and play mods for Doki Doki Literature Club, a free Visual Novel game by Team Salvato.",
+      "title_disclaimer": "Disclaimer",
+      "disclaimer_1": "Doki Doki Mod Manager is a fan work of Doki Doki Literature Club and is not affiliated with Team Salvato. It is a fan work, as defined by Team Salvato's IP Guidelines.",
+      "disclaimer_2": "Doki Doki Mod Manager does not take responsibility for any damage caused to your files or computer, as a result of playing a mod or otherwise. It is up to you to ensure mods are safe to play.",
+      "title_socials": "Get in touch",
+      "social_discord": "Join the DDMM Discord Server",
+      "social_twitter": "Follow @DokiMod on Twitter",
+      "social_reddit": "Message me on Reddit",
+      "social_email": "Send me an email",
+      "title_support": "Support Development",
+      "description_support": "Doki Doki Mod Manager will always be free to download and use. If you like it and want to help me keep it updated, consider supporting me in one of the following ways.",
+      "support_donate": "Make a one-off donation",
+      "support_steelseries": "Get 10% off SteelSeries gaming peripherals (affiliate link)",
+      "support_code": "Contribute to the project (code or translations)"
     }
   }
 }
