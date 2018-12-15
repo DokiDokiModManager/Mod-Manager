@@ -25,6 +25,7 @@ Set the following environment variables to enable debugging features.
 * `DDMM_LANG_PROOF` - adds prefixes to all localised strings.
 * `DDMM_DEVTOOLS` - opens devtools on launch.
 * `DDMM_INCOGNITO` - removes background from app, and name from titlebar.
+* `DDMM_DISCORD_ID` - change the Discord rich presence app ID
 
 ## Run from source
 

@@ -50,7 +50,7 @@ const lastArg: string = process.argv.pop();
 let appWindow: BrowserWindow;
 
 // Discord rich presence
-let richPresence: DiscordManager = new DiscordManager("453299645725016074");
+let richPresence: DiscordManager = new DiscordManager(process.env.DDMM_DISCORD_ID ? process.env.DDMM_DISCORD_ID : "453299645725016074");
 
 richPresence.setIdleStatus();
 

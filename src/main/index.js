@@ -44,7 +44,7 @@ const lastArg = process.argv.pop();
 // Permanent reference to the main app window
 let appWindow;
 // Discord rich presence
-let richPresence = new DiscordManager_1.default("453299645725016074");
+let richPresence = new DiscordManager_1.default(process.env.DDMM_DISCORD_ID ? process.env.DDMM_DISCORD_ID : "453299645725016074");
 richPresence.setIdleStatus();
 // Download manager
 let downloadManager;
