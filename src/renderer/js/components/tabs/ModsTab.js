@@ -70,8 +70,12 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 </div>
                 
                 <div class="form-group">
+                    <p><label><input type="checkbox" v-model="install_creation.has_mod"> {{_("renderer.tab_mods.install_creation.label_has_mod")}}</label></p>
+                </div>
+                
+                <div class="form-group" v-if="install_creation.has_mod">
                     <p><label>{{_("renderer.tab_mods.install_creation.label_mod")}}</label></p>
-                    <p><input type="text" :placeholder="_('renderer.tab_mods.install_creation.description_mod')" v-model="install_creation.mod" readonly @click="installCreationSelectMod"></p>
+                    <p><input type="text" :placeholder="_('renderer.tab_mods.install_creation.description_mod')" v-model="install_creation.mod" readonly @click="installCreationSelectMod" style="cursor: pointer;"></p>
                 </div>
                 
                 <div class="form-group">
@@ -81,7 +85,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 <p>
                     <strong>{{_("renderer.tab_mods.install_creation.header_summary")}}</strong>
                     <br>
-                    <template v-if="install_creation.mod">
+                    <template v-if="install_creation.has_mod">
                         <span v-if="install_creation.global_save">{{_("renderer.tab_mods.install_creation.description_modded_global_save")}}</span>
                         <span v-else>{{_("renderer.tab_mods.install_creation.description_modded")}}</span>
                     </template>
@@ -92,7 +96,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                     
                 </p>
                 
-                <div class="form-group"><button class="primary" @click="createInstallSubmit" :disabled="is_installing">{{_("renderer.tab_mods.install_creation.button_install")}}</button></div>
+                <div class="form-group"><button class="primary" @click="createInstallSubmit" :disabled="shouldDisableCreation">{{_("renderer.tab_mods.install_creation.button_install")}}</button></div>
                 
                 <p v-if="is_installing"><i class="fas fa-spinner fa-spin"></i> {{_("renderer.tab_mods.install_creation.status_installing")}}</p>
             </div>
@@ -113,6 +117,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 "install_name": "",
                 "folder_name": "",
                 "global_save": false,
+                "has_mod": false,
                 "mod": ""
             }
         }
@@ -125,6 +130,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             this.install_creation.install_name = "";
             this.install_creation.folder_name = "";
             this.install_creation.global_save = false;
+            this.install_creation.has_mod = !!mod;
             this.install_creation.mod = mod || "";
             this.selectItem("", "create");
         },
@@ -177,9 +183,9 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             }
         },
         "createInstallSubmit": function () {
-            if (this.is_installing) return;
+            if (this.shouldDisableCreation) return;
             this.is_installing = true;
-            ddmm.mods.createInstall(this.install_creation.folder_name, this.install_creation.install_name, this.install_creation.global_save, this.install_creation.mod);
+            ddmm.mods.createInstall(this.install_creation.folder_name, this.install_creation.install_name, this.install_creation.global_save, (this.install_creation.has_mod ? this.install_creation.mod : null));
             ddmm.once("install list", () => {
                 this.is_installing = false;
                 this.selectItem(this.install_creation.folder_name, "install");
@@ -216,6 +222,10 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
     "computed": {
         "selectedInstall": function () {
             return this.installs.find(i => i.folderName === this.selected_item.id);
+        },
+        "shouldDisableCreation": function () {
+            return this.is_installing || (this.install_creation.has_mod && !this.install_creation.mod)
+                || this.install_creation.install_name.length < 2 || this.install_creation.folder_name.length < 2;
         }
     },
     "mounted": function () {

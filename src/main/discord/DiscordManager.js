@@ -18,6 +18,7 @@ class DiscordManager {
             return;
         this.client.updatePresence({
             details: "Managing Mods",
+            startTimestamp: Date.now(),
             largeImageKey: "logo",
             smallImageKey: "idle",
             largeImageText: "Version " + electron_1.app.getVersion(),

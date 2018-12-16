@@ -20,6 +20,7 @@ export default class DiscordManager {
         if (!this.client) return;
         this.client.updatePresence({
             details: "Managing Mods",
+            startTimestamp: Date.now(),
             largeImageKey: "logo",
             smallImageKey: "idle",
             largeImageText: "Version " + app.getVersion(),

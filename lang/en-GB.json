@@ -51,6 +51,7 @@
         "label_install_name": "Install Name",
         "label_folder_name": "Folder Name",
         "label_global_save": "Global Save",
+        "label_has_mod": "Install Mod",
         "label_mod": "Mod",
         "description_mod": "Click to browse for a mod.",
         "header_summary": "Summary",
