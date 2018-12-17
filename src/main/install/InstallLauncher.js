@@ -11,8 +11,9 @@ class InstallLauncher {
     /**
      * Launches an install by the folder name
      * @param folderName The folder of the install to be launched
+     * @param richPresence The Discord rich presence instance to be updated
      */
-    static launchInstall(folderName) {
+    static launchInstall(folderName, richPresence) {
         return new Promise((ff, rj) => {
             const installFolder = path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", folderName);
             let installData;
@@ -23,6 +24,8 @@ class InstallLauncher {
             catch (e) {
                 rj(lang.translate("errors.launch.install_corrupt"));
             }
+            if (richPresence)
+                richPresence.setPlayingStatus(installData.name);
             Config_1.default.saveConfigValue("lastInstall", {
                 "name": installData.name,
                 "folder": folderName
@@ -46,9 +49,11 @@ class InstallLauncher {
                     env,
                 });
                 procHandle.on("error", () => {
+                    richPresence.setIdleStatus();
                     rj(lang.translate("errors.launch.install_crashed"));
                 });
                 procHandle.on("close", () => {
+                    richPresence.setIdleStatus();
                     ff();
                 });
             }

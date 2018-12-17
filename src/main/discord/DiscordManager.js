@@ -5,7 +5,7 @@ const electron_1 = require("electron");
 const Config_1 = require("../utils/Config");
 class DiscordManager {
     constructor(appID) {
-        if (!Config_1.default.readConfigValue("puristMode")) {
+        if (Config_1.default.readConfigValue("discordEnabled")) {
             this.client = makeClient(appID);
             this.client.on("error", e => {
                 this.client = null;
@@ -13,6 +13,9 @@ class DiscordManager {
             });
         }
     }
+    /**
+     * Sets Discord rich presence to the idle (not playing anything) status
+     */
     setIdleStatus() {
         if (!this.client)
             return;
@@ -25,18 +28,30 @@ class DiscordManager {
             smallImageText: "Not playing anything"
         });
     }
-    setPlayingStatus(folderName) {
+    /**
+     * Sets Discord rich presence to the active (in game) status
+     * @param installName The name of the installation
+     */
+    setPlayingStatus(installName) {
         if (!this.client)
             return;
         this.client.updatePresence({
             details: "In Game",
-            state: folderName,
+            state: installName,
             startTimestamp: Date.now(),
             largeImageKey: "logo",
             smallImageKey: "playing",
             largeImageText: "Version " + electron_1.app.getVersion(),
             smallImageText: "Playing DDLC"
         });
+    }
+    /**
+     * Disconnects from Discord rich presence
+     */
+    shutdown() {
+        if (!this.client)
+            return;
+        this.client.disconnect();
     }
 }
 exports.default = DiscordManager;

@@ -84,15 +84,12 @@ function launchInstall(folderName) {
         title: lang.translate("running_cover.running.title"),
         description: lang.translate("running_cover.running.description")
     });
-    richPresence.setPlayingStatus(folderName);
-    InstallLauncher.launchInstall(folderName).then(() => {
-        richPresence.setIdleStatus();
+    InstallLauncher.launchInstall(folderName, richPresence).then(() => {
         appWindow.restore(); // show DDMM again
         appWindow.focus();
         appWindow.webContents.send("running cover", {display: false});
         appWindow.webContents.send("got installs", InstallList.getInstallList());
     }).catch(err => {
-        richPresence.setIdleStatus();
         appWindow.restore();
         appWindow.focus();
         appWindow.webContents.send("running cover", {

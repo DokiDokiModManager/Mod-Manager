@@ -6,7 +6,7 @@ export default class DiscordManager {
     private client: any;
 
     constructor(appID: string) {
-        if (!Config.readConfigValue("puristMode")) {
+        if (Config.readConfigValue("discordEnabled")) {
             this.client = makeClient(appID);
 
             this.client.on("error", e => {
@@ -16,6 +16,9 @@ export default class DiscordManager {
         }
     }
 
+    /**
+     * Sets Discord rich presence to the idle (not playing anything) status
+     */
     public setIdleStatus(): void {
         if (!this.client) return;
         this.client.updatePresence({
@@ -28,16 +31,29 @@ export default class DiscordManager {
         });
     }
 
-    public setPlayingStatus(folderName: string): void {
+    /**
+     * Sets Discord rich presence to the active (in game) status
+     * @param installName The name of the installation
+     */
+    public setPlayingStatus(installName: string): void {
         if (!this.client) return;
         this.client.updatePresence({
             details: "In Game",
-            state: folderName,
+            state: installName,
             startTimestamp: Date.now(),
             largeImageKey: "logo",
             smallImageKey: "playing",
             largeImageText: "Version " + app.getVersion(),
             smallImageText: "Playing DDLC"
         });
+    }
+
+    /**
+     * Disconnects from Discord rich presence
+     */
+    public shutdown(): void {
+        if (!this.client) return;
+
+        this.client.disconnect();
     }
 }
