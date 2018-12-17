@@ -225,6 +225,17 @@ p {
   -webkit-user-drag: none;
 }
 
+.clickable-cards {
+  display: flex;
+  justify-content: center;
+}
+
+.clickable-card {
+  margin: 1em;
+  text-align: center;
+  flex: initial;
+}
+
 // endregion
 
 // region buttons

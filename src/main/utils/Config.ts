@@ -15,9 +15,12 @@ export default class Config {
         if (fileExists(this.configPath)) {
             const contents: string = readFileSync(this.configPath).toString("utf8");
             const config: object = JSON.parse(contents);
-            if (config[key]) {
+            console.log(config);
+            if (config.hasOwnProperty(key)) {
+                console.log("saved value", config[key]);
                 return config[key];
             } else if (!noDefault && this.defaultConfig[key]) {
+                console.log("default value", this.defaultConfig[key]);
                 return this.defaultConfig[key];
             } else {
                 return undefined;

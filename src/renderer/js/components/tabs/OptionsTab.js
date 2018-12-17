@@ -39,6 +39,13 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
                 <br>
                 <button class="primary" @click="moveInstall">{{_("renderer.tab_options.section_storage.button_change")}}</button>
             </div>
+            <div v-else-if="selected_option === 'discord'">
+                <h1>{{_("renderer.tab_options.section_discord.title")}}</h1>
+                <p>{{_("renderer.tab_options.section_discord.subtitle")}}</p>
+                <br>
+                <button class="danger" v-if="richPresenceEnabled()" @click="setRichPresence(false)">{{_("renderer.tab_options.section_discord.button_disable")}}</button>
+                <button class="success" v-else @click="setRichPresence(true)">{{_("renderer.tab_options.section_discord.button_enable")}}</button>
+            </div>
         </div>
     </div>
 </div>
@@ -85,6 +92,13 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
         "setBackground": function (background) {
             ddmm.config.saveConfigValue("background", background);
             this.$emit("set_background", background);
+        },
+        "richPresenceEnabled": function () {
+            return ddmm.config.readConfigValue("discordEnabled");
+        },
+        "setRichPresence": function (enabled) {
+            ddmm.config.saveConfigValue("discordEnabled", !!enabled);
+            this.$forceUpdate();
         }
     },
     "mounted": function () {

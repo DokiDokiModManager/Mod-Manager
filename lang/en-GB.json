@@ -87,6 +87,12 @@
         "description_moving": "Warning! If you choose to change your install location, all your mods, installations and save data will be moved. This may take several minutes, and cannot be interrupted.",
         "description_current": "Current location: {0}",
         "button_change": "Change Install Location"
+      },
+      "section_discord": {
+        "title": "Discord Rich Presence",
+        "subtitle": "Share which mod you're playing with your Discord friends.",
+        "button_enable": "Enable",
+        "button_disable": "Disable"
       }
     },
     "tab_about": {

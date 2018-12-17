@@ -15,10 +15,13 @@ class Config {
         if (fs_1.existsSync(this.configPath)) {
             const contents = fs_1.readFileSync(this.configPath).toString("utf8");
             const config = JSON.parse(contents);
-            if (config[key]) {
+            console.log(config);
+            if (config.hasOwnProperty(key)) {
+                console.log("saved value", config[key]);
                 return config[key];
             }
             else if (!noDefault && this.defaultConfig[key]) {
+                console.log("default value", this.defaultConfig[key]);
                 return this.defaultConfig[key];
             }
             else {

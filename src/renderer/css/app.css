@@ -210,6 +210,17 @@ p {
   -webkit-user-drag: none;
 }
 
+.clickable-cards {
+  display: flex;
+  justify-content: center;
+}
+
+.clickable-card {
+  margin: 1em;
+  text-align: center;
+  flex: initial;
+}
+
 button {
   font-family: "Open Sans", sans-serif;
   color: #fff;
