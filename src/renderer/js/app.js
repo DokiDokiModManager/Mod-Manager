@@ -12,7 +12,13 @@ const app = new Vue({
             {"id": "store", "name": ddmm.translate("renderer.tabs.tab_store"), "component": "ddmm-store-tab"},
             {"id": "options", "name": ddmm.translate("renderer.tabs.tab_options"), "component": "ddmm-options-tab"},
             {"id": "about", "name": ddmm.translate("renderer.tabs.tab_about"), "component": "ddmm-about-tab"}
-        ]
+        ],
+        "running_cover": {
+            "display": false,
+            "title": "",
+            "description": "",
+            "dismissable": false
+        }
     },
     "computed": {
         "currentTabComponent": function () {
@@ -40,3 +46,11 @@ const app = new Vue({
 if (ddmm.env.DDMM_INCOGNITO) {
     app.app_name = "App Name";
 }
+
+ddmm.on("running cover", cover => {
+    console.dir(cover);
+    app.running_cover.display = cover.display;
+    app.running_cover.title = cover.title;
+    app.running_cover.description = cover.description;
+    app.running_cover.dismissable = cover.dismissable;
+});

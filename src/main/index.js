@@ -77,8 +77,8 @@ function launchInstall(folderName) {
     appWindow.webContents.send("running cover", {
         display: true,
         dismissable: false,
-        title: lang.translate("running_cover.running.title"),
-        description: lang.translate("running_cover.running.description")
+        title: lang.translate("main.running_cover.title_running"),
+        description: lang.translate("main.running_cover.description_running")
     });
     InstallLauncher_1.default.launchInstall(folderName, richPresence).then(() => {
         appWindow.restore(); // show DDMM again
@@ -91,7 +91,7 @@ function launchInstall(folderName) {
         appWindow.webContents.send("running cover", {
             display: true,
             dismissable: true,
-            title: lang.translate("running_cover.error.title"),
+            title: lang.translate("main.running_cover.title_crashed"),
             description: err
         });
     });
@@ -142,11 +142,10 @@ electron_1.ipcMain.on("launch install", (ev, folderName) => {
 // Browse for a mod
 electron_1.ipcMain.on("browse mods", (ev) => {
     electron_1.dialog.showOpenDialog(appWindow, {
-        buttonLabel: lang.translate("mods.browse_dialog.button_label"),
-        title: lang.translate("mods.browse_dialog.title"),
+        title: lang.translate("main.mod_browse_dialog.title"),
         filters: [{
                 extensions: ["zip", "gz", "tar", "rar", "7z"],
-                name: lang.translate("mods.browse_dialog.file_format_name")
+                name: lang.translate("main.mod_browse_dialog.file_format_name")
             }],
     }, (filePaths) => {
         ev.returnValue = filePaths;

@@ -24,7 +24,7 @@ export default class InstallLauncher {
                 installData =
                     JSON.parse(readFileSync(joinPath(installFolder, "install.json")).toString("utf8"));
             } catch (e) {
-                rj(lang.translate("errors.launch.install_corrupt"));
+                rj(lang.translate("main.running_cover.install_corrupt"));
             }
 
             if (richPresence) richPresence.setPlayingStatus(installData.name);
@@ -58,7 +58,7 @@ export default class InstallLauncher {
 
                 procHandle.on("error", () => {
                     richPresence.setIdleStatus();
-                    rj(lang.translate("errors.launch.install_crashed"))
+                    rj(lang.translate("main.running_cover.install_crashed"))
                 });
 
                 procHandle.on("close", () => {
@@ -67,7 +67,7 @@ export default class InstallLauncher {
                 });
 
             } else {
-                rj(lang.translate("errors.launch.install_missing"));
+                rj(lang.translate("main.running_cover.install_missing"));
             }
         });
     }

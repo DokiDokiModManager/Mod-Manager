@@ -10,6 +10,13 @@
 </head>
 <body>
 <div id="app" :class="['os-'+system_platform]" :style="{'background-image': backgroundImageStyle}">
+    <div class="running-cover" v-if="running_cover.display">
+        <h1>{{running_cover.title}}</h1>
+        <p>{{running_cover.description}}</p>
+        <br>
+        <p><button v-if="running_cover.dismissable" @click="running_cover.display = false" class="primary">{{_("main.running_cover.button_close")}}</button></p>
+    </div>
+
     <div class="titlebar">
         <div class="app-title">
             <span>{{app_name}}</span> <small>v{{app_version}}</small>

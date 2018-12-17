@@ -115,10 +115,23 @@
     }
   },
   "main": {
+    "running_cover": {
+      "title_running": "DDLC is running",
+      "title_crashed": "Something went wrong",
+      "button_close": "Close",
+      "description_running": "Close the game to make changes to your mods.",
+      "install_missing": "The install could not be found.",
+      "install_corrupt": "The install is incomplete or corrupt.",
+      "install_crashed": "The game failed to launch or crashed."
+    },
     "move_install": {
       "title": "Select new install folder",
       "error_title": "Failed to move install folder",
       "error_description": "Check that you have permission and enough space to move to this folder."
+    },
+    "mod_browse_dialog": {
+      "title": "Find a mod to install",
+      "file_format_name": "Mods"
     }
   }
 }

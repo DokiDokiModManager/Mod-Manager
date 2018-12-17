@@ -342,3 +342,19 @@ input:focus, textarea:focus {
 }
 
 // endregion
+
+// region running cover
+.running-cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  background-color: rgba(0,0,0, 0.75);
+  color: $ui-text-colour;
+  text-align: center;
+  padding: 4em;
+}
+
+// endregion
