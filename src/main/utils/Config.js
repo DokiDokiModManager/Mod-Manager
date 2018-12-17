@@ -55,7 +55,8 @@ class Config {
  */
 Config.defaultConfig = {
     installFolder: path_1.join(electron_1.app.getPath("userData"), "GameData"),
-    background: "default.png"
+    background: "default.png",
+    discordEnabled: true
 };
 Config.configPath = path_1.join(electron_1.app.getPath("userData"), "config.json");
 exports.default = Config;
