@@ -80,6 +80,13 @@
         "subtitle": "Customise your copy of Doki Doki Mod Manager with one of these backgrounds.",
         "button_none": "No Background",
         "description_credit": "Original DDLC backgrounds courtesy of Team Salvato. Other backgrounds courtesy of reckonusm and famous1622."
+      },
+      "section_storage": {
+        "title": "Storage Location",
+        "subtitle": "Change where your game data is stored.",
+        "description_moving": "Warning! If you choose to change your install location, all your mods, installations and save data will be moved. This may take several minutes, and cannot be interrupted.",
+        "description_current": "Current location: {0}",
+        "button_change": "Change Install Location"
       }
     },
     "tab_about": {
@@ -98,6 +105,13 @@
       "support_donate": "Make a one-off donation",
       "support_steelseries": "Get 10% off SteelSeries gaming peripherals (affiliate link)",
       "support_code": "Contribute to the project (code or translations)"
+    }
+  },
+  "main": {
+    "move_install": {
+      "title": "Select new install folder",
+      "error_title": "Failed to move install folder",
+      "error_description": "Check that you have permission and enough space to move to this folder."
     }
   }
 }

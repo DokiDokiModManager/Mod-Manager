@@ -29,6 +29,16 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
                 
                 <p>{{_("renderer.tab_options.section_backgrounds.description_credit")}}</p>
             </div>
+            <div v-else-if="selected_option === 'storage'">
+                <h1>{{_("renderer.tab_options.section_storage.title")}}</h1>
+                <p>{{_("renderer.tab_options.section_storage.subtitle")}}</p>
+                <br>
+                <p><strong>{{_("renderer.tab_options.section_storage.description_moving")}}</strong></p>
+                <br>
+                <p>{{_("renderer.tab_options.section_storage.description_current", installFolder)}}</p>
+                <br>
+                <button class="primary" @click="moveInstall">{{_("renderer.tab_options.section_storage.button_change")}}</button>
+            </div>
         </div>
     </div>
 </div>
@@ -60,8 +70,14 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
             ]
         }
     },
+    "computed": {
+        "installFolder": function () {
+            return ddmm.config.readConfigValue("installFolder");
+        }
+    },
     "methods": {
         "_": ddmm.translate,
+        "moveInstall": ddmm.app.beginMoveInstall,
         "selectOption": function (option) {
             this.selected_option = option;
             sessionStorage.setItem("options_last_id", option);

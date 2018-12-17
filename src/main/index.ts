@@ -265,16 +265,19 @@ ipcMain.on("create shortcut", (ev: IpcMessageEvent, folderName: string) => {
 // move installation folder
 ipcMain.on("move install", () => {
     dialog.showOpenDialog(appWindow, {
-        title: "select folder",
+        title: lang.translate("main.move_install.title"),
         properties: ["openDirectory"]
     }, filePaths => {
         if (filePaths && filePaths[0]) {
+            appWindow.hide();
             const oldInstallFolder: string = Config.readConfigValue("installFolder");
-            const newInstallFolder: string = filePaths[0];
-            Config.saveConfigValue("installFolder", newInstallFolder);
-            move(oldInstallFolder, newInstallFolder, e => {
+            const newInstallFolder: string = joinPath(filePaths[0], "DDMM_GameData");
+            move(oldInstallFolder, newInstallFolder, {overwrite: false}, e => {
                 if (e) {
-                    dialog.showErrorBox("failed to move", "add translations please :c");
+                    console.log(e);
+                    dialog.showErrorBox(lang.translate("main.move_install.error_title"), lang.translate("main.move_install.error_description"));
+                } else {
+                    Config.saveConfigValue("installFolder", newInstallFolder);
                 }
                 app.relaunch();
                 app.quit();

@@ -209,16 +209,20 @@ electron_1.ipcMain.on("create shortcut", (ev, folderName) => {
 // move installation folder
 electron_1.ipcMain.on("move install", () => {
     electron_1.dialog.showOpenDialog(appWindow, {
-        title: "select folder",
+        title: lang.translate("main.move_install.title"),
         properties: ["openDirectory"]
     }, filePaths => {
         if (filePaths && filePaths[0]) {
+            appWindow.hide();
             const oldInstallFolder = Config_1.default.readConfigValue("installFolder");
-            const newInstallFolder = filePaths[0];
-            Config_1.default.saveConfigValue("installFolder", newInstallFolder);
-            fs_extra_1.move(oldInstallFolder, newInstallFolder, e => {
+            const newInstallFolder = path_1.join(filePaths[0], "DDMM_GameData");
+            fs_extra_1.move(oldInstallFolder, newInstallFolder, { overwrite: false }, e => {
                 if (e) {
-                    electron_1.dialog.showErrorBox("failed to move", "add translations please :c");
+                    console.log(e);
+                    electron_1.dialog.showErrorBox(lang.translate("main.move_install.error_title"), lang.translate("main.move_install.error_description"));
+                }
+                else {
+                    Config_1.default.saveConfigValue("installFolder", newInstallFolder);
                 }
                 electron_1.app.relaunch();
                 electron_1.app.quit();
