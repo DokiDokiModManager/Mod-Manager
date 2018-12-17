@@ -17,6 +17,14 @@
         <p><button v-if="running_cover.dismissable" @click="running_cover.display = false" class="primary">{{_("main.running_cover.button_close")}}</button></p>
     </div>
 
+    <div class="crash-cover" v-if="crash_cover.display">
+        <h1>{{crash_cover.title}}</h1>
+        <p>{{crash_cover.description}}</p>
+        <br>
+        <p v-if="crash_cover.fatal"><button class="danger" @click="windowClose">{{_("renderer.crash_cover.button_close")}}</button></p>
+        <p v-else><button class="danger" @click="crash_cover.display = false">{{_("renderer.crash_cover.button_continue")}}</button></p>
+    </div>
+
     <div class="titlebar">
         <div class="app-title">
             <span>{{app_name}}</span> <small>v{{app_version}}</small>

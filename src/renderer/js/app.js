@@ -18,6 +18,12 @@ const app = new Vue({
             "title": "",
             "description": "",
             "dismissable": false
+        },
+        "crash_cover": {
+            "display": false,
+            "title": "",
+            "description": "",
+            "fatal": false
         }
     },
     "computed": {
@@ -53,4 +59,12 @@ ddmm.on("running cover", cover => {
     app.running_cover.title = cover.title;
     app.running_cover.description = cover.description;
     app.running_cover.dismissable = cover.dismissable;
+});
+
+ddmm.on("error", error => {
+    console.log(error);
+    app.crash_cover.display = true;
+    app.crash_cover.title = error.title;
+    app.crash_cover.description = error.body;
+    app.crash_cover.fatal = error.fatal;
 });

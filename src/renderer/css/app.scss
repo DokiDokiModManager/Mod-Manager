@@ -343,7 +343,7 @@ input:focus, textarea:focus {
 
 // endregion
 
-// region running cover
+// region running and crash covers
 .running-cover {
   position: fixed;
   top: 0;
@@ -351,10 +351,24 @@ input:focus, textarea:focus {
   width: 100vw;
   height: 100vh;
   z-index: 100;
-  background-color: rgba(0,0,0, 0.75);
+  background-color: rgba(0, 0, 0, 0.75);
   color: $ui-text-colour;
   text-align: center;
   padding: 4em;
+}
+
+.crash-cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 101;
+  background-size: cover;
+  background-image: radial-gradient(rgba(128, 0, 0, 0.5), rgba(128, 0, 0, 0.99) 90%), url(../images/crash.png);
+  color: $ui-text-colour;
+  padding: 2em;
+  font-size: 1.25em;
 }
 
 // endregion

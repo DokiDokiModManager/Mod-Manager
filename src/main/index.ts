@@ -310,8 +310,8 @@ process.on("uncaughtException", (e: Error) => {
     console.log("Uncaught exception occurred - treating this as a crash.");
     console.error(e);
     showError(
-        lang.translate("exceptions.main_crash_notification.title"),
-        lang.translate("exceptions.main_crash_notification.body"),
+        lang.translate("main.errors.exception.title"),
+        lang.translate("main.errors.exception.body"),
         e.toString(),
         true
     );

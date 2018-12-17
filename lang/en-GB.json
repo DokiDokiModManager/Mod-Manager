@@ -13,6 +13,10 @@
       "minimise": "Minimise",
       "update_spinner": "Checking for updates..."
     },
+    "crash_cover": {
+      "button_close": "Quit",
+      "button_continue": "Close"
+    },
     "tab_mods": {
       "list": {
         "header_new": "Get Started",
@@ -132,6 +136,12 @@
     "mod_browse_dialog": {
       "title": "Find a mod to install",
       "file_format_name": "Mods"
+    },
+    "errors": {
+      "exception": {
+        "title": "Doki Doki Mod Manager crashed",
+        "body": "The problem has been reported. Please restart and try again."
+      }
     }
   }
 }

@@ -250,7 +250,7 @@ electron_1.ipcMain.on("debug crash", () => {
 process.on("uncaughtException", (e) => {
     console.log("Uncaught exception occurred - treating this as a crash.");
     console.error(e);
-    showError(lang.translate("exceptions.main_crash_notification.title"), lang.translate("exceptions.main_crash_notification.body"), e.toString(), true);
+    showError(lang.translate("main.errors.exception.title"), lang.translate("main.errors.exception.body"), e.toString(), true);
 });
 // endregion
 // region App initialisation
