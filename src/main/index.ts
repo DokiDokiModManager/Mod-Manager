@@ -66,6 +66,13 @@ const lang: I18n = new I18n(app.getLocale());
 
 // region IPC functions
 
+/**
+ * Shows an error message in the UI
+ * @param title The title of the error
+ * @param body Some more description text
+ * @param stacktrace A stacktrace to show on the frontend
+ * @param fatal Whether the app needs to restart or not
+ */
 function showError(title: string, body: string, stacktrace: string, fatal: boolean) {
     appWindow.webContents.send("error message", {
         title, body, fatal, stacktrace
@@ -75,7 +82,11 @@ function showError(title: string, body: string, stacktrace: string, fatal: boole
     appWindow.setClosable(true);
 }
 
-function launchInstall(folderName) {
+/**
+ * Launches an install, handling frontend functionality automatically
+ * @param folderName The folder containing the install
+ */
+function launchInstall(folderName): void {
     Config.saveConfigValue("lastLaunchedInstall", folderName);
     appWindow.minimize(); // minimise the window to draw attention to the fact another window will be appearing
     appWindow.webContents.send("running cover", {
@@ -370,11 +381,6 @@ app.on("ready", () => {
 
     // Activate download manager
     downloadManager = new DownloadManager(appWindow);
-
-    // TODO: implement this as an actual feature
-    // DDLCDownloader.getDownloadLink().then(link => {
-    //     downloadManager.downloadFile(link, "C:\\DDMM\\ddlc.zip");
-    // });
 
     // set user agent so web services can contact me if necessary
     appWindow.webContents.setUserAgent(USER_AGENT);
