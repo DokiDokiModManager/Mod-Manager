@@ -246,14 +246,14 @@ button {
   user-select: none;
   display: inline-block;
   text-decoration: none;
-  padding: 0.5em 1em;
+  padding: 0.75em 2em;
   font-size: 14px;
   border-radius: 3px;
   text-align: center;
   font-weight: normal;
   outline: none;
-  border: 1px solid rgba(0, 0, 0, 0.1);
   transition: background-color 0.25s;
+  border: none;
 }
 
 button.huge {
@@ -351,10 +351,9 @@ input:focus, textarea:focus {
   width: 100vw;
   height: 100vh;
   z-index: 100;
-  background-color: rgba(0, 0, 0, 0.75);
+  background-size: cover;
   color: $ui-text-colour;
-  text-align: center;
-  padding: 4em;
+  padding: 3em;
 }
 
 .crash-cover {
@@ -367,7 +366,14 @@ input:focus, textarea:focus {
   background-size: cover;
   background-image: radial-gradient(rgba(128, 0, 0, 0.5), rgba(128, 0, 0, 0.99) 90%), url(../images/crash.png);
   color: $ui-text-colour;
-  padding: 2em;
+  padding: 3em;
+}
+
+.running-cover h1, .crash-cover h1 {
+  font-size: 2.25em;
+}
+
+.running-cover p, .crash-cover p {
   font-size: 1.25em;
 }
 

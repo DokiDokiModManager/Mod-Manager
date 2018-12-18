@@ -12,7 +12,6 @@ if (fs_extra_1.existsSync(path_1.join(electron_1.app.getPath("appData"), "Doki D
 else {
     electron_1.app.setPath("userData", path_1.join(electron_1.app.getPath("appData"), "DokiDokiModManager"));
 }
-electron_1.app.setName("Doki Doki Mod Manager!");
 const ModList_1 = require("./mod/ModList");
 const i18n_1 = require("./utils/i18n");
 const InstallList_1 = require("./install/InstallList");

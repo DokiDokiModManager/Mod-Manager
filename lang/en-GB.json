@@ -15,7 +15,7 @@
     },
     "crash_cover": {
       "button_close": "Quit",
-      "button_continue": "Close"
+      "button_continue": "Continue"
     },
     "tab_mods": {
       "list": {
@@ -122,7 +122,7 @@
     "running_cover": {
       "title_running": "DDLC is running",
       "title_crashed": "Something went wrong",
-      "button_close": "Close",
+      "button_close": "OK",
       "description_running": "Close the game to make changes to your mods.",
       "install_missing": "The install could not be found.",
       "install_corrupt": "The install is incomplete or corrupt.",

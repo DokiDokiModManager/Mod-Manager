@@ -11,8 +11,6 @@ if (existsSync(joinPath(app.getPath("appData"), "Doki Doki Mod Manager!"))) {
     app.setPath("userData", joinPath(app.getPath("appData"), "DokiDokiModManager"));
 }
 
-app.setName("Doki Doki Mod Manager!");
-
 import ModList from "./mod/ModList";
 import I18n from "./utils/i18n";
 import InstallList from "./install/InstallList";

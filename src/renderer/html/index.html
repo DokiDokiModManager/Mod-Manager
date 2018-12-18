@@ -10,7 +10,7 @@
 </head>
 <body>
 <div id="app" :class="['os-'+system_platform]" :style="{'background-image': backgroundImageStyle}">
-    <div class="running-cover" v-if="running_cover.display">
+    <div class="running-cover" v-if="running_cover.display" :style="{'background-image': backgroundImageStyle}">
         <h1>{{running_cover.title}}</h1>
         <p>{{running_cover.description}}</p>
         <br>
