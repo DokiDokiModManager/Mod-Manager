@@ -192,8 +192,8 @@ ipcMain.on("create install", (ev: IpcMessageEvent, install: { folderName: string
                 appWindow.setClosable(true);
             }).catch((e: Error) => {
                 showError(
-                    lang.translate("exceptions.mod_install_notification.title"),
-                    lang.translate("exceptions.mod_install_notification.body"),
+                    lang.translate("main.errors.install.title"),
+                    lang.translate("main.errors.install.body"),
                     e.toString(),
                     false
                 );
@@ -201,8 +201,8 @@ ipcMain.on("create install", (ev: IpcMessageEvent, install: { folderName: string
         }
     }).catch((e: Error) => {
         showError(
-            lang.translate("exceptions.game_install_notification.title"),
-            lang.translate("exceptions.game_install_notification.body"),
+            lang.translate("main.errors.install.title"),
+            lang.translate("main.errors.install.body"),
             e.toString(),
             false
         );
@@ -215,8 +215,8 @@ ipcMain.on("delete install", (ev: IpcMessageEvent, folderName: string) => {
         appWindow.webContents.send("got installs", InstallList.getInstallList());
     }).catch((e: Error) => {
         showError(
-            lang.translate("exceptions.install_delete_notification.title"),
-            lang.translate("exceptions.install_delete_notification.body"),
+            lang.translate("main.errors.uninstall.title"),
+            lang.translate("main.errors.uninstall.body"),
             e.toString(),
             false
         );
@@ -229,8 +229,8 @@ ipcMain.on("delete save", (ev: IpcMessageEvent, folderName: string) => {
         appWindow.webContents.send("got installs", InstallList.getInstallList());
     }).catch((e: Error) => {
         showError(
-            lang.translate("exceptions.save_delete_notification.title"),
-            lang.translate("exceptions.save_delete_notification.body"),
+            lang.translate("main.errors.save_delete.title"),
+            lang.translate("main.errors.save_delete.body"),
             e.toString(),
             false
         );
@@ -257,8 +257,8 @@ ipcMain.on("create shortcut", (ev: IpcMessageEvent, folderName: string) => {
                 target: process.argv0
             })) {
                 showError(
-                    lang.translate("mods.shortcut.error_title"),
-                    lang.translate("mods.shortcut.error_message"),
+                    lang.translate("main.errors.shortcut.title"),
+                    lang.translate("main.errors.shortcut.body"),
                     null,
                     false
                 );
@@ -280,7 +280,7 @@ ipcMain.on("move install", () => {
             move(oldInstallFolder, newInstallFolder, {overwrite: false}, e => {
                 if (e) {
                     console.log(e);
-                    dialog.showErrorBox(lang.translate("main.move_install.error_title"), lang.translate("main.move_install.error_description"));
+                    dialog.showErrorBox(lang.translate("main.errors.move_install.title"), lang.translate("main.errors.move_install.body"));
                 } else {
                     Config.saveConfigValue("installFolder", newInstallFolder);
                 }
@@ -401,8 +401,8 @@ app.on("ready", () => {
 
     appWindow.webContents.on("crashed", () => {
         const crashNotif = new Notification({
-            title: lang.translate("exceptions.renderer_crash_notification.title"),
-            body: lang.translate("exceptions.renderer_crash_notification.body"),
+            title: lang.translate("main.errors.exception.title"),
+            body: lang.translate("main.errors.exception.body"),
         });
 
         crashNotif.show();
@@ -411,8 +411,8 @@ app.on("ready", () => {
 
     appWindow.on("unresponsive", () => {
         const freezeNotif = new Notification({
-            title: lang.translate("exceptions.renderer_freeze_notification.title"),
-            body: lang.translate("exceptions.renderer_freeze_notification.body"),
+            title: lang.translate("main.errors.renderer_freeze.title"),
+            body: lang.translate("main.errors.renderer_freeze.body"),
         });
 
         freezeNotif.show();

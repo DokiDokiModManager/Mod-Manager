@@ -225,17 +225,6 @@ p {
   -webkit-user-drag: none;
 }
 
-.clickable-cards {
-  display: flex;
-  justify-content: center;
-}
-
-.clickable-card {
-  margin: 1em;
-  text-align: center;
-  flex: initial;
-}
-
 // endregion
 
 // region buttons
@@ -364,7 +353,7 @@ input:focus, textarea:focus {
   font-size: 2.25em;
 }
 
-.cover p {
+.cover p, .cover pre {
   font-size: 1.25em;
 }
 

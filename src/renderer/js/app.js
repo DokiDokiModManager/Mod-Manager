@@ -23,7 +23,8 @@ const app = new Vue({
             "display": false,
             "title": "",
             "description": "",
-            "fatal": false
+            "fatal": false,
+            "stacktrace": ""
         }
     },
     "computed": {
@@ -74,4 +75,5 @@ ddmm.on("error", error => {
     app.crash_cover.title = error.title;
     app.crash_cover.description = error.body;
     app.crash_cover.fatal = error.fatal;
+    app.crash_cover.stacktrace = error.stacktrace;
 });

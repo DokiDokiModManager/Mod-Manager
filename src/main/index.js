@@ -166,11 +166,11 @@ electron_1.ipcMain.on("create install", (ev, install) => {
                 windowClosable = true;
                 appWindow.setClosable(true);
             }).catch((e) => {
-                showError(lang.translate("exceptions.mod_install_notification.title"), lang.translate("exceptions.mod_install_notification.body"), e.toString(), false);
+                showError(lang.translate("main.errors.install.title"), lang.translate("main.errors.install.body"), e.toString(), false);
             });
         }
     }).catch((e) => {
-        showError(lang.translate("exceptions.game_install_notification.title"), lang.translate("exceptions.game_install_notification.body"), e.toString(), false);
+        showError(lang.translate("main.errors.install.title"), lang.translate("main.errors.install.body"), e.toString(), false);
     });
 });
 // Delete an install permanently
@@ -178,7 +178,7 @@ electron_1.ipcMain.on("delete install", (ev, folderName) => {
     InstallManager_1.default.deleteInstall(folderName).then(() => {
         appWindow.webContents.send("got installs", InstallList_1.default.getInstallList());
     }).catch((e) => {
-        showError(lang.translate("exceptions.install_delete_notification.title"), lang.translate("exceptions.install_delete_notification.body"), e.toString(), false);
+        showError(lang.translate("main.errors.uninstall.title"), lang.translate("main.errors.uninstall.body"), e.toString(), false);
     });
 });
 // Delete a save file for an install
@@ -186,7 +186,7 @@ electron_1.ipcMain.on("delete save", (ev, folderName) => {
     InstallManager_1.default.deleteSaveData(folderName).then(() => {
         appWindow.webContents.send("got installs", InstallList_1.default.getInstallList());
     }).catch((e) => {
-        showError(lang.translate("exceptions.save_delete_notification.title"), lang.translate("exceptions.save_delete_notification.body"), e.toString(), false);
+        showError(lang.translate("main.errors.save_delete.title"), lang.translate("main.errors.save_delete.body"), e.toString(), false);
     });
 });
 // desktop shortcut creation
@@ -207,7 +207,7 @@ electron_1.ipcMain.on("create shortcut", (ev, folderName) => {
                 args: "ddmm://launch-install/" + folderName,
                 target: process.argv0
             })) {
-                showError(lang.translate("mods.shortcut.error_title"), lang.translate("mods.shortcut.error_message"), null, false);
+                showError(lang.translate("main.errors.shortcut.title"), lang.translate("main.errors.shortcut.body"), null, false);
             }
         }
     });
@@ -225,7 +225,7 @@ electron_1.ipcMain.on("move install", () => {
             fs_extra_1.move(oldInstallFolder, newInstallFolder, { overwrite: false }, e => {
                 if (e) {
                     console.log(e);
-                    electron_1.dialog.showErrorBox(lang.translate("main.move_install.error_title"), lang.translate("main.move_install.error_description"));
+                    electron_1.dialog.showErrorBox(lang.translate("main.errors.move_install.title"), lang.translate("main.errors.move_install.body"));
                 }
                 else {
                     Config_1.default.saveConfigValue("installFolder", newInstallFolder);
@@ -321,16 +321,16 @@ electron_1.app.on("ready", () => {
     });
     appWindow.webContents.on("crashed", () => {
         const crashNotif = new electron_1.Notification({
-            title: lang.translate("exceptions.renderer_crash_notification.title"),
-            body: lang.translate("exceptions.renderer_crash_notification.body"),
+            title: lang.translate("main.errors.exception.title"),
+            body: lang.translate("main.errors.exception.body"),
         });
         crashNotif.show();
         electron_1.app.quit();
     });
     appWindow.on("unresponsive", () => {
         const freezeNotif = new electron_1.Notification({
-            title: lang.translate("exceptions.renderer_freeze_notification.title"),
-            body: lang.translate("exceptions.renderer_freeze_notification.body"),
+            title: lang.translate("main.errors.renderer_freeze.title"),
+            body: lang.translate("main.errors.renderer_freeze.body"),
         });
         freezeNotif.show();
     });
