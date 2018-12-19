@@ -36,6 +36,13 @@ const app = new Vue({
             } else {
                 return "none";
             }
+        },
+        "backgroundImageCrashStyle": function () {
+            if (this.background_image && this.background_image !== "none") {
+                return "radial-gradient(rgba(64, 0, 0, 0.5), rgba(64, 0, 0, 0.99) 90%), url(../images/backgrounds/" + this.background_image + ")";
+            } else {
+                return "none";
+            }
         }
     },
     "methods": {

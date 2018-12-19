@@ -319,7 +319,7 @@ input:focus, textarea:focus {
   border-color: #aaa;
 }
 
-.running-cover {
+.cover {
   position: fixed;
   top: 0;
   left: 0;
@@ -331,24 +331,15 @@ input:focus, textarea:focus {
   padding: 3em;
 }
 
-.crash-cover {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 101;
-  background-size: cover;
-  background-image: radial-gradient(rgba(128, 0, 0, 0.5), rgba(128, 0, 0, 0.99) 90%), url(../images/crash.png);
-  color: #ddd;
-  padding: 3em;
+.cover.crash {
+  z-index: 200;
 }
 
-.running-cover h1, .crash-cover h1 {
+.cover h1 {
   font-size: 2.25em;
 }
 
-.running-cover p, .crash-cover p {
+.cover p {
   font-size: 1.25em;
 }
 
