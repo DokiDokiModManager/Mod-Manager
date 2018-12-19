@@ -166,10 +166,12 @@ electron_1.ipcMain.on("create install", (ev, install) => {
                 windowClosable = true;
                 appWindow.setClosable(true);
             }).catch((e) => {
+                appWindow.webContents.send("got installs", InstallList_1.default.getInstallList());
                 showError(lang.translate("main.errors.install.title"), lang.translate("main.errors.install.body"), e.toString(), false);
             });
         }
     }).catch((e) => {
+        appWindow.webContents.send("got installs", InstallList_1.default.getInstallList());
         showError(lang.translate("main.errors.install.title"), lang.translate("main.errors.install.body"), e.toString(), false);
     });
 });

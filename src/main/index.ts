@@ -191,6 +191,7 @@ ipcMain.on("create install", (ev: IpcMessageEvent, install: { folderName: string
                 windowClosable = true;
                 appWindow.setClosable(true);
             }).catch((e: Error) => {
+                appWindow.webContents.send("got installs", InstallList.getInstallList());
                 showError(
                     lang.translate("main.errors.install.title"),
                     lang.translate("main.errors.install.body"),
@@ -200,6 +201,7 @@ ipcMain.on("create install", (ev: IpcMessageEvent, install: { folderName: string
             });
         }
     }).catch((e: Error) => {
+        appWindow.webContents.send("got installs", InstallList.getInstallList());
         showError(
             lang.translate("main.errors.install.title"),
             lang.translate("main.errors.install.body"),

@@ -188,7 +188,9 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             ddmm.mods.createInstall(this.install_creation.folder_name, this.install_creation.install_name, this.install_creation.global_save, (this.install_creation.has_mod ? this.install_creation.mod : null));
             ddmm.once("install list", () => {
                 this.is_installing = false;
-                this.selectItem(this.install_creation.folder_name, "install");
+                if (this.installs.find(i => i.folderName === this.install_creation.folder_name)) {
+                    this.selectItem(this.install_creation.folder_name, "install");
+                }
             });
         },
         "_refreshInstallList": function (installs) {
