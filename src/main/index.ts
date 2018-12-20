@@ -180,12 +180,14 @@ ipcMain.on("browse mods", (ev: IpcMessageEvent) => {
 ipcMain.on("create install", (ev: IpcMessageEvent, install: { folderName: string, installName: string, globalSave: boolean, mod: string }) => {
     windowClosable = false;
     appWindow.setClosable(false);
+    console.log("[IPC create install] Creating install in " + install.folderName);
     InstallCreator.createInstall(install.folderName, install.installName, install.globalSave).then(() => {
         if (!install.mod) {
             appWindow.webContents.send("got installs", InstallList.getInstallList());
             windowClosable = true;
             appWindow.setClosable(true);
         } else {
+            console.log("[IPC create install] Installing mod " + install.mod + " in " + install.folderName);
             ModInstaller.installMod(install.mod, joinPath(Config.readConfigValue("installFolder"), "installs", install.folderName, "install")).then(() => {
                 appWindow.webContents.send("got installs", InstallList.getInstallList());
                 windowClosable = true;
@@ -213,7 +215,9 @@ ipcMain.on("create install", (ev: IpcMessageEvent, install: { folderName: string
 
 // Delete an install permanently
 ipcMain.on("delete install", (ev: IpcMessageEvent, folderName: string) => {
+    console.log("[IPC delete install] Deleting " + folderName);
     InstallManager.deleteInstall(folderName).then(() => {
+        console.log("[IPC delete install] Deleted " + folderName);
         appWindow.webContents.send("got installs", InstallList.getInstallList());
     }).catch((e: Error) => {
         showError(
@@ -227,7 +231,9 @@ ipcMain.on("delete install", (ev: IpcMessageEvent, folderName: string) => {
 
 // Delete a save file for an install
 ipcMain.on("delete save", (ev: IpcMessageEvent, folderName: string) => {
+    console.log("[IPC delete save] Deleting save data for " + folderName);
     InstallManager.deleteSaveData(folderName).then(() => {
+        console.log("[IPC delete save] Deleted save data for " + folderName);
         appWindow.webContents.send("got installs", InstallList.getInstallList());
     }).catch((e: Error) => {
         showError(
@@ -253,7 +259,7 @@ ipcMain.on("create shortcut", (ev: IpcMessageEvent, folderName: string) => {
         ]
     }, (file) => {
         if (file) {
-            console.log("Writing shortcut to " + file);
+            console.log("[IPC create shortcut] Writing shortcut to " + file);
             if (!shell.writeShortcutLink(file, "create", {
                 args: "ddmm://launch-install/" + folderName,
                 target: process.argv0
@@ -264,9 +270,21 @@ ipcMain.on("create shortcut", (ev: IpcMessageEvent, folderName: string) => {
                     null,
                     false
                 );
+            } else {
+                console.log("[IPC create shortcut] Written shortcut to " + file);
             }
         }
     });
+});
+
+// Check if install exists
+ipcMain.on("install exists", (ev: IpcMessageEvent, folderName: string) => {
+    if (!folderName || typeof folderName !== "string") {
+        console.warn("[IPC install exists] Folder name should be a string, received " + typeof folderName);
+        ev.returnValue = false;
+        return;
+    }
+    ev.returnValue = InstallManager.installExists(folderName);
 });
 
 // move installation folder

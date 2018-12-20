@@ -53,6 +53,11 @@ api.mods.createInstall = function (folderName, installName, globalSave, mod) {
     ipcRenderer.send("create install", {folderName, installName, globalSave, mod});
 };
 
+// File exists?
+api.mods.installExists = function (folderName) {
+  return ipcRenderer.sendSync("install exists", folderName);
+};
+
 // Fires an event on the DDMM object when the mod list has been retrieved
 ipcRenderer.on("got modlist", (ev, list) => {
     api.emit("mod list", list);

@@ -6,6 +6,13 @@ const Config_1 = require("../utils/Config");
 const fs_1 = require("fs");
 class InstallManager {
     /**
+     * Returns whether or not the given install exists (or there is a file/folder with that name)
+     * @param folderName The folder/file to check
+     */
+    static installExists(folderName) {
+        return fs_1.existsSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", folderName));
+    }
+    /**
      * Deletes an install of the game, including save files.
      * @param folderName The folder containing the install
      */

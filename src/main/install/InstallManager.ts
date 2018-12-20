@@ -6,6 +6,14 @@ import {existsSync} from "fs";
 export default class InstallManager {
 
     /**
+     * Returns whether or not the given install exists (or there is a file/folder with that name)
+     * @param folderName The folder/file to check
+     */
+    public static installExists(folderName: string): boolean {
+        return existsSync(joinPath(Config.readConfigValue("installFolder"), "installs", folderName));
+    }
+
+    /**
      * Deletes an install of the game, including save files.
      * @param folderName The folder containing the install
      */

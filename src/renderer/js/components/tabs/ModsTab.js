@@ -66,7 +66,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 
                 <div class="form-group">
                     <p><label>{{_("renderer.tab_mods.install_creation.label_folder_name")}}</label></p>
-                    <p><input type="text" :placeholder="_('renderer.tab_mods.install_creation.label_folder_name')" v-model="install_creation.folder_name"></p>
+                    <p><input type="text" :placeholder="_('renderer.tab_mods.install_creation.label_folder_name')" v-model="install_creation.folder_name" debounce="200"></p>
                 </div>
                 
                 <div class="form-group">
@@ -96,7 +96,10 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                     
                 </p>
                 
+                
                 <div class="form-group"><button class="primary" @click="createInstallSubmit" :disabled="shouldDisableCreation">{{_("renderer.tab_mods.install_creation.button_install")}}</button></div>
+                
+                <p v-if="install_creation.folder_name.length > 2 && installExists(install_creation.folder_name)">{{_("renderer.tab_mods.install_creation.status_exists")}}</p>
                 
                 <p v-if="is_installing"><i class="fas fa-spinner fa-spin"></i> {{_("renderer.tab_mods.install_creation.status_installing")}}</p>
             </div>
@@ -124,6 +127,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
     },
     "methods": {
         "_": ddmm.translate,
+        "installExists": ddmm.mods.installExists,
         "browseForMod": ddmm.mods.browseForMod,
         "showCreateInstall": function (mod) {
             if (this.selected_item.type === "create") return;
@@ -227,7 +231,8 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
         },
         "shouldDisableCreation": function () {
             return this.is_installing || (this.install_creation.has_mod && !this.install_creation.mod)
-                || this.install_creation.install_name.length < 2 || this.install_creation.folder_name.length < 2;
+                || this.install_creation.install_name.length < 2 || this.install_creation.folder_name.length < 2
+                || ddmm.mods.installExists(this.install_creation.folder_name);
         }
     },
     "mounted": function () {

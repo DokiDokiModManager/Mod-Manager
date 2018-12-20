@@ -154,6 +154,7 @@ electron_1.ipcMain.on("browse mods", (ev) => {
 electron_1.ipcMain.on("create install", (ev, install) => {
     windowClosable = false;
     appWindow.setClosable(false);
+    console.log("[IPC create install] Creating install in " + install.folderName);
     InstallCreator_1.default.createInstall(install.folderName, install.installName, install.globalSave).then(() => {
         if (!install.mod) {
             appWindow.webContents.send("got installs", InstallList_1.default.getInstallList());
@@ -161,6 +162,7 @@ electron_1.ipcMain.on("create install", (ev, install) => {
             appWindow.setClosable(true);
         }
         else {
+            console.log("[IPC create install] Installing mod " + install.mod + " in " + install.folderName);
             ModInstaller_1.default.installMod(install.mod, path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", install.folderName, "install")).then(() => {
                 appWindow.webContents.send("got installs", InstallList_1.default.getInstallList());
                 windowClosable = true;
@@ -177,7 +179,9 @@ electron_1.ipcMain.on("create install", (ev, install) => {
 });
 // Delete an install permanently
 electron_1.ipcMain.on("delete install", (ev, folderName) => {
+    console.log("[IPC delete install] Deleting " + folderName);
     InstallManager_1.default.deleteInstall(folderName).then(() => {
+        console.log("[IPC delete install] Deleted " + folderName);
         appWindow.webContents.send("got installs", InstallList_1.default.getInstallList());
     }).catch((e) => {
         showError(lang.translate("main.errors.uninstall.title"), lang.translate("main.errors.uninstall.body"), e.toString(), false);
@@ -185,7 +189,9 @@ electron_1.ipcMain.on("delete install", (ev, folderName) => {
 });
 // Delete a save file for an install
 electron_1.ipcMain.on("delete save", (ev, folderName) => {
+    console.log("[IPC delete save] Deleting save data for " + folderName);
     InstallManager_1.default.deleteSaveData(folderName).then(() => {
+        console.log("[IPC delete save] Deleted save data for " + folderName);
         appWindow.webContents.send("got installs", InstallList_1.default.getInstallList());
     }).catch((e) => {
         showError(lang.translate("main.errors.save_delete.title"), lang.translate("main.errors.save_delete.body"), e.toString(), false);
@@ -204,15 +210,27 @@ electron_1.ipcMain.on("create shortcut", (ev, folderName) => {
         ]
     }, (file) => {
         if (file) {
-            console.log("Writing shortcut to " + file);
+            console.log("[IPC create shortcut] Writing shortcut to " + file);
             if (!electron_1.shell.writeShortcutLink(file, "create", {
                 args: "ddmm://launch-install/" + folderName,
                 target: process.argv0
             })) {
                 showError(lang.translate("main.errors.shortcut.title"), lang.translate("main.errors.shortcut.body"), null, false);
             }
+            else {
+                console.log("[IPC create shortcut] Written shortcut to " + file);
+            }
         }
     });
+});
+// Check if install exists
+electron_1.ipcMain.on("install exists", (ev, folderName) => {
+    if (!folderName || typeof folderName !== "string") {
+        console.warn("[IPC install exists] Folder name should be a string, received " + typeof folderName);
+        ev.returnValue = false;
+        return;
+    }
+    ev.returnValue = InstallManager_1.default.installExists(folderName);
 });
 // move installation folder
 electron_1.ipcMain.on("move install", () => {
