@@ -36,24 +36,10 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 
                 <br>
                 
-                <template v-if="selectedInstall.mod">
-                    <template v-if="selectedInstall.mod.uses_sdk">
+                <template v-if="selectedInstall.mod && selectedInstall.mod.uses_sdk">
                         <p><strong>{{_("renderer.tab_mods.install.description_sdk")}}</strong></p>
                         
                         <br>
-                    </template>
-                    
-                    <h2>{{selectedInstall.mod.name}}</h2>
-                    <p>{{selectedInstall.mod.description}}</p>
-                    
-                    <template v-if="selectedInstall.mod.website || selectedInstall.mod.discord">
-                        <br>
-                        
-                        <p v-if="selectedInstall.mod.website"><a href="javascript:;" @click="openURL(selectedInstall.mod.website)"><i class="fas fa-fw fa-globe"></i> {{_("renderer.tab_mods.install.link_website", selectedInstall.mod.website)}}</a></p>
-                        <p v-if="selectedInstall.mod.discord"><a href="javascript:;" @click="openURL('https://discord.gg/' + selectedInstall.mod.discord)"><i class="fab fa-fw fa-discord"></i> {{_("renderer.tab_mods.install.link_discord", "discord.gg/" + selectedInstall.mod.discord)}}</a></p>
-                    </template>
-                    
-                    <br>
                 </template>
                 
                 <h2>{{_("renderer.tab_mods.install.title_screenshots", selectedInstall.screenshots.length)}}</h2>
@@ -65,6 +51,22 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                     <!--suppress RequiredAttributes, HtmlRequiredAltAttribute -->
                     <img v-for="img in selectedInstall.screenshots" :alt="img" :src="getURLToScreenshot(selectedInstall.folderName, img)" @click="openScreenshot(selectedInstall.folderName, img)" width="150">
                 </div>
+                
+                <br>
+                
+                <template v-if="selectedInstall.mod">                                    
+                    <h2>{{selectedInstall.mod.name}}</h2>
+                    <p><strong>{{_("renderer.tab_mods.install.description_author", selectedInstall.mod.author)}}</strong></p>
+                    <br>
+                    <p>{{selectedInstall.mod.description}}</p>
+                    
+                    <template v-if="selectedInstall.mod.website || selectedInstall.mod.discord">
+                        <br>
+                        
+                        <p v-if="selectedInstall.mod.website"><a href="javascript:;" @click="openURL(selectedInstall.mod.website)"><i class="fas fa-fw fa-globe"></i> {{_("renderer.tab_mods.install.link_website", selectedInstall.mod.website)}}</a></p>
+                        <p v-if="selectedInstall.mod.discord"><a href="javascript:;" @click="openURL('https://discord.gg/' + selectedInstall.mod.discord)"><i class="fab fa-fw fa-discord"></i> {{_("renderer.tab_mods.install.link_discord", "discord.gg/" + selectedInstall.mod.discord)}}</a></p>
+                    </template>
+                </template>
             </div>
             <div v-else-if="selected_item.type === 'mod'">
                 <h1>{{selected_item.id}}</h1>
