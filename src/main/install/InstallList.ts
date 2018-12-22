@@ -36,7 +36,7 @@ export default class InstallList {
                 }
 
                 if (data.name) {
-                    returned.push(new Install(data.name, folder, data.globalSave, screenshots));
+                    returned.push(new Install(data.name, folder, data.globalSave, screenshots, data.mod));
                 }
             } catch (e) {
                 console.info("Failed to read install data from " + dataFilePath, e.message);

@@ -146,6 +146,16 @@ p {
   margin: 0;
 }
 
+a {
+  color: #ddd;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a .fab {
+  font-weight: normal;
+}
+
 .mod-viewer-pane {
   display: flex;
   height: 100%;

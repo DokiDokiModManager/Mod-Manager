@@ -30,7 +30,7 @@ class InstallList {
                     console.log("Could not load screenshots due to an IO error", e.message);
                 }
                 if (data.name) {
-                    returned.push(new Install_1.default(data.name, folder, data.globalSave, screenshots));
+                    returned.push(new Install_1.default(data.name, folder, data.globalSave, screenshots, data.mod));
                 }
             }
             catch (e) {

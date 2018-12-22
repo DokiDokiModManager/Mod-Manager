@@ -45,7 +45,10 @@
       "install": {
         "button_launch": "Launch",
         "title_screenshots": "{0} screenshots",
-        "description_screenshots": "Press S while playing to take a screenshot."
+        "description_screenshots": "Press S while playing to take a screenshot.",
+        "description_sdk": "This mod supports special features with the Doki Doki Mod Manager SDK!",
+        "link_discord": "Join Discord ({0})",
+        "link_website": "Visit Website ({0})"
       },
       "mod": {
         "button_install": "Install"

@@ -24,7 +24,7 @@
         <p v-if="crash_cover.fatal"><button class="danger" @click="windowClose">{{_("renderer.crash_cover.button_close")}}</button></p>
         <p v-else><button class="danger" @click="crash_cover.display = false">{{_("renderer.crash_cover.button_continue")}}</button></p>
         <br>
-        <pre>{{crash_cover.stacktrace}}</pre>
+        <span>{{crash_cover.stacktrace}}</span>
     </div>
 
     <div class="titlebar">

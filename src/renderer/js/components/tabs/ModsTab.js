@@ -16,7 +16,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                   @mouseup="handleInstallClick(install.folderName, $event)"
                   :title="getPathToInstall(install.folderName)"
                   >{{install.name}}</div>
-            <br>
+            <br v-if="installs.length > 0">
             <div class="mod-view-mod-list-title" v-if="mods.length > 0">{{_("renderer.tab_mods.list.header_downloaded")}}</div>
             <div
                 :class="{'mod-view-mod-list-entry': true, 'active': selected_item.id === mod && selected_item.type === 'mod'}" 
@@ -28,13 +28,33 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
         <div class="mod-viewer-mod-display">
             <div v-if="selected_item.type === 'install' && selectedInstall">
                 <h1>{{selectedInstall.name}}</h1>
-                <p>{{getPathToInstall(selectedInstall.folderName)}}</p>
+                <p>{{getPathToInstall(selectedInstall.folderName)}}</p>              
                 
                 <br>
                 
                 <p><button class="success" @click="launchInstall(selectedInstall.folderName)">{{_("renderer.tab_mods.install.button_launch")}}</button></p>
                 
                 <br>
+                
+                <template v-if="selectedInstall.mod">
+                    <template v-if="selectedInstall.mod.uses_sdk">
+                        <p><strong>{{_("renderer.tab_mods.install.description_sdk")}}</strong></p>
+                        
+                        <br>
+                    </template>
+                    
+                    <h2>{{selectedInstall.mod.name}}</h2>
+                    <p>{{selectedInstall.mod.description}}</p>
+                    
+                    <template v-if="selectedInstall.mod.website || selectedInstall.mod.discord">
+                        <br>
+                        
+                        <p v-if="selectedInstall.mod.website"><a href="javascript:;" @click="openURL(selectedInstall.mod.website)"><i class="fas fa-fw fa-globe"></i> {{_("renderer.tab_mods.install.link_website", selectedInstall.mod.website)}}</a></p>
+                        <p v-if="selectedInstall.mod.discord"><a href="javascript:;" @click="openURL('https://discord.gg/' + selectedInstall.mod.discord)"><i class="fab fa-fw fa-discord"></i> {{_("renderer.tab_mods.install.link_discord", "discord.gg/" + selectedInstall.mod.discord)}}</a></p>
+                    </template>
+                    
+                    <br>
+                </template>
                 
                 <h2>{{_("renderer.tab_mods.install.title_screenshots", selectedInstall.screenshots.length)}}</h2>
                 <p>{{_("renderer.tab_mods.install.description_screenshots")}}</p>
@@ -129,6 +149,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
         "_": ddmm.translate,
         "installExists": ddmm.mods.installExists,
         "browseForMod": ddmm.mods.browseForMod,
+        "openURL": ddmm.app.openURL,
         "showCreateInstall": function (mod) {
             if (this.selected_item.type === "create") return;
             this.install_creation.install_name = "";
