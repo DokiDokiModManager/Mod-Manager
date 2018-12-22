@@ -9,7 +9,7 @@ const app = new Vue({
         "tab": "mods",
         "tabs": [
             {"id": "mods", "name": ddmm.translate("renderer.tabs.tab_mods"), "component": "ddmm-mods-tab"},
-            {"id": "store", "name": ddmm.translate("renderer.tabs.tab_store"), "component": "ddmm-store-tab"},
+            // {"id": "store", "name": ddmm.translate("renderer.tabs.tab_store"), "component": "ddmm-store-tab"},
             {"id": "options", "name": ddmm.translate("renderer.tabs.tab_options"), "component": "ddmm-options-tab"},
             {"id": "about", "name": ddmm.translate("renderer.tabs.tab_about"), "component": "ddmm-about-tab"}
         ],
@@ -35,14 +35,14 @@ const app = new Vue({
             if (this.background_image && this.background_image !== "none") {
                 return "radial-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.99) 90%), url(../images/backgrounds/" + this.background_image + ")";
             } else {
-                return "none";
+                return "linear-gradient(#111, #111)";
             }
         },
         "backgroundImageCrashStyle": function () {
             if (this.background_image && this.background_image !== "none") {
                 return "radial-gradient(rgba(64, 0, 0, 0.5), rgba(64, 0, 0, 0.99) 90%), url(../images/backgrounds/" + this.background_image + ")";
             } else {
-                return "none";
+                return "linear-gradient(rgb(64, 0, 0), rgb(64, 0, 0))";
             }
         }
     },
