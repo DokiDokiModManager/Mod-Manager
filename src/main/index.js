@@ -314,6 +314,7 @@ electron_1.app.on("ready", () => {
         maximizable: true,
         frame: false,
         webPreferences: {
+            contextIsolation: false,
             sandbox: true,
             nodeIntegration: false,
             preload: path_1.join(__dirname, "../renderer/js-preload/preload.js") // contains all the IPC scripts

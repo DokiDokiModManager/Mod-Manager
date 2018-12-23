@@ -388,6 +388,7 @@ app.on("ready", () => {
         maximizable: true,
         frame: false,
         webPreferences: {
+            contextIsolation: false,
             sandbox: true,
             nodeIntegration: false,
             preload: joinPath(__dirname, "../renderer/js-preload/preload.js") // contains all the IPC scripts
