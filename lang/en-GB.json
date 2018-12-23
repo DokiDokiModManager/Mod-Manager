@@ -76,14 +76,11 @@
       "list": {
         "header_appearance": "Appearance",
         "link_background": "Background",
-
         "header_enhancements": "Enhancements",
         "link_sdk": "Achievements",
         "link_discord": "Discord",
-
         "header_application": "Application",
         "link_storage": "Storage Location",
-
         "header_developers": "Developers",
         "link_debug": "Debug"
       },
@@ -106,6 +103,11 @@
         "description": "Changes will take effect after restarting Doki Doki Mod Manager.",
         "button_enable": "Enable Rich Presence",
         "button_disable": "Disable Rich Presence"
+      },
+      "section_debug": {
+        "title": "Debug",
+        "subtitle": "Information for diagnosing problems.",
+        "section_data": "Debugging Information"
       }
     },
     "tab_about": {

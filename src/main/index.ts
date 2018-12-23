@@ -22,6 +22,8 @@ import InstallManager from "./install/InstallManager";
 import DiscordManager from "./discord/DiscordManager";
 import DownloadManager from "./net/DownloadManager";
 
+const DISCORD_ID = "453299645725016074";
+
 // region Crash reporting
 crashReporter.start({
     companyName: "DDMM",
@@ -48,7 +50,7 @@ const lastArg: string = process.argv.pop();
 let appWindow: BrowserWindow;
 
 // Discord rich presence
-let richPresence: DiscordManager = new DiscordManager(process.env.DDMM_DISCORD_ID ? process.env.DDMM_DISCORD_ID : "453299645725016074");
+let richPresence: DiscordManager = new DiscordManager(process.env.DDMM_DISCORD_ID || DISCORD_ID);
 
 richPresence.setIdleStatus();
 
@@ -376,6 +378,7 @@ app.on("ready", () => {
         mkdirpSync(joinPath(Config.readConfigValue("installFolder"), "installs"));
     }
 
+    // set protocol handler
     app.setAsDefaultProtocolClient("ddmm");
 
     // create browser window
@@ -412,6 +415,17 @@ app.on("ready", () => {
         if (!appWindow.isVisible()) {
             appWindow.show();
         }
+        appWindow.webContents.send("debug info", {
+            "Platform": process.platform,
+            "Node Environment": process.env.NODE_ENV || "none",
+            "Discord Client ID": process.env.DDMM_DISCORD_ID || DISCORD_ID,
+            "Background": Config.readConfigValue("background"),
+            "Node Version": process.version,
+            "Electron Version": process.versions.electron,
+            "Chrome Version": process.versions.chrome,
+            "Locale": app.getLocale(),
+            "Install Folder": Config.readConfigValue("installFolder")
+        });
     });
 
     appWindow.on("close", (ev) => {

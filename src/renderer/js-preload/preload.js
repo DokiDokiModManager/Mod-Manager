@@ -222,6 +222,11 @@ ipcRenderer.on("error message", (ev, data) => {
     api.emit("error", data);
 });
 
+// Handler for debug info
+ipcRenderer.on("debug info", (ev, data) => {
+   api.debug = data;
+});
+
 // Application version
 api.version = packageData.version;
 

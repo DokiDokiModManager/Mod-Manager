@@ -22,6 +22,7 @@ const ModInstaller_1 = require("./mod/ModInstaller");
 const InstallManager_1 = require("./install/InstallManager");
 const DiscordManager_1 = require("./discord/DiscordManager");
 const DownloadManager_1 = require("./net/DownloadManager");
+const DISCORD_ID = "453299645725016074";
 // region Crash reporting
 electron_1.crashReporter.start({
     companyName: "DDMM",
@@ -43,7 +44,7 @@ const lastArg = process.argv.pop();
 // Permanent reference to the main app window
 let appWindow;
 // Discord rich presence
-let richPresence = new DiscordManager_1.default(process.env.DDMM_DISCORD_ID ? process.env.DDMM_DISCORD_ID : "453299645725016074");
+let richPresence = new DiscordManager_1.default(process.env.DDMM_DISCORD_ID || DISCORD_ID);
 richPresence.setIdleStatus();
 // Download manager
 let downloadManager;
@@ -303,6 +304,7 @@ electron_1.app.on("ready", () => {
         fs_extra_1.mkdirpSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "mods"));
         fs_extra_1.mkdirpSync(path_1.join(Config_1.default.readConfigValue("installFolder"), "installs"));
     }
+    // set protocol handler
     electron_1.app.setAsDefaultProtocolClient("ddmm");
     // create browser window
     appWindow = new electron_1.BrowserWindow({
@@ -334,6 +336,17 @@ electron_1.app.on("ready", () => {
         if (!appWindow.isVisible()) {
             appWindow.show();
         }
+        appWindow.webContents.send("debug info", {
+            "Platform": process.platform,
+            "Node Environment": process.env.NODE_ENV || "none",
+            "Discord Client ID": process.env.DDMM_DISCORD_ID || DISCORD_ID,
+            "Background": Config_1.default.readConfigValue("background"),
+            "Node Version": process.version,
+            "Electron Version": process.versions.electron,
+            "Chrome Version": process.versions.chrome,
+            "Locale": electron_1.app.getLocale(),
+            "Install Folder": Config_1.default.readConfigValue("installFolder")
+        });
     });
     appWindow.on("close", (ev) => {
         if (!windowClosable) {

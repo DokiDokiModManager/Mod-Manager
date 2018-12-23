@@ -48,12 +48,24 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
                 <button class="danger" v-if="richPresenceEnabled()" @click="setRichPresence(false)">{{_("renderer.tab_options.section_discord.button_disable")}}</button>
                 <button class="success" v-else @click="setRichPresence(true)">{{_("renderer.tab_options.section_discord.button_enable")}}</button>
             </div>
+            <div v-else-if="selected_option === 'debug'">
+                <h1>{{_("renderer.tab_options.section_debug.title")}}</h1>
+                <p>{{_("renderer.tab_options.section_debug.subtitle")}}</p>
+                <br>
+                <h2>{{_("renderer.tab_options.section_debug.section_data")}}</h2>
+                <dl>
+                    <p v-for="(v, k) in debug_info">
+                        <strong>{{k}}:</strong> <span>{{v}}</span>
+                    </p>
+                </dl>
+            </div>
         </div>
     </div>
 </div>
         `,
     "data": function () {
         return {
+            "debug_info": ddmm.debug,
             "selected_option": sessionStorage.getItem("options_last_id"),
             "backgrounds": ddmm.app.getBackgrounds(),
             "menu": [
