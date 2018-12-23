@@ -82,7 +82,10 @@
         "link_discord": "Discord",
 
         "header_application": "Application",
-        "link_storage": "Storage Location"
+        "link_storage": "Storage Location",
+
+        "header_developers": "Developers",
+        "link_debug": "Debug"
       },
       "section_backgrounds": {
         "title": "Background",

@@ -75,6 +75,12 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
                         {"title": ddmm.translate("renderer.tab_options.list.link_sdk"), "id": "sdk"},
                         {"title": ddmm.translate("renderer.tab_options.list.link_discord"), "id": "discord"}
                     ]
+                },
+                {
+                    "header": ddmm.translate("renderer.tab_options.list.header_developers"),
+                    "contents": [
+                        {"title": ddmm.translate("renderer.tab_options.list.link_debug"), "id": "debug"},
+                    ]
                 }
             ]
         }
