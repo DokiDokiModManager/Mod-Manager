@@ -13,20 +13,10 @@ const fileUrl = remote.require("file-url");
 
 const api = new EventEmitter();
 
-api.dialog = {};
 api.mods = {};
 api.app = {};
 api.window = {};
 api.config = {};
-
-// Confirmation dialog
-api.dialog.confirm = function (message, detail, affirmative, negative, type) {
-    return new Promise(ff => {
-        ff(remote.dialog.showMessageBox({
-            message, detail, buttons: [affirmative, negative], title: "Doki Doki Mod Manager", type: type
-        }) === 0);
-    });
-};
 
 // Called when the UI wants to refresh the mod list
 api.mods.refreshModList = function () {
@@ -150,16 +140,7 @@ api.window.handleInstallRightClick = function (folderName, mouseX, mouseY) {
             label: api.translate("renderer.tab_mods.install_contextmenu.uninstall"),
             accelerator: "delete",
             click: () => {
-                api.dialog.confirm(
-                    api.translate("renderer.tab_mods.uninstall_confirmation.message", folderName),
-                    api.translate("renderer.tab_mods.uninstall_confirmation.details"),
-                    api.translate("renderer.tab_mods.uninstall_confirmation.button_affirmative"),
-                    api.translate("renderer.tab_mods.uninstall_confirmation.button_negative"),
-                    "warning").then(doit => {
-                    if (doit) {
-                        api.mods.deleteInstall(folderName);
-                    }
-                });
+                // TODO: prompt for uninstall
             }
         }
     ]).popup({
