@@ -82,7 +82,8 @@
         "header_application": "Application",
         "link_storage": "Storage Location",
         "header_developers": "Developers",
-        "link_debug": "Debug"
+        "link_testing": "SDK Debug",
+        "link_debug": "App Info"
       },
       "section_backgrounds": {
         "title": "Background",
@@ -104,10 +105,15 @@
         "button_enable": "Enable Rich Presence",
         "button_disable": "Disable Rich Presence"
       },
+      "section_testing": {
+        "title": "SDK Debug",
+        "subtitle": "Enable debug logging to test your mods with the Doki Doki Mod Manager SDK.",
+        "button_enable": "Enable Debugging",
+        "button_disable": "Disable Debugging"
+      },
       "section_debug": {
-        "title": "Debug",
-        "subtitle": "Information for diagnosing problems.",
-        "section_data": "Debugging Information"
+        "title": "App Info",
+        "subtitle": "Information for diagnosing problems."
       }
     },
     "tab_about": {

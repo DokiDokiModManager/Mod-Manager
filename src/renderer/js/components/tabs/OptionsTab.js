@@ -48,16 +48,20 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
                 <button class="danger" v-if="richPresenceEnabled()" @click="setRichPresence(false)">{{_("renderer.tab_options.section_discord.button_disable")}}</button>
                 <button class="success" v-else @click="setRichPresence(true)">{{_("renderer.tab_options.section_discord.button_enable")}}</button>
             </div>
+            <div v-else-if="selected_option === 'testing'">
+                <h1>{{_("renderer.tab_options.section_testing.title")}}</h1>
+                <p>{{_("renderer.tab_options.section_testing.subtitle")}}</p>
+                <br>
+                <button class="danger" v-if="sdkDebuggingEnabled()" @click="setSDKDebugging(false)">{{_("renderer.tab_options.section_testing.button_disable")}}</button>
+                <button class="success" v-else @click="setSDKDebugging(true)">{{_("renderer.tab_options.section_testing.button_enable")}}</button>
+            </div>
             <div v-else-if="selected_option === 'debug'">
                 <h1>{{_("renderer.tab_options.section_debug.title")}}</h1>
                 <p>{{_("renderer.tab_options.section_debug.subtitle")}}</p>
                 <br>
-                <h2>{{_("renderer.tab_options.section_debug.section_data")}}</h2>
-                <dl>
-                    <p v-for="(v, k) in debug_info">
-                        <strong>{{k}}:</strong> <span>{{v}}</span>
-                    </p>
-                </dl>
+                <p v-for="(v, k) in debug_info">
+                    <strong>{{k}}:</strong> <span>{{v}}</span>
+                </p>
             </div>
         </div>
     </div>
@@ -91,7 +95,8 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
                 {
                     "header": ddmm.translate("renderer.tab_options.list.header_developers"),
                     "contents": [
-                        {"title": ddmm.translate("renderer.tab_options.list.link_debug"), "id": "debug"},
+                        {"title": ddmm.translate("renderer.tab_options.list.link_testing"), "id": "testing"},
+                        {"title": ddmm.translate("renderer.tab_options.list.link_debug"), "id": "debug"}
                     ]
                 }
             ]
@@ -116,8 +121,15 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
         "richPresenceEnabled": function () {
             return ddmm.config.readConfigValue("discordEnabled");
         },
+        "sdkDebuggingEnabled": function () {
+            return ddmm.config.readConfigValue("sdkDebuggingEnabled");
+        },
         "setRichPresence": function (enabled) {
             ddmm.config.saveConfigValue("discordEnabled", !!enabled);
+            this.$forceUpdate();
+        },
+        "setSDKDebugging": function (enabled) {
+            ddmm.config.saveConfigValue("sdkDebuggingEnabled", !!enabled);
             this.$forceUpdate();
         }
     },
