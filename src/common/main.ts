@@ -111,7 +111,7 @@ function launchGame(dir) {
         "appdata");
 
     // If the app uses the global save, don't change the environment variables
-    const env = installData.globalSave ? process.env : Object.assign(process.env, {
+    const env = installData.globalSave ? process.env : Object.assign(JSON.parse(JSON.stringify(process.env)), {
         APPDATA: dataFolder, // Windows
         HOME: dataFolder, // macOS and Linux
     });

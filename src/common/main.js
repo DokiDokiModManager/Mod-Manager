@@ -73,7 +73,7 @@ function launchGame(dir) {
     appWin.webContents.send("running cover", true);
     const dataFolder = path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", dir, "appdata");
     // If the app uses the global save, don't change the environment variables
-    const env = installData.globalSave ? process.env : Object.assign(process.env, {
+    const env = installData.globalSave ? process.env : Object.assign(JSON.parse(JSON.stringify(process.env)), {
         APPDATA: dataFolder,
         HOME: dataFolder,
     });
