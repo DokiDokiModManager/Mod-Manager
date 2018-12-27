@@ -6,6 +6,8 @@ const electron_1 = require("electron");
 const child_process_1 = require("child_process");
 const i18n_1 = require("../utils/i18n");
 const Config_1 = require("../utils/Config");
+const SDKDebugConsole_1 = require("../sdk/SDKDebugConsole");
+const LogClass_1 = require("../sdk/LogClass");
 const lang = new i18n_1.default(electron_1.app.getLocale());
 class InstallLauncher {
     /**
@@ -17,15 +19,40 @@ class InstallLauncher {
         return new Promise((ff, rj) => {
             const installFolder = path_1.join(Config_1.default.readConfigValue("installFolder"), "installs", folderName);
             let installData;
+            let debugConsole;
+            if (Config_1.default.readConfigValue("sdkDebuggingEnabled")) {
+                debugConsole = new SDKDebugConsole_1.default(folderName);
+            }
+            function logToConsole(text, clazz) {
+                if (debugConsole) {
+                    debugConsole.log(text, clazz);
+                }
+            }
+            logToConsole("Launching install from " + folderName);
+            let startSDKServer = false;
             try {
                 installData =
                     JSON.parse(fs_1.readFileSync(path_1.join(installFolder, "install.json")).toString("utf8"));
             }
             catch (e) {
                 rj(lang.translate("main.running_cover.install_corrupt"));
+                return;
             }
             if (richPresence)
                 richPresence.setPlayingStatus(installData.name);
+            if (installData.mod && installData.mod.hasOwnProperty("uses_sdk")) {
+                if (installData.mod.uses_sdk) {
+                    logToConsole("[SDK] Will launch SDK server (uses_sdk == true)");
+                    startSDKServer = true;
+                }
+                else {
+                    logToConsole("[SDK] Not launching SDK server (uses_sdk == false)");
+                }
+            }
+            else {
+                startSDKServer = true;
+                logToConsole("[SDK Warning] the uses_sdk property has not been set in the ddmm-mod.json file. The SDK server will be started to maintain backwards compatibility, but this behaviour will be removed in the future.", LogClass_1.LogClass.WARNING);
+            }
             Config_1.default.saveConfigValue("lastInstall", {
                 "name": installData.name,
                 "folder": folderName
@@ -48,11 +75,18 @@ class InstallLauncher {
                     cwd: path_1.join(installFolder, "install"),
                     env,
                 });
+                procHandle.stdout.on("data", data => {
+                    logToConsole("[STDOUT] " + data.toString());
+                });
+                procHandle.stderr.on("data", data => {
+                    logToConsole("[STDERR] " + data.toString(), LogClass_1.LogClass.ERROR);
+                });
                 procHandle.on("error", () => {
                     richPresence.setIdleStatus();
                     rj(lang.translate("main.running_cover.install_crashed"));
                 });
                 procHandle.on("close", () => {
+                    logToConsole("Game has closed.");
                     richPresence.setIdleStatus();
                     ff();
                 });

@@ -1,10 +1,15 @@
 import {BrowserWindow} from "electron";
 import {join as joinPath} from "path";
+import {LogClass} from "./LogClass";
 
 export default class SDKDebugConsole {
 
     private window: BrowserWindow;
 
+    /**
+     * Initialises a console window for debugging the SDK
+     * @param windowTitle The text to be appended to the window title
+     */
     constructor(windowTitle: string) {
         this.window = new BrowserWindow({
             width: 600,
@@ -28,12 +33,32 @@ export default class SDKDebugConsole {
             this.window.show();
         });
 
-        this.window.webContents.openDevTools();
+        this.window.on("closed", () => {
+            this.window = null;
+        });
+
+        this.window.webContents.openDevTools({
+            mode: "undocked"
+        });
     }
 
-    log(text: string, clazz?: ["warning", "error"]) {
-        this.window.webContents.send("log", {
-            text, clazz
-        });
+    /**
+     * Logs text to the console
+     * @param text The text to be logged
+     * @param clazz The class to apply to the text (for warnings or errors)
+     */
+    log(text: string, clazz?: LogClass) {
+        if (!this.window) return;
+        if (this.window.isVisible()) {
+            this.window.webContents.send("log", {
+                text, clazz
+            });
+        } else {
+            this.window.once("ready-to-show", () => {
+                this.window.webContents.send("log", {
+                    text, clazz
+                });
+            });
+        }
     }
 }

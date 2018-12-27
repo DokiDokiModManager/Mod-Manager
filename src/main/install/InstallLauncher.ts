@@ -5,6 +5,8 @@ import {spawn} from "child_process";
 import I18n from "../utils/i18n";
 import Config from "../utils/Config";
 import DiscordManager from "../discord/DiscordManager";
+import SDKDebugConsole from "../sdk/SDKDebugConsole";
+import {LogClass} from "../sdk/LogClass";
 
 const lang: I18n = new I18n(app.getLocale());
 
@@ -20,14 +22,43 @@ export default class InstallLauncher {
             const installFolder: string = joinPath(Config.readConfigValue("installFolder"), "installs", folderName);
             let installData: any;
 
+            let debugConsole: SDKDebugConsole;
+
+            if (Config.readConfigValue("sdkDebuggingEnabled")) {
+                debugConsole = new SDKDebugConsole(folderName);
+            }
+
+            function logToConsole(text: string, clazz?: LogClass) {
+                if (debugConsole) {
+                    debugConsole.log(text, clazz);
+                }
+            }
+
+            logToConsole("Launching install from " + folderName);
+
+            let startSDKServer: boolean = false;
+
             try {
                 installData =
                     JSON.parse(readFileSync(joinPath(installFolder, "install.json")).toString("utf8"));
             } catch (e) {
                 rj(lang.translate("main.running_cover.install_corrupt"));
+                return;
             }
 
             if (richPresence) richPresence.setPlayingStatus(installData.name);
+
+            if (installData.mod && installData.mod.hasOwnProperty("uses_sdk")) {
+                if (installData.mod.uses_sdk) {
+                    logToConsole("[SDK] Will launch SDK server (uses_sdk == true)");
+                    startSDKServer = true;
+                } else {
+                    logToConsole("[SDK] Not launching SDK server (uses_sdk == false)");
+                }
+            } else {
+                startSDKServer = true;
+                logToConsole("[SDK Warning] the uses_sdk property has not been set in the ddmm-mod.json file. The SDK server will be started to maintain backwards compatibility, but this behaviour will be removed in the future.", LogClass.WARNING);
+            }
 
             Config.saveConfigValue("lastInstall", {
                 "name": installData.name,
@@ -56,12 +87,21 @@ export default class InstallLauncher {
                     env,
                 });
 
+                procHandle.stdout.on("data", data => {
+                    logToConsole("[STDOUT] " + data.toString());
+                });
+
+                procHandle.stderr.on("data", data => {
+                   logToConsole("[STDERR] " + data.toString(), LogClass.ERROR);
+                });
+
                 procHandle.on("error", () => {
                     richPresence.setIdleStatus();
                     rj(lang.translate("main.running_cover.install_crashed"))
                 });
 
                 procHandle.on("close", () => {
+                    logToConsole("Game has closed.");
                     richPresence.setIdleStatus();
                     ff();
                 });
