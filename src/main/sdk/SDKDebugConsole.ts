@@ -36,10 +36,6 @@ export default class SDKDebugConsole {
         this.window.on("closed", () => {
             this.window = null;
         });
-
-        this.window.webContents.openDevTools({
-            mode: "undocked"
-        });
     }
 
     /**
@@ -60,5 +56,13 @@ export default class SDKDebugConsole {
                 });
             });
         }
+    }
+
+    /**
+     * Closes the debugging console
+     */
+    shutdown() {
+        if (!this.window) return;
+        this.window.close();
     }
 }

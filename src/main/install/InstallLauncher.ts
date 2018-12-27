@@ -7,10 +7,16 @@ import Config from "../utils/Config";
 import DiscordManager from "../discord/DiscordManager";
 import SDKDebugConsole from "../sdk/SDKDebugConsole";
 import {LogClass} from "../sdk/LogClass";
+import SDKServer from "../sdk/SDKServer";
 
 const lang: I18n = new I18n(app.getLocale());
 
+const SDK_HOST: string = "127.0.0.1";
+const SDK_PORT: number = 41420;
+
 export default class InstallLauncher {
+
+    private static debugConsole: SDKDebugConsole;
 
     /**
      * Launches an install by the folder name
@@ -22,15 +28,16 @@ export default class InstallLauncher {
             const installFolder: string = joinPath(Config.readConfigValue("installFolder"), "installs", folderName);
             let installData: any;
 
-            let debugConsole: SDKDebugConsole;
-
             if (Config.readConfigValue("sdkDebuggingEnabled")) {
-                debugConsole = new SDKDebugConsole(folderName);
+                if (this.debugConsole) {
+                    this.debugConsole.shutdown();
+                }
+                this.debugConsole = new SDKDebugConsole(folderName);
             }
 
             function logToConsole(text: string, clazz?: LogClass) {
-                if (debugConsole) {
-                    debugConsole.log(text, clazz);
+                if (InstallLauncher.debugConsole) {
+                    InstallLauncher.debugConsole.log(text, clazz);
                 }
             }
 
@@ -42,6 +49,7 @@ export default class InstallLauncher {
                 installData =
                     JSON.parse(readFileSync(joinPath(installFolder, "install.json")).toString("utf8"));
             } catch (e) {
+                logToConsole("Install directory " + installFolder + " does not exist!", LogClass.ERROR);
                 rj(lang.translate("main.running_cover.install_corrupt"));
                 return;
             }
@@ -65,50 +73,60 @@ export default class InstallLauncher {
                 "folder": folderName
             });
 
-            if (existsSync(installFolder)) {
-                // get the path to the game executable, .exe on windows and .sh on macOS / Linux
-                const gameExecutable: string = joinPath(installFolder, "install", (process.platform === "win32" ? "ddlc.exe" : "DDLC.sh"));
+            let sdkServer: SDKServer;
 
-                // get the path to the save data folder
-                const dataFolder = joinPath(installFolder, "appdata");
+            if (startSDKServer) {
+                logToConsole("Starting SDK server on " + SDK_PORT);
+                sdkServer = new SDKServer(SDK_PORT, SDK_HOST, folderName);
 
-                // replace the save data environment variable
-                const env = installData.globalSave ? process.env : Object.assign(process.env, {
-                    APPDATA: dataFolder, // Windows
-                    HOME: dataFolder, // macOS and Linux
+                sdkServer.on("log", (data: {clazz: LogClass, text: string}) => {
+                   logToConsole("[SDK] " + data.text, data.clazz);
                 });
-
-                const procHandle = spawn(gameExecutable, [], {
-                    // Overwrite the environment variables to force Ren'Py to save where we want it to.
-                    // On Windows, the save location is determined by the value of %appdata% but on macOS / Linux
-                    // it saves based on the home directory location. This can be changed with $HOME but means the save
-                    // files cannot be directly ported between operating systems.
-                    cwd: joinPath(installFolder, "install"),
-                    env,
-                });
-
-                procHandle.stdout.on("data", data => {
-                    logToConsole("[STDOUT] " + data.toString());
-                });
-
-                procHandle.stderr.on("data", data => {
-                   logToConsole("[STDERR] " + data.toString(), LogClass.ERROR);
-                });
-
-                procHandle.on("error", () => {
-                    richPresence.setIdleStatus();
-                    rj(lang.translate("main.running_cover.install_crashed"))
-                });
-
-                procHandle.on("close", () => {
-                    logToConsole("Game has closed.");
-                    richPresence.setIdleStatus();
-                    ff();
-                });
-
-            } else {
-                rj(lang.translate("main.running_cover.install_missing"));
             }
+
+            // get the path to the game executable, .exe on windows and .sh on macOS / Linux
+            const gameExecutable: string = joinPath(installFolder, "install", (process.platform === "win32" ? "ddlc.exe" : "DDLC.sh"));
+
+            // get the path to the save data folder
+            const dataFolder = joinPath(installFolder, "appdata");
+
+            // replace the save data environment variable
+            const env = installData.globalSave ? process.env : Object.assign(JSON.parse(JSON.stringify(process.env)), {
+                APPDATA: dataFolder, // Windows
+                HOME: dataFolder, // macOS and Linux
+            });
+
+            logToConsole("Launching game...");
+
+            const procHandle = spawn(gameExecutable, [], {
+                // Overwrite the environment variables to force Ren'Py to save where we want it to.
+                // On Windows, the save location is determined by the value of %appdata% but on macOS / Linux
+                // it saves based on the home directory location. This can be changed with $HOME but means the save
+                // files cannot be directly ported between operating systems.
+                cwd: joinPath(installFolder, "install"),
+                env,
+            });
+
+            procHandle.stdout.on("data", data => {
+                logToConsole("[STDOUT] " + data.toString());
+            });
+
+            procHandle.stderr.on("data", data => {
+                logToConsole("[STDERR] " + data.toString(), LogClass.ERROR);
+            });
+
+            procHandle.on("error", () => {
+                sdkServer.shutdown();
+                richPresence.setIdleStatus();
+                rj(lang.translate("main.running_cover.install_crashed"))
+            });
+
+            procHandle.on("close", () => {
+                sdkServer.shutdown();
+                logToConsole("Game has closed.");
+                richPresence.setIdleStatus();
+                ff();
+            });
         });
     }
 }

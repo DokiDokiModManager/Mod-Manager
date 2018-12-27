@@ -28,9 +28,6 @@ class SDKDebugConsole {
         this.window.on("closed", () => {
             this.window = null;
         });
-        this.window.webContents.openDevTools({
-            mode: "undocked"
-        });
     }
     /**
      * Logs text to the console
@@ -52,6 +49,14 @@ class SDKDebugConsole {
                 });
             });
         }
+    }
+    /**
+     * Closes the debugging console
+     */
+    shutdown() {
+        if (!this.window)
+            return;
+        this.window.close();
     }
 }
 exports.default = SDKDebugConsole;
