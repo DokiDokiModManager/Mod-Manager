@@ -9,7 +9,7 @@ class SDKDebugConsole {
      */
     constructor(windowTitle) {
         this.window = new electron_1.BrowserWindow({
-            width: 600,
+            width: 800,
             height: 400,
             minWidth: 400,
             minHeight: 200,

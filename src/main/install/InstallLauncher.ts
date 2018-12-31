@@ -1,5 +1,5 @@
 import {join as joinPath} from "path";
-import {existsSync, readFileSync} from "fs";
+import {readFileSync} from "fs";
 import {app} from "electron";
 import {spawn} from "child_process";
 import I18n from "../utils/i18n";
@@ -56,16 +56,24 @@ export default class InstallLauncher {
 
             if (richPresence) richPresence.setPlayingStatus(installData.name);
 
-            if (installData.mod && installData.mod.hasOwnProperty("uses_sdk")) {
-                if (installData.mod.uses_sdk) {
-                    logToConsole("[SDK] Will launch SDK server (uses_sdk == true)");
-                    startSDKServer = true;
+            if (Config.readConfigValue("sdkMode") !== "never") {
+                if (installData.mod && installData.mod.hasOwnProperty("uses_sdk")) {
+                    if (installData.mod.uses_sdk) {
+                        logToConsole("[SDK] Will launch SDK server (uses_sdk == true)");
+                        startSDKServer = true;
+                    } else {
+                        logToConsole("[SDK] Not launching SDK server (uses_sdk == false)");
+                    }
                 } else {
-                    logToConsole("[SDK] Not launching SDK server (uses_sdk == false)");
+                    if (Config.readConfigValue("sdkMode") === "always") {
+                        startSDKServer = true;
+                        logToConsole("[SDK] The uses_sdk property has not been set in the ddmm-mod.json file. The SDK server will be started due to user preference.", LogClass.WARNING);
+                    } else {
+                        logToConsole("[SDK] The uses_sdk property has not been set in the ddmm-mod.json file. The SDK server will not be started.", LogClass.WARNING);
+                    }
                 }
             } else {
-                startSDKServer = true;
-                logToConsole("[SDK Warning] the uses_sdk property has not been set in the ddmm-mod.json file. The SDK server will be started to maintain backwards compatibility, but this behaviour will be removed in the future.", LogClass.WARNING);
+                logToConsole("[SDK] The SDK server will not be started due to user preference.", LogClass.WARNING);
             }
 
             Config.saveConfigValue("lastInstall", {

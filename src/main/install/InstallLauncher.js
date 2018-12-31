@@ -46,18 +46,28 @@ class InstallLauncher {
             }
             if (richPresence)
                 richPresence.setPlayingStatus(installData.name);
-            if (installData.mod && installData.mod.hasOwnProperty("uses_sdk")) {
-                if (installData.mod.uses_sdk) {
-                    logToConsole("[SDK] Will launch SDK server (uses_sdk == true)");
-                    startSDKServer = true;
+            if (Config_1.default.readConfigValue("sdkMode") !== "never") {
+                if (installData.mod && installData.mod.hasOwnProperty("uses_sdk")) {
+                    if (installData.mod.uses_sdk) {
+                        logToConsole("[SDK] Will launch SDK server (uses_sdk == true)");
+                        startSDKServer = true;
+                    }
+                    else {
+                        logToConsole("[SDK] Not launching SDK server (uses_sdk == false)");
+                    }
                 }
                 else {
-                    logToConsole("[SDK] Not launching SDK server (uses_sdk == false)");
+                    if (Config_1.default.readConfigValue("sdkMode") === "always") {
+                        startSDKServer = true;
+                        logToConsole("[SDK] The uses_sdk property has not been set in the ddmm-mod.json file. The SDK server will be started due to user preference.", LogClass_1.LogClass.WARNING);
+                    }
+                    else {
+                        logToConsole("[SDK] The uses_sdk property has not been set in the ddmm-mod.json file. The SDK server will not be started.", LogClass_1.LogClass.WARNING);
+                    }
                 }
             }
             else {
-                startSDKServer = true;
-                logToConsole("[SDK Warning] the uses_sdk property has not been set in the ddmm-mod.json file. The SDK server will be started to maintain backwards compatibility, but this behaviour will be removed in the future.", LogClass_1.LogClass.WARNING);
+                logToConsole("[SDK] The SDK server will not be started due to user preference.", LogClass_1.LogClass.WARNING);
             }
             Config_1.default.saveConfigValue("lastInstall", {
                 "name": installData.name,
