@@ -11,7 +11,7 @@
       "close": "Close",
       "maximise": "Maximise",
       "minimise": "Minimise",
-      "update_spinner": "Checking for updates..."
+      "update_spinner": "Updating..."
     },
     "crash_cover": {
       "button_close": "Quit",
@@ -80,6 +80,7 @@
         "link_sdk": "Achievements & SDK",
         "link_discord": "Discord",
         "header_application": "Application",
+        "link_updates": "Updates",
         "link_storage": "Storage Location",
         "header_developers": "Developers",
         "link_testing": "SDK Debug",
@@ -97,6 +98,15 @@
         "description_moving": "Warning! If you choose to change your install location, all your mods, installations and save data will be moved. This may take several minutes, and cannot be interrupted.",
         "description_current": "Current location: {0}",
         "button_change": "Change Install Location"
+      },
+      "section_updates": {
+        "title": "Updates",
+        "subtitle": "Get the latest version of Doki Doki Mod Manager.",
+        "description_current_version": "Current version: {0}",
+        "label_channel": "Release Channel",
+        "option_stable": "Stable",
+        "option_beta": "Beta",
+        "button_check": "Check for updates"
       },
       "section_sdk": {
         "title": "Achievements & SDK",

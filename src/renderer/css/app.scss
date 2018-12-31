@@ -320,7 +320,7 @@ button[disabled], button[disabled]:hover {
   margin-bottom: 1em;
 }
 
-input[type="text"], input[type="number"], input[type="url"], textarea {
+input[type="text"], input[type="number"], input[type="url"], textarea, select {
   font-family: "Open Sans", sans-serif;
   border-radius: 3px;
   background-color: rgba(0, 0, 0, 0.5);
@@ -329,7 +329,6 @@ input[type="text"], input[type="number"], input[type="url"], textarea {
   font-weight: normal;
   min-width: 350px;
   padding: 0.5em 1em;
-  cursor: text;
   font-size: 1em;
   width: 100%;
   outline: none;

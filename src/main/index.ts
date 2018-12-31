@@ -1,6 +1,7 @@
 import {app, BrowserWindow, ipcMain, IpcMessageEvent, shell, dialog, Notification, crashReporter} from "electron";
 import {move, existsSync, mkdirpSync, readdirSync} from "fs-extra";
 import {join as joinPath} from "path";
+import {autoUpdater} from "electron-updater";
 
 // One of my major regrets in life is putting an ! at the end of the application name
 // This should allow me to use a sane directory name but not break old installs.
@@ -23,6 +24,7 @@ import DiscordManager from "./discord/DiscordManager";
 import DownloadManager from "./net/DownloadManager";
 
 const DISCORD_ID = "453299645725016074";
+
 
 // region Crash reporting
 crashReporter.start({
@@ -322,6 +324,27 @@ ipcMain.on("get backgrounds", (ev: IpcMessageEvent) => {
 ipcMain.on("debug crash", () => {
     throw new Error("User forced debug crash with DevTools")
 });
+
+// endregion
+
+// region Updates etc.
+autoUpdater.allowDowngrade = false;
+
+autoUpdater.on("download-progress", () => {
+    appWindow.webContents.send("updating", true);
+});
+
+autoUpdater.on("update-downloaded", () => {
+    appWindow.webContents.send("updating", false);
+});
+
+ipcMain.on("check update", () => {
+    autoUpdater.channel = Config.readConfigValue("updateChannel");
+    autoUpdater.checkForUpdatesAndNotify();
+});
+
+autoUpdater.channel = Config.readConfigValue("updateChannel");
+autoUpdater.checkForUpdatesAndNotify();
 
 // endregion
 

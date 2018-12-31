@@ -208,6 +208,16 @@ ipcRenderer.on("debug info", (ev, data) => {
    api.debug = data;
 });
 
+// Handler for updates
+ipcRenderer.on("updating", (ev, data) => {
+   api.emit("updating", !!data);
+});
+
+// Check for updates
+api.app.update = function() {
+    ipcRenderer.send("check update");
+};
+
 // Application version
 api.version = packageData.version;
 

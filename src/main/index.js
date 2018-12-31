@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const electron_1 = require("electron");
 const fs_extra_1 = require("fs-extra");
 const path_1 = require("path");
+const electron_updater_1 = require("electron-updater");
 // One of my major regrets in life is putting an ! at the end of the application name
 // This should allow me to use a sane directory name but not break old installs.
 if (fs_extra_1.existsSync(path_1.join(electron_1.app.getPath("appData"), "Doki Doki Mod Manager!"))) {
@@ -265,6 +266,21 @@ electron_1.ipcMain.on("get backgrounds", (ev) => {
 electron_1.ipcMain.on("debug crash", () => {
     throw new Error("User forced debug crash with DevTools");
 });
+// endregion
+// region Updates etc.
+electron_updater_1.autoUpdater.allowDowngrade = false;
+electron_updater_1.autoUpdater.on("download-progress", () => {
+    appWindow.webContents.send("updating", true);
+});
+electron_updater_1.autoUpdater.on("update-downloaded", () => {
+    appWindow.webContents.send("updating", false);
+});
+electron_1.ipcMain.on("check update", () => {
+    electron_updater_1.autoUpdater.channel = Config_1.default.readConfigValue("updateChannel");
+    electron_updater_1.autoUpdater.checkForUpdatesAndNotify();
+});
+electron_updater_1.autoUpdater.channel = Config_1.default.readConfigValue("updateChannel");
+electron_updater_1.autoUpdater.checkForUpdatesAndNotify();
 // endregion
 // region Global exception handler
 process.on("uncaughtException", (e) => {

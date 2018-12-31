@@ -29,6 +29,20 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
                 
                 <p>{{_("renderer.tab_options.section_backgrounds.description_credit")}}</p>
             </div>
+            <div v-else-if="selected_option === 'updates'">
+                <h1>{{_("renderer.tab_options.section_updates.title")}}</h1>
+                <p>{{_("renderer.tab_options.section_updates.subtitle")}}</p>
+                <br>
+                <p><strong>{{_("renderer.tab_options.section_updates.description_current_version", version)}}</strong></p>
+                <br>
+                <label for="release-channel">{{_("renderer.tab_options.section_updates.label_channel")}}</label>
+                <select v-model="release_channel_interim" name="release-channel" @change="updateReleaseChannel">
+                    <option value="latest">{{_("renderer.tab_options.section_updates.option_stable")}}</option>
+                    <option value="beta">{{_("renderer.tab_options.section_updates.option_beta")}}</option>
+                </select>
+                <br><br>
+                <p><button @click="checkUpdates" class="primary">{{_("renderer.tab_options.section_updates.button_check")}}</button></p>
+            </div>
             <div v-else-if="selected_option === 'storage'">
                 <h1>{{_("renderer.tab_options.section_storage.title")}}</h1>
                 <p>{{_("renderer.tab_options.section_storage.subtitle")}}</p>
@@ -78,14 +92,17 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
         `,
     "data": function () {
         return {
+            "version": ddmm.version,
             "debug_info": ddmm.debug,
             "selected_option": sessionStorage.getItem("options_last_id"),
             "backgrounds": ddmm.app.getBackgrounds(),
             "sdk_mode_interim": ddmm.config.readConfigValue("sdkMode"),
+            "release_channel_interim": ddmm.config.readConfigValue("updateChannel"),
             "menu": [
                 {
                     "header": ddmm.translate("renderer.tab_options.list.header_application"),
                     "contents": [
+                        {"title": ddmm.translate("renderer.tab_options.list.link_updates"), "id": "updates"},
                         {"title": ddmm.translate("renderer.tab_options.list.link_storage"), "id": "storage"}
                     ]
                 },
@@ -144,6 +161,12 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
         },
         "updateSDKMode": function () {
             ddmm.config.saveConfigValue("sdkMode", this.sdk_mode_interim);
+        },
+        "updateReleaseChannel": function () {
+            ddmm.config.saveConfigValue("updateChannel", this.release_channel_interim);
+        },
+        "checkUpdates": function () {
+            ddmm.app.update();
         }
     },
     "mounted": function () {

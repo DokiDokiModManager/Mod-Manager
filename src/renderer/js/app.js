@@ -77,3 +77,7 @@ ddmm.on("error", error => {
     app.crash_cover.fatal = error.fatal;
     app.crash_cover.stacktrace = error.stacktrace;
 });
+
+ddmm.on("updating", is => {
+   app.app_updating = is;
+});
