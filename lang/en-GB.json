@@ -77,7 +77,7 @@
         "header_appearance": "Appearance",
         "link_background": "Background",
         "header_enhancements": "Enhancements",
-        "link_sdk": "Achievements",
+        "link_sdk": "Achievements & SDK",
         "link_discord": "Discord",
         "header_application": "Application",
         "link_storage": "Storage Location",
@@ -97,6 +97,14 @@
         "description_moving": "Warning! If you choose to change your install location, all your mods, installations and save data will be moved. This may take several minutes, and cannot be interrupted.",
         "description_current": "Current location: {0}",
         "button_change": "Change Install Location"
+      },
+      "section_sdk": {
+        "title": "Achievements & SDK",
+        "subtitle": "Change the way achievements are handled.",
+        "description_mode": "Enable achievements:",
+        "checkbox_always": "Always (recommended)",
+        "checkbox_specified": "When the mod specifies it supports them",
+        "checkbox_never": "Never"
       },
       "section_discord": {
         "title": "Discord Rich Presence",

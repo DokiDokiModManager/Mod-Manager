@@ -39,6 +39,15 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
                 <br>
                 <button class="primary" @click="moveInstall">{{_("renderer.tab_options.section_storage.button_change")}}</button>
             </div>
+            <div v-else-if="selected_option === 'sdk'">
+                <h1>{{_("renderer.tab_options.section_sdk.title")}}</h1>
+                <p>{{_("renderer.tab_options.section_sdk.subtitle")}}</p>
+                <br>
+                <p><strong>{{_("renderer.tab_options.section_sdk.description_mode")}}</strong></p>
+                <p><label><input type="radio" name="sdk_mode_checkbox" value="always" v-model="sdk_mode_interim" @change="updateSDKMode"> {{_("renderer.tab_options.section_sdk.checkbox_always")}}</label></p>
+                <p><label><input type="radio" name="sdk_mode_checkbox" value="specified" v-model="sdk_mode_interim" @change="updateSDKMode"> {{_("renderer.tab_options.section_sdk.checkbox_specified")}}</label></p>
+                <p><label><input type="radio" name="sdk_mode_checkbox" value="never" v-model="sdk_mode_interim" @change="updateSDKMode"> {{_("renderer.tab_options.section_sdk.checkbox_never")}}</label></p>                
+            </div>
             <div v-else-if="selected_option === 'discord'">
                 <h1>{{_("renderer.tab_options.section_discord.title")}}</h1>
                 <p>{{_("renderer.tab_options.section_discord.subtitle")}}</p>
@@ -72,6 +81,7 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
             "debug_info": ddmm.debug,
             "selected_option": sessionStorage.getItem("options_last_id"),
             "backgrounds": ddmm.app.getBackgrounds(),
+            "sdk_mode_interim": ddmm.config.readConfigValue("sdkMode"),
             "menu": [
                 {
                     "header": ddmm.translate("renderer.tab_options.list.header_application"),
@@ -131,6 +141,9 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
         "setSDKDebugging": function (enabled) {
             ddmm.config.saveConfigValue("sdkDebuggingEnabled", !!enabled);
             this.$forceUpdate();
+        },
+        "updateSDKMode": function () {
+            ddmm.config.saveConfigValue("sdkMode", this.sdk_mode_interim);
         }
     },
     "mounted": function () {

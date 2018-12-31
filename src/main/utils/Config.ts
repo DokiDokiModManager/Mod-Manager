@@ -53,7 +53,8 @@ export default class Config {
     private static defaultConfig = {
         installFolder: joinPath(app.getPath("userData"), "GameData"),
         background: "default.png",
-        discordEnabled: true
+        discordEnabled: true,
+        sdkMode: "always"
     };
 
     private static configPath = joinPath(app.getPath("userData"), "config.json");
