@@ -25,6 +25,14 @@ const app = new Vue({
             "description": "",
             "fatal": false,
             "stacktrace": ""
+        },
+        "prompt_cover": {
+            "display": false,
+            "title": "",
+            "description": "",
+            "button_affirmative": "",
+            "button_negative": "",
+            "callback": null
         }
     },
     "computed": {
@@ -53,6 +61,10 @@ const app = new Vue({
         "windowMinimise": ddmm.window.minimise,
         "setBackground": function (image) {
             this.background_image = image;
+        },
+        "closePrompt": function (yes) {
+            this.prompt_cover.callback(!!yes);
+            this.prompt_cover.display = false;
         }
     }
 });
@@ -79,5 +91,14 @@ ddmm.on("error", error => {
 });
 
 ddmm.on("updating", is => {
-   app.app_updating = is;
+    app.app_updating = is;
+});
+
+ddmm.on("prompt", data => {
+    app.prompt_cover.display = true;
+    app.prompt_cover.title = data.title;
+    app.prompt_cover.description = data.description;
+    app.prompt_cover.button_negative = data.button_negative;
+    app.prompt_cover.button_affirmative = data.button_affirmative;
+    app.prompt_cover.callback = data.callback;
 });

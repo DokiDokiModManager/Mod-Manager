@@ -135,12 +135,37 @@ api.window.handleInstallRightClick = function (folderName, mouseX, mouseY) {
             }
         },
         {type: "separator"},
-        {label: api.translate("renderer.tab_mods.install_contextmenu.delete_save")},
+        {
+            label: api.translate("renderer.tab_mods.install_contextmenu.delete_save"),
+            click: () => {
+                api.emit("prompt", {
+                    title: api.translate("renderer.tab_mods.save_delete_confirmation.message"),
+                    description: api.translate("renderer.tab_mods.save_delete_confirmation.details"),
+                    button_affirmative: api.translate("renderer.tab_mods.save_delete_confirmation.button_affirmative"),
+                    button_negative: api.translate("renderer.tab_mods.save_delete_confirmation.button_negative"),
+                    callback: (uninstall) => {
+                        if (uninstall) {
+                            api.mods.deleteSaveData(folderName);
+                        }
+                    }
+                });
+            }
+        },
         {
             label: api.translate("renderer.tab_mods.install_contextmenu.uninstall"),
             accelerator: "delete",
             click: () => {
-                // TODO: prompt for uninstall
+                api.emit("prompt", {
+                    title: api.translate("renderer.tab_mods.uninstall_confirmation.message"),
+                    description: api.translate("renderer.tab_mods.uninstall_confirmation.details"),
+                    button_affirmative: api.translate("renderer.tab_mods.uninstall_confirmation.button_affirmative"),
+                    button_negative: api.translate("renderer.tab_mods.uninstall_confirmation.button_negative"),
+                    callback: (uninstall) => {
+                        if (uninstall) {
+                            api.mods.deleteInstall(folderName);
+                        }
+                    }
+                });
             }
         }
     ]).popup({

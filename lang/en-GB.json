@@ -37,9 +37,15 @@
         "delete": "Delete"
       },
       "uninstall_confirmation": {
-        "message": "Are you sure you want to uninstall {0}?",
+        "message": "Are you sure you want to uninstall?",
         "details": "Your save data will be deleted, and you will need a copy of the mod to install it again.",
         "button_affirmative": "Uninstall",
+        "button_negative": "Cancel"
+      },
+      "save_delete_confirmation": {
+        "message": "Are you sure you want to delete your save data?",
+        "details": "You will have to start again from scratch.",
+        "button_affirmative": "Delete",
         "button_negative": "Cancel"
       },
       "install": {

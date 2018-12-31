@@ -27,6 +27,13 @@
         <span>{{crash_cover.stacktrace}}</span>
     </div>
 
+    <div class="cover" v-if="prompt_cover.display" :style="{'background-image': backgroundImageStyle}">
+        <h1>{{prompt_cover.title}}</h1>
+        <p>{{prompt_cover.description}}</p>
+        <br>
+        <p><button class="danger" @click="closePrompt(true)">{{prompt_cover.button_affirmative}}</button> <button class="secondary" @click="closePrompt(true)">{{prompt_cover.button_negative}}</button></p>
+    </div>
+
     <div class="titlebar">
         <div class="app-title">
             <span>{{app_name}}</span> <small>v{{app_version}}</small>

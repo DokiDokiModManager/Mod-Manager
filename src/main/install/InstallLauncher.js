@@ -106,12 +106,16 @@ class InstallLauncher {
                 logToConsole("[STDERR] " + data.toString(), LogClass_1.LogClass.ERROR);
             });
             procHandle.on("error", () => {
-                sdkServer.shutdown();
+                if (sdkServer) {
+                    sdkServer.shutdown();
+                }
                 richPresence.setIdleStatus();
                 rj(lang.translate("main.running_cover.install_crashed"));
             });
             procHandle.on("close", () => {
-                sdkServer.shutdown();
+                if (sdkServer) {
+                    sdkServer.shutdown();
+                }
                 logToConsole("Game has closed.");
                 richPresence.setIdleStatus();
                 ff();
