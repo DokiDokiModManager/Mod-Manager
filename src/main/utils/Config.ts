@@ -42,6 +42,7 @@ export default class Config {
             const contents: string = readFileSync(this.configPath).toString("utf8");
             config = JSON.parse(contents);
         }
+        console.log("Config: " + key + " is now " + value);
         config[key] = value;
         mkdirsSync(this.configPath.split(pathSep).slice(0, -1).join(pathSep));
         writeFileSync(this.configPath, JSON.stringify(config));

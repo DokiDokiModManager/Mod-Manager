@@ -45,6 +45,7 @@ class Config {
             const contents = fs_1.readFileSync(this.configPath).toString("utf8");
             config = JSON.parse(contents);
         }
+        console.log("Config: " + key + " is now " + value);
         config[key] = value;
         fs_extra_1.mkdirsSync(this.configPath.split(path_1.sep).slice(0, -1).join(path_1.sep));
         fs_1.writeFileSync(this.configPath, JSON.stringify(config));
