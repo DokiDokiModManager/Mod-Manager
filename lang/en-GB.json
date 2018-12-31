@@ -33,7 +33,6 @@
       },
       "mod_contextmenu": {
         "install": "Install",
-        "rename": "Rename",
         "delete": "Delete"
       },
       "uninstall_confirmation": {
@@ -174,6 +173,10 @@
     "mod_browse_dialog": {
       "title": "Find a mod to install",
       "file_format_name": "Mods"
+    },
+    "shortcut_dialog": {
+      "title": "Choose where to place your shortcut",
+      "file_format_name": "Shortcut"
     },
     "errors": {
       "exception": {

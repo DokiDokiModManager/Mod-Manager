@@ -257,9 +257,9 @@ ipcMain.on("create shortcut", (ev: IpcMessageEvent, folderName: string) => {
     }
 
     dialog.showSaveDialog(appWindow, {
-        title: lang.translate("mods.shortcut.dialog_title"),
+        title: lang.translate("main.shortcut_dialog.title"),
         filters: [
-            {name: lang.translate("mods.shortcut.file_format_name"), extensions: ["lnk"]}
+            {name: lang.translate("main.shortcut_dialog.file_format_name"), extensions: ["lnk"]}
         ]
     }, (file) => {
         if (file) {

@@ -179,8 +179,6 @@ api.window.handleModRightClick = function (filename, mouseX, mouseY) {
     remote.Menu.buildFromTemplate([
         {label: api.translate("renderer.tab_mods.mod_contextmenu.install"), accelerator: "enter"},
         {type: "separator"},
-        {label: api.translate("renderer.tab_mods.mod_contextmenu.rename"), accelerator: "F2"},
-        {type: "separator"},
         {label: api.translate("renderer.tab_mods.mod_contextmenu.delete"), accelerator: "delete"}
     ]).popup({
         x: mouseX,
