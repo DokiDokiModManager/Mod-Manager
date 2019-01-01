@@ -4,6 +4,9 @@ const electron_1 = require("electron");
 const fs_extra_1 = require("fs-extra");
 const path_1 = require("path");
 const electron_updater_1 = require("electron-updater");
+// Sentry.init({
+//     dsn: "https://bf0edf3f287344d4969e3171c33af4ea@sentry.io/1297252"
+// });
 // One of my major regrets in life is putting an ! at the end of the application name
 // This should allow me to use a sane directory name but not break old installs.
 if (fs_extra_1.existsSync(path_1.join(electron_1.app.getPath("appData"), "Doki Doki Mod Manager!"))) {
@@ -24,19 +27,6 @@ const InstallManager_1 = require("./install/InstallManager");
 const DiscordManager_1 = require("./discord/DiscordManager");
 const DownloadManager_1 = require("./net/DownloadManager");
 const DISCORD_ID = "453299645725016074";
-// region Crash reporting
-electron_1.crashReporter.start({
-    companyName: "DDMM",
-    productName: "DokiDokiModManager",
-    ignoreSystemCrashHandler: true,
-    extra: {
-        "purist_mode": Config_1.default.readConfigValue("puristMode"),
-        "install_directory": Config_1.default.readConfigValue("installFolder")
-    },
-    uploadToServer: true,
-    submitURL: "https://sentry.io/api/1297252/minidump/?sentry_key=bf0edf3f287344d4969e3171c33af4ea"
-});
-// endregion
 // region Flags and references
 // User agent for API requests
 const USER_AGENT = "DokiDokiModManager/" + electron_1.app.getVersion() + " (zudo@doki.space)";

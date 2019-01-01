@@ -1,4 +1,7 @@
 node_modules/
 dist/
+src/main/**/*.js
+src/**/*.map
+lib/
 .idea/
 yarn-error.log

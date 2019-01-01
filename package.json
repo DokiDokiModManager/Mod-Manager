@@ -6,30 +6,32 @@
   "version": "3.0.0-beta",
   "homepage": "https://doki.space",
   "license": "MIT",
-  "main": "src/main/index.js",
+  "main": "lib/main/index.js",
   "scripts": {
-    "start": "electron . --enable-sandbox",
-    "start-dev": "electron --inspect=5858 . --enable-sandbox",
-    "release": "electron-builder",
+    "start": "tsc && electron . --enable-sandbox",
+    "start-dev": "tsc && electron --inspect=5858 . --enable-sandbox",
+    "release": "tsc && electron-builder",
     "test": "mocha"
   },
   "dependencies": {
     "7zip-bin": "^4.1.0",
     "@fortawesome/fontawesome-free": "^5.5.0",
+    "@sentry/electron": "0.14.0",
     "@zudo/unzipper": "^0.0.4",
     "chmodr": "^1.2.0",
     "discord-rich-presence": "^0.0.7",
+    "electron-updater": "^4.0.7",
     "file-url": "^2.0.2",
     "fs-extra": "^7.0.1",
     "request": "^2.88.0",
-    "vue": "^2.5.17",
-    "electron-updater": "^4.0.7"
+    "vue": "^2.5.17"
   },
   "devDependencies": {
     "@sentry/cli": "^1.36.4",
     "electron": "^4.0.0",
     "electron-builder": "^20.36.2",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "typescript": "^3.2.2"
   },
   "build": {
     "appId": "space.doki.modmanager",

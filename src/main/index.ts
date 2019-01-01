@@ -1,7 +1,12 @@
-import {app, BrowserWindow, ipcMain, IpcMessageEvent, shell, dialog, Notification, crashReporter} from "electron";
+import {app, BrowserWindow, ipcMain, IpcMessageEvent, shell, dialog, Notification} from "electron";
 import {move, existsSync, mkdirpSync, readdirSync} from "fs-extra";
 import {join as joinPath} from "path";
 import {autoUpdater} from "electron-updater";
+import * as Sentry from "@sentry/electron";
+
+Sentry.init({
+    dsn: "https://bf0edf3f287344d4969e3171c33af4ea@sentry.io/1297252"
+});
 
 // One of my major regrets in life is putting an ! at the end of the application name
 // This should allow me to use a sane directory name but not break old installs.
@@ -24,21 +29,6 @@ import DiscordManager from "./discord/DiscordManager";
 import DownloadManager from "./net/DownloadManager";
 
 const DISCORD_ID = "453299645725016074";
-
-
-// region Crash reporting
-crashReporter.start({
-    companyName: "DDMM",
-    productName: "DokiDokiModManager",
-    ignoreSystemCrashHandler: true,
-    extra: {
-        "purist_mode": Config.readConfigValue("puristMode"),
-        "install_directory": Config.readConfigValue("installFolder")
-    },
-    uploadToServer: true,
-    submitURL: "https://sentry.io/api/1297252/minidump/?sentry_key=bf0edf3f287344d4969e3171c33af4ea"
-});
-// endregion
 
 // region Flags and references
 
@@ -317,7 +307,7 @@ ipcMain.on("move install", () => {
 
 // Get available backgrounds
 ipcMain.on("get backgrounds", (ev: IpcMessageEvent) => {
-    ev.returnValue = readdirSync(joinPath(__dirname, "../renderer/images/backgrounds"));
+    ev.returnValue = readdirSync(joinPath(__dirname, "../../src/renderer/images/backgrounds"));
 });
 
 // Crash for debugging
@@ -417,7 +407,7 @@ app.on("ready", () => {
             contextIsolation: false,
             sandbox: true,
             nodeIntegration: false,
-            preload: joinPath(__dirname, "../renderer/js-preload/preload.js") // contains all the IPC scripts
+            preload: joinPath(__dirname, "../../src/renderer/js-preload/preload.js") // contains all the IPC scripts
         },
         titleBarStyle: "hiddenInset",
         show: false
@@ -491,6 +481,6 @@ app.on("ready", () => {
         appWindow.webContents.openDevTools({mode: "detach"});
     }
 
-    appWindow.loadFile(joinPath(__dirname, "../renderer/html/index.html"));
+    appWindow.loadFile(joinPath(__dirname, "../../src/renderer/html/index.html"));
 });
 // endregion

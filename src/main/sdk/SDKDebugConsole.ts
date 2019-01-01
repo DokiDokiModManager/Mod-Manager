@@ -19,13 +19,13 @@ export default class SDKDebugConsole {
             show: false,
             webPreferences: {
                 nodeIntegration: true,
-                preload: joinPath(__dirname, "../../renderer/js-preload/sdk-preload.js") // contains all the IPC scripts
+                preload: joinPath(__dirname, "../../../src/renderer/js-preload/sdk-preload.js") // contains all the IPC scripts
             }
         });
 
         this.window.setMenu(null);
 
-        this.window.loadFile(joinPath(__dirname, "../../renderer/html/sdk-debug.html"));
+        this.window.loadFile(joinPath(__dirname, "../../../src/renderer/html/sdk-debug.html"));
 
         this.window.setTitle("Debugging - " + windowTitle);
 

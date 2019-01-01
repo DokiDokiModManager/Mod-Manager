@@ -3,7 +3,8 @@
     "module": "commonjs",
     "target": "es6",
     "importHelpers": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "outDir": "lib/main"
   },
   "exclude": [
     "node_modules"
