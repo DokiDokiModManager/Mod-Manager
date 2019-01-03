@@ -11,7 +11,7 @@
     "start": "tsc && electron . --enable-sandbox",
     "start-dev": "tsc && electron --inspect=5858 . --enable-sandbox",
     "release": "tsc && electron-builder",
-    "test": "mocha"
+    "test": "tsc && mocha"
   },
   "dependencies": {
     "7zip-bin": "^4.1.0",

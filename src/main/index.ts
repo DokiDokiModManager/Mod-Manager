@@ -5,7 +5,8 @@ import {autoUpdater} from "electron-updater";
 import * as Sentry from "@sentry/electron";
 
 Sentry.init({
-    dsn: "https://bf0edf3f287344d4969e3171c33af4ea@sentry.io/1297252"
+    dsn: "https://bf0edf3f287344d4969e3171c33af4ea@sentry.io/1297252",
+    onFatalError: () => {} // workaround for stacktrace being displayed (see getsentry/sentry-electron#146)
 });
 
 // One of my major regrets in life is putting an ! at the end of the application name
