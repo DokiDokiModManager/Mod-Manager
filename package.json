@@ -35,7 +35,7 @@
   "devDependencies": {
     "@types/request": "^2.47.1",
     "devtron": "^1.4.0",
-    "electron": "^3.0.4",
+    "electron": "^4.0.1",
     "electron-builder": "^20.26.1"
   },
   "build": {
