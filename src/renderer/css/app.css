@@ -104,10 +104,14 @@ body {
 }
 
 .window-buttons {
+  position: fixed;
+  z-index: 200;
+  right: 0;
+  top: 0;
   display: flex;
   color: #ddd;
   font-weight: bold;
-  padding: 0.1em;
+  padding: 0.5em;
   -webkit-app-region: no-drag;
 }
 
