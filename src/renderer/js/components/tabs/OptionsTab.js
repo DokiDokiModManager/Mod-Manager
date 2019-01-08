@@ -29,6 +29,13 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
                 
                 <p>{{_("renderer.tab_options.section_backgrounds.description_credit")}}</p>
             </div>
+            <div v-else-if="selected_option === 'advanced_appearance'">
+                <h1>{{_("renderer.tab_options.section_advanced_appearance.title")}}</h1>
+                <p>{{_("renderer.tab_options.section_advanced_appearance.subtitle")}}</p>
+                <br>
+                <button class="danger" v-if="systemBordersEnabled()" @click="setSystemBorders(false)">{{_("renderer.tab_options.section_advanced_appearance.button_disable_sysborders")}}</button>
+                <button class="success" v-else @click="setSystemBorders(true)">{{_("renderer.tab_options.section_advanced_appearance.button_enable_sysborders")}}</button>
+            </div>
             <div v-else-if="selected_option === 'updates'">
                 <h1>{{_("renderer.tab_options.section_updates.title")}}</h1>
                 <p>{{_("renderer.tab_options.section_updates.subtitle")}}</p>
@@ -109,7 +116,11 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
                 {
                     "header": ddmm.translate("renderer.tab_options.list.header_appearance"),
                     "contents": [
-                        {"title": ddmm.translate("renderer.tab_options.list.link_background"), "id": "background"}
+                        {"title": ddmm.translate("renderer.tab_options.list.link_background"), "id": "background"},
+                        {
+                            "title": ddmm.translate("renderer.tab_options.list.link_advanced_appearance"),
+                            "id": "advanced_appearance"
+                        }
                     ]
                 },
                 {
@@ -167,6 +178,13 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
         },
         "checkUpdates": function () {
             ddmm.app.update();
+        },
+        "setSystemBorders": function (enabled) {
+            ddmm.config.saveConfigValue("systemBorders", enabled);
+            this.$forceUpdate();
+        },
+        "systemBordersEnabled": function () {
+            return ddmm.config.readConfigValue("systemBorders");
         }
     },
     "mounted": function () {

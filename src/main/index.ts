@@ -407,7 +407,8 @@ app.on("ready", () => {
         minWidth: 1000,
         minHeight: 600,
         maximizable: true,
-        frame: false,
+        frame: !!Config.readConfigValue("systemBorders"),
+        useContentSize: true,
         webPreferences: {
             contextIsolation: false,
             sandbox: true,
