@@ -42,7 +42,7 @@ export default class OnboardingManager extends EventEmitter {
                 this.downloadManager.downloadFile(link,
                     joinPath(Config.readConfigValue("installFolder"), "ddlc.zip"),
                     "ONBOARDING_DOWNLOAD");
-            });
+            }).catch(rj);
         });
     }
 }

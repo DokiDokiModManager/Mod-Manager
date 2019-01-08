@@ -6,7 +6,8 @@ import * as Sentry from "@sentry/electron";
 
 Sentry.init({
     dsn: "https://bf0edf3f287344d4969e3171c33af4ea@sentry.io/1297252",
-    onFatalError: () => {} // workaround for stacktrace being displayed (see getsentry/sentry-electron#146)
+    onFatalError: () => {
+    } // workaround for stacktrace being displayed (see getsentry/sentry-electron#146)
 });
 
 // One of my major regrets in life is putting an ! at the end of the application name
@@ -318,6 +319,16 @@ ipcMain.on("get backgrounds", (ev: IpcMessageEvent) => {
 // Crash for debugging
 ipcMain.on("debug crash", () => {
     throw new Error("User forced debug crash with DevTools")
+});
+
+// Onboarding download
+ipcMain.on("onboarding download", () => {
+    console.log("Starting game download");
+    onboardingManager.downloadGame().then(() => {
+        appWindow.webContents.send("onboarding downloaded");
+    }).catch(e => {
+        console.warn("Failed to download game in onboarding: " + e);
+    });
 });
 
 // endregion

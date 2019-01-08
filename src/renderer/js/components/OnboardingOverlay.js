@@ -3,7 +3,7 @@ const OnboardingOverlay = Vue.component("ddmm-onboarding", {
     <h1>{{_("renderer.onboarding.title")}}</h1>
     <p>{{_("renderer.onboarding.description_download")}}</p>
     <br>
-    <p><button class="primary">{{_("renderer.onboarding.button_download")}}</button> <button class="secondary">{{_("renderer.onboarding.button_choose")}}</button></p>
+    <p><button class="primary" :disabled="downloading" @click="download">{{_("renderer.onboarding.button_download")}}</button> <button class="secondary" :disabled="downloading">{{_("renderer.onboarding.button_choose")}}</button></p>
     <br>
     <p>{{_("renderer.onboarding.heading_why")}}</p>
     <div>{{_("renderer.onboarding.description_why")}}</div>
@@ -11,10 +11,14 @@ const OnboardingOverlay = Vue.component("ddmm-onboarding", {
     `,
     "data": function () {
         return {
-
+            "downloading": false
         }
     },
     "methods": {
         "_": ddmm.translate,
+        "download": function () {
+            this.downloading = true;
+            ddmm.onboarding.downloadGame();
+        }
     }
 });

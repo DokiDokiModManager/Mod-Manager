@@ -17,6 +17,7 @@ api.mods = {};
 api.app = {};
 api.window = {};
 api.config = {};
+api.onboarding = {};
 
 // Called when the UI wants to refresh the mod list
 api.mods.refreshModList = function () {
@@ -244,6 +245,11 @@ ipcRenderer.on("start onboarding", () => {
 // Check for updates
 api.app.update = function() {
     ipcRenderer.send("check update");
+};
+
+// Onboarding download
+api.onboarding.downloadGame = function() {
+    ipcRenderer.send("onboarding download");
 };
 
 // Application version
