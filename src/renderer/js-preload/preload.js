@@ -236,6 +236,11 @@ ipcRenderer.on("updating", (ev, data) => {
    api.emit("updating", !!data);
 });
 
+// Onboarding flow trigger
+ipcRenderer.on("start onboarding", () => {
+    api.emit("start onboarding");
+});
+
 // Check for updates
 api.app.update = function() {
     ipcRenderer.send("check update");

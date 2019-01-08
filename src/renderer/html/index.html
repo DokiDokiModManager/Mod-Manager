@@ -10,6 +10,7 @@
 </head>
 <body>
 <div id="app" :class="['os-'+system_platform]" :style="{'background-image': backgroundImageStyle}">
+    <ddmm-onboarding v-if="onboarding" :style="{'background-image': backgroundImageStyle}"></ddmm-onboarding>
     <div class="cover" v-if="running_cover.display" :style="{'background-image': backgroundImageStyle}">
         <h1>{{running_cover.title}}</h1>
         <p>{{running_cover.description}}</p>
@@ -57,6 +58,7 @@
 
 </div>
 <script src="../../../node_modules/vue/dist/vue.js"></script>
+<script src="../js/components/OnboardingOverlay.js"></script>
 <script src="../js/components/tabs/ModsTab.js"></script>
 <script src="../js/components/tabs/StoreTab.js"></script>
 <script src="../js/components/tabs/OptionsTab.js"></script>

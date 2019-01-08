@@ -1,6 +1,7 @@
 const app = new Vue({
     "el": "#app",
     "data": {
+        "onboarding": false,
         "background_image": ddmm.config.readConfigValue("background"),
         "app_name": "Doki Doki Mod Manager",
         "app_version": ddmm.version,
@@ -101,4 +102,8 @@ ddmm.on("prompt", data => {
     app.prompt_cover.button_negative = data.button_negative;
     app.prompt_cover.button_affirmative = data.button_affirmative;
     app.prompt_cover.callback = data.callback;
+});
+
+ddmm.on("start onboarding", () => {
+    app.onboarding = true;
 });

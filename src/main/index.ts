@@ -28,6 +28,7 @@ import ModInstaller from "./mod/ModInstaller";
 import InstallManager from "./install/InstallManager";
 import DiscordManager from "./discord/DiscordManager";
 import DownloadManager from "./net/DownloadManager";
+import OnboardingManager from "./onboarding/OnboardingManager";
 
 const DISCORD_ID = "453299645725016074";
 
@@ -49,6 +50,9 @@ richPresence.setIdleStatus();
 
 // Download manager
 let downloadManager: DownloadManager;
+
+// Onboarding manager
+let onboardingManager: OnboardingManager;
 
 // Flag for allowing the app window to be closed
 let windowClosable: boolean = true;
@@ -417,6 +421,9 @@ app.on("ready", () => {
     // Activate download manager
     downloadManager = new DownloadManager(appWindow);
 
+    // ...and the onboarding manager
+    onboardingManager = new OnboardingManager(downloadManager);
+
     // set user agent so web services can contact me if necessary
     appWindow.webContents.setUserAgent(USER_AGENT);
 
@@ -440,6 +447,10 @@ app.on("ready", () => {
             "Locale": app.getLocale(),
             "Install Folder": Config.readConfigValue("installFolder")
         });
+
+        if (OnboardingManager.requiresOnboarding()) {
+            appWindow.webContents.send("start onboarding");
+        }
     });
 
     appWindow.on("close", (ev) => {
