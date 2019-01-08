@@ -268,12 +268,12 @@ button.primary:hover {
 }
 
 button.secondary {
-  background-color: $ui-background-colour;
+  background-color: lighten($ui-background-colour, 10%);
   color: $ui-text-colour;
 }
 
 button.secondary:hover {
-  background-color: darken($ui-background-colour, 10%);
+  background-color: lighten($ui-background-colour, 5%);
 }
 
 button.dark {

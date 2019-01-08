@@ -17,6 +17,14 @@
       "button_close": "Quit",
       "button_continue": "Continue"
     },
+    "onboarding": {
+      "title": "Welcome!",
+      "description_download": "This text would prompt you to download the game.",
+      "button_download": "Download",
+      "button_choose": "Find a copy",
+      "heading_why": "What is this?",
+      "description_why": "Doki Doki Mod Manager requires a copy of DDLC as a .zip file. If you already have a copy of DDLC, you can choose it now, otherwise a new copy will be downloaded directly from itch.io. We can't directly distribute DDLC, so this is the next best thing."
+    },
     "tab_mods": {
       "list": {
         "header_new": "Get Started",

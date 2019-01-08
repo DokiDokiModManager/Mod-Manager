@@ -249,12 +249,12 @@ button.primary:hover {
 }
 
 button.secondary {
-  background-color: #111;
+  background-color: #2b2b2b;
   color: #ddd;
 }
 
 button.secondary:hover {
-  background-color: black;
+  background-color: #1e1e1e;
 }
 
 button.dark {
