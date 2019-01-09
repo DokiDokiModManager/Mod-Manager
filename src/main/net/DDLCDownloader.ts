@@ -11,6 +11,10 @@ export default class DDLCDownloader {
      */
     public static getDownloadLink(): Promise<string> {
         return new Promise((ff, rj) => {
+            // test case for poor connections
+            // ff("http://ipv4.download.thinkbroadband.com/20MB.zip");
+            // return;
+
             // make a post request to the URL
             request({
                 method: "POST",

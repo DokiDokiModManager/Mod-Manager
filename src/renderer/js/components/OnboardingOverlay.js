@@ -48,6 +48,9 @@ const OnboardingOverlay = Vue.component("ddmm-onboarding", {
                 this.eta = (etaSeconds <= 60 ? "about a minute" : Math.floor(etaSeconds / 60) + 1 + " minutes");
             }
         },
+        "_downloadedCallback": function () {
+            this.$emit("close");
+        },
         "download": function () {
             this.downloading = true;
             ddmm.onboarding.downloadGame();
@@ -55,6 +58,7 @@ const OnboardingOverlay = Vue.component("ddmm-onboarding", {
     },
     "mounted": function () {
         ddmm.on("download progress", this._progressCallback);
+        ddmm.once("onboarding downloaded", this._downloadedCallback);
     },
     "destroyed": function () {
         ddmm.off("download progress", this._progressCallback);

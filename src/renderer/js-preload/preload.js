@@ -256,6 +256,10 @@ ipcRenderer.on("download progress", (_, data) => {
     api.emit("download progress", data);
 });
 
+ipcRenderer.on("onboarding downloaded", () => {
+    api.emit("onboarding downloaded");
+});
+
 // Application version
 api.version = packageData.version;
 

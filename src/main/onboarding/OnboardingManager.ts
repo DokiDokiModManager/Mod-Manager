@@ -2,15 +2,13 @@ import {existsSync} from "fs";
 import {join as joinPath} from "path";
 import Config from "../utils/Config";
 import DownloadManager from "../net/DownloadManager";
-import * as EventEmitter from "events";
 import DDLCDownloader from "../net/DDLCDownloader";
 
-export default class OnboardingManager extends EventEmitter {
+export default class OnboardingManager {
 
     private downloadManager: DownloadManager;
 
     constructor(downloadManager: DownloadManager) {
-        super();
         this.downloadManager = downloadManager;
     }
 
@@ -29,12 +27,6 @@ export default class OnboardingManager extends EventEmitter {
             this.downloadManager.once("download complete", (data: { meta: any, filename: string }) => {
                 if (data.meta === "ONBOARDING_DOWNLOAD") {
                     ff();
-                }
-            });
-
-            this.downloadManager.on("download progress", (data: any) => {
-                if (data.meta === "ONBOARDING_DOWNLOAD") {
-                    this.emit("download progress", data);
                 }
             });
 

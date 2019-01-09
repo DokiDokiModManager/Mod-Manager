@@ -329,6 +329,7 @@ ipcMain.on("debug crash", () => {
 ipcMain.on("onboarding download", () => {
     console.log("Starting game download");
     onboardingManager.downloadGame().then(() => {
+        appWindow.flashFrame(true);
         appWindow.webContents.send("onboarding downloaded");
     }).catch(e => {
         console.warn("Failed to download game in onboarding: " + e);
@@ -440,7 +441,7 @@ app.on("ready", () => {
     // ...and the onboarding manager
     onboardingManager = new OnboardingManager(downloadManager);
 
-    onboardingManager.on("download progress", (data: {filename: string, downloaded: number, total: number, startTime: number, meta?: any}) => {
+    downloadManager.on("download progress", (data: {filename: string, downloaded: number, total: number, startTime: number, meta?: any}) => {
         appWindow.webContents.send("download progress", data);
     });
 
