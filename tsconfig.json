@@ -4,7 +4,8 @@
     "target": "es6",
     "importHelpers": true,
     "sourceMap": true,
-    "outDir": "lib/main"
+    "outDir": "lib/main",
+    "removeComments": true
   },
   "exclude": [
     "node_modules"
