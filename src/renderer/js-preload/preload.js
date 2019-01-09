@@ -256,8 +256,16 @@ ipcRenderer.on("download progress", (_, data) => {
     api.emit("download progress", data);
 });
 
+ipcRenderer.on("download stalled", (_, data) => {
+    api.emit("download stalled", data);
+});
+
 ipcRenderer.on("onboarding downloaded", () => {
     api.emit("onboarding downloaded");
+});
+
+ipcRenderer.on("onboarding download failed", () => {
+    api.emit("onboarding download failed");
 });
 
 // Application version

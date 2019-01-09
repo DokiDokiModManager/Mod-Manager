@@ -1,5 +1,5 @@
 import {app, BrowserWindow, ipcMain, IpcMessageEvent, shell, dialog, Notification} from "electron";
-import {move, existsSync, mkdirpSync, readdirSync} from "fs-extra";
+import {move, existsSync, mkdirpSync, readdirSync, removeSync} from "fs-extra";
 import {join as joinPath} from "path";
 import {autoUpdater} from "electron-updater";
 import * as Sentry from "@sentry/electron";
@@ -332,7 +332,9 @@ ipcMain.on("onboarding download", () => {
         appWindow.flashFrame(true);
         appWindow.webContents.send("onboarding downloaded");
     }).catch(e => {
+        removeSync(joinPath(Config.readConfigValue("installFolder"), "ddlc.zip"));
         console.warn("Failed to download game in onboarding: " + e);
+        appWindow.webContents.send("onboarding download failed");
     });
 });
 
@@ -443,6 +445,10 @@ app.on("ready", () => {
 
     downloadManager.on("download progress", (data: {filename: string, downloaded: number, total: number, startTime: number, meta?: any}) => {
         appWindow.webContents.send("download progress", data);
+    });
+
+    downloadManager.on("download stalled", (data: {filename: string, downloaded: number, total: number, startTime: number, meta?: any}) => {
+        appWindow.webContents.send("download stalled", data);
     });
 
     // set user agent so web services can contact me if necessary
