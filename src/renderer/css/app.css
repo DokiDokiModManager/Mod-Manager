@@ -345,4 +345,19 @@ input:focus, textarea:focus {
   font-size: 1.25em;
 }
 
+.progress {
+  width: 100%;
+  padding: 0;
+}
+
+.progress .bar {
+  min-width: 1%;
+  padding: 0;
+  margin: 0;
+  height: 16px;
+  background-image: linear-gradient(315deg, rgba(187, 85, 153, 0.5), rgba(73, 50, 64, 0.5));
+  transition: width 0.5s;
+  border-radius: 3px;
+}
+
 /*# sourceMappingURL=app.css.map */

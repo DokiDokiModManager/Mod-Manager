@@ -26,13 +26,19 @@ export default class OnboardingManager extends EventEmitter {
      */
     public downloadGame(): Promise<null> {
         return new Promise((ff, rj) => {
-            this.downloadManager.once("download complete", (data: {meta: any, filename: string}) => {
+            this.downloadManager.once("download complete", (data: { meta: any, filename: string }) => {
                 if (data.meta === "ONBOARDING_DOWNLOAD") {
                     ff();
                 }
             });
 
-            this.downloadManager.once("download failed", (data: {meta: any, filename: string}) => {
+            this.downloadManager.on("download progress", (data: any) => {
+                if (data.meta === "ONBOARDING_DOWNLOAD") {
+                    this.emit("download progress", data);
+                }
+            });
+
+            this.downloadManager.once("download failed", (data: { meta: any, filename: string }) => {
                 if (data.meta === "ONBOARDING_DOWNLOAD") {
                     rj();
                 }

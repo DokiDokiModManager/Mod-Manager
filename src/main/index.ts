@@ -321,7 +321,11 @@ ipcMain.on("debug crash", () => {
     throw new Error("User forced debug crash with DevTools")
 });
 
-// Onboarding download
+// endregion
+
+// region Onboarding
+
+// Download start
 ipcMain.on("onboarding download", () => {
     console.log("Starting game download");
     onboardingManager.downloadGame().then(() => {
@@ -435,6 +439,10 @@ app.on("ready", () => {
 
     // ...and the onboarding manager
     onboardingManager = new OnboardingManager(downloadManager);
+
+    onboardingManager.on("download progress", (data: {filename: string, downloaded: number, total: number, startTime: number, meta?: any}) => {
+        appWindow.webContents.send("download progress", data);
+    });
 
     // set user agent so web services can contact me if necessary
     appWindow.webContents.setUserAgent(USER_AGENT);

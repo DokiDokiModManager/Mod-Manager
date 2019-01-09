@@ -252,6 +252,10 @@ api.onboarding.downloadGame = function() {
     ipcRenderer.send("onboarding download");
 };
 
+ipcRenderer.on("download progress", (_, data) => {
+    api.emit("download progress", data);
+});
+
 // Application version
 api.version = packageData.version;
 

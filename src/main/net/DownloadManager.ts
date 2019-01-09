@@ -35,14 +35,18 @@ export default class DownloadManager extends EventEmitter {
                 if (state === "progressing") {
                     this.emit("download progress", {
                         filename: item.getFilename(),
-                        progress: item.getReceivedBytes() / item.getTotalBytes(),
+                        downloaded: item.getReceivedBytes(),
+                        total: item.getTotalBytes(),
+                        startTime: item.getStartTime(),
                         meta
                     });
                 } else {
                     console.log("Download of " + item.getFilename() + " stalled");
                     this.emit("download stalled", {
                         filename: item.getFilename(),
-                        progress: item.getReceivedBytes() / item.getTotalBytes(),
+                        downloaded: item.getReceivedBytes(),
+                        total: item.getTotalBytes(),
+                        startTime: item.getStartTime(),
                         meta
                     })
                 }
