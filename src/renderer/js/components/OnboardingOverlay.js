@@ -3,12 +3,12 @@ const OnboardingOverlay = Vue.component("ddmm-onboarding", {
     <h1>{{_("renderer.onboarding.title")}}</h1>
     <p>{{_("renderer.onboarding.description_download")}}</p>
     <br>
-    <p><button class="primary" :disabled="downloading" @click="download">{{_("renderer.onboarding.button_download")}}</button> <button class="secondary" :disabled="downloading">{{_("renderer.onboarding.button_choose")}}</button></p>
+    <p><button class="primary" :disabled="!online || downloading" @click="download">{{_("renderer.onboarding.button_download")}}</button> <button class="secondary" :disabled="downloading">{{_("renderer.onboarding.button_choose")}}</button></p>
     <br>
     <p>{{_("renderer.onboarding.heading_why")}}</p>
     <div>{{_("renderer.onboarding.description_why")}}</div>
     <br>
-    <div v-if="downloading">
+    <div v-if="downloading && online">
         <div class="progress">
             <div class="bar" :style="{'width': formattedPercentage}"></div>
         </div>
@@ -16,11 +16,14 @@ const OnboardingOverlay = Vue.component("ddmm-onboarding", {
         <div>{{_("renderer.onboarding.status_downloading", formattedPercentage, eta, speed)}}</div>
     </div>
     <br>
+    <div v-if="!online"><strong>{{_("renderer.onboarding.status_offline")}}</strong></div>
+    <br>
     <div v-if="errored"><strong>{{_("renderer.onboarding.status_errored")}}</strong></div>
 </div>
     `,
     "data": function () {
         return {
+            "online": navigator.onLine,
             "downloading": false,
             "errored": false,
             "percentage": 0,
@@ -56,8 +59,11 @@ const OnboardingOverlay = Vue.component("ddmm-onboarding", {
             this.$emit("close");
         },
         "_stalledCallback": function () {
-          this.errored = true;
-          this.downloading = false;
+            this.errored = true;
+            this.downloading = false;
+        },
+        "_onlineCallback": function () {
+            this.online = navigator.onLine;
         },
         "download": function () {
             this.downloading = true;
@@ -69,11 +75,15 @@ const OnboardingOverlay = Vue.component("ddmm-onboarding", {
         ddmm.on("download stalled", this._stalledCallback);
         ddmm.on("onboarding downloaded", this._downloadedCallback);
         ddmm.on("onboarding download failed", this._stalledCallback);
+        window.addEventListener("online", this._onlineCallback);
+        window.addEventListener("offline", this._onlineCallback);
     },
     "destroyed": function () {
         ddmm.off("download progress", this._progressCallback);
         ddmm.off("download stalled", this._stalledCallback);
         ddmm.off("onboarding downloaded", this._downloadedCallback);
         ddmm.off("onboarding download failed", this._stalledCallback);
+        window.removeEventListener("online", this._onlineCallback);
+        window.removeEventListener("offline", this._onlineCallback);
     }
 });

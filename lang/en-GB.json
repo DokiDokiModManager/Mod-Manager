@@ -25,7 +25,8 @@
       "heading_why": "What is this?",
       "description_why": "Doki Doki Mod Manager requires a copy of DDLC as a .zip file. If you already have a copy of DDLC, you can choose it now, otherwise a new copy will be downloaded directly from itch.io. We can't directly distribute DDLC, so this is the next best thing.",
       "status_downloading": "Downloading game files - {0} complete ({1} left, {2} MB/s)",
-      "status_errored": "The download failed, or was interrupted. Check your internet connection and try again."
+      "status_errored": "The download failed, or was interrupted. Check your internet connection and try again.",
+      "status_offline": "You need an active internet connection to download DDLC."
     },
     "tab_mods": {
       "list": {
