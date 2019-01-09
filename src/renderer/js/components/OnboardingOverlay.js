@@ -13,7 +13,7 @@ const OnboardingOverlay = Vue.component("ddmm-onboarding", {
             <div class="bar" :style="{'width': formattedPercentage}"></div>
         </div>
         <br>
-        <div>{{_("renderer.onboarding.status_downloading", formattedPercentage, download_speed)}}</div>
+        <div>{{_("renderer.onboarding.status_downloading", formattedPercentage, eta, speed)}}</div>
     </div>
 </div>
     `,
@@ -21,21 +21,31 @@ const OnboardingOverlay = Vue.component("ddmm-onboarding", {
         return {
             "downloading": false,
             "percentage": 0,
-            "download_speed": 0
+            "eta": 0,
+            "speed": 0
         }
     },
     "computed": {
-      "formattedPercentage": function () {
-          return this.percentage + "%";
-      }
+        "formattedPercentage": function () {
+            return this.percentage + "%";
+        }
     },
     "methods": {
         "_": ddmm.translate,
         "_progressCallback": function (progressData) {
             if (progressData.meta !== "ONBOARDING_DOWNLOAD") return;
             if (progressData.total !== 0) {
-                this.percentage = Math.floor((progressData.downloaded / progressData.total)*100);
-                this.download_speed = Math.floor((progressData.downloaded / (Date.now())*1000) / 100000);
+                this.percentage = Math.floor((progressData.downloaded / progressData.total) * 100);
+
+                const elapsedTime = Date.now() / 1000 - progressData.startTime;
+
+                const etaSeconds = (elapsedTime * (progressData.total / progressData.downloaded)) - elapsedTime;
+
+                const speed = (progressData.downloaded / 1000000) / elapsedTime;
+
+                this.speed = Math.floor(speed * 100) / 100;
+
+                this.eta = (etaSeconds <= 60 ? "about a minute" : Math.floor(etaSeconds / 60) + 1 + " minutes");
             }
         },
         "download": function () {
