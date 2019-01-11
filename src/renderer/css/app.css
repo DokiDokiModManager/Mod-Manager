@@ -317,6 +317,11 @@ input[type=text], input[type=number], input[type=url], textarea, select {
   transition: border-color 0.25s;
 }
 
+input.small {
+  font-size: 0.75em;
+  min-width: 0;
+}
+
 input:focus, textarea:focus {
   border-color: #aaa;
 }

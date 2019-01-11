@@ -3,24 +3,26 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
 <div class="page-content">
     <div class="mod-viewer-pane">
         <div class="mod-viewer-mod-list">
+            <div><input type="text" class="small" :placeholder="_('renderer.tab_mods.list.placeholder_search')" autofocus @keydown="_searchEscapeHandler" @focus="search = ''" v-model="search"></div>
+            <br>
             <div class="mod-view-mod-list-title">{{_("renderer.tab_mods.list.header_new")}}</div>
             <div
                 :class="{'mod-view-mod-list-entry': true, 'active': selected_item.type === 'create'}"
                 @click="showCreateInstall()">{{_("renderer.tab_mods.list.link_install")}}</div>
             <br>
-            <div class="mod-view-mod-list-title" v-if="installs.length > 0">{{_("renderer.tab_mods.list.header_installed")}}</div>
+            <div class="mod-view-mod-list-title" v-if="searchResultsInstalls.length > 0">{{_("renderer.tab_mods.list.header_installed")}}</div>
             <div 
                 :class="{'mod-view-mod-list-entry': true, 'active': selected_item.id === install.folderName && selected_item.type === 'install'}"
-                 v-for="install in installs"
+                 v-for="install in searchResultsInstalls"
                   @dblclick="launchInstall(install.folderName)"
                   @mouseup="handleInstallClick(install.folderName, $event)"
                   :title="getPathToInstall(install.folderName)"
                   >{{install.name}}</div>
-            <br v-if="installs.length > 0">
-            <div class="mod-view-mod-list-title" v-if="mods.length > 0">{{_("renderer.tab_mods.list.header_downloaded")}}</div>
+            <br v-if="searchResultsInstalls.length > 0">
+            <div class="mod-view-mod-list-title" v-if="searchResultsMods.length > 0">{{_("renderer.tab_mods.list.header_downloaded")}}</div>
             <div
                 :class="{'mod-view-mod-list-entry': true, 'active': selected_item.id === mod && selected_item.type === 'mod'}" 
-                v-for="mod in mods"
+                v-for="mod in searchResultsMods"
                 @mouseup="handleModClick(mod, $event)"
                 :title="getPathToMod(mod)"
                 >{{mod}}</div>
@@ -88,7 +90,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 
                 <div class="form-group">
                     <p><label>{{_("renderer.tab_mods.install_creation.label_folder_name")}}</label></p>
-                    <p><input type="text" :placeholder="_('renderer.tab_mods.install_creation.label_folder_name')" v-model="install_creation.folder_name" debounce="200"></p>
+                    <p><input type="text" :placeholder="_('renderer.tab_mods.install_creation.label_folder_name')" v-model="install_creation.folder_name"></p>
                 </div>
                 
                 <div class="form-group">
@@ -121,7 +123,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 
                 <div class="form-group"><button class="primary" @click="createInstallSubmit" :disabled="shouldDisableCreation">{{_("renderer.tab_mods.install_creation.button_install")}}</button></div>
                 
-                <p v-if="install_creation.folder_name.length > 2 && installExists(install_creation.folder_name)">{{_("renderer.tab_mods.install_creation.status_exists")}}</p>
+                <p v-if="!is_installing && install_creation.folder_name.length > 2 && installExists(install_creation.folder_name)">{{_("renderer.tab_mods.install_creation.status_exists")}}</p>
                 
                 <p v-if="is_installing"><i class="fas fa-spinner fa-spin"></i> {{_("renderer.tab_mods.install_creation.status_installing")}}</p>
             </div>
@@ -144,7 +146,10 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 "global_save": false,
                 "has_mod": false,
                 "mod": ""
-            }
+            },
+            "search": "",
+            "_fuseMods": null,
+            "_fuseInstalls": null
         }
     },
     "methods": {
@@ -234,10 +239,21 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                     this.selectItem("", "create");
                 }
             }
+
+            this._fuseInstalls = new Fuse(installs, {
+                shouldSort: true,
+                threshold: 0.5,
+                keys: ["name", "folderName"]
+            });
         },
         "_refreshModList": function (mods) {
             // Event handler for refreshed mod list
             this.mods = mods;
+
+            this._fuseMods = new Fuse(mods, {
+                shouldSort: true,
+                threshold: 0.5,
+            });
         },
         "_keyPressHandler": function (e) {
             // Handles key press events for installs / mods
@@ -245,6 +261,11 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 if (e.key === "Enter") {
                     ddmm.mods.launchInstall(this.selectedInstall.folderName);
                 }
+            }
+        },
+        "_searchEscapeHandler": function (e) {
+            if (e.key === "Escape") {
+                this.search = "";
             }
         }
     },
@@ -256,6 +277,12 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             return this.is_installing || (this.install_creation.has_mod && !this.install_creation.mod)
                 || this.install_creation.install_name.length < 2 || this.install_creation.folder_name.length < 2
                 || ddmm.mods.installExists(this.install_creation.folder_name);
+        },
+        "searchResultsMods": function () {
+            return this.search.length > 0 ? this._fuseMods.search(this.search).map(mod => this.mods[mod]) : this.mods;
+        },
+        "searchResultsInstalls": function () {
+            return this.search.length > 0 ? this._fuseInstalls.search(this.search) : this.installs;
         }
     },
     "mounted": function () {
