@@ -1,5 +1,5 @@
 import {app, BrowserWindow, ipcMain, IpcMessageEvent, shell, dialog, Notification} from "electron";
-import {move, existsSync, mkdirpSync, readdirSync, removeSync} from "fs-extra";
+import {move, existsSync, mkdirpSync, readdirSync, removeSync, copyFileSync} from "fs-extra";
 import {join as joinPath} from "path";
 import {autoUpdater} from "electron-updater";
 import * as Sentry from "@sentry/electron";
@@ -7,7 +7,8 @@ import * as Sentry from "@sentry/electron";
 Sentry.init({
     dsn: "https://bf0edf3f287344d4969e3171c33af4ea@sentry.io/1297252",
     onFatalError: () => {
-    } // workaround for stacktrace being displayed (see getsentry/sentry-electron#146)
+        // workaround for stacktrace being displayed (see getsentry/sentry-electron#146)
+    }
 });
 
 // One of my major regrets in life is putting an ! at the end of the application name
@@ -30,7 +31,6 @@ import InstallManager from "./install/InstallManager";
 import DiscordManager from "./discord/DiscordManager";
 import DownloadManager from "./net/DownloadManager";
 import OnboardingManager from "./onboarding/OnboardingManager";
-import {copyFileSync} from "fs";
 
 const DISCORD_ID = "453299645725016074";
 
@@ -495,9 +495,9 @@ app.on("ready", () => {
             "Install Folder": Config.readConfigValue("installFolder")
         });
 
-        if (OnboardingManager.requiresOnboarding()) {
+        OnboardingManager.requiresOnboarding().catch(() => {
             appWindow.webContents.send("start onboarding");
-        }
+        });
     });
 
     appWindow.on("close", (ev) => {
