@@ -330,7 +330,11 @@ ipcMain.on("onboarding download", () => {
     console.log("Starting game download");
     onboardingManager.downloadGame().then(() => {
         appWindow.flashFrame(true);
-        appWindow.webContents.send("onboarding downloaded");
+        OnboardingManager.requiresOnboarding().then(() => {
+            appWindow.webContents.send("onboarding downloaded");
+        }).catch(() => {
+            // TODO: show a message and try again
+        });
     }).catch(e => {
         removeSync(joinPath(Config.readConfigValue("installFolder"), "ddlc.zip"));
         console.warn("Failed to download game in onboarding: " + e);
@@ -346,10 +350,14 @@ ipcMain.on("onboarding browse", () => {
         ],
         title: lang.translate("main.game_browse_dialog.title")
     }, (files: string[]) => {
-        if (files && files[0]) {
+        if (files && files[0] && files[0].endsWith(".zip")) {
             try {
                 copyFileSync(files[0], joinPath(Config.readConfigValue("installFolder"), "ddlc.zip"));
-                appWindow.webContents.send("onboarding downloaded");
+                OnboardingManager.requiresOnboarding().then(() => {
+                    appWindow.webContents.send("onboarding downloaded");
+                }).catch(() => {
+                    // TODO: show a message and try again
+                });
             } catch (e) {
                 // TODO: catch any FS errors
             }
