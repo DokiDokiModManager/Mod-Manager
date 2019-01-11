@@ -160,14 +160,21 @@ ipcMain.on("launch install", (ev: IpcMessageEvent, folderName: string) => {
 
 // Browse for a mod
 ipcMain.on("browse mods", (ev: IpcMessageEvent) => {
+    const extensions = ["zip", "gz", "tar", "rar", "7z"];
     dialog.showOpenDialog(appWindow, {
         title: lang.translate("main.mod_browse_dialog.title"),
         filters: [{
-            extensions: ["zip", "gz", "tar", "rar", "7z"],
+            extensions: extensions,
             name: lang.translate("main.mod_browse_dialog.file_format_name")
         }],
     }, (filePaths: string[]) => {
-        ev.returnValue = filePaths;
+        extensions.forEach(ext => {
+            if (filePaths && filePaths[0] && filePaths[0].endsWith("." + ext)) {
+                ev.returnValue = filePaths;
+                return;
+            }
+        });
+        ev.returnValue = null;
     });
 });
 
