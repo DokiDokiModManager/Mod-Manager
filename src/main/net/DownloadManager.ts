@@ -5,6 +5,8 @@ export default class DownloadManager extends EventEmitter {
 
     private win: BrowserWindow;
 
+    private downloadCount: number = 0;
+
     private saveLocationMap: Map<string, string>;
     private metadataMap: Map<string, any>;
 
@@ -53,6 +55,7 @@ export default class DownloadManager extends EventEmitter {
             });
 
             item.once("done", (ev, state: string) => {
+                this.downloadCount -= 1;
                 if (state === "completed") {
                     console.log("Download of " + item.getFilename() + " complete.");
                     this.emit("download complete", {
@@ -70,6 +73,14 @@ export default class DownloadManager extends EventEmitter {
     }
 
     /**
+     * Returns whether or not there are downloads in progress
+     */
+    public hasDownloads(): boolean {
+        return this.downloadCount > 0;
+    }
+
+
+    /**
      * Downloads a file from a URL
      *
      * @param url The URL to download
@@ -77,6 +88,7 @@ export default class DownloadManager extends EventEmitter {
      * @param meta Optional metadata to apply to the download
      */
     public downloadFile(url: string, saveLocation: string, meta?: any): void {
+        this.downloadCount += 1;
         this.saveLocationMap.set(url, saveLocation);
         this.metadataMap.set(url, meta);
         this.win.webContents.downloadURL(url);

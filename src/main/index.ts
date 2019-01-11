@@ -144,12 +144,6 @@ ipcMain.on("show file", (ev: IpcMessageEvent, path: string) => {
     shell.showItemInFolder(path);
 });
 
-// Toggle closeable flag
-ipcMain.on("closable", (ev: IpcMessageEvent, flag: boolean) => {
-    windowClosable = flag;
-    appWindow.setClosable(flag);
-});
-
 // Config IPC functions
 ipcMain.on("save config", (ev: IpcMessageEvent, configData: { key: string, value: any }) => {
     Config.saveConfigValue(configData.key, configData.value);
@@ -495,16 +489,12 @@ app.on("ready", () => {
             "Install Folder": Config.readConfigValue("installFolder")
         });
 
-        OnboardingManager.requiresOnboarding().catch(() => {
+        OnboardingManager.requiresOnboarding().catch(e => {
+            console.warn("Onboarding required - reason: " + e);
             appWindow.webContents.send("start onboarding");
         });
     });
 
-    appWindow.on("close", (ev) => {
-        if (!windowClosable) {
-            ev.preventDefault();
-        }
-    });
 
     appWindow.webContents.on("crashed", () => {
         const crashNotif = new Notification({
@@ -523,6 +513,12 @@ app.on("ready", () => {
         });
 
         freezeNotif.show();
+    });
+
+    appWindow.on("close", e => {
+        if (downloadManager.hasDownloads() || !windowClosable) {
+            e.preventDefault();
+        }
     });
 
     appWindow.on("closed", () => {

@@ -1,5 +1,5 @@
 import {createHash, Hash} from "crypto";
-import {createReadStream, ReadStream} from "fs";
+import {createReadStream, ReadStream, unlinkSync} from "fs";
 
 export default class IntegrityCheck {
 
@@ -19,6 +19,7 @@ export default class IntegrityCheck {
               if (testHash === IntegrityCheck.DDLC_WIN_SHA256) {
                   ff();
               } else {
+                  unlinkSync(path);
                   rj("Integrity check failed");
               }
            });

@@ -8,6 +8,8 @@ const OnboardingOverlay = Vue.component("ddmm-onboarding", {
     <p>{{_("renderer.onboarding.heading_why")}}</p>
     <div>{{_("renderer.onboarding.description_why")}}</div>
     <br>
+    <div>{{_("renderer.onboarding.description_unexpected")}}</div>
+    <br>
     <div v-if="downloading && online">
         <div class="progress">
             <div class="bar" :style="{'width': formattedPercentage}"></div>

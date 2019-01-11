@@ -96,11 +96,6 @@ api.translate = function (key, ...args) {
 // Path to URL conversion
 api.pathToFile = fileUrl;
 
-// Toggle the ability to close the DDMM window to prevent loss of data
-api.window.setWindowClosable = function (flag) {
-    ipcRenderer.send("closable", flag);
-};
-
 // Close window
 api.window.close = function () {
     remote.getCurrentWindow().close();
