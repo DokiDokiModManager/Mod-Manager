@@ -30,6 +30,7 @@ import InstallManager from "./install/InstallManager";
 import DiscordManager from "./discord/DiscordManager";
 import DownloadManager from "./net/DownloadManager";
 import OnboardingManager from "./onboarding/OnboardingManager";
+import {copyFileSync} from "fs";
 
 const DISCORD_ID = "453299645725016074";
 
@@ -338,6 +339,25 @@ ipcMain.on("onboarding download", () => {
     });
 });
 
+// Import start
+ipcMain.on("onboarding browse", () => {
+    dialog.showOpenDialog(appWindow, {
+        filters: [
+            {name: lang.translate("main.game_browse_dialog.file_format_name"), extensions: ["zip"]}
+        ],
+        title: lang.translate("main.game_browse_dialog.title")
+    }, (files: string[]) => {
+        if (files && files[0]) {
+            try {
+                copyFileSync(files[0], joinPath(Config.readConfigValue("installFolder"), "ddlc.zip"));
+                appWindow.webContents.send("onboarding downloaded");
+            } catch (e) {
+                // TODO: catch any FS errors
+            }
+        }
+    });
+});
+
 // endregion
 
 // region Updates etc.
@@ -443,11 +463,11 @@ app.on("ready", () => {
     // ...and the onboarding manager
     onboardingManager = new OnboardingManager(downloadManager);
 
-    downloadManager.on("download progress", (data: {filename: string, downloaded: number, total: number, startTime: number, meta?: any}) => {
+    downloadManager.on("download progress", (data: { filename: string, downloaded: number, total: number, startTime: number, meta?: any }) => {
         appWindow.webContents.send("download progress", data);
     });
 
-    downloadManager.on("download stalled", (data: {filename: string, downloaded: number, total: number, startTime: number, meta?: any}) => {
+    downloadManager.on("download stalled", (data: { filename: string, downloaded: number, total: number, startTime: number, meta?: any }) => {
         appWindow.webContents.send("download stalled", data);
     });
 

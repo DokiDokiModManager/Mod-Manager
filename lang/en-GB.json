@@ -192,6 +192,10 @@
       "title": "Find a mod to install",
       "file_format_name": "Mods"
     },
+    "game_browse_dialog": {
+      "title": "Locate a copy of DDLC's zip file",
+      "file_format_name": "DDLC"
+    },
     "shortcut_dialog": {
       "title": "Choose where to place your shortcut",
       "file_format_name": "Shortcut"

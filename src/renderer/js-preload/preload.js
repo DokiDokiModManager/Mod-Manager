@@ -252,6 +252,10 @@ api.onboarding.downloadGame = function() {
     ipcRenderer.send("onboarding download");
 };
 
+api.onboarding.browseForGame = function() {
+    ipcRenderer.send("onboarding browse");
+};
+
 ipcRenderer.on("download progress", (_, data) => {
     api.emit("download progress", data);
 });

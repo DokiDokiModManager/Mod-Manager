@@ -3,7 +3,7 @@ const OnboardingOverlay = Vue.component("ddmm-onboarding", {
     <h1>{{_("renderer.onboarding.title")}}</h1>
     <p>{{_("renderer.onboarding.description_download")}}</p>
     <br>
-    <p><button class="primary" :disabled="!online || downloading" @click="download">{{_("renderer.onboarding.button_download")}}</button> <button class="secondary" :disabled="downloading">{{_("renderer.onboarding.button_choose")}}</button></p>
+    <p><button class="primary" :disabled="!online || downloading" @click="download">{{_("renderer.onboarding.button_download")}}</button> <button class="secondary" :disabled="downloading" @click="open">{{_("renderer.onboarding.button_choose")}}</button></p>
     <br>
     <p>{{_("renderer.onboarding.heading_why")}}</p>
     <div>{{_("renderer.onboarding.description_why")}}</div>
@@ -39,7 +39,6 @@ const OnboardingOverlay = Vue.component("ddmm-onboarding", {
     "methods": {
         "_": ddmm.translate,
         "_progressCallback": function (progressData) {
-            console.log(progressData);
             if (progressData.meta !== "ONBOARDING_DOWNLOAD") return;
             if (progressData.total !== 0) {
                 this.percentage = Math.floor((progressData.downloaded / progressData.total) * 100);
@@ -68,6 +67,9 @@ const OnboardingOverlay = Vue.component("ddmm-onboarding", {
         "download": function () {
             this.downloading = true;
             ddmm.onboarding.downloadGame();
+        },
+        "open": function () {
+            ddmm.onboarding.browseForGame();
         }
     },
     "mounted": function () {
