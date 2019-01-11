@@ -168,13 +168,11 @@ ipcMain.on("browse mods", (ev: IpcMessageEvent) => {
             name: lang.translate("main.mod_browse_dialog.file_format_name")
         }],
     }, (filePaths: string[]) => {
-        extensions.forEach(ext => {
-            if (filePaths && filePaths[0] && filePaths[0].endsWith("." + ext)) {
-                ev.returnValue = filePaths;
-                return;
-            }
-        });
-        ev.returnValue = null;
+        if (filePaths && filePaths[0] && extensions.find(ext => (filePaths[0].endsWith("." + ext)))) {
+            ev.returnValue = filePaths[0];
+        } else {
+            ev.returnValue = null;
+        }
     });
 });
 
