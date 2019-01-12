@@ -19,15 +19,17 @@
     },
     "onboarding": {
       "title": "Welcome!",
-      "description_download": "This text would prompt you to download the game.",
-      "button_download": "Download",
-      "button_choose": "Find a copy",
+      "description_download": "Let's find a copy of DDLC.",
+      "button_download": "Download DDLC",
+      "button_choose": "Browse for a copy",
       "heading_why": "What is this?",
       "description_why": "Doki Doki Mod Manager requires a copy of DDLC as a .zip file. If you already have a copy of DDLC, you can choose it now, otherwise a new copy will be downloaded directly from itch.io. We can't directly distribute DDLC, so this is the next best thing.",
       "description_unexpected": "If you aren't expecting this, you may have a corrupt version of the game downloaded. Try downloading it again.",
       "status_downloading": "Downloading game files - {0} complete ({1} left, {2} MB/s)",
       "status_errored": "The download failed, or was interrupted. Check your internet connection and try again.",
-      "status_offline": "You need an active internet connection to download DDLC."
+      "status_offline": "You need an active internet connection to download DDLC.",
+      "description_location": "Your games will be stored at {0}",
+      "link_change": "(Change)"
     },
     "tab_mods": {
       "list": {
@@ -62,6 +64,7 @@
       },
       "install": {
         "button_launch": "Launch",
+        "tag_global_save": "Global Save",
         "title_screenshots": "{0} screenshots",
         "description_screenshots": "Press S while playing to take a screenshot.",
         "description_sdk": "This mod supports special features with the Doki Doki Mod Manager SDK!",

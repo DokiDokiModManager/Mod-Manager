@@ -115,6 +115,11 @@ api.window.minimise = function () {
     remote.getCurrentWindow().minimize();
 };
 
+// Prompt
+api.window.prompt = function(data) {
+    api.emit("prompt", data);
+};
+
 // Show right click for install
 api.window.handleInstallRightClick = function (folderName, mouseX, mouseY) {
     remote.Menu.buildFromTemplate([

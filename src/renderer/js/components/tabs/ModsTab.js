@@ -17,19 +17,22 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                   @dblclick="launchInstall(install.folderName)"
                   @mouseup="handleInstallClick(install.folderName, $event)"
                   :title="getPathToInstall(install.folderName)"
-                  >{{install.name}}</div>
+                  >
+                  {{install.name}}
+            </div>
             <br v-if="searchResultsInstalls.length > 0">
             <div class="mod-view-mod-list-title" v-if="searchResultsMods.length > 0">{{_("renderer.tab_mods.list.header_downloaded")}}</div>
             <div
                 :class="{'mod-view-mod-list-entry': true, 'active': selected_item.id === mod && selected_item.type === 'mod'}" 
                 v-for="mod in searchResultsMods"
                 @mouseup="handleModClick(mod, $event)"
+                @dblclick="showCreateInstall(getPathToMod(mod))"
                 :title="getPathToMod(mod)"
                 >{{mod}}</div>
         </div>
         <div class="mod-viewer-mod-display">
             <div v-if="selected_item.type === 'install' && selectedInstall">
-                <h1>{{selectedInstall.name}}</h1>
+                <h1>{{selectedInstall.name}}  <span class="tag" v-if="selectedInstall.globalSave">{{_("renderer.tab_mods.install.tag_global_save")}}</span></h1>
                 <p>{{getPathToInstall(selectedInstall.folderName)}}</p>              
                 
                 <br>
@@ -243,7 +246,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             this._fuseInstalls = new Fuse(installs, {
                 shouldSort: true,
                 threshold: 0.5,
-                keys: ["name", "folderName"]
+                keys: ["name", "folderName", "mod.name"]
             });
         },
         "_refreshModList": function (mods) {
@@ -260,6 +263,26 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             if (this.selectedInstall) {
                 if (e.key === "Enter") {
                     ddmm.mods.launchInstall(this.selectedInstall.folderName);
+                } else if (e.key === "F2") {
+                    // TODO rename
+                } else if (e.key === "Delete") {
+                    ddmm.window.prompt({
+                        title: ddmm.translate("renderer.tab_mods.uninstall_confirmation.message"),
+                        description: ddmm.translate("renderer.tab_mods.uninstall_confirmation.details"),
+                        button_affirmative: ddmm.translate("renderer.tab_mods.uninstall_confirmation.button_affirmative"),
+                        button_negative: ddmm.translate("renderer.tab_mods.uninstall_confirmation.button_negative"),
+                        callback: (uninstall) => {
+                            if (uninstall) {
+                                ddmm.mods.deleteInstall(this.selectedInstall.foldeName);
+                            }
+                        }
+                    });
+                }
+            } else if (this.selected_item.type === "mod") {
+                if (e.key === "Enter") {
+                    this.showCreateInstall(this.getPathToMod(this.selected_item.id));
+                } else if (e.key === "Delete") {
+                    // TODO delete
                 }
             }
         },

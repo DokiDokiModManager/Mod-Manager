@@ -5,6 +5,7 @@ const OnboardingOverlay = Vue.component("ddmm-onboarding", {
     <br>
     <p><button class="primary" :disabled="!online || downloading" @click="download">{{_("renderer.onboarding.button_download")}}</button> <button class="secondary" :disabled="downloading" @click="open">{{_("renderer.onboarding.button_choose")}}</button></p>
     <br>
+    <div v-if="!downloading">{{_("renderer.onboarding.description_location", install_folder)}} <a href="javascript:;" @click="changeFolder">{{_("renderer.onboarding.link_change")}}</a><br><br></div>
     <p>{{_("renderer.onboarding.heading_why")}}</p>
     <div>{{_("renderer.onboarding.description_why")}}</div>
     <br>
@@ -16,11 +17,10 @@ const OnboardingOverlay = Vue.component("ddmm-onboarding", {
         </div>
         <br>
         <div>{{_("renderer.onboarding.status_downloading", formattedPercentage, eta, speed)}}</div>
+        <br>
     </div>
-    <br>
-    <div v-if="!online"><strong>{{_("renderer.onboarding.status_offline")}}</strong></div>
-    <br>
-    <div v-if="errored"><strong>{{_("renderer.onboarding.status_errored")}}</strong></div>
+    <div v-if="!online"><strong>{{_("renderer.onboarding.status_offline")}}</strong><br></div>
+    <div v-if="errored"><strong>{{_("renderer.onboarding.status_errored")}}</strong><br></div>
 </div>
     `,
     "data": function () {
@@ -30,7 +30,8 @@ const OnboardingOverlay = Vue.component("ddmm-onboarding", {
             "errored": false,
             "percentage": 0,
             "eta": 0,
-            "speed": 0
+            "speed": 0,
+            "install_folder": ddmm.config.readConfigValue("installFolder")
         }
     },
     "computed": {
@@ -72,6 +73,9 @@ const OnboardingOverlay = Vue.component("ddmm-onboarding", {
         },
         "open": function () {
             ddmm.onboarding.browseForGame();
+        },
+        "changeFolder": function () {
+            ddmm.app.beginMoveInstall();
         }
     },
     "mounted": function () {
