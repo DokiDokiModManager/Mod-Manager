@@ -61,6 +61,7 @@ const app = new Vue({
         "windowMaximise": ddmm.window.maximise,
         "windowClose": ddmm.window.close,
         "windowMinimise": ddmm.window.minimise,
+        "openURL": ddmm.app.openURL,
         "setBackground": function (image) {
             this.background_image = image;
         },
