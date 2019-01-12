@@ -162,6 +162,14 @@ a .fab {
   font-weight: normal;
 }
 
+.tag {
+  font-size: 0.5em;
+  padding: 0.1em 0.25em;
+  background-color: #ddd;
+  color: #000;
+  border-radius: 3px;
+}
+
 .mod-viewer-pane {
   display: flex;
   height: 100%;
@@ -297,6 +305,7 @@ button.success:hover {
 
 button[disabled], button[disabled]:hover {
   background-color: #aaa;
+  color: #ddd;
 }
 
 .form-group {
