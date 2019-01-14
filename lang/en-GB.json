@@ -94,6 +94,12 @@
         "status_exists": "That folder already exists. Pick another folder name."
       }
     },
+    "tab_store_placeholder": {
+      "title": "The store is coming soon!",
+      "description_1": "The Sayonika mod database will provide a central location to share, download and review DDLC mods. When Sayonika is publicly available, you'll be able to browse mods right here in Doki Doki Mod Manager.",
+      "description_2": "While you wait, feel free to download some of these recommended mods.",
+      "button_download": "Download"
+    },
     "tab_options": {
       "list": {
         "header_appearance": "Appearance",

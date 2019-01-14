@@ -149,6 +149,8 @@ body {
 
 .text-container {
   padding: 0 1.5em;
+  max-height: 100%;
+  overflow-y: scroll;
 }
 
 h1, h2, h3, h4 {
