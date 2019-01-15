@@ -72,6 +72,10 @@ const app = new Vue({
     }
 });
 
+function allowKeyEvents() {
+    return !(document.querySelectorAll(".cover").length > 0);
+}
+
 if (ddmm.env.DDMM_INCOGNITO) {
     app.app_name = "App Name";
 }

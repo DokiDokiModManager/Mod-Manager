@@ -260,6 +260,9 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             });
         },
         "_keyPressHandler": function (e) {
+            if (!allowKeyEvents()) {
+                return;
+            }
             // Handles key press events for installs / mods
             if (this.selectedInstall) {
                 if (e.key === "Enter") {
