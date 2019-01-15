@@ -31,7 +31,12 @@ export default class InstallCreator {
 
                     // get the new path
                     const pathParts = file.path.split("/");
+                    if (pathParts.length < 1) return;
                     pathParts.shift(); // remove the base ddlc directory
+                    if (process.platform === "darwin") {
+                        if (pathParts.length < 1) return; // remove macOS folders
+                        pathParts.shift();
+                    }
                     const fileName = pathParts.pop();
                     mkdirsSync(joinPath(canonicalPath, "install", pathParts.join(pathSep)));
 

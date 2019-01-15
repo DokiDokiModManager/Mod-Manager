@@ -92,8 +92,18 @@ export default class InstallLauncher {
                 });
             }
 
-            // get the path to the game executable, .exe on windows and .sh on macOS / Linux
-            const gameExecutable: string = joinPath(installFolder, "install", (process.platform === "win32" ? "ddlc.exe" : "DDLC.sh"));
+            // get the path to the game executable, .exe on windows and .sh on Linux
+            let gameExecutable: string;
+
+            if (process.platform === "win32") {
+                gameExecutable = joinPath(installFolder, "install", "ddlc.exe");
+            } else if (process.platform === "linux") {
+                gameExecutable = joinPath(installFolder, "install", "ddlc.exe");
+            } else if (process.platform === "darwin") {
+                gameExecutable = joinPath(installFolder, "install", "MacOS", "DDLC");
+            } else {
+                throw new Error("I have no idea what kind of computer you're using!");
+            }
 
             // get the path to the save data folder
             const dataFolder = joinPath(installFolder, "appdata");
