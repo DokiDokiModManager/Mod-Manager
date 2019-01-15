@@ -95,7 +95,13 @@ export default class ModInstaller {
                     }
                     // console.log("Mapping " + file.path + " to " + newPath);
                     // convert the relative path to an absolute path
-                    const newPathFull = joinPath(installPath, newPath);
+                    let newPathFull;
+
+                    if (process.platform === "darwin") {
+                        newPathFull = joinPath(installPath, newPath)
+                    } else {
+                        newPathFull = joinPath(installPath, "Resources", "autorun", newPath);
+                    }
                     const newPathParts = newPathFull.split(pathSep);
                     newPathParts.pop();
                     mkdirsSync(newPathParts.join(pathSep));

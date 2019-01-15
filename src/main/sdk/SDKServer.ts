@@ -29,7 +29,9 @@ export default class SDKServer extends EventEmitter {
      * Immediately shuts down the SDK server
      */
     public shutdown(): void {
-        this.server.close();
+        if (this.server) {
+            this.server.close();
+        }
         this.server = null;
     }
 
