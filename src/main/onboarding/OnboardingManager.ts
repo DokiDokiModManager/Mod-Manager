@@ -50,7 +50,8 @@ export default class OnboardingManager {
 
             DDLCDownloader.getDownloadLink().then(link => {
                 this.downloadManager.downloadFile(link,
-                    joinPath(Config.readConfigValue("installFolder"), "ddlc.zip"),
+                    Config.readConfigValue("installFolder"),
+                    "ddlc.zip",
                     "ONBOARDING_DOWNLOAD");
             }).catch(rj);
         });

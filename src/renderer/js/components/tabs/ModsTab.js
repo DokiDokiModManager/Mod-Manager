@@ -23,12 +23,12 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             <br v-if="searchResultsInstalls.length > 0">
             <div class="mod-view-mod-list-title" v-if="searchResultsMods.length > 0">{{_("renderer.tab_mods.list.header_downloaded")}}</div>
             <div
-                :class="{'mod-view-mod-list-entry': true, 'active': selected_item.id === mod && selected_item.type === 'mod'}" 
+                :class="{'mod-view-mod-list-entry': true, 'active': selected_item.id === mod.filename && selected_item.type === 'mod', 'disabled': mod.downloading}" 
                 v-for="mod in searchResultsMods"
-                @mouseup="handleModClick(mod, $event)"
-                @dblclick="showCreateInstall(getPathToMod(mod))"
-                :title="getPathToMod(mod)"
-                >{{mod}}</div>
+                @mouseup="handleModClick(mod.filename, mod.downloading, $event)"
+                @dblclick="showCreateInstall(getPathToMod(mod.filename))"
+                :title="getPathToMod(mod.filename)"
+                >{{mod.filename}}</div>
         </div>
         <div class="mod-viewer-mod-display">
             <div v-if="selected_item.type === 'install' && selectedInstall">
@@ -182,7 +182,8 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 ddmm.window.handleInstallRightClick(installFolder, ev.clientX, ev.clientY);
             }
         },
-        "handleModClick": function (filename, ev) {
+        "handleModClick": function (filename, downloading, ev) {
+            if (downloading) return;
             this.selectItem(filename, "mod");
             if (ev.button === 2) {
                 ddmm.window.handleModRightClick(filename, ev.clientX, ev.clientY);

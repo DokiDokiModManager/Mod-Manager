@@ -49,6 +49,11 @@ api.mods.installExists = function (folderName) {
   return ipcRenderer.sendSync("install exists", folderName);
 };
 
+// Download mod
+api.mods.download = function (url) {
+    ipcRenderer.send("download mod", url);
+};
+
 // Fires an event on the DDMM object when the mod list has been retrieved
 ipcRenderer.on("got modlist", (ev, list) => {
     api.emit("mod list", list);

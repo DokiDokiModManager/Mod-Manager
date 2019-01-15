@@ -50,6 +50,9 @@ let richPresence: DiscordManager = new DiscordManager(process.env.DDMM_DISCORD_I
 
 richPresence.setIdleStatus();
 
+// Mod list
+let modList: ModList;
+
 // Download manager
 let downloadManager: DownloadManager;
 
@@ -119,7 +122,7 @@ ipcMain.on("restart", () => {
 
 // Retrieves a list of mods
 ipcMain.on("get modlist", () => {
-    appWindow.webContents.send("got modlist", ModList.getModList());
+    appWindow.webContents.send("got modlist", modList.getModList());
 });
 
 // Retrieves a list of installs
@@ -365,6 +368,10 @@ ipcMain.on("onboarding browse", () => {
     });
 });
 
+ipcMain.on("download mod", (ev, url) => {
+    downloadManager.downloadFile(url, joinPath(Config.readConfigValue("installFolder"), "mods"), null,"DOWNLOADED_MOD");
+});
+
 // endregion
 
 // region Updates etc.
@@ -470,12 +477,27 @@ app.on("ready", () => {
     // ...and the onboarding manager
     onboardingManager = new OnboardingManager(downloadManager);
 
+    // ...and the mod list
+    modList = new ModList(downloadManager);
+
     downloadManager.on("download progress", (data: { filename: string, downloaded: number, total: number, startTime: number, meta?: any }) => {
         appWindow.webContents.send("download progress", data);
     });
 
     downloadManager.on("download stalled", (data: { filename: string, downloaded: number, total: number, startTime: number, meta?: any }) => {
         appWindow.webContents.send("download stalled", data);
+    });
+
+    downloadManager.on("download started", () => {
+        appWindow.webContents.send("got modlist", modList.getModList());
+    });
+
+    downloadManager.on("download complete", () => {
+       appWindow.webContents.send("got modlist", modList.getModList());
+    });
+
+    downloadManager.on("download failed", () => {
+        appWindow.webContents.send("got modlist", modList.getModList());
     });
 
     // set user agent so web services can contact me if necessary

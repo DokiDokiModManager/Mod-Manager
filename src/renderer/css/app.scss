@@ -225,8 +225,13 @@ a .fab {
   transition: color 0.25s;
 }
 
+
 .mod-view-mod-list-entry:hover {
   color: $ui-highlight-text-colour;
+}
+
+.mod-view-mod-list-entry.disabled {
+  color: $ui-muted-text-colour !important;
 }
 
 .mod-view-mod-list-entry.active {

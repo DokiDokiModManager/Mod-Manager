@@ -13,7 +13,7 @@ const StorePlaceholderTab = Vue.component("ddmm-store-placeholder-tab", {
             <p>{{mod.description}}</p>
             <p v-if="mod.content_warning"><i>{{mod.content_warning}}</i></p>
             <br>
-            <p><button class="primary"><i class="fas fa-download"></i> {{_("renderer.tab_store_placeholder.button_download")}}</button></p>
+            <p><button class="primary" @click="downloadMod(mod.url)"><i class="fas fa-download"></i> {{_("renderer.tab_store_placeholder.button_download")}}</button></p>
             <br>
         </div>
     </div>
@@ -25,7 +25,8 @@ const StorePlaceholderTab = Vue.component("ddmm-store-placeholder-tab", {
         }
     },
     "methods": {
-        "_": ddmm.translate
+        "_": ddmm.translate,
+        "downloadMod": ddmm.mods.download
     },
     "mounted": function () {
         fetch("https://raw.githubusercontent.com/DokiDokiModManager/FeaturedMods/master/mods.json").then(r => r.json()).then(mods => {

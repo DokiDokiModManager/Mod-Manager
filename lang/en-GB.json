@@ -38,7 +38,7 @@
         "header_new": "Get Started",
         "link_install": "Install DDLC",
         "header_installed": "Installed",
-        "header_downloaded": "Downloaded"
+        "header_downloaded": "Downloads"
       },
       "install_contextmenu": {
         "launch": "Launch",

@@ -214,6 +214,10 @@ a .fab {
   color: #fff;
 }
 
+.mod-view-mod-list-entry.disabled {
+  color: #aaa !important;
+}
+
 .mod-view-mod-list-entry.active {
   background-image: linear-gradient(315deg, rgba(187, 85, 153, 0.5), rgba(73, 50, 64, 0.5));
   color: #fff;
