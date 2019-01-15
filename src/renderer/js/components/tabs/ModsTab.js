@@ -28,7 +28,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 @mouseup="handleModClick(mod.filename, mod.downloading, $event)"
                 @dblclick="showCreateInstall(getPathToMod(mod.filename))"
                 :title="getPathToMod(mod.filename)"
-                >{{mod.filename}}</div>
+                ><i class="fas fa-spinner fa-spin fa-fw" v-if="mod.downloading"></i> {{mod.filename}}</div>
         </div>
         <div class="mod-viewer-mod-display">
             <div v-if="selected_item.type === 'install' && selectedInstall">
