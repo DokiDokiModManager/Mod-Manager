@@ -25,7 +25,6 @@ export default class ModList {
         return readdirSync(modFolder).filter(fn => {
             return ["zip", "rar", "7z", "gz"].filter(ext => fn.endsWith("." + ext)).length > 0;
         }).map(fn => {
-            console.log(fn, downloads.indexOf(fn));
             return {
                 filename: fn,
                 downloading: downloads.indexOf(fn) !== -1

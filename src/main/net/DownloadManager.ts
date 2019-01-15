@@ -107,7 +107,6 @@ export default class DownloadManager extends EventEmitter {
      * Gets all files currently being downloaded (filenames)
      */
     public getDownloads(): string[] {
-        console.log(this.downloadingFileNames);
         return this.downloadingFileNames;
     }
 
