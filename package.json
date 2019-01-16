@@ -56,12 +56,14 @@
         "owner": "DokiDokiModManager"
       }
     ],
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false
+    },
     "win": {
       "target": [
         {
           "target": "nsis",
-          "oneClick": false,
-          "perMachine": false,
           "arch": [
             "x64",
             "ia32"
