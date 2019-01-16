@@ -31,6 +31,7 @@ import InstallManager from "./install/InstallManager";
 import DiscordManager from "./discord/DiscordManager";
 import DownloadManager from "./net/DownloadManager";
 import OnboardingManager from "./onboarding/OnboardingManager";
+import {unlinkSync} from "fs";
 
 const DISCORD_ID = "453299645725016074";
 
@@ -230,6 +231,23 @@ ipcMain.on("delete install", (ev: IpcMessageEvent, folderName: string) => {
             false
         );
     });
+});
+
+// Delete a mod
+ipcMain.on("delete mod", (ev: IpcMessageEvent, fileName: string) => {
+    console.log("[IPC delete mod] Deleting " + fileName);
+    try {
+        unlinkSync(joinPath(Config.readConfigValue("installFolder"), "mods", fileName));
+        console.log("[IPC delete mod] Deleted " + fileName);
+        appWindow.webContents.send("got modlist", modList.getModList());
+    } catch (e) {
+        showError(
+            lang.translate("main.errors.mod_delete.title"),
+            lang.translate("main.errors.mod_delete.body"),
+            e.toString(),
+            false
+        );
+    }
 });
 
 // Delete a save file for an install

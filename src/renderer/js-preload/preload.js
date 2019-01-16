@@ -46,7 +46,7 @@ api.mods.createInstall = function (folderName, installName, globalSave, mod) {
 
 // File exists?
 api.mods.installExists = function (folderName) {
-  return ipcRenderer.sendSync("install exists", folderName);
+    return ipcRenderer.sendSync("install exists", folderName);
 };
 
 // Download mod
@@ -121,7 +121,7 @@ api.window.minimise = function () {
 };
 
 // Prompt
-api.window.prompt = function(data) {
+api.window.prompt = function (data) {
     api.emit("prompt", data);
 };
 
@@ -169,6 +169,7 @@ api.window.handleInstallRightClick = function (folderName, mouseX, mouseY) {
                     callback: (uninstall) => {
                         if (uninstall) {
                             api.mods.deleteInstall(folderName);
+                            ddmm.emit("create install");
                         }
                     }
                 });
@@ -183,9 +184,26 @@ api.window.handleInstallRightClick = function (folderName, mouseX, mouseY) {
 // Show right click for mod
 api.window.handleModRightClick = function (filename, mouseX, mouseY) {
     remote.Menu.buildFromTemplate([
-        {label: api.translate("renderer.tab_mods.mod_contextmenu.install"), accelerator: "enter"},
+        {label: api.translate("renderer.tab_mods.mod_contextmenu.install"), accelerator: "enter", click: () => {
+            ddmm.emit("create install", filename);
+        }},
         {type: "separator"},
-        {label: api.translate("renderer.tab_mods.mod_contextmenu.delete"), accelerator: "delete"}
+        {
+            label: api.translate("renderer.tab_mods.mod_contextmenu.delete"), accelerator: "delete", click: () => {
+                api.window.prompt({
+                    title: api.translate("renderer.tab_mods.mod_delete_confirmation.message"),
+                    description: api.translate("renderer.tab_mods.mod_delete_confirmation.details"),
+                    button_affirmative: api.translate("renderer.tab_mods.mod_delete_confirmation.button_affirmative"),
+                    button_negative: api.translate("renderer.tab_mods.mod_delete_confirmation.button_negative"),
+                    callback: (del) => {
+                        if (del) {
+                            api.mods.deleteMod(filename);
+                            ddmm.emit("create install");
+                        }
+                    }
+                });
+            }
+        }
     ]).popup({
         x: mouseX,
         y: mouseY
@@ -205,6 +223,11 @@ api.config.readConfigValue = function (k) {
 // Delete install
 api.mods.deleteInstall = function (folderName) {
     ipcRenderer.send("delete install", folderName);
+};
+
+// Delete mod
+api.mods.deleteMod = function (fileName) {
+    ipcRenderer.send("delete mod", fileName);
 };
 
 // Delete save data
@@ -234,12 +257,12 @@ ipcRenderer.on("error message", (ev, data) => {
 
 // Handler for debug info
 ipcRenderer.on("debug info", (ev, data) => {
-   api.debug = data;
+    api.debug = data;
 });
 
 // Handler for updates
 ipcRenderer.on("updating", (ev, data) => {
-   api.emit("updating", !!data);
+    api.emit("updating", !!data);
 });
 
 // Onboarding flow trigger
@@ -248,16 +271,16 @@ ipcRenderer.on("start onboarding", () => {
 });
 
 // Check for updates
-api.app.update = function() {
+api.app.update = function () {
     ipcRenderer.send("check update");
 };
 
 // Onboarding download
-api.onboarding.downloadGame = function() {
+api.onboarding.downloadGame = function () {
     ipcRenderer.send("onboarding download");
 };
 
-api.onboarding.browseForGame = function() {
+api.onboarding.browseForGame = function () {
     ipcRenderer.send("onboarding browse");
 };
 

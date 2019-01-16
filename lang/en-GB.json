@@ -57,6 +57,12 @@
         "button_affirmative": "Uninstall",
         "button_negative": "Cancel"
       },
+      "mod_delete_confirmation": {
+        "message": "Are you sure you want to delete the mod?",
+        "details": "You will need to download another copy of the mod to install it again.",
+        "button_affirmative": "Delete",
+        "button_negative": "Cancel"
+      },
       "save_delete_confirmation": {
         "message": "Are you sure you want to delete your save data?",
         "details": "You will have to start again from scratch.",
@@ -235,6 +241,10 @@
       },
       "save_delete": {
         "title": "Failed to delete save data",
+        "body": "Check that you have closed all programs that may be interfering and try again."
+      },
+      "mod_delete": {
+        "title": "Failed to delete the mod",
         "body": "Check that you have closed all programs that may be interfering and try again."
       },
       "renderer_freeze": {

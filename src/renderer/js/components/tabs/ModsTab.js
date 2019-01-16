@@ -229,6 +229,20 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 }
             });
         },
+        "promptDeleteMod": function () {
+            ddmm.window.prompt({
+                title: ddmm.translate("renderer.tab_mods.mod_delete_confirmation.message"),
+                description: ddmm.translate("renderer.tab_mods.mod_delete_confirmation.details"),
+                button_affirmative: ddmm.translate("renderer.tab_mods.mod_delete_confirmation.button_affirmative"),
+                button_negative: ddmm.translate("renderer.tab_mods.mod_delete_confirmation.button_negative"),
+                callback: (del) => {
+                    if (del) {
+                        ddmm.mods.deleteMod(this.selected_item.id);
+                        this.selectItem(null, "create");
+                    }
+                }
+            });
+        },
         "_refreshInstallList": function (installs) {
             // Event handler for refreshed install list
             this.installs = installs;
@@ -277,7 +291,8 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                         button_negative: ddmm.translate("renderer.tab_mods.uninstall_confirmation.button_negative"),
                         callback: (uninstall) => {
                             if (uninstall) {
-                                ddmm.mods.deleteInstall(this.selectedInstall.foldeName);
+                                ddmm.mods.deleteInstall(this.selectedInstall.folderName);
+                                ddmm.emit("create install");
                             }
                         }
                     });
@@ -286,7 +301,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 if (e.key === "Enter") {
                     this.showCreateInstall(this.getPathToMod(this.selected_item.id));
                 } else if (e.key === "Delete") {
-                    // TODO delete
+                    this.promptDeleteMod();
                 }
             }
         },
@@ -317,6 +332,9 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
         ddmm.mods.refreshModList();
         ddmm.on("install list", this._refreshInstallList);
         ddmm.on("mod list", this._refreshModList);
+        ddmm.on("create install",(mod) => {
+            this.showCreateInstall(mod ? this.getPathToMod(mod) : null);
+        });
         document.body.addEventListener("keyup", this._keyPressHandler);
     },
     "destroyed": function () {
