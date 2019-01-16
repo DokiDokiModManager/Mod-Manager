@@ -37,7 +37,7 @@ export default class InstallCreator {
                     pathParts.shift(); // remove the base ddlc directory
                     if (pathParts.length == 0) return;
 
-                    if (process.platform === "darwin" || true) {
+                    if (process.platform === "darwin") {
                         pathParts.shift();
                         if (pathParts.length < 1) return; // remove macOS folders
                     }

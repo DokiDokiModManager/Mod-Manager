@@ -93,17 +93,19 @@ export default class InstallLauncher {
             }
 
             // get the path to the game executable, .exe on windows and .sh on Linux
-            let gameExecutable: string;
+            let gameExecutable: string = joinPath(installFolder, "install", "MacOS", "DDLC");
 
-            if (process.platform === "win32") {
-                gameExecutable = joinPath(installFolder, "install", "ddlc.exe");
-            } else if (process.platform === "linux") {
-                gameExecutable = joinPath(installFolder, "install", "ddlc.exe");
-            } else if (process.platform === "darwin") {
-                gameExecutable = joinPath(installFolder, "install", "MacOS", "DDLC");
-            } else {
-                throw new Error("I have no idea what kind of computer you're using!");
-            }
+            // if (process.platform === "win32") {
+            //     gameExecutable = joinPath(installFolder, "install", "ddlc.exe");
+            // } else if (process.platform === "linux") {
+            //     gameExecutable = joinPath(installFolder, "install", "ddlc.exe");
+            // } else if (process.platform === "darwin") {
+            //     gameExecutable = joinPath(installFolder, "install", "MacOS", "DDLC");
+            // } else {
+            //     throw new Error("I have no idea what kind of computer you're using!");
+            // }
+
+            console.log(gameExecutable);
 
             // get the path to the save data folder
             const dataFolder = joinPath(installFolder, "appdata");
@@ -133,7 +135,8 @@ export default class InstallLauncher {
                 logToConsole("[STDERR] " + data.toString(), LogClass.ERROR);
             });
 
-            procHandle.on("error", () => {
+            procHandle.on("error", e => {
+                console.log(e);
                 if (sdkServer) { sdkServer.shutdown(); }
                 richPresence.setIdleStatus();
                 rj(lang.translate("main.running_cover.install_crashed"))

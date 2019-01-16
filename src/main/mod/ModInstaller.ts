@@ -98,9 +98,9 @@ export default class ModInstaller {
                     let newPathFull;
 
                     if (process.platform === "darwin") {
-                        newPathFull = joinPath(installPath, newPath)
-                    } else {
                         newPathFull = joinPath(installPath, "Resources", "autorun", newPath);
+                    } else {
+                        newPathFull = joinPath(installPath, newPath);
                     }
                     const newPathParts = newPathFull.split(pathSep);
                     newPathParts.pop();
