@@ -61,7 +61,7 @@
         {
           "target": "nsis",
           "oneClick": false,
-          "perMachine": false
+          "perMachine": false,
           "arch": [
             "x64",
             "ia32"
