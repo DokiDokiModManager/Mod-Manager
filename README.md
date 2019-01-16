@@ -14,9 +14,7 @@ Doki Doki Mod Manager is a fan work of Doki Doki Literature Club, as defined by 
 
 ## Download
 
-Builds for Windows and Linux (AppImage) are available on the [Releases page](https://github.com/DokiDokiModManager/Mod-Manager/releases).
-
-macOS is not currently supported and **does not work whatsoever**. However, it is on the agenda.
+Builds are available on the [Releases page](https://github.com/DokiDokiModManager/Mod-Manager/releases) for Windows, macOS and Linux.
 
 ## Debug tools
 
