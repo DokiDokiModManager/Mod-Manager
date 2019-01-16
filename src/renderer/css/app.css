@@ -159,6 +159,7 @@ a {
   text-decoration: none;
   font-weight: bold;
   -webkit-app-region: no-drag;
+  outline: none;
 }
 
 a .fab {
