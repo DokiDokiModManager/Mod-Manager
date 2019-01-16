@@ -170,6 +170,7 @@ a {
   color: $ui-text-colour;
   text-decoration: none;
   font-weight: bold;
+  -webkit-app-region: no-drag;
 }
 
 a .fab {

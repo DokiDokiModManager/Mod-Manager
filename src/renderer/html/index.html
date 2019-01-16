@@ -37,7 +37,7 @@
 
     <div class="titlebar">
         <div class="app-title">
-            <span>{{app_name}}</span> <small>v{{app_version}}</small>
+            <span>{{app_name}}</span> <small>v{{app_version}} (<a href="javascript:;" @click="openURL('https://help.doki.space/changelog/' + app_version)">{{_("renderer.version.link_changelog")}}</a>)</small>
         </div>
         <div class="window-buttons" v-if="!system_borders">
             <div v-if="app_updating" :title="_('renderer.window_controls.update_spinner')"><i class="fas fa-sync fa-spin"></i></div>
