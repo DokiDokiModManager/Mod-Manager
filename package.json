@@ -3,10 +3,12 @@
   "productName": "Doki Doki Mod Manager",
   "description": "Mod Manager for Doki Doki Literature Club",
   "author": "u/zuudo",
-  "version": "3.0.0-beta",
+  "version": "3.0.2-beta",
   "homepage": "https://doki.space",
   "license": "MIT",
   "main": "lib/main/index.js",
+  "repository": "https://github.com/DokiDokiModManager/Mod-Manager",
+  "bugs": "zudo@doki.space",
   "scripts": {
     "start": "tsc && electron . --enable-sandbox",
     "start-dev": "tsc && electron --inspect=5858 . --enable-sandbox",
@@ -20,7 +22,7 @@
     "@zudo/unzipper": "^0.0.4",
     "chmodr": "^1.2.0",
     "discord-rich-presence": "^0.0.7",
-    "electron-updater": "^4.0.7",
+    "electron-updater": "^4.0.6",
     "file-url": "^2.0.2",
     "fs-extra": "^7.0.1",
     "fuse.js": "^3.3.0",
@@ -30,13 +32,14 @@
   "devDependencies": {
     "@sentry/cli": "^1.36.4",
     "electron": "^4.0.0",
-    "electron-builder": "^20.36.2",
+    "electron-builder": "^20.38.5",
     "mocha": "^5.2.0",
     "typescript": "^3.2.2"
   },
   "build": {
     "appId": "space.doki.modmanager",
     "artifactName": "ddmm-${version}-${os}-${arch}.${ext}",
+    "generateUpdatesFilesForAllChannels": true,
     "files": [
       "!**/*.ts",
       "!**/*.map",
@@ -48,7 +51,6 @@
       "!**/fontawesome-free/scss",
       "!**/vue/src"
     ],
-    "generateUpdatesFilesForAllChannels": true,
     "publish": [
       {
         "provider": "github",
