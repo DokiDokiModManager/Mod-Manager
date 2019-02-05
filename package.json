@@ -3,7 +3,7 @@
   "productName": "Doki Doki Mod Manager",
   "description": "Mod Manager for Doki Doki Literature Club",
   "author": "u/zuudo",
-  "version": "3.0.2-beta",
+  "version": "3.0.0",
   "homepage": "https://doki.space",
   "license": "MIT",
   "main": "lib/main/index.js",
@@ -27,6 +27,7 @@
     "fs-extra": "^7.0.1",
     "fuse.js": "^3.3.0",
     "request": "^2.88.0",
+    "semver": "^5.6.0",
     "vue": "^2.5.17"
   },
   "devDependencies": {

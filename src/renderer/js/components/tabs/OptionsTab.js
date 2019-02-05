@@ -42,12 +42,12 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
                 <br>
                 <p><strong>{{_("renderer.tab_options.section_updates.description_current_version", version)}}</strong></p>
                 <br>
-                <label for="release-channel">{{_("renderer.tab_options.section_updates.label_channel")}}</label>
-                <select v-model="release_channel_interim" name="release-channel" @change="updateReleaseChannel">
-                    <option value="latest">{{_("renderer.tab_options.section_updates.option_stable")}}</option>
-                    <option value="beta">{{_("renderer.tab_options.section_updates.option_beta")}}</option>
-                </select>
-                <br><br>
+                <!--<label for="release-channel">{{_("renderer.tab_options.section_updates.label_channel")}}</label>-->
+                <!--<select v-model="release_channel_interim" name="release-channel" disabled @change="updateReleaseChannel" >-->
+                    <!--<option value="latest">{{_("renderer.tab_options.section_updates.option_stable")}}</option>-->
+                    <!--<option value="beta">{{_("renderer.tab_options.section_updates.option_beta")}}</option>-->
+                <!--</select>-->
+                <!--<br><br>-->
                 <p><button @click="checkUpdates" class="primary">{{_("renderer.tab_options.section_updates.button_check")}}</button></p>
             </div>
             <div v-else-if="selected_option === 'storage'">

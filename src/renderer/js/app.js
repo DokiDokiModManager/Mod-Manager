@@ -6,7 +6,7 @@ const app = new Vue({
         "app_name": "Doki Doki Mod Manager",
         "app_version": ddmm.version,
         "system_platform": ddmm.platform,
-        "app_updating": false,
+        "app_updating": "none",
         "tab": "mods",
         "system_borders": ddmm.config.readConfigValue("systemBorders"),
         "tabs": [
@@ -62,6 +62,7 @@ const app = new Vue({
         "windowClose": ddmm.window.close,
         "windowMinimise": ddmm.window.minimise,
         "openURL": ddmm.app.openURL,
+        "downloadUpdate": ddmm.app.downloadUpdate,
         "setBackground": function (image) {
             this.background_image = image;
         },

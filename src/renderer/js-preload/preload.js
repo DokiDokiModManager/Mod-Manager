@@ -184,9 +184,11 @@ api.window.handleInstallRightClick = function (folderName, mouseX, mouseY) {
 // Show right click for mod
 api.window.handleModRightClick = function (filename, mouseX, mouseY) {
     remote.Menu.buildFromTemplate([
-        {label: api.translate("renderer.tab_mods.mod_contextmenu.install"), accelerator: "enter", click: () => {
-            ddmm.emit("create install", filename);
-        }},
+        {
+            label: api.translate("renderer.tab_mods.mod_contextmenu.install"), accelerator: "enter", click: () => {
+                ddmm.emit("create install", filename);
+            }
+        },
         {type: "separator"},
         {
             label: api.translate("renderer.tab_mods.mod_contextmenu.delete"), accelerator: "delete", click: () => {
@@ -261,9 +263,13 @@ ipcRenderer.on("debug info", (ev, data) => {
 });
 
 // Handler for updates
-ipcRenderer.on("updating", (ev, data) => {
-    api.emit("updating", !!data);
+ipcRenderer.on("updating", (ev, status) => {
+    api.emit("updating", status);
 });
+
+api.app.downloadUpdate = function () {
+    ipcRenderer.send("download update");
+};
 
 // Onboarding flow trigger
 ipcRenderer.on("start onboarding", () => {

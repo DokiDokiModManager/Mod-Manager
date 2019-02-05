@@ -3,6 +3,7 @@ import {move, existsSync, mkdirpSync, readdirSync, removeSync, copyFileSync} fro
 import {join as joinPath} from "path";
 import {autoUpdater} from "electron-updater";
 import * as Sentry from "@sentry/electron";
+import * as semver from "semver";
 
 Sentry.init({
     dsn: "https://bf0edf3f287344d4969e3171c33af4ea@sentry.io/1297252",
@@ -393,23 +394,43 @@ ipcMain.on("download mod", (ev, url) => {
 // endregion
 
 // region Updates etc.
-autoUpdater.allowDowngrade = false;
+function showUpdating(status: "checking" | "available" | "downloading" | "downloaded" | "none") {
+    if (appWindow && appWindow.webContents) {
+        appWindow.webContents.send("updating", status);
+    }
+}
 
-autoUpdater.on("download-progress", () => {
-    appWindow.webContents.send("updating", true);
-});
+function checkForUpdate() {
+    showUpdating("checking");
+    autoUpdater.checkForUpdatesAndNotify().then(update => {
+        console.log(update);
+        if (update && semver.gt(update.updateInfo.version, app.getVersion())) {
+            showUpdating("available");
+        } else {
+            showUpdating("none");
+        }
+    }).catch(err => {
+        console.warn("Error checking for updates", err);
+        showUpdating("none");
+    });
+}
+
+autoUpdater.autoDownload = false;
 
 autoUpdater.on("update-downloaded", () => {
-    appWindow.webContents.send("updating", false);
+    showUpdating("downloaded");
 });
 
 ipcMain.on("check update", () => {
-    autoUpdater.channel = Config.readConfigValue("updateChannel");
-    autoUpdater.checkForUpdatesAndNotify();
+    checkForUpdate();
 });
 
-autoUpdater.channel = Config.readConfigValue("updateChannel");
-autoUpdater.checkForUpdatesAndNotify();
+ipcMain.on("download update", () => {
+    showUpdating("downloading");
+    autoUpdater.downloadUpdate();
+});
+
+checkForUpdate();
 
 // endregion
 
@@ -590,5 +611,9 @@ app.on("ready", () => {
     }
 
     appWindow.loadFile(joinPath(__dirname, "../../src/renderer/html/index.html"));
+
+    if (!Config.readConfigValue("installFolder", true)) {
+        Config.saveConfigValue("installFolder", Config.readConfigValue("installFolder"));
+    }
 });
 // endregion

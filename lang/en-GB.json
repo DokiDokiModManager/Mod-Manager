@@ -15,7 +15,12 @@
       "maximise": "Maximise",
       "minimise": "Minimise",
       "help": "Get Help",
-      "update_spinner": "Updating..."
+      "update": {
+        "checking": "Checking for updates in the background...",
+        "available": "An update is available. Click here to download it.",
+        "downloading": "Downloading update...",
+        "downloaded": "An update is ready to install when you quit."
+      }
     },
     "crash_cover": {
       "button_close": "Quit",

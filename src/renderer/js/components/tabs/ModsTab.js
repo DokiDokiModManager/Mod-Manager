@@ -321,6 +321,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 || ddmm.mods.installExists(this.install_creation.folder_name);
         },
         "searchResultsMods": function () {
+            console.log(this._fuseMods && this._fuseMods.search(this.search));
             return this.search.length > 0 ? this._fuseMods.search(this.search).map(mod => this.mods[mod]) : this.mods;
         },
         "searchResultsInstalls": function () {

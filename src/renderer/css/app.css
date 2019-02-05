@@ -126,6 +126,18 @@ body {
   color: #fff;
 }
 
+@keyframes draw-attention {
+  from {
+    color: white;
+  }
+  to {
+    color: red;
+  }
+}
+.window-button-draw-attention {
+  animation: draw-attention 1s infinite alternate;
+}
+
 #app {
   display: flex;
   flex-direction: column;
