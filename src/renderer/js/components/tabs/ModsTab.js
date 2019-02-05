@@ -271,6 +271,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             this._fuseMods = new Fuse(mods, {
                 shouldSort: true,
                 threshold: 0.5,
+                keys: ["filename"]
             });
         },
         "_keyPressHandler": function (e) {
@@ -321,8 +322,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 || ddmm.mods.installExists(this.install_creation.folder_name);
         },
         "searchResultsMods": function () {
-            console.log(this._fuseMods && this._fuseMods.search(this.search));
-            return this.search.length > 0 ? this._fuseMods.search(this.search).map(mod => this.mods[mod]) : this.mods;
+            return this.search.length > 0 ? this._fuseMods.search(this.search) : this.mods;
         },
         "searchResultsInstalls": function () {
             return this.search.length > 0 ? this._fuseInstalls.search(this.search) : this.installs;
