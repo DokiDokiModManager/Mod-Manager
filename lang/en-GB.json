@@ -26,6 +26,9 @@
       "button_close": "Quit",
       "button_continue": "Continue"
     },
+    "drop_cover": {
+      "text": "Drop a mod here to add it to your library"
+    },
     "onboarding": {
       "title": "Welcome!",
       "description_download": "Let's find a copy of DDLC.",
