@@ -542,8 +542,8 @@ app.on("ready", () => {
     // set user agent so web services can contact me if necessary
     appWindow.webContents.setUserAgent(USER_AGENT);
 
-    appWindow.webContents.on("will-navigate", ev => {
-        console.warn("Prevented navigation from app container");
+    appWindow.webContents.on("will-navigate", (ev, url) => {
+        console.warn("Prevented navigation from app container", url);
         ev.preventDefault(); // prevent navigation
     });
 

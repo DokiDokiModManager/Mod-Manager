@@ -11,6 +11,7 @@
 <body>
 <div id="app" :class="['os-'+system_platform]" :style="{'background-image': backgroundImageStyle}">
     <ddmm-onboarding v-if="onboarding" :style="{'background-image': backgroundImageStyle}" @close="onboarding = false"></ddmm-onboarding>
+    <ddmm-drop-overlay></ddmm-drop-overlay>
     <div class="cover" v-if="running_cover.display" :style="{'background-image': backgroundImageStyle}">
         <h1>{{running_cover.title}}</h1>
         <p>{{running_cover.description}}</p>
@@ -74,6 +75,7 @@
 <script src="../../../node_modules/fuse.js/dist/fuse.min.js"></script>
 <script src="../../../node_modules/vue/dist/vue.js"></script>
 <script src="../js/components/OnboardingOverlay.js"></script>
+<script src="../js/components/DropOverlay.js"></script>
 <script src="../js/components/tabs/ModsTab.js"></script>
 <script src="../js/components/tabs/StorePlaceholderTab.js"></script>
 <script src="../js/components/tabs/OptionsTab.js"></script>
