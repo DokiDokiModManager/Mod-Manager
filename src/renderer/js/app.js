@@ -9,6 +9,7 @@ const app = new Vue({
         "app_updating": "none",
         "tab": "mods",
         "system_borders": ddmm.config.readConfigValue("systemBorders"),
+        "dropping_mod": false,
         "tabs": [
             {"id": "mods", "name": ddmm.translate("renderer.tabs.tab_mods"), "component": "ddmm-mods-tab"},
             {"id": "store", "name": ddmm.translate("renderer.tabs.tab_store"), "component": "ddmm-store-placeholder-tab"},
@@ -69,6 +70,10 @@ const app = new Vue({
         "closePrompt": function (yes) {
             this.prompt_cover.callback(!!yes);
             this.prompt_cover.display = false;
+        },
+        "showInstallMod": function (mod) {
+            this.tab = "mods";
+            ddmm.emit("create install", mod);
         }
     }
 });
@@ -113,4 +118,9 @@ ddmm.on("prompt", data => {
 
 ddmm.on("start onboarding", () => {
     app.onboarding = true;
+});
+
+document.body.addEventListener("dragenter", ev => {
+    app.dropping_mod = true;
+    ev.preventDefault();
 });

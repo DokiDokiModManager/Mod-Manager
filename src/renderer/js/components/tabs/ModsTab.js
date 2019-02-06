@@ -140,8 +140,8 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             "mods": [],
             "is_installing": false,
             "selected_item": {
-                "id": sessionStorage.getItem("mod_list_last_id"),
-                "type": sessionStorage.getItem("mod_list_last_type")
+                "id": "",
+                "type": ""
             },
             "install_creation": {
                 "install_name": "",
@@ -193,7 +193,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             return ddmm.joinPath(ddmm.config.readConfigValue("installFolder"), "installs", installFolder);
         },
         "getPathToMod": function (mod) {
-            return ddmm.joinPath(ddmm.config.readConfigValue("installFolder"), "mods", mod);
+            return ddmm.isAbsolute(mod) ? mod : ddmm.joinPath(ddmm.config.readConfigValue("installFolder"), "mods", mod);
         },
         "getURLToScreenshot": function (installFolder, filename) {
             return ddmm.pathToFile(ddmm.joinPath(ddmm.config.readConfigValue("installFolder"), "installs", installFolder, "install", filename)) + "?" + Math.random();
@@ -333,9 +333,13 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
         ddmm.mods.refreshModList();
         ddmm.on("install list", this._refreshInstallList);
         ddmm.on("mod list", this._refreshModList);
-        ddmm.on("create install",(mod) => {
+        ddmm.on("create install", (mod) => {
             this.showCreateInstall(mod ? this.getPathToMod(mod) : null);
         });
+        if (!this.selected_item.type) {
+            this.selected_item.id = sessionStorage.getItem("mod_list_last_id");
+            this.selected_item.type = sessionStorage.getItem("mod_list_last_type");
+        }
         document.body.addEventListener("keyup", this._keyPressHandler);
     },
     "destroyed": function () {

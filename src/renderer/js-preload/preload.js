@@ -318,6 +318,9 @@ api.env = process.env;
 // Join paths
 api.joinPath = path.join;
 
+// Is absolute
+api.isAbsolute = path.isAbsolute;
+
 // make the API visible to the renderer
 global.ddmm = api;
 
