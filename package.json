@@ -54,7 +54,9 @@
     ],
     "appx": {
       "applicationId": "dokidokimodmanager",
-      "identityName": "29209Zudo.DokiDokiModManager"
+      "identityName": "29209Zudo.DokiDokiModManager",
+      "publisher": "CN=1FDB3F4F-8BB0-4C8D-B3CE-5046A5C5DFFB",
+      "publisherDisplayName": "Zudo"
     },
     "publish": [
       {
