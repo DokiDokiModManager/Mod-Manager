@@ -12,14 +12,14 @@
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.5.0.tgz#0c6c53823d04457ae669cd19567b8a21dbb4fcfd"
   integrity sha512-p4lu0jfj5QN013ddArh99r3OXZ/fp9rbovs62LfaO70OMBsAXxtNd0lAq/97fitrscR0fqfd+/a5KNcp6Sh/0A==
 
-"@sentry/browser@~4.3.4":
-  version "4.3.4"
-  resolved "https://registry.yarnpkg.com/@sentry/browser/-/browser-4.3.4.tgz#5c17184781c4fb6ad8ab48f5c48e01630d4fc3dc"
-  integrity sha512-odRXxnhcSYzyR4YvTolNEyrz3fdDVw308l+9RBRJA9yOFVlezaz1mXH6Gv00F7cIj9yE/JtezDyhP339WsWy3w==
+"@sentry/browser@~4.5.0":
+  version "4.5.3"
+  resolved "https://registry.yarnpkg.com/@sentry/browser/-/browser-4.5.3.tgz#69744d13b01c490f366cbf2676790624b9f7c0a0"
+  integrity sha512-ePbsyXtZS9jWM0lD8rxA46omJjJcQPaRZak08TyxFBGm1YOUFvvNAA6rNjUtK4fFEznLhPA5YcllcOCBE2bPPg==
   dependencies:
-    "@sentry/core" "4.3.4"
-    "@sentry/types" "4.3.4"
-    "@sentry/utils" "4.3.4"
+    "@sentry/core" "4.5.3"
+    "@sentry/types" "4.5.3"
+    "@sentry/utils" "4.5.3"
     tslib "^1.9.3"
 
 "@sentry/cli@^1.36.4":
@@ -34,77 +34,78 @@
     progress "2.0.0"
     proxy-from-env "^1.0.0"
 
-"@sentry/core@4.3.4", "@sentry/core@~4.3.4":
-  version "4.3.4"
-  resolved "https://registry.yarnpkg.com/@sentry/core/-/core-4.3.4.tgz#414e050b9e963ac7f839331ad33590e59d883988"
-  integrity sha512-KwolQmAnXiFMeXBuxPUM8fW+2bOICdHfpjdf83qD7WSeuKqGvXhxXyApWNSLE+l2DPO6/8UKnIGmR8bEn0G7QA==
+"@sentry/core@4.5.3", "@sentry/core@~4.5.0":
+  version "4.5.3"
+  resolved "https://registry.yarnpkg.com/@sentry/core/-/core-4.5.3.tgz#e55a42c694deec903aec2479e4a282d5a7a43878"
+  integrity sha512-off7XkyyiPXJTQ1XYPzxsY3zLHztMdK1kuIeHzyoIzu4kvs8H75eqou+fADo04JmfaMNy+OZSoW+5Aq2SZR2Ng==
   dependencies:
-    "@sentry/hub" "4.3.4"
-    "@sentry/minimal" "4.3.4"
-    "@sentry/types" "4.3.4"
-    "@sentry/utils" "4.3.4"
+    "@sentry/hub" "4.5.3"
+    "@sentry/minimal" "4.5.3"
+    "@sentry/types" "4.5.3"
+    "@sentry/utils" "4.5.3"
     tslib "^1.9.3"
 
-"@sentry/electron@0.14.0":
-  version "0.14.0"
-  resolved "https://registry.yarnpkg.com/@sentry/electron/-/electron-0.14.0.tgz#138581e4cd69beb486afc26226fc9d2832a4d574"
-  integrity sha512-f0Aj2gKcX9LampOEFER0m6cC4etT1B3bsuY7E1R3vzZXcL7y5TaH2Omgk5atzAX5ycBk8LHxhVqUtE6fZBWlFA==
+"@sentry/electron@0.15.0":
+  version "0.15.0"
+  resolved "https://registry.yarnpkg.com/@sentry/electron/-/electron-0.15.0.tgz#55a6aeb61a444413327f6c76fdda8b26ae9209f1"
+  integrity sha512-28Jiv3N6aO5p6oF90gfHrL/15yOPVnEUlyKKBYidG2gp47igimWT2yaY+rqlgQuemCNsKt2WfjPuWSMXpE4BYg==
   dependencies:
-    "@sentry/browser" "~4.3.4"
-    "@sentry/core" "~4.3.4"
-    "@sentry/minimal" "~4.3.4"
-    "@sentry/node" "~4.3.4"
-    "@sentry/types" "~4.3.4"
-    "@sentry/utils" "~4.3.4"
+    "@sentry/browser" "~4.5.0"
+    "@sentry/core" "~4.5.0"
+    "@sentry/minimal" "~4.5.0"
+    "@sentry/node" "~4.5.0"
+    "@sentry/types" "~4.5.0"
+    "@sentry/utils" "~4.5.0"
     electron-fetch "1.1.0"
     form-data "2.3.2"
     util.promisify "1.0.0"
 
-"@sentry/hub@4.3.4":
-  version "4.3.4"
-  resolved "https://registry.yarnpkg.com/@sentry/hub/-/hub-4.3.4.tgz#48915f5867e8ef1d964c89394e8500d1d050719b"
-  integrity sha512-vaBGCnhinLB8N4aQLMiPPhnlTkIUwU/dxWzw/xsuKY3MYWrmfMUyWgMZF60Mz3B4F0lW1lsg5jnJz9xPnjZowg==
+"@sentry/hub@4.5.3":
+  version "4.5.3"
+  resolved "https://registry.yarnpkg.com/@sentry/hub/-/hub-4.5.3.tgz#54ce5988ac6dedbe9bba99e2c00f8f26eb677dfe"
+  integrity sha512-4b8oPVAGw/hf11CQN9J7hAk2wzD2HIZsQBl/PcB/p5r1UyHw8cibpVobJulkHJMBJMiZ/twIBGZ1G1qK3LJdhw==
   dependencies:
-    "@sentry/types" "4.3.4"
-    "@sentry/utils" "4.3.4"
+    "@sentry/types" "4.5.3"
+    "@sentry/utils" "4.5.3"
     tslib "^1.9.3"
 
-"@sentry/minimal@4.3.4", "@sentry/minimal@~4.3.4":
-  version "4.3.4"
-  resolved "https://registry.yarnpkg.com/@sentry/minimal/-/minimal-4.3.4.tgz#8375c3d040621dd30eeddaebf4ef1bf22be0f643"
-  integrity sha512-EBmQgdAQgxkhWFsBO4TmsP3cg5yTzg48HmPe3Dyt7PtF5Umw3DFW6qboAqnN1+KF+pHNuxkqevvgBTFp7b4Saw==
+"@sentry/minimal@4.5.3", "@sentry/minimal@~4.5.0":
+  version "4.5.3"
+  resolved "https://registry.yarnpkg.com/@sentry/minimal/-/minimal-4.5.3.tgz#7b69481df2d61e4b935d067be62a52824190f616"
+  integrity sha512-W9+eEZosoDKTAJkab/bxsSRim7I4lqeWHLhmCchDimKcdmpBzC+gOCT0PywwOWRLW08LhTHfmnNSAJv6PaZiCA==
   dependencies:
-    "@sentry/hub" "4.3.4"
-    "@sentry/types" "4.3.4"
+    "@sentry/hub" "4.5.3"
+    "@sentry/types" "4.5.3"
     tslib "^1.9.3"
 
-"@sentry/node@~4.3.4":
-  version "4.3.4"
-  resolved "https://registry.yarnpkg.com/@sentry/node/-/node-4.3.4.tgz#627b75114c4ac3dcc63db0a9257d852ffd0aaaa7"
-  integrity sha512-4ro8eFnIuuYrF/TLw788xU10AYJl9HvOYC5G3jLrHXTjRNLp7jJo9lZrUexjCvwM2WF/srF3+Z0Pwr+HwdKVVw==
+"@sentry/node@~4.5.0":
+  version "4.5.3"
+  resolved "https://registry.yarnpkg.com/@sentry/node/-/node-4.5.3.tgz#f6b57747991c300d4f5f70add673ea3d1e78c873"
+  integrity sha512-glBIGsoYDcUEjZWDjbkDWt87cmuO/lcxpfz4zfTq9JfIfzI3WunJqABhFDc8tQSqUdHOlWb2QKvoNPvz+0EDfg==
   dependencies:
-    "@sentry/core" "4.3.4"
-    "@sentry/hub" "4.3.4"
-    "@sentry/types" "4.3.4"
-    "@sentry/utils" "4.3.4"
+    "@sentry/core" "4.5.3"
+    "@sentry/hub" "4.5.3"
+    "@sentry/types" "4.5.3"
+    "@sentry/utils" "4.5.3"
     "@types/stack-trace" "0.0.29"
     cookie "0.3.1"
+    https-proxy-agent "2.2.1"
+    lru_map "0.3.3"
     lsmod "1.0.0"
-    md5 "2.2.1"
     stack-trace "0.0.10"
     tslib "^1.9.3"
 
-"@sentry/types@4.3.4", "@sentry/types@~4.3.4":
-  version "4.3.4"
-  resolved "https://registry.yarnpkg.com/@sentry/types/-/types-4.3.4.tgz#563f9def51da301cfd474ecf35ae4d97847aed61"
-  integrity sha512-qsqrcyNilpbzYjqef+km0Grh5BckSFD4MUdJDNkUE5XU/ImniYddj18bMDlQxluJlTPDjUFQ37FXtEmxLeOwkQ==
+"@sentry/types@4.5.3", "@sentry/types@~4.5.0":
+  version "4.5.3"
+  resolved "https://registry.yarnpkg.com/@sentry/types/-/types-4.5.3.tgz#3350dce2b7f9b936a8c327891c12e3aef7bd8852"
+  integrity sha512-7ll1PAFNjrBNX9rzy3P2qAQrpQwHaDO3uKj735qsnGw34OtAS8Xr8WYrjI14f9fMPa/XIeWvMPb4GMic28V/ag==
 
-"@sentry/utils@4.3.4", "@sentry/utils@~4.3.4":
-  version "4.3.4"
-  resolved "https://registry.yarnpkg.com/@sentry/utils/-/utils-4.3.4.tgz#4473d9f4d1b909e51b6aea7051ebe1bd838d56e9"
-  integrity sha512-CMGMdIv5RHUCKRF4aWPZ/gFRTfBQpLVVJEGCeFGZLXHBdpgQac0lf3jlu8sND0KZ0S3C5x3tGS/eEqmOZRQ/pw==
+"@sentry/utils@4.5.3", "@sentry/utils@~4.5.0":
+  version "4.5.3"
+  resolved "https://registry.yarnpkg.com/@sentry/utils/-/utils-4.5.3.tgz#6893fca9fde230b230360779362752e9b5570852"
+  integrity sha512-yIYqnuq9cd9nAUJ2MPmq++Mgy81qB2fglsDB8TiBfk2eaba79qFcKp8xg3w3EMDHZMlfmlx4fkTmZJ/+V02oWQ==
   dependencies:
-    "@sentry/types" "4.3.4"
+    "@sentry/types" "4.5.3"
     tslib "^1.9.3"
 
 "@types/node@^10.12.18":
@@ -441,11 +442,6 @@ chalk@^2.4.2:
     escape-string-regexp "^1.0.5"
     supports-color "^5.3.0"
 
-charenc@~0.0.1:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/charenc/-/charenc-0.0.2.tgz#c0a1d2f3a7092e03774bfa83f14c0fc5790a8667"
-  integrity sha1-wKHS86cJLgN3S/qD8UwPxXkKhmc=
-
 chmodr@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/chmodr/-/chmodr-1.2.0.tgz#720e96caa09b7f1cdbb01529b7d0ab6bc5e118b9"
@@ -590,11 +586,6 @@ cross-spawn@^6.0.0:
     shebang-command "^1.2.0"
     which "^1.2.9"
 
-crypt@~0.0.1:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/crypt/-/crypt-0.0.2.tgz#88d7ff7ec0dfb86f713dc87bbb42d044d3e6c41b"
-  integrity sha1-iNf/fsDfuG9xPch7u0LQRNPmxBs=
-
 crypto-random-string@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/crypto-random-string/-/crypto-random-string-1.0.0.tgz#a230f64f568310e1498009940790ec99545bca7e"
@@ -676,10 +667,10 @@ diff@3.5.0:
   resolved "https://registry.yarnpkg.com/diff/-/diff-3.5.0.tgz#800c0dd1e0a8bfbc95835c202ad220fe317e5a12"
   integrity sha512-A46qtFgd+g7pDZinpnwiRJtxbC1hpgf0uzP3iG89scHk0AUC7A1TGxf5OiiOUv/JMZR8GOt8hL900hV0bOy5xA==
 
-discord-rich-presence@^0.0.7:
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/discord-rich-presence/-/discord-rich-presence-0.0.7.tgz#e9e1779b8a2d4ac4690bfaaef896a8b3aa6c306c"
-  integrity sha512-svuNsMuKuS3NnQA9n/Bq0f09LMErXh6PepIbCNRn9F7w5xeA0VlbL96k1yIOScuuGoxSYpelayxlJBZLxpIxAw==
+discord-rich-presence@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/discord-rich-presence/-/discord-rich-presence-0.0.8.tgz#7a2b41ff87a278e8a2c8835cd91c9890d6b9fbdd"
+  integrity sha512-IpVMPjv15C9UvppxvrrGdv6bzQHOW1P1vLoMH15HvdJwGJ3dBd2bnrJ63Uy36YRUfrAMxGLiwUDHncvC8AuPaQ==
   dependencies:
     discord-rpc "github:discordjs/rpc"
 
@@ -1171,7 +1162,7 @@ http-signature@~1.2.0:
     jsprim "^1.2.2"
     sshpk "^1.7.0"
 
-https-proxy-agent@^2.2.1:
+https-proxy-agent@2.2.1, https-proxy-agent@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/https-proxy-agent/-/https-proxy-agent-2.2.1.tgz#51552970fa04d723e04c56d04178c3f92592bbc0"
   integrity sha512-HPCTS1LW51bcyMYbxUIOO4HEOlQ1/1qRaFWcyxvwaqUS9TY88aoEuHUY33kuAh1YhVVaDQhLZsnPd+XNARWZlQ==
@@ -1230,11 +1221,6 @@ is-arrayish@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/is-arrayish/-/is-arrayish-0.2.1.tgz#77c99840527aa8ecb1a8ba697b80645a7a926a9d"
   integrity sha1-d8mYQFJ6qOyxqLppe4BkWnqSap0=
-
-is-buffer@~1.1.1:
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-1.1.6.tgz#efaa2ea9daa0d7ab2ea13a97b2b8ad51fefbe8be"
-  integrity sha512-NcdALwpXkTm5Zvvbk7owOUSvVvBKDgKP5/ewfXEznmQFfs4ZRmanOeKBTjRVjka3QFoN6XJ+9F3USqfHqTaU5w==
 
 is-builtin-module@^1.0.0:
   version "1.0.0"
@@ -1506,6 +1492,11 @@ lru-cache@^4.0.1:
     pseudomap "^1.0.2"
     yallist "^3.0.2"
 
+lru_map@0.3.3:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/lru_map/-/lru_map-0.3.3.tgz#b5c8351b9464cbd750335a79650a0ec0e56118dd"
+  integrity sha1-tcg1G5Rky9dQM1p5ZQoOwOVhGN0=
+
 lsmod@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/lsmod/-/lsmod-1.0.0.tgz#9a00f76dca36eb23fa05350afe1b585d4299e64b"
@@ -1529,15 +1520,6 @@ map-obj@^1.0.0, map-obj@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/map-obj/-/map-obj-1.0.1.tgz#d933ceb9205d82bdcf4886f6742bdc2b4dea146d"
   integrity sha1-2TPOuSBdgr3PSIb2dCvcK03qFG0=
-
-md5@2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/md5/-/md5-2.2.1.tgz#53ab38d5fe3c8891ba465329ea23fac0540126f9"
-  integrity sha1-U6s41f48iJG6RlMp6iP6wFQBJvk=
-  dependencies:
-    charenc "~0.0.1"
-    crypt "~0.0.1"
-    is-buffer "~1.1.1"
 
 mem@^4.0.0:
   version "4.0.0"
