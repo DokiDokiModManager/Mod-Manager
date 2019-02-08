@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/app.css">
 </head>
 <body>
-<div id="app" :class="['os-'+system_platform]" :style="{'background-image': backgroundImageStyle}">
+<div id="app" :class="['os-'+system_platform, appx ? 'is-appx': 'is-standard']" :style="{'background-image': backgroundImageStyle}">
     <ddmm-onboarding v-if="onboarding" :style="{'background-image': backgroundImageStyle}" @close="onboarding = false"></ddmm-onboarding>
     <ddmm-drop-overlay v-if="dropping_mod" @end="dropping_mod = false" @file="showInstallMod"></ddmm-drop-overlay>
     <div class="cover" v-if="running_cover.display" :style="{'background-image': backgroundImageStyle}">

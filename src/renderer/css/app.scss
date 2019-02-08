@@ -451,3 +451,7 @@ input:focus, textarea:focus {
   pointer-events: none;
 }
 // endregion
+
+.is-appx .hide-appx {
+  display: none;
+}

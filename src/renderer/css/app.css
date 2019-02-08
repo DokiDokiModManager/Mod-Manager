@@ -418,4 +418,8 @@ input:focus, textarea:focus {
   pointer-events: none;
 }
 
+.is-appx .hide-appx {
+  display: none;
+}
+
 /*# sourceMappingURL=app.css.map */

@@ -5,7 +5,7 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
         <div class="mod-viewer-mod-list">
             <template v-for="section in menu">
                 <div class="mod-view-mod-list-title">{{section.header}}</div>
-                <div v-for="item in section.contents" :class="{'mod-view-mod-list-entry': true, 'active': selected_option === item.id}" @click="selectOption(item.id)">{{item.title}}</div>
+                <div v-for="item in section.contents" :class="{'mod-view-mod-list-entry': true, 'active': selected_option === item.id, 'hide-appx': item.hideAppx}" @click="selectOption(item.id)">{{item.title}}</div>
                 <br>
             </template>
         </div>
@@ -107,13 +107,6 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
             "release_channel_interim": ddmm.config.readConfigValue("updateChannel"),
             "menu": [
                 {
-                    "header": ddmm.translate("renderer.tab_options.list.header_application"),
-                    "contents": [
-                        {"title": ddmm.translate("renderer.tab_options.list.link_updates"), "id": "updates"},
-                        {"title": ddmm.translate("renderer.tab_options.list.link_storage"), "id": "storage"}
-                    ]
-                },
-                {
                     "header": ddmm.translate("renderer.tab_options.list.header_appearance"),
                     "contents": [
                         {"title": ddmm.translate("renderer.tab_options.list.link_background"), "id": "background"},
@@ -121,6 +114,13 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
                             "title": ddmm.translate("renderer.tab_options.list.link_advanced_appearance"),
                             "id": "advanced_appearance"
                         }
+                    ]
+                },
+                {
+                    "header": ddmm.translate("renderer.tab_options.list.header_application"),
+                    "contents": [
+                        {"title": ddmm.translate("renderer.tab_options.list.link_updates"), "id": "updates", "hideAppx": true},
+                        {"title": ddmm.translate("renderer.tab_options.list.link_storage"), "id": "storage"}
                     ]
                 },
                 {

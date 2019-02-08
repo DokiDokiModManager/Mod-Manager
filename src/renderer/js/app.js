@@ -1,6 +1,7 @@
 const app = new Vue({
     "el": "#app",
     "data": {
+        "appx": false,
         "onboarding": false,
         "background_image": ddmm.config.readConfigValue("background"),
         "app_name": "Doki Doki Mod Manager",
@@ -118,6 +119,10 @@ ddmm.on("prompt", data => {
 
 ddmm.on("start onboarding", () => {
     app.onboarding = true;
+});
+
+ddmm.on("is appx", is => {
+    app.appx = is;
 });
 
 document.body.addEventListener("dragenter", ev => {

@@ -306,6 +306,11 @@ ipcRenderer.on("onboarding download failed", () => {
     api.emit("onboarding download failed");
 });
 
+// Winstore Appx UI handling
+ipcRenderer.on("is appx", (_, is) => {
+   api.emit("is appx", is);
+});
+
 // Application version
 api.version = packageData.version;
 
