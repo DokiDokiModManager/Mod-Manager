@@ -52,6 +52,10 @@
       "!**/fontawesome-free/scss",
       "!**/vue/src"
     ],
+    "appx": {
+      "applicationId": "dokidokimodmanager",
+      "identityName": "29209Zudo.DokiDokiModManager"
+    },
     "publish": [
       {
         "provider": "github",
@@ -69,11 +73,7 @@
           ]
         },
         {
-          "target": "zip",
-          "arch": [
-            "x64",
-            "ia32"
-          ]
+          "target": "appx"
         }
       ]
     },
