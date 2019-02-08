@@ -1,3 +1,4 @@
+import {app} from "electron";
 import {join as joinPath} from "path";
 import {readdirSync, readFileSync} from "fs";
 import Install from "../types/Install";
@@ -44,6 +45,17 @@ export default class InstallList {
                 // do nothing, the folder should be ignored
             }
         }
+
+        app.setUserTasks(returned.map((install: Install) => {
+            return {
+                program: process.execPath,
+                arguments: "ddmm://launch-install/" + install.folderName,
+                iconPath: process.execPath,
+                iconIndex: 0,
+                title: install.name,
+                description: install.name
+            };
+        }));
 
         return returned;
     }
