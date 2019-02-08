@@ -468,8 +468,6 @@ app.on("second-instance", (ev: Event, argv: string[]) => {
 });
 
 app.on("ready", () => {
-    app.setAppUserModelId("space.doki.modmanager");
-
     if (!app.requestSingleInstanceLock()) {
 
         // we should quit, as another instance is running
