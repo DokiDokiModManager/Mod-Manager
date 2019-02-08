@@ -3,6 +3,9 @@ import {join as joinPath} from "path";
 import {readdirSync, readFileSync} from "fs";
 import Install from "../types/Install";
 import Config from "../utils/Config";
+import I18n from "../utils/i18n";
+
+const lang: I18n = new I18n(app.getLocale());
 
 export default class InstallList {
 
@@ -53,7 +56,7 @@ export default class InstallList {
                 iconPath: process.execPath,
                 iconIndex: 0,
                 title: install.name,
-                description: install.name
+                description: lang.translate("main.jumplist.task_launch", install.name)
             };
         }));
 

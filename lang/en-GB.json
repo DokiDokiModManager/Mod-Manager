@@ -205,6 +205,9 @@
     }
   },
   "main": {
+    "jumplist": {
+      "task_launch": "Open Doki Doki Mod Manager and launch {0}."
+    },
     "running_cover": {
       "title_running": "DDLC is running",
       "title_crashed": "Something went wrong",
