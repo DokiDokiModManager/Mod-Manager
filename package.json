@@ -75,7 +75,10 @@
           ]
         },
         {
-          "target": "appx"
+          "target": "appx",
+          "arch": [
+            "x64"
+          ]
         }
       ]
     },

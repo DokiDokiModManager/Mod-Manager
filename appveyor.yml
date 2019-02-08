@@ -3,19 +3,21 @@ environment:
   nodejs_version: "10"
   ELECTRON_BUILDER_ALLOW_UNRESOLVED_DEPENDENCIES: true
 
+platform: x64
+
 cache:
   - "%LOCALAPPDATA%\\Yarn"
+  - node_modules
+  - '%USERPROFILE%\.electron'
 
-# Install scripts. (runs after repo cloning)
+init:
+  - git config --global core.autocrlf input
+)
 install:
-  # Get the latest stable version of Node.js or io.js
   - ps: Install-Product node $env:nodejs_version
-  # install modules
   - yarn
 
 build_script:
-  -  yarn release -w
+  -  yarn test && yarn release -w
 
-test_script:
-  # run tests
-  - yarn test
+test: off
