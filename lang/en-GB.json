@@ -140,7 +140,7 @@
       },
       "section_advanced_appearance": {
         "title": "Advanced",
-        "subtitle": "Other interface options",
+        "subtitle": "Find other interface options here.",
         "button_enable_sysborders": "Use System Borders (requires restart)",
         "button_disable_sysborders": "Disable System Borders (requires restart)"
       },
