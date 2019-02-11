@@ -75,6 +75,9 @@ const app = new Vue({
         "showInstallMod": function (mod) {
             this.tab = "mods";
             ddmm.emit("create install", mod);
+        },
+        "showHelpMenu": function (ev) {
+            ddmm.app.showHelpMenu(ev.clientX, ev.clientY);
         }
     }
 });

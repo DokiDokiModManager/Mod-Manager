@@ -242,6 +242,27 @@ api.mods.createShortcut = function (folderName) {
     ipcRenderer.send("create shortcut", folderName);
 };
 
+// Help meny
+api.app.showHelpMenu = function (x, y) {
+    remote.Menu.buildFromTemplate([
+        {
+            label: api.translate("renderer.help_menu.option_help"), click: () => {
+                api.app.openURL("https://help.doki.space");
+            }
+        },
+        {
+            label: api.translate("renderer.help_menu.option_discord"), click: () => {
+                api.app.openURL("https://doki.space/discord");
+            }
+        },
+        {
+            label: api.translate("renderer.help_menu.option_feedback"), click: () => {
+                api.app.openURL("mailto:zudo@doki.space");
+            }
+        }
+    ]).popup({x, y})
+};
+
 // Move install folder
 api.app.beginMoveInstall = function () {
     ipcRenderer.send("move install");
@@ -308,7 +329,7 @@ ipcRenderer.on("onboarding download failed", () => {
 
 // Winstore Appx UI handling
 ipcRenderer.on("is appx", (_, is) => {
-   api.emit("is appx", is);
+    api.emit("is appx", is);
 });
 
 // Application version

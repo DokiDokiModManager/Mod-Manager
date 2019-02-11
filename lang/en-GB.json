@@ -10,6 +10,11 @@
     "version": {
       "link_changelog": "what's new?"
     },
+    "help_menu": {
+      "option_help": "View help site",
+      "option_feedback": "Send private feedback",
+      "option_discord": "Join the Discord server"
+    },
     "window_controls": {
       "close": "Close",
       "maximise": "Maximise",
