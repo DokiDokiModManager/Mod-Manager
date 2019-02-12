@@ -147,7 +147,9 @@ api.window.handleInstallRightClick = function (folderName, installName, mouseX, 
                     button_affirmative: api.translate("renderer.tab_mods.rename_input.button_affirmative"),
                     button_negative: api.translate("renderer.tab_mods.rename_input.button_negative"),
                     callback: (newName) => {
-                        api.mods.renameInstall(folderName, newName);
+                        if (newName) {
+                            api.mods.renameInstall(folderName, newName);
+                        }
                     }
                 });
             },

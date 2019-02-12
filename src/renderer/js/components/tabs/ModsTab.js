@@ -283,7 +283,17 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 if (e.key === "Enter") {
                     ddmm.mods.launchInstall(this.selectedInstall.folderName);
                 } else if (e.key === "F2") {
-                    // TODO rename
+                    ddmm.window.input({
+                        title: ddmm.translate("renderer.tab_mods.rename_input.message"),
+                        description: ddmm.translate("renderer.tab_mods.rename_input.details", this.selectedInstall.name),
+                        button_affirmative: ddmm.translate("renderer.tab_mods.rename_input.button_affirmative"),
+                        button_negative: ddmm.translate("renderer.tab_mods.rename_input.button_negative"),
+                        callback: (newName) => {
+                            if (newName) {
+                                ddmm.mods.renameInstall(this.selectedInstall.folderName, newName);
+                            }
+                        }
+                    });
                 } else if (e.key === "Delete") {
                     ddmm.window.prompt({
                         title: ddmm.translate("renderer.tab_mods.uninstall_confirmation.message"),
