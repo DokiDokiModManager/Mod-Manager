@@ -73,6 +73,12 @@
         "button_affirmative": "Uninstall",
         "button_negative": "Cancel"
       },
+      "rename_input": {
+        "message": "Rename Install",
+        "details": "Enter the new name for {0}.",
+        "button_affirmative": "Rename",
+        "button_negative": "Cancel"
+      },
       "mod_delete_confirmation": {
         "message": "Are you sure you want to delete the mod?",
         "details": "You will need to download another copy of the mod to install it again.",

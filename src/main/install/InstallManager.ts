@@ -1,7 +1,7 @@
 import {remove, emptyDir} from "fs-extra";
 import {join as joinPath} from "path";
 import Config from "../utils/Config";
-import {existsSync} from "fs";
+import {existsSync, readFileSync, writeFileSync} from "fs";
 
 export default class InstallManager {
 
@@ -11,6 +11,25 @@ export default class InstallManager {
      */
     public static installExists(folderName: string): boolean {
         return existsSync(joinPath(Config.readConfigValue("installFolder"), "installs", folderName));
+    }
+
+    /**
+     * Rename an install
+     * @param folderName The folder containing the install
+     * @param newName The new name for the install
+     */
+    public static renameInstall(folderName: string, newName: string): Promise<null> {
+        return new Promise((ff, rj) => {
+            const installDataPath: string = joinPath(Config.readConfigValue("installFolder"), "installs", folderName, "install.json");
+            if (existsSync(installDataPath)) {
+                const data: any = JSON.parse(readFileSync(installDataPath, "utf8"));
+                data.name = newName;
+                writeFileSync(installDataPath, JSON.stringify(data));
+                ff();
+            } else {
+                rj();
+            }
+        });
     }
 
     /**

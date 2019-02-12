@@ -125,6 +125,11 @@ api.window.prompt = function (data) {
     api.emit("prompt", data);
 };
 
+// Input
+api.window.input = function (data) {
+    api.emit("input", data);
+};
+
 // Show right click for install
 api.window.handleInstallRightClick = function (folderName, installName, mouseX, mouseY) {
     remote.Menu.buildFromTemplate([
@@ -134,7 +139,20 @@ api.window.handleInstallRightClick = function (folderName, installName, mouseX, 
             }, accelerator: "enter"
         },
         {type: "separator"},
-        {label: api.translate("renderer.tab_mods.install_contextmenu.rename"), accelerator: "F2"},
+        {
+            label: api.translate("renderer.tab_mods.install_contextmenu.rename"), click: () => {
+                api.emit("input", {
+                    title: api.translate("renderer.tab_mods.rename_input.message"),
+                    description: api.translate("renderer.tab_mods.rename_input.details", installName),
+                    button_affirmative: api.translate("renderer.tab_mods.rename_input.button_affirmative"),
+                    button_negative: api.translate("renderer.tab_mods.rename_input.button_negative"),
+                    callback: (newName) => {
+                        api.mods.renameInstall(folderName, newName);
+                    }
+                });
+            },
+            accelerator: "F2"
+        },
         {
             label: api.translate("renderer.tab_mods.install_contextmenu.shortcut"), click: () => {
                 api.mods.createShortcut(folderName, installName)
@@ -220,6 +238,11 @@ api.config.saveConfigValue = function (k, v) {
 // Read a setting from config
 api.config.readConfigValue = function (k) {
     return ipcRenderer.sendSync("read config", k);
+};
+
+// Delete install
+api.mods.renameInstall = function (folderName, newName) {
+    ipcRenderer.send("rename install", {folderName, newName});
 };
 
 // Delete install

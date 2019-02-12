@@ -221,6 +221,22 @@ ipcMain.on("create install", (ev: IpcMessageEvent, install: { folderName: string
     });
 });
 
+// Rename an install
+ipcMain.on("rename install", (ev: IpcMessageEvent, options: {folderName: string, newName: string}) => {
+    console.log("[IPC rename install] Renaming " + options.folderName);
+    InstallManager.renameInstall(options.folderName, options.newName).then(() => {
+        console.log("[IPC rename install] Renamed " + options.folderName);
+        appWindow.webContents.send("got installs", InstallList.getInstallList());
+    }).catch((e: Error) => {
+        showError(
+            lang.translate("main.errors.uninstall.title"), // TODO: rename error
+            lang.translate("main.errors.uninstall.body"),
+            e.toString(),
+            false
+        );
+    });
+});
+
 // Delete an install permanently
 ipcMain.on("delete install", (ev: IpcMessageEvent, folderName: string) => {
     console.log("[IPC delete install] Deleting " + folderName);
