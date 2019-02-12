@@ -261,6 +261,10 @@
         "title": "Failed to install game",
         "body": "Check that you have permission and enough space to install."
       },
+      "rename": {
+        "title": "Failed to rename",
+        "body": "Check that you have closed all programs that may be interfering and try again."
+      },
       "uninstall": {
         "title": "Failed to uninstall",
         "body": "Check that you have closed all programs that may be interfering and try again."

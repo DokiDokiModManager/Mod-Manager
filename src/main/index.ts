@@ -229,8 +229,8 @@ ipcMain.on("rename install", (ev: IpcMessageEvent, options: {folderName: string,
         appWindow.webContents.send("got installs", InstallList.getInstallList());
     }).catch((e: Error) => {
         showError(
-            lang.translate("main.errors.uninstall.title"), // TODO: rename error
-            lang.translate("main.errors.uninstall.body"),
+            lang.translate("main.errors.rename.title"),
+            lang.translate("main.errors.rename.body"),
             e.toString(),
             false
         );
