@@ -146,7 +146,7 @@ api.window.handleInstallRightClick = function (folderName, installName, mouseX, 
             click: () => {
                 api.emit("prompt", {
                     title: api.translate("renderer.tab_mods.save_delete_confirmation.message"),
-                    description: api.translate("renderer.tab_mods.save_delete_confirmation.details"),
+                    description: api.translate("renderer.tab_mods.save_delete_confirmation.details", installName),
                     button_affirmative: api.translate("renderer.tab_mods.save_delete_confirmation.button_affirmative"),
                     button_negative: api.translate("renderer.tab_mods.save_delete_confirmation.button_negative"),
                     callback: (uninstall) => {
@@ -163,7 +163,7 @@ api.window.handleInstallRightClick = function (folderName, installName, mouseX, 
             click: () => {
                 api.emit("prompt", {
                     title: api.translate("renderer.tab_mods.uninstall_confirmation.message"),
-                    description: api.translate("renderer.tab_mods.uninstall_confirmation.details"),
+                    description: api.translate("renderer.tab_mods.uninstall_confirmation.details", installName),
                     button_affirmative: api.translate("renderer.tab_mods.uninstall_confirmation.button_affirmative"),
                     button_negative: api.translate("renderer.tab_mods.uninstall_confirmation.button_negative"),
                     callback: (uninstall) => {
