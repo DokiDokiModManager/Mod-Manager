@@ -141,6 +141,9 @@ ddmm.on("input", data => {
     app.input_cover.button_affirmative = data.button_affirmative;
     app.input_cover.callback = data.callback;
     app.input_cover.input = "";
+    app.$nextTick(() => {
+        app.$refs.input_cover_field.focus();
+    });
 });
 
 ddmm.on("start onboarding", () => {
