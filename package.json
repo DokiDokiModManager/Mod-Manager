@@ -58,6 +58,10 @@
       "publisher": "CN=1FDB3F4F-8BB0-4C8D-B3CE-5046A5C5DFFB",
       "publisherDisplayName": "Zudo"
     },
+    "protocols": [{
+      "name": "Doki Doki Mod Manager",
+      "schemes": ["ddmm"]
+    }],
     "publish": [
       {
         "provider": "github",
@@ -66,10 +70,6 @@
       }
     ],
     "win": {
-      "protocols": [{
-        "name": "Doki Doki Mod Manager",
-        "schemes": ["ddmm"]
-      }],
       "target": [
         {
           "target": "nsis",
