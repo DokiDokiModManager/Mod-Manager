@@ -286,8 +286,9 @@ ipcMain.on("create shortcut", (ev: IpcMessageEvent, folderName: string) => {
         if (file) {
             console.log("[IPC create shortcut] Writing shortcut to " + file);
             if (!shell.writeShortcutLink(file, "create", {
-                args: "ddmm://launch-install/" + folderName,
-                target: process.argv0
+                target: "ddmm://launch-install/" + folderName,
+                icon: process.execPath,
+                iconIndex: 0
             })) {
                 showError(
                     lang.translate("main.errors.shortcut.title"),
