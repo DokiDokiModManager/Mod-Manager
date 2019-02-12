@@ -271,7 +271,7 @@ ipcMain.on("delete save", (ev: IpcMessageEvent, folderName: string) => {
 });
 
 // desktop shortcut creation
-ipcMain.on("create shortcut", (ev: IpcMessageEvent, folderName: string) => {
+ipcMain.on("create shortcut", (ev: IpcMessageEvent, options: {folderName: string, installName: string}) => {
     if (process.platform !== "win32") {
         dialog.showErrorBox("Shortcut creation is only supported on Windows", "Nice try.");
         return;
@@ -279,6 +279,7 @@ ipcMain.on("create shortcut", (ev: IpcMessageEvent, folderName: string) => {
 
     dialog.showSaveDialog(appWindow, {
         title: lang.translate("main.shortcut_dialog.title"),
+        defaultPath: options.installName,
         filters: [
             {name: lang.translate("main.shortcut_dialog.file_format_name"), extensions: ["lnk"]}
         ]
@@ -286,7 +287,7 @@ ipcMain.on("create shortcut", (ev: IpcMessageEvent, folderName: string) => {
         if (file) {
             console.log("[IPC create shortcut] Writing shortcut to " + file);
             if (!shell.writeShortcutLink(file, "create", {
-                target: "ddmm://launch-install/" + folderName,
+                target: "ddmm://launch-install/" + options.folderName,
                 icon: process.execPath,
                 iconIndex: 0
             })) {

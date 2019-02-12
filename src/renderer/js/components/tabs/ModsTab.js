@@ -15,7 +15,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 :class="{'mod-view-mod-list-entry': true, 'active': selected_item.id === install.folderName && selected_item.type === 'install'}"
                  v-for="install in searchResultsInstalls"
                   @dblclick="launchInstall(install.folderName)"
-                  @mouseup="handleInstallClick(install.folderName, $event)"
+                  @mouseup="handleInstallClick(install.folderName, install.name, $event)"
                   :title="getPathToInstall(install.folderName)"
                   >
                   {{install.name}}
@@ -176,10 +176,10 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             sessionStorage.setItem("mod_list_last_id", id);
             sessionStorage.setItem("mod_list_last_type", type);
         },
-        "handleInstallClick": function (installFolder, ev) {
+        "handleInstallClick": function (installFolder, installName, ev) {
             this.selectItem(installFolder, "install");
             if (ev.button === 2) {
-                ddmm.window.handleInstallRightClick(installFolder, ev.clientX, ev.clientY);
+                ddmm.window.handleInstallRightClick(installFolder, installName, ev.clientX, ev.clientY);
             }
         },
         "handleModClick": function (filename, downloading, ev) {

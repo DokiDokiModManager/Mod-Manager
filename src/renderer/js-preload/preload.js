@@ -126,7 +126,7 @@ api.window.prompt = function (data) {
 };
 
 // Show right click for install
-api.window.handleInstallRightClick = function (folderName, mouseX, mouseY) {
+api.window.handleInstallRightClick = function (folderName, installName, mouseX, mouseY) {
     remote.Menu.buildFromTemplate([
         {
             label: api.translate("renderer.tab_mods.install_contextmenu.launch"), click: () => {
@@ -137,7 +137,7 @@ api.window.handleInstallRightClick = function (folderName, mouseX, mouseY) {
         {label: api.translate("renderer.tab_mods.install_contextmenu.rename"), accelerator: "F2"},
         {
             label: api.translate("renderer.tab_mods.install_contextmenu.shortcut"), click: () => {
-                api.mods.createShortcut(folderName)
+                api.mods.createShortcut(folderName, installName)
             }
         },
         {type: "separator"},
@@ -238,8 +238,8 @@ api.mods.deleteSaveData = function (folderName) {
 };
 
 // Create shortcut
-api.mods.createShortcut = function (folderName) {
-    ipcRenderer.send("create shortcut", folderName);
+api.mods.createShortcut = function (folderName, installName) {
+    ipcRenderer.send("create shortcut", {folderName, installName});
 };
 
 // Help meny
