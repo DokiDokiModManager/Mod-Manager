@@ -1,4 +1,3 @@
-# Test against the latest version of this Node.js version
 environment:
   nodejs_version: "10"
   ELECTRON_BUILDER_ALLOW_UNRESOLVED_DEPENDENCIES: true
