@@ -287,7 +287,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 } else if (e.key === "Delete") {
                     ddmm.window.prompt({
                         title: ddmm.translate("renderer.tab_mods.uninstall_confirmation.message"),
-                        description: ddmm.translate("renderer.tab_mods.uninstall_confirmation.details"),
+                        description: ddmm.translate("renderer.tab_mods.uninstall_confirmation.details", this.selectedInstall.name),
                         button_affirmative: ddmm.translate("renderer.tab_mods.uninstall_confirmation.button_affirmative"),
                         button_negative: ddmm.translate("renderer.tab_mods.uninstall_confirmation.button_negative"),
                         callback: (uninstall) => {
