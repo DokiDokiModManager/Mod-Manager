@@ -221,6 +221,22 @@ ipcMain.on("create install", (ev: IpcMessageEvent, install: { folderName: string
     });
 });
 
+// Rename an install
+ipcMain.on("rename install", (ev: IpcMessageEvent, options: {folderName: string, newName: string}) => {
+    console.log("[IPC rename install] Renaming " + options.folderName);
+    InstallManager.renameInstall(options.folderName, options.newName).then(() => {
+        console.log("[IPC rename install] Renamed " + options.folderName);
+        appWindow.webContents.send("got installs", InstallList.getInstallList());
+    }).catch((e: Error) => {
+        showError(
+            lang.translate("main.errors.rename.title"),
+            lang.translate("main.errors.rename.body"),
+            e.toString(),
+            false
+        );
+    });
+});
+
 // Delete an install permanently
 ipcMain.on("delete install", (ev: IpcMessageEvent, folderName: string) => {
     console.log("[IPC delete install] Deleting " + folderName);
@@ -271,7 +287,7 @@ ipcMain.on("delete save", (ev: IpcMessageEvent, folderName: string) => {
 });
 
 // desktop shortcut creation
-ipcMain.on("create shortcut", (ev: IpcMessageEvent, folderName: string) => {
+ipcMain.on("create shortcut", (ev: IpcMessageEvent, options: {folderName: string, installName: string}) => {
     if (process.platform !== "win32") {
         dialog.showErrorBox("Shortcut creation is only supported on Windows", "Nice try.");
         return;
@@ -279,6 +295,7 @@ ipcMain.on("create shortcut", (ev: IpcMessageEvent, folderName: string) => {
 
     dialog.showSaveDialog(appWindow, {
         title: lang.translate("main.shortcut_dialog.title"),
+        defaultPath: options.installName,
         filters: [
             {name: lang.translate("main.shortcut_dialog.file_format_name"), extensions: ["lnk"]}
         ]
@@ -286,8 +303,9 @@ ipcMain.on("create shortcut", (ev: IpcMessageEvent, folderName: string) => {
         if (file) {
             console.log("[IPC create shortcut] Writing shortcut to " + file);
             if (!shell.writeShortcutLink(file, "create", {
-                args: "ddmm://launch-install/" + folderName,
-                target: process.argv0
+                target: "ddmm://launch-install/" + options.folderName,
+                icon: process.execPath,
+                iconIndex: 0
             })) {
                 showError(
                     lang.translate("main.errors.shortcut.title"),

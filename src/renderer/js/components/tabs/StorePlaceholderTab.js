@@ -6,6 +6,10 @@ const StorePlaceholderTab = Vue.component("ddmm-store-placeholder-tab", {
         <p>{{_("renderer.tab_store_placeholder.description_1")}}</p>
         <br>
         <p>{{_("renderer.tab_store_placeholder.description_2")}}</p>
+        <template v-if="error">
+            <br>
+            <strong>{{_("renderer.tab_store_placeholder.error")}}</strong>
+        </template>
         <br>
         <div v-for="mod in mods">
             <h3>{{mod.name}}</h3>
@@ -21,7 +25,8 @@ const StorePlaceholderTab = Vue.component("ddmm-store-placeholder-tab", {
         `,
     "data": function () {
         return {
-           "mods": []
+            "mods": [],
+            "error": false
         }
     },
     "methods": {
@@ -56,6 +61,8 @@ const StorePlaceholderTab = Vue.component("ddmm-store-placeholder-tab", {
         fetch("https://raw.githubusercontent.com/DokiDokiModManager/FeaturedMods/master/mods.json").then(r => r.json()).then(mods => {
             this.mods = mods;
             this.$forceUpdate();
+        }).catch(() => {
+            this.error = true;
         });
     }
 });

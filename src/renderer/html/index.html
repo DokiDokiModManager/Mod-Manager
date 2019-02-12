@@ -36,6 +36,15 @@
         <p><button class="danger" @click="closePrompt(true)">{{prompt_cover.button_affirmative}}</button> <button class="secondary" @click="closePrompt(false)">{{prompt_cover.button_negative}}</button></p>
     </div>
 
+    <div class="cover" v-if="input_cover.display" :style="{'background-image': backgroundImageStyle}">
+        <h1>{{input_cover.title}}</h1>
+        <p>{{input_cover.description}}</p>
+        <br>
+        <div><input type="text" v-model="input_cover.input" autofocus ref="input_cover_field"></div>
+        <br>
+        <p><button class="danger" @click="closeInput(input_cover.input)">{{input_cover.button_affirmative}}</button> <button class="secondary" @click="closeInput(null)">{{input_cover.button_negative}}</button></p>
+    </div>
+
     <div class="titlebar">
         <div class="app-title">
             <span>{{app_name}}</span> <small>v{{app_version}} (<a href="javascript:;" @click="openURL('https://help.doki.space/changelog/v' + app_version.replace(/\./g, '_'))">{{_("renderer.version.link_changelog")}}</a>)</small>
@@ -55,7 +64,7 @@
             </div>
 
 
-            <div @click="openURL('https://help.doki.space/')" :title="_('renderer.window_controls.help')"><i class="fas fa-question"></i></div>
+            <div @click="showHelpMenu" :title="_('renderer.window_controls.help')"><i class="fas fa-question"></i></div>
             <div @click="windowMinimise" :title="_('renderer.window_controls.minimise')"><i class="far fa-window-minimize fa-fw"></i></div>
             <div @click="windowMaximise" :title="_('renderer.window_controls.maximise')"><i class="far fa-window-maximize fa-fw"></i></div>
             <div @click="windowClose" :title="_('renderer.window_controls.close')"><i class="fas fa-times fa-fw"></i></div>

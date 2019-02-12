@@ -15,7 +15,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 :class="{'mod-view-mod-list-entry': true, 'active': selected_item.id === install.folderName && selected_item.type === 'install'}"
                  v-for="install in searchResultsInstalls"
                   @dblclick="launchInstall(install.folderName)"
-                  @mouseup="handleInstallClick(install.folderName, $event)"
+                  @mouseup="handleInstallClick(install.folderName, install.name, $event)"
                   :title="getPathToInstall(install.folderName)"
                   >
                   {{install.name}}
@@ -176,10 +176,10 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             sessionStorage.setItem("mod_list_last_id", id);
             sessionStorage.setItem("mod_list_last_type", type);
         },
-        "handleInstallClick": function (installFolder, ev) {
+        "handleInstallClick": function (installFolder, installName, ev) {
             this.selectItem(installFolder, "install");
             if (ev.button === 2) {
-                ddmm.window.handleInstallRightClick(installFolder, ev.clientX, ev.clientY);
+                ddmm.window.handleInstallRightClick(installFolder, installName, ev.clientX, ev.clientY);
             }
         },
         "handleModClick": function (filename, downloading, ev) {
@@ -283,11 +283,21 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 if (e.key === "Enter") {
                     ddmm.mods.launchInstall(this.selectedInstall.folderName);
                 } else if (e.key === "F2") {
-                    // TODO rename
+                    ddmm.window.input({
+                        title: ddmm.translate("renderer.tab_mods.rename_input.message"),
+                        description: ddmm.translate("renderer.tab_mods.rename_input.details", this.selectedInstall.name),
+                        button_affirmative: ddmm.translate("renderer.tab_mods.rename_input.button_affirmative"),
+                        button_negative: ddmm.translate("renderer.tab_mods.rename_input.button_negative"),
+                        callback: (newName) => {
+                            if (newName) {
+                                ddmm.mods.renameInstall(this.selectedInstall.folderName, newName);
+                            }
+                        }
+                    });
                 } else if (e.key === "Delete") {
                     ddmm.window.prompt({
                         title: ddmm.translate("renderer.tab_mods.uninstall_confirmation.message"),
-                        description: ddmm.translate("renderer.tab_mods.uninstall_confirmation.details"),
+                        description: ddmm.translate("renderer.tab_mods.uninstall_confirmation.details", this.selectedInstall.name),
                         button_affirmative: ddmm.translate("renderer.tab_mods.uninstall_confirmation.button_affirmative"),
                         button_negative: ddmm.translate("renderer.tab_mods.uninstall_confirmation.button_negative"),
                         callback: (uninstall) => {

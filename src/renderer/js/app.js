@@ -37,6 +37,15 @@ const app = new Vue({
             "button_affirmative": "",
             "button_negative": "",
             "callback": null
+        },
+        "input_cover": {
+            "display": false,
+            "title": "",
+            "description": "",
+            "button_affirmative": "",
+            "button_negative": "",
+            "input": "",
+            "callback": null
         }
     },
     "computed": {
@@ -72,9 +81,16 @@ const app = new Vue({
             this.prompt_cover.callback(!!yes);
             this.prompt_cover.display = false;
         },
+        "closeInput": function (input) {
+            this.input_cover.callback(input);
+            this.input_cover.display = false;
+        },
         "showInstallMod": function (mod) {
             this.tab = "mods";
             ddmm.emit("create install", mod);
+        },
+        "showHelpMenu": function (ev) {
+            ddmm.app.showHelpMenu(ev.clientX, ev.clientY);
         }
     }
 });
@@ -115,6 +131,19 @@ ddmm.on("prompt", data => {
     app.prompt_cover.button_negative = data.button_negative;
     app.prompt_cover.button_affirmative = data.button_affirmative;
     app.prompt_cover.callback = data.callback;
+});
+
+ddmm.on("input", data => {
+    app.input_cover.display = true;
+    app.input_cover.title = data.title;
+    app.input_cover.description = data.description;
+    app.input_cover.button_negative = data.button_negative;
+    app.input_cover.button_affirmative = data.button_affirmative;
+    app.input_cover.callback = data.callback;
+    app.input_cover.input = "";
+    app.$nextTick(() => {
+        app.$refs.input_cover_field.focus();
+    });
 });
 
 ddmm.on("start onboarding", () => {

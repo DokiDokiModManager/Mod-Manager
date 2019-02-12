@@ -125,8 +125,13 @@ api.window.prompt = function (data) {
     api.emit("prompt", data);
 };
 
+// Input
+api.window.input = function (data) {
+    api.emit("input", data);
+};
+
 // Show right click for install
-api.window.handleInstallRightClick = function (folderName, mouseX, mouseY) {
+api.window.handleInstallRightClick = function (folderName, installName, mouseX, mouseY) {
     remote.Menu.buildFromTemplate([
         {
             label: api.translate("renderer.tab_mods.install_contextmenu.launch"), click: () => {
@@ -134,10 +139,25 @@ api.window.handleInstallRightClick = function (folderName, mouseX, mouseY) {
             }, accelerator: "enter"
         },
         {type: "separator"},
-        {label: api.translate("renderer.tab_mods.install_contextmenu.rename"), accelerator: "F2"},
+        {
+            label: api.translate("renderer.tab_mods.install_contextmenu.rename"), click: () => {
+                api.emit("input", {
+                    title: api.translate("renderer.tab_mods.rename_input.message"),
+                    description: api.translate("renderer.tab_mods.rename_input.details", installName),
+                    button_affirmative: api.translate("renderer.tab_mods.rename_input.button_affirmative"),
+                    button_negative: api.translate("renderer.tab_mods.rename_input.button_negative"),
+                    callback: (newName) => {
+                        if (newName) {
+                            api.mods.renameInstall(folderName, newName);
+                        }
+                    }
+                });
+            },
+            accelerator: "F2"
+        },
         {
             label: api.translate("renderer.tab_mods.install_contextmenu.shortcut"), click: () => {
-                api.mods.createShortcut(folderName)
+                api.mods.createShortcut(folderName, installName)
             }
         },
         {type: "separator"},
@@ -146,7 +166,7 @@ api.window.handleInstallRightClick = function (folderName, mouseX, mouseY) {
             click: () => {
                 api.emit("prompt", {
                     title: api.translate("renderer.tab_mods.save_delete_confirmation.message"),
-                    description: api.translate("renderer.tab_mods.save_delete_confirmation.details"),
+                    description: api.translate("renderer.tab_mods.save_delete_confirmation.details", installName),
                     button_affirmative: api.translate("renderer.tab_mods.save_delete_confirmation.button_affirmative"),
                     button_negative: api.translate("renderer.tab_mods.save_delete_confirmation.button_negative"),
                     callback: (uninstall) => {
@@ -163,7 +183,7 @@ api.window.handleInstallRightClick = function (folderName, mouseX, mouseY) {
             click: () => {
                 api.emit("prompt", {
                     title: api.translate("renderer.tab_mods.uninstall_confirmation.message"),
-                    description: api.translate("renderer.tab_mods.uninstall_confirmation.details"),
+                    description: api.translate("renderer.tab_mods.uninstall_confirmation.details", installName),
                     button_affirmative: api.translate("renderer.tab_mods.uninstall_confirmation.button_affirmative"),
                     button_negative: api.translate("renderer.tab_mods.uninstall_confirmation.button_negative"),
                     callback: (uninstall) => {
@@ -223,6 +243,11 @@ api.config.readConfigValue = function (k) {
 };
 
 // Delete install
+api.mods.renameInstall = function (folderName, newName) {
+    ipcRenderer.send("rename install", {folderName, newName});
+};
+
+// Delete install
 api.mods.deleteInstall = function (folderName) {
     ipcRenderer.send("delete install", folderName);
 };
@@ -238,8 +263,29 @@ api.mods.deleteSaveData = function (folderName) {
 };
 
 // Create shortcut
-api.mods.createShortcut = function (folderName) {
-    ipcRenderer.send("create shortcut", folderName);
+api.mods.createShortcut = function (folderName, installName) {
+    ipcRenderer.send("create shortcut", {folderName, installName});
+};
+
+// Help meny
+api.app.showHelpMenu = function (x, y) {
+    remote.Menu.buildFromTemplate([
+        {
+            label: api.translate("renderer.help_menu.option_help"), click: () => {
+                api.app.openURL("https://help.doki.space");
+            }
+        },
+        {
+            label: api.translate("renderer.help_menu.option_discord"), click: () => {
+                api.app.openURL("https://doki.space/discord");
+            }
+        },
+        {
+            label: api.translate("renderer.help_menu.option_feedback"), click: () => {
+                api.app.openURL("mailto:zudo@doki.space");
+            }
+        }
+    ]).popup({x, y})
 };
 
 // Move install folder
@@ -308,7 +354,7 @@ ipcRenderer.on("onboarding download failed", () => {
 
 // Winstore Appx UI handling
 ipcRenderer.on("is appx", (_, is) => {
-   api.emit("is appx", is);
+    api.emit("is appx", is);
 });
 
 // Application version

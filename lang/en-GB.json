@@ -10,6 +10,11 @@
     "version": {
       "link_changelog": "what's new?"
     },
+    "help_menu": {
+      "option_help": "View help site",
+      "option_feedback": "Send private feedback",
+      "option_discord": "Join the Discord server"
+    },
     "window_controls": {
       "close": "Close",
       "maximise": "Maximise",
@@ -64,8 +69,14 @@
       },
       "uninstall_confirmation": {
         "message": "Are you sure you want to uninstall?",
-        "details": "Your save data will be deleted, and you will need a copy of the mod to install it again.",
+        "details": "Your save data for {0} will be deleted, and you will need a copy of the mod to install it again.",
         "button_affirmative": "Uninstall",
+        "button_negative": "Cancel"
+      },
+      "rename_input": {
+        "message": "Rename Install",
+        "details": "Enter the new name for {0}.",
+        "button_affirmative": "Rename",
         "button_negative": "Cancel"
       },
       "mod_delete_confirmation": {
@@ -76,7 +87,7 @@
       },
       "save_delete_confirmation": {
         "message": "Are you sure you want to delete your save data?",
-        "details": "You will have to start again from scratch.",
+        "details": "You will have to start {0} again from scratch.",
         "button_affirmative": "Delete",
         "button_negative": "Cancel"
       },
@@ -115,6 +126,7 @@
       "title": "The store is coming soon!",
       "description_1": "The Sayonika mod database will provide a central location to share, download and review DDLC mods. When Sayonika is publicly available, you'll be able to browse mods right here in Doki Doki Mod Manager.",
       "description_2": "While you wait, feel free to download some of these recommended mods.",
+      "error": "Failed to load the list of mods. Are you offline?",
       "button_download": "Download"
     },
     "tab_options": {
@@ -140,7 +152,7 @@
       },
       "section_advanced_appearance": {
         "title": "Advanced",
-        "subtitle": "Other interface options",
+        "subtitle": "Find other interface options here.",
         "button_enable_sysborders": "Use System Borders (requires restart)",
         "button_disable_sysborders": "Disable System Borders (requires restart)"
       },
@@ -248,6 +260,10 @@
       "install": {
         "title": "Failed to install game",
         "body": "Check that you have permission and enough space to install."
+      },
+      "rename": {
+        "title": "Failed to rename",
+        "body": "Check that you have closed all programs that may be interfering and try again."
       },
       "uninstall": {
         "title": "Failed to uninstall",

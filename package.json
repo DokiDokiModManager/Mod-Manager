@@ -25,7 +25,7 @@
     "electron-updater": "^4.0.6",
     "file-url": "^2.0.2",
     "fs-extra": "^7.0.1",
-    "fuse.js": "^3.3.0",
+    "fuse.js": "^3.4.2",
     "request": "^2.88.0",
     "semver": "^5.6.0",
     "vue": "^2.5.17"
@@ -58,6 +58,10 @@
       "publisher": "CN=1FDB3F4F-8BB0-4C8D-B3CE-5046A5C5DFFB",
       "publisherDisplayName": "Zudo"
     },
+    "protocols": [{
+      "name": "Doki Doki Mod Manager",
+      "schemes": ["ddmm"]
+    }],
     "publish": [
       {
         "provider": "github",
