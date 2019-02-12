@@ -66,6 +66,10 @@
       }
     ],
     "win": {
+      "protocols": [{
+        "name": "Doki Doki Mod Manager",
+        "schemes": ["ddmm"]
+      }],
       "target": [
         {
           "target": "nsis",
