@@ -49,16 +49,18 @@ export default class InstallList {
             }
         }
 
-        app.setUserTasks(returned.map((install: Install) => {
-            return {
-                program: process.execPath,
-                arguments: "ddmm://launch-install/" + install.folderName,
-                iconPath: process.execPath,
-                iconIndex: 0,
-                title: install.name,
-                description: lang.translate("main.jumplist.task_launch", install.name)
-            };
-        }));
+        if (process.platform === "win32") {
+            app.setUserTasks(returned.map((install: Install) => {
+                return {
+                    program: process.execPath,
+                    arguments: "ddmm://launch-install/" + install.folderName,
+                    iconPath: process.execPath,
+                    iconIndex: 0,
+                    title: install.name,
+                    description: lang.translate("main.jumplist.task_launch", install.name)
+                };
+            }));
+        }
 
         return returned;
     }
