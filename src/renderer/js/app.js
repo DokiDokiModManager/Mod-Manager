@@ -11,9 +11,19 @@ const app = new Vue({
         "tab": "mods",
         "system_borders": ddmm.config.readConfigValue("systemBorders"),
         "dropping_mod": false,
+        "announcement": {
+            "active": false,
+            "title": "",
+            "description": "",
+            "url": ""
+        },
         "tabs": [
             {"id": "mods", "name": ddmm.translate("renderer.tabs.tab_mods"), "component": "ddmm-mods-tab"},
-            {"id": "store", "name": ddmm.translate("renderer.tabs.tab_store"), "component": "ddmm-store-placeholder-tab"},
+            {
+                "id": "store",
+                "name": ddmm.translate("renderer.tabs.tab_store"),
+                "component": "ddmm-store-placeholder-tab"
+            },
             {"id": "options", "name": ddmm.translate("renderer.tabs.tab_options"), "component": "ddmm-options-tab"},
             {"id": "about", "name": ddmm.translate("renderer.tabs.tab_about"), "component": "ddmm-about-tab"}
         ],
@@ -34,6 +44,7 @@ const app = new Vue({
             "display": false,
             "title": "",
             "description": "",
+            "affirmative_style": "primary",
             "button_affirmative": "",
             "button_negative": "",
             "callback": null
@@ -65,6 +76,9 @@ const app = new Vue({
             } else {
                 return "linear-gradient(rgb(64, 0, 0), rgb(64, 0, 0))";
             }
+        },
+        "flashAnnouncement": function () {
+            return localStorage.getItem("last_announcement") !== this.announcement.title;
         }
     },
     "methods": {
@@ -91,8 +105,39 @@ const app = new Vue({
         },
         "showHelpMenu": function (ev) {
             ddmm.app.showHelpMenu(ev.clientX, ev.clientY);
+        },
+        "viewAnnouncement": function () {
+            localStorage.setItem("last_announcement", this.announcement.title);
+            ddmm.window.prompt({
+                title: this.announcement.title,
+                description: this.announcement.description,
+                affirmative_style: "primary",
+                button_affirmative: ddmm.translate("renderer.announcement.button_open"),
+                button_negative: ddmm.translate("renderer.announcement.button_close"),
+                callback: (open) => {
+                    if (open) {
+                        ddmm.app.openURL(this.announcement.url);
+                    }
+                }
+            });
         }
     }
+});
+
+firebase.initializeApp({
+    apiKey: "AIzaSyDInikDCCVFIhpAMPEBaaRmx_p2ZLX-6GY",
+    authDomain: "doki-doki-mod-manager.firebaseapp.com",
+    databaseURL: "https://doki-doki-mod-manager.firebaseio.com",
+    projectId: "doki-doki-mod-manager",
+    storageBucket: "doki-doki-mod-manager.appspot.com",
+    messagingSenderId: "324232265869"
+});
+
+const announcementRef = firebase.database().ref("announcement");
+
+announcementRef.on("value", data => {
+    app.announcement = data.val();
+    app.$forceUpdate();
 });
 
 function allowKeyEvents() {
@@ -128,6 +173,7 @@ ddmm.on("prompt", data => {
     app.prompt_cover.display = true;
     app.prompt_cover.title = data.title;
     app.prompt_cover.description = data.description;
+    app.prompt_cover.affirmative_style = data.affirmative_style || "primary";
     app.prompt_cover.button_negative = data.button_negative;
     app.prompt_cover.button_affirmative = data.button_affirmative;
     app.prompt_cover.callback = data.callback;

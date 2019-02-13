@@ -20,6 +20,7 @@
       "maximise": "Maximise",
       "minimise": "Minimise",
       "help": "Get Help",
+      "announcement": "Read the latest announcement",
       "update": {
         "checking": "Checking for updates in the background...",
         "available": "An update is available. Click here to download it.",
@@ -33,6 +34,10 @@
     },
     "drop_cover": {
       "text": "Drop a mod here to install it"
+    },
+    "announcement": {
+      "button_open": "Open Link",
+      "button_close": "Close"
     },
     "onboarding": {
       "title": "Welcome!",
