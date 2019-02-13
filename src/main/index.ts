@@ -622,7 +622,7 @@ app.on("ready", () => {
         app.quit();
     });
 
-    appWindow.on("ready-to-show", () => {
+    appWindow.webContents.once("did-finish-load", () => {
         handleURL();
     });
 
