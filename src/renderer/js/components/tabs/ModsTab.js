@@ -47,7 +47,9 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                         <br>
                 </template>
                 
-                <h2>{{_("renderer.tab_mods.install.title_screenshots", selectedInstall.screenshots.length)}}</h2>
+                <h2 v-if="selectedInstall.screenshots.length > 1">{{_("renderer.tab_mods.install.title_screenshots", selectedInstall.screenshots.length)}}</h2>
+                <h2 v-else-if="selectedInstall.screenshots.length === 1">{{_("renderer.tab_mods.install.title_screenshots_one")}}</h2>
+                <h2 v-else>{{_("renderer.tab_mods.install.title_screenshots_none")}}</h2>
                 <p>{{_("renderer.tab_mods.install.description_screenshots")}}</p>
                 
                 <br>
@@ -57,7 +59,6 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                     <img v-for="img in selectedInstall.screenshots" :alt="img" :src="getURLToScreenshot(selectedInstall.folderName, img)" @click="openScreenshot(selectedInstall.folderName, img)" width="150">
                 </div>
                 
-                <br>
                 
                 <template v-if="selectedInstall.mod">                                    
                     <h2>{{selectedInstall.mod.name}}</h2>

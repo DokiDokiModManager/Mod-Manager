@@ -99,6 +99,8 @@
       "install": {
         "button_launch": "Launch",
         "tag_global_save": "Global Save",
+        "title_screenshots_none": "No screenshots",
+        "title_screenshots_one": "1 screenshot",
         "title_screenshots": "{0} screenshots",
         "description_screenshots": "Press S while playing to take a screenshot.",
         "description_sdk": "This mod supports special features with the Doki Doki Mod Manager SDK!",
