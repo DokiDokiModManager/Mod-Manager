@@ -88,8 +88,8 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 <br>
                 
                 <p>
-                    <button class="success" @click="showCreateInstall(getPathToMod(selected_item.id))">{{_("renderer.tab_mods.mod.button_install")}}</button>
-                    <button class="secondary" @click="handleModSettingsClick(selected_item.id, $event)">{{_("renderer.tab_mods.mod.button_settings")}}</button>
+                    <button class="success" @click="showCreateInstall(getPathToMod(selected_item.id))"><i class="fas fa-bolt fa-fw"></i>  {{_("renderer.tab_mods.mod.button_install")}}</button>
+                    <button class="secondary" @click="handleModSettingsClick(selected_item.id, $event)"><i class="fas fa-cog fa-fw"></i>  {{_("renderer.tab_mods.mod.button_settings")}}</button>
                 </p>
             </div>
             <div v-else-if="selected_item.type === 'create'">
@@ -135,7 +135,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 </p>
                 
                 
-                <div class="form-group"><button class="primary" @click="createInstallSubmit" :disabled="shouldDisableCreation">{{_("renderer.tab_mods.install_creation.button_install")}}</button></div>
+                <div class="form-group"><button class="primary" @click="createInstallSubmit" :disabled="shouldDisableCreation"><i class="fas fa-bolt fa-fw"></i>  {{_("renderer.tab_mods.install_creation.button_install")}}</button></div>
                 
                 <p v-if="!is_installing && install_creation.folder_name.length > 2 && installExists(install_creation.folder_name)">{{_("renderer.tab_mods.install_creation.status_exists")}}</p>
                 
