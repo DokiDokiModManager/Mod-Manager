@@ -19,7 +19,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                   :title="getPathToInstall(install.folderName)"
                   >
                   <span>{{install.name}}</span>
-                  <span @click="handleInstallSettingsClick(install.folderName, install.name, $event)"><i class="fas fa-cog"></i></span>
+                  <span class="mod-view-mod-list-entry-button" @click="handleInstallSettingsClick(install.folderName, install.name, $event)"><i class="fas fa-cog"></i></span>
             </div>
             <br v-if="searchResultsInstalls.length > 0">
             <div class="mod-view-mod-list-title" v-if="searchResultsMods.length > 0">{{_("renderer.tab_mods.list.header_downloaded")}}</div>
