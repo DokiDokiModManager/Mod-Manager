@@ -37,7 +37,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
         <div class="mod-viewer-mod-display">
             <div v-if="selected_item.type === 'install' && selectedInstall">
                 <h1>{{selectedInstall.name}}  <span class="tag" v-if="selectedInstall.globalSave">{{_("renderer.tab_mods.install.tag_global_save")}}</span></h1>
-                <p>{{getPathToInstall(selectedInstall.folderName)}}</p>              
+                <p>{{getPathToInstall(selectedInstall.folderName)}} <a href="javascript:;" @click="openFolder(getPathToInstall(selectedInstall.folderName))"  :title="_('renderer.tab_mods.mod.description_external')"><i class="fas fa-external-link-alt"></i></a></p>              
                 
                 <br>
                 
@@ -83,7 +83,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             </div>
             <div v-else-if="selected_item.type === 'mod'">
                 <h1>{{selected_item.id}}</h1>
-                <p>{{getPathToMod(selected_item.id)}}</p>
+                <p>{{getPathToMod(selected_item.id)}} <a href="javascript:;" @click="openFolder(getPathToMod(selected_item.id))" :title="_('renderer.tab_mods.mod.description_external')"><i class="fas fa-external-link-alt"></i></a></p>
                 
                 <br>
                 
@@ -203,7 +203,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 ddmm.window.handleModRightClick(filename, ev.clientX, ev.clientY);
             }
         },
-        "handleModSettingsClick": function(filename, ev) {
+        "handleModSettingsClick": function (filename, ev) {
             ddmm.window.handleModRightClick(filename, ev.clientX, ev.clientY);
         },
         "getPathToInstall": function (installFolder) {
@@ -217,6 +217,9 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
         },
         "openScreenshot": function (installFolder, filename) {
             ddmm.app.showFile(ddmm.joinPath(ddmm.config.readConfigValue("installFolder"), "installs", installFolder, "install", filename));
+        },
+        "openFolder": function (folder) {
+            ddmm.app.showFile(folder);
         },
         "launchInstall": function (install) {
             ddmm.mods.launchInstall(install);

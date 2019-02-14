@@ -107,11 +107,13 @@
         "description_sdk": "This mod supports special features with the Doki Doki Mod Manager SDK!",
         "description_author": "Created by {0}",
         "link_discord": "Discord ({0})",
-        "link_website": "Website ({0})"
+        "link_website": "Website ({0})",
+        "description_external": "Show in folder"
       },
       "mod": {
         "button_install": "Install",
-        "button_settings": "Settings"
+        "button_settings": "Settings",
+        "description_external": "Show in folder"
       },
       "install_creation": {
         "title": "Install DDLC",
