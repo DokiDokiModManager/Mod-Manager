@@ -12,7 +12,7 @@ export default class I18n {
 
     constructor(language) {
         this.language = language;
-        this.langFile = joinPath(__dirname, "../../../../lang/", this.language + ".json");
+        this.langFile = joinPath(__dirname, "../../../lang/", this.language + ".json");
 
         this.defaultLanguageData = JSON.parse(readFileSync(DEFAULT_LOCALE).toString("utf-8"));
 
