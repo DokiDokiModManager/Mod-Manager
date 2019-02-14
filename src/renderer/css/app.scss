@@ -260,6 +260,11 @@ a .fab {
 .mod-view-mod-list-entry-button {
   flex-grow: 0;
   flex-shrink: 0;
+  display: none;
+}
+
+.mod-view-mod-list-entry.active .mod-view-mod-list-entry-button, .mod-view-mod-list-entry:hover .mod-view-mod-list-entry-button {
+  display: inline;
 }
 
 .mod-view-mod-list-entry.disabled {
