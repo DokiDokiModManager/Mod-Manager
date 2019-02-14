@@ -98,6 +98,7 @@
       },
       "install": {
         "button_launch": "Launch",
+        "button_settings": "Settings",
         "tag_global_save": "Global Save",
         "title_screenshots_none": "No screenshots",
         "title_screenshots_one": "1 screenshot",
@@ -109,7 +110,8 @@
         "link_website": "Website ({0})"
       },
       "mod": {
-        "button_install": "Install"
+        "button_install": "Install",
+        "button_settings": "Settings"
       },
       "install_creation": {
         "title": "Install DDLC",

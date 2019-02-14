@@ -41,7 +41,10 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 
                 <br>
                 
-                <p><button class="success" @click="launchInstall(selectedInstall.folderName)">{{_("renderer.tab_mods.install.button_launch")}}</button></p>
+                <p>
+                    <button class="success" @click="launchInstall(selectedInstall.folderName)">{{_("renderer.tab_mods.install.button_launch")}}</button>
+                    <button class="secondary" @click="handleInstallSettingsClick(selectedInstall.folderName, selectedInstall.name, $event)">{{_("renderer.tab_mods.install.button_settings")}}</button>
+                </p>
                 
                 <br>
                 
@@ -84,7 +87,10 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 
                 <br>
                 
-                <p><button class="success" @click="showCreateInstall(getPathToMod(selected_item.id))">{{_("renderer.tab_mods.mod.button_install")}}</button></p>
+                <p>
+                    <button class="success" @click="showCreateInstall(getPathToMod(selected_item.id))">{{_("renderer.tab_mods.mod.button_install")}}</button>
+                    <button class="secondary" @click="handleModSettingsClick(selected_item.id, $event)">{{_("renderer.tab_mods.mod.button_settings")}}</button>
+                </p>
             </div>
             <div v-else-if="selected_item.type === 'create'">
                 <h1>{{_("renderer.tab_mods.install_creation.title")}}</h1>
