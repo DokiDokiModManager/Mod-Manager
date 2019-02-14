@@ -18,7 +18,8 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                   @mouseup="handleInstallClick(install.folderName, install.name, $event)"
                   :title="getPathToInstall(install.folderName)"
                   >
-                  {{install.name}}
+                  <span>{{install.name}}</span>
+                  <span @click="handleInstallSettingsClick(install.folderName, install.name, $event)"><i class="fas fa-cog"></i></span>
             </div>
             <br v-if="searchResultsInstalls.length > 0">
             <div class="mod-view-mod-list-title" v-if="searchResultsMods.length > 0">{{_("renderer.tab_mods.list.header_downloaded")}}</div>
@@ -28,7 +29,10 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 @mouseup="handleModClick(mod.filename, mod.downloading, $event)"
                 @dblclick="showCreateInstall(getPathToMod(mod.filename))"
                 :title="getPathToMod(mod.filename)"
-                ><i class="fas fa-spinner fa-spin fa-fw" v-if="mod.downloading"></i> {{mod.filename}}</div>
+                >
+                <span><i class="fas fa-spinner fa-spin fa-fw" v-if="mod.downloading"></i> {{mod.filename}}</span>
+                <span class="mod-view-mod-list-entry-button" @click="handleModSettingsClick(mod.filename, $event)"><i class="fas fa-cog"></i></span>
+                </div>
         </div>
         <div class="mod-viewer-mod-display">
             <div v-if="selected_item.type === 'install' && selectedInstall">
@@ -183,12 +187,18 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 ddmm.window.handleInstallRightClick(installFolder, installName, ev.clientX, ev.clientY);
             }
         },
+        "handleInstallSettingsClick": function (installFolder, installName, ev) {
+            ddmm.window.handleInstallRightClick(installFolder, installName, ev.clientX, ev.clientY);
+        },
         "handleModClick": function (filename, downloading, ev) {
             if (downloading) return;
             this.selectItem(filename, "mod");
             if (ev.button === 2) {
                 ddmm.window.handleModRightClick(filename, ev.clientX, ev.clientY);
             }
+        },
+        "handleModSettingsClick": function(filename, ev) {
+            ddmm.window.handleModRightClick(filename, ev.clientX, ev.clientY);
         },
         "getPathToInstall": function (installFolder) {
             return ddmm.joinPath(ddmm.config.readConfigValue("installFolder"), "installs", installFolder);

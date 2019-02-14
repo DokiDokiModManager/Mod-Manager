@@ -217,11 +217,23 @@ a .fab {
 .mod-view-mod-list-entry {
   padding: 0.25em 0.5em;
   width: 100%;
+  border-radius: 3px;
+  transition: color 0.25s;
   white-space: nowrap;
   overflow-x: hidden;
   text-overflow: ellipsis;
-  border-radius: 3px;
-  transition: color 0.25s;
+  justify-content: space-between;
+  display: flex;
+}
+
+.mod-view-mod-list-entry span:not(.mod-view-mod-list-entry-button) {
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+
+.mod-view-mod-list-entry-button {
+  flex-shrink: 0;
 }
 
 .mod-view-mod-list-entry:hover {
