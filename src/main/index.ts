@@ -100,7 +100,8 @@ function launchInstall(folderName): void {
         display: true,
         dismissable: false,
         title: lang.translate("main.running_cover.title_running"),
-        description: lang.translate("main.running_cover.description_running")
+        description: lang.translate("main.running_cover.description_running"),
+        folder_path: joinPath(Config.readConfigValue("installFolder"), "installs", folderName)
     });
     InstallLauncher.launchInstall(folderName, richPresence).then(() => {
         appWindow.restore(); // show DDMM again
@@ -114,7 +115,8 @@ function launchInstall(folderName): void {
             display: true,
             dismissable: true,
             title: lang.translate("main.running_cover.title_crashed"),
-            description: err
+            description: err,
+            folder_path: joinPath(Config.readConfigValue("installFolder"), "installs", folderName)
         });
     });
 }

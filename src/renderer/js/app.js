@@ -88,6 +88,7 @@ const app = new Vue({
         "windowMinimise": ddmm.window.minimise,
         "openURL": ddmm.app.openURL,
         "downloadUpdate": ddmm.app.downloadUpdate,
+        "showFile": ddmm.app.showFile,
         "setBackground": function (image) {
             this.background_image = image;
         },
@@ -154,6 +155,7 @@ ddmm.on("running cover", cover => {
     app.running_cover.title = cover.title;
     app.running_cover.description = cover.description;
     app.running_cover.dismissable = cover.dismissable;
+    app.running_cover.folder_path = cover.folder_path;
 });
 
 ddmm.on("error", error => {

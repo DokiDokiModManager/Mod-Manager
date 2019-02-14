@@ -15,6 +15,10 @@
     <div class="cover" v-if="running_cover.display" :style="{'background-image': backgroundImageStyle}">
         <h1>{{running_cover.title}}</h1>
         <p>{{running_cover.description}}</p>
+        <template v-if="!running_cover.dismissable">
+            <br>
+            <p><button class="primary" @click="showFile(running_cover.folder_path)"><i class="fas fa-folder fa-fw"></i> {{_("main.running_cover.button_browse")}}</button></p>
+        </template>
         <br>
         <p><button v-if="running_cover.dismissable" @click="running_cover.display = false" class="primary"><i class="fas fa-times fa-fw"></i> {{_("main.running_cover.button_close")}}</button></p>
     </div>

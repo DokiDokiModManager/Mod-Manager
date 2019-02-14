@@ -234,6 +234,7 @@
     "running_cover": {
       "title_running": "DDLC is running",
       "title_crashed": "Something went wrong",
+      "button_browse": "Open Game Folder",
       "button_close": "OK",
       "description_running": "Close the game to make changes to your mods.",
       "install_missing": "The install could not be found.",
