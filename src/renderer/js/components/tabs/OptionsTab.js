@@ -23,7 +23,7 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
                 
                 <br>
                 
-                <button class="danger" @click="setBackground('none')">{{_("renderer.tab_options.section_backgrounds.button_none")}}</button>
+                <button class="danger" @click="setBackground('none')"><i class="fas fa-times fa-fw"></i> {{_("renderer.tab_options.section_backgrounds.button_none")}}</button>
                 
                 <br><br>
                 
@@ -33,8 +33,8 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
                 <h1>{{_("renderer.tab_options.section_advanced_appearance.title")}}</h1>
                 <p>{{_("renderer.tab_options.section_advanced_appearance.subtitle")}}</p>
                 <br>
-                <button class="danger" v-if="systemBordersEnabled()" @click="setSystemBorders(false)">{{_("renderer.tab_options.section_advanced_appearance.button_disable_sysborders")}}</button>
-                <button class="success" v-else @click="setSystemBorders(true)">{{_("renderer.tab_options.section_advanced_appearance.button_enable_sysborders")}}</button>
+                <button class="danger" v-if="systemBordersEnabled()" @click="setSystemBorders(false)"><i class="fas fa-times fa-fw"></i> {{_("renderer.tab_options.section_advanced_appearance.button_disable_sysborders")}}</button>
+                <button class="success" v-else @click="setSystemBorders(true)"><i class="fas fa-check fa-fw"></i> {{_("renderer.tab_options.section_advanced_appearance.button_enable_sysborders")}}</button>
             </div>
             <div v-else-if="selected_option === 'updates'">
                 <h1>{{_("renderer.tab_options.section_updates.title")}}</h1>
@@ -48,7 +48,7 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
                     <!--<option value="beta">{{_("renderer.tab_options.section_updates.option_beta")}}</option>-->
                 <!--</select>-->
                 <!--<br><br>-->
-                <p><button @click="checkUpdates" class="primary">{{_("renderer.tab_options.section_updates.button_check")}}</button></p>
+                <p><button @click="checkUpdates" class="primary"><i class="fas fa-sync-alt fa-fw"></i> {{_("renderer.tab_options.section_updates.button_check")}}</button></p>
             </div>
             <div v-else-if="selected_option === 'storage'">
                 <h1>{{_("renderer.tab_options.section_storage.title")}}</h1>
@@ -58,7 +58,7 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
                 <br>
                 <p>{{_("renderer.tab_options.section_storage.description_current", installFolder)}}</p>
                 <br>
-                <button class="primary" @click="moveInstall">{{_("renderer.tab_options.section_storage.button_change")}}</button>
+                <button class="primary" @click="moveInstall"><i class="fas fa-folder-open fa-fw"></i> {{_("renderer.tab_options.section_storage.button_change")}}</button>
             </div>
             <div v-else-if="selected_option === 'sdk'">
                 <h1>{{_("renderer.tab_options.section_sdk.title")}}</h1>
@@ -75,15 +75,15 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
                 <br>
                 <p><strong>{{_("renderer.tab_options.section_discord.description")}}</strong></p>
                 <br>
-                <button class="danger" v-if="richPresenceEnabled()" @click="setRichPresence(false)">{{_("renderer.tab_options.section_discord.button_disable")}}</button>
-                <button class="success" v-else @click="setRichPresence(true)">{{_("renderer.tab_options.section_discord.button_enable")}}</button>
+                <button class="danger" v-if="richPresenceEnabled()" @click="setRichPresence(false)"><i class="fas fa-times fa-fw"></i> {{_("renderer.tab_options.section_discord.button_disable")}}</button>
+                <button class="success" v-else @click="setRichPresence(true)"><i class="fas fa-check fa-fw"></i> {{_("renderer.tab_options.section_discord.button_enable")}}</button>
             </div>
             <div v-else-if="selected_option === 'testing'">
                 <h1>{{_("renderer.tab_options.section_testing.title")}}</h1>
                 <p>{{_("renderer.tab_options.section_testing.subtitle")}}</p>
                 <br>
-                <button class="danger" v-if="sdkDebuggingEnabled()" @click="setSDKDebugging(false)">{{_("renderer.tab_options.section_testing.button_disable")}}</button>
-                <button class="success" v-else @click="setSDKDebugging(true)">{{_("renderer.tab_options.section_testing.button_enable")}}</button>
+                <button class="danger" v-if="sdkDebuggingEnabled()" @click="setSDKDebugging(false)"><i class="fas fa-times fa-fw"></i> {{_("renderer.tab_options.section_testing.button_disable")}}</button>
+                <button class="success" v-else @click="setSDKDebugging(true)"><i class="fas fa-check fa-fw"></i> {{_("renderer.tab_options.section_testing.button_enable")}}</button>
             </div>
             <div v-else-if="selected_option === 'debug'">
                 <h1>{{_("renderer.tab_options.section_debug.title")}}</h1>

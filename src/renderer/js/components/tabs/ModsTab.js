@@ -42,8 +42,8 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 <br>
                 
                 <p>
-                    <button class="success" @click="launchInstall(selectedInstall.folderName)">{{_("renderer.tab_mods.install.button_launch")}}</button>
-                    <button class="secondary" @click="handleInstallSettingsClick(selectedInstall.folderName, selectedInstall.name, $event)">{{_("renderer.tab_mods.install.button_settings")}}</button>
+                    <button class="success" @click="launchInstall(selectedInstall.folderName)"><i class="fas fa-play fa-fw"></i> {{_("renderer.tab_mods.install.button_launch")}}</button>
+                    <button class="secondary" @click="handleInstallSettingsClick(selectedInstall.folderName, selectedInstall.name, $event)"><i class="fas fa-cog fa-fw"></i> {{_("renderer.tab_mods.install.button_settings")}}</button>
                 </p>
                 
                 <br>
