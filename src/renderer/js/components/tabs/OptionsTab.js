@@ -154,6 +154,7 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
         },
         "setBackground": function (background) {
             ddmm.config.saveConfigValue("background", background);
+            setCloudPreference("background", background);
             this.$emit("set_background", background);
         },
         "richPresenceEnabled": function () {

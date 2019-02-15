@@ -36,6 +36,7 @@ import DiscordManager from "./discord/DiscordManager";
 import DownloadManager from "./net/DownloadManager";
 import OnboardingManager from "./onboarding/OnboardingManager";
 import {unlinkSync} from "fs";
+import NewWindowEvent = Electron.NewWindowEvent;
 
 const DISCORD_ID = "453299645725016074";
 
@@ -481,6 +482,9 @@ function handleURL(forcedArg?: string) {
         if (command.startsWith("launch-install/")) {
             const installFolder: string = command.split("launch-install/")[1];
             launchInstall(installFolder);
+        } else if (command.startsWith("auth-handoff/")) {
+            const url = new Buffer(command.split("auth-handoff/")[1], "base64").toString("utf8");
+            appWindow.webContents.send("auth handoff", url);
         }
     }
 }
@@ -591,6 +595,22 @@ app.on("ready", () => {
             console.warn("Onboarding required - reason: " + e);
             appWindow.webContents.send("start onboarding");
         });
+    });
+
+    appWindow.webContents.on("new-window", (event: NewWindowEvent) => {
+        event.preventDefault();
+
+        const popup: BrowserWindow = new BrowserWindow({
+            modal: true,
+            parent: appWindow,
+            height: 600,
+            width: 400
+        });
+
+        popup.setMenu(null);
+
+        // @ts-ignore
+        event.newGuest = popup;
     });
 
 

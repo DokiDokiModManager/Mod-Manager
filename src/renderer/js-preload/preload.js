@@ -355,6 +355,10 @@ ipcRenderer.on("onboarding download failed", () => {
     api.emit("onboarding download failed");
 });
 
+ipcRenderer.on("auth handoff", (_, url) => {
+    api.emit("auth handoff", url);
+});
+
 // Winstore Appx UI handling
 ipcRenderer.on("is appx", (_, is) => {
     api.emit("is appx", is);

@@ -1,3 +1,12 @@
+firebase.initializeApp({
+    apiKey: "AIzaSyDInikDCCVFIhpAMPEBaaRmx_p2ZLX-6GY",
+    authDomain: "doki-doki-mod-manager.firebaseapp.com",
+    databaseURL: "https://doki-doki-mod-manager.firebaseio.com",
+    projectId: "doki-doki-mod-manager",
+    storageBucket: "doki-doki-mod-manager.appspot.com",
+    messagingSenderId: "324232265869"
+});
+
 const app = new Vue({
     "el": "#app",
     "data": {
@@ -123,17 +132,25 @@ const app = new Vue({
                     }
                 }
             });
+        },
+        "login": function () {
+            ddmm.window.input({
+                title: "enter email",
+                description: "email here",
+                affirmative_style: "primary",
+                button_affirmative: "sign in",
+                button_negative: "cancel",
+                callback: (email) => {
+                    if (email) {
+                        loginToApp(email);
+                    }
+                }
+            });
+        },
+        "getLoggedInUsername": function () {
+            return getLoggedInUsername();
         }
     }
-});
-
-firebase.initializeApp({
-    apiKey: "AIzaSyDInikDCCVFIhpAMPEBaaRmx_p2ZLX-6GY",
-    authDomain: "doki-doki-mod-manager.firebaseapp.com",
-    databaseURL: "https://doki-doki-mod-manager.firebaseio.com",
-    projectId: "doki-doki-mod-manager",
-    storageBucket: "doki-doki-mod-manager.appspot.com",
-    messagingSenderId: "324232265869"
 });
 
 const announcementRef = firebase.database().ref("announcement");
@@ -207,4 +224,61 @@ ddmm.on("is appx", is => {
 document.body.addEventListener("dragenter", ev => {
     app.dropping_mod = true;
     ev.preventDefault();
+});
+
+// FIREBASE AUTH
+
+function setupPreferencesSyncHandler() {
+    if (!firebase.auth().currentUser) return;
+    const preferencesRef = firebase.database().ref("preferences/" + firebase.auth().currentUser.uid);
+
+    preferencesRef.on("value", data => {
+        const preferences = data.val();
+        if (preferences.background) {
+            app.background_image = preferences.background;
+            ddmm.config.saveConfigValue("background", preferences.background);
+        }
+    });
+}
+
+function setCloudPreference(key, value) {
+    if (!firebase.auth().currentUser) return;
+    firebase.database().ref("preferences/" + firebase.auth().currentUser.uid + "/" + key).set(value);
+}
+
+function loginToApp(email) {
+    return new Promise((ff, rj) => {
+        firebase.auth().sendSignInLinkToEmail(email, {
+            url: "https://doki.space/handoff.html",
+            handleCodeInApp: true
+        }).then(() => {
+            localStorage.setItem("email", email);
+            ff();
+        }).catch(err => {
+            rj(err);
+        });
+    });
+}
+
+function getLoggedInUsername() {
+    return (firebase.auth().currentUser ? (firebase.auth().currentUser.displayName ? firebase.auth().currentUser.displayName : firebase.auth().currentUser.email.split("@")[0]) : null);
+}
+
+function logout() {
+    firebase.auth().signOut();
+    app.$forceUpdate();
+}
+
+ddmm.on("auth handoff", url => {
+    firebase.auth().signInWithEmailLink(localStorage.getItem("email"), url).then(res => {
+        app.$forceUpdate();
+        console.log(res);
+    });
+});
+
+firebase.auth().onAuthStateChanged(function (user) {
+    console.log("Auth state change!");
+   if (user) {
+       setupPreferencesSyncHandler();
+   }
 });

@@ -108,7 +108,12 @@
                  v-if="announcement.active"><i
                     :class="{'fas': true, 'fa-bell': true, 'window-button-draw-attention': flashAnnouncement}"></i>
             </div>
+
             <div @click="showHelpMenu" :title="_('renderer.window_controls.help')"><i class="fas fa-question"></i></div>
+
+            <div @click="login" v-if="!getLoggedInUsername()">log In</div>
+            <div v-else>{{getLoggedInUsername()}}</div>
+
             <template v-if="!system_borders">
                 <div @click="windowMinimise" :title="_('renderer.window_controls.minimise')"><i
                         class="far fa-window-minimize fa-fw"></i></div>
@@ -131,6 +136,7 @@
 </div>
 
 <script src="../js/firebase/firebase-app.js"></script>
+<script src="../js/firebase/firebase-auth.js"></script>
 <script src="../js/firebase/firebase-database.js"></script>
 <script src="../../../node_modules/fuse.js/dist/fuse.min.js"></script>
 <script src="../../../node_modules/vue/dist/vue.js"></script>
