@@ -36,7 +36,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
         </div>
         <div class="mod-viewer-mod-display">
             <div v-if="selected_item.type === 'install' && selectedInstall">
-                <h1>{{selectedInstall.name}}  <span class="tag" v-if="selectedInstall.globalSave">{{_("renderer.tab_mods.install.tag_global_save")}}</span></h1>
+                <h1>{{selectedInstall.name}}  <span class="tag" v-if="selectedInstall.globalSave">{{_("renderer.tab_mods.install.tag_global_save")}}</span> <span class="tag" v-if="selectedInstall.mod && selectedInstall.mod.uses_sdk">{{_("renderer.tab_mods.install.tag_sdk")}}</span></h1>
                 <p>{{getPathToInstall(selectedInstall.folderName)}} <a href="javascript:;" @click="openFolder(getPathToInstall(selectedInstall.folderName))"  :title="_('renderer.tab_mods.mod.description_external')"><i class="fas fa-external-link-alt"></i></a></p>              
                 
                 <br>
@@ -47,26 +47,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 </p>
                 
                 <br>
-                
-                <template v-if="selectedInstall.mod && selectedInstall.mod.uses_sdk">
-                        <p><strong>{{_("renderer.tab_mods.install.description_sdk")}}</strong></p>
-                        
-                        <br>
-                </template>
-                
-                <h2 v-if="selectedInstall.screenshots.length > 1">{{_("renderer.tab_mods.install.title_screenshots", selectedInstall.screenshots.length)}}</h2>
-                <h2 v-else-if="selectedInstall.screenshots.length === 1">{{_("renderer.tab_mods.install.title_screenshots_one")}}</h2>
-                <h2 v-else>{{_("renderer.tab_mods.install.title_screenshots_none")}}</h2>
-                <p>{{_("renderer.tab_mods.install.description_screenshots")}}</p>
-                
-                <br>
-                
-                <div class="screenshots">
-                    <!--suppress RequiredAttributes, HtmlRequiredAltAttribute -->
-                    <img v-for="img in selectedInstall.screenshots" :alt="img" :src="getURLToScreenshot(selectedInstall.folderName, img)" @click="openScreenshot(selectedInstall.folderName, img)" width="150">
-                </div>
-                
-                
+                 
                 <template v-if="selectedInstall.mod">                                    
                     <h2>{{selectedInstall.mod.name}}</h2>
                     <p><strong>{{_("renderer.tab_mods.install.description_author", selectedInstall.mod.author)}}</strong></p>
@@ -79,6 +60,38 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                         <p v-if="selectedInstall.mod.website"><a href="javascript:;" @click="openURL(selectedInstall.mod.website)"><i class="fas fa-fw fa-globe"></i> {{_("renderer.tab_mods.install.link_website", selectedInstall.mod.website)}}</a></p>
                         <p v-if="selectedInstall.mod.discord"><a href="javascript:;" @click="openURL('https://discord.gg/' + selectedInstall.mod.discord)"><i class="fab fa-fw fa-discord"></i> {{_("renderer.tab_mods.install.link_discord", "discord.gg/" + selectedInstall.mod.discord)}}</a></p>
                     </template>
+                    
+                    <br>
+                </template>
+                
+                <h2 v-if="selectedInstall.screenshots.length > 1">{{_("renderer.tab_mods.install.title_screenshots", selectedInstall.screenshots.length)}}</h2>
+                <h2 v-else-if="selectedInstall.screenshots.length === 1">{{_("renderer.tab_mods.install.title_screenshots_one")}}</h2>
+                <h2 v-else>{{_("renderer.tab_mods.install.title_screenshots_none")}}</h2>
+                <p>{{_("renderer.tab_mods.install.description_screenshots")}}</p>
+                
+                <br>
+                
+                <div class="screenshots" v-if="selectedInstall.screenshots.length > 0">
+                    <!--suppress RequiredAttributes, HtmlRequiredAltAttribute -->
+                    <img v-for="img in selectedInstall.screenshots" :alt="img" :src="getURLToScreenshot(selectedInstall.folderName, img)" @click="openScreenshot(selectedInstall.folderName, img)" width="150">
+                </div>
+                
+                <template v-if="selectedInstall.achievements">                                    
+                    <h2>{{_("renderer.tab_mods.install.title_achievements", selectedInstall.achievements.filter(a => a.earned).length, selectedInstall.achievements.length)}}</h2>
+                    <p v-if="selectedInstall.achievements.filter(a => a.earned).length < selectedInstall.achievements.length">{{_("renderer.tab_mods.install.description_achievements")}}</p>
+                    <p v-else>{{_("renderer.tab_mods.install.description_achievements_complete")}}</p>
+                    
+                    <template v-for="achievement in selectedInstall.achievements">
+                        <br>
+                        
+                        <div :style="{'color': !achievement.earned ? '#777' : 'inherit'}">
+                            <p><strong>{{achievement.name}}</strong></p>
+                            <p>{{achievement.description}}</p>
+                        </div>
+                        
+                    </template>
+                    
+                    <br>
                 </template>
             </div>
             <div v-else-if="selected_item.type === 'mod'">
