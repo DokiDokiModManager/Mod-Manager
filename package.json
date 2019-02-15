@@ -52,15 +52,6 @@
       "!**/fontawesome-free/scss",
       "!**/vue/src"
     ],
-    "appx": {
-      "applicationId": "dokidokimodmanager",
-      "identityName": "29209Zudo.DokiDokiModManager",
-      "publisher": "CN=1FDB3F4F-8BB0-4C8D-B3CE-5046A5C5DFFB",
-      "publisherDisplayName": "Zudo",
-      "languages": [
-        "en-GB"
-      ]
-    },
     "protocols": [
       {
         "name": "Doki Doki Mod Manager",
@@ -84,12 +75,6 @@
             "x64",
             "ia32"
           ]
-        },
-        {
-          "target": "appx",
-          "arch": [
-            "x64"
-          ]
         }
       ]
     },
@@ -99,13 +84,6 @@
       "target": [
         {
           "target": "AppImage",
-          "arch": [
-            "x64",
-            "ia32"
-          ]
-        },
-        {
-          "target": "zip",
           "arch": [
             "x64",
             "ia32"
