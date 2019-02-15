@@ -40,7 +40,6 @@
   "build": {
     "appId": "space.doki.modmanager",
     "artifactName": "ddmm-${version}-${os}-${arch}.${ext}",
-    "generateUpdatesFilesForAllChannels": true,
     "files": [
       "!**/*.ts",
       "!**/*.map",

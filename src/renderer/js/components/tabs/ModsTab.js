@@ -172,12 +172,12 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
         "browseForMod": ddmm.mods.browseForMod,
         "openURL": ddmm.app.openURL,
         "showCreateInstall": function (mod) {
+            this.install_creation.has_mod = !!mod;
+            this.install_creation.mod = mod || "";
             if (this.selected_item.type === "create") return;
             this.install_creation.install_name = "";
             this.install_creation.folder_name = "";
             this.install_creation.global_save = false;
-            this.install_creation.has_mod = !!mod;
-            this.install_creation.mod = mod || "";
             this.selectItem("", "create");
         },
         "selectItem": function (id, type) {
@@ -269,7 +269,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             this.installs = installs;
 
             // select something to avoid leaving a blank area
-            if (!this.selected_item.id) {
+            if (!this.selected_item.type) {
                 if (installs.length > 0) {
                     // select the first install
                     this.selectItem(installs[0].folderName, "install");
