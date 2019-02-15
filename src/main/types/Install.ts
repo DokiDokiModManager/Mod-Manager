@@ -8,14 +8,16 @@ export default class Install {
     public readonly screenshots: string[];
     public readonly mod: ModMetadata;
     public readonly achievements: any[]; // TODO: set up type defs
+    public readonly cloudSave: string;
 
-    constructor(name: string, folderName: string, globalSave: boolean, screenshots: string[], achievements: any[], mod: ModMetadata) {
+    constructor(name: string, folderName: string, globalSave: boolean, screenshots: string[], achievements: any[], mod: ModMetadata, cloudSave: string) {
         this.name = name;
         this.folderName = folderName;
         this.globalSave = globalSave;
         this.screenshots = screenshots;
         this.achievements = achievements;
         this.mod = mod;
+        this.cloudSave = cloudSave;
     }
 }
 

@@ -268,6 +268,20 @@ function getLoggedInUsername() {
     return (firebase.auth().currentUser ? (firebase.auth().currentUser.displayName ? firebase.auth().currentUser.displayName : firebase.auth().currentUser.email.split("@")[0]) : null);
 }
 
+function getDownloadForSave(filename) {
+    return new Promise((ff, rj) => {
+        if (!firebase.auth().currentUser) {
+            rj();
+        } else {
+            firebase.storage().ref("/userdata/" + firebase.auth().currentUser.uid +"/" + filename + ".zip").getDownloadURL().then(filename => {
+               ff(filename)
+            }).catch(err => {
+                rj(err);
+            });
+        }
+    })
+}
+
 function logout() {
     firebase.auth().signOut();
     app.$forceUpdate();

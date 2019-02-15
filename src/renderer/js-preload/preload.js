@@ -375,6 +375,13 @@ ipcRenderer.on("auth handoff", (_, url) => {
     api.emit("auth handoff", url);
 });
 
+ipcRenderer.on("get save url", (ev, filename) => {
+    api.emit("get save url", filename);
+    api.on("got save url", filename => {
+
+    });
+});
+
 // Winstore Appx UI handling
 ipcRenderer.on("is appx", (_, is) => {
     api.emit("is appx", is);
