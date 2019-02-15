@@ -36,7 +36,6 @@ import DiscordManager from "./discord/DiscordManager";
 import DownloadManager from "./net/DownloadManager";
 import OnboardingManager from "./onboarding/OnboardingManager";
 import {unlinkSync} from "fs";
-import NewWindowEvent = Electron.NewWindowEvent;
 
 const DISCORD_ID = "453299645725016074";
 
@@ -596,23 +595,6 @@ app.on("ready", () => {
             appWindow.webContents.send("start onboarding");
         });
     });
-
-    appWindow.webContents.on("new-window", (event: NewWindowEvent) => {
-        event.preventDefault();
-
-        const popup: BrowserWindow = new BrowserWindow({
-            modal: true,
-            parent: appWindow,
-            height: 600,
-            width: 400
-        });
-
-        popup.setMenu(null);
-
-        // @ts-ignore
-        event.newGuest = popup;
-    });
-
 
     appWindow.webContents.on("crashed", () => {
         const crashNotif = new Notification({
