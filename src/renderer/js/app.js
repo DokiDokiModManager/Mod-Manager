@@ -118,6 +118,9 @@ const app = new Vue({
         "showHelpMenu": function (ev) {
             ddmm.app.showHelpMenu(ev.clientX, ev.clientY);
         },
+        "showUserMenu": function (ev) {
+            ddmm.app.showUserMenu(ev.clientX, ev.clientY);
+        },
         "viewAnnouncement": function () {
             localStorage.setItem("last_announcement", this.announcement.title);
             ddmm.window.prompt({
@@ -135,11 +138,11 @@ const app = new Vue({
         },
         "login": function () {
             ddmm.window.input({
-                title: "enter email",
-                description: "email here",
+                title: ddmm.translate("renderer.login_input.message"),
+                description: ddmm.translate("renderer.login_input.details"),
                 affirmative_style: "primary",
-                button_affirmative: "sign in",
-                button_negative: "cancel",
+                button_affirmative: ddmm.translate("renderer.login_input.button_affirmative"),
+                button_negative: ddmm.translate("renderer.login_input.button_negative"),
                 callback: (email) => {
                     if (email) {
                         loginToApp(email);
@@ -234,6 +237,7 @@ function setupPreferencesSyncHandler() {
 
     preferencesRef.on("value", data => {
         const preferences = data.val();
+        if (!preferences) return;
         if (preferences.background) {
             app.background_image = preferences.background;
             ddmm.config.saveConfigValue("background", preferences.background);
@@ -278,7 +282,29 @@ ddmm.on("auth handoff", url => {
 
 firebase.auth().onAuthStateChanged(function (user) {
     console.log("Auth state change!");
-   if (user) {
-       setupPreferencesSyncHandler();
-   }
+    if (user) {
+        setupPreferencesSyncHandler();
+    }
+});
+
+ddmm.on("logout", () => {
+   logout();
+});
+
+ddmm.on("change username", () => {
+   ddmm.window.input({
+       title: ddmm.translate("renderer.change_username_input.message"),
+       description: ddmm.translate("renderer.change_username_input.details"),
+       button_affirmative: ddmm.translate("renderer.change_username_input.button_affirmative"),
+       button_negative: ddmm.translate("renderer.change_username_input.button_negative"),
+       callback: (newName) => {
+           if (newName) {
+               firebase.auth().currentUser.updateProfile({
+                   displayName: newName
+               }).then(() => {
+                   app.$forceUpdate();
+               });
+           }
+       }
+   }) ;
 });

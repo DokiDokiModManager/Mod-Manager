@@ -291,6 +291,22 @@ api.app.showHelpMenu = function (x, y) {
     ]).popup({x, y})
 };
 
+// User menu
+api.app.showUserMenu = function (x, y) {
+    remote.Menu.buildFromTemplate([
+        {
+            label: api.translate("renderer.user_menu.option_rename"), click: () => {
+                api.emit("change username")
+            }
+        },
+        {
+            label: api.translate("renderer.user_menu.option_logout"), click: () => {
+                api.emit("logout");
+            }
+        }
+    ]).popup({x, y})
+};
+
 // Move install folder
 api.app.beginMoveInstall = function () {
     ipcRenderer.send("move install");
