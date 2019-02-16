@@ -22,7 +22,7 @@ export default class DiscordManager {
 
             this.presenceUpdateTimer = setInterval(() => {
                 this.sendPresence();
-            }, 10000);
+            }, 5000);
         }
     }
 
