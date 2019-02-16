@@ -172,7 +172,6 @@ if (ddmm.env.DDMM_INCOGNITO) {
 }
 
 ddmm.on("running cover", cover => {
-    console.dir(cover);
     app.running_cover.display = cover.display;
     app.running_cover.title = cover.title;
     app.running_cover.description = cover.description;
@@ -181,7 +180,6 @@ ddmm.on("running cover", cover => {
 });
 
 ddmm.on("error", error => {
-    console.log(error);
     app.crash_cover.display = true;
     app.crash_cover.title = error.title;
     app.crash_cover.description = error.body;
@@ -231,7 +229,17 @@ document.body.addEventListener("dragenter", ev => {
 
 // FIREBASE AUTH
 
-function setupPreferencesSyncHandler() {
+let ready = false;
+let saveLocks = {};
+
+const LOCK_TIMEOUT = 60000; // 1 minute
+
+function isSaveLocked(filename) {
+    if (!saveLocks[filename]) return false;
+    return (Date.now() - saveLocks[filename]) < LOCK_TIMEOUT;
+}
+
+function setupSyncHandler() {
     if (!firebase.auth().currentUser) return;
     const preferencesRef = firebase.database().ref("preferences/" + firebase.auth().currentUser.uid);
 
@@ -242,6 +250,12 @@ function setupPreferencesSyncHandler() {
             app.background_image = preferences.background;
             ddmm.config.saveConfigValue("background", preferences.background);
         }
+    });
+
+    const savelockRef = firebase.database().ref("savelock/" + firebase.auth().currentUser.uid);
+
+    savelockRef.on("value", data => {
+        saveLocks = data.val();
     });
 }
 
@@ -268,13 +282,13 @@ function getLoggedInUsername() {
     return (firebase.auth().currentUser ? (firebase.auth().currentUser.displayName ? firebase.auth().currentUser.displayName : firebase.auth().currentUser.email.split("@")[0]) : null);
 }
 
-function getDownloadForSave(filename) {
+function getSaveURL(filename) {
     return new Promise((ff, rj) => {
         if (!firebase.auth().currentUser) {
             rj();
         } else {
-            firebase.storage().ref("/userdata/" + firebase.auth().currentUser.uid +"/" + filename + ".zip").getDownloadURL().then(filename => {
-               ff(filename)
+            firebase.storage().ref("/userdata/" + firebase.auth().currentUser.uid + "/" + filename + ".zip").getDownloadURL().then(filename => {
+                ff(filename)
             }).catch(err => {
                 rj(err);
             });
@@ -296,29 +310,55 @@ ddmm.on("auth handoff", url => {
 
 firebase.auth().onAuthStateChanged(function (user) {
     console.log("Auth state change!");
+    ready = true;
     if (user) {
-        setupPreferencesSyncHandler();
+        setupSyncHandler();
     }
 });
 
 ddmm.on("logout", () => {
-   logout();
+    logout();
 });
 
 ddmm.on("change username", () => {
-   ddmm.window.input({
-       title: ddmm.translate("renderer.change_username_input.message"),
-       description: ddmm.translate("renderer.change_username_input.details"),
-       button_affirmative: ddmm.translate("renderer.change_username_input.button_affirmative"),
-       button_negative: ddmm.translate("renderer.change_username_input.button_negative"),
-       callback: (newName) => {
-           if (newName) {
-               firebase.auth().currentUser.updateProfile({
-                   displayName: newName
-               }).then(() => {
-                   app.$forceUpdate();
-               });
-           }
-       }
-   }) ;
+    ddmm.window.input({
+        title: ddmm.translate("renderer.change_username_input.message"),
+        description: ddmm.translate("renderer.change_username_input.details"),
+        button_affirmative: ddmm.translate("renderer.change_username_input.button_affirmative"),
+        button_negative: ddmm.translate("renderer.change_username_input.button_negative"),
+        callback: (newName) => {
+            if (newName) {
+                firebase.auth().currentUser.updateProfile({
+                    displayName: newName
+                }).then(() => {
+                    app.$forceUpdate();
+                });
+            }
+        }
+    });
+});
+
+ddmm.on("get save url", fn => {
+    getSaveURL(fn).then(url => {
+        ddmm.emit("got save url", url);
+    }).catch(() => {
+        ddmm.emit("got save url", null);
+    });
+});
+
+ddmm.on("upload save", data => {
+    console.log(data);
+    fetch(data.localURL).then(res => res.blob()).then(blob => {
+        firebase.storage().ref("/userdata/" + firebase.auth().currentUser.uid + "/" + data.filename + ".zip").put(blob).then(() => {
+            firebase.database().ref("savelock/" + firebase.auth().currentUser.uid + "/" + data.filename).set(0);
+        });
+    });
+});
+
+ddmm.on("lock save", fn => {
+    firebase.database().ref("savelock/" + firebase.auth().currentUser.uid + "/" + fn).set(Date.now());
+});
+
+ddmm.on("unlock save", fn => {
+    firebase.database().ref("savelock/" + firebase.auth().currentUser.uid + "/" + fn).set(0);
 });

@@ -35,8 +35,37 @@ api.mods.browseForMod = function () {
 };
 
 // Launches an install
-api.mods.launchInstall = function (folderName) {
-    ipcRenderer.send("launch install", folderName);
+api.mods.launchInstall = function (folderName, locked, loggedIn) {
+    if (!ready) return;
+    if (locked) {
+        api.emit("prompt", {
+            title: api.translate("renderer.tab_mods.launch_lock_confirmation.message"),
+            description: api.translate("renderer.tab_mods.launch_lock_confirmation.details"),
+            affirmative_style: "danger",
+            button_affirmative: api.translate("renderer.tab_mods.launch_lock_confirmation.button_affirmative"),
+            button_negative: api.translate("renderer.tab_mods.launch_lock_confirmation.button_negative"),
+            callback: (launch) => {
+                if (launch) {
+                    ipcRenderer.send("launch install", folderName);
+                }
+            }
+        });
+    } else if (loggedIn) {
+        api.emit("prompt", {
+            title: api.translate("renderer.tab_mods.launch_lock_confirmation.message"),
+            description: api.translate("renderer.tab_mods.launch_lock_confirmation.details"),
+            affirmative_style: "danger",
+            button_affirmative: api.translate("renderer.tab_mods.launch_lock_confirmation.button_affirmative"),
+            button_negative: api.translate("renderer.tab_mods.launch_lock_confirmation.button_negative"),
+            callback: (launch) => {
+                if (launch) {
+                    ipcRenderer.send("launch install", folderName);
+                }
+            }
+        });
+    } else {
+        ipcRenderer.send("launch install", folderName);
+    }
 };
 
 // Creates an install
@@ -377,9 +406,21 @@ ipcRenderer.on("auth handoff", (_, url) => {
 
 ipcRenderer.on("get save url", (ev, filename) => {
     api.emit("get save url", filename);
-    api.on("got save url", filename => {
-
+    api.on("got save url", url => {
+        ipcRenderer.send("got save url", url);
     });
+});
+
+ipcRenderer.on("upload save", (ev, data) => {
+    api.emit("upload save", data);
+});
+
+ipcRenderer.on("lock save", (ev, fn) => {
+    api.emit("lock save", fn);
+});
+
+ipcRenderer.on("unlock save", (ev, fn) => {
+    api.emit("unlock save", fn);
 });
 
 // Winstore Appx UI handling

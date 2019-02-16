@@ -23,6 +23,14 @@ export default class InstallCreator {
                 mkdirsSync(joinPath(canonicalPath, "appdata"));
                 mkdirsSync(joinPath(canonicalPath, "install"));
 
+                if (process.platform === "win32") {
+                    mkdirsSync(joinPath(canonicalPath, "appdata", "RenPy"));
+                } else if (process.platform === "darwin") {
+                    mkdirsSync(joinPath(canonicalPath, "appdata", "Library", "RenPy"));
+                } else {
+                    mkdirsSync(joinPath(canonicalPath, "appdata", ".renpy"));
+                }
+
                 // extract the game from the zip file
                 const zip = unzip(joinPath(Config.readConfigValue("installFolder"), "ddlc.zip"));
 

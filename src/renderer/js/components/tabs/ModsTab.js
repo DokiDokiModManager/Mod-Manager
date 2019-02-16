@@ -42,7 +42,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 <br>
                 
                 <p>
-                    <button class="success" @click="launchInstall(selectedInstall.folderName)"><i class="fas fa-play fa-fw"></i> {{_("renderer.tab_mods.install.button_launch")}}</button>
+                    <button class="success" @click="launchInstall(selectedInstall.folderName, isSaveLocked(selectedInstall.cloudSave))"><i class="fas fa-play fa-fw"></i> {{_("renderer.tab_mods.install.button_launch")}}</button>
                     <button class="secondary" @click="handleInstallSettingsClick(selectedInstall.folderName, selectedInstall.name, $event)"><i class="fas fa-cog fa-fw"></i> {{_("renderer.tab_mods.install.button_settings")}}</button>
                 </p>
                 
@@ -172,7 +172,9 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 "folder_name": "",
                 "global_save": false,
                 "has_mod": false,
-                "mod": ""
+                "mod": "",
+                "has_cloudsave": false,
+                "cloudsave": ""
             },
             "search": "",
             "_fuseMods": null,
@@ -184,6 +186,10 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
         "installExists": ddmm.mods.installExists,
         "browseForMod": ddmm.mods.browseForMod,
         "openURL": ddmm.app.openURL,
+        "isSaveLocked": function (fn) {
+            console.log(fn);
+            return isSaveLocked(fn);
+        },
         "showCreateInstall": function (mod) {
             this.install_creation.has_mod = !!mod;
             this.install_creation.mod = mod || "";
@@ -234,8 +240,8 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
         "openFolder": function (folder) {
             ddmm.app.showFile(folder);
         },
-        "launchInstall": function (install) {
-            ddmm.mods.launchInstall(install);
+        "launchInstall": function (install, locked) {
+            ddmm.mods.launchInstall(install, locked);
         },
         "generateInstallFolderName": function () {
             this.install_creation.folder_name = this.install_creation.install_name

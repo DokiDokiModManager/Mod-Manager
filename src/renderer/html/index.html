@@ -112,7 +112,7 @@
             <div @click="showHelpMenu" :title="_('renderer.window_controls.help')"><i class="fas fa-question"></i></div>
 
             <div @click="login" v-if="!getLoggedInUsername()">{{_('renderer.window_controls.login')}}</div>
-            <div @click="showUserMenu" v-else style="max-width: 100px; overflow: hidden; text-overflow: ellipsis;">{{getLoggedInUsername()}}</div>
+            <div @click="showUserMenu" v-else style="max-width: 200px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">{{getLoggedInUsername()}}</div>
 
             <template v-if="!system_borders">
                 <div @click="windowMinimise" :title="_('renderer.window_controls.minimise')"><i

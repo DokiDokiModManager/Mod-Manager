@@ -35,7 +35,9 @@ import InstallManager from "./install/InstallManager";
 import DiscordManager from "./discord/DiscordManager";
 import DownloadManager from "./net/DownloadManager";
 import OnboardingManager from "./onboarding/OnboardingManager";
-import {unlinkSync} from "fs";
+import {readFileSync, unlinkSync} from "fs";
+import InstallSync from "./cloud/InstallSync";
+import Timeout = NodeJS.Timeout;
 
 const DISCORD_ID = "453299645725016074";
 
@@ -89,13 +91,47 @@ function showError(title: string, body: string, stacktrace: string, fatal: boole
     appWindow.setClosable(true);
 }
 
+function getCloudSaveData(folderName: string): Promise<{url: string, name: string}> {
+    return new Promise((ff, rj) => {
+        const installDataFile: string = joinPath(Config.readConfigValue("installFolder"), "installs", folderName, "install.json");
+        let installData: any;
+        try {
+            installData =
+                JSON.parse(readFileSync(installDataFile).toString("utf8"));
+
+            if (installData.cloudSave) {
+                appWindow.webContents.send("get save url", installData.cloudSave);
+                ipcMain.once("got save url", (_, url) => {
+                    ff({url, name: installData.cloudSave});
+                });
+            } else {
+                ff(null);
+            }
+        } catch (e) {
+            rj();
+            return;
+        }
+    });
+}
+
 /**
  * Launches an install, handling frontend functionality automatically
  * @param folderName The folder containing the install
  */
-function launchInstall(folderName): void {
+async function launchInstall(folderName): Promise<void> {
+    let lockTimer: Timeout;
     Config.saveConfigValue("lastLaunchedInstall", folderName);
     appWindow.minimize(); // minimise the window to draw attention to the fact another window will be appearing
+    const saveData: {url: string, name: string} = await getCloudSaveData(folderName);
+    if (saveData) {
+        appWindow.webContents.send("lock save", saveData.name);
+        lockTimer = setInterval(() => {
+            appWindow.webContents.send("lock save", saveData.name);
+        }, 30000);
+    }
+    if (saveData && saveData.url) {
+        await InstallSync.installSaveData(folderName, saveData.url);
+    }
     appWindow.webContents.send("running cover", {
         display: true,
         dismissable: false,
@@ -108,9 +144,23 @@ function launchInstall(folderName): void {
         appWindow.focus();
         appWindow.webContents.send("running cover", {display: false});
         appWindow.webContents.send("got installs", InstallList.getInstallList());
+        if (saveData) {
+            console.log("Compressing save data");
+            InstallSync.compressSaveData(folderName).then(pathToSave => {
+                appWindow.webContents.send("upload save", {
+                    localURL: pathToSave,
+                    filename: saveData.name
+                });
+                clearTimeout(lockTimer);
+            }).catch(e => {
+                // TODO: talk about the error
+            });
+        }
     }).catch(err => {
         appWindow.restore();
         appWindow.focus();
+        clearTimeout(lockTimer);
+        appWindow.webContents.send("unlock save", saveData.name);
         appWindow.webContents.send("running cover", {
             display: true,
             dismissable: true,
@@ -224,7 +274,7 @@ ipcMain.on("create install", (ev: IpcMessageEvent, install: { folderName: string
 });
 
 // Rename an install
-ipcMain.on("rename install", (ev: IpcMessageEvent, options: {folderName: string, newName: string}) => {
+ipcMain.on("rename install", (ev: IpcMessageEvent, options: { folderName: string, newName: string }) => {
     console.log("[IPC rename install] Renaming " + options.folderName);
     InstallManager.renameInstall(options.folderName, options.newName).then(() => {
         console.log("[IPC rename install] Renamed " + options.folderName);
@@ -289,7 +339,7 @@ ipcMain.on("delete save", (ev: IpcMessageEvent, folderName: string) => {
 });
 
 // desktop shortcut creation
-ipcMain.on("create shortcut", (ev: IpcMessageEvent, options: {folderName: string, installName: string}) => {
+ipcMain.on("create shortcut", (ev: IpcMessageEvent, options: { folderName: string, installName: string }) => {
     if (process.platform !== "win32") {
         dialog.showErrorBox("Shortcut creation is only supported on Windows", "Nice try.");
         return;
@@ -411,7 +461,7 @@ ipcMain.on("onboarding browse", () => {
 });
 
 ipcMain.on("download mod", (ev, url) => {
-    downloadManager.downloadFile(url, joinPath(Config.readConfigValue("installFolder"), "mods"), null,"DOWNLOADED_MOD");
+    downloadManager.downloadFile(url, joinPath(Config.readConfigValue("installFolder"), "mods"), null, "DOWNLOADED_MOD");
 });
 
 // endregion
@@ -557,7 +607,7 @@ app.on("ready", () => {
     });
 
     downloadManager.on("download complete", () => {
-       appWindow.webContents.send("got modlist", modList.getModList());
+        appWindow.webContents.send("got modlist", modList.getModList());
     });
 
     downloadManager.on("download failed", () => {

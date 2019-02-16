@@ -101,6 +101,18 @@
         "button_affirmative": "Rename",
         "button_negative": "Cancel"
       },
+      "launch_lock_confirmation": {
+        "message": "The cloud save file is in use!",
+        "details": "If you launch now, you may lose your progress.",
+        "button_affirmative": "Launch Anyway",
+        "button_negative": "Cancel"
+      },
+      "launch_noauth_confirmation": {
+        "message": "You are not logged in!",
+        "details": "If you launch now, your save file will not sync to the cloud.",
+        "button_affirmative": "Launch Anyway",
+        "button_negative": "Cancel"
+      },
       "mod_delete_confirmation": {
         "message": "Are you sure you want to delete the mod?",
         "details": "You will need to download another copy of the mod to install it again.",
@@ -119,6 +131,7 @@
         "tag_global_save": "Global Save",
         "tag_sdk": "SDK",
         "tag_cloud": "Cloud Save",
+        "description_locked": "You are playing with this cloud save file on a different computer. To continue here, stop playing on the other computer.",
         "title_achievements": "Achievements ({0} / {1})",
         "description_achievements": "Keep playing to unlock more achievements.",
         "description_achievements_complete": "You've unlocked all achievements. Congratulations!",
