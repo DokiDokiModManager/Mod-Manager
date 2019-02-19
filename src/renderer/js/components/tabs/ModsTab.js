@@ -243,31 +243,55 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
         "launchInstall": function (install) {
             const installData = this.installs.find(i => i.folderName === install);
             if (!installData) return;
-            if (installData.cloudSave && isSaveLocked(installData.cloudSave)) {
-                ddmm.window.prompt({
-                    title: ddmm.translate("renderer.tab_mods.launch_lock_confirmation.message"),
-                    description: ddmm.translate("renderer.tab_mods.launch_lock_confirmation.details"),
-                    affirmative_style: "danger",
-                    button_affirmative: ddmm.translate("renderer.tab_mods.launch_lock_confirmation.button_affirmative"),
-                    button_negative: ddmm.translate("renderer.tab_mods.launch_lock_confirmation.button_negative"),
-                    callback: (launch) => {
-                        if (launch) {
-                            ddmm.mods.launchInstall(install);
-                        }
+            if (installData.cloudSave) {
+                fetch("http://google.com/generate_204").then(res => {
+                    if (res.status !== 204) {
+                        console.warn("Client is probably behind a captive portal. Status code: " + res.status);
+                        throw new Error();
                     }
-                });
-            } else if (!firebase.auth().currentUser) {
-                ddmm.window.prompt("prompt", {
-                    title: ddmm.translate("renderer.tab_mods.launch_noauth_confirmation.message"),
-                    description: ddmm.translate("renderer.tab_mods.launch_noauth_confirmation.details"),
-                    affirmative_style: "danger",
-                    button_affirmative: ddmm.translate("renderer.tab_mods.launch_noauth_confirmation.button_affirmative"),
-                    button_negative: ddmm.translate("renderer.tab_mods.launch_noauth_confirmation.button_negative"),
-                    callback: (launch) => {
-                        if (launch) {
-                            ddmm.mods.launchInstall(install);
-                        }
+                }).then(() => {
+                    if (isSaveLocked(installData.cloudSave)) {
+                        ddmm.window.prompt({
+                            title: ddmm.translate("renderer.tab_mods.launch_lock_confirmation.message"),
+                            description: ddmm.translate("renderer.tab_mods.launch_lock_confirmation.details"),
+                            affirmative_style: "danger",
+                            button_affirmative: ddmm.translate("renderer.tab_mods.launch_lock_confirmation.button_affirmative"),
+                            button_negative: ddmm.translate("renderer.tab_mods.launch_lock_confirmation.button_negative"),
+                            callback: (launch) => {
+                                if (launch) {
+                                    ddmm.mods.launchInstall(install);
+                                }
+                            }
+                        });
+                    } else if (!firebase.auth().currentUser) {
+                        ddmm.window.prompt({
+                            title: ddmm.translate("renderer.tab_mods.launch_noauth_confirmation.message"),
+                            description: ddmm.translate("renderer.tab_mods.launch_noauth_confirmation.details"),
+                            affirmative_style: "danger",
+                            button_affirmative: ddmm.translate("renderer.tab_mods.launch_noauth_confirmation.button_affirmative"),
+                            button_negative: ddmm.translate("renderer.tab_mods.launch_noauth_confirmation.button_negative"),
+                            callback: (launch) => {
+                                if (launch) {
+                                    ddmm.mods.launchInstall(install);
+                                }
+                            }
+                        });
+                    } else {
+                        ddmm.mods.launchInstall(install);
                     }
+                }).catch(() => {
+                    ddmm.window.prompt({
+                        title: ddmm.translate("renderer.tab_mods.launch_offline_confirmation.message"),
+                        description: ddmm.translate("renderer.tab_mods.launch_offline_confirmation.details"),
+                        affirmative_style: "danger",
+                        button_affirmative: ddmm.translate("renderer.tab_mods.launch_offline_confirmation.button_affirmative"),
+                        button_negative: ddmm.translate("renderer.tab_mods.launch_offline_confirmation.button_negative"),
+                        callback: (launch) => {
+                            if (launch) {
+                                ddmm.mods.launchInstall(install);
+                            }
+                        }
+                    });
                 });
             } else {
                 ddmm.mods.launchInstall(install);
