@@ -231,12 +231,32 @@ document.body.addEventListener("dragenter", ev => {
 
 let ready = false;
 let saveLocks = {};
+let saves = {};
 
 const LOCK_TIMEOUT = 60000; // 1 minute
 
 function isSaveLocked(filename) {
     if (!saveLocks[filename]) return false;
     return (Date.now() - saveLocks[filename]) < LOCK_TIMEOUT;
+}
+
+function createCloudSave(displayName) {
+    if (!firebase.auth().currentUser) return;
+    const filename = "cloudsave" + Date.now();
+
+    if (!displayName) {
+        displayName = "Untitled Save File";
+    }
+
+    firebase.database().ref("/saves/" + firebase.auth().currentUser.uid + "/" + filename).set({
+        name: displayName
+    });
+
+    return filename;
+}
+
+function getSaves() {
+    return saves;
 }
 
 function setupSyncHandler() {
@@ -256,6 +276,12 @@ function setupSyncHandler() {
 
     savelockRef.on("value", data => {
         saveLocks = data.val();
+    });
+
+    const savesRef = firebase.database().ref("/saves/" + firebase.auth().currentUser.uid);
+
+    savesRef.on("value", data => {
+        saves = data.val();
     });
 }
 

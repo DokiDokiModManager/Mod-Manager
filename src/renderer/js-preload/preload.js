@@ -42,8 +42,8 @@ api.mods.launchInstall = function (folderName) {
 };
 
 // Creates an install
-api.mods.createInstall = function (folderName, installName, globalSave, mod) {
-    ipcRenderer.send("create install", {folderName, installName, globalSave, mod});
+api.mods.createInstall = function (options) {
+    ipcRenderer.send("create install", options);
 };
 
 // File exists?

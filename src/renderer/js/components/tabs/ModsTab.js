@@ -120,6 +120,10 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                     <p><input type="text" :placeholder="_('renderer.tab_mods.install_creation.label_folder_name')" v-model="install_creation.folder_name"></p>
                 </div>
                 
+                <p v-if="!is_installing && install_creation.folder_name.length > 2 && installExists(install_creation.folder_name)">
+                    <strong>{{_("renderer.tab_mods.install_creation.status_exists")}}</strong>
+                </p>
+                
                 <div class="form-group">
                     <p><label><input type="checkbox" v-model="install_creation.has_mod"> {{_("renderer.tab_mods.install_creation.label_has_mod")}}</label></p>
                 </div>
@@ -130,6 +134,22 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 </div>
                 
                 <div class="form-group">
+                    <p><label><input type="checkbox" v-model="install_creation.has_cloudsave"> {{_("renderer.tab_mods.install_creation.label_has_cloudsave")}}</label></p>
+                </div>
+                
+                <div class="form-group" v-if="install_creation.has_cloudsave">
+                    <p><label>{{_("renderer.tab_mods.install_creation.label_cloudsave")}}</label></p>
+                    <p>
+                        <select v-model="install_creation.cloudsave">
+                            <option value="" selected>{{_("renderer.tab_mods.install_creation.option_new_cloudsave")}}</option>
+                            <optgroup :label="_('renderer.tab_mods.install_creation.label_existing_saves')">
+                                <option v-for="save in getSaveFiles()" :value="save.filename">{{save.display}}</option>
+                            </optgroup>
+                        </select>
+                    </p>
+                </div>
+                
+                <div class="form-group" v-if="!install_creation.has_cloudsave">
                     <p><label><input type="checkbox" v-model="install_creation.global_save"> {{_("renderer.tab_mods.install_creation.label_global_save")}}</label></p>
                 </div>
                 
@@ -137,22 +157,21 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                     <strong>{{_("renderer.tab_mods.install_creation.header_summary")}}</strong>
                     <br>
                     <template v-if="install_creation.has_mod">
-                        <span v-if="install_creation.global_save">{{_("renderer.tab_mods.install_creation.description_modded_global_save")}}</span>
+                        <span v-if="install_creation.has_cloudsave">{{_("renderer.tab_mods.install_creation.description_modded_cloudsave")}}</span>
+                        <span v-else-if="install_creation.global_save">{{_("renderer.tab_mods.install_creation.description_modded_global_save")}}</span>
                         <span v-else>{{_("renderer.tab_mods.install_creation.description_modded")}}</span>
                     </template>
                     <template v-else>
-                        <span v-if="install_creation.global_save">{{_("renderer.tab_mods.install_creation.description_vanilla_global_save")}}</span>
+                        <span v-if="install_creation.has_cloudsave">{{_("renderer.tab_mods.install_creation.description_vanilla_cloudsave")}}</span>
+                        <span v-else-if="install_creation.global_save">{{_("renderer.tab_mods.install_creation.description_vanilla_global_save")}}</span>
                         <span v-else>{{_("renderer.tab_mods.install_creation.description_vanilla")}}</span>
                     </template>
                     
                 </p>
                 
+                <div v-if="is_installing" class="form-group"><button class="primary" disabled><i class="fas fa-spinner fa-spin fa-fw"></i> {{_("renderer.tab_mods.install_creation.button_installing")}}</button></div>
                 
-                <div class="form-group"><button class="primary" @click="createInstallSubmit" :disabled="shouldDisableCreation"><i class="fas fa-bolt fa-fw"></i>  {{_("renderer.tab_mods.install_creation.button_install")}}</button></div>
-                
-                <p v-if="!is_installing && install_creation.folder_name.length > 2 && installExists(install_creation.folder_name)">{{_("renderer.tab_mods.install_creation.status_exists")}}</p>
-                
-                <p v-if="is_installing"><i class="fas fa-spinner fa-spin"></i> {{_("renderer.tab_mods.install_creation.status_installing")}}</p>
+                <div v-else class="form-group"><button class="primary" @click="createInstallSubmit" :disabled="shouldDisableCreation"><i class="fas fa-bolt fa-fw"></i> {{_("renderer.tab_mods.install_creation.button_install")}}</button></div>
             </div>
         </div>
     </div>
@@ -197,6 +216,8 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             this.install_creation.install_name = "";
             this.install_creation.folder_name = "";
             this.install_creation.global_save = false;
+            this.install_creation.has_cloudsave = false;
+            this.install_creation.cloudsave = "";
             this.selectItem("", "create");
         },
         "selectItem": function (id, type) {
@@ -314,7 +335,22 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
         "createInstallSubmit": function () {
             if (this.shouldDisableCreation) return;
             this.is_installing = true;
-            ddmm.mods.createInstall(this.install_creation.folder_name, this.install_creation.install_name, this.install_creation.global_save, (this.install_creation.has_mod ? this.install_creation.mod : null));
+
+            let cloudSave = null;
+
+            if (this.install_creation.has_cloudsave && this.install_creation.cloudsave === "") {
+                cloudSave = createCloudSave(this.install_creation.install_name);
+            } else {
+                cloudSave = this.install_creation.cloudsave;
+            }
+
+            ddmm.mods.createInstall({
+                folderName: this.install_creation.folder_name,
+                installName: this.install_creation.install_name,
+                globalSave: (!this.install_creation.has_cloudsave ? this.install_creation.global_save : false),
+                cloudSave: (this.install_creation.has_cloudsave ? cloudSave : null),
+                mod: (this.install_creation.has_mod ? this.install_creation.mod : null)
+            });
             ddmm.once("install list", () => {
                 this.is_installing = false;
                 if (this.installs.find(i => i.folderName === this.install_creation.folder_name)) {
@@ -415,6 +451,14 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             if (e.key === "Escape") {
                 this.search = "";
             }
+        },
+        "getSaveFiles": function () {
+            return Object.keys(saves).map(filename => {
+                return {
+                    filename: filename,
+                    display: saves[filename].name
+                }
+            });
         }
     },
     "computed": {
