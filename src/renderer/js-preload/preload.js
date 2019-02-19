@@ -35,37 +35,10 @@ api.mods.browseForMod = function () {
 };
 
 // Launches an install
-api.mods.launchInstall = function (folderName, locked, loggedIn) {
+api.mods.launchInstall = function (folderName) {
     if (!ready) return;
-    if (locked) {
-        api.emit("prompt", {
-            title: api.translate("renderer.tab_mods.launch_lock_confirmation.message"),
-            description: api.translate("renderer.tab_mods.launch_lock_confirmation.details"),
-            affirmative_style: "danger",
-            button_affirmative: api.translate("renderer.tab_mods.launch_lock_confirmation.button_affirmative"),
-            button_negative: api.translate("renderer.tab_mods.launch_lock_confirmation.button_negative"),
-            callback: (launch) => {
-                if (launch) {
-                    ipcRenderer.send("launch install", folderName);
-                }
-            }
-        });
-    } else if (loggedIn) {
-        api.emit("prompt", {
-            title: api.translate("renderer.tab_mods.launch_lock_confirmation.message"),
-            description: api.translate("renderer.tab_mods.launch_lock_confirmation.details"),
-            affirmative_style: "danger",
-            button_affirmative: api.translate("renderer.tab_mods.launch_lock_confirmation.button_affirmative"),
-            button_negative: api.translate("renderer.tab_mods.launch_lock_confirmation.button_negative"),
-            callback: (launch) => {
-                if (launch) {
-                    ipcRenderer.send("launch install", folderName);
-                }
-            }
-        });
-    } else {
-        ipcRenderer.send("launch install", folderName);
-    }
+
+    ipcRenderer.send("launch install", folderName);
 };
 
 // Creates an install

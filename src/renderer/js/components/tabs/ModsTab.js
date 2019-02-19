@@ -42,7 +42,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 <br>
                 
                 <p>
-                    <button class="success" @click="launchInstall(selectedInstall.folderName, isSaveLocked(selectedInstall.cloudSave))"><i class="fas fa-play fa-fw"></i> {{_("renderer.tab_mods.install.button_launch")}}</button>
+                    <button class="success" @click="launchInstall(selectedInstall.folderName)"><i class="fas fa-play fa-fw"></i> {{_("renderer.tab_mods.install.button_launch")}}</button>
                     <button class="secondary" @click="handleInstallSettingsClick(selectedInstall.folderName, selectedInstall.name, $event)"><i class="fas fa-cog fa-fw"></i> {{_("renderer.tab_mods.install.button_settings")}}</button>
                 </p>
                 
@@ -240,8 +240,38 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
         "openFolder": function (folder) {
             ddmm.app.showFile(folder);
         },
-        "launchInstall": function (install, locked) {
-            ddmm.mods.launchInstall(install, locked);
+        "launchInstall": function (install) {
+            const installData = this.installs.find(i => i.folderName === install);
+            if (!installData) return;
+            if (installData.cloudSave && isSaveLocked(installData.cloudSave)) {
+                ddmm.window.prompt({
+                    title: ddmm.translate("renderer.tab_mods.launch_lock_confirmation.message"),
+                    description: ddmm.translate("renderer.tab_mods.launch_lock_confirmation.details"),
+                    affirmative_style: "danger",
+                    button_affirmative: ddmm.translate("renderer.tab_mods.launch_lock_confirmation.button_affirmative"),
+                    button_negative: ddmm.translate("renderer.tab_mods.launch_lock_confirmation.button_negative"),
+                    callback: (launch) => {
+                        if (launch) {
+                            ddmm.mods.launchInstall(install);
+                        }
+                    }
+                });
+            } else if (!firebase.auth().currentUser) {
+                ddmm.window.prompt("prompt", {
+                    title: ddmm.translate("renderer.tab_mods.launch_noauth_confirmation.message"),
+                    description: ddmm.translate("renderer.tab_mods.launch_noauth_confirmation.details"),
+                    affirmative_style: "danger",
+                    button_affirmative: ddmm.translate("renderer.tab_mods.launch_noauth_confirmation.button_affirmative"),
+                    button_negative: ddmm.translate("renderer.tab_mods.launch_noauth_confirmation.button_negative"),
+                    callback: (launch) => {
+                        if (launch) {
+                            ddmm.mods.launchInstall(install);
+                        }
+                    }
+                });
+            } else {
+                ddmm.mods.launchInstall(install);
+            }
         },
         "generateInstallFolderName": function () {
             this.install_creation.folder_name = this.install_creation.install_name
@@ -321,7 +351,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             // Handles key press events for installs / mods
             if (this.selectedInstall) {
                 if (e.key === "Enter") {
-                    ddmm.mods.launchInstall(this.selectedInstall.folderName);
+                    this.launchInstall(this.selectedInstall.folderName);
                 } else if (e.key === "F2") {
                     ddmm.window.input({
                         title: ddmm.translate("renderer.tab_mods.rename_input.message"),

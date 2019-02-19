@@ -347,7 +347,7 @@ ddmm.on("get save url", fn => {
 });
 
 ddmm.on("upload save", data => {
-    console.log(data);
+    if (!firebase.auth().currentUser) { return; }
     fetch(data.localURL).then(res => res.blob()).then(blob => {
         firebase.storage().ref("/userdata/" + firebase.auth().currentUser.uid + "/" + data.filename + ".zip").put(blob).then(() => {
             firebase.database().ref("savelock/" + firebase.auth().currentUser.uid + "/" + data.filename).set(0);
@@ -356,9 +356,11 @@ ddmm.on("upload save", data => {
 });
 
 ddmm.on("lock save", fn => {
+    if (!firebase.auth().currentUser) { return; }
     firebase.database().ref("savelock/" + firebase.auth().currentUser.uid + "/" + fn).set(Date.now());
 });
 
 ddmm.on("unlock save", fn => {
+    if (!firebase.auth().currentUser) { return; }
     firebase.database().ref("savelock/" + firebase.auth().currentUser.uid + "/" + fn).set(0);
 });
