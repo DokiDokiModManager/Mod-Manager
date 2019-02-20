@@ -388,7 +388,7 @@ ddmm.on("upload save", data => {
     fetch(data.localURL).then(res => res.blob()).then(blob => {
         firebase.storage().ref("/userdata/" + firebase.auth().currentUser.uid + "/" + data.filename + ".zip").put(blob).then(() => {
             app.syncing_save = false;
-            firebase.database().ref("savelock/" + firebase.auth().currentUser.uid + "/" + data.filename).set(0);
+            firebase.database().ref("/savelock/" + firebase.auth().currentUser.uid + "/" + data.filename).set(0);
             updateSaves();
         }).catch(err => {
             // TODO: handle error
@@ -399,10 +399,10 @@ ddmm.on("upload save", data => {
 
 ddmm.on("lock save", fn => {
     if (!firebase.auth().currentUser) { return; }
-    firebase.database().ref("savelock/" + firebase.auth().currentUser.uid + "/" + fn).set(Date.now());
+    firebase.database().ref("/savelock/" + firebase.auth().currentUser.uid + "/" + fn).set(Date.now());
 });
 
 ddmm.on("unlock save", fn => {
     if (!firebase.auth().currentUser) { return; }
-    firebase.database().ref("savelock/" + firebase.auth().currentUser.uid + "/" + fn).set(0);
+    firebase.database().ref("/savelock/" + firebase.auth().currentUser.uid + "/" + fn).set(0);
 });

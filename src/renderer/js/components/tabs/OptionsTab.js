@@ -217,9 +217,6 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
         "systemBordersEnabled": function () {
             return ddmm.config.readConfigValue("systemBorders");
         },
-        "refreshSaves": function () {
-            this.cloudsaves = getSaves();
-        },
         "formatSize": function (size) {
             if (!size) return "0 bytes";
             return Math.floor(size / 1024) + " KiB";
@@ -235,7 +232,10 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
                 button_negative: ddmm.translate("renderer.tab_options.cloudsave_rename_input.button_negative"),
                 callback: (newName) => {
                     if (newName) {
-                        firebase.database().ref("/saves/" + firebase.auth().currentUser.uid + "/" + filename + "/name").set(newName);
+                        firebase.database().ref("/saves/" + firebase.auth().currentUser.uid + "/" + filename + "/name").set(newName).then(() => {
+                            updateSaves();
+                            this.$forceUpdate();
+                        });
                     }
                 }
             });
@@ -248,14 +248,17 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
                 button_negative: ddmm.translate("renderer.tab_options.cloudsave_delete_prompt.button_negative"),
                 callback: (confirm) => {
                     if (confirm) {
-                        firebase.database().ref("/saves/" + firebase.auth().currentUser.uid + "/" + filename).remove();
+                        firebase.database().ref("/saves/" + firebase.auth().currentUser.uid + "/" + filename).remove().then(() => {
+                            updateSaves();
+                            this.$forceUpdate();
+                        });
                         firebase.storage().ref("/userdata/" + firebase.auth().currentUser.uid + "/" + filename + ".zip").delete();
                     }
                 }
             });
         }
     },
-    "mounted": function() {
+    "mounted": function () {
         if (!this.selected_option) {
             this.selected_option = "background";
         }
