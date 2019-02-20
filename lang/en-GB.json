@@ -266,6 +266,18 @@
       "section_debug": {
         "title": "App Info",
         "subtitle": "Information for diagnosing problems."
+      },
+      "cloudsave_rename_input": {
+        "message": "Rename Save File",
+        "details": "Enter the new name for {0}.",
+        "button_affirmative": "Rename",
+        "button_negative": "Cancel"
+      },
+      "cloudsave_delete_prompt": {
+        "message": "Delete Save File?",
+        "details": "If you delete {0}, you will lose it, unless you have an installed copy.",
+        "button_affirmative": "Rename",
+        "button_negative": "Cancel"
       }
     },
     "tab_about": {

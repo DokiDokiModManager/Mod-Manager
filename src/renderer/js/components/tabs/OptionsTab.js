@@ -47,10 +47,10 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
                         <tr><th>{{_("renderer.tab_options.section_cloudsaves.table_header_name")}}</th><th>{{_("renderer.tab_options.section_cloudsaves.table_header_size")}}</th><th>{{_("renderer.tab_options.section_cloudsaves.table_header_options")}}</th></tr>   
                     </thead>
                     <tbody>
-                        <tr v-for="(save, id) in getSaves()">
+                        <tr v-for="(save, filename) in getSaves()">
                             <td>{{save.name}}</td>
                             <td>{{formatSize(save.size)}}</td>
-                            <td><button class="success">{{_("renderer.tab_options.section_cloudsaves.button_rename")}}</button> <button class="danger">{{_("renderer.tab_options.section_cloudsaves.button_delete")}}</button></td>
+                            <td><button class="success" @click="renameSave(filename, save.name)">{{_("renderer.tab_options.section_cloudsaves.button_rename")}}</button> <button class="danger" @click="deleteSave(filename, save.name)">{{_("renderer.tab_options.section_cloudsaves.button_delete")}}</button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -61,12 +61,6 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
                 <br>
                 <p><strong>{{_("renderer.tab_options.section_updates.description_current_version", version)}}</strong></p>
                 <br>
-                <!--<label for="release-channel">{{_("renderer.tab_options.section_updates.label_channel")}}</label>-->
-                <!--<select v-model="release_channel_interim" name="release-channel" disabled @change="updateReleaseChannel" >-->
-                    <!--<option value="latest">{{_("renderer.tab_options.section_updates.option_stable")}}</option>-->
-                    <!--<option value="beta">{{_("renderer.tab_options.section_updates.option_beta")}}</option>-->
-                <!--</select>-->
-                <!--<br><br>-->
                 <p><button @click="checkUpdates" class="primary"><i class="fas fa-sync-alt fa-fw"></i> {{_("renderer.tab_options.section_updates.button_check")}}</button></p>
             </div>
             <div v-else-if="selected_option === 'storage'">
@@ -230,6 +224,38 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
         },
         "getSaves": function () {
             return getSaves();
+        },
+        "renameSave": function (filename, oldName) {
+            ddmm.window.input({
+                title: ddmm.translate("renderer.tab_options.cloudsave_rename_input.message"),
+                description: ddmm.translate("renderer.tab_options.cloudsave_rename_input.details", oldName),
+                button_affirmative: ddmm.translate("renderer.tab_options.cloudsave_rename_input.button_affirmative"),
+                button_negative: ddmm.translate("renderer.tab_options.cloudsave_rename_input.button_negative"),
+                callback: (newName) => {
+                    if (newName) {
+                        firebase.database().ref("/saves/" + firebase.auth().currentUser.uid + "/" + filename + "/name").set(newName);
+                    }
+                }
+            });
+        },
+        "deleteSave": function (filename, oldName) {
+            ddmm.window.prompt({
+                title: ddmm.translate("renderer.tab_options.cloudsave_delete_prompt.message"),
+                description: ddmm.translate("renderer.tab_options.cloudsave_delete_prompt.details", oldName),
+                button_affirmative: ddmm.translate("renderer.tab_options.cloudsave_delete_prompt.button_affirmative"),
+                button_negative: ddmm.translate("renderer.tab_options.cloudsave_delete_prompt.button_negative"),
+                callback: (confirm) => {
+                    if (confirm) {
+                        firebase.database().ref("/saves/" + firebase.auth().currentUser.uid + "/" + filename).remove();
+                        firebase.storage().ref("/userdata/" + firebase.auth().currentUser.uid + "/" + filename).remove();
+                    }
+                }
+            });
+        }
+    },
+    "mounted": function() {
+        if (!this.selected_option) {
+            this.selected_option = "background";
         }
     }
 });
