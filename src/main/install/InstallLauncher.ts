@@ -98,7 +98,7 @@ export default class InstallLauncher {
             if (process.platform === "win32") {
                 gameExecutable = joinPath(installFolder, "install", "ddlc.exe");
             } else if (process.platform === "linux") {
-                gameExecutable = joinPath(installFolder, "install", "ddlc.exe");
+                gameExecutable = joinPath(installFolder, "install", "DDLC.sh");
             } else if (process.platform === "darwin") {
                 gameExecutable = joinPath(installFolder, "install", "MacOS", "DDLC");
             } else {
