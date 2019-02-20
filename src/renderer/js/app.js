@@ -282,6 +282,14 @@ function setupSyncHandler() {
 
     savesRef.on("value", data => {
         saves = data.val();
+        for (let fn in saves) {
+            if (saves.hasOwnProperty(fn)) {
+                firebase.storage().ref("/userdata/" + firebase.auth().currentUser.uid + "/" + fn + ".zip").getMetadata().then(meta => {
+                    saves[fn].size = meta.size;
+                    app.$children[0].$forceUpdate();
+                });
+            }
+        }
     });
 }
 

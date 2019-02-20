@@ -478,3 +478,14 @@ input:focus, textarea:focus {
 .is-appx .hide-appx {
   display: none;
 }
+
+// region tables
+table {
+  width: 100%;
+}
+
+td, th {
+  padding: 0.25em;
+  text-align: center;
+}
+// endregion

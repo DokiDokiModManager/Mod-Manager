@@ -36,6 +36,25 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
                 <button class="danger" v-if="systemBordersEnabled()" @click="setSystemBorders(false)"><i class="fas fa-times fa-fw"></i> {{_("renderer.tab_options.section_advanced_appearance.button_disable_sysborders")}}</button>
                 <button class="success" v-else @click="setSystemBorders(true)"><i class="fas fa-check fa-fw"></i> {{_("renderer.tab_options.section_advanced_appearance.button_enable_sysborders")}}</button>
             </div>
+            <div v-else-if="selected_option === 'cloudsaves'">
+                <h1>{{_("renderer.tab_options.section_cloudsaves.title")}}</h1>
+                <p>{{_("renderer.tab_options.section_cloudsaves.subtitle")}}</p>
+                
+                <br>
+                
+                <table>
+                    <thead>
+                        <tr><th>{{_("renderer.tab_options.section_cloudsaves.table_header_name")}}</th><th>{{_("renderer.tab_options.section_cloudsaves.table_header_size")}}</th><th>{{_("renderer.tab_options.section_cloudsaves.table_header_options")}}</th></tr>   
+                    </thead>
+                    <tbody>
+                        <tr v-for="(save, id) in getSaves()">
+                            <td>{{save.name}}</td>
+                            <td>{{formatSize(save.size)}}</td>
+                            <td><button class="success">{{_("renderer.tab_options.section_cloudsaves.button_rename")}}</button> <button class="danger">{{_("renderer.tab_options.section_cloudsaves.button_delete")}}</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             <div v-else-if="selected_option === 'updates'">
                 <h1>{{_("renderer.tab_options.section_updates.title")}}</h1>
                 <p>{{_("renderer.tab_options.section_updates.subtitle")}}</p>
@@ -105,6 +124,7 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
             "backgrounds": ddmm.app.getBackgrounds(),
             "sdk_mode_interim": ddmm.config.readConfigValue("sdkMode"),
             "release_channel_interim": ddmm.config.readConfigValue("updateChannel"),
+            "cloudsaves": {},
             "menu": [
                 {
                     "header": ddmm.translate("renderer.tab_options.list.header_appearance"),
@@ -117,9 +137,20 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
                     ]
                 },
                 {
+                    "header": ddmm.translate("renderer.tab_options.list.header_account"),
+                    "contents": [
+                        {"title": ddmm.translate("renderer.tab_options.list.link_cloudsaves"), "id": "cloudsaves"},
+                        {"title": ddmm.translate("renderer.tab_options.list.link_accmanagement"), "id": "accmanagement"}
+                    ]
+                },
+                {
                     "header": ddmm.translate("renderer.tab_options.list.header_application"),
                     "contents": [
-                        {"title": ddmm.translate("renderer.tab_options.list.link_updates"), "id": "updates", "hideAppx": true},
+                        {
+                            "title": ddmm.translate("renderer.tab_options.list.link_updates"),
+                            "id": "updates",
+                            "hideAppx": true
+                        },
                         {"title": ddmm.translate("renderer.tab_options.list.link_storage"), "id": "storage"}
                     ]
                 },
@@ -143,6 +174,9 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
     "computed": {
         "installFolder": function () {
             return ddmm.config.readConfigValue("installFolder");
+        },
+        "isLoggedIn": function () {
+            return !!firebase.auth().currentUser;
         }
     },
     "methods": {
@@ -186,11 +220,16 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
         },
         "systemBordersEnabled": function () {
             return ddmm.config.readConfigValue("systemBorders");
-        }
-    },
-    "mounted": function () {
-        if (!this.selected_option) {
-            this.selected_option = this.menu[0].contents[0].id;
+        },
+        "refreshSaves": function () {
+            this.cloudsaves = getSaves();
+        },
+        "formatSize": function (size) {
+            if (!size) return "0 bytes";
+            return Math.floor(size / 1024) + " KiB";
+        },
+        "getSaves": function () {
+            return getSaves();
         }
     }
 });

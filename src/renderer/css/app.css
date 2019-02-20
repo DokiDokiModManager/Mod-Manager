@@ -444,4 +444,13 @@ input:focus, textarea:focus {
   display: none;
 }
 
+table {
+  width: 100%;
+}
+
+td, th {
+  padding: 0.25em;
+  text-align: center;
+}
+
 /*# sourceMappingURL=app.css.map */

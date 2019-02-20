@@ -192,6 +192,9 @@
         "header_appearance": "Appearance",
         "link_background": "Background",
         "link_advanced_appearance": "Advanced",
+        "header_account": "Account",
+        "link_cloudsaves": "Cloud Saves",
+        "link_accmanagement": "Account Management",
         "header_enhancements": "Enhancements",
         "link_sdk": "Achievements & SDK",
         "link_discord": "Discord",
@@ -213,6 +216,15 @@
         "subtitle": "Find other interface options here.",
         "button_enable_sysborders": "Use System Borders (requires restart)",
         "button_disable_sysborders": "Disable System Borders (requires restart)"
+      },
+      "section_cloudsaves": {
+        "title": "Cloud Save Management",
+        "subtitle": "Manage your cloud save data.",
+        "table_header_name": "Save Name",
+        "table_header_size": "Size",
+        "table_header_options": "Options",
+        "button_rename": "Rename",
+        "button_delete": "Delete"
       },
       "section_storage": {
         "title": "Storage Location",
