@@ -142,7 +142,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                     <p>
                         <select v-model="install_creation.cloudsave">
                             <option value="" selected>{{_("renderer.tab_mods.install_creation.option_new_cloudsave")}}</option>
-                            <optgroup :label="_('renderer.tab_mods.install_creation.label_existing_saves')">
+                            <optgroup :label="_('renderer.tab_mods.install_creation.label_existing_saves')" v-if="getSaveFiles()">
                                 <option v-for="save in getSaveFiles()" :value="save.filename">{{save.display}}</option>
                             </optgroup>
                         </select>
@@ -453,6 +453,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             }
         },
         "getSaveFiles": function () {
+            if (!saves) return;
             return Object.keys(saves).map(filename => {
                 return {
                     filename: filename,

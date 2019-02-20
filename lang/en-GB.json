@@ -220,6 +220,7 @@
       "section_cloudsaves": {
         "title": "Cloud Save Management",
         "subtitle": "Manage your cloud save data.",
+        "description_no_saves": "You don't have any cloud saves yet. To create a new cloud save file, install a mod with the Cloud Save option.",
         "table_header_name": "Save Name",
         "table_header_size": "Size",
         "table_header_options": "Options",

@@ -42,7 +42,7 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
                 
                 <br>
                 
-                <table>
+                <table v-if="getSaves()">
                     <thead>
                         <tr><th>{{_("renderer.tab_options.section_cloudsaves.table_header_name")}}</th><th>{{_("renderer.tab_options.section_cloudsaves.table_header_size")}}</th><th>{{_("renderer.tab_options.section_cloudsaves.table_header_options")}}</th></tr>   
                     </thead>
@@ -54,6 +54,8 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
                         </tr>
                     </tbody>
                 </table>
+                
+                <p v-else><strong>{{_("renderer.tab_options.section_cloudsaves.description_no_saves")}}</strong></p>
             </div>
             <div v-else-if="selected_option === 'updates'">
                 <h1>{{_("renderer.tab_options.section_updates.title")}}</h1>
@@ -247,7 +249,7 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
                 callback: (confirm) => {
                     if (confirm) {
                         firebase.database().ref("/saves/" + firebase.auth().currentUser.uid + "/" + filename).remove();
-                        firebase.storage().ref("/userdata/" + firebase.auth().currentUser.uid + "/" + filename).remove();
+                        firebase.storage().ref("/userdata/" + firebase.auth().currentUser.uid + "/" + filename).delete();
                     }
                 }
             });

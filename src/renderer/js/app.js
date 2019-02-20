@@ -259,6 +259,20 @@ function getSaves() {
     return saves;
 }
 
+function updateSaves() {
+    firebase.database().ref("/saves/" + firebase.auth().currentUser.uid).once("value").then(data => {
+        saves = data.val();
+        for (let fn in saves) {
+            if (saves.hasOwnProperty(fn)) {
+                firebase.storage().ref("/userdata/" + firebase.auth().currentUser.uid + "/" + fn + ".zip").getMetadata().then(meta => {
+                    saves[fn].size = meta.size;
+                    app.$children[0].$forceUpdate();
+                });
+            }
+        }
+    });
+}
+
 function setupSyncHandler() {
     if (!firebase.auth().currentUser) return;
     const preferencesRef = firebase.database().ref("preferences/" + firebase.auth().currentUser.uid);
@@ -276,20 +290,6 @@ function setupSyncHandler() {
 
     savelockRef.on("value", data => {
         saveLocks = data.val();
-    });
-
-    const savesRef = firebase.database().ref("/saves/" + firebase.auth().currentUser.uid);
-
-    savesRef.on("value", data => {
-        saves = data.val();
-        for (let fn in saves) {
-            if (saves.hasOwnProperty(fn)) {
-                firebase.storage().ref("/userdata/" + firebase.auth().currentUser.uid + "/" + fn + ".zip").getMetadata().then(meta => {
-                    saves[fn].size = meta.size;
-                    app.$children[0].$forceUpdate();
-                });
-            }
-        }
     });
 }
 
@@ -345,6 +345,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     ready = true;
     if (user) {
         setupSyncHandler();
+        updateSaves();
     }
     app.$forceUpdate();
     app.$children[0].$forceUpdate();
@@ -385,6 +386,7 @@ ddmm.on("upload save", data => {
     fetch(data.localURL).then(res => res.blob()).then(blob => {
         firebase.storage().ref("/userdata/" + firebase.auth().currentUser.uid + "/" + data.filename + ".zip").put(blob).then(() => {
             firebase.database().ref("savelock/" + firebase.auth().currentUser.uid + "/" + data.filename).set(0);
+            updateSaves();
         });
     });
 });
