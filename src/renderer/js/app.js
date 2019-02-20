@@ -332,12 +332,10 @@ function getSaveURL(filename) {
 
 function logout() {
     firebase.auth().signOut();
-    app.$forceUpdate();
 }
 
 ddmm.on("auth handoff", url => {
     firebase.auth().signInWithEmailLink(localStorage.getItem("email"), url).then(res => {
-        app.$forceUpdate();
         console.log(res);
     });
 });
@@ -348,6 +346,8 @@ firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         setupSyncHandler();
     }
+    app.$forceUpdate();
+    app.$children[0].$forceUpdate();
 });
 
 ddmm.on("logout", () => {
