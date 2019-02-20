@@ -249,7 +249,7 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
                 callback: (confirm) => {
                     if (confirm) {
                         firebase.database().ref("/saves/" + firebase.auth().currentUser.uid + "/" + filename).remove();
-                        firebase.storage().ref("/userdata/" + firebase.auth().currentUser.uid + "/" + filename).delete();
+                        firebase.storage().ref("/userdata/" + firebase.auth().currentUser.uid + "/" + filename + ".zip").delete();
                     }
                 }
             });

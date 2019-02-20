@@ -33,6 +33,11 @@
         </p>
     </div>
 
+    <div class="cover" v-if="syncing_save" :style="{'background-image': backgroundImageStyle}">
+        <h1>{{_("renderer.sync_overlay.title")}}</h1>
+        <p>{{_("renderer.sync_overlay.description")}}</p>
+    </div>
+
     <div class="cover crash" v-if="crash_cover.display" :style="{'background-image': backgroundImageCrashStyle}">
         <h1>{{crash_cover.title}}</h1>
         <p>{{crash_cover.description}}</p>

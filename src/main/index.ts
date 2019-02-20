@@ -119,6 +119,13 @@ function getCloudSaveData(folderName: string): Promise<{url: string, name: strin
  * @param folderName The folder containing the install
  */
 async function launchInstall(folderName): Promise<void> {
+    appWindow.webContents.send("running cover", {
+        display: true,
+        dismissable: false,
+        title: lang.translate("main.running_cover.title_running"),
+        description: lang.translate("main.running_cover.description_running"),
+        folder_path: joinPath(Config.readConfigValue("installFolder"), "installs", folderName)
+    });
     let lockTimer: Timeout;
     Config.saveConfigValue("lastLaunchedInstall", folderName);
     appWindow.minimize(); // minimise the window to draw attention to the fact another window will be appearing
@@ -132,13 +139,6 @@ async function launchInstall(folderName): Promise<void> {
     if (saveData && saveData.url) {
         await InstallSync.installSaveData(folderName, saveData.url);
     }
-    appWindow.webContents.send("running cover", {
-        display: true,
-        dismissable: false,
-        title: lang.translate("main.running_cover.title_running"),
-        description: lang.translate("main.running_cover.description_running"),
-        folder_path: joinPath(Config.readConfigValue("installFolder"), "installs", folderName)
-    });
     InstallLauncher.launchInstall(folderName, richPresence).then(() => {
         appWindow.restore(); // show DDMM again
         appWindow.focus();

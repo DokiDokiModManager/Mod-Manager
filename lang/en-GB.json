@@ -44,6 +44,10 @@
       "button_open": "Open Link",
       "button_close": "Close"
     },
+    "sync_overlay": {
+      "title": "Synchronising your save data...",
+      "description": "Please be patient. If you have a lot of save states, this may take up to several minutes."
+    },
     "onboarding": {
       "title": "Welcome!",
       "description_download": "Let's find a copy of DDLC.",

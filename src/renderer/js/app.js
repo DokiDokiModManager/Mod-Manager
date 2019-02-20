@@ -20,6 +20,7 @@ const app = new Vue({
         "tab": "mods",
         "system_borders": ddmm.config.readConfigValue("systemBorders"),
         "dropping_mod": false,
+        "syncing_save": false,
         "announcement": {
             "active": false,
             "title": "",
@@ -382,11 +383,16 @@ ddmm.on("get save url", fn => {
 });
 
 ddmm.on("upload save", data => {
+    app.syncing_save = true;
     if (!firebase.auth().currentUser) { return; }
     fetch(data.localURL).then(res => res.blob()).then(blob => {
         firebase.storage().ref("/userdata/" + firebase.auth().currentUser.uid + "/" + data.filename + ".zip").put(blob).then(() => {
+            app.syncing_save = false;
             firebase.database().ref("savelock/" + firebase.auth().currentUser.uid + "/" + data.filename).set(0);
             updateSaves();
+        }).catch(err => {
+            // TODO: handle error
+            app.syncing_save = false;
         });
     });
 });
