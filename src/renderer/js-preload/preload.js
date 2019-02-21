@@ -56,6 +56,7 @@ api.mods.download = function (url) {
     ipcRenderer.send("download mod", url);
 };
 
+
 // Fires an event on the DDMM object when the mod list has been retrieved
 ipcRenderer.on("got modlist", (ev, list) => {
     api.emit("mod list", list);
@@ -90,6 +91,11 @@ api.app.showFile = function (path) {
 // Crash the app, for testing
 api.app.crash = function () {
     ipcRenderer.send("debug crash");
+};
+
+// Get disk space
+api.app.getDiskSpace = function () {
+    return ipcRenderer.sendSync("disk space");
 };
 
 // Localisation function

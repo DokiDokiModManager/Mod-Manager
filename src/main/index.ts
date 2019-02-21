@@ -38,6 +38,7 @@ import OnboardingManager from "./onboarding/OnboardingManager";
 import {readFileSync, unlinkSync} from "fs";
 import InstallSync from "./cloud/InstallSync";
 import Timeout = NodeJS.Timeout;
+import {checkSync, DiskUsage} from "diskusage";
 
 const DISCORD_ID = "453299645725016074";
 
@@ -414,6 +415,12 @@ ipcMain.on("get backgrounds", (ev: IpcMessageEvent) => {
 // Crash for debugging
 ipcMain.on("debug crash", () => {
     throw new Error("User forced debug crash with DevTools")
+});
+
+// Disk space check
+ipcMain.on("disk space", (ev: IpcMessageEvent) => {
+    const usage: DiskUsage = checkSync(Config.readConfigValue("installFolder"));
+    ev.returnValue = usage.free;
 });
 
 // endregion

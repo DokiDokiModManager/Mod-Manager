@@ -108,70 +108,76 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             <div v-else-if="selected_item.type === 'create'">
                 <h1>{{_("renderer.tab_mods.install_creation.title")}}</h1>
                 
-                <p></p>
+                <template v-if="hasFreeSpace">
                 
-                <div class="form-group">
-                    <p><label>{{_("renderer.tab_mods.install_creation.label_install_name")}}</label></p>
-                    <p><input type="text" :placeholder="_('renderer.tab_mods.install_creation.label_install_name')" v-model="install_creation.install_name" @keyup="generateInstallFolderName"></p>
-                </div>
-                
-                <div class="form-group">
-                    <p><label>{{_("renderer.tab_mods.install_creation.label_folder_name")}}</label></p>
-                    <p><input type="text" :placeholder="_('renderer.tab_mods.install_creation.label_folder_name')" v-model="install_creation.folder_name"></p>
-                </div>
-                
-                <p v-if="!is_installing && install_creation.folder_name.length > 2 && installExists(install_creation.folder_name)">
-                    <strong>{{_("renderer.tab_mods.install_creation.status_exists")}}</strong>
-                </p>
-                
-                <div class="form-group">
-                    <p><label><input type="checkbox" v-model="install_creation.has_mod"> {{_("renderer.tab_mods.install_creation.label_has_mod")}}</label></p>
-                </div>
-                
-                <div class="form-group" v-if="install_creation.has_mod">
-                    <p><label>{{_("renderer.tab_mods.install_creation.label_mod")}}</label></p>
-                    <p><input type="text" :placeholder="_('renderer.tab_mods.install_creation.description_mod')" v-model="install_creation.mod" readonly @click="installCreationSelectMod" style="cursor: pointer;"></p>
-                </div>
-                
-                <div class="form-group">
-                    <p><label><input type="checkbox" v-model="install_creation.has_cloudsave"> {{_("renderer.tab_mods.install_creation.label_has_cloudsave")}}</label></p>
-                </div>
-                
-                <div class="form-group" v-if="install_creation.has_cloudsave">
-                    <p><label>{{_("renderer.tab_mods.install_creation.label_cloudsave")}}</label></p>
-                    <p>
-                        <select v-model="install_creation.cloudsave">
-                            <option value="" selected>{{_("renderer.tab_mods.install_creation.option_new_cloudsave")}}</option>
-                            <optgroup :label="_('renderer.tab_mods.install_creation.label_existing_saves')" v-if="getSaveFiles()">
-                                <option v-for="save in getSaveFiles()" :value="save.filename">{{save.display}}</option>
-                            </optgroup>
-                        </select>
-                    </p>
-                </div>
-                
-                <div class="form-group" v-if="!install_creation.has_cloudsave">
-                    <p><label><input type="checkbox" v-model="install_creation.global_save"> {{_("renderer.tab_mods.install_creation.label_global_save")}}</label></p>
-                </div>
-                
-                <p>
-                    <strong>{{_("renderer.tab_mods.install_creation.header_summary")}}</strong>
-                    <br>
-                    <template v-if="install_creation.has_mod">
-                        <span v-if="install_creation.has_cloudsave">{{_("renderer.tab_mods.install_creation.description_modded_cloudsave")}}</span>
-                        <span v-else-if="install_creation.global_save">{{_("renderer.tab_mods.install_creation.description_modded_global_save")}}</span>
-                        <span v-else>{{_("renderer.tab_mods.install_creation.description_modded")}}</span>
-                    </template>
-                    <template v-else>
-                        <span v-if="install_creation.has_cloudsave">{{_("renderer.tab_mods.install_creation.description_vanilla_cloudsave")}}</span>
-                        <span v-else-if="install_creation.global_save">{{_("renderer.tab_mods.install_creation.description_vanilla_global_save")}}</span>
-                        <span v-else>{{_("renderer.tab_mods.install_creation.description_vanilla")}}</span>
-                    </template>
+                    <div class="form-group">
+                        <p><label>{{_("renderer.tab_mods.install_creation.label_install_name")}}</label></p>
+                        <p><input type="text" :placeholder="_('renderer.tab_mods.install_creation.label_install_name')" v-model="install_creation.install_name" @keyup="generateInstallFolderName"></p>
+                    </div>
                     
-                </p>
+                    <div class="form-group">
+                        <p><label>{{_("renderer.tab_mods.install_creation.label_folder_name")}}</label></p>
+                        <p><input type="text" :placeholder="_('renderer.tab_mods.install_creation.label_folder_name')" v-model="install_creation.folder_name"></p>
+                    </div>
+                    
+                    <p v-if="!is_installing && install_creation.folder_name.length > 2 && installExists(install_creation.folder_name)">
+                        <strong>{{_("renderer.tab_mods.install_creation.status_exists")}}</strong>
+                    </p>
+                    
+                    <div class="form-group">
+                        <p><label><input type="checkbox" v-model="install_creation.has_mod"> {{_("renderer.tab_mods.install_creation.label_has_mod")}}</label></p>
+                    </div>
+                    
+                    <div class="form-group" v-if="install_creation.has_mod">
+                        <p><label>{{_("renderer.tab_mods.install_creation.label_mod")}}</label></p>
+                        <p><input type="text" :placeholder="_('renderer.tab_mods.install_creation.description_mod')" v-model="install_creation.mod" readonly @click="installCreationSelectMod" style="cursor: pointer;"></p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <p><label><input type="checkbox" v-model="install_creation.has_cloudsave"> {{_("renderer.tab_mods.install_creation.label_has_cloudsave")}}</label></p>
+                    </div>
+                    
+                    <div class="form-group" v-if="install_creation.has_cloudsave">
+                        <p><label>{{_("renderer.tab_mods.install_creation.label_cloudsave")}}</label></p>
+                        <p>
+                            <select v-model="install_creation.cloudsave">
+                                <option value="" selected>{{_("renderer.tab_mods.install_creation.option_new_cloudsave")}}</option>
+                                <optgroup :label="_('renderer.tab_mods.install_creation.label_existing_saves')" v-if="getSaveFiles()">
+                                    <option v-for="save in getSaveFiles()" :value="save.filename">{{save.display}}</option>
+                                </optgroup>
+                            </select>
+                        </p>
+                    </div>
+                    
+                    <div class="form-group" v-if="!install_creation.has_cloudsave">
+                        <p><label><input type="checkbox" v-model="install_creation.global_save"> {{_("renderer.tab_mods.install_creation.label_global_save")}}</label></p>
+                    </div>
+                    
+                    <p>
+                        <strong>{{_("renderer.tab_mods.install_creation.header_summary")}}</strong>
+                        <br>
+                        <template v-if="install_creation.has_mod">
+                            <span v-if="install_creation.has_cloudsave">{{_("renderer.tab_mods.install_creation.description_modded_cloudsave")}}</span>
+                            <span v-else-if="install_creation.global_save">{{_("renderer.tab_mods.install_creation.description_modded_global_save")}}</span>
+                            <span v-else>{{_("renderer.tab_mods.install_creation.description_modded")}}</span>
+                        </template>
+                        <template v-else>
+                            <span v-if="install_creation.has_cloudsave">{{_("renderer.tab_mods.install_creation.description_vanilla_cloudsave")}}</span>
+                            <span v-else-if="install_creation.global_save">{{_("renderer.tab_mods.install_creation.description_vanilla_global_save")}}</span>
+                            <span v-else>{{_("renderer.tab_mods.install_creation.description_vanilla")}}</span>
+                        </template>
+                        
+                    </p>
+                    
+                    <div v-if="is_installing" class="form-group"><button class="primary" disabled><i class="fas fa-spinner fa-spin fa-fw"></i> {{_("renderer.tab_mods.install_creation.button_installing")}}</button></div>
+                    
+                    <div v-else class="form-group"><button class="primary" @click="createInstallSubmit" :disabled="shouldDisableCreation"><i class="fas fa-bolt fa-fw"></i> {{_("renderer.tab_mods.install_creation.button_install")}}</button></div>
+                    
+                </template>
                 
-                <div v-if="is_installing" class="form-group"><button class="primary" disabled><i class="fas fa-spinner fa-spin fa-fw"></i> {{_("renderer.tab_mods.install_creation.button_installing")}}</button></div>
-                
-                <div v-else class="form-group"><button class="primary" @click="createInstallSubmit" :disabled="shouldDisableCreation"><i class="fas fa-bolt fa-fw"></i> {{_("renderer.tab_mods.install_creation.button_install")}}</button></div>
+                <template v-else>
+                    <p>{{_("renderer.tab_mods.install_creation.warning_no_space")}}</p>
+                </template>
             </div>
         </div>
     </div>
@@ -476,6 +482,9 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
         },
         "searchResultsInstalls": function () {
             return this.search.length > 0 ? this._fuseInstalls.search(this.search) : this.installs;
+        },
+        "hasFreeSpace": function () {
+            return ddmm.app.getDiskSpace() > 2147483648; // 2 GiB
         }
     },
     "mounted": function () {
