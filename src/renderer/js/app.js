@@ -236,6 +236,15 @@ let saves = {};
 
 const LOCK_TIMEOUT = 60000; // 1 minute
 
+function testConnection() {
+    return fetch("http://google.com/generate_204").then(res => {
+        if (res.status !== 204) {
+            console.warn("Client is probably behind a captive portal. Status code: " + res.status);
+            throw new Error();
+        }
+    });
+}
+
 function isSaveLocked(filename) {
     if (!saveLocks[filename]) return false;
     return (Date.now() - saveLocks[filename]) < LOCK_TIMEOUT;
@@ -319,15 +328,19 @@ function getLoggedInUsername() {
 
 function getSaveURL(filename) {
     return new Promise((ff, rj) => {
-        if (!firebase.auth().currentUser) {
-            rj();
-        } else {
-            firebase.storage().ref("/userdata/" + firebase.auth().currentUser.uid + "/" + filename + ".zip").getDownloadURL().then(filename => {
-                ff(filename)
-            }).catch(err => {
-                rj(err);
-            });
-        }
+        testConnection().then(() => {
+            if (!firebase.auth().currentUser) {
+                rj();
+            } else {
+                firebase.storage().ref("/userdata/" + firebase.auth().currentUser.uid + "/" + filename + ".zip").getDownloadURL().then(filename => {
+                    ff(filename)
+                }).catch(err => {
+                    rj(err);
+                });
+            }
+        }).catch(() => {
+            rj(null);
+        });
     })
 }
 
@@ -384,16 +397,27 @@ ddmm.on("get save url", fn => {
 
 ddmm.on("upload save", data => {
     app.syncing_save = true;
-    if (!firebase.auth().currentUser) { return; }
-    fetch(data.localURL).then(res => res.blob()).then(blob => {
-        firebase.storage().ref("/userdata/" + firebase.auth().currentUser.uid + "/" + data.filename + ".zip").put(blob).then(() => {
-            app.syncing_save = false;
-            firebase.database().ref("/savelock/" + firebase.auth().currentUser.uid + "/" + data.filename).set(0);
-            updateSaves();
-        }).catch(err => {
-            // TODO: handle error
-            app.syncing_save = false;
+    testConnection().then(() => {
+        if (!firebase.auth().currentUser) { return; }
+        fetch(data.localURL).then(res => res.blob()).then(blob => {
+            firebase.storage().ref("/userdata/" + firebase.auth().currentUser.uid + "/" + data.filename + ".zip").put(blob).then(() => {
+                app.syncing_save = false;
+                firebase.database().ref("/savelock/" + firebase.auth().currentUser.uid + "/" + data.filename).set(0);
+                updateSaves();
+            }).catch(err => {
+               rj(err);
+            });
         });
+    }).catch(err => {
+        app.syncing_save = false;
+        app.crash_cover.display = true;
+        app.crash_cover.title = ddmm.translate("renderer.error_sync.title");
+        app.crash_cover.description = ddmm.translate("renderer.error_sync.body");
+        app.crash_cover.fatal = false;
+        app.crash_cover.stacktrace = err.toString();
+        // TODO: PREVENT SAVE FROM BEING OVERWRITTEN!
+        // set a flag on the install
+        // prompt to select cloud save or local save
     });
 });
 

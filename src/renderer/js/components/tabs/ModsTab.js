@@ -271,12 +271,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             const installData = this.installs.find(i => i.folderName === install);
             if (!installData) return;
             if (installData.cloudSave) {
-                fetch("http://google.com/generate_204").then(res => {
-                    if (res.status !== 204) {
-                        console.warn("Client is probably behind a captive portal. Status code: " + res.status);
-                        throw new Error();
-                    }
-                }).then(() => {
+                testConnection().then(() => {
                     if (isSaveLocked(installData.cloudSave)) {
                         ddmm.window.prompt({
                             title: ddmm.translate("renderer.tab_mods.launch_lock_confirmation.message"),

@@ -74,6 +74,10 @@
       "button_affirmative": "Change",
       "button_negative": "Cancel"
     },
+    "error_sync": {
+      "title": "Save data sync failed",
+      "body": "Your local save data is still safe, and will be uploaded next time you start playing."
+    },
     "tab_mods": {
       "list": {
         "placeholder_search": "Search mods...",

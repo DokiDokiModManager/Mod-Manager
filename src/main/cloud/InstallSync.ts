@@ -59,6 +59,7 @@ export default class InstallSync {
                     ff();
                 });
             }).on("error", err => {
+                console.warn(err);
                 rj(err);
             });
         });
