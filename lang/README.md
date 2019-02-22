@@ -4,9 +4,9 @@ Thanks for your interest in helping Doki Doki Mod Manager support more languages
 
 ## How to translate
 
-## i18n Manager
+### i18n Manager
 
-If you point [i18n Manager](https://github.com/gilmarsquinelato/i18n-manager/releases) at the `lang` folder, it should work out of the box.
+If you `git clone` or [download](https://github.com/DokiDokiModManager/Mod-Manager/archive/master.zip) the repo, then point [i18n Manager](https://github.com/gilmarsquinelato/i18n-manager/releases) at the `lang` folder, it should work out of the box.
 
 ### Translating - the basics
 
@@ -23,17 +23,15 @@ them. Here's a small sample from the English (UK) translation file.
 
 ```json
 {
-    "toolbar": {
-        "button_get_mods": "Get Mods",
-        "button_mod_library": "Mod Library",
-        "button_feedback": "Feedback",
-        "button_settings": "Settings",
-        "button_about": "About",
-        "button_debug_crash": "Debug Crash",
-        "button_devtools": "DevTools",
-        "button_inference": "Inference",
-        "button_ui_kit": "UI Kit"
+  "renderer": {
+    "tabs": {
+      "tab_home": "Home",
+      "tab_mods": "Mods",
+      "tab_store": "Store",
+      "tab_options": "Options",
+      "tab_about": "About"
     }
+  }
 }
  ```
  
@@ -41,18 +39,18 @@ The only parts you need to worry about are the key-value pairs - these are the a
 the second value in quotes. For example:
 
 ```
-"button_get_mods": "Get Mods"
+"tab_options": "Options"
 ```
 
 could go to
 
 ```
-"button_get_mods": "My translation here"
+"tab_options": "Einstellungen"
 ```  
 
-Don't change the translation key (in this case `button_get_mods`) as this may cause problems.
+Don't change the translation key (in this case `button_get_mods`) as this ~~may~~ **will** cause problems.
 
-In some cases you may need to put double quotes in your translated text. If this is the case, they must be "escaped" with a backslash.
+In some cases you may need to put double quotes in your translated text. If this is the case, they **must** be "escaped" with a backslash.
 
 ```
 "some_translation": "My \"translation\" here"
@@ -68,6 +66,12 @@ You may notice that some strings have numbers in curly brackets like this: `{0}`
 
 In this case, the first placeholder (`{0}`) represents a file that is being downloaded, and the second (`{1}`) represents the
 percentage downloaded.
+
+This particular string might be displayed as:
+
+```
+Downloading filename.zip - 50% complete
+```
 
 ### Guidelines
 
