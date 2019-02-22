@@ -206,6 +206,7 @@
         "header_application": "Application",
         "link_updates": "Updates",
         "link_storage": "Storage Location",
+        "link_language": "Language",
         "header_developers": "Developers",
         "link_testing": "SDK Debug",
         "link_debug": "App Info"
@@ -247,6 +248,12 @@
         "option_stable": "Stable",
         "option_beta": "Beta",
         "button_check": "Check for updates"
+      },
+      "section_language": {
+        "title": "Language",
+        "subtitle": "Choose your preferred language.",
+        "description_restart": "Changes will take effect after restarting Doki Doki Mod Manager.",
+        "label_language": "Language"
       },
       "section_sdk": {
         "title": "Achievements & SDK",

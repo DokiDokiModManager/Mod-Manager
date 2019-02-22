@@ -5,7 +5,7 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
         <div class="mod-viewer-mod-list">
             <template v-for="section in menu">
                 <div class="mod-view-mod-list-title">{{section.header}}</div>
-                <div v-for="item in section.contents" :class="{'mod-view-mod-list-entry': true, 'active': selected_option === item.id, 'hide-appx': item.hideAppx}" @click="selectOption(item.id)">{{item.title}}</div>
+                <div v-for="item in section.contents" :class="{'mod-view-mod-list-entry': true, 'active': selected_option === item.id, 'hide-appx': item.hideAppx}" @click="selectOption(item.id)"><span>{{item.title}}</span></div>
                 <br>
             </template>
         </div>
@@ -75,6 +75,21 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
                 <br>
                 <button class="primary" @click="moveInstall"><i class="fas fa-folder-open fa-fw"></i> {{_("renderer.tab_options.section_storage.button_change")}}</button>
             </div>
+            <div v-else-if="selected_option === 'language'">
+                <h1>{{_("renderer.tab_options.section_language.title")}}</h1>
+                <p>{{_("renderer.tab_options.section_language.subtitle")}}</p>
+                <br>
+                <p><strong>{{_("renderer.tab_options.section_language.description_restart")}}</strong></p>
+                <div class="form-group">
+                    <p><label>{{_("renderer.tab_options.section_language.label_language")}}</label></p>
+                    <p>
+                        <select v-model="language_interim" @change="setLanguage">
+                            <option value="en-GB">English (United Kingdom)</option>
+                            <option value="es-419">Español (Latinoamérica)</option>
+                        </select>
+                   </p>
+                </div>
+            </div>
             <div v-else-if="selected_option === 'sdk'">
                 <h1>{{_("renderer.tab_options.section_sdk.title")}}</h1>
                 <p>{{_("renderer.tab_options.section_sdk.subtitle")}}</p>
@@ -121,6 +136,7 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
             "sdk_mode_interim": ddmm.config.readConfigValue("sdkMode"),
             "release_channel_interim": ddmm.config.readConfigValue("updateChannel"),
             "cloudsaves": {},
+            "language_interim": ddmm.config.readConfigValue("language"),
             "menu": [
                 {
                     "header": ddmm.translate("renderer.tab_options.list.header_appearance"),
@@ -147,7 +163,8 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
                             "id": "updates",
                             "hideAppx": true
                         },
-                        {"title": ddmm.translate("renderer.tab_options.list.link_storage"), "id": "storage"}
+                        {"title": ddmm.translate("renderer.tab_options.list.link_storage"), "id": "storage"},
+                        {"title": ddmm.translate("renderer.tab_options.list.link_language"), "id": "language"}
                     ]
                 },
                 {
@@ -256,6 +273,9 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
                     }
                 }
             });
+        },
+        "setLanguage": function () {
+            ddmm.config.saveConfigValue("language", this.language_interim);
         }
     },
     "mounted": function () {
