@@ -30,9 +30,9 @@ const app = new Vue({
         "tabs": [
             {"id": "mods", "name": ddmm.translate("renderer.tabs.tab_mods"), "component": "ddmm-mods-tab"},
             {
-                "id": "store",
-                "name": ddmm.translate("renderer.tabs.tab_store"),
-                "component": "ddmm-store-placeholder-tab"
+                "id": "sayonika",
+                "name": ddmm.translate("renderer.tabs.tab_sayonika"),
+                "component": "ddmm-sayonika-tab"
             },
             {"id": "options", "name": ddmm.translate("renderer.tabs.tab_options"), "component": "ddmm-options-tab"},
             {"id": "about", "name": ddmm.translate("renderer.tabs.tab_about"), "component": "ddmm-about-tab"}
@@ -277,6 +277,9 @@ function updateSaves() {
                 firebase.storage().ref("/userdata/" + firebase.auth().currentUser.uid + "/" + fn + ".zip").getMetadata().then(meta => {
                     saves[fn].size = meta.size;
                     app.$children[0].$forceUpdate();
+                }).catch(() => {
+                    saves[fn].size = 0;
+                    app.$children[0].$forceUpdate();
                 });
             }
         }
@@ -398,14 +401,23 @@ ddmm.on("get save url", fn => {
 ddmm.on("upload save", data => {
     app.syncing_save = true;
     testConnection().then(() => {
-        if (!firebase.auth().currentUser) { return; }
+        if (!firebase.auth().currentUser) {
+            return;
+        }
         fetch(data.localURL).then(res => res.blob()).then(blob => {
             firebase.storage().ref("/userdata/" + firebase.auth().currentUser.uid + "/" + data.filename + ".zip").put(blob).then(() => {
                 app.syncing_save = false;
                 firebase.database().ref("/savelock/" + firebase.auth().currentUser.uid + "/" + data.filename).set(0);
                 updateSaves();
             }).catch(err => {
-               rj(err);
+                app.syncing_save = false;
+                app.crash_cover.display = true;
+                app.crash_cover.title = ddmm.translate("renderer.error_sync.title");
+                app.crash_cover.description = ddmm.translate("renderer.error_sync.body");
+                app.crash_cover.fatal = false;
+                app.crash_cover.stacktrace = err.message;
+                // ddmm.mods.setSyncErrorFlag("");
+                // TODO both error handlers
             });
         });
     }).catch(err => {
@@ -414,19 +426,21 @@ ddmm.on("upload save", data => {
         app.crash_cover.title = ddmm.translate("renderer.error_sync.title");
         app.crash_cover.description = ddmm.translate("renderer.error_sync.body");
         app.crash_cover.fatal = false;
-        app.crash_cover.stacktrace = err.toString();
-        // TODO: PREVENT SAVE FROM BEING OVERWRITTEN!
-        // set a flag on the install
-        // prompt to select cloud save or local save
+        app.crash_cover.stacktrace = err.message;
+        // ddmm.mods.setSyncErrorFlag("");
     });
 });
 
 ddmm.on("lock save", fn => {
-    if (!firebase.auth().currentUser) { return; }
+    if (!firebase.auth().currentUser) {
+        return;
+    }
     firebase.database().ref("/savelock/" + firebase.auth().currentUser.uid + "/" + fn).set(Date.now());
 });
 
 ddmm.on("unlock save", fn => {
-    if (!firebase.auth().currentUser) { return; }
+    if (!firebase.auth().currentUser) {
+        return;
+    }
     firebase.database().ref("/savelock/" + firebase.auth().currentUser.uid + "/" + fn).set(0);
 });
