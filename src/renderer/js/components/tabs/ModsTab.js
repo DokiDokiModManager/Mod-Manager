@@ -215,8 +215,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             if (this.selected_item.type === "create") return;
             this.install_creation.install_name = "";
             this.install_creation.folder_name = "";
-            this.install_creation.global_save = false;
-            this.install_creation.has_cloudsave = false;
+            this.install_creation.save_option = 0;
             this.install_creation.cloudsave = "";
             this.selectItem("", "create");
         },
@@ -333,7 +332,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
 
             let cloudSave = null;
 
-            if (this.install_creation.has_cloudsave && this.install_creation.cloudsave === "") {
+            if (this.install_creation.save_option === 2 && this.install_creation.cloudsave === "") {
                 cloudSave = createCloudSave(this.install_creation.install_name);
             } else {
                 cloudSave = this.install_creation.cloudsave;
@@ -342,8 +341,8 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             ddmm.mods.createInstall({
                 folderName: this.install_creation.folder_name,
                 installName: this.install_creation.install_name,
-                globalSave: (!this.install_creation.has_cloudsave ? this.install_creation.global_save : false),
-                cloudSave: (this.install_creation.has_cloudsave ? cloudSave : null),
+                globalSave: this.install_creation.save_option === 1,
+                cloudSave: (this.install_creation.save_option === 2 ? cloudSave : null),
                 mod: (this.install_creation.has_mod ? this.install_creation.mod : null)
             });
             ddmm.once("install list", () => {
