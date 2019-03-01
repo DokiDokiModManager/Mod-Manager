@@ -6,7 +6,7 @@
     <title>Doki Doki Mod Manager</title>
 
     <link rel="stylesheet" href="../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../../../lib/renderer/css/app.css">
 </head>
 <body>
 <div id="app" :class="['os-'+system_platform, appx ? 'is-appx': 'is-standard']"
@@ -146,6 +146,7 @@
 <script src="../../../node_modules/firebase/firebase-storage.js"></script>
 <script src="../../../node_modules/fuse.js/dist/fuse.min.js"></script>
 <script src="../../../node_modules/vue/dist/vue.js"></script>
+<script src="../js/components/ChunkyRadioButtons.js"></script>
 <script src="../js/components/OnboardingOverlay.js"></script>
 <script src="../js/components/DropOverlay.js"></script>
 <script src="../js/components/tabs/ModsTab.js"></script>

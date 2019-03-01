@@ -134,11 +134,26 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                     </div>
                     
                     <div class="form-group">
-                        <p><label><input type="checkbox" v-model="install_creation.has_cloudsave"> {{_("renderer.tab_mods.install_creation.label_has_cloudsave")}}</label></p>
+                        <ddmm-chunky-radio-buttons :options="[_('renderer.tab_mods.install_creation.option_local_save'), _('renderer.tab_mods.install_creation.option_global_save'), _('renderer.tab_mods.install_creation.option_cloudsave')]" v-model="install_creation.save_option"></ddmm-chunky-radio-buttons>
                     </div>
                     
-                    <div class="form-group" v-if="install_creation.has_cloudsave">
+                    <div v-if="install_creation.save_option === 2">
+                        <p>{{_("renderer.tab_mods.install_creation.description_cloudsave")}}</p>
+                    </div>
+                    
+                    <div v-else-if="install_creation.save_option === 1">
+                        <p>{{_("renderer.tab_mods.install_creation.description_global_save")}}</p>
+                        <br>
+                        <p><strong>{{_("renderer.tab_mods.install_creation.warning_global_save")}}</strong></p>
+                    </div>
+                    
+                    <div v-else>
+                        <p>{{_("renderer.tab_mods.install_creation.description_local_save")}}</p>
+                    </div>
+                    
+                    <div class="form-group" v-if="install_creation.save_option === 2">
                         <p><label>{{_("renderer.tab_mods.install_creation.label_cloudsave")}}</label></p>
+                        
                         <p>
                             <select v-model="install_creation.cloudsave">
                                 <option value="" selected>{{_("renderer.tab_mods.install_creation.option_new_cloudsave")}}</option>
@@ -148,26 +163,6 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                             </select>
                         </p>
                     </div>
-                    
-                    <div class="form-group" v-if="!install_creation.has_cloudsave">
-                        <p><label><input type="checkbox" v-model="install_creation.global_save"> {{_("renderer.tab_mods.install_creation.label_global_save")}}</label></p>
-                    </div>
-                    
-                    <p>
-                        <strong>{{_("renderer.tab_mods.install_creation.header_summary")}}</strong>
-                        <br>
-                        <template v-if="install_creation.has_mod">
-                            <span v-if="install_creation.has_cloudsave">{{_("renderer.tab_mods.install_creation.description_modded_cloudsave")}}</span>
-                            <span v-else-if="install_creation.global_save">{{_("renderer.tab_mods.install_creation.description_modded_global_save")}}</span>
-                            <span v-else>{{_("renderer.tab_mods.install_creation.description_modded")}}</span>
-                        </template>
-                        <template v-else>
-                            <span v-if="install_creation.has_cloudsave">{{_("renderer.tab_mods.install_creation.description_vanilla_cloudsave")}}</span>
-                            <span v-else-if="install_creation.global_save">{{_("renderer.tab_mods.install_creation.description_vanilla_global_save")}}</span>
-                            <span v-else>{{_("renderer.tab_mods.install_creation.description_vanilla")}}</span>
-                        </template>
-                        
-                    </p>
                     
                     <div v-if="is_installing" class="form-group"><button class="primary" disabled><i class="fas fa-spinner fa-spin fa-fw"></i> {{_("renderer.tab_mods.install_creation.button_installing")}}</button></div>
                     
@@ -195,10 +190,9 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
             "install_creation": {
                 "install_name": "",
                 "folder_name": "",
-                "global_save": false,
                 "has_mod": false,
                 "mod": "",
-                "has_cloudsave": false,
+                "save_option": 0,
                 "cloudsave": ""
             },
             "search": "",

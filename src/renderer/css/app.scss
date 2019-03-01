@@ -489,3 +489,28 @@ td, th {
   text-align: center;
 }
 // endregion
+
+// chunky radio buttons
+
+.chunky-radio-buttons {
+  border: 1px solid $ui-text-colour;
+  border-radius: 3px;
+  display: flex;
+}
+
+.chunky-button {
+  flex-grow: 1;
+  padding: 0.5em;
+  border-collapse: collapse;
+  border-right: 1px solid $ui-text-colour;
+  text-align: center;
+}
+
+.chunky-button.active {
+  background-color: $ui-text-colour;
+  color: $ui-background-colour;
+}
+
+.chunky-button:last-child {
+  border-right: none;
+}

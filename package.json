@@ -3,17 +3,20 @@
   "productName": "Doki Doki Mod Manager",
   "description": "Mod Manager for Doki Doki Literature Club",
   "author": "u/zuudo",
-  "version": "3.2.1",
+  "version": "3.3.0",
   "homepage": "https://doki.space",
   "license": "MIT",
   "main": "lib/main/index.js",
   "repository": "https://github.com/DokiDokiModManager/Mod-Manager",
   "bugs": "zudo@doki.space",
   "scripts": {
-    "start": "tsc && electron . --enable-sandbox",
-    "start-dev": "tsc && electron --inspect=5858 . --enable-sandbox",
-    "release": "tsc && electron-builder",
-    "test": "tsc && mocha"
+    "build-css": "node-sass src/renderer/css --output lib/renderer/css",
+    "build-typescript": "tsc",
+    "build-all": "yarn build-css && yarn build-typescript",
+    "start": "yarn build-all && electron . --enable-sandbox",
+    "start-dev": "yarn build-all && electron --inspect=5858 . --enable-sandbox",
+    "release": "yarn build-all && electron-builder",
+    "test": "yarn build-all && mocha"
   },
   "dependencies": {
     "7zip-bin": "^4.1.0",
@@ -39,7 +42,8 @@
     "electron-builder": "^20.38.5",
     "electron-rebuild": "^1.8.4",
     "mocha": "^6.0.0",
-    "typescript": "^3.2.2"
+    "typescript": "^3.2.2",
+    "node-sass": "^4.11.0"
   },
   "build": {
     "appId": "space.doki.modmanager",

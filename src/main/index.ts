@@ -484,7 +484,6 @@ function checkForUpdate() {
     if (isAppx) return; // don't update if windows store
     showUpdating("checking");
     autoUpdater.checkForUpdatesAndNotify().then(update => {
-        console.log(update);
         if (update && semver.gt(update.updateInfo.version, app.getVersion())) {
             showUpdating("available");
         } else {
