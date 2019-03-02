@@ -92,7 +92,7 @@ function showError(title: string, body: string, stacktrace: string, fatal: boole
     appWindow.setClosable(true);
 }
 
-function getCloudSaveData(folderName: string): Promise<{url: string, name: string}> {
+function getCloudSaveData(folderName: string): Promise<{ url: string, name: string }> {
     return new Promise((ff, rj) => {
         const installDataFile: string = joinPath(Config.readConfigValue("installFolder"), "installs", folderName, "install.json");
         let installData: any;
@@ -130,7 +130,7 @@ async function launchInstall(folderName): Promise<void> {
     let lockTimer: Timeout;
     Config.saveConfigValue("lastLaunchedInstall", folderName);
     appWindow.minimize(); // minimise the window to draw attention to the fact another window will be appearing
-    const saveData: {url: string, name: string} = await getCloudSaveData(folderName);
+    const saveData: { url: string, name: string } = await getCloudSaveData(folderName);
     if (saveData) {
         appWindow.webContents.send("lock save", saveData.name);
         lockTimer = setInterval(() => {
