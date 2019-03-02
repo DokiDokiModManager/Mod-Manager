@@ -1,19 +1,15 @@
-$ui-background-colour: #111;
-$ui-text-colour: #ddd;
-$ui-highlight-text-colour: #fff;
-$ui-muted-text-colour: #aaa;
-$ui-primary-colour-bg: #bb5599;
-$ui-secondary-colour-bg: #999;
-$ui-dark-colour-bg: #1e1e1e;
-$ui-danger-colour-bg: #eb4d4b;
-$ui-warning-colour-bg: #f0932b;
-$ui-success-colour-bg: #6ab04c;
-
-$ui-highlight-gradient: linear-gradient(315deg, rgba(187, 85, 153, 0.5), rgba(73, 50, 64, 0.5));
-
-@import "fonts";
-
-// region Overrides
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Open Sans Bold"), local("OpenSans-Bold"), url(../../../src/renderer/fonts/OpenSans-Bold.ttf);
+}
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Open Sans Regular"), local("OpenSans-Regular"), url(../../../src/renderer/fonts/OpenSans-Regular.ttf);
+}
 * {
   box-sizing: border-box;
 }
@@ -31,8 +27,8 @@ html, body, #app {
 }
 
 body {
-  background-color: $ui-background-colour;
-  color: $ui-text-colour;
+  background-color: #111;
+  color: #ddd;
 }
 
 .app {
@@ -48,11 +44,8 @@ body {
   border-radius: 3px;
 }
 
-// endregion
-
-// region Navbar / titlebar
 .titlebar {
-  color: $ui-highlight-text-colour;
+  color: #fff;
   -webkit-app-region: drag;
   text-align: right;
   padding: 0.5em;
@@ -66,13 +59,12 @@ body {
   font-size: 1.25em;
 }
 
-// macOS adjust title position
 .os-darwin .app-title {
   padding-left: 100px;
 }
 
 .navbar {
-  color: $ui-highlight-text-colour;
+  color: #fff;
   display: flex;
   flex-shrink: 0;
 }
@@ -96,20 +88,19 @@ body {
   height: 100%;
   padding: 0.5em;
   -webkit-app-region: no-drag;
-  color: $ui-muted-text-colour;
+  color: #aaa;
   transition: color 0.25s, text-shadow 0.25s;
 }
 
 .nav-links div:hover {
-  color: $ui-highlight-text-colour;
+  color: #fff;
 }
 
 .nav-links div.active {
-  color: $ui-highlight-text-colour;
+  color: #fff;
   text-shadow: 0 0 10px #fff;
 }
 
-// macOS hide buttons
 .os-darwin .window-buttons {
   visibility: hidden;
 }
@@ -120,7 +111,7 @@ body {
   right: 0;
   top: 0;
   display: flex;
-  color: $ui-text-colour;
+  color: #ddd;
   font-weight: bold;
   padding: 0.5em;
   -webkit-app-region: no-drag;
@@ -132,26 +123,21 @@ body {
 }
 
 .window-buttons div:hover {
-  color: $ui-highlight-text-colour;
+  color: #fff;
 }
 
 @keyframes draw-attention {
   from {
     color: white;
   }
-
   to {
     color: red;
   }
 }
-
 .window-button-draw-attention {
   animation: draw-attention 1s infinite alternate;
 }
 
-// endregion
-
-// region Content
 #app {
   display: flex;
   flex-direction: column;
@@ -181,7 +167,7 @@ p {
 }
 
 a {
-  color: $ui-text-colour;
+  color: #ddd;
   text-decoration: none;
   font-weight: bold;
   -webkit-app-region: no-drag;
@@ -195,14 +181,11 @@ a .fab {
 .tag {
   font-size: 0.5em;
   padding: 0.1em 0.25em;
-  background-color: $ui-text-colour;
+  background-color: #ddd;
   color: #000;
   border-radius: 3px;
 }
 
-// endregion
-
-// region Mod list
 .mod-viewer-pane {
   display: flex;
   height: 100%;
@@ -228,7 +211,7 @@ a .fab {
   padding: 0.25em 0.25em 0;
   font-weight: bold;
   text-transform: uppercase;
-  color: $ui-muted-text-colour;
+  color: #aaa;
 }
 
 .mod-view-mod-list-entry {
@@ -247,7 +230,7 @@ a .fab {
 }
 
 .mod-view-mod-list-entry span:hover {
-  color: $ui-highlight-text-colour;
+  color: #fff;
 }
 
 .mod-view-mod-list-entry span:not(.mod-view-mod-list-entry-button) {
@@ -268,12 +251,12 @@ a .fab {
 }
 
 .mod-view-mod-list-entry.disabled {
-  color: $ui-muted-text-colour !important;
+  color: #aaa !important;
 }
 
 .mod-view-mod-list-entry.active {
-  background-image: $ui-highlight-gradient;
-  color: $ui-highlight-text-colour;
+  background-image: linear-gradient(315deg, rgba(187, 85, 153, 0.5), rgba(73, 50, 64, 0.5));
+  color: #fff;
 }
 
 .screenshots {
@@ -293,13 +276,9 @@ a .fab {
   -webkit-user-drag: none;
 }
 
-// endregion
-
-// region buttons
-
 button {
   font-family: "Open Sans", sans-serif;
-  color: $ui-highlight-text-colour;
+  color: #fff;
   user-select: none;
   display: inline-block;
   text-decoration: none;
@@ -318,73 +297,70 @@ button.huge {
 }
 
 button.primary {
-  background-color: $ui-primary-colour-bg;
+  background-color: #bb5599;
 }
 
 button.primary:hover {
-  background-color: darken($ui-primary-colour-bg, 10%);
+  background-color: #9e3f7e;
 }
 
 button.secondary {
-  background-color: lighten($ui-background-colour, 10%);
-  color: $ui-text-colour;
+  background-color: #2b2b2b;
+  color: #ddd;
 }
 
 button.secondary:hover {
-  background-color: lighten($ui-background-colour, 5%);
+  background-color: #1e1e1e;
 }
 
 button.dark {
-  background-color: $ui-dark-colour-bg;
+  background-color: #1e1e1e;
 }
 
 button.dark:hover {
-  background-color: darken($ui-dark-colour-bg, 10%);
+  background-color: #050505;
 }
 
 button.danger {
-  background-color: $ui-danger-colour-bg;
+  background-color: #eb4d4b;
 }
 
 button.danger:hover {
-  background-color: darken($ui-danger-colour-bg, 10%);
+  background-color: #e6201d;
 }
 
 button.warning {
-  background-color: $ui-warning-colour-bg;
+  background-color: #f0932b;
 }
 
 button.warning:hover {
-  background-color: darken($ui-warning-colour-bg, 10%);
+  background-color: #d97a0f;
 }
 
 button.success {
-  background-color: $ui-success-colour-bg;
+  background-color: #6ab04c;
 }
 
 button.success:hover {
-  background-color: darken($ui-success-colour-bg, 10%);
+  background-color: #558c3d;
 }
 
 button[disabled], button[disabled]:hover {
-  background-color: $ui-muted-text-colour;
-  color: $ui-text-colour;
+  background-color: #aaa;
+  color: #ddd;
 }
 
-// endregion
-
-// region inputs
 .form-group {
   margin-top: 1em;
   margin-bottom: 1em;
 }
 
-input[type="text"], input[type="number"], input[type="url"], textarea, select {
+input[type=text], input[type=number], input[type=url], textarea, select {
   font-family: "Open Sans", sans-serif;
   border-radius: 3px;
   background-color: rgba(0, 0, 0, 0.5);
-  border: 2px solid $ui-dark-colour-bg;
-  color: $ui-text-colour;
+  border: 2px solid #1e1e1e;
+  color: #ddd;
   font-weight: normal;
   min-width: 350px;
   padding: 0.5em 1em;
@@ -400,12 +376,9 @@ input.small {
 }
 
 input:focus, textarea:focus {
-  border-color: $ui-muted-text-colour;
+  border-color: #aaa;
 }
 
-// endregion
-
-// region running and crash covers
 .cover {
   position: fixed;
   top: 0;
@@ -414,7 +387,7 @@ input:focus, textarea:focus {
   height: 100vh;
   z-index: 100;
   background-size: cover;
-  color: $ui-text-colour;
+  color: #ddd;
   padding: 3em;
 }
 
@@ -430,9 +403,6 @@ input:focus, textarea:focus {
   font-size: 1.25em;
 }
 
-// endregion
-
-// region progress bar
 .progress {
   width: 100%;
   padding: 0;
@@ -443,14 +413,11 @@ input:focus, textarea:focus {
   padding: 0;
   margin: 0;
   height: 16px;
-  background-image: $ui-highlight-gradient;
+  background-image: linear-gradient(315deg, rgba(187, 85, 153, 0.5), rgba(73, 50, 64, 0.5));
   transition: width 0.5s;
   border-radius: 3px;
 }
 
-// endregion
-
-// region Drag and drop overlay
 .drop-overlay {
   position: fixed;
   top: 0;
@@ -473,13 +440,10 @@ input:focus, textarea:focus {
   pointer-events: none;
 }
 
-// endregion
-
 .is-appx .hide-appx {
   display: none;
 }
 
-// region tables
 table {
   width: 100%;
 }
@@ -488,12 +452,9 @@ td, th {
   padding: 0.25em;
   text-align: center;
 }
-// endregion
-
-// chunky radio buttons
 
 .chunky-radio-buttons {
-  border: 1px solid $ui-text-colour;
+  border: 1px solid #ddd;
   border-radius: 3px;
   display: flex;
 }
@@ -502,15 +463,17 @@ td, th {
   flex-grow: 1;
   padding: 0.5em;
   border-collapse: collapse;
-  border-right: 1px solid $ui-text-colour;
+  border-right: 1px solid #ddd;
   text-align: center;
 }
 
 .chunky-button.active {
-  background-color: $ui-text-colour;
-  color: $ui-background-colour;
+  background-color: #ddd;
+  color: #111;
 }
 
 .chunky-button:last-child {
   border-right: none;
 }
+
+/*# sourceMappingURL=app.css.map */

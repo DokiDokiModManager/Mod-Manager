@@ -12,9 +12,12 @@
   "scripts": {
     "build-css": "node-sass src/renderer/css --output lib/renderer/css",
     "build-typescript": "tsc",
-    "build-all": "yarn build-css && yarn build-typescript",
+    "build-renderer": "webpack --mode=production",
+    "build-renderer-dev": "webpack --mode=development",
+    "build-all-dev": "yarn build-css && yarn build-typescript && yarn build-renderer-dev",
+    "build-all": "yarn build-css && yarn build-typescript && yarn build-renderer",
     "start": "yarn build-all && electron . --enable-sandbox",
-    "start-dev": "yarn build-all && electron --inspect=5858 . --enable-sandbox",
+    "start-dev": "yarn build-all-dev && electron --inspect=5858 . --enable-sandbox",
     "release": "yarn build-all && electron-builder",
     "test": "yarn build-all && mocha"
   },
@@ -34,7 +37,7 @@
     "fuse.js": "^3.4.2",
     "request": "^2.88.0",
     "semver": "^5.6.0",
-    "vue": "^2.5.17"
+    "vue": "^2.6.8"
   },
   "devDependencies": {
     "@sentry/cli": "^1.36.4",
@@ -42,8 +45,12 @@
     "electron-builder": "^20.38.5",
     "electron-rebuild": "^1.8.4",
     "mocha": "^6.0.0",
+    "node-sass": "^4.11.0",
     "typescript": "^3.2.2",
-    "node-sass": "^4.11.0"
+    "vue-loader": "^15.7.0",
+    "vue-template-compiler": "^2.6.8",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3"
   },
   "build": {
     "appId": "space.doki.modmanager",
