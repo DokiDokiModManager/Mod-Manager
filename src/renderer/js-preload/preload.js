@@ -36,8 +36,6 @@ api.mods.browseForMod = function () {
 
 // Launches an install
 api.mods.launchInstall = function (folderName) {
-    if (!ready) return;
-
     ipcRenderer.send("launch install", folderName);
 };
 
@@ -69,7 +67,6 @@ ipcRenderer.on("got installs", (ev, list) => {
 
 // Fires an event when the running cover should be shown / hidden
 ipcRenderer.on("running cover", (ev, data) => {
-    console.log("Running cover updated", data);
     api.emit("running cover", data);
 });
 

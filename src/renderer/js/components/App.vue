@@ -5,12 +5,18 @@
         <Titlebar :app_name="app_name" :app_version="app_version" :system_borders="system_borders"/>
         <component
                 :is="tab"
+                :installs="installs"
+                :mods="mods"
+                :installs_search="installs_search"
+                :mods_search="mods_search"
         ></component>
         <Navbar :tabs="tabs" @tab="setTab"></Navbar>
     </div>
 </template>
 
 <script>
+    import * as Fuse from "fuse.js";
+
     import Titlebar from "./Titlebar.vue";
     import Navbar from "./Navbar.vue";
     import ModsTab from "./tabs/ModsTab.vue";
@@ -18,7 +24,7 @@
     export default {
         name: "App",
         components: {Navbar, Titlebar, ModsTab},
-        data: function () {
+        data () {
             return {
                 // app / system meta
                 app_name: "Doki Doki Mod Manager",
@@ -40,17 +46,25 @@
                     {
                         id: "store",
                         name: ddmm.translate("renderer.tabs.tab_store"),
-                        component: "ddmm-store-placeholder-tab"
+                        component: ""
                     },
                     {
                         id: "options",
                         name: ddmm.translate("renderer.tabs.tab_options"),
-                        component: "ddmm-options-tab"},
+                        component: ""
+                    },
                     {
                         id: "about",
                         name: ddmm.translate("renderer.tabs.tab_about"),
-                        component: "ddmm-about-tab"}
-                ]
+                        component: ""
+                    }
+                ],
+
+                // mod and installs
+                installs: [],
+                mods: [],
+                installs_search: null,
+                mods_search: null
             }
         },
         computed: {
@@ -65,7 +79,33 @@
         methods: {
             setTab: function (tab) {
                 this.tab = tab.component;
+            },
+            _refreshInstalls: function (installs) {
+                this.installs = installs;
+                this.installs_search = new Fuse(installs, {
+                    shouldSort: true,
+                    threshold: 0.5,
+                    keys: ["name", "folderName", "mod.name"]
+                });
+            },
+            _refreshMods: function (mods) {
+                this.mods = mods;
+                this.mods_search = new Fuse(mods, {
+                    shouldSort: true,
+                    threshold: 0.5,
+                    keys: ["filename"]
+                });
             }
+        },
+        mounted () {
+            ddmm.on("install list", this._refreshInstalls);
+            ddmm.on("mod list", this._refreshMods);
+            ddmm.mods.refreshInstallList();
+            ddmm.mods.refreshModList();
+        },
+        destroyed() {
+            ddmm.off("install list", this._refreshInstalls);
+            ddmm.off("mod list", this._refreshMods);
         }
     }
 </script>

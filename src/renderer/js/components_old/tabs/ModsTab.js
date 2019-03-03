@@ -36,143 +36,13 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
         </div>
         <div class="mod-viewer-mod-display">
             <div v-if="selected_item.type === 'install' && selectedInstall">
-                <h1>{{selectedInstall.name}}  <span class="tag" v-if="selectedInstall.cloudSave">{{_("renderer.tab_mods.install.tag_cloud")}}</span> <span class="tag" v-if="selectedInstall.globalSave">{{_("renderer.tab_mods.install.tag_global_save")}}</span> <span class="tag" v-if="selectedInstall.mod && selectedInstall.mod.uses_sdk">{{_("renderer.tab_mods.install.tag_sdk")}}</span></h1>
-                <p>{{getPathToInstall(selectedInstall.folderName)}} <a href="javascript:;" @click="openFolder(getPathToInstall(selectedInstall.folderName))"  :title="_('renderer.tab_mods.mod.description_external')"><i class="fas fa-external-link-alt"></i></a></p>              
                 
-                <br>
-                
-                <p>
-                    <button class="success" @click="launchInstall(selectedInstall.folderName)"><i class="fas fa-play fa-fw"></i> {{_("renderer.tab_mods.install.button_launch")}}</button>
-                    <button class="secondary" @click="handleInstallSettingsClick(selectedInstall.folderName, selectedInstall.name, $event)"><i class="fas fa-cog fa-fw"></i> {{_("renderer.tab_mods.install.button_settings")}}</button>
-                </p>
-                
-                <br>
-                 
-                <template v-if="selectedInstall.mod">                                    
-                    <h2>{{selectedInstall.mod.name}}</h2>
-                    <p><strong>{{_("renderer.tab_mods.install.description_author", selectedInstall.mod.author)}}</strong></p>
-                    <br>
-                    <p>{{selectedInstall.mod.description}}</p>
-                    
-                    <template v-if="selectedInstall.mod.website || selectedInstall.mod.discord">
-                        <br>
-                        
-                        <p v-if="selectedInstall.mod.website"><a href="javascript:;" @click="openURL(selectedInstall.mod.website)"><i class="fas fa-fw fa-globe"></i> {{_("renderer.tab_mods.install.link_website", selectedInstall.mod.website)}}</a></p>
-                        <p v-if="selectedInstall.mod.discord"><a href="javascript:;" @click="openURL('https://discord.gg/' + selectedInstall.mod.discord)"><i class="fab fa-fw fa-discord"></i> {{_("renderer.tab_mods.install.link_discord", "discord.gg/" + selectedInstall.mod.discord)}}</a></p>
-                    </template>
-                    
-                    <br>
-                </template>
-                
-                <h2 v-if="selectedInstall.screenshots.length > 1">{{_("renderer.tab_mods.install.title_screenshots", selectedInstall.screenshots.length)}}</h2>
-                <h2 v-else-if="selectedInstall.screenshots.length === 1">{{_("renderer.tab_mods.install.title_screenshots_one")}}</h2>
-                <h2 v-else>{{_("renderer.tab_mods.install.title_screenshots_none")}}</h2>
-                <p>{{_("renderer.tab_mods.install.description_screenshots")}}</p>
-                
-                <br>
-                
-                <div class="screenshots" v-if="selectedInstall.screenshots.length > 0">
-                    <!--suppress RequiredAttributes, HtmlRequiredAltAttribute -->
-                    <img v-for="img in selectedInstall.screenshots" :alt="img" :src="getURLToScreenshot(selectedInstall.folderName, img)" @click="openScreenshot(selectedInstall.folderName, img)" width="150">
-                </div>
-                
-                <template v-if="selectedInstall.achievements">                                    
-                    <h2>{{_("renderer.tab_mods.install.title_achievements", selectedInstall.achievements.filter(a => a.earned).length, selectedInstall.achievements.length)}}</h2>
-                    <p v-if="selectedInstall.achievements.filter(a => a.earned).length < selectedInstall.achievements.length">{{_("renderer.tab_mods.install.description_achievements")}}</p>
-                    <p v-else>{{_("renderer.tab_mods.install.description_achievements_complete")}}</p>
-                    
-                    <template v-for="achievement in selectedInstall.achievements">
-                        <br>
-                        
-                        <div :style="{'color': !achievement.earned ? '#777' : 'inherit'}">
-                            <p><strong>{{achievement.name}}</strong></p>
-                            <p>{{achievement.description}}</p>
-                        </div>
-                        
-                    </template>
-                    
-                    <br>
-                </template>
             </div>
             <div v-else-if="selected_item.type === 'mod'">
-                <h1>{{selected_item.id}}</h1>
-                <p>{{getPathToMod(selected_item.id)}} <a href="javascript:;" @click="openFolder(getPathToMod(selected_item.id))" :title="_('renderer.tab_mods.mod.description_external')"><i class="fas fa-external-link-alt"></i></a></p>
                 
-                <br>
-                
-                <p>
-                    <button class="success" @click="showCreateInstall(getPathToMod(selected_item.id))"><i class="fas fa-bolt fa-fw"></i>  {{_("renderer.tab_mods.mod.button_install")}}</button>
-                    <button class="secondary" @click="handleModSettingsClick(selected_item.id, $event)"><i class="fas fa-cog fa-fw"></i>  {{_("renderer.tab_mods.mod.button_settings")}}</button>
-                </p>
             </div>
             <div v-else-if="selected_item.type === 'create'">
-                <h1>{{_("renderer.tab_mods.install_creation.title")}}</h1>
                 
-                <template v-if="hasFreeSpace">
-                
-                    <div class="form-group">
-                        <p><label>{{_("renderer.tab_mods.install_creation.label_install_name")}}</label></p>
-                        <p><input type="text" :placeholder="_('renderer.tab_mods.install_creation.label_install_name')" v-model="install_creation.install_name" @keyup="generateInstallFolderName"></p>
-                    </div>
-                    
-                    <div class="form-group">
-                        <p><label>{{_("renderer.tab_mods.install_creation.label_folder_name")}}</label></p>
-                        <p><input type="text" :placeholder="_('renderer.tab_mods.install_creation.label_folder_name')" v-model="install_creation.folder_name"></p>
-                    </div>
-                    
-                    <p v-if="!is_installing && install_creation.folder_name.length > 2 && installExists(install_creation.folder_name)">
-                        <strong>{{_("renderer.tab_mods.install_creation.status_exists")}}</strong>
-                    </p>
-                    
-                    <div class="form-group">
-                        <p><label><input type="checkbox" v-model="install_creation.has_mod"> {{_("renderer.tab_mods.install_creation.label_has_mod")}}</label></p>
-                    </div>
-                    
-                    <div class="form-group" v-if="install_creation.has_mod">
-                        <p><label>{{_("renderer.tab_mods.install_creation.label_mod")}}</label></p>
-                        <p><input type="text" :placeholder="_('renderer.tab_mods.install_creation.description_mod')" v-model="install_creation.mod" readonly @click="installCreationSelectMod" style="cursor: pointer;"></p>
-                    </div>
-                    
-                    <div class="form-group">
-                        <ddmm-chunky-radio-buttons :options="[_('renderer.tab_mods.install_creation.option_local_save'), _('renderer.tab_mods.install_creation.option_global_save'), _('renderer.tab_mods.install_creation.option_cloudsave')]" v-model="install_creation.save_option"></ddmm-chunky-radio-buttons>
-                    </div>
-                    
-                    <div v-if="install_creation.save_option === 2">
-                        <p>{{_("renderer.tab_mods.install_creation.description_cloudsave")}}</p>
-                    </div>
-                    
-                    <div v-else-if="install_creation.save_option === 1">
-                        <p>{{_("renderer.tab_mods.install_creation.description_global_save")}}</p>
-                        <br>
-                        <p><strong>{{_("renderer.tab_mods.install_creation.warning_global_save")}}</strong></p>
-                    </div>
-                    
-                    <div v-else>
-                        <p>{{_("renderer.tab_mods.install_creation.description_local_save")}}</p>
-                    </div>
-                    
-                    <div class="form-group" v-if="install_creation.save_option === 2">
-                        <p><label>{{_("renderer.tab_mods.install_creation.label_cloudsave")}}</label></p>
-                        
-                        <p>
-                            <select v-model="install_creation.cloudsave">
-                                <option value="" selected>{{_("renderer.tab_mods.install_creation.option_new_cloudsave")}}</option>
-                                <optgroup :label="_('renderer.tab_mods.install_creation.label_existing_saves')" v-if="getSaveFiles()">
-                                    <option v-for="save in getSaveFiles()" :value="save.filename">{{save.display}}</option>
-                                </optgroup>
-                            </select>
-                        </p>
-                    </div>
-                    
-                    <div v-if="is_installing" class="form-group"><button class="primary" disabled><i class="fas fa-spinner fa-spin fa-fw"></i> {{_("renderer.tab_mods.install_creation.button_installing")}}</button></div>
-                    
-                    <div v-else class="form-group"><button class="primary" @click="createInstallSubmit" :disabled="shouldDisableCreation"><i class="fas fa-bolt fa-fw"></i> {{_("renderer.tab_mods.install_creation.button_install")}}</button></div>
-                    
-                </template>
-                
-                <template v-else>
-                    <p>{{_("renderer.tab_mods.install_creation.warning_no_space")}}</p>
-                </template>
             </div>
         </div>
     </div>
@@ -403,31 +273,31 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 return;
             }
             // Handles key press events for installs / mods
-            if (this.selectedInstall) {
+            if (this.install) {
                 if (e.key === "Enter") {
-                    this.launchInstall(this.selectedInstall.folderName);
+                    this.launchInstall(this.install.folderName);
                 } else if (e.key === "F2") {
                     ddmm.window.input({
                         title: ddmm.translate("renderer.tab_mods.rename_input.message"),
-                        description: ddmm.translate("renderer.tab_mods.rename_input.details", this.selectedInstall.name),
+                        description: ddmm.translate("renderer.tab_mods.rename_input.details", this.install.name),
                         button_affirmative: ddmm.translate("renderer.tab_mods.rename_input.button_affirmative"),
                         button_negative: ddmm.translate("renderer.tab_mods.rename_input.button_negative"),
                         callback: (newName) => {
                             if (newName) {
-                                ddmm.mods.renameInstall(this.selectedInstall.folderName, newName);
+                                ddmm.mods.renameInstall(this.install.folderName, newName);
                             }
                         }
                     });
                 } else if (e.key === "Delete") {
                     ddmm.window.prompt({
                         title: ddmm.translate("renderer.tab_mods.uninstall_confirmation.message"),
-                        description: ddmm.translate("renderer.tab_mods.uninstall_confirmation.details", this.selectedInstall.name),
+                        description: ddmm.translate("renderer.tab_mods.uninstall_confirmation.details", this.install.name),
                         affirmative_style: "danger",
                         button_affirmative: ddmm.translate("renderer.tab_mods.uninstall_confirmation.button_affirmative"),
                         button_negative: ddmm.translate("renderer.tab_mods.uninstall_confirmation.button_negative"),
                         callback: (uninstall) => {
                             if (uninstall) {
-                                ddmm.mods.deleteInstall(this.selectedInstall.folderName);
+                                ddmm.mods.deleteInstall(this.install.folderName);
                                 ddmm.emit("create install");
                             }
                         }
@@ -441,7 +311,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
                 }
             }
         },
-        "_searchEscapeHandler": function (e) {
+        "searchEscapeHandler": function (e) {
             if (e.key === "Escape") {
                 this.search = "";
             }
@@ -457,7 +327,7 @@ const ModsTab = Vue.component("ddmm-mods-tab", {
         }
     },
     "computed": {
-        "selectedInstall": function () {
+        "install": function () {
             return this.installs.find(i => i.folderName === this.selected_item.id);
         },
         "shouldDisableCreation": function () {

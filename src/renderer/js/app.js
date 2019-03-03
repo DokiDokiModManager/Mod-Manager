@@ -2,7 +2,7 @@ import Vue from "vue";
 
 import App from "./components/App.vue";
 
-const app = new Vue(App).$mount("#app-mount");
+new Vue(App).$mount("#app-mount");
 
 // import * as firebase from "firebase/app";
 //

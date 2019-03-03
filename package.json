@@ -10,14 +10,17 @@
   "repository": "https://github.com/DokiDokiModManager/Mod-Manager",
   "bugs": "zudo@doki.space",
   "scripts": {
+    "postinstall": "electron-rebuild",
+    "watch-css": "node-sass src/renderer/css --output lib/renderer/css --watch",
+    "watch-typescript": "tsc --watch",
+    "watch-renderer": "webpack --mode=development --watch",
+    "watch": "concurrently \"npm:watch-*\"",
     "build-css": "node-sass src/renderer/css --output lib/renderer/css",
     "build-typescript": "tsc",
     "build-renderer": "webpack --mode=production",
-    "build-renderer-dev": "webpack --mode=development",
-    "build-all-dev": "yarn build-css && yarn build-typescript && yarn build-renderer-dev",
     "build-all": "yarn build-css && yarn build-typescript && yarn build-renderer",
     "start": "yarn build-all && electron . --enable-sandbox",
-    "start-dev": "yarn build-all-dev && electron --inspect=5858 . --enable-sandbox",
+    "start-dev": "concurrently -k \"npm:watch\" \"electron --inspect=5858 . --enable-sandbox\"",
     "release": "yarn build-all && electron-builder",
     "test": "yarn build-all && mocha"
   },
@@ -41,6 +44,7 @@
   },
   "devDependencies": {
     "@sentry/cli": "^1.36.4",
+    "concurrently": "^4.1.0",
     "electron": "^4.0.5",
     "electron-builder": "^20.38.5",
     "electron-rebuild": "^1.8.4",
