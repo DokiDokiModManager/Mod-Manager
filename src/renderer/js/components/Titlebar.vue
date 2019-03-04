@@ -2,8 +2,7 @@
     <div class="titlebar">
         <div class="app-title">
             <span>{{app_name}}</span>
-            <small>v{{app_version}} (<a href="javascript:;"
-                                        @click="openURL('https://help.doki.space/changelog/v' + app_version.replace(/\./g, '_'))">{{_("renderer.version.link_changelog")}}</a>)
+            <small>v{{app_version}} (<Link :to="'https://help.doki.space/changelog/v' + app_version.replace(/\./g, '_')">{{_("renderer.version.link_changelog")}}</Link>)
             </small>
         </div>
         <div class="window-buttons">
@@ -19,8 +18,10 @@
     </div>
 </template>
 <script>
+    import Link from "./elements/Link.vue";
     export default {
         name: 'Titlebar',
+        components: {Link},
         props: ["app_name", "app_version", "system_borders"],
         methods: {
             _: ddmm.translate,

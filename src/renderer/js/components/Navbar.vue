@@ -10,7 +10,7 @@
     export default {
         name: "Navbar",
         props: ["tabs"],
-        data: function () {
+            data: function () {
             return {
                 tab: this.tabs[0].id
             }
