@@ -58,6 +58,7 @@
 </template>
 
 <script>
+
     import InstallView from "./mods/InstallView.vue";
     import ModView from "./mods/ModView.vue";
     import CreationView from "./mods/CreationView.vue";
@@ -68,7 +69,6 @@
     export default {
         name: "ModsTab",
         components: {CreationView, ModView, InstallView},
-        props: ["installs", "mods", "installs_search", "mods_search"],
         methods: {
             // helper methods
             _: ddmm.translate,
@@ -122,11 +122,21 @@
             };
         },
         computed: {
+            installs() {
+                return this.$store.state.game_data.installs;
+            },
+
+            mods() {
+                return this.$store.state.game_data.mods;
+            },
+
             searchResultsInstalls() {
-                return this.search.length > 0 ? this.installs_search.search(this.search) : this.installs;
+                return this.installs || [];
+                // return this.search.length > 0 ? this.installs_search.search(this.search) : this.installs;
             },
             searchResultsMods() {
-                return this.search.length > 0 ? this.mods_search.search(this.search) : this.mods;
+                return this.mods || [];
+                // return this.search.length > 0 ? this.mods_search.search(this.search) : this.mods;
             },
 
             selectedInstall() {

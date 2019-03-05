@@ -24,16 +24,12 @@
 </template>
 
 <script>
-    import Logger from "../../../utils/Logger";
-
     export default {
         name: "BackgroundOptions",
         methods: {
             _: ddmm.translate,
             setBackground(background) {
-                Logger.info("Background", "Set background image to " + background);
-                ddmm.config.saveConfigValue("background", background);
-                this.$root.background_image = background; // force the background to refresh
+                this.$store.commit("ui_preferences", {background});
             }
         },
         data() {
