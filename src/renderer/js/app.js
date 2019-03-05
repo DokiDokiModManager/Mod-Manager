@@ -23,9 +23,10 @@ Vue.use(Vuex);
 // noinspection JSValidateTypes
 const store = new Vuex.Store({
     state: {
-        ui_preferences: {
+        options: {
             background: ddmm.config.readConfigValue("background"),
-            system_borders: ddmm.config.readConfigValue("systemBorders")
+            system_borders: ddmm.config.readConfigValue("systemBorders"),
+            sdk_mode: ddmm.config.readConfigValue("sdkMode")
         },
         game_data: {
             installs: [],
@@ -33,37 +34,32 @@ const store = new Vuex.Store({
         }
     },
     mutations: {
-        ui_preferences(state, payload) {
-            Logger.info("UI Preferences", "Updated UI preferences: " + JSON.stringify(payload));
+        options(state, payload) {
+            Logger.info("Options", "Updated options: " + JSON.stringify(payload));
 
             if (payload.hasOwnProperty("background")) {
                 ddmm.config.saveConfigValue("background", payload.background);
-                state.ui_preferences.background = payload.background;
+                state.options.background = payload.background;
             }
 
             if (payload.hasOwnProperty("system_borders")) {
                 ddmm.config.saveConfigValue("systemBorders", payload.system_borders);
-                state.ui_preferences.system_borders = payload.system_borders;
+                state.options.system_borders = payload.system_borders;
+            }
+
+            if (payload.hasOwnProperty("sdk_mode")) {
+                ddmm.config.saveConfigValue("sdkMode", payload.sdk_mode);
+                state.options.sdk_mode = payload.sdk_mode;
             }
         },
         load_installs(state, payload) {
-            state.installs = payload;
+            state.game_data.installs = payload;
         },
         load_mods(state, payload) {
-            state.mods = payload;
+            state.game_data.mods = payload;
         }
     },
     strict: ddmm.env.NODE_ENV !== 'production'
-});
-
-ddmm.on("install list", installs => {
-    Logger.info("Install List", "Got a list of " + installs.length + " installs");
-    store.commit("load_installs", installs);
-});
-
-ddmm.on("mod list", mods => {
-    Logger.info("Mod List", "Got a list of " + mods.length + " mods");
-    store.commit("load_mods", mods);
 });
 
 // hacky way to enable Vuex injection without using runtime compiled templates
@@ -76,4 +72,14 @@ Object.assign(App, {
 new Vue(App).$mount("#app-mount").$nextTick(() => {
     ddmm.mods.refreshInstallList();
     ddmm.mods.refreshModList();
+});
+
+ddmm.on("install list", installs => {
+    Logger.info("Install List", "Got a list of " + installs.length + " installs");
+    store.commit("load_installs", installs);
+});
+
+ddmm.on("mod list", mods => {
+    Logger.info("Mod List", "Got a list of " + mods.length + " mods");
+    store.commit("load_mods", mods);
 });

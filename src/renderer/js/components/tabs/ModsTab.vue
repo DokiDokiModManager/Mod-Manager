@@ -118,7 +118,11 @@
                     id: "",
                     type: ""
                 },
-                search: ""
+                search: "",
+                search_objs: {
+                    installs: null,
+                    mods: null
+                }
             };
         },
         computed: {
@@ -131,11 +135,11 @@
             },
 
             searchResultsInstalls() {
-                return this.installs || [];
+                return this.$store.state.game_data.installs || [];
                 // return this.search.length > 0 ? this.installs_search.search(this.search) : this.installs;
             },
             searchResultsMods() {
-                return this.mods || [];
+                return this.$store.state.game_data.mods || [];
                 // return this.search.length > 0 ? this.mods_search.search(this.search) : this.mods;
             },
 

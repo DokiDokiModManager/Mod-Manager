@@ -29,7 +29,7 @@
         methods: {
             _: ddmm.translate,
             setBackground(background) {
-                this.$store.commit("ui_preferences", {background});
+                this.$store.commit("options", {background});
             }
         },
         data() {

@@ -14,12 +14,12 @@
         methods: {
             _: ddmm.translate,
             setSystemBorders(system_borders) {
-                this.$store.commit("ui_preferences", {system_borders});
+                this.$store.commit("options", {system_borders});
             }
         },
         computed: {
             systemBordersEnabled() {
-                return this.$store.state.ui_preferences.system_borders;
+                return this.$store.state.options.system_borders;
             }
         }
     }

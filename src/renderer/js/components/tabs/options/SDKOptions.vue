@@ -11,15 +11,13 @@
 </template>
 
 <script>
-    import Logger from "../../../utils/Logger";
 
     export default {
         name: "SDKOptions",
         methods: {
             _: ddmm.translate,
             updateSDKMode() {
-                Logger.info("SDK", "Set SDK mode to " + this.sdk_mode_interim);
-                ddmm.config.saveConfigValue("sdkMode", this.sdk_mode_interim);
+                this.$store.commit("options", {sdk_mode: this.sdk_mode_interim});
             }
         },
         data() {

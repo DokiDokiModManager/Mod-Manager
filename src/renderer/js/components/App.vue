@@ -56,7 +56,7 @@
         },
         computed: {
             backgroundImage() {
-                return this.$store.state.ui_preferences.background;
+                return this.$store.state.options.background;
             },
             backgroundImageStyle() {
                 if (this.backgroundImage && this.backgroundImage !== "none") {
