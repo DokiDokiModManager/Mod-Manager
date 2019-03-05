@@ -16,15 +16,22 @@
 </template>
 
 <script>
-    import BackgroundOptions from "./options/BackgroundOptions.vue";
     import Logger from "../../utils/Logger";
+
+    import BackgroundOptions from "./options/BackgroundOptions.vue";
+    import AdvancedAppearanceOptions from "./options/AdvancedAppearanceOptions.vue";
+    import UpdateOptions from "./options/UpdateOptions.vue";
+    import StorageOptions from "./options/StorageOptions.vue";
+    import LanguageOptions from "./options/LanguageOptions.vue";
+    import SDKOptions from "./options/SDKOptions.vue";
+    import DiscordOptions from "./options/DiscordOptions.vue";
 
     export default {
         name: "OptionsTab",
-        components: {BackgroundOptions},
+        components: {BackgroundOptions, AdvancedAppearanceOptions, UpdateOptions, StorageOptions, LanguageOptions, SDKOptions, DiscordOptions},
         data() {
             return {
-                selected_option: "",
+                selected_option: sessionStorage.getItem("tab_options_last_selection") ? sessionStorage.getItem("tab_options_last_selection") : "BackgroundOptions",
                 menu: [
                     {
                         header: ddmm.translate("renderer.tab_options.list.header_appearance"),
@@ -35,7 +42,7 @@
                             },
                             {
                                 title: ddmm.translate("renderer.tab_options.list.link_advanced_appearance"),
-                                id: "advanced_appearance"
+                                component: "AdvancedAppearanceOptions"
                             }
                         ]
                     },
@@ -57,15 +64,15 @@
                         contents: [
                             {
                                 title: ddmm.translate("renderer.tab_options.list.link_updates"),
-                                id: "updates"
+                                component: "UpdateOptions"
                             },
                             {
                                 title: ddmm.translate("renderer.tab_options.list.link_storage"),
-                                id: "storage"
+                                component: "StorageOptions"
                             },
                             {
                                 title: ddmm.translate("renderer.tab_options.list.link_language"),
-                                id: "language"
+                                component: "LanguageOptions"
                             }
                         ]
                     },
@@ -74,11 +81,11 @@
                         contents: [
                             {
                                 title: ddmm.translate("renderer.tab_options.list.link_sdk"),
-                                id: "sdk"
+                                component: "SDKOptions"
                             },
                             {
                                 title: ddmm.translate("renderer.tab_options.list.link_discord"),
-                                id: "discord"
+                                component: "DiscordOptions"
                             }
                         ]
                     },
@@ -101,6 +108,7 @@
         methods: {
             selectOption(component) {
                 Logger.info("Options", "Selecting options from component " + component);
+                sessionStorage.setItem("tab_options_last_selection", component);
                 this.selected_option = component;
             }
         }

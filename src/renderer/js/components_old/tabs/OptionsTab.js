@@ -11,30 +11,10 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
         </div>
         <div class="mod-viewer-mod-display">
             <div v-if="selected_option === 'background'">
-                <h1>{{_("renderer.tab_options.section_backgrounds.title")}}</h1>
-                <p>{{_("renderer.tab_options.section_backgrounds.subtitle")}}</p>
                 
-                <br>
-                
-                <div class="screenshots">                       
-                    <!--suppress RequiredAttributes, HtmlRequiredAltAttribute -->
-                    <img v-for="img in backgrounds" :alt="img" :src="'../images/backgrounds/' + img" width="150" @click="setBackground(img)">
-                </div>
-                
-                <br>
-                
-                <button class="danger" @click="setBackground('none')"><i class="fas fa-times fa-fw"></i> {{_("renderer.tab_options.section_backgrounds.button_none")}}</button>
-                
-                <br><br>
-                
-                <p>{{_("renderer.tab_options.section_backgrounds.description_credit")}}</p>
             </div>
             <div v-else-if="selected_option === 'advanced_appearance'">
-                <h1>{{_("renderer.tab_options.section_advanced_appearance.title")}}</h1>
-                <p>{{_("renderer.tab_options.section_advanced_appearance.subtitle")}}</p>
-                <br>
-                <button class="danger" v-if="systemBordersEnabled()" @click="setSystemBorders(false)"><i class="fas fa-times fa-fw"></i> {{_("renderer.tab_options.section_advanced_appearance.button_disable_sysborders")}}</button>
-                <button class="success" v-else @click="setSystemBorders(true)"><i class="fas fa-check fa-fw"></i> {{_("renderer.tab_options.section_advanced_appearance.button_enable_sysborders")}}</button>
+                
             </div>
             <div v-else-if="selected_option === 'cloudsaves'">
                 <h1>{{_("renderer.tab_options.section_cloudsaves.title")}}</h1>
@@ -58,55 +38,19 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
                 <p v-else><strong>{{_("renderer.tab_options.section_cloudsaves.description_no_saves")}}</strong></p>
             </div>
             <div v-else-if="selected_option === 'updates'">
-                <h1>{{_("renderer.tab_options.section_updates.title")}}</h1>
-                <p>{{_("renderer.tab_options.section_updates.subtitle")}}</p>
-                <br>
-                <p><strong>{{_("renderer.tab_options.section_updates.description_current_version", version)}}</strong></p>
-                <br>
-                <p><button @click="checkUpdates" class="primary"><i class="fas fa-sync-alt fa-fw"></i> {{_("renderer.tab_options.section_updates.button_check")}}</button></p>
+                
             </div>
             <div v-else-if="selected_option === 'storage'">
-                <h1>{{_("renderer.tab_options.section_storage.title")}}</h1>
-                <p>{{_("renderer.tab_options.section_storage.subtitle")}}</p>
-                <br>
-                <p><strong>{{_("renderer.tab_options.section_storage.description_moving")}}</strong></p>
-                <br>
-                <p>{{_("renderer.tab_options.section_storage.description_current", installFolder)}}</p>
-                <br>
-                <button class="primary" @click="moveInstall"><i class="fas fa-folder-open fa-fw"></i> {{_("renderer.tab_options.section_storage.button_change")}}</button>
+                
             </div>
             <div v-else-if="selected_option === 'language'">
-                <h1>{{_("renderer.tab_options.section_language.title")}}</h1>
-                <p>{{_("renderer.tab_options.section_language.subtitle")}}</p>
-                <br>
-                <p><strong>{{_("renderer.tab_options.section_language.description_restart")}}</strong></p>
-                <div class="form-group">
-                    <p><label>{{_("renderer.tab_options.section_language.label_language")}}</label></p>
-                    <p>
-                        <select v-model="language_interim" @change="setLanguage">
-                            <option value="en-GB">English (United Kingdom)</option>
-                            <option value="es-419">Español (Latinoamérica)</option>
-                        </select>
-                   </p>
-                </div>
+                
             </div>
             <div v-else-if="selected_option === 'sdk'">
-                <h1>{{_("renderer.tab_options.section_sdk.title")}}</h1>
-                <p>{{_("renderer.tab_options.section_sdk.subtitle")}}</p>
-                <br>
-                <p><strong>{{_("renderer.tab_options.section_sdk.description_mode")}}</strong></p>
-                <p><label><input type="radio" name="sdk_mode_checkbox" value="always" v-model="sdk_mode_interim" @change="updateSDKMode"> {{_("renderer.tab_options.section_sdk.checkbox_always")}}</label></p>
-                <p><label><input type="radio" name="sdk_mode_checkbox" value="specified" v-model="sdk_mode_interim" @change="updateSDKMode"> {{_("renderer.tab_options.section_sdk.checkbox_specified")}}</label></p>
-                <p><label><input type="radio" name="sdk_mode_checkbox" value="never" v-model="sdk_mode_interim" @change="updateSDKMode"> {{_("renderer.tab_options.section_sdk.checkbox_never")}}</label></p>                
+                                
             </div>
             <div v-else-if="selected_option === 'discord'">
-                <h1>{{_("renderer.tab_options.section_discord.title")}}</h1>
-                <p>{{_("renderer.tab_options.section_discord.subtitle")}}</p>
-                <br>
-                <p><strong>{{_("renderer.tab_options.section_discord.description")}}</strong></p>
-                <br>
-                <button class="danger" v-if="richPresenceEnabled()" @click="setRichPresence(false)"><i class="fas fa-times fa-fw"></i> {{_("renderer.tab_options.section_discord.button_disable")}}</button>
-                <button class="success" v-else @click="setRichPresence(true)"><i class="fas fa-check fa-fw"></i> {{_("renderer.tab_options.section_discord.button_enable")}}</button>
+                
             </div>
             <div v-else-if="selected_option === 'testing'">
                 <h1>{{_("renderer.tab_options.section_testing.title")}}</h1>
@@ -186,7 +130,7 @@ const OptionsTab = Vue.component("ddmm-options-tab", {
     },
     "computed": {
         "installFolder": function () {
-            return ddmm.config.readConfigValue("installFolder");
+            // return ;
         },
         "isLoggedIn": function () {
             return !!firebase.auth().currentUser;
