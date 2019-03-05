@@ -20,10 +20,11 @@
     import Titlebar from "./Titlebar.vue";
     import Navbar from "./Navbar.vue";
     import ModsTab from "./tabs/ModsTab.vue";
+    import OptionsTab from "./tabs/OptionsTab.vue";
 
     export default {
         name: "App",
-        components: {Navbar, Titlebar, ModsTab},
+        components: {Navbar, Titlebar, ModsTab, OptionsTab},
         data () {
             return {
                 // app / system meta
@@ -51,7 +52,7 @@
                     {
                         id: "options",
                         name: ddmm.translate("renderer.tabs.tab_options"),
-                        component: ""
+                        component: "OptionsTab"
                     },
                     {
                         id: "about",

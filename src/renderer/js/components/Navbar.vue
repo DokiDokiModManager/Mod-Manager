@@ -7,6 +7,8 @@
 </template>
 
 <script>
+    import Logger from "../utils/Logger";
+
     export default {
         name: "Navbar",
         props: ["tabs"],
@@ -17,6 +19,7 @@
         },
         methods: {
             setTab: function (t) {
+                Logger.info("Navbar", "Navigated to tab " + t.id);
                 this.tab = t.id;
                 this.$emit("tab", t);
             }
