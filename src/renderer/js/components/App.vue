@@ -2,6 +2,15 @@
     <div
             :class="['app', 'os-'+system_platform]"
             :style="{'background-image': backgroundImageStyle}">
+
+        <!--<PromptDialog title="Some Dialog" placeholder="Enter something" submit_text="Submit Button" cancel_text="Cancel Button">-->
+            <!--This would be a modal dialog box with an input field.-->
+        <!--</PromptDialog>-->
+
+        <ConfirmDialog title="Some Dialog" yes_text="Yes Button" no_text="No Button">
+            This would be a modal dialog box with yes/no buttons.
+        </ConfirmDialog>
+
         <Titlebar :app_name="app_name" :app_version="app_version" :system_borders="system_borders"/>
         <component :is="tab"></component>
         <Navbar :tabs="tabs" @tab="setTab"></Navbar>
@@ -14,10 +23,12 @@
     import Navbar from "./Navbar.vue";
     import ModsTab from "./tabs/ModsTab.vue";
     import OptionsTab from "./tabs/OptionsTab.vue";
+    import PromptDialog from "./dialogs/PromptDialog.vue";
+    import ConfirmDialog from "./dialogs/ConfirmDialog.vue";
 
     export default {
         name: "App",
-        components: {Navbar, Titlebar, ModsTab, OptionsTab},
+        components: {Navbar, Titlebar, ModsTab, OptionsTab, PromptDialog, ConfirmDialog},
         data () {
             return {
                 // app / system meta

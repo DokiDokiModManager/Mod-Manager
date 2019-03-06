@@ -475,10 +475,6 @@ input:focus, textarea:focus {
 
 // endregion
 
-.is-appx .hide-appx {
-  display: none;
-}
-
 // region tables
 table {
   width: 100%;
@@ -490,7 +486,7 @@ td, th {
 }
 // endregion
 
-// chunky radio buttons
+// region chunky radio buttons
 
 .chunky-radio-buttons {
   border: 1px solid $ui-text-colour;
@@ -513,4 +509,28 @@ td, th {
 
 .chunky-button:last-child {
   border-right: none;
+}
+
+// endregion
+
+.dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+}
+
+.dialog-body {
+  width: 75%;
+  max-width: 600px;
+  min-width: 200px;
+  margin: 4em auto;
+  background-color: darken($ui-dark-colour-bg, 5%);
+  padding: 1em;
+  border-radius: 3px;
+  box-shadow: 1px 1px 15px #000;
+  -webkit-app-region: no-drag;
 }

@@ -440,10 +440,6 @@ input:focus, textarea:focus {
   pointer-events: none;
 }
 
-.is-appx .hide-appx {
-  display: none;
-}
-
 table {
   width: 100%;
 }
@@ -474,6 +470,28 @@ td, th {
 
 .chunky-button:last-child {
   border-right: none;
+}
+
+.dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+}
+
+.dialog-body {
+  width: 75%;
+  max-width: 600px;
+  min-width: 200px;
+  margin: 4em auto;
+  background-color: #111111;
+  padding: 1em;
+  border-radius: 3px;
+  box-shadow: 1px 1px 15px #000;
+  -webkit-app-region: no-drag;
 }
 
 /*# sourceMappingURL=app.css.map */

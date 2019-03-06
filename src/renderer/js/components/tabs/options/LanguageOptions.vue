@@ -17,20 +17,17 @@
 </template>
 
 <script>
-    import Logger from "../../../utils/Logger";
-
     export default {
         name: "LanguageOptions",
         methods: {
             _: ddmm.translate,
             setLanguage() {
-                Logger.info("i18n", "Language set to " + this.language_interim);
-                ddmm.config.saveConfigValue("language", this.language_interim);
+                this.$store.commit("options", {language: this.language_interim});
             }
         },
         data() {
             return {
-                language_interim: ddmm.config.readConfigValue("language")
+                language_interim: this.$store.state.options.language
             }
         }
     }

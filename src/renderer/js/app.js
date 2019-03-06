@@ -26,7 +26,9 @@ const store = new Vuex.Store({
         options: {
             background: ddmm.config.readConfigValue("background"),
             system_borders: ddmm.config.readConfigValue("systemBorders"),
-            sdk_mode: ddmm.config.readConfigValue("sdkMode")
+            sdk_mode: ddmm.config.readConfigValue("sdkMode"),
+            discord: ddmm.config.readConfigValue("discordEnabled"),
+            language: ddmm.config.readConfigValue("language")
         },
         game_data: {
             installs: [],
@@ -50,6 +52,16 @@ const store = new Vuex.Store({
             if (payload.hasOwnProperty("sdk_mode")) {
                 ddmm.config.saveConfigValue("sdkMode", payload.sdk_mode);
                 state.options.sdk_mode = payload.sdk_mode;
+            }
+
+            if (payload.hasOwnProperty("discord")) {
+                ddmm.config.saveConfigValue("discordEnabled", payload.discord);
+                state.options.discord = payload.discord;
+            }
+
+            if (payload.hasOwnProperty("language")) {
+                ddmm.config.saveConfigValue("language", payload.language);
+                state.options.language = payload.language;
             }
         },
         load_installs(state, payload) {
