@@ -160,7 +160,8 @@ api.window.handleInstallRightClick = function (folderName, installName, mouseX, 
         {
             label: api.translate("renderer.tab_mods.install_contextmenu.shortcut"), click: () => {
                 api.mods.createShortcut(folderName, installName)
-            }
+            },
+            enabled: api.platform === "win32"
         },
         {type: "separator"},
         {
