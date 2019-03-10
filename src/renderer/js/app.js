@@ -33,6 +33,16 @@ const store = new Vuex.Store({
         game_data: {
             installs: [],
             mods: []
+        },
+        modals: {
+            login: false
+        },
+        user: {
+            logged_in: false,
+            display_name: "",
+            email: "",
+            email_verified: false,
+            donated: false
         }
     },
     mutations: {
@@ -69,6 +79,34 @@ const store = new Vuex.Store({
         },
         load_mods(state, payload) {
             state.game_data.mods = payload;
+        },
+        show_modal(state, payload) {
+            if (state.modals.hasOwnProperty(payload.modal)) {
+                state.modals[payload.modal] = true;
+            } else {
+                Logger.error("Modal", "Attempted to show modal that doesn't exist: " + payload.modal)
+            }
+        },
+        hide_modal(state, payload) {
+            if (state.modals.hasOwnProperty(payload.modal)) {
+                state.modals[payload.modal] = false;
+            } else {
+                Logger.error("Modal", "Attempted to hide modal that doesn't exist: " + payload.modal)
+            }
+        },
+        login(state, payload) {
+            Logger.info("Firebase", "User logged in: " + payload.email);
+            state.user.logged_in = true;
+            state.user.display_name = payload.display_name;
+            state.user.email = payload.email;
+            state.user.donated = payload.donated;
+        },
+        logout(state) {
+            Logger.info("Firebase", "User logged out");
+            state.user.logged_in = false;
+            state.user.displayName = "";
+            state.user.email = "";
+            state.user.donated = false;
         }
     },
     strict: ddmm.env.NODE_ENV !== 'production'
@@ -95,3 +133,20 @@ ddmm.on("mod list", mods => {
     Logger.info("Mod List", "Got a list of " + mods.length + " mods");
     store.commit("load_mods", mods);
 });
+
+firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+        user.getIdTokenResult().then(result => {
+            store.commit("login", {
+                display_name: user.displayName,
+                email: user.email,
+                email_verified: user.emailVerified,
+                donated: !!result.claims.donated
+            });
+        });
+    } else {
+        store.commit("logout");
+    }
+});
+
+window.__ddmm_state = store;

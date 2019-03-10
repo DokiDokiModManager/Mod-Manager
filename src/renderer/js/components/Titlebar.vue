@@ -6,12 +6,15 @@
             </small>
         </div>
         <div class="window-buttons">
+            <div class="button" @click="login" v-if="!user.logged_in">{{_('renderer.window_controls.login')}}</div>
+            <div class="button" v-else style="max-width: 200px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">{{user.display_name}}</div>
+
             <template v-if="!system_borders">
-                <div @click="windowMinimise" :title="_('renderer.window_controls.minimise')"><i
+                <div class="button" @click="windowMinimise" :title="_('renderer.window_controls.minimise')"><i
                         class="far fa-window-minimize fa-fw"></i></div>
-                <div @click="windowMaximise" :title="_('renderer.window_controls.maximise')"><i
+                <div class="button" @click="windowMaximise" :title="_('renderer.window_controls.maximise')"><i
                         class="far fa-window-maximize fa-fw"></i></div>
-                <div @click="windowClose" :title="_('renderer.window_controls.close')"><i
+                <div class="button" @click="windowClose" :title="_('renderer.window_controls.close')"><i
                         class="fas fa-times fa-fw"></i></div>
             </template>
         </div>
@@ -28,7 +31,15 @@
             windowClose: ddmm.window.close,
             windowMinimise: ddmm.window.minimise,
             windowMaximise: ddmm.window.maximise,
-            openURL: ddmm.app.openURL
+            openURL: ddmm.app.openURL,
+            login() {
+                this.$store.commit("show_modal", {modal: "login"});
+            }
+        },
+        computed: {
+            user() {
+                return this.$store.state.user;
+            }
         }
     }
 </script>

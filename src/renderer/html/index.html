@@ -3,13 +3,14 @@
 <head>
     <meta charset="utf-8">
 
-    <!-- TODO: REMOVE BEFORE MERGE! -->
-    <!-- Vue.js remote devtools, because the extension doesn't seem to work -->
-    <script src="http://localhost:8098"></script>
-
     <title>Doki Doki Mod Manager</title>
 
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src *; style-src 'self' 'unsafe-inline';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src *; style-src 'self' 'unsafe-inline'; script-src 'self' http://localhost:8098/;">
+
+    <!-- TODO: REMOVE BEFORE MERGE! -->
+    <!-- Vue.js remote devtools, because the extension doesn't seem to work -->
+    <script src="http://localhost:8098/"></script>
+
 
     <link rel="stylesheet" href="../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="../../../lib/renderer/css/app.css">

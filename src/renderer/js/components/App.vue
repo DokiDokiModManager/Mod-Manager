@@ -3,13 +3,7 @@
             :class="['app', 'os-'+system_platform]"
             :style="{'background-image': backgroundImageStyle}">
 
-        <!--<PromptDialog title="Some Dialog" placeholder="Enter something" submit_text="Submit Button" cancel_text="Cancel Button">-->
-            <!--This would be a modal dialog box with an input field.-->
-        <!--</PromptDialog>-->
-
-        <ConfirmDialog title="Some Dialog" yes_text="Yes Button" no_text="No Button">
-            This would be a modal dialog box with yes/no buttons.
-        </ConfirmDialog>
+        <LoginDialog v-if="modalVisible('login')"></LoginDialog>
 
         <Titlebar :app_name="app_name" :app_version="app_version" :system_borders="system_borders"/>
         <component :is="tab"></component>
@@ -25,11 +19,12 @@
     import OptionsTab from "./tabs/OptionsTab.vue";
     import PromptDialog from "./dialogs/PromptDialog.vue";
     import ConfirmDialog from "./dialogs/ConfirmDialog.vue";
+    import LoginDialog from "./dialogs/LoginDialog.vue";
 
     export default {
         name: "App",
-        components: {Navbar, Titlebar, ModsTab, OptionsTab, PromptDialog, ConfirmDialog},
-        data () {
+        components: {LoginDialog, Navbar, Titlebar, ModsTab, OptionsTab, PromptDialog, ConfirmDialog},
+        data() {
             return {
                 // app / system meta
                 app_name: "Doki Doki Mod Manager",
@@ -78,9 +73,12 @@
             }
         },
         methods: {
-            setTab: function (tab) {
+            setTab(tab) {
                 this.tab = tab.component;
             },
+            modalVisible(modal) {
+                return this.$store.state.modals[modal];
+            }
         }
     }
 </script>

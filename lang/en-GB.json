@@ -63,12 +63,6 @@
       "description_location": "Your games will be stored at {0}",
       "link_change": "(Change)"
     },
-    "login_input": {
-      "message": "Enter your email address",
-      "details": "An email will be sent to this address. Click the link in the email to finish logging in.",
-      "button_affirmative": "Log In",
-      "button_negative": "Cancel"
-    },
     "change_username_input": {
       "message": "Enter your new username",
       "details": "Usernames don't have to be unique.",
@@ -78,6 +72,22 @@
     "error_sync": {
       "title": "Save data sync failed",
       "body": "Your local save data is still safe, and will be uploaded next time you start playing."
+    },
+    "modal_login": {
+      "title": "Log In",
+      "description": "Log in with your registered email and password. If you already have an account without a password, choose \"{0}\" to set a new one.",
+      "label_email": "Email Address",
+      "label_password": "Password",
+      "link_forgot": "Forgotten your password?",
+      "link_register": "Need an account? Click here to create one.",
+      "button_login": "Log In",
+      "button_cancel": "Cancel",
+      "error_incomplete": "Please enter both your email and password.",
+      "error_invalid_email": "Your email address looks wrong, please try again.",
+      "error_disabled": "Your account has been disabled, please email zudo@doki.space.",
+      "error_no_account": "No account exists under this email address.",
+      "error_password": "Your password is incorrect, please try again or reset it.",
+      "error_unknown": "Something went wrong, please try again."
     },
     "tab_mods": {
       "list": {
@@ -175,6 +185,7 @@
         "option_local_save": "Local Save",
         "option_global_save": "Global Save",
         "option_cloudsave": "Cloud Save (beta)",
+        "warning_logged_out": "You need to be logged in to use cloud saves.",
         "label_cloudsave": "Cloud Save File",
         "option_new_cloudsave": "Create new save file",
         "label_existing_saves": "Existing Save Files",

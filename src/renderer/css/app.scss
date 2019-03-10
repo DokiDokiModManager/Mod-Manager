@@ -116,7 +116,6 @@ body {
 
 .window-buttons {
   position: fixed;
-  z-index: 200;
   right: 0;
   top: 0;
   display: flex;
@@ -126,7 +125,7 @@ body {
   -webkit-app-region: no-drag;
 }
 
-.window-buttons div {
+.window-buttons .button {
   padding: 0.5em;
   transition: color 0.25s;
 }
@@ -379,7 +378,7 @@ button[disabled], button[disabled]:hover {
   margin-bottom: 1em;
 }
 
-input[type="text"], input[type="number"], input[type="url"], textarea, select {
+input[type="text"], input[type="number"], input[type="url"], input[type="email"], input[type="password"], textarea, select {
   font-family: "Open Sans", sans-serif;
   border-radius: 3px;
   background-color: rgba(0, 0, 0, 0.5);

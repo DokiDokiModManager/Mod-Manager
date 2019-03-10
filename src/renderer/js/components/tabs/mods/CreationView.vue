@@ -53,20 +53,23 @@
             </div>
 
             <div class="form-group" v-if="install_creation.save_option === 2">
-                <p><label>{{_("renderer.tab_mods.install_creation.label_cloudsave")}}</label></p>
+                <template v-if="user.logged_in">
+                    <p><label>{{_("renderer.tab_mods.install_creation.label_cloudsave")}}</label></p>
 
-                <p>NOT YET IMPLEMENTED!</p>
+                    <p>NOT YET IMPLEMENTED!</p>
 
-                <!--<p>-->
+                    <!--<p>-->
                     <!--<select v-model="install_creation.cloudsave">-->
-                        <!--<option value="" selected>{{_("renderer.tab_mods.install_creation.option_new_cloudsave")}}-->
-                        <!--</option>-->
-                        <!--<optgroup :label="_('renderer.tab_mods.install_creation.label_existing_saves')"-->
-                                  <!--v-if="getSaveFiles()">-->
-                            <!--<option v-for="save in getSaveFiles()" :value="save.filename">{{save.display}}</option>-->
-                        <!--</optgroup>-->
+                    <!--<option value="" selected>{{_("renderer.tab_mods.install_creation.option_new_cloudsave")}}-->
+                    <!--</option>-->
+                    <!--<optgroup :label="_('renderer.tab_mods.install_creation.label_existing_saves')"-->
+                    <!--v-if="getSaveFiles()">-->
+                    <!--<option v-for="save in getSaveFiles()" :value="save.filename">{{save.display}}</option>-->
+                    <!--</optgroup>-->
                     <!--</select>-->
-                <!--</p>-->
+                    <!--</p>-->
+                </template>
+                <p v-else><strong>{{_("renderer.tab_mods.install_creation.warning_logged_out")}}</strong></p>
             </div>
 
             <div v-if="is_installing" class="form-group">
@@ -135,6 +138,9 @@
                 return this.is_installing || (this.install_creation.has_mod && !this.install_creation.mod)
                     || this.install_creation.install_name.length < 2 || this.install_creation.folder_name.length < 2
                     || ddmm.mods.installExists(this.install_creation.folder_name);
+            },
+            user() {
+                return this.$store.state.user;
             }
         }
     }
