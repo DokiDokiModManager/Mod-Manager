@@ -39,7 +39,7 @@
 
     import Logger from "../../utils/Logger";
 
-    import Dialog from "./Dialog.vue";
+    import Dialog from "./base/Dialog.vue";
     import Link from "../elements/Link.vue";
 
     export default {

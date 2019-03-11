@@ -89,6 +89,18 @@
       "error_password": "Your password is incorrect, please try again or reset it.",
       "error_unknown": "Something went wrong, please try again."
     },
+    "modal_rename": {
+      "title": "Rename Install",
+      "body": "Enter the new name for {0}.",
+      "button_affirmative": "Rename",
+      "button_negative": "Cancel"
+    },
+    "modal_uninstall": {
+      "title": "Are you sure you want to uninstall?",
+      "body": "Your save data for {0} will be deleted, and you will need a copy of the mod to install it again.",
+      "button_affirmative": "Uninstall",
+      "button_negative": "Cancel"
+    },
     "menu_install_options": {
       "launch": "Launch",
       "rename": "Rename",
@@ -109,18 +121,6 @@
         "link_install": "Install DDLC",
         "header_installed": "Installed",
         "header_downloaded": "Downloads"
-      },
-      "uninstall_confirmation": {
-        "message": "Are you sure you want to uninstall?",
-        "details": "Your save data for {0} will be deleted, and you will need a copy of the mod to install it again.",
-        "button_affirmative": "Uninstall",
-        "button_negative": "Cancel"
-      },
-      "rename_input": {
-        "message": "Rename Install",
-        "details": "Enter the new name for {0}.",
-        "button_affirmative": "Rename",
-        "button_negative": "Cancel"
       },
       "launch_lock_confirmation": {
         "message": "The cloud save file is in use!",

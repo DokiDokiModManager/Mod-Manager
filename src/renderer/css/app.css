@@ -1,0 +1,520 @@
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Open Sans Bold"), local("OpenSans-Bold"), url(../../../src/renderer/fonts/OpenSans-Bold.ttf);
+}
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Open Sans Regular"), local("OpenSans-Regular"), url(../../../src/renderer/fonts/OpenSans-Regular.ttf);
+}
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+  user-select: none;
+}
+
+html, body, .app {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+body {
+  background-color: #111;
+  color: #ddd;
+}
+
+.app {
+  background-size: cover;
+}
+
+::-webkit-scrollbar {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 3px;
+}
+
+.titlebar {
+  color: #fff;
+  -webkit-app-region: drag;
+  text-align: right;
+  padding: 0.5em;
+  display: flex;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.app-title {
+  padding: 0.5em;
+  font-size: 1.25em;
+}
+
+.os-darwin .app-title {
+  padding-left: 100px;
+}
+
+.navbar {
+  color: #fff;
+  display: flex;
+  flex-shrink: 0;
+}
+
+.navbar > div {
+  padding: 0.5em;
+}
+
+.navbar img {
+  vertical-align: middle;
+}
+
+.nav-links {
+  display: flex;
+  height: 100%;
+  font-size: 1.25em;
+  flex-grow: 1;
+}
+
+.nav-links div {
+  height: 100%;
+  padding: 0.5em;
+  -webkit-app-region: no-drag;
+  color: #aaa;
+  transition: color 0.25s, text-shadow 0.25s;
+}
+
+.nav-links div:hover {
+  color: #fff;
+}
+
+.nav-links div.active {
+  color: #fff;
+  text-shadow: 0 0 10px #fff;
+}
+
+.os-darwin .window-buttons {
+  visibility: hidden;
+}
+
+.window-buttons {
+  position: fixed;
+  right: 0;
+  top: 0;
+  display: flex;
+  color: #ddd;
+  font-weight: bold;
+  padding: 0.5em;
+  -webkit-app-region: no-drag;
+}
+
+.window-buttons .button {
+  padding: 0.5em;
+  transition: color 0.25s;
+}
+
+.window-buttons div:hover {
+  color: #fff;
+}
+
+@keyframes draw-attention {
+  from {
+    color: white;
+  }
+  to {
+    color: red;
+  }
+}
+.window-button-draw-attention {
+  animation: draw-attention 1s infinite alternate;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  height: calc(100% - 63px - 67px);
+}
+
+.text-container {
+  padding: 0 1.5em;
+  max-height: 100%;
+  overflow-y: scroll;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-weight: 500;
+}
+
+small {
+  font-size: 0.6em;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: #ddd;
+  text-decoration: none;
+  font-weight: bold;
+  -webkit-app-region: no-drag;
+  outline: none;
+}
+
+a .fab {
+  font-weight: normal;
+}
+
+.tag {
+  font-size: 0.5em;
+  padding: 0.1em 0.25em;
+  background-color: #ddd;
+  color: #000;
+  border-radius: 3px;
+}
+
+.mod-viewer-pane {
+  display: flex;
+  height: 100%;
+  flex-grow: 1;
+}
+
+.mod-viewer-mod-list {
+  width: 25%;
+  max-height: 100%;
+  padding-left: 1em;
+  padding-right: 1em;
+  overflow-y: scroll;
+}
+
+.mod-viewer-mod-display {
+  width: 75%;
+  padding-left: 1em;
+  padding-right: 1em;
+  overflow-y: auto;
+}
+
+.mod-view-mod-list-title {
+  padding: 0.25em 0.25em 0;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #aaa;
+}
+
+.mod-view-mod-list-entry {
+  padding: 0.25em 0.5em;
+  width: 100%;
+  border-radius: 3px;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  justify-content: space-between;
+  display: flex;
+}
+
+.mod-view-mod-list-entry span {
+  transition: color 0.25s;
+}
+
+.mod-view-mod-list-entry span:hover {
+  color: #fff;
+}
+
+.mod-view-mod-list-entry span:not(.mod-view-mod-list-entry-button) {
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+}
+
+.mod-view-mod-list-entry-button {
+  flex-grow: 0;
+  flex-shrink: 0;
+  display: none;
+}
+
+.mod-view-mod-list-entry.active .mod-view-mod-list-entry-button, .mod-view-mod-list-entry:hover .mod-view-mod-list-entry-button {
+  display: inline;
+}
+
+.mod-view-mod-list-entry.disabled {
+  color: #aaa !important;
+}
+
+.mod-view-mod-list-entry.active {
+  background-image: linear-gradient(315deg, rgba(187, 85, 153, 0.5), rgba(73, 50, 64, 0.5));
+  color: #fff;
+}
+
+.screenshots {
+  max-width: 100%;
+  overflow-x: scroll;
+  display: flex;
+}
+
+.screenshots img {
+  flex-shrink: 0;
+  flex-grow: 0;
+  display: block;
+  width: 192px;
+  height: 108px;
+  padding: 0.5em;
+  cursor: pointer;
+  -webkit-user-drag: none;
+}
+
+button {
+  font-family: "Open Sans", sans-serif;
+  color: #fff;
+  user-select: none;
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.75em 2em;
+  font-size: 14px;
+  border-radius: 3px;
+  text-align: center;
+  font-weight: normal;
+  outline: none;
+  transition: background-color 0.25s;
+  border: none;
+}
+
+button.huge {
+  font-size: 1.25em;
+}
+
+button.primary {
+  background-color: #bb5599;
+}
+
+button.primary:hover {
+  background-color: #9e3f7e;
+}
+
+button.secondary {
+  background-color: #2b2b2b;
+  color: #ddd;
+}
+
+button.secondary:hover {
+  background-color: #1e1e1e;
+}
+
+button.dark {
+  background-color: #1e1e1e;
+}
+
+button.dark:hover {
+  background-color: #050505;
+}
+
+button.danger {
+  background-color: #eb4d4b;
+}
+
+button.danger:hover {
+  background-color: #e6201d;
+}
+
+button.warning {
+  background-color: #f0932b;
+}
+
+button.warning:hover {
+  background-color: #d97a0f;
+}
+
+button.success {
+  background-color: #6ab04c;
+}
+
+button.success:hover {
+  background-color: #558c3d;
+}
+
+button[disabled], button[disabled]:hover {
+  background-color: #aaa;
+  color: #ddd;
+}
+
+.form-group {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+input[type=text], input[type=number], input[type=url], input[type=email], input[type=password], textarea, select {
+  font-family: "Open Sans", sans-serif;
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px solid #1e1e1e;
+  color: #ddd;
+  font-weight: normal;
+  min-width: 350px;
+  padding: 0.5em 1em;
+  font-size: 1em;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.25s;
+}
+
+input.small {
+  font-size: 0.75em;
+  min-width: 0;
+}
+
+input:focus, textarea:focus {
+  border-color: #aaa;
+}
+
+.cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  background-size: cover;
+  color: #ddd;
+  padding: 3em;
+}
+
+.cover.crash {
+  z-index: 200;
+}
+
+.cover h1 {
+  font-size: 2.25em;
+}
+
+.cover p, .cover pre {
+  font-size: 1.25em;
+}
+
+.progress {
+  width: 100%;
+  padding: 0;
+}
+
+.progress .bar {
+  min-width: 1%;
+  padding: 0;
+  margin: 0;
+  height: 16px;
+  background-image: linear-gradient(315deg, rgba(187, 85, 153, 0.5), rgba(73, 50, 64, 0.5));
+  transition: width 0.5s;
+  border-radius: 3px;
+}
+
+.drop-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9001;
+  padding: 1em;
+}
+
+.drop-overlay .info {
+  padding: 5em;
+  font-size: 2em;
+  text-align: center;
+  height: 100%;
+}
+
+.drop-overlay * {
+  pointer-events: none;
+}
+
+table {
+  width: 100%;
+}
+
+td, th {
+  padding: 0.25em;
+  text-align: center;
+}
+
+.chunky-radio-buttons {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  display: flex;
+}
+
+.chunky-button {
+  flex-grow: 1;
+  padding: 0.5em;
+  border-collapse: collapse;
+  border-right: 1px solid #ddd;
+  text-align: center;
+}
+
+.chunky-button.active {
+  background-color: #ddd;
+  color: #111;
+}
+
+.chunky-button:last-child {
+  border-right: none;
+}
+
+.dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+}
+
+.dialog-body {
+  width: 75%;
+  max-width: 600px;
+  min-width: 200px;
+  margin: 5em auto;
+  background-color: #111111;
+  padding: 1em;
+  border-radius: 3px;
+  box-shadow: 1px 1px 15px #000;
+  -webkit-app-region: no-drag;
+}
+
+.dialog-body.nopad {
+  padding: 0;
+}
+
+.dialog-menu-description {
+  padding: 1em;
+  text-align: center;
+}
+
+.dialog-menu-item {
+  font-size: 0.9em;
+  padding: 0.75em 1em;
+  transition: background-color 0.5s;
+}
+
+.dialog-menu-item:hover {
+  background-color: #050505;
+}
+
+.dialog-menu-separator {
+  margin: 0.5em;
+  border-top: 1px solid #1e1e1e;
+}
+
+/*# sourceMappingURL=app.css.map */

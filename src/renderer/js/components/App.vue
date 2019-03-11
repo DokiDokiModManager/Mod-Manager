@@ -3,9 +3,7 @@
             :class="['app', 'os-'+system_platform]"
             :style="{'background-image': backgroundImageStyle}">
 
-        <LoginDialog v-if="modalVisible('login')"></LoginDialog>
-        <InstallOptionsDialog v-if="modalVisible('install_options')"></InstallOptionsDialog>
-        <ModOptionsDialog v-if="modalVisible('mod_options')"></ModOptionsDialog>
+        <Dialogs></Dialogs>
 
         <Titlebar :app_name="app_name" :app_version="app_version" :system_borders="system_borders"/>
         <component :is="tab"></component>
@@ -19,13 +17,11 @@
     import Navbar from "./Navbar.vue";
     import ModsTab from "./tabs/ModsTab.vue";
     import OptionsTab from "./tabs/OptionsTab.vue";
-    import LoginDialog from "./dialogs/LoginDialog.vue";
-    import InstallOptionsDialog from "./dialogs/InstallOptionsDialog.vue";
-    import ModOptionsDialog from "./dialogs/ModOptionsDialog.vue";
+    import Dialogs from "./Dialogs.vue";
 
     export default {
         name: "App",
-        components: {ModOptionsDialog, InstallOptionsDialog, LoginDialog, Navbar, Titlebar, ModsTab, OptionsTab},
+        components: {Navbar, Titlebar, ModsTab, OptionsTab, Dialogs},
         data() {
             return {
                 // app / system meta
@@ -77,9 +73,6 @@
         methods: {
             setTab(tab) {
                 this.tab = tab.component;
-            },
-            modalVisible(modal) {
-                return this.$store.state.modals[modal];
             }
         }
     }

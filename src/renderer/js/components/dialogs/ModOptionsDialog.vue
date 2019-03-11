@@ -18,7 +18,7 @@
 </template>
 
 <script>
-    import MenuDialog from "./MenuDialog.vue";
+    import MenuDialog from "./base/MenuDialog.vue";
 
     export default {
         name: "ModOptionsDialog",

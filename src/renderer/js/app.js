@@ -37,7 +37,9 @@ const store = new Vuex.Store({
         modals: {
             login: false,
             install_options: false,
-            mod_options: false
+            mod_options: false,
+            install_rename: false,
+            uninstall: false
         },
         user: {
             logged_in: false,
