@@ -526,10 +526,34 @@ td, th {
   width: 75%;
   max-width: 600px;
   min-width: 200px;
-  margin: 4em auto;
+  margin: 5em auto;
   background-color: darken($ui-dark-colour-bg, 5%);
   padding: 1em;
   border-radius: 3px;
   box-shadow: 1px 1px 15px #000;
   -webkit-app-region: no-drag;
+}
+
+.dialog-body.nopad {
+  padding: 0;
+}
+
+.dialog-menu-description {
+  padding: 1em;
+  text-align: center;
+}
+
+.dialog-menu-item {
+  font-size: 0.9em;
+  padding: 0.75em 1em;
+  transition: background-color 0.5s;
+}
+
+.dialog-menu-item:hover {
+  background-color: darken($ui-dark-colour-bg, 10%);
+}
+
+.dialog-menu-separator {
+  margin: 0.5em;
+  border-top: 1px solid $ui-dark-colour-bg;
 }

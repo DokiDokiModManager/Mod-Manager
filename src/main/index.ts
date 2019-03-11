@@ -5,9 +5,6 @@ import {autoUpdater} from "electron-updater";
 import * as Sentry from "@sentry/electron";
 import * as semver from "semver";
 
-// Check if running from Windows Store
-const isAppx: boolean = (process.execPath.indexOf("WindowsApps") !== -1);
-
 Sentry.init({
     dsn: "https://bf0edf3f287344d4969e3171c33af4ea@sentry.io/1297252",
     onFatalError: () => {
@@ -481,7 +478,6 @@ function showUpdating(status: "checking" | "available" | "downloading" | "downlo
 }
 
 function checkForUpdate() {
-    if (isAppx) return; // don't update if windows store
     showUpdating("checking");
     autoUpdater.checkForUpdatesAndNotify().then(update => {
         if (update && semver.gt(update.updateInfo.version, app.getVersion())) {
@@ -632,7 +628,6 @@ app.on("ready", () => {
         if (!appWindow.isVisible()) {
             appWindow.show();
         }
-        appWindow.webContents.send("is appx", isAppx);
         appWindow.webContents.send("debug info", {
             "Platform": process.platform,
             "Node Environment": process.env.NODE_ENV || "none",
@@ -642,8 +637,7 @@ app.on("ready", () => {
             "Electron Version": process.versions.electron,
             "Chrome Version": process.versions.chrome,
             "Locale": app.getLocale(),
-            "Install Folder": Config.readConfigValue("installFolder"),
-            "AppX": isAppx
+            "Install Folder": Config.readConfigValue("installFolder")
         });
 
         OnboardingManager.requiresOnboarding().catch(e => {

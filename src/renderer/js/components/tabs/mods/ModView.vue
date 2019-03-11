@@ -10,7 +10,7 @@
         <p>
             <button class="success"><i class="fas fa-bolt fa-fw"></i> {{_("renderer.tab_mods.mod.button_install")}}
             </button>
-            <button class="secondary" @click="viewSettings(mod, $event)"><i class="fas fa-cog fa-fw"></i>
+            <button class="secondary" @click="showOptions(mod)"><i class="fas fa-cog fa-fw"></i>
                 {{_("renderer.tab_mods.mod.button_settings")}}
             </button>
         </p>
@@ -27,8 +27,9 @@
             getPathToMod(filename) {
                 return ddmm.joinPath(ddmm.config.readConfigValue("installFolder"), "mods", filename);
             },
-            viewSettings(mod, ev) {
-                // TODO: view mod settings (emit an event?)
+            showOptions(mod) {
+                this.$store.commit("select_mod", {mod});
+                this.$store.commit("show_modal", {modal: "mod_options"});
             }
         }
     }

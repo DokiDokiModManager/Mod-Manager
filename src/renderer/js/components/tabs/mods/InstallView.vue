@@ -16,7 +16,7 @@
             <button class="success" @click="launchInstall(install.folderName)"><i class="fas fa-play fa-fw"></i>
                 {{_("renderer.tab_mods.install.button_launch")}}
             </button>
-            <button class="secondary" @click="handleInstallSettingsClick(install.folderName, install.name, $event)"><i
+            <button class="secondary" @click="showOptions(install)"><i
                     class="fas fa-cog fa-fw"></i> {{_("renderer.tab_mods.install.button_settings")}}
             </button>
         </p>
@@ -94,6 +94,10 @@
             },
             launchInstall(install) {
                 Launcher.launch(install);
+            },
+            showOptions(install) {
+                this.$store.commit("select_install", {install});
+                this.$store.commit("show_modal", {modal: "install_options"});
             }
         }
     }

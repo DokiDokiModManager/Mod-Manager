@@ -22,12 +22,12 @@
                         :class="{'mod-view-mod-list-entry': true, 'active': selected_item.id === install.folderName && selected_item.type === 'install'}"
                         v-for="install in searchResultsInstalls"
                         @dblclick="launchInstall(install.folderName)"
-                        @mouseup="handleInstallClick(install.folderName, install.name, $event)"
+                        @click="handleInstallClick(install.folderName)"
                         :title="getPathToInstall(install.folderName)"
                 >
                     <span>{{install.name}}</span>
                     <span class="mod-view-mod-list-entry-button"
-                          @click="handleInstallSettingsClick(install.folderName, install.name, $event)"><i
+                          @click="showInstallOptions(install)"><i
                             class="fas fa-cog"></i></span>
                 </div>
                 <br v-if="searchResultsInstalls.length > 0">
@@ -38,13 +38,13 @@
                 <div
                         :class="{'mod-view-mod-list-entry': true, 'active': selected_item.id === mod.filename && selected_item.type === 'mod', 'disabled': mod.downloading}"
                         v-for="mod in searchResultsMods"
-                        @mouseup="handleModClick(mod.filename, mod.downloading, $event)"
+                        @click="handleModClick(mod.filename, mod.downloading)"
                         @dblclick="showCreateInstall(getPathToMod(mod.filename))"
                         :title="getPathToMod(mod.filename)"
                 >
                     <span><i class="fas fa-spinner fa-spin fa-fw" v-if="mod.downloading"></i> {{mod.filename}}</span>
                     <span class="mod-view-mod-list-entry-button"
-                          @click="handleModSettingsClick(mod.filename, $event)"><i
+                          @click="showModOptions(mod.filename)"><i
                             class="fas fa-cog"></i></span>
                 </div>
             </div>
@@ -84,19 +84,24 @@
                 Logger.info("Mod List", "Selected creation");
                 this.selected_item.type = "create";
             },
-            handleInstallClick(folderName, name, e) {
+            handleInstallClick(folderName) {
                 Logger.info("Mod List", "Selected install " + folderName);
-                if (e.button === 0) {
-                    this.selected_item.type = "install";
-                    this.selected_item.id = folderName;
-                }
+                this.selected_item.type = "install";
+                this.selected_item.id = folderName;
             },
-            handleModClick(filename, downloading, e) {
+            handleModClick(filename, downloading) {
+                if (downloading) return;
                 Logger.info("Mod List", "Selected mod " + filename);
-                if (e.button === 0) {
-                    this.selected_item.type = "mod";
-                    this.selected_item.id = filename;
-                }
+                this.selected_item.type = "mod";
+                this.selected_item.id = filename;
+            },
+            showInstallOptions(install) {
+                this.$store.commit("select_install", {install});
+                this.$store.commit("show_modal", {modal: "install_options"});
+            },
+            showModOptions(mod) {
+                this.$store.commit("select_mod", {mod});
+                this.$store.commit("show_modal", {modal: "mod_options"});
             },
 
             // install launch logic

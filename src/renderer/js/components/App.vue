@@ -4,6 +4,8 @@
             :style="{'background-image': backgroundImageStyle}">
 
         <LoginDialog v-if="modalVisible('login')"></LoginDialog>
+        <InstallOptionsDialog v-if="modalVisible('install_options')"></InstallOptionsDialog>
+        <ModOptionsDialog v-if="modalVisible('mod_options')"></ModOptionsDialog>
 
         <Titlebar :app_name="app_name" :app_version="app_version" :system_borders="system_borders"/>
         <component :is="tab"></component>
@@ -17,13 +19,13 @@
     import Navbar from "./Navbar.vue";
     import ModsTab from "./tabs/ModsTab.vue";
     import OptionsTab from "./tabs/OptionsTab.vue";
-    import PromptDialog from "./dialogs/PromptDialog.vue";
-    import ConfirmDialog from "./dialogs/ConfirmDialog.vue";
     import LoginDialog from "./dialogs/LoginDialog.vue";
+    import InstallOptionsDialog from "./dialogs/InstallOptionsDialog.vue";
+    import ModOptionsDialog from "./dialogs/ModOptionsDialog.vue";
 
     export default {
         name: "App",
-        components: {LoginDialog, Navbar, Titlebar, ModsTab, OptionsTab, PromptDialog, ConfirmDialog},
+        components: {ModOptionsDialog, InstallOptionsDialog, LoginDialog, Navbar, Titlebar, ModsTab, OptionsTab},
         data() {
             return {
                 // app / system meta

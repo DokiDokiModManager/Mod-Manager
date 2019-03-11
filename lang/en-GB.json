@@ -89,6 +89,19 @@
       "error_password": "Your password is incorrect, please try again or reset it.",
       "error_unknown": "Something went wrong, please try again."
     },
+    "menu_install_options": {
+      "launch": "Launch",
+      "rename": "Rename",
+      "shortcut": "Create Shortcut",
+      "delete_save": "Delete Save Data",
+      "uninstall": "Uninstall",
+      "cancel": "Cancel"
+    },
+    "menu_mod_options": {
+      "install": "Install",
+      "delete": "Delete",
+      "cancel": "Cancel"
+    },
     "tab_mods": {
       "list": {
         "placeholder_search": "Search mods...",
@@ -96,17 +109,6 @@
         "link_install": "Install DDLC",
         "header_installed": "Installed",
         "header_downloaded": "Downloads"
-      },
-      "install_contextmenu": {
-        "launch": "Launch",
-        "rename": "Rename",
-        "shortcut": "Create Shortcut",
-        "delete_save": "Delete Save Data",
-        "uninstall": "Uninstall"
-      },
-      "mod_contextmenu": {
-        "install": "Install",
-        "delete": "Delete"
       },
       "uninstall_confirmation": {
         "message": "Are you sure you want to uninstall?",

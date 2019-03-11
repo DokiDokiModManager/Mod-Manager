@@ -35,7 +35,9 @@ const store = new Vuex.Store({
             mods: []
         },
         modals: {
-            login: false
+            login: false,
+            install_options: false,
+            mod_options: false
         },
         user: {
             logged_in: false,
@@ -43,7 +45,9 @@ const store = new Vuex.Store({
             email: "",
             email_verified: false,
             donated: false
-        }
+        },
+        selected_install: {},
+        selected_mod: ""
     },
     mutations: {
         options(state, payload) {
@@ -107,6 +111,14 @@ const store = new Vuex.Store({
             state.user.displayName = "";
             state.user.email = "";
             state.user.donated = false;
+        },
+        select_install(state, payload) {
+            Logger.info("InstallOpts", "Selected install " + payload.install.folderName);
+            state.selected_install = payload.install;
+        },
+        select_mod(state, payload) {
+            Logger.info("ModOpts", "Selected mod " + payload.mod);
+            state.selected_mod = payload.mod
         }
     },
     strict: ddmm.env.NODE_ENV !== 'production'
