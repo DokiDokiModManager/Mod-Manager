@@ -37,10 +37,10 @@
 <script>
     import * as firebase from "firebase/app";
 
-    import Logger from "../../utils/Logger";
+    import Logger from "../../../utils/Logger";
 
-    import Dialog from "./base/Dialog.vue";
-    import Link from "../elements/Link.vue";
+    import Dialog from "../base/Dialog.vue";
+    import Link from "../../elements/Link.vue";
 
     export default {
         name: "LoginDialog",

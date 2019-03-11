@@ -101,6 +101,12 @@
       "button_affirmative": "Uninstall",
       "button_negative": "Cancel"
     },
+    "modal_save_delete": {
+      "title": "Are you sure you want to delete your save data?",
+      "body": "You will have to start {0} again from scratch.",
+      "button_affirmative": "Delete",
+      "button_negative": "Cancel"
+    },
     "menu_install_options": {
       "launch": "Launch",
       "rename": "Rename",
@@ -112,6 +118,16 @@
     "menu_mod_options": {
       "install": "Install",
       "delete": "Delete",
+      "cancel": "Cancel"
+    },
+    "menu_account_settings": {
+      "description_free": "Free User",
+      "description_donated": "DDMM Supporter",
+      "upgrade": "Upgrade Account",
+      "change_name": "Change Username",
+      "change_email": "Change Email",
+      "reset_password": "Reset Password",
+      "logout": "Log Out",
       "cancel": "Cancel"
     },
     "tab_mods": {
@@ -143,12 +159,6 @@
       "mod_delete_confirmation": {
         "message": "Are you sure you want to delete the mod?",
         "details": "You will need to download another copy of the mod to install it again.",
-        "button_affirmative": "Delete",
-        "button_negative": "Cancel"
-      },
-      "save_delete_confirmation": {
-        "message": "Are you sure you want to delete your save data?",
-        "details": "You will have to start {0} again from scratch.",
         "button_affirmative": "Delete",
         "button_negative": "Cancel"
       },

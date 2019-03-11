@@ -1,0 +1,87 @@
+<template>
+    <MenuDialog>
+        <div class="dialog-menu-description">
+            <p><i class="fas fa-user fa-3x"></i></p>
+            <br>
+            <template v-if="user.display_name">
+                <h3>{{user.display_name}}</h3>
+                <p>{{user.email}}</p>
+            </template>
+            <template v-else>
+                <h3>{{user.email}}</h3>
+            </template>
+            <br>
+            <p v-if="user.donated"><i class="fas fa-heart" style="color: red;"></i>
+                {{_("renderer.menu_account_settings.description_donated")}}</p>
+            <p v-else>{{_("renderer.menu_account_settings.description_free")}}</p>
+        </div>
+        <div class="dialog-menu-separator"></div>
+        <div :class="{'dialog-menu-item': true, 'disabled': user.donated}" @click="upgrade">
+            <i class="fas fa-heart fa-fw"></i> {{_("renderer.menu_account_settings.upgrade")}}
+        </div>
+        <div class="dialog-menu-item" @click="changeName">
+            <i class="fas fa-pencil-alt fa-fw"></i> {{_("renderer.menu_account_settings.change_name")}}
+        </div>
+        <div class="dialog-menu-item" @click="resetPassword">
+            <i class="fas fa-key fa-fw"></i> {{_("renderer.menu_account_settings.reset_password")}}
+        </div>
+        <div class="dialog-menu-item" @click="changeEmail">
+            <i class="fas fa-at fa-fw"></i> {{_("renderer.menu_account_settings.change_email")}}
+        </div>
+        <div class="dialog-menu-item" @click="logout">
+            <i class="fas fa-sign-out-alt fa-fw"></i> {{_("renderer.menu_account_settings.logout")}}
+        </div>
+        <div class="dialog-menu-separator"></div>
+        <div class="dialog-menu-item" @click="close">
+            <i class="fas fa-times fa-fw"></i> {{_("renderer.menu_account_settings.cancel")}}
+        </div>
+    </MenuDialog>
+</template>
+
+<script>
+    import MenuDialog from "../base/MenuDialog.vue";
+    import * as firebase from "firebase/app";
+
+    export default {
+        name: "AccountSettingsDialog",
+        components: {MenuDialog},
+        computed: {
+            user() {
+                return this.$store.state.user;
+            }
+        },
+        methods: {
+            _: ddmm.translate,
+            upgrade() {
+                if (this.user.donated) return;
+                ddmm.app.openURL("https://app.doki.space/upgrade");
+            },
+            logout() {
+                firebase.auth().signOut();
+                this.close();
+            },
+            changeName() {
+                // TODO implement
+                alert("not yet implemented");
+            },
+            changeEmail() {
+                // TODO implement
+                alert("not yet implemented");
+            },
+            resetPassword() {
+                firebase.auth().sendPasswordResetEmail(this.user.email).then(() => {
+                    // TODO: proper info dialog
+                    alert("reset sent");
+                });
+                // TODO: catch error
+            },
+            close() {
+                this.$store.commit("hide_modal", {modal: "account_settings"});
+            }
+        }
+    }
+</script>
+
+<style scoped>
+
+</style>

@@ -508,7 +508,11 @@ td, th {
   transition: background-color 0.5s;
 }
 
-.dialog-menu-item:hover {
+.dialog-menu-item.disabled {
+  color: #aaa;
+}
+
+.dialog-menu-item:not(.disabled):hover {
   background-color: #050505;
 }
 

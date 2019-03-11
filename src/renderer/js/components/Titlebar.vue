@@ -7,7 +7,7 @@
         </div>
         <div class="window-buttons">
             <div class="button" @click="login" v-if="!user.logged_in">{{_('renderer.window_controls.login')}}</div>
-            <div class="button" v-else style="max-width: 200px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">{{user.display_name}}</div>
+            <div class="button" @click="showSettings" v-else style="max-width: 200px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">{{user.display_name || user.email}}</div>
 
             <template v-if="!system_borders">
                 <div class="button" @click="windowMinimise" :title="_('renderer.window_controls.minimise')"><i
@@ -22,6 +22,7 @@
 </template>
 <script>
     import Link from "./elements/Link.vue";
+
     export default {
         name: 'Titlebar',
         components: {Link},
@@ -34,6 +35,9 @@
             openURL: ddmm.app.openURL,
             login() {
                 this.$store.commit("show_modal", {modal: "login"});
+            },
+            showSettings() {
+                this.$store.commit("show_modal", {modal: "account_settings"});
             }
         },
         computed: {

@@ -39,7 +39,9 @@ const store = new Vuex.Store({
             install_options: false,
             mod_options: false,
             install_rename: false,
-            uninstall: false
+            uninstall: false,
+            save_delete: false,
+            account_settings: false
         },
         user: {
             logged_in: false,
@@ -150,7 +152,7 @@ ddmm.on("mod list", mods => {
 
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
-        user.getIdTokenResult().then(result => {
+        user.getIdTokenResult(true).then(result => {
             store.commit("login", {
                 display_name: user.displayName,
                 email: user.email,

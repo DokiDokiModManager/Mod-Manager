@@ -549,7 +549,11 @@ td, th {
   transition: background-color 0.5s;
 }
 
-.dialog-menu-item:hover {
+.dialog-menu-item.disabled {
+  color: $ui-muted-text-colour;
+}
+
+.dialog-menu-item:not(.disabled):hover {
   background-color: darken($ui-dark-colour-bg, 10%);
 }
 

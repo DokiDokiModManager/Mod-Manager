@@ -9,7 +9,7 @@
 </template>
 
 <script>
-    import PromptDialog from "./base/PromptDialog.vue";
+    import PromptDialog from "../base/PromptDialog.vue";
 
     export default {
         name: "InstallRenameDialog",

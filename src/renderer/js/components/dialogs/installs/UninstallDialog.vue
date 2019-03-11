@@ -9,7 +9,7 @@
 </template>
 
 <script>
-    import ConfirmDialog from "./base/ConfirmDialog.vue";
+    import ConfirmDialog from "../base/ConfirmDialog.vue";
 
     export default {
         name: "UninstallDialog",
