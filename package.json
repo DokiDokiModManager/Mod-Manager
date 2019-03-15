@@ -101,7 +101,6 @@
     },
     "linux": {
       "category": "Game",
-      "icon": "build/icon.png",
       "target": [
         {
           "target": "AppImage",

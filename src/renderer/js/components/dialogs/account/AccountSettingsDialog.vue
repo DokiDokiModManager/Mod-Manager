@@ -10,10 +10,9 @@
             <template v-else>
                 <h3>{{user.email}}</h3>
             </template>
-            <br>
-            <p v-if="user.donated"><i class="fas fa-heart" style="color: red;"></i>
-                {{_("renderer.menu_account_settings.description_donated")}}</p>
-            <p v-else>{{_("renderer.menu_account_settings.description_free")}}</p>
+            <p v-if="user.donated"><strong><i class="fas fa-heart" style="color: red;"></i>
+                {{_("renderer.menu_account_settings.description_donated")}}</strong></p>
+            <p v-else><strong>{{_("renderer.menu_account_settings.description_free")}}</strong></p>
         </div>
         <div class="dialog-menu-separator"></div>
         <div :class="{'dialog-menu-item': true, 'disabled': user.donated}" @click="upgrade">
