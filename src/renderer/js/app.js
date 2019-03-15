@@ -41,7 +41,8 @@ const store = new Vuex.Store({
             install_rename: false,
             uninstall: false,
             save_delete: false,
-            account_settings: false
+            account_settings: false,
+            account_username: false
         },
         user: {
             logged_in: false,
@@ -103,11 +104,21 @@ const store = new Vuex.Store({
             }
         },
         login(state, payload) {
-            Logger.info("Firebase", "User logged in: " + payload.email);
+            if (payload.email) {
+                Logger.info("Firebase", "User logged in: " + payload.email);
+            } else {
+                Logger.info("Firebase", "User state updated");
+            }
             state.user.logged_in = true;
-            state.user.display_name = payload.display_name;
-            state.user.email = payload.email;
-            state.user.donated = payload.donated;
+            if (payload.hasOwnProperty("display_name")) {
+                state.user.display_name = payload.display_name;
+            }
+            if (payload.hasOwnProperty("email")) {
+                state.user.email = payload.email;
+            }
+            if (payload.hasOwnProperty("donated")) {
+                state.user.donated = payload.donated;
+            }
         },
         logout(state) {
             Logger.info("Firebase", "User logged out");

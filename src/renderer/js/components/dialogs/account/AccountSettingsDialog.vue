@@ -24,9 +24,9 @@
         <div class="dialog-menu-item" @click="resetPassword">
             <i class="fas fa-key fa-fw"></i> {{_("renderer.menu_account_settings.reset_password")}}
         </div>
-        <div class="dialog-menu-item" @click="changeEmail">
-            <i class="fas fa-at fa-fw"></i> {{_("renderer.menu_account_settings.change_email")}}
-        </div>
+        <!--<div class="dialog-menu-item" @click="changeEmail">-->
+            <!--<i class="fas fa-at fa-fw"></i> {{_("renderer.menu_account_settings.change_email")}}-->
+        <!--</div>-->
         <div class="dialog-menu-item" @click="logout">
             <i class="fas fa-sign-out-alt fa-fw"></i> {{_("renderer.menu_account_settings.logout")}}
         </div>
@@ -54,19 +54,19 @@
             upgrade() {
                 if (this.user.donated) return;
                 ddmm.app.openURL("https://app.doki.space/upgrade");
+                this.close();
             },
             logout() {
                 firebase.auth().signOut();
                 this.close();
             },
             changeName() {
-                // TODO implement
-                alert("not yet implemented");
+                this.$store.commit("show_modal", {modal: "account_username"});
+                this.close();
             },
-            changeEmail() {
-                // TODO implement
-                alert("not yet implemented");
-            },
+            // changeEmail() {
+            //     alert("not yet implemented");
+            // },
             resetPassword() {
                 firebase.auth().sendPasswordResetEmail(this.user.email).then(() => {
                     // TODO: proper info dialog

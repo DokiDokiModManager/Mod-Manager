@@ -89,6 +89,12 @@
       "error_password": "Your password is incorrect, please try again or reset it.",
       "error_unknown": "Something went wrong, please try again."
     },
+    "modal_change_username": {
+      "title": "Change Username",
+      "body": "Please choose a new username.",
+      "button_affirmative": "Change",
+      "button_negative": "Cancel"
+    },
     "modal_rename": {
       "title": "Rename Install",
       "body": "Enter the new name for {0}.",

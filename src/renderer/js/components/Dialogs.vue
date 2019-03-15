@@ -2,6 +2,7 @@
     <div>
         <LoginDialog v-if="modalVisible('login')"></LoginDialog>
         <AccountSettingsDialog v-if="modalVisible('account_settings')"></AccountSettingsDialog>
+        <AccountUsernameDialog v-if="modalVisible('account_username')"></AccountUsernameDialog>
 
         <InstallOptionsDialog v-if="modalVisible('install_options')"></InstallOptionsDialog>
         <InstallRenameDialog v-if="modalVisible('install_rename')"></InstallRenameDialog>
@@ -20,10 +21,12 @@
     import UninstallDialog from "./dialogs/installs/UninstallDialog.vue";
     import SaveDeleteDialog from "./dialogs/installs/SaveDeleteDialog.vue";
     import AccountSettingsDialog from "./dialogs/account/AccountSettingsDialog.vue";
+    import AccountUsernameDialog from "./dialogs/account/AccountUsernameDialog.vue";
 
     export default {
         name: "Dialogs",
         components: {
+            AccountUsernameDialog,
             AccountSettingsDialog,
             SaveDeleteDialog,
             UninstallDialog, InstallRenameDialog, ModOptionsDialog, InstallOptionsDialog, LoginDialog},
