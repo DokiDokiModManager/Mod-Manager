@@ -67,7 +67,7 @@ let onboardingManager: OnboardingManager;
 // Flag for allowing the app window to be closed
 let windowClosable: boolean = true;
 
-const lang: I18n = new I18n(process.env.DDMM_LANG || Config.readConfigValue("language") || "en-GB");
+const lang: I18n = new I18n();
 
 // endregion
 

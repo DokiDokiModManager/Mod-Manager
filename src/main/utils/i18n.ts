@@ -1,5 +1,6 @@
 import {join as joinPath} from "path";
 import {readFileSync, existsSync} from "fs";
+import Config from "./Config";
 
 const DEFAULT_LOCALE = joinPath(__dirname, "../../../lang/", "en-GB" + ".json");
 
@@ -10,8 +11,8 @@ export default class I18n {
     private readonly defaultLanguageData: object;
     private readonly ignoreFlag: boolean = false;
 
-    constructor(language) {
-        this.language = language;
+    constructor() {
+        this.language = process.env.DDMM_LANG || Config.readConfigValue("language") || "en-GB";
         this.langFile = joinPath(__dirname, "../../../lang/", this.language + ".json");
 
         this.defaultLanguageData = JSON.parse(readFileSync(DEFAULT_LOCALE).toString("utf-8"));

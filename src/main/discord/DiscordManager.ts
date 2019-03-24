@@ -4,7 +4,7 @@ import Config from "../utils/Config";
 import Timeout = NodeJS.Timeout;
 import I18n from "../utils/i18n";
 
-const lang: I18n = new I18n(app.getLocale());
+const lang: I18n = new I18n();
 
 export default class DiscordManager {
 

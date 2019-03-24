@@ -5,7 +5,7 @@ import Install from "../types/Install";
 import Config from "../utils/Config";
 import I18n from "../utils/i18n";
 
-const lang: I18n = new I18n(app.getLocale());
+const lang: I18n = new I18n();
 
 export default class InstallList {
 

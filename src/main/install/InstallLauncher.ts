@@ -9,7 +9,7 @@ import SDKDebugConsole from "../sdk/SDKDebugConsole";
 import {LogClass} from "../sdk/LogClass";
 import SDKServer from "../sdk/SDKServer";
 
-const lang: I18n = new I18n(app.getLocale());
+const lang: I18n = new I18n();
 
 const SDK_HOST: string = "127.0.0.1";
 const SDK_PORT: number = 41420;

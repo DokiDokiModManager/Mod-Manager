@@ -4,6 +4,7 @@
         <AccountSettingsDialog v-if="modalVisible('account_settings')"></AccountSettingsDialog>
         <AccountUsernameDialog v-if="modalVisible('account_username')"></AccountUsernameDialog>
 
+
         <InstallOptionsDialog v-if="modalVisible('install_options')"></InstallOptionsDialog>
         <InstallRenameDialog v-if="modalVisible('install_rename')"></InstallRenameDialog>
         <SaveDeleteDialog v-if="modalVisible('save_delete')"></SaveDeleteDialog>

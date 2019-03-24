@@ -93,7 +93,8 @@
       "title": "Change Username",
       "body": "Please choose a new username.",
       "button_affirmative": "Change",
-      "button_negative": "Cancel"
+      "button_negative": "Cancel",
+      "description_invalid": "Usernames must be at least 2 characters long."
     },
     "modal_rename": {
       "title": "Rename Install",
