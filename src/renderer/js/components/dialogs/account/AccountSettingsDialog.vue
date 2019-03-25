@@ -68,9 +68,9 @@
             //     alert("not yet implemented");
             // },
             resetPassword() {
+                this.close();
                 firebase.auth().sendPasswordResetEmail(this.user.email).then(() => {
-                    // TODO: proper info dialog
-                    alert("reset sent");
+                    this.$store.commit("show_modal", {modal: "password_reset_confirmation"});
                 });
                 // TODO: catch error
             },

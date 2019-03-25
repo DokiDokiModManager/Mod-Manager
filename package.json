@@ -46,6 +46,7 @@
   "devDependencies": {
     "@sentry/cli": "^1.36.4",
     "concurrently": "^4.1.0",
+    "css-loader": "^2.1.1",
     "electron": "^4.0.5",
     "electron-builder": "^20.38.5",
     "electron-rebuild": "^1.8.4",

@@ -42,7 +42,9 @@ const store = new Vuex.Store({
             uninstall: false,
             save_delete: false,
             account_settings: false,
-            account_username: false
+            account_username: false,
+            password_reset_confirmation: false,
+            cloudsave_conflict: true
         },
         user: {
             logged_in: false,

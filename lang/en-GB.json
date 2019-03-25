@@ -96,6 +96,23 @@
       "button_negative": "Cancel",
       "description_invalid": "Usernames must be at least 2 characters long."
     },
+    "modal_password_reset": {
+      "title": "Password Reset",
+      "body": "A password reset link has been sent to your registered email.",
+      "button": "OK"
+    },
+    "modal_conflict_resolution": {
+      "title": "Cloud Save Conflict",
+      "description": "Your local save file is out of sync with your cloud save file. Please choose which save file you'd like to continue with.",
+      "description_warning": "When you choose a save file, it will overwrite your cloud save.",
+      "label_local": "Local Save",
+      "label_cloud": "Cloud Save",
+      "label_newer": "Newer",
+      "label_older": "Older",
+      "button_local": "Use Local Save",
+      "button_cloud": "Use Cloud Save",
+      "button_cancel": "Cancel"
+    },
     "modal_rename": {
       "title": "Rename Install",
       "body": "Enter the new name for {0}.",
