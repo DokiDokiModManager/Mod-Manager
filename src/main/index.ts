@@ -36,6 +36,7 @@ import {readFileSync, unlinkSync} from "fs";
 import InstallSync from "./cloud/InstallSync";
 import Timeout = NodeJS.Timeout;
 import {checkSync, DiskUsage} from "diskusage";
+import AccountUpgradeUI from "./account/AccountUpgradeUI";
 
 const DISCORD_ID = "453299645725016074";
 
@@ -466,6 +467,10 @@ ipcMain.on("onboarding browse", () => {
 
 ipcMain.on("download mod", (ev, url) => {
     downloadManager.downloadFile(url, joinPath(Config.readConfigValue("installFolder"), "mods"), null, "DOWNLOADED_MOD");
+});
+
+ipcMain.on("upgrade account", (ev, token) => {
+    AccountUpgradeUI.show(token);
 });
 
 // endregion

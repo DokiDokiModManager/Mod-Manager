@@ -44,7 +44,7 @@ const store = new Vuex.Store({
             account_settings: false,
             account_username: false,
             password_reset_confirmation: false,
-            cloudsave_conflict: true
+            cloudsave_conflict: false
         },
         user: {
             logged_in: false,
@@ -179,3 +179,4 @@ firebase.auth().onAuthStateChanged(user => {
 });
 
 window.__ddmm_state = store;
+window.__ddmm_firebase = firebase;

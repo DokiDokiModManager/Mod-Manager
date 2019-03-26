@@ -53,7 +53,9 @@
             _: ddmm.translate,
             upgrade() {
                 if (this.user.donated) return;
-                ddmm.app.openURL("https://app.doki.space/upgrade");
+                firebase.auth().currentUser.getIdToken().then(token => {
+                    ddmm.account.upgrade(token);
+                });
                 this.close();
             },
             logout() {

@@ -18,6 +18,7 @@ api.app = {};
 api.window = {};
 api.config = {};
 api.onboarding = {};
+api.account = {};
 
 // Called when the UI wants to refresh the mod list
 api.mods.refreshModList = function () {
@@ -403,6 +404,11 @@ ipcRenderer.on("unlock save", (ev, fn) => {
 ipcRenderer.on("is appx", (_, is) => {
     api.emit("is appx", is);
 });
+
+// Show Upgrade UI
+api.account.upgrade = function (token) {
+    ipcRenderer.send("upgrade account", token);
+};
 
 // Application version
 api.version = packageData.version;

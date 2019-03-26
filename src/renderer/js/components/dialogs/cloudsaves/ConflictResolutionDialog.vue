@@ -13,7 +13,11 @@
                 <p><strong>{{_("renderer.modal_conflict_resolution.label_local")}}</strong></p>
                 <p>time and date</p>
                 <br>
-                <p><button class="primary">{{_("renderer.modal_conflict_resolution.button_local")}}</button></p>
+                <p>
+                    <button class="primary"><i class="fas fa-cloud-upload-alt fa-fw"></i>
+                        {{_("renderer.modal_conflict_resolution.button_local")}}
+                    </button>
+                </p>
             </div>
             <div class="option">
                 <i class="fas fa-exchange-alt fa-3x"></i>
@@ -24,11 +28,19 @@
                 <p><strong>{{_("renderer.modal_conflict_resolution.label_cloud")}}</strong></p>
                 <p>time and date</p>
                 <br>
-                <p><button class="primary">{{_("renderer.modal_conflict_resolution.button_cloud")}}</button></p>
+                <p>
+                    <button class="primary"><i class="fas fa-cloud-download-alt fa-fw"></i>
+                        {{_("renderer.modal_conflict_resolution.button_cloud")}}
+                    </button>
+                </p>
             </div>
         </div>
         <br>
-        <p class="other-buttons"><button class="primary">{{_("renderer.modal_conflict_resolution.button_cancel")}}</button></p>
+        <p class="other-buttons">
+            <button class="primary" @click="close"><i class="fas fa-times fa-fw"></i>
+                {{_("renderer.modal_conflict_resolution.button_cancel")}}
+            </button>
+        </p>
     </Dialog>
 </template>
 
@@ -39,7 +51,10 @@
         name: "ConflictResolutionDialog",
         components: {Dialog},
         methods: {
-            _: ddmm.translate
+            _: ddmm.translate,
+            close() {
+                this.$store.commit("hide_modal", {modal: "cloudsave_conflict"});
+            }
         }
     }
 </script>
