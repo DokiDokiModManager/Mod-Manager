@@ -178,5 +178,13 @@ firebase.auth().onAuthStateChanged(user => {
     }
 });
 
+ddmm.on("check claims", () => {
+    firebase.auth().currentUser.getIdTokenResult(true).then(result => {
+        store.commit("login", {
+            donated: !!result.claims.donated
+        });
+    });
+});
+
 window.__ddmm_state = store;
 window.__ddmm_firebase = firebase;

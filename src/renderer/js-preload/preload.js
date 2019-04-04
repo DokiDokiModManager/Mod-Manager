@@ -405,6 +405,11 @@ ipcRenderer.on("is appx", (_, is) => {
     api.emit("is appx", is);
 });
 
+// Donation post handler
+ipcRenderer.on("check claims", () => {
+    api.emit("check claims");
+});
+
 // Application version
 api.version = packageData.version;
 

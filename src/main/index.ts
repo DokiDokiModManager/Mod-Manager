@@ -689,8 +689,9 @@ app.on("ready", () => {
                 modal: true,
                 parent: appWindow,
                 frame: true,
-                width: 900,
-                height: 600,
+                useContentSize: true,
+                width: 992,
+                height: 500,
                 webPreferences: {
                     nodeIntegration: false
                 }
@@ -705,7 +706,9 @@ app.on("ready", () => {
 
             newWindow.webContents.on("did-navigate", (ev, url: string) => {
                 if (url.startsWith("https://app.doki.space/callback")) {
-                    appWindow.webContents.reload();
+                    setTimeout(() => {
+                        appWindow.webContents.send("check claims");
+                    }, 5000);
                     newWindow.close();
                 }
             });
