@@ -25,7 +25,7 @@
             <i class="fas fa-key fa-fw"></i> {{_("renderer.menu_account_settings.reset_password")}}
         </div>
         <!--<div class="dialog-menu-item" @click="changeEmail">-->
-            <!--<i class="fas fa-at fa-fw"></i> {{_("renderer.menu_account_settings.change_email")}}-->
+        <!--<i class="fas fa-at fa-fw"></i> {{_("renderer.menu_account_settings.change_email")}}-->
         <!--</div>-->
         <div class="dialog-menu-item" @click="logout">
             <i class="fas fa-sign-out-alt fa-fw"></i> {{_("renderer.menu_account_settings.logout")}}
@@ -54,8 +54,9 @@
             upgrade() {
                 if (this.user.donated) return;
                 firebase.auth().currentUser.getIdToken().then(token => {
-                    ddmm.account.upgrade(token);
+                    window.open("https://app.doki.space/upgrade?token=" + token, "purchase_window");
                 });
+
                 this.close();
             },
             logout() {

@@ -405,11 +405,6 @@ ipcRenderer.on("is appx", (_, is) => {
     api.emit("is appx", is);
 });
 
-// Show Upgrade UI
-api.account.upgrade = function (token) {
-    ipcRenderer.send("upgrade account", token);
-};
-
 // Application version
 api.version = packageData.version;
 

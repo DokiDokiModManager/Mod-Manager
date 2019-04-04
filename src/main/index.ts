@@ -36,7 +36,6 @@ import {readFileSync, unlinkSync} from "fs";
 import InstallSync from "./cloud/InstallSync";
 import Timeout = NodeJS.Timeout;
 import {checkSync, DiskUsage} from "diskusage";
-import AccountUpgradeUI from "./account/AccountUpgradeUI";
 
 const DISCORD_ID = "453299645725016074";
 
@@ -469,10 +468,6 @@ ipcMain.on("download mod", (ev, url) => {
     downloadManager.downloadFile(url, joinPath(Config.readConfigValue("installFolder"), "mods"), null, "DOWNLOADED_MOD");
 });
 
-ipcMain.on("upgrade account", (ev, token) => {
-    AccountUpgradeUI.show(token);
-});
-
 // endregion
 
 // region Updates etc.
@@ -586,6 +581,7 @@ app.on("ready", () => {
             contextIsolation: false,
             sandbox: true,
             nodeIntegration: false,
+            nativeWindowOpen: true,
             preload: joinPath(__dirname, "../../src/renderer/js-preload/preload.js") // contains all the IPC scripts
         },
         titleBarStyle: "hiddenInset",
@@ -683,6 +679,40 @@ app.on("ready", () => {
 
     appWindow.webContents.once("did-finish-load", () => {
         handleURL();
+    });
+
+    appWindow.webContents.on("new-window", (ev, url, frameName) => {
+        if (frameName === "purchase_window") {
+            ev.preventDefault();
+
+            const newWindow: BrowserWindow = new BrowserWindow({
+                modal: true,
+                parent: appWindow,
+                frame: true,
+                width: 900,
+                height: 600,
+                webPreferences: {
+                    nodeIntegration: false
+                }
+            });
+
+            newWindow.loadURL(url);
+
+            newWindow.setMenuBarVisibility(false);
+            // newWindow.setMenu(null);
+
+            newWindow.setTitle("Doki Doki Mod Manager");
+
+            newWindow.webContents.on("did-navigate", (ev, url: string) => {
+                if (url.startsWith("https://app.doki.space/callback")) {
+                    appWindow.webContents.reload();
+                    newWindow.close();
+                }
+            });
+
+            // @ts-ignore
+            ev.newGuest = newWindow;
+        }
     });
 
     appWindow.setMenu(null);
