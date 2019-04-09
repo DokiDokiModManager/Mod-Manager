@@ -64,7 +64,13 @@
             },
             backgroundImageStyle() {
                 if (this.backgroundImage && this.backgroundImage !== "none") {
-                    return "radial-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.99) 90%), url(../../../src/renderer/images/backgrounds/" + this.backgroundImage + ")";
+                    let imagePath;
+                    if (this.backgroundImage.startsWith("custom:")) {
+                        imagePath = this.backgroundImage.split("custom:")[1];
+                    } else {
+                        imagePath = "../../../src/renderer/images/backgrounds/" + this.backgroundImage;
+                    }
+                    return `radial-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.99) 90%), url(${imagePath})`;
                 } else {
                     return "linear-gradient(#111, #111)";
                 }

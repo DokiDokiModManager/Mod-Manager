@@ -548,7 +548,6 @@ app.on("second-instance", (ev: Event, argv: string[]) => {
 
 app.on("ready", () => {
     if (!app.requestSingleInstanceLock()) {
-
         // we should quit, as another instance is running
         console.log("App already running.");
         app.quit();
@@ -679,43 +678,6 @@ app.on("ready", () => {
 
     appWindow.webContents.once("did-finish-load", () => {
         handleURL();
-    });
-
-    appWindow.webContents.on("new-window", (ev, url, frameName) => {
-        if (frameName === "purchase_window") {
-            ev.preventDefault();
-
-            const newWindow: BrowserWindow = new BrowserWindow({
-                modal: true,
-                parent: appWindow,
-                frame: true,
-                useContentSize: true,
-                width: 992,
-                height: 500,
-                webPreferences: {
-                    nodeIntegration: false
-                }
-            });
-
-            newWindow.loadURL(url);
-
-            newWindow.setMenuBarVisibility(false);
-            // newWindow.setMenu(null);
-
-            newWindow.setTitle("Doki Doki Mod Manager");
-
-            newWindow.webContents.on("did-navigate", (ev, url: string) => {
-                if (url.startsWith("https://app.doki.space/callback")) {
-                    setTimeout(() => {
-                        appWindow.webContents.send("check claims");
-                    }, 5000);
-                    newWindow.close();
-                }
-            });
-
-            // @ts-ignore
-            ev.newGuest = newWindow;
-        }
     });
 
     appWindow.setMenu(null);

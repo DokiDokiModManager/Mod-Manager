@@ -92,6 +92,9 @@
             getPathToInstall(folderName) {
                 return ddmm.joinPath(ddmm.config.readConfigValue("installFolder"), "installs", folderName);
             },
+            getURLToScreenshot(folderName, filename) {
+                return ddmm.pathToFile(ddmm.joinPath(ddmm.config.readConfigValue("installFolder"), "installs", folderName, "install", filename)) + "?" + Math.random();
+            },
             launchInstall(install) {
                 Launcher.launch(install);
             },

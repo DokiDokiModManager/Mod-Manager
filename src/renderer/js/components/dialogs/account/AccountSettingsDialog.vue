@@ -15,8 +15,8 @@
             <p v-else><strong>{{_("renderer.menu_account_settings.description_free")}}</strong></p>
         </div>
         <div class="dialog-menu-separator"></div>
-        <div :class="{'dialog-menu-item': true, 'disabled': user.donated}" @click="upgrade">
-            <i class="fas fa-heart fa-fw"></i> {{_("renderer.menu_account_settings.upgrade")}}
+        <div class="dialog-menu-item" @click="upgrade">
+            <i class="fab fa-patreon fa-fw"></i> {{_("renderer.menu_account_settings.patreon")}}
         </div>
         <div class="dialog-menu-item" @click="changeName">
             <i class="fas fa-pencil-alt fa-fw"></i> {{_("renderer.menu_account_settings.change_name")}}
@@ -52,10 +52,7 @@
         methods: {
             _: ddmm.translate,
             upgrade() {
-                if (this.user.donated) return;
-                firebase.auth().currentUser.getIdToken().then(token => {
-                    window.open("https://app.doki.space/upgrade?token=" + token, "purchase_window");
-                });
+                ddmm.app.openURL("https://patreon.com/ddmm");
 
                 this.close();
             },

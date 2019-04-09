@@ -13,9 +13,15 @@
 
         <br>
 
-        <button class="danger" @click="setBackground('none')"><i class="fas fa-times fa-fw"></i>
-            {{_("renderer.tab_options.section_backgrounds.button_none")}}
-        </button>
+        <p>
+            <button class="danger" @click="setBackground('none')"><i class="fas fa-times fa-fw"></i>
+                {{_("renderer.tab_options.section_backgrounds.button_none")}}
+            </button>
+
+            <button class="success" @click="chooseBackground" v-if="user && user.donated"><i class="fas fa-image fa-fw"></i>
+                {{_("renderer.tab_options.section_backgrounds.button_custom")}}
+            </button>
+        </p>
 
         <br><br>
 
@@ -26,10 +32,25 @@
 <script>
     export default {
         name: "BackgroundOptions",
+        computed: {
+            user() {
+                return this.$store.state.user;
+            }
+        },
         methods: {
             _: ddmm.translate,
             setBackground(background) {
                 this.$store.commit("options", {background});
+            },
+            chooseBackground() {
+                const el = document.createElement("input");
+                el.type = "file";
+                el.accept = "image/*";
+                el.onchange = () => {
+                    console.log(el.files[0]);
+                    this.$store.commit("options", {background: "custom:" + el.files[0].path});
+                };
+                el.click();
             }
         },
         data() {

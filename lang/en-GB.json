@@ -146,8 +146,8 @@
     },
     "menu_account_settings": {
       "description_free": "Free User",
-      "description_donated": "DDMM Supporter",
-      "upgrade": "Upgrade Account",
+      "description_donated": "Power User",
+      "patreon": "Support on Patreon",
       "change_name": "Change Username",
       "change_email": "Change Email",
       "reset_password": "Reset Password",
@@ -266,6 +266,7 @@
         "title": "Background",
         "subtitle": "Customise your copy of Doki Doki Mod Manager with one of these backgrounds.",
         "button_none": "No Background",
+        "button_custom": "Custom Background",
         "description_credit": "Original DDLC backgrounds courtesy of Team Salvato."
       },
       "section_advanced_appearance": {
