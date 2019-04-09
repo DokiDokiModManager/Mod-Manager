@@ -267,7 +267,8 @@
         "subtitle": "Customise your copy of Doki Doki Mod Manager with one of these backgrounds.",
         "button_none": "No Background",
         "button_custom": "Custom Background",
-        "description_credit": "Original DDLC backgrounds courtesy of Team Salvato."
+        "description_credit": "Original DDLC backgrounds courtesy of Team Salvato.",
+        "description_custom": "Custom backgrounds will not sync between devices. If you move or delete the custom background image, your background will be reset."
       },
       "section_advanced_appearance": {
         "title": "Advanced",

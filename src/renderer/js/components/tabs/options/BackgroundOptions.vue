@@ -14,18 +14,22 @@
         <br>
 
         <p>
-            <button class="danger" @click="setBackground('none')"><i class="fas fa-times fa-fw"></i>
-                {{_("renderer.tab_options.section_backgrounds.button_none")}}
-            </button>
-
             <button class="success" @click="chooseBackground" v-if="user && user.donated"><i class="fas fa-image fa-fw"></i>
                 {{_("renderer.tab_options.section_backgrounds.button_custom")}}
             </button>
+
+            <button class="danger" @click="setBackground('none')"><i class="fas fa-times fa-fw"></i>
+                {{_("renderer.tab_options.section_backgrounds.button_none")}}
+            </button>
         </p>
 
-        <br><br>
+        <br>
 
         <p>{{_("renderer.tab_options.section_backgrounds.description_credit")}}</p>
+
+        <br>
+
+        <p v-if="user && user.donated">{{_("renderer.tab_options.section_backgrounds.description_custom")}}</p>
     </div>
 </template>
 
