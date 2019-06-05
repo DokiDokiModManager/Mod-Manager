@@ -14,7 +14,7 @@
     "start-dev": "tsc && electron --inspect=5858 . --enable-sandbox",
     "release": "npm run create-darwin-icon && tsc && electron-builder",
     "test": "tsc && mocha",
-    "create-darwin-icon": "chmod +x ./create-darwin-icon.sh; ./create-darwin-icon.sh"
+    "create-darwin-icon": "chmod +x create-darwin-icon.sh; ./create-darwin-icon.sh"
   },
   "dependencies": {
     "7zip-bin": "^4.1.0",
