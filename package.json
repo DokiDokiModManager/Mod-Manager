@@ -12,8 +12,9 @@
   "scripts": {
     "start": "tsc && electron . --enable-sandbox",
     "start-dev": "tsc && electron --inspect=5858 . --enable-sandbox",
-    "release": "tsc && electron-builder",
-    "test": "tsc && mocha"
+    "release": "npm run create-darwin-icon && tsc && electron-builder",
+    "test": "tsc && mocha",
+    "create-darwin-icon": "cd build; iconutil -c icns icon.iconset; cd .."
   },
   "dependencies": {
     "7zip-bin": "^4.1.0",
