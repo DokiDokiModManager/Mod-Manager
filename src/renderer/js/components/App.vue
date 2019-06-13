@@ -17,11 +17,12 @@
     import Navbar from "./Navbar.vue";
     import ModsTab from "./tabs/ModsTab.vue";
     import OptionsTab from "./tabs/OptionsTab.vue";
+    import AboutTab from "./tabs/AboutTab.vue";
     import Dialogs from "./Dialogs.vue";
 
     export default {
         name: "App",
-        components: {Navbar, Titlebar, ModsTab, OptionsTab, Dialogs},
+        components: {Navbar, Titlebar, ModsTab, OptionsTab, Dialogs, AboutTab},
         data() {
             return {
                 // app / system meta
@@ -53,7 +54,7 @@
                     {
                         id: "about",
                         name: ddmm.translate("renderer.tabs.tab_about"),
-                        component: ""
+                        component: "AboutTab"
                     }
                 ],
             }
@@ -66,7 +67,7 @@
                 if (this.backgroundImage && this.backgroundImage !== "none") {
                     let imagePath;
                     if (this.backgroundImage.startsWith("custom:")) {
-                        imagePath = this.backgroundImage.split("custom:")[1];
+                        imagePath = ddmm.pathToFile(this.backgroundImage.split("custom:")[1]);
                     } else {
                         imagePath = "../../../src/renderer/images/backgrounds/" + this.backgroundImage;
                     }

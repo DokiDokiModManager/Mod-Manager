@@ -12,9 +12,8 @@ export default class InstallCreator {
      * @param folderName The folder name to store the install in
      * @param installName The user facing name of the install
      * @param globalSave Whether it should use the global save
-     * @param cloudSave The filename for cloud saves
      */
-    public static createInstall(folderName: string, installName: string, globalSave: boolean, cloudSave?: string): Promise<null> {
+    public static createInstall(folderName: string, installName: string, globalSave: boolean): Promise<null> {
         return new Promise((ff, rj) => {
             console.log("Creating clean install in " + folderName);
             const canonicalPath = joinPath(Config.readConfigValue("installFolder"), "installs", folderName);
@@ -72,7 +71,6 @@ export default class InstallCreator {
                     // write the install data file
                     writeFileSync(joinPath(canonicalPath, "install.json"), JSON.stringify({
                         globalSave,
-                        cloudSave,
                         mod: null,
                         name: installName,
                     }));

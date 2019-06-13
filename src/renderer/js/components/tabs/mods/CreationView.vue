@@ -34,15 +34,12 @@
 
             <div class="form-group">
                 <ChunkyRadioButtons
-                        :options="[_('renderer.tab_mods.install_creation.option_local_save'), _('renderer.tab_mods.install_creation.option_global_save'), _('renderer.tab_mods.install_creation.option_cloudsave')]"
+                        :options="[_('renderer.tab_mods.install_creation.option_local_save'), _('renderer.tab_mods.install_creation.option_global_save')]"
                         v-model="install_creation.save_option"></ChunkyRadioButtons>
             </div>
 
-            <div v-if="install_creation.save_option === 2">
-                <p>{{_("renderer.tab_mods.install_creation.description_cloudsave")}}</p>
-            </div>
 
-            <div v-else-if="install_creation.save_option === 1">
+            <div v-if="install_creation.save_option === 1">
                 <p>{{_("renderer.tab_mods.install_creation.description_global_save")}}</p>
                 <br>
                 <p><strong>{{_("renderer.tab_mods.install_creation.warning_global_save")}}</strong></p>
@@ -52,25 +49,6 @@
                 <p>{{_("renderer.tab_mods.install_creation.description_local_save")}}</p>
             </div>
 
-            <div class="form-group" v-if="install_creation.save_option === 2">
-                <template v-if="user.logged_in">
-                    <p><label>{{_("renderer.tab_mods.install_creation.label_cloudsave")}}</label></p>
-
-                    <p>NOT YET IMPLEMENTED!</p>
-
-                    <!--<p>-->
-                    <!--<select v-model="install_creation.cloudsave">-->
-                    <!--<option value="" selected>{{_("renderer.tab_mods.install_creation.option_new_cloudsave")}}-->
-                    <!--</option>-->
-                    <!--<optgroup :label="_('renderer.tab_mods.install_creation.label_existing_saves')"-->
-                    <!--v-if="getSaveFiles()">-->
-                    <!--<option v-for="save in getSaveFiles()" :value="save.filename">{{save.display}}</option>-->
-                    <!--</optgroup>-->
-                    <!--</select>-->
-                    <!--</p>-->
-                </template>
-                <p v-else><strong>{{_("renderer.tab_mods.install_creation.warning_logged_out")}}</strong></p>
-            </div>
 
             <div v-if="is_installing" class="form-group">
                 <button class="primary" disabled><i class="fas fa-spinner fa-spin fa-fw"></i>
@@ -79,7 +57,7 @@
             </div>
 
             <div v-else class="form-group">
-                <button class="primary" :disabled="shouldDisableCreation"><i
+                <button class="primary" :disabled="shouldDisableCreation" @click="install"><i
                         class="fas fa-bolt fa-fw"></i> {{_("renderer.tab_mods.install_creation.button_install")}}
                 </button>
             </div>
@@ -105,8 +83,7 @@
                     folder_name: "",
                     has_mod: false,
                     mod: "",
-                    save_option: 0,
-                    cloudsave: ""
+                    save_option: 0
                 },
 
                 is_installing: false
@@ -131,6 +108,15 @@
                 if (mod) {
                     this.install_creation.mod = mod;
                 }
+            },
+            install() {
+                ddmm.mods.createInstall({
+                    folderName: this.install_creation.folder_name,
+                    installName: this.install_creation.install_name,
+                    globalSave: this.install_creation.save_option === 1,
+                    mod: this.install_creation.has_mod ? this.install_creation.mod : null
+                });
+                this.is_installing = true;
             }
         },
         computed: {

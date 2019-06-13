@@ -1,9 +1,9 @@
 <template>
     <div v-if="install">
-        <h1>{{install.name}} <span class="tag"
-                                   v-if="install.cloudSave">{{_("renderer.tab_mods.install.tag_cloud")}}</span> <span
-                class="tag" v-if="install.globalSave">{{_("renderer.tab_mods.install.tag_global_save")}}</span> <span
-                class="tag" v-if="install.mod && install.mod.uses_sdk">{{_("renderer.tab_mods.install.tag_sdk")}}</span>
+        <h1>{{install.name}}
+            <span class="tag" v-if="install.globalSave">{{_("renderer.tab_mods.install.tag_global_save")}}</span>
+            <span class="tag"
+                  v-if="install.mod && install.mod.uses_sdk">{{_("renderer.tab_mods.install.tag_sdk")}}</span>
         </h1>
         <p>{{getPathToInstall(install.folderName)}} <a href="javascript:;"
                                                        @click="openFolder(getPathToInstall(install.folderName))"

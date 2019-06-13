@@ -32,8 +32,7 @@ import InstallManager from "./install/InstallManager";
 import DiscordManager from "./discord/DiscordManager";
 import DownloadManager from "./net/DownloadManager";
 import OnboardingManager from "./onboarding/OnboardingManager";
-import {readFileSync, unlinkSync} from "fs";
-import InstallSync from "./cloud/InstallSync";
+import {unlinkSync} from "fs";
 import Timeout = NodeJS.Timeout;
 import {checkSync, DiskUsage} from "diskusage";
 
@@ -89,29 +88,6 @@ function showError(title: string, body: string, stacktrace: string, fatal: boole
     appWindow.setClosable(true);
 }
 
-function getCloudSaveData(folderName: string): Promise<{ url: string, name: string }> {
-    return new Promise((ff, rj) => {
-        const installDataFile: string = joinPath(Config.readConfigValue("installFolder"), "installs", folderName, "install.json");
-        let installData: any;
-        try {
-            installData =
-                JSON.parse(readFileSync(installDataFile).toString("utf8"));
-
-            if (installData.cloudSave) {
-                appWindow.webContents.send("get save url", installData.cloudSave);
-                ipcMain.once("got save url", (_, url) => {
-                    ff({url, name: installData.cloudSave});
-                });
-            } else {
-                ff(null);
-            }
-        } catch (e) {
-            rj();
-            return;
-        }
-    });
-}
-
 /**
  * Launches an install, handling frontend functionality automatically
  * @param folderName The folder containing the install
@@ -127,38 +103,15 @@ async function launchInstall(folderName): Promise<void> {
     let lockTimer: Timeout;
     Config.saveConfigValue("lastLaunchedInstall", folderName);
     appWindow.minimize(); // minimise the window to draw attention to the fact another window will be appearing
-    const saveData: { url: string, name: string } = await getCloudSaveData(folderName);
-    if (saveData) {
-        appWindow.webContents.send("lock save", saveData.name);
-        lockTimer = setInterval(() => {
-            appWindow.webContents.send("lock save", saveData.name);
-        }, 30000);
-    }
-    if (saveData && saveData.url) {
-        await InstallSync.installSaveData(folderName, saveData.url);
-    }
     InstallLauncher.launchInstall(folderName, richPresence).then(() => {
         appWindow.restore(); // show DDMM again
         appWindow.focus();
         appWindow.webContents.send("running cover", {display: false});
         appWindow.webContents.send("got installs", InstallList.getInstallList());
-        if (saveData) {
-            console.log("Compressing save data");
-            InstallSync.compressSaveData(folderName).then(pathToSave => {
-                appWindow.webContents.send("upload save", {
-                    localURL: pathToSave,
-                    filename: saveData.name
-                });
-                clearTimeout(lockTimer);
-            }).catch(e => {
-                // TODO: talk about the error
-            });
-        }
     }).catch(err => {
         appWindow.restore();
         appWindow.focus();
         clearTimeout(lockTimer);
-        appWindow.webContents.send("unlock save", saveData.name);
         appWindow.webContents.send("running cover", {
             display: true,
             dismissable: true,
@@ -235,11 +188,11 @@ ipcMain.on("browse mods", (ev: IpcMessageEvent) => {
 });
 
 // Trigger install creation
-ipcMain.on("create install", (ev: IpcMessageEvent, install: { folderName: string, installName: string, globalSave: boolean, mod: string, cloudSave: string }) => {
+ipcMain.on("create install", (ev: IpcMessageEvent, install: { folderName: string, installName: string, globalSave: boolean, mod: string}) => {
     windowClosable = false;
     appWindow.setClosable(false);
     console.log("[IPC create install] Creating install in " + install.folderName);
-    InstallCreator.createInstall(install.folderName, install.installName, install.globalSave, install.cloudSave).then(() => {
+    InstallCreator.createInstall(install.folderName, install.installName, install.globalSave).then(() => {
         if (!install.mod) {
             appWindow.webContents.send("got installs", InstallList.getInstallList());
             windowClosable = true;

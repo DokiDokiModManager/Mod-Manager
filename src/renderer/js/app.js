@@ -1,17 +1,3 @@
-import * as firebase from "firebase/app";
-import "firebase/firebase-auth";
-import "firebase/firebase-database";
-import "firebase/firebase-storage";
-
-firebase.initializeApp({
-    apiKey: "AIzaSyDInikDCCVFIhpAMPEBaaRmx_p2ZLX-6GY",
-    authDomain: "doki-doki-mod-manager.firebaseapp.com",
-    databaseURL: "https://doki-doki-mod-manager.firebaseio.com",
-    projectId: "doki-doki-mod-manager",
-    storageBucket: "doki-doki-mod-manager.appspot.com",
-    messagingSenderId: "324232265869"
-});
-
 import Logger from "./utils/Logger";
 
 import Vue from "vue";
@@ -45,13 +31,6 @@ const store = new Vuex.Store({
             account_username: false,
             password_reset_confirmation: false,
             cloudsave_conflict: false
-        },
-        user: {
-            logged_in: false,
-            display_name: "",
-            email: "",
-            email_verified: false,
-            donated: false
         },
         selected_install: {},
         selected_mod: ""
@@ -105,30 +84,6 @@ const store = new Vuex.Store({
                 Logger.error("Modal", "Attempted to hide modal that doesn't exist: " + payload.modal)
             }
         },
-        login(state, payload) {
-            if (payload.email) {
-                Logger.info("Firebase", "User logged in: " + payload.email);
-            } else {
-                Logger.info("Firebase", "User state updated");
-            }
-            state.user.logged_in = true;
-            if (payload.hasOwnProperty("display_name")) {
-                state.user.display_name = payload.display_name;
-            }
-            if (payload.hasOwnProperty("email")) {
-                state.user.email = payload.email;
-            }
-            if (payload.hasOwnProperty("donated")) {
-                state.user.donated = payload.donated;
-            }
-        },
-        logout(state) {
-            Logger.info("Firebase", "User logged out");
-            state.user.logged_in = false;
-            state.user.displayName = "";
-            state.user.email = "";
-            state.user.donated = false;
-        },
         select_install(state, payload) {
             Logger.info("InstallOpts", "Selected install " + payload.install.folderName);
             state.selected_install = payload.install;
@@ -163,28 +118,5 @@ ddmm.on("mod list", mods => {
     store.commit("load_mods", mods);
 });
 
-firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-        user.getIdTokenResult(true).then(result => {
-            store.commit("login", {
-                display_name: user.displayName,
-                email: user.email,
-                email_verified: user.emailVerified,
-                donated: !!result.claims.donated
-            });
-        });
-    } else {
-        store.commit("logout");
-    }
-});
-
-ddmm.on("check claims", () => {
-    firebase.auth().currentUser.getIdTokenResult(true).then(result => {
-        store.commit("login", {
-            donated: !!result.claims.donated
-        });
-    });
-});
 
 window.__ddmm_state = store;
-window.__ddmm_firebase = firebase;

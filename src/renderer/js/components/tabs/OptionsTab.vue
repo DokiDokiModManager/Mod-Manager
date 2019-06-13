@@ -47,19 +47,6 @@
                         ]
                     },
                     {
-                        header: ddmm.translate("renderer.tab_options.list.header_account"),
-                        contents: [
-                            {
-                                title: ddmm.translate("renderer.tab_options.list.link_cloudsaves"),
-                                id: "cloudsaves"
-                            },
-                            {
-                                title: ddmm.translate("renderer.tab_options.list.link_accmanagement"),
-                                id: "accmanagement"
-                            }
-                        ]
-                    },
-                    {
                         header: ddmm.translate("renderer.tab_options.list.header_application"),
                         contents: [
                             {
