@@ -20,7 +20,7 @@
     "build-renderer": "webpack --mode=production",
     "build-all": "yarn build-css && yarn build-typescript && yarn build-renderer",
     "start": "yarn build-all && electron . --enable-sandbox",
-    "start-dev": "concurrently -k \"npm:watch\" \"electron --inspect=5858 . --enable-sandbox\"",
+    "start-dev": "yarn build-all && concurrently -k \"npm:watch\" \"electron --inspect=5858 . --enable-sandbox\"",
     "release": "yarn build-all && electron-builder",
     "test": "yarn build-all && mocha"
   },
