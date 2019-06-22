@@ -15,8 +15,8 @@
     "build-typescript": "tsc",
     "start": "yarn build-typescript && electron . --enable-sandbox",
     "start-dev": "yarn build-typescript && concurrently -k \"npm:watch-typescript\" \"electron --inspect=5858 . --enable-sandbox\"",
-    "release": "yarn build-all && electron-builder",
-    "test": "yarn build-all && mocha"
+    "release": "yarn build-typescript && electron-builder",
+    "test": "yarn build-typescript && mocha"
   },
   "dependencies": {
     "7zip-bin": "^4.1.0",
