@@ -9,9 +9,11 @@ const {ipcRenderer, remote} = require("electron");
 const EventEmitter = remote.require("events");
 const packageData = remote.require("../../package");
 const path = remote.require("path");
-const fileUrl = remote.require("file-url");
+const datauri = remote.require("datauri");
 
 const api = new EventEmitter();
+
+const filePaths = new Map();
 
 api.mods = {};
 api.app = {};
@@ -105,7 +107,27 @@ api.translate = function (key, ...args) {
 };
 
 // Path to URL conversion
-api.pathToFile = fileUrl;
+api.fileToURL = function (file) {
+    if (filePaths.has(file)) {
+        return filePaths.get(file);
+    }
+    const uri = datauri.sync(file);
+    filePaths.set(file, uri);
+    return uri;
+};
+
+api.fileToURLAsync = function(file) {
+    return new Promise((ff, rj) => {
+        if (filePaths.has(file)) {
+            ff(filePaths.get(file));
+        }
+
+        datauri.promise(file).then(uri => {
+            filePaths.set(file, uri);
+            ff(uri);
+        });
+    });
+};
 
 // Close window
 api.window.close = function () {
@@ -377,37 +399,9 @@ ipcRenderer.on("onboarding download failed", () => {
     api.emit("onboarding download failed");
 });
 
-ipcRenderer.on("auth handoff", (_, url) => {
-    api.emit("auth handoff", url);
-});
-
-ipcRenderer.on("get save url", (ev, filename) => {
-    api.emit("get save url", filename);
-    api.on("got save url", url => {
-        ipcRenderer.send("got save url", url);
-    });
-});
-
-ipcRenderer.on("upload save", (ev, data) => {
-    api.emit("upload save", data);
-});
-
-ipcRenderer.on("lock save", (ev, fn) => {
-    api.emit("lock save", fn);
-});
-
-ipcRenderer.on("unlock save", (ev, fn) => {
-    api.emit("unlock save", fn);
-});
-
 // Winstore Appx UI handling
 ipcRenderer.on("is appx", (_, is) => {
     api.emit("is appx", is);
-});
-
-// Donation post handler
-ipcRenderer.on("check claims", () => {
-    api.emit("check claims");
 });
 
 // Application version

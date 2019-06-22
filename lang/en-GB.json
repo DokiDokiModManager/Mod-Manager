@@ -45,10 +45,6 @@
       "button_open": "Open Link",
       "button_close": "Close"
     },
-    "sync_overlay": {
-      "title": "Synchronising your save data...",
-      "description": "Please be patient. If you have a lot of save states, this may take up to several minutes."
-    },
     "onboarding": {
       "title": "Welcome!",
       "description_download": "Let's find a copy of DDLC.",
@@ -62,56 +58,6 @@
       "status_offline": "You need an active internet connection to download DDLC.",
       "description_location": "Your games will be stored at {0}",
       "link_change": "(Change)"
-    },
-    "change_username_input": {
-      "message": "Enter your new username",
-      "details": "Usernames don't have to be unique.",
-      "button_affirmative": "Change",
-      "button_negative": "Cancel"
-    },
-    "error_sync": {
-      "title": "Save data sync failed",
-      "body": "Your local save data is still safe, and will be uploaded next time you start playing."
-    },
-    "modal_login": {
-      "title": "Log In",
-      "description": "Log in with your registered email and password. If you already have an account without a password, choose \"{0}\" to set a new one.",
-      "label_email": "Email Address",
-      "label_password": "Password",
-      "link_forgot": "Forgotten your password?",
-      "link_register": "Need an account? Click here to create one.",
-      "button_login": "Log In",
-      "button_cancel": "Cancel",
-      "error_incomplete": "Please enter both your email and password.",
-      "error_invalid_email": "Your email address looks wrong, please try again.",
-      "error_disabled": "Your account has been disabled, please email zudo@doki.space.",
-      "error_no_account": "No account exists under this email address.",
-      "error_password": "Your password is incorrect, please try again or reset it.",
-      "error_unknown": "Something went wrong, please try again."
-    },
-    "modal_change_username": {
-      "title": "Change Username",
-      "body": "Please choose a new username.",
-      "button_affirmative": "Change",
-      "button_negative": "Cancel",
-      "description_invalid": "Usernames must be at least 2 characters long."
-    },
-    "modal_password_reset": {
-      "title": "Password Reset",
-      "body": "A password reset link has been sent to your registered email.",
-      "button": "OK"
-    },
-    "modal_conflict_resolution": {
-      "title": "Cloud Save Conflict",
-      "description": "Your local save file is out of sync with your cloud save file. Please choose which save file you'd like to continue with.",
-      "description_warning": "When you choose a save file, it will overwrite your cloud save.",
-      "label_local": "Local Save",
-      "label_cloud": "Cloud Save",
-      "label_newer": "Newer",
-      "label_older": "Older",
-      "button_local": "Use Local Save",
-      "button_cloud": "Use Cloud Save",
-      "button_cancel": "Cancel"
     },
     "modal_rename": {
       "title": "Rename Install",
@@ -142,16 +88,6 @@
     "menu_mod_options": {
       "install": "Install",
       "delete": "Delete",
-      "cancel": "Cancel"
-    },
-    "menu_account_settings": {
-      "description_free": "Free User",
-      "description_donated": "Power User",
-      "patreon": "Support on Patreon",
-      "change_name": "Change Username",
-      "change_email": "Change Email",
-      "reset_password": "Reset Password",
-      "logout": "Log Out",
       "cancel": "Cancel"
     },
     "tab_mods": {
@@ -191,8 +127,6 @@
         "button_settings": "Settings",
         "tag_global_save": "Global Save",
         "tag_sdk": "SDK",
-        "tag_cloud": "Cloud Save",
-        "description_locked": "You are playing with this cloud save file on a different computer. To continue here, stop playing on the other computer.",
         "title_achievements": "Achievements ({0} / {1})",
         "description_achievements": "Keep playing to unlock more achievements.",
         "description_achievements_complete": "You've unlocked all achievements. Congratulations!",
@@ -218,14 +152,13 @@
         "label_folder_name": "Folder Name",
         "label_has_mod": "Install Mod",
         "label_mod": "Mod",
-        "option_local_save": "Local Save (recommended)",
+        "option_local_save": "Local Save",
         "option_global_save": "Global Save",
         "description_mod": "Click to browse for a mod.",
         "header_summary": "Summary",
         "description_local_save": "Your save data will be stored separately from any other copy of DDLC. This is the recommended option",
         "description_global_save": "Your save data will be stored in the normal DDLC save folder.",
         "warning_global_save": "Using Global Save may cause issues with other copies of the game. Only use it if you have a specific reason to.",
-        "description_cloudsave": "Your save data will be stored on Doki Doki Mod Manager's servers.",
         "button_install": "Install",
         "button_installing": "Installing...",
         "status_exists": "That folder already exists. Pick another folder name."
@@ -270,16 +203,6 @@
         "subtitle": "Find other interface options here.",
         "button_enable_sysborders": "Use System Borders (requires restart)",
         "button_disable_sysborders": "Disable System Borders (requires restart)"
-      },
-      "section_cloudsaves": {
-        "title": "Cloud Save Management",
-        "subtitle": "Manage your cloud save data.",
-        "description_no_saves": "You don't have any cloud saves yet. To create a new cloud save file, install a mod with the Cloud Save option.",
-        "table_header_name": "Save Name",
-        "table_header_size": "Size",
-        "table_header_options": "Options",
-        "button_rename": "Rename",
-        "button_delete": "Delete"
       },
       "section_storage": {
         "title": "Storage Location",

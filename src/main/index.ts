@@ -1,5 +1,5 @@
 import {app, BrowserWindow, ipcMain, IpcMessageEvent, shell, dialog, Notification} from "electron";
-import {move, existsSync, mkdirpSync, readdirSync, removeSync, copyFileSync} from "fs-extra";
+import {move, existsSync, mkdirpSync, readdirSync, removeSync, copyFileSync, statSync, unlinkSync} from "fs-extra";
 import {join as joinPath} from "path";
 import {autoUpdater} from "electron-updater";
 import * as Sentry from "@sentry/electron";
@@ -32,7 +32,6 @@ import InstallManager from "./install/InstallManager";
 import DiscordManager from "./discord/DiscordManager";
 import DownloadManager from "./net/DownloadManager";
 import OnboardingManager from "./onboarding/OnboardingManager";
-import {unlinkSync} from "fs";
 import Timeout = NodeJS.Timeout;
 import {checkSync, DiskUsage} from "diskusage";
 
@@ -188,7 +187,7 @@ ipcMain.on("browse mods", (ev: IpcMessageEvent) => {
 });
 
 // Trigger install creation
-ipcMain.on("create install", (ev: IpcMessageEvent, install: { folderName: string, installName: string, globalSave: boolean, mod: string}) => {
+ipcMain.on("create install", (ev: IpcMessageEvent, install: { folderName: string, installName: string, globalSave: boolean, mod: string }) => {
     windowClosable = false;
     appWindow.setClosable(false);
     console.log("[IPC create install] Creating install in " + install.folderName);
@@ -343,16 +342,22 @@ ipcMain.on("move install", () => {
             appWindow.hide();
             const oldInstallFolder: string = Config.readConfigValue("installFolder");
             const newInstallFolder: string = joinPath(filePaths[0], "DDMM_GameData");
-            move(oldInstallFolder, newInstallFolder, {overwrite: false}, e => {
-                if (e) {
-                    console.log(e);
-                    dialog.showErrorBox(lang.translate("main.errors.move_install.title"), lang.translate("main.errors.move_install.body"));
-                } else {
-                    Config.saveConfigValue("installFolder", newInstallFolder);
-                }
+            if (!existsSync(newInstallFolder) || !statSync(newInstallFolder).isDirectory()) {
+                move(oldInstallFolder, newInstallFolder, {overwrite: false}, e => {
+                    if (e) {
+                        console.log(e);
+                        dialog.showErrorBox(lang.translate("main.errors.move_install.title"), lang.translate("main.errors.move_install.body"));
+                    } else {
+                        Config.saveConfigValue("installFolder", newInstallFolder);
+                    }
+                    app.relaunch();
+                    app.quit();
+                });
+            } else {
+                Config.saveConfigValue("installFolder", newInstallFolder);
                 app.relaunch();
                 app.quit();
-            });
+            }
         }
     });
 });
@@ -364,7 +369,7 @@ ipcMain.on("get backgrounds", (ev: IpcMessageEvent) => {
 
 // Crash for debugging
 ipcMain.on("debug crash", () => {
-    throw new Error("User forced debug crash with DevTools")
+    throw new Error("User forced debug crash with DevTools");
 });
 
 // Disk space check
@@ -486,9 +491,6 @@ function handleURL(forcedArg?: string) {
         if (command.startsWith("launch-install/")) {
             const installFolder: string = command.split("launch-install/")[1];
             launchInstall(installFolder);
-        } else if (command.startsWith("auth-handoff/")) {
-            const url = new Buffer(command.split("auth-handoff/")[1], "base64").toString("utf8");
-            appWindow.webContents.send("auth handoff", url);
         }
     }
 }
@@ -639,7 +641,11 @@ app.on("ready", () => {
         appWindow.webContents.openDevTools({mode: "detach"});
     }
 
-    appWindow.loadFile(joinPath(__dirname, "../../src/renderer/html/index.html"));
+    if (process.env.DDMM_UI_URL) {
+        appWindow.loadURL(process.env.DDMM_UI_URL);
+    } else {
+        appWindow.loadURL("https://ui-production.doki.space");
+    }
 
     if (!Config.readConfigValue("installFolder", true)) {
         Config.saveConfigValue("installFolder", Config.readConfigValue("installFolder"));
