@@ -1,5 +1,11 @@
 {
   "renderer": {
+    "online_error": {
+      "title": "Please connect to the internet",
+      "body": "Doki Doki Mod Manager requires an internet connection to download resources for the first time. Please check your internet connection, then restart.",
+      "button_restart": "Restart",
+      "button_quit": "Quit"
+    },
     "tabs": {
       "tab_home": "Home",
       "tab_mods": "Mods",
@@ -187,16 +193,15 @@
         "link_storage": "Storage Location",
         "link_language": "Language",
         "header_developers": "Developers",
-        "link_testing": "SDK Debug",
-        "link_debug": "App Info"
+        "link_testing": "Debugging Options"
       },
       "section_backgrounds": {
         "title": "Background",
         "subtitle": "Customise your copy of Doki Doki Mod Manager with one of these backgrounds.",
         "button_none": "No Background",
         "button_custom": "Custom Background",
-        "description_credit": "Original DDLC backgrounds courtesy of Team Salvato.",
-        "description_custom": "Custom backgrounds will not sync between devices. If you move or delete the custom background image, your background will be reset."
+        "description_credit": "Original DDLC backgrounds courtesy of Satchely & Team Salvato.",
+        "description_custom": "If you move or delete the custom background image, your background will be reset."
       },
       "section_advanced_appearance": {
         "title": "Advanced",
@@ -242,26 +247,14 @@
         "button_disable": "Disable Rich Presence"
       },
       "section_testing": {
-        "title": "SDK Debug",
-        "subtitle": "Enable debug logging to test your mods with the Doki Doki Mod Manager SDK.",
-        "button_enable": "Enable Debugging",
-        "button_disable": "Disable Debugging"
-      },
-      "section_debug": {
-        "title": "App Info",
-        "subtitle": "Information for diagnosing problems."
-      },
-      "cloudsave_rename_input": {
-        "message": "Rename Save File",
-        "details": "Enter the new name for {0}.",
-        "button_affirmative": "Rename",
-        "button_negative": "Cancel"
-      },
-      "cloudsave_delete_prompt": {
-        "message": "Delete Save File?",
-        "details": "If you delete {0}, you will lose it, unless you have an installed copy.",
-        "button_affirmative": "Rename",
-        "button_negative": "Cancel"
+        "title": "Debug Options",
+        "subtitle": "Enable debug options for developers.",
+        "checkbox_logging": "Enable Debug Logging",
+        "header_mod_debug": "Mod Debugging",
+        "description_mod_debug": "Show a debug window with console output from your mod. Useful for testing the DDMM SDK.",
+        "header_ui_url": "UI Environment",
+        "description_ui_url": "Choose the server where the DDMM UI is loaded from. Do not change this unless you are testing contributions, as you will cause things to break.",
+        "checkbox_ui_url": "Load from development server"
       }
     },
     "tab_about": {
@@ -316,6 +309,10 @@
       "file_format_name": "Shortcut"
     },
     "errors": {
+      "dev_ui_load_fail": {
+        "title": "Failed to load from development server",
+        "body": "Loading from live UI servers instead. If you aren't sure why you're seeing this, turn off \"Load from development server\" in the Debugging Options menu."
+      },
       "exception": {
         "title": "Doki Doki Mod Manager crashed",
         "body": "The problem has been reported. Please restart and try again."

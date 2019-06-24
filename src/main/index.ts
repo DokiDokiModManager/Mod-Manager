@@ -523,7 +523,7 @@ app.on("ready", () => {
 
     // create browser window
     appWindow = new BrowserWindow({
-        title: "Doki Doki Mod Manager",
+        // title: "Doki Doki Mod Manager",
         width: 1024,
         height: 600,
         minWidth: 1000,
@@ -579,21 +579,12 @@ app.on("ready", () => {
         ev.preventDefault(); // prevent navigation
     });
 
-    appWindow.webContents.on("did-finish-load", () => {
+    appWindow.on("ready-to-show", () => {
         if (!appWindow.isVisible()) {
             appWindow.show();
         }
-        appWindow.webContents.send("debug info", {
-            "Platform": process.platform,
-            "Node Environment": process.env.NODE_ENV || "none",
-            "Discord Client ID": process.env.DDMM_DISCORD_ID || DISCORD_ID,
-            "Background": Config.readConfigValue("background"),
-            "Node Version": process.version,
-            "Electron Version": process.versions.electron,
-            "Chrome Version": process.versions.chrome,
-            "Locale": app.getLocale(),
-            "Install Folder": Config.readConfigValue("installFolder")
-        });
+
+        appWindow.show();
 
         OnboardingManager.requiresOnboarding().catch(e => {
             console.warn("Onboarding required - reason: " + e);
@@ -631,21 +622,38 @@ app.on("ready", () => {
         app.quit();
     });
 
+
     appWindow.webContents.once("did-finish-load", () => {
         handleURL();
     });
 
-    appWindow.setMenu(null);
-
-    if (process.env.DDMM_DEVTOOLS) {
-        appWindow.webContents.openDevTools({mode: "detach"});
+    if (!process.env.DDMM_DEVTOOLS) {
+        appWindow.setMenu(null);
     }
 
-    if (process.env.DDMM_UI_URL) {
-        appWindow.loadURL(process.env.DDMM_UI_URL);
+    const uiSubdomain: string = "v" + app.getVersion().replace(/\./g, "-");
+
+    appWindow.webContents.once("did-fail-load", () => {
+        if (Config.readConfigValue("localUI")) {
+            dialog.showErrorBox(lang.translate("main.errors.dev_ui_load_fail.title"), lang.translate("main.errors.dev_ui_load_fail.body"));
+            appWindow.loadURL(`https://${uiSubdomain}.ui.doki.space`);
+        } else {
+            const lastVersion: string = Config.readConfigValue("lastKnownGoodVersion");
+            if (app.getVersion() !== lastVersion) { // if there is an older version available
+                appWindow.loadURL(`https://${lastVersion}.ui.doki.space`);
+            } else {
+                appWindow.loadFile(joinPath(__dirname, "../../src/renderer/html/offline.html"))
+            }
+        }
+    });
+
+    if (Config.readConfigValue("localUI")) {
+        appWindow.loadURL("http://localhost:1234/");
     } else {
-        appWindow.loadURL("https://ui-production.doki.space");
+        appWindow.loadURL(`https://${uiSubdomain}.ui.doki.space`);
     }
+
+    appWindow.setTitle("Doki Doki Mod Manager");
 
     if (!Config.readConfigValue("installFolder", true)) {
         Config.saveConfigValue("installFolder", Config.readConfigValue("installFolder"));

@@ -13,8 +13,6 @@ const datauri = remote.require("datauri");
 
 const api = new EventEmitter();
 
-const filePaths = new Map();
-
 api.mods = {};
 api.app = {};
 api.window = {};
@@ -108,23 +106,19 @@ api.translate = function (key, ...args) {
 
 // Path to URL conversion
 api.fileToURL = function (file) {
-    if (filePaths.has(file)) {
-        return filePaths.get(file);
+    try {
+        return datauri.sync(file);
+    } catch {
+        return "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjEuNv1OCegAAAANSURBVBhXY2BgYEgBAABpAGW2L9BbAAAAAElFTkSuQmCC";
     }
-    const uri = datauri.sync(file);
-    filePaths.set(file, uri);
-    return uri;
 };
 
 api.fileToURLAsync = function(file) {
-    return new Promise((ff, rj) => {
-        if (filePaths.has(file)) {
-            ff(filePaths.get(file));
-        }
-
+    return new Promise(ff => {
         datauri.promise(file).then(uri => {
-            filePaths.set(file, uri);
             ff(uri);
+        }).catch(() => {
+            ff("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjEuNv1OCegAAAANSURBVBhXY2BgYEgBAABpAGW2L9BbAAAAAElFTkSuQmCC");
         });
     });
 };

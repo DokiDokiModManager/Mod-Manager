@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        body {
+            padding: 1em;
+            background-color: #111;
+            color: #fff;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+<body>
+<h1 id="title"></h1>
+<p id="body"></p>
+
+<button id="restart"></button> <button id="quit"></button>
+
+<script>
+    document.querySelector("#title").innerText = ddmm.translate("renderer.online_error.title");
+    document.querySelector("#body").innerText = ddmm.translate("renderer.online_error.body");
+    document.querySelector("#restart").innerText = ddmm.translate("renderer.online_error.button_restart");
+    document.querySelector("#quit").innerText = ddmm.translate("renderer.online_error.button_quit");
+
+    document.querySelector("#restart").addEventListener("click", () => {
+        ddmm.app.restart();
+    });
+
+    document.querySelector("#quit").addEventListener("click", () => {
+        window.close();
+    });
+</script>
+</body>
+</html>
