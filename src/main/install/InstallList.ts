@@ -1,9 +1,10 @@
 import {app} from "electron";
 import {join as joinPath} from "path";
-import {readdirSync, readFileSync} from "fs";
+import {existsSync, readdirSync, readFileSync} from "fs";
 import Install from "../types/Install";
 import Config from "../utils/Config";
 import I18n from "../utils/i18n";
+import {sync as getDataURI} from "datauri";
 
 const lang: I18n = new I18n();
 
@@ -39,8 +40,15 @@ export default class InstallList {
                     console.log("Could not load screenshots due to an IO error", e.message);
                 }
 
+                let bgPath: string = joinPath(installFolder, folder, "ddmm-bg.png");
+                let bgDataURL: string;
+
+                if (existsSync(bgPath)) {
+                    bgDataURL = getDataURI(bgPath);
+                }
+
                 if (data.name) {
-                    returned.push(new Install(data.name, folder, data.globalSave, screenshots, data.achievements, data.mod, data.cloudSave));
+                    returned.push(new Install(data.name, folder, data.globalSave, screenshots, data.achievements, data.mod, bgDataURL));
                 }
             } catch (e) {
                 console.info("Failed to read install data from " + dataFilePath, e.message);
