@@ -25,7 +25,7 @@ export default class I18n {
         }
     }
 
-    private formatString(str, ...args) {
+    private formatString(str: any, ...args: string[][]) {
         return str.replace(/{(\d+)}/g, (_, index) => {
             return args[0][index];
         });

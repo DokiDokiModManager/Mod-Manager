@@ -162,7 +162,7 @@
         "option_global_save": "Global Save",
         "description_mod": "Click to browse for a mod.",
         "header_summary": "Summary",
-        "description_local_save": "Your save data will be stored separately from any other copy of DDLC. This is the recommended option",
+        "description_local_save": "Your save data will be stored separately from any other copy of DDLC. This is the recommended option.",
         "description_global_save": "Your save data will be stored in the normal DDLC save folder.",
         "warning_global_save": "Using Global Save may cause issues with other copies of the game. Only use it if you have a specific reason to.",
         "button_install": "Install",
