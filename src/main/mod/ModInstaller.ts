@@ -40,8 +40,9 @@ export default class ModInstaller {
 
     private static installZip(modPath: string, installPath: string): Promise<null> {
         return new Promise((ff, rj) => {
-            // flag to prevent reading more than one metadata file
+            // flag to prevent reading more than one metadata / bg file
             let hasReadMetadata: boolean = false;
+            let hasReadBG: boolean = false;
 
             // determine how we should deal with files
             console.log("Preparing to install mod from " + modPath);
@@ -85,6 +86,23 @@ export default class ModInstaller {
                                     rj(err);
                                 }
                             });
+                        });
+                        return;
+                    }
+                    else if (file.path.endsWith("ddmm-bg.png")) {
+                        if (hasReadMetadata) {
+                            console.warn("Warning: more than one ddmm-bg.png file was found. Skipping.");
+                            return;
+                        }
+                        console.log("Copying ddmm-bg.png");
+
+                        const bgPath: string = joinPath(installPath, "../ddmm-bg.png");
+
+                        file.openStream((err, stream) => {
+                            if (err) {
+                                rj(err);
+                            }
+                            stream.pipe(createWriteStream(bgPath));
                         });
                         return;
                     }
