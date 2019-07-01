@@ -63,9 +63,6 @@ let modList: ModList;
 // Download manager
 let downloadManager: DownloadManager;
 
-// Onboarding manager
-let onboardingManager: OnboardingManager;
-
 // Flag for allowing the app window to be closed
 let windowClosable: boolean = true;
 
@@ -420,23 +417,6 @@ ipcMain.on("debug crash", () => {
 
 // region Onboarding
 
-// Download start
-ipcMain.on("onboarding download", () => {
-    console.log("Starting game download");
-    onboardingManager.downloadGame().then(() => {
-        appWindow.flashFrame(true);
-        OnboardingManager.requiresOnboarding().then(() => {
-            appWindow.webContents.send("onboarding downloaded");
-        }).catch(() => {
-            // TODO: show a message and try again
-        });
-    }).catch(e => {
-        removeSync(joinPath(Config.readConfigValue("installFolder"), "ddlc.zip"));
-        console.warn("Failed to download game in onboarding: " + e);
-        appWindow.webContents.send("onboarding download failed");
-    });
-});
-
 // Import start
 ipcMain.on("onboarding browse", () => {
     dialog.showOpenDialog(appWindow, {
@@ -587,9 +567,6 @@ app.on("ready", () => {
 
     // Activate download manager
     downloadManager = new DownloadManager(appWindow);
-
-    // ...and the onboarding manager
-    onboardingManager = new OnboardingManager(downloadManager);
 
     // ...and the mod list
     modList = new ModList(downloadManager);

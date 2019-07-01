@@ -77,21 +77,5 @@ const OnboardingOverlay = Vue.component("ddmm-onboarding", {
         "changeFolder": function () {
             ddmm.app.beginMoveInstall();
         }
-    },
-    "mounted": function () {
-        ddmm.on("download progress", this._progressCallback);
-        ddmm.on("download stalled", this._stalledCallback);
-        ddmm.on("onboarding downloaded", this._downloadedCallback);
-        ddmm.on("onboarding download failed", this._stalledCallback);
-        window.addEventListener("online", this._onlineCallback);
-        window.addEventListener("offline", this._onlineCallback);
-    },
-    "destroyed": function () {
-        ddmm.off("download progress", this._progressCallback);
-        ddmm.off("download stalled", this._stalledCallback);
-        ddmm.off("onboarding downloaded", this._downloadedCallback);
-        ddmm.off("onboarding download failed", this._stalledCallback);
-        window.removeEventListener("online", this._onlineCallback);
-        window.removeEventListener("offline", this._onlineCallback);
     }
 });
