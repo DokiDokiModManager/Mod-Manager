@@ -47,12 +47,12 @@
     "onboarding": {
       "title": "Welcome!",
       "description_download": "Let's find a copy of DDLC.",
-      "button_download": "Download DDLC",
+      "button_download": "Visit DDLC's official download page",
       "button_choose": "Browse for a copy",
-      "heading_why": "What is this?",
-      "description_why": "Doki Doki Mod Manager requires you to have a clean copy of Doki Doki Literature Club on your computer. If you already have a downloaded copy (usually called \"ddlc-win.zip\" or \"ddlc-mac.zip\") on your computer, you can choose it now. Otherwise, you'll need to download the game again from the DDLC website.",
-      "description_platform": "Please ensure you download the appropriate version for your computer. Mac users should choose the Mac version, and everyone else should use the Windows version.",
-      "description_unexpected": "If you aren't expecting this, you may have a corrupt version of the game downloaded. Try downloading it again.",
+      "heading_step": "Step {0}",
+      "s1_desc": "You need to download a copy of Doki Doki Literature Club. This can be found at the official website (ddlc.moe) - click the button below to go there now.",
+      "s1_platform": "When you are asked, choose to download the file named \"DDLC ({0})\".",
+      "s2_desc": "Once your download has finished, select it using the button below.",
       "description_location": "Your games will be stored at {0}",
       "link_change": "(Change)"
     },

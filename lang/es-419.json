@@ -39,19 +39,6 @@
       "button_open": "Abrir enlace",
       "button_close": "Cerrar"
     },
-    "onboarding": {
-      "title": "¡Hola!",
-      "description_download": "Busquemos una copia de DDLC.",
-      "button_download": "Descarga DDLC",
-      "button_choose": "Busca una copia",
-      "heading_why": "¿Qué es esto?",
-      "description_unexpected": "Si no esperabas ver esto, es porque descargaste una copia corrupta del juego. Intenta descargarla nuevamente.",
-      "status_downloading": "Descargando el juego - {0} completo ({1} restante, {2} MB/s)",
-      "status_errored": "La descarga falló o fue interrumpida. Revisa tu conexión a internet e intenta de nuevo.",
-      "status_offline": "Necesitas estar conectado a internet para descargar DDLC.",
-      "description_location": "Tus juegos serán guardados en {0}",
-      "link_change": "(Cambiar)"
-    },
     "tab_mods": {
       "list": {
         "placeholder_search": "Buscando mods...",

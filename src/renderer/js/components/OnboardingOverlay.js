@@ -3,28 +3,30 @@ const OnboardingOverlay = Vue.component("ddmm-onboarding", {
     <h1>{{_("renderer.onboarding.title")}}</h1>
     <p>{{_("renderer.onboarding.description_download")}}</p>
     <br>
-    <p>{{_("renderer.onboarding.heading_why")}}</p>
-    <div>{{_("renderer.onboarding.description_why")}}</div>
+    <p>{{_("renderer.onboarding.heading_step", 1)}}</p>
+    <div>{{_("renderer.onboarding.s1_desc")}}</div>
+    <div>{{_("renderer.onboarding.s1_platform", platform === "darwin" ? "Mac" : "Windows")}}</div>
     <br>
-    <div>{{_("renderer.onboarding.description_platform")}}</div>
+    <button class="primary" @click="download">{{_("renderer.onboarding.button_download")}}</button>
+    <br><br>
+    <p>{{_("renderer.onboarding.heading_step", 2)}}</p>
+    <div>{{_("renderer.onboarding.s2_desc")}}</div>
     <br>
-    <div>{{_("renderer.onboarding.description_unexpected")}}</div>
-    <br>
-    <div>{{_("renderer.onboarding.description_location", install_folder)}} <a href="javascript:;" @click="changeFolder">{{_("renderer.onboarding.link_change")}}</a></div>
-    <br>
-    <p><button class="primary" @click="open">{{_("renderer.onboarding.button_choose")}}</button> <button class="secondary" @click="download">{{_("renderer.onboarding.button_download")}}</button></p>
-   
+    <p><button class="primary" @click="open">{{_("renderer.onboarding.button_choose")}}</button></p>
+    <br><br>
+    <div>{{_("renderer.onboarding.description_location", install_folder)}} <a href="javascript:;" @click="changeFolder">{{_("renderer.onboarding.link_change")}}</a><br><br></div>
 </div>
     `,
     "data": function () {
         return {
-            "install_folder": ddmm.config.readConfigValue("installFolder")
+            "install_folder": ddmm.config.readConfigValue("installFolder"),
+            "platform": ddmm.platform
         }
     },
     "methods": {
         "_": ddmm.translate,
         "download": function () {
-            ddmm.app.openURL("https://teamsalvato.itch.io/ddlc");
+            ddmm.app.openURL("https://ddlc.moe");
         },
         "open": function () {
             ddmm.onboarding.browseForGame();
