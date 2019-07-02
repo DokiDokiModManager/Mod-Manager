@@ -10,7 +10,7 @@ const OnboardingOverlay = Vue.component("ddmm-onboarding", {
     <br>
     <div>{{_("renderer.onboarding.description_unexpected")}}</div>
     <br>
-    <div v-if="!downloading">{{_("renderer.onboarding.description_location", install_folder)}} <a href="javascript:;" @click="changeFolder">{{_("renderer.onboarding.link_change")}}</a></div>
+    <div>{{_("renderer.onboarding.description_location", install_folder)}} <a href="javascript:;" @click="changeFolder">{{_("renderer.onboarding.link_change")}}</a></div>
     <br>
     <p><button class="primary" @click="open">{{_("renderer.onboarding.button_choose")}}</button> <button class="secondary" @click="download">{{_("renderer.onboarding.button_download")}}</button></p>
    
