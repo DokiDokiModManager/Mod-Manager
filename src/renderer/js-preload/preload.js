@@ -350,9 +350,6 @@ api.app.update = function () {
 };
 
 // Onboarding download
-api.onboarding.downloadGame = function () {
-    ipcRenderer.send("onboarding download");
-};
 
 api.onboarding.browseForGame = function () {
     ipcRenderer.send("onboarding browse");

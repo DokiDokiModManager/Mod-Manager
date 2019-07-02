@@ -45,7 +45,6 @@
       "button_download": "Descarga DDLC",
       "button_choose": "Busca una copia",
       "heading_why": "¿Qué es esto?",
-      "description_why": "Doki Doki Mod Manager necesita una copia de DDLC en un archivo .zip. Si ya tienes una copia de DDLC, puedes elegirla ahora, en caso contrario descargaremos una copia directamente desde itch.io. Este programa no puede distribuir DDLC directamente, ¡perdón por eso!",
       "description_unexpected": "Si no esperabas ver esto, es porque descargaste una copia corrupta del juego. Intenta descargarla nuevamente.",
       "status_downloading": "Descargando el juego - {0} completo ({1} restante, {2} MB/s)",
       "status_errored": "La descarga falló o fue interrumpida. Revisa tu conexión a internet e intenta de nuevo.",

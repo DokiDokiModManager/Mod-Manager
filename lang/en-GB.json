@@ -50,11 +50,9 @@
       "button_download": "Download DDLC",
       "button_choose": "Browse for a copy",
       "heading_why": "What is this?",
-      "description_why": "Doki Doki Mod Manager requires a copy of DDLC as a .zip file. If you already have a copy of DDLC, you can choose it now, otherwise a new copy will be downloaded directly from itch.io. We can't directly distribute DDLC, so this is the next best thing.",
+      "description_why": "Doki Doki Mod Manager requires you to have a clean copy of Doki Doki Literature Club on your computer. If you already have a downloaded copy (usually called \"ddlc-win.zip\" or \"ddlc-mac.zip\") on your computer, you can choose it now. Otherwise, you'll need to download the game again from the DDLC website.",
+      "description_platform": "Please ensure you download the appropriate version for your computer. Mac users should choose the Mac version, and everyone else should use the Windows version.",
       "description_unexpected": "If you aren't expecting this, you may have a corrupt version of the game downloaded. Try downloading it again.",
-      "status_downloading": "Downloading game files - {0} complete ({1} left, {2} MB/s)",
-      "status_errored": "The download failed, or was interrupted. Check your internet connection and try again.",
-      "status_offline": "You need an active internet connection to download DDLC.",
       "description_location": "Your games will be stored at {0}",
       "link_change": "(Change)"
     },
