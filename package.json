@@ -24,7 +24,7 @@
     "chmodr": "^1.2.0",
     "discord-rich-presence": "^0.0.8",
     "electron-updater": "^4.0.6",
-    "file-url": "^2.0.2",
+    "file-url": "^3.0.0",
     "fs-extra": "^8.0.1",
     "fuse.js": "^3.4.5",
     "request": "^2.88.0",
