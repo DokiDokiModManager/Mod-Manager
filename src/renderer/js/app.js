@@ -218,6 +218,10 @@ ddmm.on("start onboarding", () => {
     app.onboarding = true;
 });
 
+ddmm.on("onboarding downloaded", () => {
+   app.onboarding = false;
+});
+
 ddmm.on("is appx", is => {
     app.appx = is;
 });
