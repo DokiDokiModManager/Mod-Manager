@@ -16,7 +16,7 @@
     "test": "tsc && mocha"
   },
   "dependencies": {
-    "7zip-bin": "^4.1.0",
+    "7zip-bin": "^5.0.3",
     "@fortawesome/fontawesome-free": "^5.9.0",
     "@sentry/electron": "^0.17.1",
     "@zudo/unzipper": "^0.0.4",
