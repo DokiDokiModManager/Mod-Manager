@@ -1,11 +1,16 @@
-firebase.initializeApp({
-    apiKey: "AIzaSyDInikDCCVFIhpAMPEBaaRmx_p2ZLX-6GY",
-    authDomain: "doki-doki-mod-manager.firebaseapp.com",
-    databaseURL: "https://doki-doki-mod-manager.firebaseio.com",
-    projectId: "doki-doki-mod-manager",
-    storageBucket: "doki-doki-mod-manager.appspot.com",
-    messagingSenderId: "324232265869"
-});
+let firebaseReady = false;
+
+if ("firebase" in window) {
+    firebaseReady = true;
+    firebase.initializeApp({
+        apiKey: "AIzaSyDInikDCCVFIhpAMPEBaaRmx_p2ZLX-6GY",
+        authDomain: "doki-doki-mod-manager.firebaseapp.com",
+        databaseURL: "https://doki-doki-mod-manager.firebaseio.com",
+        projectId: "doki-doki-mod-manager",
+        storageBucket: "doki-doki-mod-manager.appspot.com",
+        messagingSenderId: "324232265869"
+    });
+}
 
 const app = new Vue({
     "el": "#app",
@@ -309,6 +314,7 @@ function loginToApp(email) {
 }
 
 function getLoggedInUsername() {
+    if (!firebaseReady) return null;
     return (firebase.auth().currentUser ? (firebase.auth().currentUser.displayName ? firebase.auth().currentUser.displayName : firebase.auth().currentUser.email.split("@")[0]) : null);
 }
 
