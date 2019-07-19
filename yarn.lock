@@ -45,10 +45,10 @@
     "@sentry/utils" "4.6.5"
     tslib "^1.9.3"
 
-"@sentry/electron@^0.17.1":
-  version "0.17.1"
-  resolved "https://registry.yarnpkg.com/@sentry/electron/-/electron-0.17.1.tgz#3e2082e0796b4ead9addae4d5dd039b16ef9e25a"
-  integrity sha512-nGz1ANKVBmJH5EzeZwYz7rJeB5USG3JDoV/q5xocaN+9Ua2T1heXayxLOrFgi8qN2vqruuhnQ2WpCEZa9Wh5Lw==
+"@sentry/electron@^0.17.3":
+  version "0.17.3"
+  resolved "https://registry.yarnpkg.com/@sentry/electron/-/electron-0.17.3.tgz#64c860d81602cdfe83aaa6555ea5aa40defc12a2"
+  integrity sha512-9V3j+5tS8PPk4LQEfs8EoyjZSCs23R2fq9ImG6afBm7+shF/XwbT8ZIyALPIGdfOKSNoTqD8j6N11XMMl32hOQ==
   dependencies:
     "@sentry/browser" "4.6.2 || ~4.6.4"
     "@sentry/core" "4.6.2 || ~4.6.4"
@@ -2450,11 +2450,6 @@ semver-diff@^2.0.0:
   version "5.7.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.7.0.tgz#790a7cf6fea5459bac96110b29b60412dc8ff96b"
   integrity sha512-Ya52jSX2u7QKghxeoFGpLwCtGlt7j0oY9DYb5apt9nPlJ42ID+ulTXESnt/qAQcoSERyZ5sl3LDIOw0nAn/5DA==
-
-semver@^6.1.1, semver@^6.2.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/semver/-/semver-6.2.0.tgz#4d813d9590aaf8a9192693d6c85b9344de5901db"
-  integrity sha512-jdFC1VdUGT/2Scgbimf7FSx9iJLXoqfglSF+gJeuNWVpiE37OIbc1jywR/GJyFdz3mnkz2/id0L0J/cr0izR5A==
 
 semver@^6.2.0:
   version "6.2.0"
