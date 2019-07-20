@@ -1,6 +1,5 @@
 import {join as joinPath} from "path";
-import {readFileSync} from "fs";
-import {app} from "electron";
+import {readFileSync, writeFileSync} from "fs";
 import {spawn} from "child_process";
 import I18n from "../utils/i18n";
 import Config from "../utils/Config";
@@ -118,6 +117,8 @@ export default class InstallLauncher {
 
             logToConsole("Launching game...");
 
+            const startTime: number = Date.now();
+
             const procHandle = spawn(gameExecutable, [], {
                 // Overwrite the environment variables to force Ren'Py to save where we want it to.
                 // On Windows, the save location is determined by the value of %appdata% but on macOS / Linux
@@ -143,7 +144,18 @@ export default class InstallLauncher {
             });
 
             procHandle.on("close", () => {
+                // calculate total play time
+                const sessionTime: number = Date.now() - startTime;
+                const totalTime: number = installData.playTime ? installData.playTime + sessionTime : sessionTime;
+
                 if (sdkServer) { sdkServer.shutdown(); }
+
+                // read again, so sdk data isn't overwritten
+                const newInstallData: any = JSON.parse(readFileSync(joinPath(installFolder, "install.json")).toString("utf8"));
+                newInstallData.playTime = totalTime;
+
+                writeFileSync(joinPath(installFolder, "install.json"), JSON.stringify(newInstallData));
+
                 logToConsole("Game has closed.");
                 richPresence.setIdleStatus();
                 ff();

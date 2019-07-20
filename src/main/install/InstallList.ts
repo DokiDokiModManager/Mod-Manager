@@ -48,7 +48,7 @@ export default class InstallList {
                 }
 
                 if (data.name) {
-                    returned.push(new Install(data.name, folder, data.globalSave, screenshots, data.achievements, data.mod, bgDataURL));
+                    returned.push(new Install(data.name, folder, data.globalSave, screenshots, data.achievements, data.mod, bgDataURL, data.playTime || 0));
                 }
             } catch (e) {
                 console.info("Failed to read install data from " + dataFilePath, e.message);

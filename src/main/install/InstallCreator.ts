@@ -73,6 +73,7 @@ export default class InstallCreator {
                         globalSave,
                         mod: null,
                         name: installName,
+                        playTime: 0
                     }));
 
                     if (process.platform !== "win32") {

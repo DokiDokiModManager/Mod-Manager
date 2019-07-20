@@ -39,7 +39,15 @@ export default class I18n {
         while (stringPathSegments.length > 0) {
             segment = stringPathSegments.shift();
 
-            current = current[segment];
+            try {
+                current = current[segment];
+            } catch (e) {
+                try {
+                    current = currentDefault[segment];
+                } catch (e) {
+                    return "[ERROR] No translation found for " + key;
+                }
+            }
 
             if (!this.ignoreFlag) {
                 currentDefault = currentDefault[segment];
