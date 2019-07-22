@@ -20,7 +20,7 @@
     "@fortawesome/fontawesome-free": "^5.9.0",
     "@sentry/electron": "^0.17.1",
     "@zudo/unzipper": "^0.0.4",
-    "archiver": "^3.0.0",
+    "archiver": "^3.0.3",
     "chmodr": "^1.2.0",
     "discord-rich-presence": "^0.0.8",
     "electron-updater": "^4.0.6",
