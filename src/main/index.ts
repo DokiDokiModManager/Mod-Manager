@@ -1,4 +1,4 @@
-import {app, BrowserWindow, ipcMain, IpcMessageEvent, shell, dialog, Notification} from "electron";
+import {app, BrowserWindow, ipcMain, IpcMainEvent, SaveDialogReturnValue, shell, dialog, Notification} from "electron";
 import {move, existsSync, mkdirpSync, readdirSync, removeSync, copyFileSync, statSync, unlinkSync} from "fs-extra";
 import {join as joinPath} from "path";
 import {autoUpdater} from "electron-updater";
@@ -138,38 +138,38 @@ ipcMain.on("get installs", () => {
 });
 
 // Handler for renderer process localisation functions
-ipcMain.on("translate", (ev: IpcMessageEvent, query: { key: string, args: string[] }) => {
+ipcMain.on("translate", (ev: IpcMainEvent, query: { key: string, args: string[] }) => {
     let passArgs: string[] = query.args;
     passArgs.unshift(query.key);
     ev.returnValue = lang.translate.apply(lang, passArgs);
 });
 
 // Open external URLs
-ipcMain.on("open url", (ev: IpcMessageEvent, url: string) => {
+ipcMain.on("open url", (ev: IpcMainEvent, url: string) => {
     shell.openExternal(url);
 });
 
 // Show file in file manager
-ipcMain.on("show file", (ev: IpcMessageEvent, path: string) => {
+ipcMain.on("show file", (ev: IpcMainEvent, path: string) => {
     shell.showItemInFolder(path);
 });
 
 // Config IPC functions
-ipcMain.on("save config", (ev: IpcMessageEvent, configData: { key: string, value: any }) => {
+ipcMain.on("save config", (ev: IpcMainEvent, configData: { key: string, value: any }) => {
     Config.saveConfigValue(configData.key, configData.value);
 });
 
-ipcMain.on("read config", (ev: IpcMessageEvent, key: string) => {
+ipcMain.on("read config", (ev: IpcMainEvent, key: string) => {
     ev.returnValue = Config.readConfigValue(key);
 });
 
 // Launch install
-ipcMain.on("launch install", (ev: IpcMessageEvent, folderName: string) => {
+ipcMain.on("launch install", (ev: IpcMainEvent, folderName: string) => {
     launchInstall(folderName);
 });
 
 // Browse for a mod
-ipcMain.on("browse mods", (ev: IpcMessageEvent) => {
+ipcMain.on("browse mods", (ev: IpcMainEvent) => {
     const extensions = ["zip", "gz", "tar", "rar", "7z"];
     dialog.showOpenDialog(appWindow, {
         title: lang.translate("main.mod_browse_dialog.title"),
@@ -187,7 +187,7 @@ ipcMain.on("browse mods", (ev: IpcMessageEvent) => {
 });
 
 // Trigger install creation
-ipcMain.on("create install", (ev: IpcMessageEvent, install: { folderName: string, installName: string, globalSave: boolean, mod: string }) => {
+ipcMain.on("create install", (ev: IpcMainEvent, install: { folderName: string, installName: string, globalSave: boolean, mod: string }) => {
     windowClosable = false;
     appWindow.setClosable(false);
     console.log("[IPC create install] Creating install in " + install.folderName);
@@ -224,7 +224,7 @@ ipcMain.on("create install", (ev: IpcMessageEvent, install: { folderName: string
 });
 
 // Rename an install
-ipcMain.on("rename install", (ev: IpcMessageEvent, options: { folderName: string, newName: string }) => {
+ipcMain.on("rename install", (ev: IpcMainEvent, options: { folderName: string, newName: string }) => {
     console.log("[IPC rename install] Renaming " + options.folderName);
     InstallManager.renameInstall(options.folderName, options.newName).then(() => {
         console.log("[IPC rename install] Renamed " + options.folderName);
@@ -240,7 +240,7 @@ ipcMain.on("rename install", (ev: IpcMessageEvent, options: { folderName: string
 });
 
 // Delete an install permanently
-ipcMain.on("delete install", (ev: IpcMessageEvent, folderName: string) => {
+ipcMain.on("delete install", (ev: IpcMainEvent, folderName: string) => {
     console.log("[IPC delete install] Deleting " + folderName);
     InstallManager.deleteInstall(folderName).then(() => {
         console.log("[IPC delete install] Deleted " + folderName);
@@ -256,7 +256,7 @@ ipcMain.on("delete install", (ev: IpcMessageEvent, folderName: string) => {
 });
 
 // Delete a mod
-ipcMain.on("delete mod", (ev: IpcMessageEvent, fileName: string) => {
+ipcMain.on("delete mod", (ev: IpcMainEvent, fileName: string) => {
     console.log("[IPC delete mod] Deleting " + fileName);
     try {
         unlinkSync(joinPath(Config.readConfigValue("installFolder"), "mods", fileName));
@@ -273,7 +273,7 @@ ipcMain.on("delete mod", (ev: IpcMessageEvent, fileName: string) => {
 });
 
 // Delete a save file for an install
-ipcMain.on("delete save", (ev: IpcMessageEvent, folderName: string) => {
+ipcMain.on("delete save", (ev: IpcMainEvent, folderName: string) => {
     console.log("[IPC delete save] Deleting save data for " + folderName);
     InstallManager.deleteSaveData(folderName).then(() => {
         console.log("[IPC delete save] Deleted save data for " + folderName);
@@ -289,7 +289,7 @@ ipcMain.on("delete save", (ev: IpcMessageEvent, folderName: string) => {
 });
 
 // desktop shortcut creation
-ipcMain.on("create shortcut", (ev: IpcMessageEvent, options: { folderName: string, installName: string }) => {
+ipcMain.on("create shortcut", (ev: IpcMainEvent, options: { folderName: string, installName: string }) => {
     if (process.platform !== "win32") {
         dialog.showErrorBox("Shortcut creation is only supported on Windows", "Nice try.");
         return;
@@ -301,7 +301,8 @@ ipcMain.on("create shortcut", (ev: IpcMessageEvent, options: { folderName: strin
         filters: [
             {name: lang.translate("main.shortcut_dialog.file_format_name"), extensions: ["lnk"]}
         ]
-    }, (file) => {
+    }).then((dialogReturn: SaveDialogReturnValue) => {
+        const file: string = dialogReturn.filePath;
         if (file) {
             console.log("[IPC create shortcut] Writing shortcut to " + file);
             if (!shell.writeShortcutLink(file, "create", {
@@ -323,7 +324,7 @@ ipcMain.on("create shortcut", (ev: IpcMessageEvent, options: { folderName: strin
 });
 
 // Check if install exists
-ipcMain.on("install exists", (ev: IpcMessageEvent, folderName: string) => {
+ipcMain.on("install exists", (ev: IpcMainEvent, folderName: string) => {
     if (!folderName || typeof folderName !== "string") {
         console.warn("[IPC install exists] Folder name should be a string, received " + typeof folderName);
         ev.returnValue = false;
@@ -363,7 +364,7 @@ ipcMain.on("move install", () => {
 });
 
 // Get available backgrounds
-ipcMain.on("get backgrounds", (ev: IpcMessageEvent) => {
+ipcMain.on("get backgrounds", (ev: IpcMainEvent) => {
     ev.returnValue = readdirSync(joinPath(__dirname, "../../src/renderer/images/backgrounds"));
 });
 
@@ -373,7 +374,7 @@ ipcMain.on("debug crash", () => {
 });
 
 // Disk space check
-ipcMain.on("disk space", (ev: IpcMessageEvent) => {
+ipcMain.on("disk space", (ev: IpcMainEvent) => {
     const usage: DiskUsage = checkSync(Config.readConfigValue("installFolder"));
     ev.returnValue = usage.free;
 });
