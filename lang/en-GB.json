@@ -207,6 +207,7 @@
         "subtitle": "Customise your copy of Doki Doki Mod Manager with one of these backgrounds.",
         "button_none": "No Background",
         "button_custom": "Custom Background",
+        "checkbox_modbg": "Allow mods to display custom backgrounds (from screenshots or from mod authors)",
         "description_credit": "Original DDLC backgrounds courtesy of Team Salvato.",
         "description_custom": "If you move or delete the custom background image, your background will be reset."
       },

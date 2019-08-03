@@ -75,7 +75,8 @@ export default class Config {
         sdkMode: "always",
         updateChannel: "latest",
         language: "en-GB",
-        localUI: false
+        localUI: false,
+        modBackgrounds: true
     };
 
     private static configPath = joinPath(app.getPath("userData"), "config.json");
