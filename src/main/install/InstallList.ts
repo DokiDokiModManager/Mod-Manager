@@ -45,6 +45,8 @@ export default class InstallList {
 
                 if (existsSync(bgPath)) {
                     bgDataURL = getDataURI(bgPath);
+                } else if (screenshots.length > 0) {
+                    bgDataURL = getDataURI(joinPath(installFolder, folder, "install", screenshots[Math.floor(Math.random()*screenshots.length)]));
                 }
 
                 if (data.name) {

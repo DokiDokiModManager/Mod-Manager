@@ -107,7 +107,7 @@ api.translate = function (key, ...args) {
 // Path to URL conversion
 api.fileToURL = function (file) {
     try {
-        return datauri.sync(file);
+        return path.isAbsolute(file) ? datauri.sync(file) : datauri.sync(path.join(remote.app.getAppPath(), file));
     } catch {
         return "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjEuNv1OCegAAAANSURBVBhXY2BgYEgBAABpAGW2L9BbAAAAAElFTkSuQmCC";
     }
@@ -115,7 +115,7 @@ api.fileToURL = function (file) {
 
 api.fileToURLAsync = function(file) {
     return new Promise(ff => {
-        datauri.promise(file).then(uri => {
+        datauri.promise(path.isAbsolute(file) ? file : path.join(remote.app.getAppPath(), file)).then(uri => {
             ff(uri);
         }).catch(() => {
             ff("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjEuNv1OCegAAAANSURBVBhXY2BgYEgBAABpAGW2L9BbAAAAAElFTkSuQmCC");

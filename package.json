@@ -10,7 +10,7 @@
   "repository": "https://github.com/DokiDokiModManager/Mod-Manager",
   "bugs": "zudo@doki.space",
   "scripts": {
-    "postinstall": "electron-rebuild",
+    "postinstall": "electron-builder install-app-deps",
     "watch-typescript": "tsc --watch",
     "build-typescript": "tsc",
     "start": "yarn build-typescript && electron . --enable-sandbox",
@@ -42,7 +42,6 @@
     "css-loader": "^3.1.0",
     "electron": "^5.0.7",
     "electron-builder": "^21.1.1",
-    "electron-rebuild": "^1.8.5",
     "mocha": "^6.2.0",
     "node-sass": "^4.12.0",
     "typescript": "^3.5.3",
