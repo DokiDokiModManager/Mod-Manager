@@ -86,8 +86,8 @@ export default class InstallLauncher {
                 logToConsole("Starting SDK server on " + SDK_PORT);
                 sdkServer = new SDKServer(SDK_PORT, SDK_HOST, folderName);
 
-                sdkServer.on("log", (data: {clazz: LogClass, text: string}) => {
-                   logToConsole("[SDK] " + data.text, data.clazz);
+                sdkServer.on("log", (data: { clazz: LogClass, text: string }) => {
+                    logToConsole("[SDK] " + data.text, data.clazz);
                 });
             }
 
@@ -115,11 +115,19 @@ export default class InstallLauncher {
                 HOME: dataFolder, // macOS and Linux
             });
 
+            const renpyConfig = Config.readConfigValue("renpy");
+
+            Object.assign(env, {
+                RENPY_SKIP_SPLASHSCREEN: renpyConfig.skipSplash ? "1": undefined,
+                RENPY_SKIP_MAIN_MENU: renpyConfig.skipSplash ? "1": undefined,
+            });
+
+
             logToConsole("Launching game...");
 
             const startTime: number = Date.now();
 
-            const procHandle = spawn(gameExecutable, [], {
+            const procHandle = spawn(gameExecutable, ["-u"], {
                 // Overwrite the environment variables to force Ren'Py to save where we want it to.
                 // On Windows, the save location is determined by the value of %appdata% but on macOS / Linux
                 // it saves based on the home directory location. This can be changed with $HOME but means the save
@@ -138,7 +146,9 @@ export default class InstallLauncher {
 
             procHandle.on("error", e => {
                 console.log(e);
-                if (sdkServer) { sdkServer.shutdown(); }
+                if (sdkServer) {
+                    sdkServer.shutdown();
+                }
                 richPresence.setIdleStatus();
                 rj(lang.translate("main.running_cover.install_crashed"))
             });
@@ -148,7 +158,9 @@ export default class InstallLauncher {
                 const sessionTime: number = Date.now() - startTime;
                 const totalTime: number = installData.playTime ? installData.playTime + sessionTime : sessionTime;
 
-                if (sdkServer) { sdkServer.shutdown(); }
+                if (sdkServer) {
+                    sdkServer.shutdown();
+                }
 
                 // read again, so sdk data isn't overwritten
                 const newInstallData: any = JSON.parse(readFileSync(joinPath(installFolder, "install.json")).toString("utf8"));

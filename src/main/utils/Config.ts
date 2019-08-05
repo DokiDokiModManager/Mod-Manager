@@ -76,7 +76,12 @@ export default class Config {
         updateChannel: "latest",
         language: "en-GB",
         localUI: false,
-        modBackgrounds: true
+        modBackgrounds: true,
+        renpy: {
+            skipSplash: false,
+            skipMenu: false,
+            screenVariant: null
+        }
     };
 
     private static configPath = joinPath(app.getPath("userData"), "config.json");

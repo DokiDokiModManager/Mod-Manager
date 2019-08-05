@@ -262,7 +262,11 @@
         "description_mod_debug": "Show a debug window with console output from your mod. Useful for testing the DDMM SDK.",
         "header_ui_url": "UI Environment",
         "description_ui_url": "Choose the server where the DDMM UI is loaded from. Do not change this unless you are testing contributions, as you will cause things to break.",
-        "checkbox_ui_url": "Load from development server"
+        "checkbox_ui_url": "Load from development server",
+        "header_renpy": "Ren'Py Launch Options",
+        "description_renpy": "Set special debugging options for Ren'Py.",
+        "checkbox_renpy_skipsplash": "Skip Splash Screen",
+        "checkbox_renpy_skipmenu": "Skip Menu"
       }
     },
     "tab_about": {
