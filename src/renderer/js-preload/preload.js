@@ -55,6 +55,9 @@ api.mods.download = function (url) {
     ipcRenderer.send("download mod", url);
 };
 
+api.mods.getInstallBackground = function (install) {
+    return ipcRenderer.sendSync("get install background", install);
+};
 
 // Fires an event on the DDMM object when the mod list has been retrieved
 ipcRenderer.on("got modlist", (ev, list) => {
@@ -113,7 +116,7 @@ api.fileToURL = function (file) {
     }
 };
 
-api.fileToURLAsync = function(file) {
+api.fileToURLAsync = function (file) {
     return new Promise(ff => {
         datauri.promise(path.isAbsolute(file) ? file : path.join(remote.app.getAppPath(), file)).then(uri => {
             ff(uri);

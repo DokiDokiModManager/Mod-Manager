@@ -4,6 +4,7 @@ import {join as joinPath} from "path";
 import {autoUpdater} from "electron-updater";
 import * as Sentry from "@sentry/electron";
 import * as semver from "semver";
+import {sync as getDataURI} from "datauri";
 
 Sentry.init({
     dsn: "https://bf0edf3f287344d4969e3171c33af4ea@sentry.io/1297252",
@@ -321,6 +322,31 @@ ipcMain.on("create shortcut", (ev: IpcMainEvent, options: { folderName: string, 
             }
         }
     });
+});
+
+ipcMain.on("get install background", (ev: IpcMainEvent, folder: string) => {
+    const installFolder: string = joinPath(Config.readConfigValue("installFolder"), "installs");
+
+    let bgPath: string = joinPath(installFolder, folder, "ddmm-bg.png");
+    let bgDataURL: string;
+
+    let screenshots: string[] = [];
+
+    try {
+        screenshots = readdirSync(joinPath(installFolder, folder, "install")).filter(fn => {
+            return fn.match(/^screenshot(\d+)\.png$/);
+        });
+    } catch (e) {
+        console.log("Could not load screenshots due to an IO error", e.message);
+    }
+
+    if (existsSync(bgPath)) {
+        bgDataURL = getDataURI(bgPath);
+    } else if (screenshots.length > 0) {
+        bgDataURL = getDataURI(joinPath(installFolder, folder, "install", screenshots[Math.floor(Math.random()*screenshots.length)]));
+    }
+
+    ev.returnValue = bgDataURL;
 });
 
 // Check if install exists
