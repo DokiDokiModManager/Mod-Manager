@@ -119,7 +119,7 @@ export default class InstallLauncher {
 
             Object.assign(env, {
                 RENPY_SKIP_SPLASHSCREEN: renpyConfig.skipSplash ? "1": undefined,
-                RENPY_SKIP_MAIN_MENU: renpyConfig.skipSplash ? "1": undefined,
+                RENPY_SKIP_MAIN_MENU: renpyConfig.skipMenu ? "1": undefined,
             });
 
 
@@ -127,7 +127,7 @@ export default class InstallLauncher {
 
             const startTime: number = Date.now();
 
-            const procHandle = spawn(gameExecutable, ["-u"], {
+            const procHandle = spawn(gameExecutable, {
                 // Overwrite the environment variables to force Ren'Py to save where we want it to.
                 // On Windows, the save location is determined by the value of %appdata% but on macOS / Linux
                 // it saves based on the home directory location. This can be changed with $HOME but means the save
