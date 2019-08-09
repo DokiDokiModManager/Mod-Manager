@@ -33,7 +33,6 @@ import InstallManager from "./install/InstallManager";
 import DiscordManager from "./discord/DiscordManager";
 import DownloadManager from "./net/DownloadManager";
 import OnboardingManager from "./onboarding/OnboardingManager";
-import Timeout = NodeJS.Timeout;
 import {checkSync, DiskUsage} from "diskusage";
 
 const DISCORD_ID = "453299645725016074";
@@ -95,12 +94,8 @@ function showError(title: string, body: string, stacktrace: string, fatal: boole
 async function launchInstall(folderName): Promise<void> {
     appWindow.webContents.send("running cover", {
         display: true,
-        dismissable: false,
-        title: lang.translate("main.running_cover.title_running"),
-        description: lang.translate("main.running_cover.description_running"),
         folder_path: joinPath(Config.readConfigValue("installFolder"), "installs", folderName)
     });
-    let lockTimer: Timeout;
     Config.saveConfigValue("lastLaunchedInstall", folderName);
     appWindow.minimize(); // minimise the window to draw attention to the fact another window will be appearing
     InstallLauncher.launchInstall(folderName, richPresence).then(() => {
@@ -108,15 +103,11 @@ async function launchInstall(folderName): Promise<void> {
         appWindow.focus();
         appWindow.webContents.send("running cover", {display: false});
         appWindow.webContents.send("got installs", InstallList.getInstallList());
-    }).catch(err => {
+    }).catch(() => {
         appWindow.restore();
         appWindow.focus();
-        clearTimeout(lockTimer);
         appWindow.webContents.send("running cover", {
             display: true,
-            dismissable: true,
-            title: lang.translate("main.running_cover.title_crashed"),
-            description: err,
             folder_path: joinPath(Config.readConfigValue("installFolder"), "installs", folderName)
         });
     });
@@ -171,7 +162,7 @@ ipcMain.on("launch install", (ev: IpcMainEvent, folderName: string) => {
 
 // Browse for a mod
 ipcMain.on("browse mods", (ev: IpcMainEvent) => {
-    const extensions = ["zip", "gz", "tar", "rar", "7z"];
+    const extensions = ["zip", "gz", "tar", "7z"];
     dialog.showOpenDialog(appWindow, {
         title: lang.translate("main.mod_browse_dialog.title"),
         filters: [{

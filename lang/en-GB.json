@@ -40,10 +40,6 @@
         "downloaded": "An update is ready to install when you quit."
       }
     },
-    "crash_cover": {
-      "button_close": "Quit",
-      "button_continue": "Continue"
-    },
     "drop_cover": {
       "text": "Drop a mod here to install it"
     },
@@ -86,6 +82,11 @@
     "modal_installing": {
       "title": "Installation in progress",
       "description": "Please wait a minute or so while the game installs."
+    },
+    "modal_running": {
+      "title": "Game running",
+      "description": "Close the game to make changes to your mods.",
+      "button_browse": "Browse Game Files"
     },
     "menu_install_options": {
       "launch": "Launch",
