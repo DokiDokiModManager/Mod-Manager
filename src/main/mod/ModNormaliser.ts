@@ -1,10 +1,10 @@
-import * as unzip from "@zudo/unzipper";
 import {ModMapper} from "./ModMapper";
 import ModManagerFormat from "./mappers/ModManagerFormat";
 import NestedGameFolder from "./mappers/NestedGameFolder";
 import ModTemplateFormat from "./mappers/ModTemplateFormat";
 import InstallAppropriateFiles from "./mappers/InstallAppropriateFiles";
 import DumpAndHopeForTheBest from "./mappers/DumpAndHopeForTheBest";
+import unzip from "../archive/Unzipper";
 
 /*
     This script is intended to take any zip file and try and determine how DDMM should install it, if it is a mod.
