@@ -1,9 +1,9 @@
-import * as unzip from "@zudo/unzipper";
 import * as chmodr from "chmodr";
 import {createWriteStream, writeFileSync} from "fs";
 import {mkdirsSync} from "fs-extra";
 import {join as joinPath, sep as pathSep} from "path";
 import Config from "../utils/Config";
+import unzip from "../archive/Unzipper";
 
 export default class InstallCreator {
 

@@ -1,4 +1,4 @@
-import * as unzip from "@zudo/unzipper";
+import unzip from "../archive/Unzipper";
 import {createWriteStream, unlinkSync, removeSync, readFileSync, writeFileSync} from "fs-extra";
 import {mkdirsSync} from "fs-extra";
 import {join as joinPath, sep as pathSep} from "path";
@@ -90,7 +90,7 @@ export default class ModInstaller {
                         return;
                     }
                     else if (file.path.endsWith("ddmm-bg.png")) {
-                        if (hasReadMetadata) {
+                        if (hasReadBG) {
                             console.warn("Warning: more than one ddmm-bg.png file was found. Skipping.");
                             return;
                         }
@@ -99,6 +99,7 @@ export default class ModInstaller {
                         const bgPath: string = joinPath(installPath, "../ddmm-bg.png");
 
                         file.openStream((err, stream) => {
+                            hasReadBG = true;
                             if (err) {
                                 rj(err);
                             }
