@@ -6,6 +6,15 @@
       "button_restart": "Restart",
       "button_quit": "Quit"
     },
+    "modal_error": {
+      "title_non_fatal": "Oops, something went wrong",
+      "title_fatal": "Oops, Doki Doki Mod Manager crashed",
+      "description_general": "Please try what you were doing again, and if you keep running into problems, please let me know!",
+      "description_stacktrace": "Here's the technical details of what went wrong - please keep a note of these if you ask for help.",
+      "button_continue": "Continue",
+      "button_restart": "Restart",
+      "button_copy": "Copy error to clipboard"
+    },
     "tabs": {
       "tab_home": "Home",
       "tab_mods": "Mods",
@@ -327,38 +336,6 @@
       "dev_ui_load_fail": {
         "title": "Failed to load from development server",
         "body": "Loading from live UI servers instead. If you aren't sure why you're seeing this, turn off \"Load from development server\" in the Debugging Options menu."
-      },
-      "exception": {
-        "title": "Doki Doki Mod Manager crashed",
-        "body": "The problem has been reported. Please restart and try again."
-      },
-      "move_install": {
-        "title": "Failed to move install folder",
-        "body": "Check that you have permission and enough space to move to this folder."
-      },
-      "shortcut": {
-        "title": "Failed to create shortcut",
-        "body": "Check that you have permission to create files in this folder."
-      },
-      "install": {
-        "title": "Failed to install game",
-        "body": "Check that you have permission and enough space to install."
-      },
-      "rename": {
-        "title": "Failed to rename",
-        "body": "Check that you have closed all programs that may be interfering and try again."
-      },
-      "uninstall": {
-        "title": "Failed to uninstall",
-        "body": "Check that you have closed all programs that may be interfering and try again."
-      },
-      "save_delete": {
-        "title": "Failed to delete save data",
-        "body": "Check that you have closed all programs that may be interfering and try again."
-      },
-      "mod_delete": {
-        "title": "Failed to delete the mod",
-        "body": "Check that you have closed all programs that may be interfering and try again."
       },
       "renderer_freeze": {
         "title": "Doki Doki Mod Manager stopped responding",

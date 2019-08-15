@@ -62,9 +62,6 @@ let downloadManager: DownloadManager;
 // Onboarding manager
 let onboardingManager: OnboardingManager;
 
-// Flag for allowing the app window to be closed
-let windowClosable: boolean = true;
-
 const lang: I18n = new I18n();
 
 // endregion
@@ -73,17 +70,15 @@ const lang: I18n = new I18n();
 
 /**
  * Shows an error message in the UI
- * @param title The title of the error
- * @param body Some more description text
- * @param stacktrace A stacktrace to show on the frontend
+ * @param error A stacktrace to show on the frontend
  * @param fatal Whether the app needs to restart or not
  */
-function showError(title: string, body: string, stacktrace: string, fatal: boolean) {
+function showError(error: Error, fatal: boolean) {
     appWindow.webContents.send("error message", {
-        title, body, fatal, stacktrace
+        fatal,
+        stacktrace: error.stack
     });
 
-    windowClosable = true;
     appWindow.setClosable(true);
 }
 
@@ -180,26 +175,21 @@ ipcMain.on("browse mods", (ev: IpcMainEvent) => {
 
 // Trigger install creation
 ipcMain.on("create install", (ev: IpcMainEvent, install: { folderName: string, installName: string, globalSave: boolean, mod: string }) => {
-    windowClosable = false;
     appWindow.setClosable(false);
     console.log("[IPC create install] Creating install in " + install.folderName);
     InstallCreator.createInstall(install.folderName, install.installName, install.globalSave).then(() => {
         if (!install.mod) {
             appWindow.webContents.send("got installs", InstallList.getInstallList());
-            windowClosable = true;
             appWindow.setClosable(true);
         } else {
             console.log("[IPC create install] Installing mod " + install.mod + " in " + install.folderName);
             ModInstaller.installMod(install.mod, joinPath(Config.readConfigValue("installFolder"), "installs", install.folderName, "install")).then(() => {
                 appWindow.webContents.send("got installs", InstallList.getInstallList());
-                windowClosable = true;
                 appWindow.setClosable(true);
             }).catch((e: Error) => {
                 appWindow.webContents.send("got installs", InstallList.getInstallList());
                 showError(
-                    lang.translate("main.errors.install.title"),
-                    lang.translate("main.errors.install.body"),
-                    e.toString(),
+                    e,
                     false
                 );
             });
@@ -207,9 +197,7 @@ ipcMain.on("create install", (ev: IpcMainEvent, install: { folderName: string, i
     }).catch((e: Error) => {
         appWindow.webContents.send("got installs", InstallList.getInstallList());
         showError(
-            lang.translate("main.errors.install.title"),
-            lang.translate("main.errors.install.body"),
-            e.toString(),
+            e,
             false
         );
     });
@@ -223,9 +211,7 @@ ipcMain.on("rename install", (ev: IpcMainEvent, options: { folderName: string, n
         appWindow.webContents.send("got installs", InstallList.getInstallList());
     }).catch((e: Error) => {
         showError(
-            lang.translate("main.errors.rename.title"),
-            lang.translate("main.errors.rename.body"),
-            e.toString(),
+            e,
             false
         );
     });
@@ -239,9 +225,7 @@ ipcMain.on("delete install", (ev: IpcMainEvent, folderName: string) => {
         appWindow.webContents.send("got installs", InstallList.getInstallList());
     }).catch((e: Error) => {
         showError(
-            lang.translate("main.errors.uninstall.title"),
-            lang.translate("main.errors.uninstall.body"),
-            e.toString(),
+            e,
             false
         );
     });
@@ -256,9 +240,7 @@ ipcMain.on("delete mod", (ev: IpcMainEvent, fileName: string) => {
         appWindow.webContents.send("got modlist", modList.getModList());
     } catch (e) {
         showError(
-            lang.translate("main.errors.mod_delete.title"),
-            lang.translate("main.errors.mod_delete.body"),
-            e.toString(),
+            e,
             false
         );
     }
@@ -272,9 +254,7 @@ ipcMain.on("delete save", (ev: IpcMainEvent, folderName: string) => {
         appWindow.webContents.send("got installs", InstallList.getInstallList());
     }).catch((e: Error) => {
         showError(
-            lang.translate("main.errors.save_delete.title"),
-            lang.translate("main.errors.save_delete.body"),
-            e.toString(),
+            e,
             false
         );
     });
@@ -303,9 +283,7 @@ ipcMain.on("create shortcut", (ev: IpcMainEvent, options: { folderName: string, 
                 iconIndex: 0
             })) {
                 showError(
-                    lang.translate("main.errors.shortcut.title"),
-                    lang.translate("main.errors.shortcut.body"),
-                    null,
+                    new Error("Attempt to write shortcut failed"),
                     false
                 );
             } else {
@@ -491,9 +469,7 @@ process.on("uncaughtException", (e: Error) => {
     console.log("Uncaught exception occurred - treating this as a crash.");
     console.error(e);
     showError(
-        lang.translate("main.errors.exception.title"),
-        lang.translate("main.errors.exception.body"),
-        e.toString(),
+        e,
         true
     );
 });
@@ -630,7 +606,7 @@ app.on("ready", () => {
     });
 
     appWindow.on("close", e => {
-        if (downloadManager.hasDownloads() || !windowClosable) {
+        if (downloadManager.hasDownloads()) {
             e.preventDefault();
         }
     });

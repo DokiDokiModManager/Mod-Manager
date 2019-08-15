@@ -99,6 +99,11 @@ api.app.getDiskSpace = function () {
     return ipcRenderer.sendSync("disk space");
 };
 
+// Clipboard copy
+api.app.copyToClipboard = function (text) {
+    remote.clipboard.writeText(text);
+};
+
 // Localisation function
 api.translate = function (key, ...args) {
     return ipcRenderer.sendSync("translate", {
@@ -153,111 +158,6 @@ api.window.prompt = function (data) {
 // Input
 api.window.input = function (data) {
     api.emit("input", data);
-};
-
-// Show right click for install
-api.window.handleInstallRightClick = function (folderName, installName, mouseX, mouseY) {
-    remote.Menu.buildFromTemplate([
-        {
-            label: api.translate("renderer.tab_mods.install_contextmenu.launch"), click: () => {
-                api.mods.launchInstall(folderName)
-            }, accelerator: "enter"
-        },
-        {type: "separator"},
-        {
-            label: api.translate("renderer.tab_mods.install_contextmenu.rename"), click: () => {
-                api.emit("input", {
-                    title: api.translate("renderer.tab_mods.rename_input.message"),
-                    description: api.translate("renderer.tab_mods.rename_input.details", installName),
-                    button_affirmative: api.translate("renderer.tab_mods.rename_input.button_affirmative"),
-                    button_negative: api.translate("renderer.tab_mods.rename_input.button_negative"),
-                    callback: (newName) => {
-                        if (newName) {
-                            api.mods.renameInstall(folderName, newName);
-                        }
-                    }
-                });
-            },
-            accelerator: "F2"
-        },
-        {
-            label: api.translate("renderer.tab_mods.install_contextmenu.shortcut"), click: () => {
-                api.mods.createShortcut(folderName, installName)
-            }
-        },
-        {type: "separator"},
-        {
-            label: api.translate("renderer.tab_mods.install_contextmenu.delete_save"),
-            click: () => {
-                api.emit("prompt", {
-                    title: api.translate("renderer.tab_mods.save_delete_confirmation.message"),
-                    description: api.translate("renderer.tab_mods.save_delete_confirmation.details", installName),
-                    affirmative_style: "danger",
-                    button_affirmative: api.translate("renderer.tab_mods.save_delete_confirmation.button_affirmative"),
-                    button_negative: api.translate("renderer.tab_mods.save_delete_confirmation.button_negative"),
-                    callback: (uninstall) => {
-                        if (uninstall) {
-                            api.mods.deleteSaveData(folderName);
-                        }
-                    }
-                });
-            }
-        },
-        {
-            label: api.translate("renderer.tab_mods.install_contextmenu.uninstall"),
-            accelerator: "delete",
-            click: () => {
-                api.emit("prompt", {
-                    title: api.translate("renderer.tab_mods.uninstall_confirmation.message"),
-                    description: api.translate("renderer.tab_mods.uninstall_confirmation.details", installName),
-                    affirmative_style: "danger",
-                    button_affirmative: api.translate("renderer.tab_mods.uninstall_confirmation.button_affirmative"),
-                    button_negative: api.translate("renderer.tab_mods.uninstall_confirmation.button_negative"),
-                    callback: (uninstall) => {
-                        if (uninstall) {
-                            api.mods.deleteInstall(folderName);
-                            ddmm.emit("create install");
-                        }
-                    }
-                });
-            }
-        }
-    ]).popup({
-        x: mouseX,
-        y: mouseY
-    });
-};
-
-// Show right click for mod
-api.window.handleModRightClick = function (filename, mouseX, mouseY) {
-    remote.Menu.buildFromTemplate([
-        {
-            label: api.translate("renderer.tab_mods.mod_contextmenu.install"), accelerator: "enter", click: () => {
-                ddmm.emit("create install", filename);
-            }
-        },
-        {type: "separator"},
-        {
-            label: api.translate("renderer.tab_mods.mod_contextmenu.delete"), accelerator: "delete", click: () => {
-                api.window.prompt({
-                    title: api.translate("renderer.tab_mods.mod_delete_confirmation.message"),
-                    description: api.translate("renderer.tab_mods.mod_delete_confirmation.details"),
-                    affirmative_style: "danger",
-                    button_affirmative: api.translate("renderer.tab_mods.mod_delete_confirmation.button_affirmative"),
-                    button_negative: api.translate("renderer.tab_mods.mod_delete_confirmation.button_negative"),
-                    callback: (del) => {
-                        if (del) {
-                            api.mods.deleteMod(filename);
-                            ddmm.emit("create install");
-                        }
-                    }
-                });
-            }
-        }
-    ]).popup({
-        x: mouseX,
-        y: mouseY
-    });
 };
 
 // Change a setting in config
