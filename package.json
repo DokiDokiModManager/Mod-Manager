@@ -11,10 +11,9 @@
   "bugs": "zudo@doki.space",
   "scripts": {
     "postinstall": "electron-builder install-app-deps",
-    "watch-typescript": "tsc --watch",
     "build-typescript": "tsc",
     "start": "yarn build-typescript && electron . --enable-sandbox",
-    "start-dev": "yarn build-typescript && concurrently -k \"npm:watch-typescript\" \"electron --inspect=5858 . --enable-sandbox\"",
+    "start-dev": "yarn build-typescript && electron --inspect=5858 . --enable-sandbox",
     "release": "yarn build-typescript && electron-builder",
     "test": "yarn build-typescript && mocha"
   },
@@ -33,11 +32,11 @@
     "request": "^2.88.0",
     "semver": "^6.3.0",
     "vue": "^2.6.10",
-    "vuex": "^3.1.1"
+    "vuex": "^3.1.1",
+    "yauzl": "latest"
   },
   "devDependencies": {
     "@sentry/cli": "^1.46.0",
-    "concurrently": "^4.1.1",
     "electron": "^6.0.0",
     "electron-builder": "^21.1.1",
     "mocha": "^6.2.0",
