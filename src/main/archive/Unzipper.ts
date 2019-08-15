@@ -1,8 +1,9 @@
-import yauzl from "yauzl";
+import * as yauzl from "yauzl";
 import * as EventEmitter from "events";
 
 export default function unzip(file) {
     const emitter = new EventEmitter();
+    console.log("Unzipping " + file);
     try {
         yauzl.open(file, {lazyEntries: true, autoClose: true}, (err, zip) => {
             let directoriesRead = [];
