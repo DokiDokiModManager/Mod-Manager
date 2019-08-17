@@ -2,14 +2,14 @@
  * Represents the metadata of an installed mod.
  */
 export default class Install {
-    public readonly name: string;
-    public readonly folderName: string;
-    public readonly globalSave: boolean;
-    public readonly screenshots: string[];
-    public readonly mod: ModMetadata;
-    public readonly achievements: any[]; // TODO: set up type defs
-    public readonly playTime: number;
-    public readonly category: string;
+    public name: string;
+    public folderName: string;
+    public globalSave: boolean;
+    public screenshots: string[];
+    public mod: ModMetadata;
+    public achievements: any[]; // TODO: set up type defs
+    public playTime: number;
+    public category: string;
 
     constructor(name: string, folderName: string, globalSave: boolean, screenshots: string[], achievements: any[], mod: ModMetadata, playTime: number, category: string) {
         this.name = name;

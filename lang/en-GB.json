@@ -92,6 +92,13 @@
       "title": "Installation in progress",
       "description": "Please wait a minute or so while the game installs."
     },
+    "modal_category": {
+      "title": "Change Category",
+      "label_none": "none",
+      "placeholder_category": "Enter a new category...",
+      "button_save": "Save",
+      "button_cancel": "Cancel"
+    },
     "modal_running": {
       "title": "Game running",
       "description": "Close the game to make changes to your mods.",
@@ -100,6 +107,7 @@
     "menu_install_options": {
       "launch": "Launch",
       "rename": "Rename",
+      "category": "Change Category",
       "addons": "Install Additional Mod",
       "shortcut": "Create Shortcut",
       "delete_save": "Delete Save Data",

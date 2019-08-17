@@ -260,6 +260,20 @@ ipcMain.on("delete save", (ev: IpcMainEvent, folderName: string) => {
     });
 });
 
+// Sets install category
+ipcMain.on("set category", (ev: IpcMainEvent, options: { folderName: string, category: string }) => {
+    console.log("[IPC set category] Setting category for " + options.folderName + " to " + options.category);
+    InstallManager.setCategory(options.folderName, options.category).then(() => {
+        console.log("[IPC set category] Set category");
+        appWindow.webContents.send("got installs", InstallList.getInstallList());
+    }).catch((e: Error) => {
+        showError(
+            e,
+            false
+        );
+    });
+});
+
 // desktop shortcut creation
 ipcMain.on("create shortcut", (ev: IpcMainEvent, options: { folderName: string, installName: string }) => {
     if (process.platform !== "win32") {
@@ -312,7 +326,7 @@ ipcMain.on("get install background", (ev: IpcMainEvent, folder: string) => {
     if (existsSync(bgPath)) {
         bgDataURL = getDataURI(bgPath);
     } else if (screenshots.length > 0) {
-        bgDataURL = getDataURI(joinPath(installFolder, folder, "install", screenshots[Math.floor(Math.random()*screenshots.length)]));
+        bgDataURL = getDataURI(joinPath(installFolder, folder, "install", screenshots[Math.floor(Math.random() * screenshots.length)]));
     }
 
     ev.returnValue = bgDataURL;

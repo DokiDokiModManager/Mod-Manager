@@ -195,6 +195,11 @@ api.mods.createShortcut = function (folderName, installName) {
     ipcRenderer.send("create shortcut", {folderName, installName});
 };
 
+// Change category
+api.mods.setCategory = function(folderName, category) {
+    ipcRenderer.send("set category", {folderName, category});
+};
+
 // Help meny
 api.app.showHelpMenu = function (x, y) {
     remote.Menu.buildFromTemplate([

@@ -2,6 +2,7 @@ import {remove, emptyDir} from "fs-extra";
 import {join as joinPath} from "path";
 import Config from "../utils/Config";
 import {existsSync, readFileSync, writeFileSync} from "fs";
+import Install from "../types/Install";
 
 export default class InstallManager {
 
@@ -22,7 +23,7 @@ export default class InstallManager {
         return new Promise((ff, rj) => {
             const installDataPath: string = joinPath(Config.readConfigValue("installFolder"), "installs", folderName, "install.json");
             if (existsSync(installDataPath)) {
-                const data: any = JSON.parse(readFileSync(installDataPath, "utf8"));
+                const data: Install = JSON.parse(readFileSync(installDataPath, "utf8"));
                 data.name = newName;
                 writeFileSync(installDataPath, JSON.stringify(data));
                 ff();
@@ -64,6 +65,25 @@ export default class InstallManager {
                 }
             } else {
                 rj(new Error("Install does not exist."))
+            }
+        });
+    }
+
+    /**
+     * Sets the category of an install
+     * @param folderName The install folder
+     * @param category The new category
+     */
+    public static setCategory(folderName: string, category: string): Promise<null> {
+        return new Promise((ff, rj) => {
+            const installDataPath: string = joinPath(Config.readConfigValue("installFolder"), "installs", folderName, "install.json");
+            if (existsSync(installDataPath)) {
+                const data: Install = JSON.parse(readFileSync(installDataPath, "utf8"));
+                data.category = category;
+                writeFileSync(installDataPath, JSON.stringify(data));
+                ff();
+            } else {
+                rj();
             }
         });
     }
