@@ -9,8 +9,9 @@ export default class Install {
     public readonly mod: ModMetadata;
     public readonly achievements: any[]; // TODO: set up type defs
     public readonly playTime: number;
+    public readonly category: string;
 
-    constructor(name: string, folderName: string, globalSave: boolean, screenshots: string[], achievements: any[], mod: ModMetadata, playTime: number) {
+    constructor(name: string, folderName: string, globalSave: boolean, screenshots: string[], achievements: any[], mod: ModMetadata, playTime: number, category: string) {
         this.name = name;
         this.folderName = folderName;
         this.globalSave = globalSave;
@@ -18,6 +19,7 @@ export default class Install {
         this.achievements = achievements;
         this.mod = mod;
         this.playTime = playTime;
+        this.category = category;
     }
 }
 
@@ -38,6 +40,5 @@ class ModMetadata {
         this.sayonika_id = sayonika_id;
         this.discord = discord;
         this.website = website;
-
     }
 }
