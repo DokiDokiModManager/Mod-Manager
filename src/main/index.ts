@@ -639,6 +639,8 @@ app.on("ready", () => {
         appWindow.setMenu(null);
     }
 
+    appWindow.setMenuBarVisibility(false);
+
     const uiSubdomain: string = "v" + app.getVersion().replace(/\./g, "-");
 
     appWindow.webContents.once("did-fail-load", () => {
