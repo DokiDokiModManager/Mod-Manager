@@ -635,10 +635,7 @@ app.on("ready", () => {
         handleURL();
     });
 
-    if (!process.env.DDMM_DEVTOOLS) {
-        appWindow.setMenu(null);
-    }
-
+    appWindow.setMenu(null);
     appWindow.setMenuBarVisibility(false);
 
     const uiSubdomain: string = "v" + app.getVersion().replace(/\./g, "-");

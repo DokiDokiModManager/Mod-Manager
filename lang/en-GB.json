@@ -280,9 +280,6 @@
         "checkbox_logging": "Enable Debug Logging",
         "header_mod_debug": "Mod Debugging",
         "description_mod_debug": "Show a debug window with console output from your mod. Useful for testing the DDMM SDK.",
-        "header_ui_url": "UI Environment",
-        "description_ui_url": "Choose the server where the DDMM UI is loaded from. Do not change this unless you are testing contributions, as you will cause things to break.",
-        "checkbox_ui_url": "Load from development server",
         "header_renpy": "Ren'Py Launch Options",
         "description_renpy": "Set special debugging options for Ren'Py.",
         "checkbox_renpy_skipsplash": "Skip Splash Screen",
@@ -343,7 +340,7 @@
     "errors": {
       "dev_ui_load_fail": {
         "title": "Failed to load from development server",
-        "body": "Loading from live UI servers instead. If you aren't sure why you're seeing this, turn off \"Load from development server\" in the Debugging Options menu."
+        "body": "Loading from live UI servers instead."
       },
       "renderer_freeze": {
         "title": "Doki Doki Mod Manager stopped responding",

@@ -160,6 +160,11 @@ api.window.input = function (data) {
     api.emit("input", data);
 };
 
+// Devtools
+api.window.openDevtools = function () {
+    remote.getCurrentWindow().webContents.openDevTools({mode: "detach"});
+};
+
 // Change a setting in config
 api.config.saveConfigValue = function (k, v) {
     ipcRenderer.send("save config", {"key": k, "value": v});
@@ -198,43 +203,6 @@ api.mods.createShortcut = function (folderName, installName) {
 // Change category
 api.mods.setCategory = function(folderName, category) {
     ipcRenderer.send("set category", {folderName, category});
-};
-
-// Help meny
-api.app.showHelpMenu = function (x, y) {
-    remote.Menu.buildFromTemplate([
-        {
-            label: api.translate("renderer.help_menu.option_help"), click: () => {
-                api.app.openURL("https://help.doki.space");
-            }
-        },
-        {
-            label: api.translate("renderer.help_menu.option_discord"), click: () => {
-                api.app.openURL("https://doki.space/discord");
-            }
-        },
-        {
-            label: api.translate("renderer.help_menu.option_feedback"), click: () => {
-                api.app.openURL("mailto:zudo@doki.space");
-            }
-        }
-    ]).popup({x, y})
-};
-
-// User menu
-api.app.showUserMenu = function (x, y) {
-    remote.Menu.buildFromTemplate([
-        {
-            label: api.translate("renderer.user_menu.option_rename"), click: () => {
-                api.emit("change username")
-            }
-        },
-        {
-            label: api.translate("renderer.user_menu.option_logout"), click: () => {
-                api.emit("logout");
-            }
-        }
-    ]).popup({x, y})
 };
 
 // Move install folder
