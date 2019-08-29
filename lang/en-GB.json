@@ -170,7 +170,11 @@
         "description_author": "Created by {0}",
         "link_discord": "Discord ({0})",
         "link_website": "Website ({0})",
-        "description_external": "Show in folder"
+        "description_external": "Show in folder",
+        "title_mas_export": "Take Monika with you",
+        "description_mas_export": "Monika is ready to be taken out with you.",
+        "button_mas_export": "Copy Monika Out",
+        "button_mas_import": "Add Monika Back"
       },
       "mod": {
         "button_install": "Install",
@@ -336,6 +340,14 @@
     "shortcut_dialog": {
       "title": "Choose where to place your shortcut",
       "file_format_name": "Shortcut"
+    },
+    "import_mas": {
+      "title": "Find where you copied Monika's character file",
+      "filter": "Just Monika"
+    },
+    "export_mas": {
+      "title": "Choose where you want to copy Monika to",
+      "filter": "Just Monika"
     },
     "errors": {
       "dev_ui_load_fail": {

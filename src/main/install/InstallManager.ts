@@ -14,23 +14,27 @@ export default class InstallManager {
         return existsSync(joinPath(Config.readConfigValue("installFolder"), "installs", folderName));
     }
 
-    /**
-     * Rename an install
-     * @param folderName The folder containing the install
-     * @param newName The new name for the install
-     */
-    public static renameInstall(folderName: string, newName: string): Promise<null> {
+    private static updateInstallDataValue(folderName: string, key: string, value: any): Promise<null> {
         return new Promise((ff, rj) => {
             const installDataPath: string = joinPath(Config.readConfigValue("installFolder"), "installs", folderName, "install.json");
             if (existsSync(installDataPath)) {
                 const data: Install = JSON.parse(readFileSync(installDataPath, "utf8"));
-                data.name = newName;
+                data[key] = value;
                 writeFileSync(installDataPath, JSON.stringify(data));
                 ff();
             } else {
                 rj();
             }
         });
+    }
+
+    /**
+     * Rename an install
+     * @param folderName The folder containing the install
+     * @param newName The new name for the install
+     */
+    public static renameInstall(folderName: string, newName: string): Promise<null> {
+        return InstallManager.updateInstallDataValue(folderName, "name", newName);
     }
 
     /**
@@ -75,16 +79,15 @@ export default class InstallManager {
      * @param category The new category
      */
     public static setCategory(folderName: string, category: string): Promise<null> {
-        return new Promise((ff, rj) => {
-            const installDataPath: string = joinPath(Config.readConfigValue("installFolder"), "installs", folderName, "install.json");
-            if (existsSync(installDataPath)) {
-                const data: Install = JSON.parse(readFileSync(installDataPath, "utf8"));
-                data.category = category;
-                writeFileSync(installDataPath, JSON.stringify(data));
-                ff();
-            } else {
-                rj();
-            }
-        });
+        return InstallManager.updateInstallDataValue(folderName, "category", category);
+    }
+
+    /**
+     * Sets the MAS export status of an install
+     * @param folderName The install folder
+     * @param exported Whether or not Monika was exported
+     */
+    public static setMonikaExported(folderName: string, exported: boolean): Promise<null> {
+        return InstallManager.updateInstallDataValue(folderName, "monikaExported", exported);
     }
 }

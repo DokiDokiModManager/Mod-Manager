@@ -1,10 +1,22 @@
-import {app, BrowserWindow, ipcMain, IpcMainEvent, SaveDialogReturnValue, shell, dialog, Notification} from "electron";
-import {move, existsSync, mkdirpSync, readdirSync, removeSync, copyFileSync, statSync, unlinkSync} from "fs-extra";
+import {app, BrowserWindow, dialog, ipcMain, IpcMainEvent, Notification, SaveDialogReturnValue, shell} from "electron";
+import {copyFileSync, existsSync, mkdirpSync, move, readdirSync, removeSync, statSync, unlinkSync} from "fs-extra";
 import {join as joinPath} from "path";
 import {autoUpdater} from "electron-updater";
 import * as Sentry from "@sentry/electron";
 import * as semver from "semver";
 import {sync as getDataURI} from "datauri";
+import ModList from "./mod/ModList";
+import I18n from "./utils/i18n";
+import InstallList from "./install/InstallList";
+import InstallLauncher from "./install/InstallLauncher";
+import Config from "./utils/Config";
+import InstallCreator from "./install/InstallCreator";
+import ModInstaller from "./mod/ModInstaller";
+import InstallManager from "./install/InstallManager";
+import DiscordManager from "./discord/DiscordManager";
+import DownloadManager from "./net/DownloadManager";
+import OnboardingManager from "./onboarding/OnboardingManager";
+import {checkSync, DiskUsage} from "diskusage";
 
 Sentry.init({
     dsn: "https://bf0edf3f287344d4969e3171c33af4ea@sentry.io/1297252",
@@ -21,19 +33,6 @@ if (existsSync(joinPath(app.getPath("appData"), "Doki Doki Mod Manager!"))) {
 } else {
     app.setPath("userData", joinPath(app.getPath("appData"), "DokiDokiModManager"));
 }
-
-import ModList from "./mod/ModList";
-import I18n from "./utils/i18n";
-import InstallList from "./install/InstallList";
-import InstallLauncher from "./install/InstallLauncher";
-import Config from "./utils/Config";
-import InstallCreator from "./install/InstallCreator";
-import ModInstaller from "./mod/ModInstaller";
-import InstallManager from "./install/InstallManager";
-import DiscordManager from "./discord/DiscordManager";
-import DownloadManager from "./net/DownloadManager";
-import OnboardingManager from "./onboarding/OnboardingManager";
-import {checkSync, DiskUsage} from "diskusage";
 
 const DISCORD_ID = "453299645725016074";
 
@@ -386,6 +385,51 @@ ipcMain.on("debug crash", () => {
 ipcMain.on("disk space", (ev: IpcMainEvent) => {
     const usage: DiskUsage = checkSync(Config.readConfigValue("installFolder"));
     ev.returnValue = usage.free;
+});
+
+ipcMain.on("import mas", (ev: IpcMainEvent, folderName: string) => {
+    dialog.showOpenDialog(appWindow, {
+        title: lang.translate("main.import_mas.title"),
+        filters: [
+            {
+                name: lang.translate("main.import_mas.filter"),
+                extensions: ["*"]
+            }
+        ]
+    }, filePaths => {
+        if (filePaths && filePaths[0]) {
+            copyFileSync(filePaths[0], joinPath(Config.readConfigValue("installFolder"), "installs", folderName, "install", "characters", "monika"));
+            removeSync(filePaths[0]);
+            InstallManager.setMonikaExported(folderName, false).then(() => {
+                appWindow.webContents.send("got installs", InstallList.getInstallList());
+            });
+        }
+    });
+});
+
+ipcMain.on("export mas", (ev: IpcMainEvent, folderName: string) => {
+    dialog.showSaveDialog(appWindow, {
+        title: lang.translate("main.export_mas.title"),
+        defaultPath: "monika",
+        filters: [
+            {
+                name: lang.translate("main.export_mas.filter"),
+                extensions: ["*"]
+            }
+        ]
+    }).then((dialogReturn: SaveDialogReturnValue) => {
+        console.log(dialogReturn);
+        if (dialogReturn.filePath) {
+            console.log("exporting");
+            const source: string = joinPath(Config.readConfigValue("installFolder"), "installs", folderName, "install", "characters", "monika");
+            copyFileSync(source, dialogReturn.filePath);
+            removeSync(source);
+            console.log("exported");
+            InstallManager.setMonikaExported(folderName, true).then(() => {
+                appWindow.webContents.send("got installs", InstallList.getInstallList());
+            });
+        }
+    });
 });
 
 // endregion

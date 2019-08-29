@@ -205,6 +205,15 @@ api.mods.setCategory = function(folderName, category) {
     ipcRenderer.send("set category", {folderName, category});
 };
 
+// Import / export Monika
+api.mods.importMAS = function(folderName) {
+    ipcRenderer.send("import mas", folderName);
+};
+
+api.mods.exportMAS = function(folderName) {
+    ipcRenderer.send("export mas", folderName);
+};
+
 // Move install folder
 api.app.beginMoveInstall = function () {
     ipcRenderer.send("move install");

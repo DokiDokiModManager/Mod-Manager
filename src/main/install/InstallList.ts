@@ -1,9 +1,10 @@
 import {app} from "electron";
 import {join as joinPath} from "path";
-import {readdirSync, readFileSync} from "fs";
+import {existsSync, readdirSync, readFileSync} from "fs";
 import Install from "../types/Install";
 import Config from "../utils/Config";
 import I18n from "../utils/i18n";
+import {MonikaExportStatus} from "../types/MonikaExportStatus";
 
 const lang: I18n = new I18n();
 
@@ -39,9 +40,17 @@ export default class InstallList {
                     console.log("Could not load screenshots due to an IO error", e.message);
                 }
 
+                let monikaExportStatus: MonikaExportStatus;
+
+                if (existsSync(joinPath(installFolder, folder, "install", "characters", "monika"))) {
+                    monikaExportStatus = MonikaExportStatus.ReadyToExport;
+                } else {
+                    monikaExportStatus = data.monikaExported ? MonikaExportStatus.Exported : MonikaExportStatus.NotExported;
+                }
+
 
                 if (data.name) {
-                    returned.push(new Install(data.name, folder, data.globalSave, screenshots, data.achievements, data.mod, data.playTime || 0, data.category));
+                    returned.push(new Install(data.name, folder, data.globalSave, screenshots, data.achievements, data.mod, data.playTime || 0, data.category, monikaExportStatus));
                 }
             } catch (e) {
                 console.info("Failed to read install data from " + dataFilePath, e.message);
