@@ -31,40 +31,18 @@ export default class I18n {
         });
     }
 
+    private getValue(obj: any, key: string) {
+        try {
+            return key.split(".").reduce((o, i) => o[i], obj);
+        } catch {
+            return undefined;
+        }
+    }
+
     translate(key: string, ...args: string[]) {
-        const stringPathSegments = key.split(".");
-        let current = this.languageData;
-        let currentDefault = this.defaultLanguageData;
-        let segment;
-        while (stringPathSegments.length > 0) {
-            segment = stringPathSegments.shift();
-
-            try {
-                current = current[segment];
-            } catch (e) {
-                try {
-                    current = currentDefault[segment];
-                } catch (e) {
-                    return "[ERROR] No translation found for " + key;
-                }
-            }
-
-            if (!this.ignoreFlag) {
-                currentDefault = currentDefault[segment];
-
-                if (!current) {
-                    current = currentDefault;
-                }
-            } else {
-                if (!current) {
-                    return "[ERROR] No translation found for " + key;
-                }
-            }
-        }
-        if (!current) {
-            return "[ERROR] No translation found for " + key;
-        } else {
-            return (process.env.DDMM_LANG_PROOF ? "[translated] " : "") + this.formatString(current, args);
-        }
+        return this.formatString(
+            this.getValue(this.languageData, key) || this.getValue(this.defaultLanguageData, key) || key,
+            args
+        );
     };
 }
