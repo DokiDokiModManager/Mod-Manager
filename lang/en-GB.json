@@ -70,6 +70,9 @@
       "description_location": "Your games will be stored at {0}",
       "link_change": "(Change)"
     },
+    "modal_news": {
+      "button": "Done"
+    },
     "modal_rename": {
       "title": "Rename Install",
       "body": "Enter the new name for {0}.",
@@ -259,7 +262,7 @@
       },
       "section_language": {
         "title": "Language",
-        "subtitle": "Choose your preferred language.",
+        "subtitle": "Choose your preferred language. Not all translations will be complete.",
         "description_restart": "Changes will take effect after restarting Doki Doki Mod Manager.",
         "label_language": "Language"
       },
@@ -300,9 +303,10 @@
       "social_discord": "Join the Discord server",
       "social_reddit": "Message me on Reddit",
       "social_email": "Send me an email",
-      "title_supporters": "Thanks to the generosity of the following Patreon supporters",
+      "title_translators": "Translations generously contributed by",
+      "title_supporters": "Thanks to the following Patreon supporters",
       "title_supporters_none": "Support on Patreon",
-      "link_patreon": "Want to support the development of Doki Doki Mod Manager? Become a Patreon supporter and get special perks in return!"
+      "link_patreon": "Want to help the development of Doki Doki Mod Manager? Become a Patreon supporter!"
     }
   },
   "main": {
