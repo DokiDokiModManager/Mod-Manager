@@ -19,8 +19,8 @@
   },
   "dependencies": {
     "7zip-bin": "^5.0.3",
-    "@fortawesome/fontawesome-free": "^5.9.0",
-    "@sentry/electron": "0.17.3",
+    "@fortawesome/fontawesome-free": "^5.11.2",
+    "@sentry/electron": "0.17.4",
     "archiver": "^3.0.0",
     "chmodr": "^1.2.0",
     "datauri": "^2.0.0",
@@ -36,11 +36,11 @@
     "yauzl": "latest"
   },
   "devDependencies": {
-    "@sentry/cli": "^1.46.0",
-    "electron": "^6.0.0",
+    "@sentry/cli": "^1.47.2",
+    "electron": "^6.0.10",
     "electron-builder": "^21.1.1",
     "mocha": "^6.2.0",
-    "typescript": "^3.5.3"
+    "typescript": "^3.6.3"
   },
   "build": {
     "appId": "space.doki.modmanager",
