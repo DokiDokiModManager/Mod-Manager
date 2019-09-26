@@ -255,10 +255,12 @@
         "title": "Updates",
         "subtitle": "Get the latest version of Doki Doki Mod Manager.",
         "description_current_version": "Current version: {0}",
-        "label_channel": "Release Channel",
-        "option_stable": "Stable",
-        "option_beta": "Beta",
-        "button_check": "Check for updates"
+        "description_latest_version": "Latest version: {0}",
+        "description_has_update": "A new version of Doki Doki Mod Manager is available!",
+        "description_no_update": "You are on the latest version of Doki Doki Mod Manager.",
+        "description_error": "Unable to check for updates right now, please try again later.",
+        "button_check": "Check Again",
+        "button_update": "Install Update"
       },
       "section_language": {
         "title": "Language",
