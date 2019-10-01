@@ -283,6 +283,10 @@ ipcRenderer.on("is appx", (_, is) => {
     api.emit("is appx", is);
 });
 
+api.reloadLanguages = function() {
+  ipcRenderer.send("reload languages");
+};
+
 // Application version
 api.version = packageData.version;
 
