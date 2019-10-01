@@ -18,7 +18,7 @@
   "dependencies": {
     "7zip-bin": "^4.1.0",
     "@fortawesome/fontawesome-free": "^5.9.0",
-    "@sentry/electron": "^0.17.1",
+    "@sentry/electron": "^0.17.4",
     "@zudo/unzipper": "^0.0.4",
     "archiver": "^3.0.0",
     "chmodr": "^1.2.0",
