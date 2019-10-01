@@ -264,7 +264,7 @@
       "section_language": {
         "title": "Language",
         "subtitle": "Choose your preferred language. Not all translations will be complete.",
-        "description_restart": "Changes will take effect after restarting Doki Doki Mod Manager.",
+        "link_contribute": "Can you help translate Doki Doki Mod Manager?",
         "label_language": "Language"
       },
       "section_sdk": {

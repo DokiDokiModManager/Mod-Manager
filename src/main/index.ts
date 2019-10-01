@@ -17,6 +17,7 @@ import DiscordManager from "./discord/DiscordManager";
 import DownloadManager from "./net/DownloadManager";
 import OnboardingManager from "./onboarding/OnboardingManager";
 import {checkSync, DiskUsage} from "diskusage";
+import i18n from "./utils/i18n";
 
 Sentry.init({
     dsn: "https://bf0edf3f287344d4969e3171c33af4ea@sentry.io/1297252",
@@ -61,7 +62,7 @@ let downloadManager: DownloadManager;
 // Onboarding manager
 let onboardingManager: OnboardingManager;
 
-const lang: I18n = new I18n();
+let lang: I18n = new I18n();
 
 // endregion
 
@@ -430,6 +431,10 @@ ipcMain.on("export mas", (ev: IpcMainEvent, folderName: string) => {
             });
         }
     });
+});
+
+ipcMain.on("reload languages", () => {
+    lang = new I18n();
 });
 
 // endregion
