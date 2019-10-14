@@ -1,0 +1,343 @@
+{
+    "renderer": {
+        "tabs": {
+            "tab_home": "",
+            "tab_mods": "",
+            "tab_store": "",
+            "tab_options": "",
+            "tab_about": ""
+        },
+        "version": {
+            "link_changelog": ""
+        },
+        "help_menu": {
+            "option_help": "",
+            "option_feedback": "",
+            "option_discord": ""
+        },
+        "user_menu": {
+            "option_rename": "",
+            "option_logout": ""
+        },
+        "window_controls": {
+            "close": "",
+            "maximise": "",
+            "minimise": "",
+            "help": "",
+            "announcement": "",
+            "login": "",
+            "update": {
+                "checking": "",
+                "available": "",
+                "downloading": "",
+                "downloaded": ""
+            }
+        },
+        "crash_cover": {
+            "button_close": "",
+            "button_continue": ""
+        },
+        "drop_cover": {
+            "text": ""
+        },
+        "announcement": {
+            "button_open": "",
+            "button_close": ""
+        },
+        "onboarding": {
+            "title": "",
+            "description_download": "",
+            "button_download": "",
+            "button_choose": "",
+            "heading_step": "",
+            "s1_desc": "",
+            "s1_platform": "",
+            "s2_desc": "",
+            "description_location": "",
+            "link_change": ""
+        },
+        "login_input": {
+            "message": "",
+            "details": "",
+            "button_affirmative": "",
+            "button_negative": ""
+        },
+        "change_username_input": {
+            "message": "",
+            "details": "",
+            "button_affirmative": "",
+            "button_negative": ""
+        },
+        "tab_mods": {
+            "list": {
+                "placeholder_search": "",
+                "header_new": "",
+                "link_install": "",
+                "header_installed": "",
+                "header_downloaded": ""
+            },
+            "install_contextmenu": {
+                "launch": "",
+                "rename": "",
+                "shortcut": "",
+                "delete_save": "",
+                "uninstall": ""
+            },
+            "mod_contextmenu": {
+                "install": "",
+                "delete": ""
+            },
+            "uninstall_confirmation": {
+                "message": "",
+                "details": "",
+                "button_affirmative": "",
+                "button_negative": ""
+            },
+            "rename_input": {
+                "message": "",
+                "details": "",
+                "button_affirmative": "",
+                "button_negative": ""
+            },
+            "launch_lock_confirmation": {
+                "message": "",
+                "details": "",
+                "button_affirmative": "",
+                "button_negative": ""
+            },
+            "launch_noauth_confirmation": {
+                "message": "",
+                "details": "",
+                "button_affirmative": "",
+                "button_negative": ""
+            },
+            "launch_offline_confirmation": {
+                "message": "",
+                "details": "",
+                "button_affirmative": "",
+                "button_negative": ""
+            },
+            "mod_delete_confirmation": {
+                "message": "",
+                "details": "",
+                "button_affirmative": "",
+                "button_negative": ""
+            },
+            "save_delete_confirmation": {
+                "message": "",
+                "details": "",
+                "button_affirmative": "",
+                "button_negative": ""
+            },
+            "install": {
+                "button_launch": "",
+                "button_settings": "",
+                "tag_global_save": "",
+                "tag_sdk": "",
+                "tag_cloud": "",
+                "description_locked": "",
+                "title_achievements": "",
+                "description_achievements": "",
+                "description_achievements_complete": "",
+                "title_screenshots_none": "",
+                "title_screenshots_one": "",
+                "title_screenshots": "",
+                "description_screenshots": "",
+                "description_sdk": "",
+                "description_author": "",
+                "link_discord": "",
+                "link_website": "",
+                "description_external": ""
+            },
+            "mod": {
+                "button_install": "",
+                "button_settings": "",
+                "description_external": ""
+            },
+            "install_creation": {
+                "title": "",
+                "label_install_name": "",
+                "label_folder_name": "",
+                "label_global_save": "",
+                "label_has_mod": "",
+                "label_mod": "",
+                "label_has_cloudsave": "",
+                "label_cloudsave": "",
+                "option_new_cloudsave": "",
+                "label_existing_saves": "",
+                "description_mod": "",
+                "header_summary": "",
+                "description_vanilla": "",
+                "description_vanilla_global_save": "",
+                "description_vanilla_cloudsave": "",
+                "description_modded": "",
+                "description_modded_global_save": "",
+                "description_modded_cloudsave": "",
+                "button_install": "",
+                "button_installing": "",
+                "status_exists": ""
+            }
+        },
+        "tab_store_placeholder": {
+            "title": "",
+            "description_1": "",
+            "description_2": "",
+            "error": "",
+            "button_download": ""
+        },
+        "tab_options": {
+            "list": {
+                "header_appearance": "",
+                "link_background": "",
+                "link_advanced_appearance": "",
+                "header_enhancements": "",
+                "link_sdk": "",
+                "link_discord": "",
+                "header_application": "",
+                "link_updates": "",
+                "link_storage": "",
+                "header_developers": "",
+                "link_testing": "",
+                "link_debug": ""
+            },
+            "section_backgrounds": {
+                "title": "",
+                "subtitle": "",
+                "button_none": "",
+                "description_credit": ""
+            },
+            "section_advanced_appearance": {
+                "title": "",
+                "subtitle": "",
+                "button_enable_sysborders": "",
+                "button_disable_sysborders": ""
+            },
+            "section_storage": {
+                "title": "",
+                "subtitle": "",
+                "description_moving": "",
+                "description_current": "",
+                "button_change": ""
+            },
+            "section_updates": {
+                "title": "",
+                "subtitle": "",
+                "description_current_version": "",
+                "label_channel": "",
+                "option_stable": "",
+                "option_beta": "",
+                "button_check": ""
+            },
+            "section_sdk": {
+                "title": "",
+                "subtitle": "",
+                "description_mode": "",
+                "checkbox_always": "",
+                "checkbox_specified": "",
+                "checkbox_never": ""
+            },
+            "section_discord": {
+                "title": "",
+                "subtitle": "",
+                "description": "",
+                "button_enable": "",
+                "button_disable": ""
+            },
+            "section_testing": {
+                "title": "",
+                "subtitle": "",
+                "button_enable": "",
+                "button_disable": ""
+            },
+            "section_debug": {
+                "title": "",
+                "subtitle": ""
+            }
+        },
+        "tab_about": {
+            "title": "",
+            "description": "",
+            "title_disclaimer": "",
+            "disclaimer_1": "",
+            "disclaimer_2": "",
+            "title_socials": "",
+            "social_discord": "",
+            "social_twitter": "",
+            "social_reddit": "",
+            "social_email": "",
+            "title_support": "",
+            "description_support": "",
+            "support_donate": "",
+            "support_steelseries": "",
+            "support_code": ""
+        }
+    },
+    "main": {
+        "jumplist": {
+            "task_launch": ""
+        },
+        "running_cover": {
+            "title_running": "",
+            "title_crashed": "",
+            "button_browse": "",
+            "button_close": "",
+            "description_running": "",
+            "install_missing": "",
+            "install_corrupt": "",
+            "install_crashed": ""
+        },
+        "move_install": {
+            "title": ""
+        },
+        "mod_browse_dialog": {
+            "title": "",
+            "file_format_name": ""
+        },
+        "game_browse_dialog": {
+            "title": "",
+            "file_format_name": ""
+        },
+        "shortcut_dialog": {
+            "title": "",
+            "file_format_name": ""
+        },
+        "errors": {
+            "exception": {
+                "title": "",
+                "body": ""
+            },
+            "move_install": {
+                "title": "",
+                "body": ""
+            },
+            "shortcut": {
+                "title": "",
+                "body": ""
+            },
+            "install": {
+                "title": "",
+                "body": ""
+            },
+            "rename": {
+                "title": "",
+                "body": ""
+            },
+            "uninstall": {
+                "title": "",
+                "body": ""
+            },
+            "save_delete": {
+                "title": "",
+                "body": ""
+            },
+            "mod_delete": {
+                "title": "",
+                "body": ""
+            },
+            "renderer_freeze": {
+                "title": "",
+                "body": ""
+            }
+        }
+    }
+}
