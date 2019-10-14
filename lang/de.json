@@ -1,31 +1,31 @@
 {
     "renderer": {
         "tabs": {
-            "tab_home": "",
-            "tab_mods": "",
+            "tab_home": "Startseite",
+            "tab_mods": "Mods",
             "tab_store": "",
-            "tab_options": "",
+            "tab_options": "Einstellungen",
             "tab_about": ""
         },
         "version": {
-            "link_changelog": ""
+            "link_changelog": "was gibt's Neues?"
         },
         "help_menu": {
-            "option_help": "",
+            "option_help": "Hilfeseite anzeigen",
             "option_feedback": "",
-            "option_discord": ""
+            "option_discord": "Discord-Server beitreten"
         },
         "user_menu": {
-            "option_rename": "",
-            "option_logout": ""
+            "option_rename": "Benutzername ändern",
+            "option_logout": "Abmelden"
         },
         "window_controls": {
-            "close": "",
-            "maximise": "",
-            "minimise": "",
-            "help": "",
+            "close": "Schließen",
+            "maximise": "Maximieren",
+            "minimise": "Minimieren",
+            "help": "Hilfe erhalten",
             "announcement": "",
-            "login": "",
+            "login": "Anmelden",
             "update": {
                 "checking": "",
                 "available": "",
