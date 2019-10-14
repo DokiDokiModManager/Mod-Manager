@@ -1,342 +1,342 @@
 {
     "renderer": {
         "tabs": {
-            "tab_home": "",
-            "tab_mods": "",
-            "tab_store": "",
-            "tab_options": "",
-            "tab_about": ""
+            "tab_home": "Главная",
+            "tab_mods": "Моды",
+            "tab_store": "Магазин",
+            "tab_options": "Настройки",
+            "tab_about": "О программе"
         },
         "version": {
-            "link_changelog": ""
+            "link_changelog": "Что нового?"
         },
         "help_menu": {
-            "option_help": "",
-            "option_feedback": "",
-            "option_discord": ""
+            "option_help": "Открыть справку в браузере",
+            "option_feedback": "Отправить личный отзыв",
+            "option_discord": "Присоединиться к серверу в Дискорде"
         },
         "user_menu": {
-            "option_rename": "",
-            "option_logout": ""
+            "option_rename": "Сменить имя пользователя",
+            "option_logout": "Выйти"
         },
         "window_controls": {
-            "close": "",
-            "maximise": "",
-            "minimise": "",
-            "help": "",
-            "announcement": "",
-            "login": "",
+            "close": "Закрыть",
+            "maximise": "Развернуть",
+            "minimise": "Свернуть",
+            "help": "Получить помощь",
+            "announcement": "Прочитать последнее объявление",
+            "login": "Войти",
             "update": {
-                "checking": "",
-                "available": "",
-                "downloading": "",
-                "downloaded": ""
+                "checking": "Идёт проверка обновлений в фоновом режиме...",
+                "available": "Доступно обновление. Щёлкните здесь, чтобы скачать его.",
+                "downloading": "Скачивание обновления...",
+                "downloaded": "Обновление готово к установке, оно будет установлено после закрытия программы."
             }
         },
         "crash_cover": {
-            "button_close": "",
-            "button_continue": ""
+            "button_close": "Выход",
+            "button_continue": "Продолжить"
         },
         "drop_cover": {
-            "text": ""
+            "text": "Перетащите модификацию сюда, чтобы установить её"
         },
         "announcement": {
-            "button_open": "",
-            "button_close": ""
+            "button_open": "Открыть ссылку",
+            "button_close": "Закрыть"
         },
         "onboarding": {
-            "title": "",
-            "description_download": "",
-            "button_download": "",
-            "button_choose": "",
-            "heading_step": "",
-            "s1_desc": "",
-            "s1_platform": "",
-            "s2_desc": "",
-            "description_location": "",
-            "link_change": ""
+            "title": "Добро пожаловать!",
+            "description_download": "Давайте поищем установленную копию DDLC.",
+            "button_download": "Посетить официальную страницу загрузки DDLC",
+            "button_choose": "Найти установленную копию",
+            "heading_step": "Шаг {0}",
+            "s1_desc": "Вам необходимо скачать копию игры «Литературный клуб \"Тук-тук!\"». Её можно найти на официальном веб-сайте (ddlc.moe) - щёлкните на кнопку ниже, чтобы открыть его.",
+            "s1_platform": "Как только появится предложение скачивания, выберите файл с именем \"DDLC ({0})\".",
+            "s2_desc": "Как только скачивание будет завершено, выберите его при помощи кнопки, расположенной внизу.",
+            "description_location": "Ваши игры будут храниться в {0}",
+            "link_change": "(Изменить)"
         },
         "login_input": {
-            "message": "",
-            "details": "",
-            "button_affirmative": "",
-            "button_negative": ""
+            "message": "Введите ваш адрес электронной почты",
+            "details": "На данный адрес электронной почты было отправлено письмо с подтверждением регистрации. Щёлкните на ссылку, приложенную в письме, чтобы завершить вход в систему.",
+            "button_affirmative": "Войти",
+            "button_negative": "Отмена"
         },
         "change_username_input": {
-            "message": "",
-            "details": "",
-            "button_affirmative": "",
-            "button_negative": ""
+            "message": "Введите ваше новое имя пользователя",
+            "details": "Имена пользователей не должны быть уникальными.",
+            "button_affirmative": "Изменить",
+            "button_negative": "Отмена"
         },
         "tab_mods": {
             "list": {
-                "placeholder_search": "",
-                "header_new": "",
-                "link_install": "",
-                "header_installed": "",
-                "header_downloaded": ""
+                "placeholder_search": "Поиск модов...",
+                "header_new": "Приступить к работе",
+                "link_install": "Установить DDLC",
+                "header_installed": "Установлено",
+                "header_downloaded": "Загрузки"
             },
             "install_contextmenu": {
-                "launch": "",
-                "rename": "",
-                "shortcut": "",
-                "delete_save": "",
-                "uninstall": ""
+                "launch": "Запуск",
+                "rename": "Переименовать",
+                "shortcut": "Создать ярлык",
+                "delete_save": "Удалить сохранения",
+                "uninstall": "Удалить"
             },
             "mod_contextmenu": {
-                "install": "",
-                "delete": ""
+                "install": "Установить",
+                "delete": "Удалить"
             },
             "uninstall_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Вы подтверждаете удаление?",
+                "details": "Ваши сохранения, относящиеся к {0}, будут удалены, и вам понадобится копия модификации, чтобы установить её вновь.",
+                "button_affirmative": "Удалить",
+                "button_negative": "Отмена"
             },
             "rename_input": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Переименовать установленную копию",
+                "details": "Введите новое имя для {0}.",
+                "button_affirmative": "Переименовать",
+                "button_negative": "Отмена"
             },
             "launch_lock_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Замечено использование облачных сохранений!",
+                "details": "Если вы запустите игру сейчас, вы можете потерять свой прогресс.",
+                "button_affirmative": "Всё равно запустить",
+                "button_negative": "Отмена"
             },
             "launch_noauth_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Вы не вошли в систему!",
+                "details": "Если вы запустите игру сейчас, ваши сохранения не будут синхронизироваться с облаком.",
+                "button_affirmative": "Всё равно запустить",
+                "button_negative": "Отмена"
             },
             "launch_offline_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Вы не в сети!",
+                "details": "Если вы запустите игру сейчас, ваши сохранения не будут синхронизироваться с облаком.",
+                "button_affirmative": "Всё равно запустить",
+                "button_negative": "Отмена"
             },
             "mod_delete_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Вы подтверждаете удаление модификации?",
+                "details": "Вам придётся скачивать копию модификации отдельно, чтобы установить её вновь.",
+                "button_affirmative": "Удалить",
+                "button_negative": "Отмена"
             },
             "save_delete_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Вы подтверждаете удаление своих сохранений?",
+                "details": "Вам придётся начинать игру в {0} с нуля.",
+                "button_affirmative": "Удалить",
+                "button_negative": "Отмена"
             },
             "install": {
-                "button_launch": "",
-                "button_settings": "",
-                "tag_global_save": "",
-                "tag_sdk": "",
-                "tag_cloud": "",
-                "description_locked": "",
-                "title_achievements": "",
-                "description_achievements": "",
-                "description_achievements_complete": "",
-                "title_screenshots_none": "",
-                "title_screenshots_one": "",
-                "title_screenshots": "",
-                "description_screenshots": "",
-                "description_sdk": "",
-                "description_author": "",
-                "link_discord": "",
-                "link_website": "",
-                "description_external": ""
+                "button_launch": "Запуск",
+                "button_settings": "Настройки",
+                "tag_global_save": "Глобальные сохранения",
+                "tag_sdk": "Набор разработчика",
+                "tag_cloud": "Облачные сохранения",
+                "description_locked": "Вы уже начали игру с данным облачным сохранением на другом компьютере. Чтобы продолжить игру здесь, завершите её на том компьютере.",
+                "title_achievements": "Достижения ({0} / {1})",
+                "description_achievements": "Продолжайте играть, чтобы открыть больше достижений.",
+                "description_achievements_complete": "Вы открыли все достижения. Поздравляем!",
+                "title_screenshots_none": "Нет скриншотов",
+                "title_screenshots_one": "1 скриншот",
+                "title_screenshots": "Скриншотов: {0}",
+                "description_screenshots": "Нажмите клавишу \"S\" во время игры, чтобы сделать скриншот.",
+                "description_sdk": "Эта модификация поддерживает особые функции с набором разработчика Doki Doki Mod Manager!",
+                "description_author": "Автор(ы) - {0}",
+                "link_discord": "Дискорд ({0})",
+                "link_website": "Веб-сайт ({0})",
+                "description_external": "Показать в папке"
             },
             "mod": {
-                "button_install": "",
-                "button_settings": "",
-                "description_external": ""
+                "button_install": "Установить",
+                "button_settings": "Настройки",
+                "description_external": "Показать в папке"
             },
             "install_creation": {
-                "title": "",
-                "label_install_name": "",
-                "label_folder_name": "",
-                "label_global_save": "",
-                "label_has_mod": "",
-                "label_mod": "",
-                "label_has_cloudsave": "",
-                "label_cloudsave": "",
-                "option_new_cloudsave": "",
-                "label_existing_saves": "",
-                "description_mod": "",
-                "header_summary": "",
-                "description_vanilla": "",
-                "description_vanilla_global_save": "",
-                "description_vanilla_cloudsave": "",
-                "description_modded": "",
-                "description_modded_global_save": "",
-                "description_modded_cloudsave": "",
-                "button_install": "",
-                "button_installing": "",
-                "status_exists": ""
+                "title": "Установить DDLC",
+                "label_install_name": "Имя устанавливаемой копии",
+                "label_folder_name": "Имя папки",
+                "label_global_save": "Глобальные сохранения",
+                "label_has_mod": "Установить мод",
+                "label_mod": "Мод",
+                "label_has_cloudsave": "Облачные сохранения (бета)",
+                "label_cloudsave": "Файл облачного сохранения",
+                "option_new_cloudsave": "Создать новый файл сохранения",
+                "label_existing_saves": "Уже существующие файлы сохранения",
+                "description_mod": "Щёлкните, чтобы найти модификацию.",
+                "header_summary": "Итоги",
+                "description_vanilla": "Была создана чистая копия DDLC. Сохранения будут отделены от любой другой копии игры.",
+                "description_vanilla_global_save": "Была создана чистая копия DDLC. Другие копии игры тоже будут использовать её сохранения (напр. Steam)",
+                "description_vanilla_cloudsave": "Была создана чистая копия DDLC. Сохранения будут храниться в облаке.",
+                "description_modded": "Будет создана копия DDLC, после чего начнётся установка модификации.  Сохранения будут отделены от любой другой копии игры.",
+                "description_modded_global_save": "Будет создана копия DDLC, после чего начнётся установка модификации.  Другие копии игры тоже будут использовать её сохранения (напр. Steam)",
+                "description_modded_cloudsave": "Будет создана копия DDLC, после чего начнётся установка модификации. Сохранения будут храниться в облаке.",
+                "button_install": "Установить",
+                "button_installing": "Установка...",
+                "status_exists": "Эта папка уже существует. Выберите другое имя для папки."
             }
         },
         "tab_store_placeholder": {
-            "title": "",
-            "description_1": "",
-            "description_2": "",
-            "error": "",
-            "button_download": ""
+            "title": "Магазин скоро откроется!",
+            "description_1": "База данных модификаций Сайоники предоставит центральное месторасположение для публикации, скачивания и обзора модификаций к DDLC. Когда Сайоника станет общедоступной, вы сможете обозревать модификации прямо здесь, в Doki Doki Mod Manager.",
+            "description_2": "Пока вы ждёте, можете скачать эти рекомендуемые модификации.",
+            "error": "Не удалось загрузить список модификаций. Вы не в сети?",
+            "button_download": "Скачать"
         },
         "tab_options": {
             "list": {
-                "header_appearance": "",
-                "link_background": "",
-                "link_advanced_appearance": "",
-                "header_enhancements": "",
-                "link_sdk": "",
-                "link_discord": "",
-                "header_application": "",
-                "link_updates": "",
-                "link_storage": "",
-                "header_developers": "",
-                "link_testing": "",
-                "link_debug": ""
+                "header_appearance": "Оформление",
+                "link_background": "Фон",
+                "link_advanced_appearance": "Дополнительно",
+                "header_enhancements": "Улучшения",
+                "link_sdk": "Достижения и набор разработчика",
+                "link_discord": "Сервер в Дискорде",
+                "header_application": "Приложение",
+                "link_updates": "Обновления",
+                "link_storage": "Место хранения",
+                "header_developers": "Разработчики",
+                "link_testing": "Отладка набора разработчика",
+                "link_debug": "Информация о приложении"
             },
             "section_backgrounds": {
-                "title": "",
-                "subtitle": "",
-                "button_none": "",
-                "description_credit": ""
+                "title": "Фон",
+                "subtitle": "Персонализируйте свою копию Doki Doki Mod Manager при помощи одного из этих фонов.",
+                "button_none": "Без фона",
+                "description_credit": "Оригинальные фоны DDLC любезно предоставлены Team Salvato."
             },
             "section_advanced_appearance": {
-                "title": "",
-                "subtitle": "",
-                "button_enable_sysborders": "",
-                "button_disable_sysborders": ""
+                "title": "Дополнительно",
+                "subtitle": "Другие настройки интерфейса находятся здесь.",
+                "button_enable_sysborders": "Использовать системные границы окна (требуется перезапуск)",
+                "button_disable_sysborders": "Отключить системные границы окна (требуется перезапуск)"
             },
             "section_storage": {
-                "title": "",
-                "subtitle": "",
-                "description_moving": "",
-                "description_current": "",
-                "button_change": ""
+                "title": "Место хранения",
+                "subtitle": "Измените месторасположение данных вашей игры.",
+                "description_moving": "Внимание! Если вы решите изменить место установки, все ваши модификации, установленные копии и сохранения будут перемещены. Этот процесс может занять несколько минут и его невозможно прервать.",
+                "description_current": "Текущее месторасположение: {0}",
+                "button_change": "Изменить место установки"
             },
             "section_updates": {
-                "title": "",
-                "subtitle": "",
-                "description_current_version": "",
-                "label_channel": "",
-                "option_stable": "",
-                "option_beta": "",
-                "button_check": ""
+                "title": "Обновления",
+                "subtitle": "Получить последнюю версию программы Doki Doki Mod Manager.",
+                "description_current_version": "Текущая версия: {0}",
+                "label_channel": "Канал обновлений",
+                "option_stable": "Стабильный",
+                "option_beta": "Бета-тестирование",
+                "button_check": "Проверить наличие обновлений"
             },
             "section_sdk": {
-                "title": "",
-                "subtitle": "",
-                "description_mode": "",
-                "checkbox_always": "",
-                "checkbox_specified": "",
-                "checkbox_never": ""
+                "title": "Достижения и набор разработчика",
+                "subtitle": "Изменить способ обработки достижений.",
+                "description_mode": "Включать достижения:",
+                "checkbox_always": "Всегда (рекомендуется)",
+                "checkbox_specified": "Если в модификации заявлена их поддержка",
+                "checkbox_never": "Никогда"
             },
             "section_discord": {
-                "title": "",
-                "subtitle": "",
-                "description": "",
-                "button_enable": "",
-                "button_disable": ""
+                "title": "Игровая активность в Дискорде",
+                "subtitle": "Показывайте своим друзьям в Дискорде, в какую модификацию вы сейчас играете.",
+                "description": "Изменения вступят в силу после перезапуска Doki Doki Mod Manager.",
+                "button_enable": "Включить отображение игровой активности",
+                "button_disable": "Отключить отображение игровой активности"
             },
             "section_testing": {
-                "title": "",
-                "subtitle": "",
-                "button_enable": "",
-                "button_disable": ""
+                "title": "Отладка набора разработчика",
+                "subtitle": "Включите запись логов во время отладки для проверки своих модификаций при помощи набора разработчика Doki Doki Mod Manager.",
+                "button_enable": "Включить отладку",
+                "button_disable": "Отключить отладку"
             },
             "section_debug": {
-                "title": "",
-                "subtitle": ""
+                "title": "Информация о приложении",
+                "subtitle": "Информация для выявления проблем."
             }
         },
         "tab_about": {
-            "title": "",
-            "description": "",
-            "title_disclaimer": "",
-            "disclaimer_1": "",
-            "disclaimer_2": "",
-            "title_socials": "",
-            "social_discord": "",
-            "social_twitter": "",
-            "social_reddit": "",
-            "social_email": "",
-            "title_support": "",
-            "description_support": "",
-            "support_donate": "",
-            "support_steelseries": "",
-            "support_code": ""
+            "title": "О программе",
+            "description": "Doki Doki Mod Manager - это разрабатываемый сообществом проект, который поможет вам найти, установить и запустить модификации, созданные для игры «Литературный клуб \"Тук-тук!\"» - бесплатного визуального романа, созданного Team Salvato.",
+            "title_disclaimer": "Отказ от ответственности",
+            "disclaimer_1": "Doki Doki Mod Manager - это фанатская работа, созданная на основе игры «Литературный клуб \"Тук-тук!\"», которая никак не связана с Team Salvato. Данная фанатская работа соответствует требованиям руководящих принципов Team Salvato.",
+            "disclaimer_2": "Doki Doki Mod Manager не несёт ответственности за любой ущерб, причинённый вашим файлам или компьютеру в результате игры в модификацию или других случаев. Уверенность в безопасности модификаций зависит только от вас.",
+            "title_socials": "Оставайтесь в курсе событий",
+            "social_discord": "Присоединяйтесь к серверу DDMM в Дискорде",
+            "social_twitter": "Подпишитесь на @DokiMod в Твиттере",
+            "social_reddit": "Пишите мне сообщения в Реддите",
+            "social_email": "Отправляйте мне письма на электронную почту",
+            "title_support": "Поддержать разработку",
+            "description_support": "Doki Doki Mod Manager всегда будет бесплатным для скачивания и использования. Если вам понравилась эта программа и вы хотите помочь мне поддерживать её в актуальном состоянии, поддержите меня одним из следующих способов.",
+            "support_donate": "Сделать разовое пожертвование",
+            "support_steelseries": "Получить скидку в 10% на игровую периферию от SteelSeries (партнёрская ссылка)",
+            "support_code": "Сделать вклад в проект (код или переводы)"
         }
     },
     "main": {
         "jumplist": {
-            "task_launch": ""
+            "task_launch": "Открыть Doki Doki Mod Manager и запустить {0}."
         },
         "running_cover": {
-            "title_running": "",
-            "title_crashed": "",
-            "button_browse": "",
-            "button_close": "",
-            "description_running": "",
-            "install_missing": "",
-            "install_corrupt": "",
-            "install_crashed": ""
+            "title_running": "DDLC запускается",
+            "title_crashed": "Что-то пошло не так",
+            "button_browse": "Открыть папку игры",
+            "button_close": "ОК",
+            "description_running": "Закройте игру, чтобы изменения в ваших модификациях вступили в силу.",
+            "install_missing": "Невозможно найти установленную копию.",
+            "install_corrupt": "Установка не была завершена или файлы были повреждены.",
+            "install_crashed": "Игра не смогла запуститься или в ней произошла ошибка."
         },
         "move_install": {
-            "title": ""
+            "title": "Выберите новую папку для установки"
         },
         "mod_browse_dialog": {
-            "title": "",
-            "file_format_name": ""
+            "title": "Поиск модификации для установки",
+            "file_format_name": "Моды"
         },
         "game_browse_dialog": {
-            "title": "",
-            "file_format_name": ""
+            "title": "Найти копию ZIP-архива с файлами DDLC",
+            "file_format_name": "Игра DDLC"
         },
         "shortcut_dialog": {
-            "title": "",
-            "file_format_name": ""
+            "title": "Выберите директорию для размещения вашего ярлыка",
+            "file_format_name": "Ярлык"
         },
         "errors": {
             "exception": {
-                "title": "",
-                "body": ""
+                "title": "В программе Doki Doki Mod Manager произошла ошибка",
+                "body": "Отчёт о проблеме был отправлен. Перезапустите программу и попробуйте ещё раз."
             },
             "move_install": {
-                "title": "",
-                "body": ""
+                "title": "Не удалось переместить папку установки",
+                "body": "Проверьте, что у вас есть необходимые права и свободное место на диске, чтобы переместить эту папку."
             },
             "shortcut": {
-                "title": "",
-                "body": ""
+                "title": "Не удалось создать ярлык",
+                "body": "Проверьте, что у вас есть необходимые права на создание файлов в этой папке."
             },
             "install": {
-                "title": "",
-                "body": ""
+                "title": "Не удалось установить игру",
+                "body": "Проверьте, что у вас есть необходимые права и свободное место на диске для установки."
             },
             "rename": {
-                "title": "",
-                "body": ""
+                "title": "Не удалось выполнить переименование",
+                "body": "Убедитесь, что вы закрыли программы, которые могут вмешиваться, и попробуйте ещё раз."
             },
             "uninstall": {
-                "title": "",
-                "body": ""
+                "title": "Не удалось выполнить удаление",
+                "body": "Убедитесь, что вы закрыли программы, которые могут вмешиваться, и попробуйте ещё раз."
             },
             "save_delete": {
-                "title": "",
-                "body": ""
+                "title": "Не удалось удалить сохранения",
+                "body": "Убедитесь, что вы закрыли программы, которые могут вмешиваться, и попробуйте ещё раз."
             },
             "mod_delete": {
-                "title": "",
-                "body": ""
+                "title": "Не удалось удалить модификацию",
+                "body": "Убедитесь, что вы закрыли программы, которые могут вмешиваться, и попробуйте ещё раз."
             },
             "renderer_freeze": {
-                "title": "",
-                "body": ""
+                "title": "Программа Doki Doki Mod Manager перестала отвечать",
+                "body": "Если данная ошибка продолжает возникать, закройте приложение и запустите его снова."
             }
         }
     }
