@@ -1,4 +1,4 @@
-# Doki Doki Mod Manager [![Build Status](https://travis-ci.org/DokiDokiModManager/Mod-Manager.svg?branch=master)](https://travis-ci.org/DokiDokiModManager/Mod-Manager) [![Build status](https://ci.appveyor.com/api/projects/status/s0ka71b7ascljkcy?svg=true)](https://ci.appveyor.com/project/ZudoMC/mod-manager) [![Greenkeeper badge](https://badges.greenkeeper.io/DokiDokiModManager/Mod-Manager.svg)](https://greenkeeper.io/)
+# Doki Doki Mod Manager [![Build Status](https://travis-ci.org/DokiDokiModManager/Mod-Manager.svg?branch=master)](https://travis-ci.org/DokiDokiModManager/Mod-Manager) [![Build status](https://ci.appveyor.com/api/projects/status/s0ka71b7ascljkcy?svg=true)](https://ci.appveyor.com/project/ZudoMC/mod-manager) [![Translation status](https://hosted.weblate.org/widgets/doki-doki-mod-manager/-/doki-doki-mod-manager/svg-badge.svg)](https://hosted.weblate.org/engage/doki-doki-mod-manager/?utm_source=widget)
 
 Doki Doki Mod Manager is a mod manager for Doki Doki Literature Club!
 
