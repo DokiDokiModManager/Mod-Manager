@@ -1,33 +1,33 @@
 {
     "renderer": {
         "tabs": {
-            "tab_home": "",
-            "tab_mods": "",
-            "tab_store": "",
-            "tab_options": "",
-            "tab_about": ""
+            "tab_home": "Hjem",
+            "tab_mods": "Modder",
+            "tab_store": "Butikk",
+            "tab_options": "Valg",
+            "tab_about": "Om"
         },
         "version": {
-            "link_changelog": ""
+            "link_changelog": "Hva er nytt?"
         },
         "help_menu": {
-            "option_help": "",
-            "option_feedback": "",
-            "option_discord": ""
+            "option_help": "Vis hjelpeside",
+            "option_feedback": "Send privat tilbakemelding",
+            "option_discord": "Ta del i Discord-tjeneren"
         },
         "user_menu": {
-            "option_rename": "",
-            "option_logout": ""
+            "option_rename": "Endre brukernavn",
+            "option_logout": "Logg ut"
         },
         "window_controls": {
-            "close": "",
-            "maximise": "",
-            "minimise": "",
-            "help": "",
-            "announcement": "",
-            "login": "",
+            "close": "Lukk",
+            "maximise": "Maksimer",
+            "minimise": "Minimer",
+            "help": "Få hjelp",
+            "announcement": "Les siste kunngjøring",
+            "login": "Logg inn",
             "update": {
-                "checking": "",
+                "checking": "Ser etter oppdateringer i bakgrunnen…",
                 "available": "",
                 "downloading": "",
                 "downloaded": ""
