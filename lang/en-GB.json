@@ -1,5 +1,6 @@
 {
   "renderer": {
+    "language_change_instruction": "Language changes will take effect after restarting",
     "tabs": {
       "tab_home": "Home",
       "tab_mods": "Mods",
@@ -25,6 +26,7 @@
       "minimise": "Minimise",
       "help": "Get Help",
       "announcement": "Read the latest announcement",
+      "language": "Language",
       "login": "Log In",
       "update": {
         "checking": "Checking for updates in the background...",

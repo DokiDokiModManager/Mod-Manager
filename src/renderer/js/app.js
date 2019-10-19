@@ -157,6 +157,9 @@ const app = new Vue({
         },
         "getLoggedInUsername": function () {
             return getLoggedInUsername();
+        },
+        "changeLang": function (ev) {
+            ddmm.window.handleLanguageMenu(ev.clientX, ev.clientY);
         }
     }
 });

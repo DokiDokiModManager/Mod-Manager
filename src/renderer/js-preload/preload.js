@@ -132,6 +132,58 @@ api.window.input = function (data) {
     api.emit("input", data);
 };
 
+// before you scream at me: this is temporary
+// v4 will have a far more robust system for this
+api.window.handleLanguageMenu = function (mouseX, mouseY) {
+    const current = api.config.readConfigValue("language");
+    const languages = [
+        {
+            name: "беларуская мова",
+            code: "be"
+        },
+        {
+            name: "Deutsch",
+            code: "de"
+        },
+        {
+            name: "English (UK)",
+            code: "en-GB"
+        },
+        {
+            name: "Español (Latinoamérica)",
+            code: "es"
+        },
+        {
+            name: "日本語",
+            code: "ja"
+        },
+        {
+            name: "русский",
+            code: "ru"
+        },
+        {
+            name: "Norsk Bokmål",
+            code: "nb_NO"
+        }
+    ].sort((a,b) => (a.code > b.code) ? 1 : -1);
+    remote.Menu.buildFromTemplate([{
+        label: api.translate("renderer.language_change_instruction"),
+        enabled: false
+    }].concat(languages.map(lang => {
+        return {
+            label: lang.name,
+            type: "radio",
+            checked: current === lang.code,
+            click: () => {
+              api.config.saveConfigValue("language", lang.code);
+            }
+        };
+    }))).popup({
+        x: mouseX,
+        y: mouseY
+    });
+};
+
 // Show right click for install
 api.window.handleInstallRightClick = function (folderName, installName, mouseX, mouseY) {
     remote.Menu.buildFromTemplate([

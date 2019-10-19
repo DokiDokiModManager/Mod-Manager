@@ -56,7 +56,8 @@ export default class Config {
         background: "default.png",
         discordEnabled: true,
         sdkMode: "always",
-        updateChannel: "latest"
+        updateChannel: "latest",
+        language: "en-GB"
     };
 
     private static configPath = joinPath(app.getPath("userData"), "config.json");
