@@ -1,284 +1,344 @@
 {
-  "renderer": {
-    "tabs": {
-      "tab_home": "Inicio",
-      "tab_mods": "Mods",
-      "tab_store": "Tienda",
-      "tab_options": "Opciones",
-      "tab_about": "Acerca de"
+    "renderer": {
+        "tabs": {
+            "tab_home": "Inicio",
+            "tab_mods": "Mods",
+            "tab_store": "Tienda",
+            "tab_options": "Opciones",
+            "tab_about": "Acerca de"
+        },
+        "version": {
+            "link_changelog": "¿Qué hay de nuevo?"
+        },
+        "help_menu": {
+            "option_help": "Ver ayuda en línea",
+            "option_feedback": "Envía tus comentarios",
+            "option_discord": "Únete al servidor de Discord"
+        },
+        "window_controls": {
+            "close": "Cerrar",
+            "maximise": "Maximizar",
+            "minimise": "Minimizar",
+            "help": "Ayuda",
+            "announcement": "Lee los últimos anuncios",
+            "update": {
+                "checking": "Buscando actualizaciones en segundo plano...",
+                "available": "Hay una actualización disponible. Descárgala haciendo clic aquí.",
+                "downloading": "Descargando actualización...",
+                "downloaded": "La actualización está lista y se instalará cuando cierres este programa."
+            },
+            "login": "Iniciar sesión"
+        },
+        "crash_cover": {
+            "button_close": "Salir",
+            "button_continue": "Continuar"
+        },
+        "drop_cover": {
+            "text": "Arrastra un mod aquí para instalarlo"
+        },
+        "announcement": {
+            "button_open": "Abrir enlace",
+            "button_close": "Cerrar"
+        },
+        "tab_mods": {
+            "list": {
+                "placeholder_search": "Buscando mods...",
+                "header_new": "Empecemos",
+                "link_install": "Instala DDLC",
+                "header_installed": "Mods Instalados",
+                "header_downloaded": "Descargas"
+            },
+            "install_contextmenu": {
+                "launch": "Abrir",
+                "rename": "Renombrar",
+                "shortcut": "Crear acceso directo",
+                "delete_save": "Borrar Datos guardados",
+                "uninstall": "Desinstalar"
+            },
+            "mod_contextmenu": {
+                "install": "Instalar",
+                "delete": "Borrar"
+            },
+            "uninstall_confirmation": {
+                "message": "¿Quieres desinstalar este mod?",
+                "details": "Los datos guardados de {0} serán borrados, y necesitarás una copia del mod para reinstalarlo.",
+                "button_affirmative": "Desinstalar",
+                "button_negative": "Cancelar"
+            },
+            "rename_input": {
+                "message": "Renombrar Instalación",
+                "details": "Escribe el nuevo nombre para {0}.",
+                "button_affirmative": "Renombrar",
+                "button_negative": "Cancelar"
+            },
+            "mod_delete_confirmation": {
+                "message": "¿Quieres borrar este mod?",
+                "details": "Necesitarás descargar una nueva copia de este mod para reinstalarlo.",
+                "button_affirmative": "Borrar",
+                "button_negative": "Cancelar"
+            },
+            "save_delete_confirmation": {
+                "message": "¿Quieres borrar tus datos guardados?",
+                "details": "Tendrás que empezar {0} desde cero si los borras.",
+                "button_affirmative": "Borrar",
+                "button_negative": "Cancelar"
+            },
+            "install": {
+                "button_launch": "Abrir",
+                "button_settings": "Opciones",
+                "tag_global_save": "Guardado Global",
+                "title_screenshots_none": "No hay capturas",
+                "title_screenshots_one": "1 captura",
+                "title_screenshots": "{0} capturas",
+                "description_screenshots": "Presiona S mientras juegas para tomar una captura de pantalla.",
+                "description_sdk": "¡Este mod utiliza características especiales del SDK de Doki Doki Mod Manager!",
+                "description_author": "Creado por {0}",
+                "link_discord": "Discord ({0})",
+                "link_website": "Sitio Web ({0})",
+                "description_external": "Mostrar en carpeta",
+                "tag_sdk": "SDK",
+                "tag_cloud": "Guardado en la Nube",
+                "description_locked": "Estás jugando esta partida guardada en otro computador. Para continuar en este, termina de jugar en el otro computador.",
+                "title_achievements": "Logros ({0} / {1})",
+                "description_achievements": "Sigue jugando para desbloquear más logros.",
+                "description_achievements_complete": "Has desbloqueado todos los logros. ¡Felicidades!"
+            },
+            "mod": {
+                "button_install": "Instalar",
+                "button_settings": "Opciones",
+                "description_external": "Mostrar en carpeta"
+            },
+            "install_creation": {
+                "title": "Instalar DDLC",
+                "label_install_name": "Nombre de la Instalación",
+                "label_folder_name": "Nombre de la Carpeta",
+                "label_global_save": "Guardado Global",
+                "label_has_mod": "Instalar Mod",
+                "label_mod": "Mod",
+                "description_mod": "Haz click para buscar un mod.",
+                "header_summary": "Resumen",
+                "description_vanilla": "Crearemos una copia de DDLC. Las partidas guardadas serán independientes de otras copias del juego.",
+                "description_vanilla_global_save": "Crearemos una copia de DDLC. Las partidas guardadas serán compartidas con otras copias del juego (ejemplo: Steam)",
+                "description_modded": "Crearemos una copia de DDLC, y se instalará el mod. Las partidas guardadas serán independientes de otras copias del juego.",
+                "description_modded_global_save": "Crearemos una copia de DDLC, y se instalará el mod. Las partidas guardadas serán compartidas con otras copias del juego (ejemplo: Steam)",
+                "button_install": "Instalar",
+                "status_installing": "Instalando juego...",
+                "status_exists": "La carpeta ya existe. Escribe otro nombre para la carpeta.",
+                "label_has_cloudsave": "Guardado en la Nube (beta)",
+                "label_cloudsave": "Partida Guardada en la Nube",
+                "option_new_cloudsave": "Crear nueva partida guardada",
+                "label_existing_saves": "Partidas Guardadas Existentes",
+                "description_vanilla_cloudsave": "Crearemos una copia de DDLC. Se guardarán las partidas en la nube.",
+                "description_modded_cloudsave": "Crearemos una copia de DDLC, y se instalará el mod. Se guardarán las partidas en la nube.",
+                "button_installing": "Instalando..."
+            },
+            "launch_lock_confirmation": {
+                "message": "¡Tus partidas se están guardando en la nube!",
+                "details": "Si inicias el juego ahora, podrías perder tu progreso.",
+                "button_affirmative": "Abrir de todos modos",
+                "button_negative": "Cancelar"
+            },
+            "launch_noauth_confirmation": {
+                "message": "¡No has iniciado sesión!",
+                "details": "Si abres el juego ahora, tu partida guardada no se guardará en la nube.",
+                "button_affirmative": "Abrir de todos modos",
+                "button_negative": "Cancelar"
+            },
+            "launch_offline_confirmation": {
+                "message": "¡Estás desconectado!",
+                "details": "Si abres el juego ahora, tu partida guardada no se guardará en la nube.",
+                "button_affirmative": "Abrir de todos modos",
+                "button_negative": "Cancelar"
+            }
+        },
+        "tab_store_placeholder": {
+            "title": "¡Pronto estará disponible la Tienda!",
+            "description_1": "La base de datos de mods de Sayonika permitirá compartir, descargar y valorar mods de DDLC. Cuando Sayonika esté disponible públicamente, podrás ver la lista de mods directamente en Doki Doki Mod Manager.",
+            "description_2": "Mientras esperas, siéntete libre de descargar alguno de los siguientes mods recomendados.",
+            "error": "No se pudo cargar la lista de mods. ¿Estás conectado a internet?",
+            "button_download": "Descargar"
+        },
+        "tab_options": {
+            "list": {
+                "header_appearance": "Apariencia",
+                "link_background": "Fondo",
+                "link_advanced_appearance": "Avanzado",
+                "header_enhancements": "Mejoras",
+                "link_sdk": "Logros y SDK",
+                "link_discord": "Discord",
+                "header_application": "Aplicación",
+                "link_updates": "Actualizaciones",
+                "link_storage": "Carpeta de Instalación",
+                "header_developers": "Desarrolladores",
+                "link_testing": "Depuración SDK",
+                "link_debug": "Información"
+            },
+            "section_backgrounds": {
+                "title": "Fondo",
+                "subtitle": "Personaliza tu copia de Doki Doki Mod Manager con uno de estos fondos.",
+                "button_none": "No usar fondo",
+                "description_credit": "Los fondos originales de DDLC son cortesía de Team Salvato."
+            },
+            "section_advanced_appearance": {
+                "title": "Avanzado",
+                "subtitle": "Encuentra aquí otras opciones de la interfaz.",
+                "button_enable_sysborders": "Usar Bordes del Sistema (requiere reiniciar)",
+                "button_disable_sysborders": "No usar Bordes del Sistema (requiere reiniciar)"
+            },
+            "section_storage": {
+                "title": "Carpeta de Instalación",
+                "subtitle": "Cambia el lugar donde tus archivos son guardados.",
+                "description_moving": "¡Advertencia! Si cambias la carpeta de instalación, todos tus mods, archivos y datos de guardado se moverán a la nueva carpeta. Esto tomará algunos minutos, y no lo puedes interrumpir.",
+                "description_current": "Carpeta actual: {0}",
+                "button_change": "Cambiar carpeta de Instalación"
+            },
+            "section_updates": {
+                "title": "Actualizaciones",
+                "subtitle": "Obtén la última versión de Doki Doki Mod Manager.",
+                "description_current_version": "Versión actual: {0}",
+                "label_channel": "Canal de liberación",
+                "option_stable": "Estable",
+                "option_beta": "Beta",
+                "button_check": "Buscar actualizaciones"
+            },
+            "section_sdk": {
+                "title": "Logros y SDK",
+                "subtitle": "Cambia la forma en que se manejan los logros.",
+                "description_mode": "Activar logros:",
+                "checkbox_always": "Siempre (recomendado)",
+                "checkbox_specified": "Sólo si el mod dice que los tiene",
+                "checkbox_never": "Nunca"
+            },
+            "section_discord": {
+                "title": "Rich Presence de Discord",
+                "subtitle": "Comparte el mod que estás jugando con tus amigos de Discord.",
+                "description": "Los cambios se aplicarán después de reiniciar Doki Doki Mod Manager.",
+                "button_enable": "Activar Rich Presence",
+                "button_disable": "Desactivar Rich Presence"
+            },
+            "section_testing": {
+                "title": "Depuración SDK",
+                "subtitle": "Activa los logs de depuración y prueba tus mods con el SDK de Doki Doki Mod Manager.",
+                "button_enable": "Activar Depuración",
+                "button_disable": "Descativar Depuración"
+            },
+            "section_debug": {
+                "title": "Información",
+                "subtitle": "Información para diagnosticar problemas."
+            }
+        },
+        "tab_about": {
+            "title": "Acerca de",
+            "description": "Doki Doki Mod Manager es un proyecto desarrollado por la comunidad que te ayuda a buscar, instalar y jugar mods de Doki Doki Literature Club, una Novela Visual de Team Salvato.",
+            "title_disclaimer": "Aviso Legal",
+            "disclaimer_1": "Doki Doki Mod Manager es un proyecto hecho por fans de Doki Doki Literature Club y no está afiliado con Team Salvato. Es un proyecto hecho por fans, tal como se define en las Guías de Propiedad Intelectual de Team Salvato.",
+            "disclaimer_2": "Doki Doki Mod Manager no se hace responsable por ningún daño causado a tus archivos o a tu computadora, como resultado de jugar algún mod o por otros medios. Es tu deber asegurarte que los mods que juegas sean seguros.",
+            "title_socials": "Contáctanos",
+            "social_discord": "Únete al servidor de Discord de DDMM",
+            "social_twitter": "Sigue a @DokiMod en Twitter",
+            "social_reddit": "Escríbeme en Reddit",
+            "social_email": "Envíame un email",
+            "title_support": "Colabora con el Desarrollador",
+            "description_support": "Doki Doki Mod Manager será siempre un programa gratuito. Si deseas y quieres ayudarme a mantener este programa actualizado, considera ayudarme de una de las siguientes formas.",
+            "support_donate": "Haz una donación única",
+            "support_steelseries": "Obtén 10% de descuento en periféricos de juego SteelSeries (enlace afiliado)",
+            "support_code": "Contribuye al proyecto (código o traducciones)"
+        },
+        "user_menu": {
+            "option_rename": "Cambiar nombre de usuario",
+            "option_logout": "Cerrar sesión"
+        },
+        "onboarding": {
+            "title": "¡Bienvenido!",
+            "description_download": "Busquemos una copia de DDLC.",
+            "button_download": "Visita el sitio web oficial de DDLC para descargar",
+            "button_choose": "Busca una copia",
+            "heading_step": "Paso {0}",
+            "s1_desc": "Necesitas descargar una copia de Doki Doki Literature Club. Puedes encontrarla en el sitio oficial (ddlc.moe) - haz clic en el botón abajo para ir al sitio.",
+            "s1_platform": "Cuando se te indique, escoge la opción de descargar el archivo llamado \"DDLC ({0})\".",
+            "s2_desc": "Cuando la descarga finalize, selecciona ese archivo usando el botón de abajo.",
+            "description_location": "Tus juegos se guardarán en {0}",
+            "link_change": "(Cambiar)"
+        },
+        "login_input": {
+            "message": "Escribe tu dirección email",
+            "details": "Te enviaremos un email a esta dirección. Haz clic en el enlace de dicho email para finalizar tu inicio de sesión.",
+            "button_affirmative": "Iniciar sesión",
+            "button_negative": "Cancelar"
+        },
+        "change_username_input": {
+            "message": "Escribe tu nuevo nombre de usuario",
+            "details": "Los nombres de usuario no son únicos.",
+            "button_affirmative": "Cambiar",
+            "button_negative": "Cancelar"
+        }
     },
-    "version": {
-      "link_changelog": "¿Qué hay de nuevo?"
-    },
-    "help_menu": {
-      "option_help": "Ve al sitio de ayuda",
-      "option_feedback": "Envía tus comentarios",
-      "option_discord": "Únete al servidor de Discord"
-    },
-    "window_controls": {
-      "close": "Cerrar",
-      "maximise": "Maximizar",
-      "minimise": "Minimizar",
-      "help": "Ayuda",
-      "announcement": "Lee los últimos anuncios",
-      "update": {
-        "checking": "Buscando actualizaciones en segundo plano...",
-        "available": "Hay una actualización disponible. Haz click aquí para bajarla.",
-        "downloading": "Descargando actualización...",
-        "downloaded": "Hay una actualización lista para cuando cierres el programa."
-      }
-    },
-    "crash_cover": {
-      "button_close": "Salir",
-      "button_continue": "Continuar"
-    },
-    "drop_cover": {
-      "text": "Arrastra un mod aquí para instalarlo"
-    },
-    "announcement": {
-      "button_open": "Abrir enlace",
-      "button_close": "Cerrar"
-    },
-    "tab_mods": {
-      "list": {
-        "placeholder_search": "Buscando mods...",
-        "header_new": "Empecemos",
-        "link_install": "Instala DDLC",
-        "header_installed": "Mods Instalados",
-        "header_downloaded": "Descargas"
-      },
-      "install_contextmenu": {
-        "launch": "Abrir",
-        "rename": "Renombrar",
-        "shortcut": "Crear acceso directo",
-        "delete_save": "Borrar Datos guardados",
-        "uninstall": "Desinstalar"
-      },
-      "mod_contextmenu": {
-        "install": "Instalar",
-        "delete": "Borrar"
-      },
-      "uninstall_confirmation": {
-        "message": "¿Quieres desinstalar este mod?",
-        "details": "Los datos guardados de {0} serán borrados, y necesitarás una copia del mod para reinstalarlo.",
-        "button_affirmative": "Desinstalar",
-        "button_negative": "Cancelar"
-      },
-      "rename_input": {
-        "message": "Renombrar Instalación",
-        "details": "Escribe el nuevo nombre para {0}.",
-        "button_affirmative": "Renombrar",
-        "button_negative": "Cancelar"
-      },
-      "mod_delete_confirmation": {
-        "message": "¿Quieres borrar este mod?",
-        "details": "Necesitarás descargar una nueva copia de este mod para reinstalarlo.",
-        "button_affirmative": "Borrar",
-        "button_negative": "Cancelar"
-      },
-      "save_delete_confirmation": {
-        "message": "¿Quieres borrar tus datos guardados?",
-        "details": "Tendrás que empezar {0} desde cero si los borras.",
-        "button_affirmative": "Borrar",
-        "button_negative": "Cancelar"
-      },
-      "install": {
-        "button_launch": "Abrir",
-        "button_settings": "Opciones",
-        "tag_global_save": "Guardado Global",
-        "title_screenshots_none": "No hay capturas",
-        "title_screenshots_one": "1 captura",
-        "title_screenshots": "{0} capturas",
-        "description_screenshots": "Presiona S mientras juegas para tomar una captura de pantalla.",
-        "description_sdk": "¡Este mod utiliza características especiales del SDK de Doki Doki Mod Manager!",
-        "description_author": "Creado por {0}",
-        "link_discord": "Discord ({0})",
-        "link_website": "Sitio Web ({0})",
-        "description_external": "Mostrar en carpeta"
-      },
-      "mod": {
-        "button_install": "Instalar",
-        "button_settings": "Opciones",
-        "description_external": "Mostrar en carpeta"
-      },
-      "install_creation": {
-        "title": "Instalar DDLC",
-        "label_install_name": "Nombre de la Instalación",
-        "label_folder_name": "Nombre de la Carpeta",
-        "label_global_save": "Guardado Global",
-        "label_has_mod": "Instalar Mod",
-        "label_mod": "Mod",
-        "description_mod": "Haz click para buscar un mod.",
-        "header_summary": "Resumen",
-        "description_vanilla": "Se creará una nueva copia de DDLC. Los datos de guardado no serán compartidos con otra copia del juego.",
-        "description_vanilla_global_save": "Se creará una nueva copia de DDLC. Los datos de guardado serán compartidos con otras copias del juego (ejemplo: Steam).",
-        "description_modded": "Se creará una nueva copia de DDLC, y se instalará el mod. Los datos de guardado no serán compartidos con otra copia del juego.",
-        "description_modded_global_save": "Se creará una nueva copia de DDLC, y se instalará el mod. Los datos de guardado serán compartidos con otras copias del juego (ejemplo: Steam).",
-        "button_install": "Instalar",
-        "status_installing": "Instalando juego...",
-        "status_exists": "La carpeta ya existe. Escribe otro nombre para la carpeta."
-      }
-    },
-    "tab_store_placeholder": {
-      "title": "¡Pronto estará disponible la Tienda!",
-      "description_1": "La base de datos de mods de Sayonika permitirá compartir, descargar y valorar mods de DDLC. Cuando Sayonika esté disponible públicamente, podrás ver la lista de mods directamente en Doki Doki Mod Manager.",
-      "description_2": "Mientras esperas, siéntete libre de descargar alguno de los siguientes mods recomendados.",
-      "error": "No se pudo cargar la lista de mods. ¿Estás conectado a internet?",
-      "button_download": "Descargar"
-    },
-    "tab_options": {
-      "list": {
-        "header_appearance": "Apariencia",
-        "link_background": "Fondo",
-        "link_advanced_appearance": "Avanzado",
-        "header_enhancements": "Mejoras",
-        "link_sdk": "Logros y SDK",
-        "link_discord": "Discord",
-        "header_application": "Aplicación",
-        "link_updates": "Actualizaciones",
-        "link_storage": "Carpeta de Instalación",
-        "header_developers": "Desarrolladores",
-        "link_testing": "Depuración SDK",
-        "link_debug": "Información"
-      },
-      "section_backgrounds": {
-        "title": "Fondo",
-        "subtitle": "Personaliza tu copia de Doki Doki Mod Manager con uno de estos fondos.",
-        "button_none": "No usar fondo",
-        "description_credit": "Los fondos originales de DDLC son cortesía de Team Salvato."
-      },
-      "section_advanced_appearance": {
-        "title": "Avanzado",
-        "subtitle": "Encuentra aquí otras opciones de la interfaz.",
-        "button_enable_sysborders": "Usar Bordes del Sistema (requiere reiniciar)",
-        "button_disable_sysborders": "No usar Bordes del Sistema (requiere reiniciar)"
-      },
-      "section_storage": {
-        "title": "Carpeta de Instalación",
-        "subtitle": "Cambia el lugar donde tus archivos son guardados.",
-        "description_moving": "¡Advertencia! Si cambias la carpeta de instalación, todos tus mods, archivos y datos de guardado se moverán a la nueva carpeta. Esto tomará algunos minutos, y no lo puedes interrumpir.",
-        "description_current": "Carpeta actual: {0}",
-        "button_change": "Cambiar carpeta de Instalación"
-      },
-      "section_updates": {
-        "title": "Actualizaciones",
-        "subtitle": "Obtén la última versión de Doki Doki Mod Manager.",
-        "description_current_version": "Versión actual: {0}",
-        "label_channel": "Canal de liberación",
-        "option_stable": "Estable",
-        "option_beta": "Beta",
-        "button_check": "Buscar actualizaciones"
-      },
-      "section_sdk": {
-        "title": "Logros y SDK",
-        "subtitle": "Cambia la forma en que se manejan los logros.",
-        "description_mode": "Activar logros:",
-        "checkbox_always": "Siempre (recomendado)",
-        "checkbox_specified": "Sólo si el mod dice que los tiene",
-        "checkbox_never": "Nunca"
-      },
-      "section_discord": {
-        "title": "Rich Presence de Discord",
-        "subtitle": "Comparte el mod que estás jugando con tus amigos de Discord.",
-        "description": "Los cambios se aplicarán después de reiniciar Doki Doki Mod Manager.",
-        "button_enable": "Activar Rich Presence",
-        "button_disable": "Desactivar Rich Presence"
-      },
-      "section_testing": {
-        "title": "Depuración SDK",
-        "subtitle": "Activa los logs de depuración y prueba tus mods con el SDK de Doki Doki Mod Manager.",
-        "button_enable": "Activar Depuración",
-        "button_disable": "Descativar Depuración"
-      },
-      "section_debug": {
-        "title": "Información",
-        "subtitle": "Información para diagnosticar problemas."
-      }
-    },
-    "tab_about": {
-      "title": "Acerca de",
-      "description": "Doki Doki Mod Manager es un proyecto desarrollado por la comunidad que te ayuda a buscar, instalar y jugar mods de Doki Doki Literature Club, una Novela Visual de Team Salvato.",
-      "title_disclaimer": "Aviso Legal",
-      "disclaimer_1": "Doki Doki Mod Manager es un proyecto hecho por fans de Doki Doki Literature Club y no está afiliado con Team Salvato. Es un proyecto hecho por fans, tal como se define en las Guías de Propiedad Intelectual de Team Salvato.",
-      "disclaimer_2": "Doki Doki Mod Manager no se hace responsable por ningún daño causado a tus archivos o a tu computadora, como resultado de jugar algún mod o por otros medios. Es tu deber asegurarte que los mods que juegas sean seguros.",
-      "title_socials": "Contáctanos",
-      "social_discord": "Únete al servidor de Discord de DDMM",
-      "social_twitter": "Sigue a @DokiMod en Twitter",
-      "social_reddit": "Escríbeme en Reddit",
-      "social_email": "Envíame un email",
-      "title_support": "Colabora con el Desarrollador",
-      "description_support": "Doki Doki Mod Manager será siempre un programa gratuito. Si deseas y quieres ayudarme a mantener este programa actualizado, considera ayudarme de una de las siguientes formas.",
-      "support_donate": "Haz una donación única",
-      "support_steelseries": "Obtén 10% de descuento en periféricos de juego SteelSeries (enlace afiliado)",
-      "support_code": "Contribuye al proyecto (código o traducciones)"
+    "main": {
+        "jumplist": {
+            "task_launch": "Abrir Doki Doki Mod Manager y {0}."
+        },
+        "running_cover": {
+            "title_running": "DDLC se está ejecutando",
+            "title_crashed": "Algo salió mal",
+            "button_browse": "Abrir Carpeta del Juego",
+            "button_close": "OK",
+            "description_running": "Cierra el juego para hacer cambios a tus mods.",
+            "install_missing": "No se encontró la instalación.",
+            "install_corrupt": "La instalación está incompleta o corrupta.",
+            "install_crashed": "El juego no se pudo abrir o falló."
+        },
+        "move_install": {
+            "title": "Elige una nueva carpeta de instalación"
+        },
+        "mod_browse_dialog": {
+            "title": "Busca un mod para instalar",
+            "file_format_name": "Mods"
+        },
+        "game_browse_dialog": {
+            "title": "Busca una copia del archivo zip de DDLC",
+            "file_format_name": "DDLC"
+        },
+        "shortcut_dialog": {
+            "title": "Elige donde colocar tu acceso directo",
+            "file_format_name": "Acceso directo"
+        },
+        "errors": {
+            "exception": {
+                "title": "Doki Doki Mod Manager falló",
+                "body": "Se ha reportado el problema. Por favor reinicia e intenta nuevamente."
+            },
+            "move_install": {
+                "title": "No se pudo mover la carpeta de instalación",
+                "body": "Revisa si tienes permisos y espacio disponible para mover a esta carpeta."
+            },
+            "shortcut": {
+                "title": "No se pudo crear el acceso directo",
+                "body": "Revisa si tienes permisos para crear archivos en esta carpeta."
+            },
+            "install": {
+                "title": "No se pudo instalar el juego",
+                "body": "Revisa si tienes permisos y espacio disponible para instalar."
+            },
+            "rename": {
+                "title": "No se pudo renombrar",
+                "body": "Revisa si hay programas que estén interfiriendo, ciérralos e intenta nuevamente."
+            },
+            "uninstall": {
+                "title": "No se pudo desinstalar",
+                "body": "Revisa si hay programas que estén interfiriendo, ciérralos e intenta nuevamente."
+            },
+            "save_delete": {
+                "title": "No se pudo borrar los datos de guardado",
+                "body": "Revisa si hay programas que estén interfiriendo, ciérralos e intenta nuevamente."
+            },
+            "mod_delete": {
+                "title": "No se pudo borrar el mod",
+                "body": "Revisa si hay programas que estén interfiriendo, ciérralos e intenta nuevamente."
+            },
+            "renderer_freeze": {
+                "title": "Doki Doki Mod Manager no responde",
+                "body": "Si el problema persiste un largo tiempo, cierra el programa e intenta nuevamente."
+            }
+        }
     }
-  },
-  "main": {
-    "jumplist": {
-      "task_launch": "Abrir Doki Doki Mod Manager y {0}."
-    },
-    "running_cover": {
-      "title_running": "DDLC se está ejecutando",
-      "title_crashed": "Algo salió mal",
-      "button_browse": "Abrir Carpeta del Juego",
-      "button_close": "OK",
-      "description_running": "Cierra el juego para hacer cambios a tus mods.",
-      "install_missing": "No se encontró la instalación.",
-      "install_corrupt": "La instalación está incompleta o corrupta.",
-      "install_crashed": "El juego no se pudo abrir o falló."
-    },
-    "move_install": {
-      "title": "Elige una nueva carpeta de instalación"
-    },
-    "mod_browse_dialog": {
-      "title": "Busca un mod para instalar",
-      "file_format_name": "Mods"
-    },
-    "game_browse_dialog": {
-      "title": "Busca una copia del archivo zip de DDLC",
-      "file_format_name": "DDLC"
-    },
-    "shortcut_dialog": {
-      "title": "Elige donde colocar tu acceso directo",
-      "file_format_name": "Shortcut"
-    },
-    "errors": {
-      "exception": {
-        "title": "Doki Doki Mod Manager falló",
-        "body": "Se ha reportado el problema. Por favor reinicia e intenta nuevamente."
-      },
-      "move_install": {
-        "title": "No se pudo mover la carpeta de instalación",
-        "body": "Revisa si tienes permisos y espacio disponible para mover a esta carpeta."
-      },
-      "shortcut": {
-        "title": "No se pudo crear el acceso directo",
-        "body": "Revisa si tienes permisos para crear archivos en esta carpeta."
-      },
-      "install": {
-        "title": "No se pudo instalar el juego",
-        "body": "Revisa si tienes permisos y espacio disponible para instalar."
-      },
-      "rename": {
-        "title": "No se pudo renombrar",
-        "body": "Revisa si hay programas que estén interfiriendo, ciérralos e intenta nuevamente."
-      },
-      "uninstall": {
-        "title": "No se pudo desinstalar",
-        "body": "Revisa si hay programas que estén interfiriendo, ciérralos e intenta nuevamente."
-      },
-      "save_delete": {
-        "title": "No se pudo borrar los datos de guardado",
-        "body": "Revisa si hay programas que estén interfiriendo, ciérralos e intenta nuevamente."
-      },
-      "mod_delete": {
-        "title": "No se pudo borrar el mod",
-        "body": "Revisa si hay programas que estén interfiriendo, ciérralos e intenta nuevamente."
-      },
-      "renderer_freeze": {
-        "title": "Doki Doki Mod Manager no responde",
-        "body": "Si el problema persiste un largo tiempo, cierra el programa e intenta nuevamente."
-      }
-    }
-  }
 }
