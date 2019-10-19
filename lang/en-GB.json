@@ -18,10 +18,12 @@
     "tabs": {
       "tab_home": "Home",
       "tab_mods": "Mods",
+      "tab_downloads": "Downloads",
       "tab_store": "Store",
       "tab_sayonika": "Sayonika",
       "tab_options": "Options",
-      "tab_about": "About"
+      "tab_about": "About",
+      "tab_experiments": "Experiments"
     },
     "version": {
       "link_changelog": "what's new?"
@@ -308,6 +310,15 @@
       "title_supporters": "Thanks to the following Patreon supporters",
       "title_supporters_none": "Support on Patreon",
       "link_patreon": "Want to help the development of Doki Doki Mod Manager? Become a Patreon supporter!"
+    },
+    "tab_downloads": {
+      "download": {
+        "description_pending": "Waiting for other downloads to complete",
+        "description_progress": "{0}% complete",
+        "description_complete": "Download complete",
+        "button_remove": "Remove",
+        "button_cancel": "Cancel"
+      }
     }
   },
   "main": {
