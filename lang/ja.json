@@ -24,7 +24,7 @@
             "maximise": "最大化",
             "minimise": "最小化",
             "help": "ヘルプ",
-            "announcement": "Read the latest announcement",
+            "announcement": "最新情報を確認",
             "login": "ログイン",
             "update": {
                 "checking": "アップデートを確認しています……",
@@ -203,19 +203,19 @@
             },
             "section_backgrounds": {
                 "title": "背景画像",
-                "subtitle": "Doki Doki Mod Managerの背景画像を以下の中から選択できます",
+                "subtitle": "Doki Doki Mod Managerの背景画像を以下の中から選択できます。",
                 "button_none": "背景なし",
                 "description_credit": "これらはTeam Salvatoによるドキドキ文芸部の背景画像です。"
             },
             "section_advanced_appearance": {
                 "title": "高度な設定",
-                "subtitle": "その他の外観設定はこちら",
+                "subtitle": "その他の外観設定はこちら。",
                 "button_enable_sysborders": "システムボーターを有効化 (再起動後に反映)",
                 "button_disable_sysborders": "システムボーターを無効化 (再起動後に反映)"
             },
             "section_storage": {
                 "title": "保存場所",
-                "subtitle": "ゲームデータの保存場所を変更します",
+                "subtitle": "ゲームデータの保存場所を変更します。",
                 "description_moving": "警告！保存場所を変更すると、全てのMOD・インストール・セーブデータが移動されます。これには数分かかることがあり、中断はできません。",
                 "description_current": "現在の保存場所 {0}",
                 "button_change": "保存場所の変更"
@@ -231,7 +231,7 @@
             },
             "section_sdk": {
                 "title": "実績＆SDK",
-                "subtitle": "実績の処理方法を変更します",
+                "subtitle": "実績の処理方法を変更します。",
                 "description_mode": "実績：",
                 "checkbox_always": "有効 (推奨)",
                 "checkbox_specified": "MODがサポートしている場合のみ有効",
@@ -239,20 +239,20 @@
             },
             "section_discord": {
                 "title": "Discord Rich Presence",
-                "subtitle": "プレイ中のMODをDiscordのフレンドに表示します",
+                "subtitle": "プレイ中のMODをDiscordのフレンドに表示します。",
                 "description": "Doki Doki Mod Managerを再起動することで変更が反映されます。",
                 "button_enable": "Rich Presenceを有効化",
                 "button_disable": "Rich Presenceを無効化"
             },
             "section_testing": {
                 "title": "SDKデバッグ",
-                "subtitle": "デバッグログを有効にして、あなたのMODをDoki Doki Mod Manager SDKでテストします",
+                "subtitle": "デバッグログを有効にして、あなたのMODをDoki Doki Mod Manager SDKでテストします。",
                 "button_enable": "デバッグログを有効化",
                 "button_disable": "デバッグログを無効化"
             },
             "section_debug": {
                 "title": "アプリケーション情報",
-                "subtitle": "問題を診断するための内部情報です"
+                "subtitle": "問題を診断するための内部情報です。"
             }
         },
         "tab_about": {
