@@ -1,343 +1,345 @@
 {
-  "renderer": {
-    "tabs": {
-      "tab_home": "ホーム",
-      "tab_mods": "MOD",
-      "tab_store": "ストア",
-      "tab_options": "オプション",
-      "tab_about": "概要"
+    "renderer": {
+        "tabs": {
+            "tab_home": "ホーム",
+            "tab_mods": "MOD",
+            "tab_store": "ストア",
+            "tab_options": "オプション",
+            "tab_about": "概要"
+        },
+        "version": {
+            "link_changelog": "更新内容"
+        },
+        "help_menu": {
+            "option_help": "ヘルプ",
+            "option_feedback": "フィードバック",
+            "option_discord": "Discordサーバーに参加"
+        },
+        "user_menu": {
+            "option_rename": "ユーザー名の変更",
+            "option_logout": "ログアウト"
+        },
+        "window_controls": {
+            "close": "閉じる",
+            "maximise": "最大化",
+            "minimise": "最小化",
+            "help": "ヘルプ",
+            "announcement": "最新情報を確認",
+            "login": "ログイン",
+            "update": {
+                "checking": "アップデートを確認しています……",
+                "available": "アップデートがあります。ここをクリックするとダウンロードを開始します。",
+                "downloading": "アップデートをダウンロード中……",
+                "downloaded": "アップデートの準備が完了しました。終了するとアップデートが始まります。"
+            },
+            "language": "言語"
+        },
+        "crash_cover": {
+            "button_close": "終了",
+            "button_continue": "続行"
+        },
+        "drop_cover": {
+            "text": "ここにMODをドロップするとインストールを開始します"
+        },
+        "announcement": {
+            "button_open": "リンクを開く",
+            "button_close": "閉じる"
+        },
+        "onboarding": {
+            "title": "ようこそ！",
+            "description_download": "ドキドキ文芸部のオリジナル版をダウンロードしてください。",
+            "button_download": "公式ダウンロードページヘ (English)",
+            "button_choose": "オリジナル版を選択",
+            "heading_step": "ステップ {0}",
+            "s1_desc": "公式ダウンロードページ(ddlc.moe)からドキドキ文芸部のオリジナル版をダウンロードしてください。",
+            "s1_platform": "\"DDLC ({0})\"と書かれた方をダウンロードしてください。",
+            "s2_desc": "ダウンロードが完了した後、下のボタンを押してダウンロードしたZIPファイルを選択してください。",
+            "description_location": "ゲームは {0} に保存されます。",
+            "link_change": "(変更)"
+        },
+        "login_input": {
+            "message": "メールアドレスを入力してください",
+            "details": "入力されたアドレスにメールが送信されます。メール内のリンクをクリックすることで、ログインが完了します。",
+            "button_affirmative": "ログイン",
+            "button_negative": "キャンセル"
+        },
+        "change_username_input": {
+            "message": "あなたの新しいユーザー名を入力してください",
+            "details": "ユーザー名は他ユーザーと重複しても問題ありません。",
+            "button_affirmative": "変更",
+            "button_negative": "キャンセル"
+        },
+        "tab_mods": {
+            "list": {
+                "placeholder_search": "MODを検索……",
+                "header_new": "追加",
+                "link_install": "インストール",
+                "header_installed": "インストール済み",
+                "header_downloaded": "ダウンロード済み"
+            },
+            "install_contextmenu": {
+                "launch": "起動",
+                "rename": "名前の変更",
+                "shortcut": "ショートカットの作成",
+                "delete_save": "セーブデータの削除",
+                "uninstall": "アンインストール"
+            },
+            "mod_contextmenu": {
+                "install": "インストール",
+                "delete": "削除"
+            },
+            "uninstall_confirmation": {
+                "message": "アンインストールしてよろしいですか？",
+                "details": "{0}のセーブデータは削除されます。また、再インストールするにはMODの再ダウンロードが必要です。",
+                "button_affirmative": "アンインストール",
+                "button_negative": "キャンセル"
+            },
+            "rename_input": {
+                "message": "名前の変更",
+                "details": "{0}の新しい名前を入力してください。",
+                "button_affirmative": "名前の変更",
+                "button_negative": "キャンセル"
+            },
+            "launch_lock_confirmation": {
+                "message": "クラウドセーブが使用中です！",
+                "details": "今起動すると進行状況が失われる可能性があります。",
+                "button_affirmative": "今すぐ起動",
+                "button_negative": "キャンセル"
+            },
+            "launch_noauth_confirmation": {
+                "message": "ログインしていません！",
+                "details": "今起動するとセーブデータはクラウドと同期されません。",
+                "button_affirmative": "今すぐ起動",
+                "button_negative": "キャンセル"
+            },
+            "launch_offline_confirmation": {
+                "message": "オフラインです！",
+                "details": "今起動するとセーブデータはクラウドと同期されません。",
+                "button_affirmative": "今すぐ起動",
+                "button_negative": "キャンセル"
+            },
+            "mod_delete_confirmation": {
+                "message": "MODを削除してよろしいですか？",
+                "details": "再インストールするにはMODの再ダウンロードが必要です。",
+                "button_affirmative": "削除",
+                "button_negative": "キャンセル"
+            },
+            "save_delete_confirmation": {
+                "message": "セーブデータを削除してよろしいですか？",
+                "details": "{0}は最初からやり直しになります。",
+                "button_affirmative": "削除",
+                "button_negative": "キャンセル"
+            },
+            "install": {
+                "button_launch": "起動",
+                "button_settings": "設定",
+                "tag_global_save": "グローバルセーブ",
+                "tag_sdk": "SDK",
+                "tag_cloud": "クラウドセーブ",
+                "description_locked": "他のPCでクラウドセーブが使用中です。続行するには他のPCでのプレイを終了してください。",
+                "title_achievements": "実績 ({0} / {1})",
+                "description_achievements": "プレイして実績をアンロックしましょう。",
+                "description_achievements_complete": "全ての実績をアンロックしました。おめでとう！",
+                "title_screenshots_none": "0枚のスクリーンショット",
+                "title_screenshots_one": "1枚のスクリーンショット",
+                "title_screenshots": "{0}枚のスクリーンショット",
+                "description_screenshots": "プレイ中に S を押すことでスクリーンショットが撮れます。",
+                "description_sdk": "このMODはDoki Doki Mod Manager SDKに対応しています！",
+                "description_author": "Created by {0}",
+                "link_discord": "Discord ({0})",
+                "link_website": "Webサイト ({0})",
+                "description_external": "フォルダを開く"
+            },
+            "mod": {
+                "button_install": "インストール",
+                "button_settings": "設定",
+                "description_external": "フォルダを開く"
+            },
+            "install_creation": {
+                "title": "ドキドキ文芸部のインストール",
+                "label_install_name": "表示名",
+                "label_folder_name": "フォルダ名",
+                "label_global_save": "グローバルセーブ",
+                "label_has_mod": "MODをインストール",
+                "label_mod": "MOD",
+                "label_has_cloudsave": "クラウドセーブ (ベータ)",
+                "label_cloudsave": "クラウドセーブデータ",
+                "option_new_cloudsave": "新しいセーブデータ",
+                "label_existing_saves": "既存のセーブデータ",
+                "description_mod": "クリックしてMODを選択してください。",
+                "header_summary": "概要",
+                "description_vanilla": "ドキドキ文芸部のコピーが作成されます。セーブデータは他のドキドキ文芸部(Steam版など)とは別に保存されます。",
+                "description_vanilla_global_save": "ドキドキ文芸部のコピーが作成されます。セーブデータは他のドキドキ文芸部(Steam版など)と共有されます。",
+                "description_vanilla_cloudsave": "ドキドキ文芸部のコピーが作成されます。セーブデータはクラウドに保存されます。",
+                "description_modded": "ドキドキ文芸部のコピーが作成され、MODがインストールされます。セーブデータは他のドキドキ文芸部(Steam版など)とは別に保存されます。",
+                "description_modded_global_save": "ドキドキ文芸部のコピーが作成され、MODがインストールされます。セーブデータは他のドキドキ文芸部(Steam版など)と共有されます。",
+                "description_modded_cloudsave": "ドキドキ文芸部のコピーが作成され、MODがインストールされます。セーブデータはクラウドに保存されます。",
+                "button_install": "インストール",
+                "button_installing": "インストール中……",
+                "status_exists": "その名前のフォルダは既に存在しています。別のフォルダ名を入力してください。"
+            }
+        },
+        "tab_store_placeholder": {
+            "title": "ストアは近日公開予定です！",
+            "description_1": "Sayonika MODデータベースは、ドキドキ文芸部のMODを共有・ダウンロード・レビューができるのサイトです。Sayonika が公開されると、Doki Doki Mod ManagerからMODの閲覧とダウンロードが可能になります。",
+            "description_2": "代わりに推薦MODのダウンロードができます。",
+            "error": "MODリストが読み込めませんでした。オフラインですか？",
+            "button_download": "ダウンロード"
+        },
+        "tab_options": {
+            "list": {
+                "header_appearance": "外観",
+                "link_background": "背景画像",
+                "link_advanced_appearance": "高度な設定",
+                "header_enhancements": "拡張機能",
+                "link_sdk": "実績＆SDK",
+                "link_discord": "Discord",
+                "header_application": "アプリケーション",
+                "link_updates": "アップデート",
+                "link_storage": "保存場所",
+                "header_developers": "開発者向け",
+                "link_testing": "SDKデバッグ",
+                "link_debug": "アプリケーション情報"
+            },
+            "section_backgrounds": {
+                "title": "背景画像",
+                "subtitle": "Doki Doki Mod Managerの背景画像を以下の中から選択できます。",
+                "button_none": "背景なし",
+                "description_credit": "これらはTeam Salvatoによるドキドキ文芸部の背景画像です。"
+            },
+            "section_advanced_appearance": {
+                "title": "高度な設定",
+                "subtitle": "その他の外観設定はこちら。",
+                "button_enable_sysborders": "システムボーターを有効化 (再起動後に反映)",
+                "button_disable_sysborders": "システムボーターを無効化 (再起動後に反映)"
+            },
+            "section_storage": {
+                "title": "保存場所",
+                "subtitle": "ゲームデータの保存場所を変更します。",
+                "description_moving": "警告！保存場所を変更すると、全てのMOD・インストール・セーブデータが移動されます。これには数分かかることがあり、中断はできません。",
+                "description_current": "現在の保存場所 {0}",
+                "button_change": "保存場所の変更"
+            },
+            "section_updates": {
+                "title": "アップデート",
+                "subtitle": "最新のDoki Doki Mod Managerを入手してください。",
+                "description_current_version": "現在のバージョン：{0}",
+                "label_channel": "リリースチャンネル",
+                "option_stable": "安定版",
+                "option_beta": "ベータ",
+                "button_check": "アップデートを確認"
+            },
+            "section_sdk": {
+                "title": "実績＆SDK",
+                "subtitle": "実績の処理方法を変更します。",
+                "description_mode": "実績：",
+                "checkbox_always": "有効 (推奨)",
+                "checkbox_specified": "MODがサポートしている場合のみ有効",
+                "checkbox_never": "無効"
+            },
+            "section_discord": {
+                "title": "Discord Rich Presence",
+                "subtitle": "プレイ中のMODをDiscordのフレンドに表示します。",
+                "description": "Doki Doki Mod Managerを再起動することで変更が反映されます。",
+                "button_enable": "Rich Presenceを有効化",
+                "button_disable": "Rich Presenceを無効化"
+            },
+            "section_testing": {
+                "title": "SDKデバッグ",
+                "subtitle": "デバッグログを有効にして、あなたのMODをDoki Doki Mod Manager SDKでテストします。",
+                "button_enable": "デバッグログを有効化",
+                "button_disable": "デバッグログを無効化"
+            },
+            "section_debug": {
+                "title": "アプリケーション情報",
+                "subtitle": "問題を診断するための内部情報です。"
+            }
+        },
+        "tab_about": {
+            "title": "概要",
+            "description": "Doki Doki Mod Managerは有志によるアプリケーションで、Team Salvato製のビジュアルノベルであるドキドキ文芸部(原題：Doki Doki Literature Club)のMODを検索・インストール・プレイのサポートを行います。",
+            "title_disclaimer": "免責事項",
+            "disclaimer_1": "Doki Doki Mod Managerはドキドキ文芸部のファンによるアプリケーションであり、Team Salvatoと提携していません。Team SalvatoのIPガイドラインで定義されているファンワークに相当します。",
+            "disclaimer_2": "Doki Doki Mod ManagerはMODのプレイなどによりファイルやPCに生じた損害について責任を負いません。MODを安全にプレイできるかどうかはあなた次第です。",
+            "title_socials": "連絡先",
+            "social_discord": "DDMM Discordサーバーに参加",
+            "social_twitter": "Twitterで @DokiMod をフォロー",
+            "social_reddit": "Redditでメッセージを送る",
+            "social_email": "メールを送る",
+            "title_support": "開発支援",
+            "description_support": "Doki Doki Mod Managerはいつでも無料でダウンロードできます。もしあなたが更新の手助けをしたいなら、以下の方法があります。",
+            "support_donate": "1回限りの寄付をする",
+            "support_steelseries": "SteelSeriesのゲーミング周辺機器が1割引 (アフィリエイトリンク)",
+            "support_code": "プロジェクトへの貢献 (コードまたは翻訳)"
+        },
+        "language_change_instruction": "言語の変更は再起動後に反映されます"
     },
-    "version": {
-      "link_changelog": "更新内容"
-    },
-    "help_menu": {
-      "option_help": "ヘルプ",
-      "option_feedback": "フィードバック",
-      "option_discord": "Discordサーバーに参加"
-    },
-    "user_menu": {
-      "option_rename": "ユーザー名の変更",
-      "option_logout": "ログアウト"
-    },
-    "window_controls": {
-      "close": "閉じる",
-      "maximise": "最大化",
-      "minimise": "最小化",
-      "help": "ヘルプ",
-      "announcement": "Read the latest announcement",
-      "login": "ログイン",
-      "update": {
-        "checking": "アップデートを確認しています……",
-        "available": "アップデートがあります。ここをクリックするとダウンロードを開始します。",
-        "downloading": "アップデートをダウンロード中……",
-        "downloaded": "アップデートの準備が完了しました。終了するとアップデートが始まります。"
-      }
-    },
-    "crash_cover": {
-      "button_close": "終了",
-      "button_continue": "続行"
-    },
-    "drop_cover": {
-      "text": "ここにMODをドロップするとインストールを開始します"
-    },
-    "announcement": {
-      "button_open": "リンクを開く",
-      "button_close": "閉じる"
-    },
-    "onboarding": {
-      "title": "ようこそ！",
-      "description_download": "ドキドキ文芸部のオリジナル版をダウンロードしてください。",
-      "button_download": "公式ダウンロードページヘ (English)",
-      "button_choose": "オリジナル版を選択",
-      "heading_step": "ステップ {0}",
-      "s1_desc": "公式ダウンロードページ(ddlc.moe)からドキドキ文芸部のオリジナル版をダウンロードしてください。",
-      "s1_platform": "\"DDLC ({0})\"と書かれた方をダウンロードしてください。",
-      "s2_desc": "ダウンロードが完了した後、下のボタンを押してダウンロードしたZIPファイルを選択してください。",
-      "description_location": "ゲームは {0} に保存されます。",
-      "link_change": "(変更)"
-    },
-    "login_input": {
-      "message": "メールアドレスを入力してください",
-      "details": "入力されたアドレスにメールが送信されます。メール内のリンクをクリックすることで、ログインが完了します。",
-      "button_affirmative": "ログイン",
-      "button_negative": "キャンセル"
-    },
-    "change_username_input": {
-      "message": "あなたの新しいユーザー名を入力してください",
-      "details": "ユーザー名は他ユーザーと重複しても問題ありません。",
-      "button_affirmative": "変更",
-      "button_negative": "キャンセル"
-    },
-    "tab_mods": {
-      "list": {
-        "placeholder_search": "MODを検索……",
-        "header_new": "追加",
-        "link_install": "インストール",
-        "header_installed": "インストール済み",
-        "header_downloaded": "ダウンロード済み"
-      },
-      "install_contextmenu": {
-        "launch": "起動",
-        "rename": "名前の変更",
-        "shortcut": "ショートカットの作成",
-        "delete_save": "セーブデータの削除",
-        "uninstall": "アンインストール"
-      },
-      "mod_contextmenu": {
-        "install": "インストール",
-        "delete": "削除"
-      },
-      "uninstall_confirmation": {
-        "message": "アンインストールしてよろしいですか？",
-        "details": "{0}のセーブデータは削除されます。また、再インストールするにはMODの再ダウンロードが必要です。",
-        "button_affirmative": "アンインストール",
-        "button_negative": "キャンセル"
-      },
-      "rename_input": {
-        "message": "名前の変更",
-        "details": "{0}の新しい名前を入力してください。",
-        "button_affirmative": "名前の変更",
-        "button_negative": "キャンセル"
-      },
-      "launch_lock_confirmation": {
-        "message": "クラウドセーブが使用中です！",
-        "details": "今起動すると進行状況が失われる可能性があります。",
-        "button_affirmative": "今すぐ起動",
-        "button_negative": "キャンセル"
-      },
-      "launch_noauth_confirmation": {
-        "message": "ログインしていません！",
-        "details": "今起動するとセーブデータはクラウドと同期されません。",
-        "button_affirmative": "今すぐ起動",
-        "button_negative": "キャンセル"
-      },
-      "launch_offline_confirmation": {
-        "message": "オフラインです！",
-        "details": "今起動するとセーブデータはクラウドと同期されません。",
-        "button_affirmative": "今すぐ起動",
-        "button_negative": "キャンセル"
-      },
-      "mod_delete_confirmation": {
-        "message": "MODを削除してよろしいですか？",
-        "details": "再インストールするにはMODの再ダウンロードが必要です。",
-        "button_affirmative": "削除",
-        "button_negative": "キャンセル"
-      },
-      "save_delete_confirmation": {
-        "message": "セーブデータを削除してよろしいですか？",
-        "details": "{0}は最初からやり直しになります。",
-        "button_affirmative": "削除",
-        "button_negative": "キャンセル"
-      },
-      "install": {
-        "button_launch": "起動",
-        "button_settings": "設定",
-        "tag_global_save": "グローバルセーブ",
-        "tag_sdk": "SDK",
-        "tag_cloud": "クラウドセーブ",
-        "description_locked": "他のPCでクラウドセーブが使用中です。続行するには他のPCでのプレイを終了してください。",
-        "title_achievements": "実績 ({0} / {1})",
-        "description_achievements": "プレイして実績をアンロックしましょう。",
-        "description_achievements_complete": "全ての実績をアンロックしました。おめでとう！",
-        "title_screenshots_none": "0枚のスクリーンショット",
-        "title_screenshots_one": "1枚のスクリーンショット",
-        "title_screenshots": "{0}枚のスクリーンショット",
-        "description_screenshots": "プレイ中に S を押すことでスクリーンショットが撮れます。",
-        "description_sdk": "このMODはDoki Doki Mod Manager SDKに対応しています！",
-        "description_author": "Created by {0}",
-        "link_discord": "Discord ({0})",
-        "link_website": "Webサイト ({0})",
-        "description_external": "フォルダを開く"
-      },
-      "mod": {
-        "button_install": "インストール",
-        "button_settings": "設定",
-        "description_external": "フォルダを開く"
-      },
-      "install_creation": {
-        "title": "ドキドキ文芸部のインストール",
-        "label_install_name": "表示名",
-        "label_folder_name": "フォルダ名",
-        "label_global_save": "グローバルセーブ",
-        "label_has_mod": "MODをインストール",
-        "label_mod": "MOD",
-        "label_has_cloudsave": "クラウドセーブ (ベータ)",
-        "label_cloudsave": "クラウドセーブデータ",
-        "option_new_cloudsave": "新しいセーブデータ",
-        "label_existing_saves": "既存のセーブデータ",
-        "description_mod": "クリックしてMODを選択してください",
-        "header_summary": "概要",
-        "description_vanilla": "ドキドキ文芸部のコピーが作成されます。セーブデータは他のドキドキ文芸部(Steam版など)とは別に保存されます。",
-        "description_vanilla_global_save": "ドキドキ文芸部のコピーが作成されます。セーブデータは他のドキドキ文芸部(Steam版など)と共有されます。",
-        "description_vanilla_cloudsave": "ドキドキ文芸部のコピーが作成されます。セーブデータはクラウドに保存されます。",
-        "description_modded": "ドキドキ文芸部のコピーが作成され、MODがインストールされます。セーブデータは他のドキドキ文芸部(Steam版など)とは別に保存されます。",
-        "description_modded_global_save": "ドキドキ文芸部のコピーが作成され、MODがインストールされます。セーブデータは他のドキドキ文芸部(Steam版など)と共有されます。",
-        "description_modded_cloudsave": "ドキドキ文芸部のコピーが作成され、MODがインストールされます。セーブデータはクラウドに保存されます。",
-        "button_install": "インストール",
-        "button_installing": "インストール中……",
-        "status_exists": "その名前のフォルダは既に存在しています。別のフォルダ名を入力してください。"
-      }
-    },
-    "tab_store_placeholder": {
-      "title": "ストアは近日公開予定です！",
-      "description_1": "Sayonika MODデータベースは、ドキドキ文芸部のMODを共有・ダウンロード・レビューができるのサイトです。Sayonika が公開されると、Doki Doki Mod ManagerからMODの閲覧とダウンロードが可能になります。",
-      "description_2": "代わりに推薦MODのダウンロードができます。",
-      "error": "MODリストが読み込めませんでした。オフラインですか？",
-      "button_download": "ダウンロード"
-    },
-    "tab_options": {
-      "list": {
-        "header_appearance": "外観",
-        "link_background": "背景画像",
-        "link_advanced_appearance": "高度な設定",
-        "header_enhancements": "拡張機能",
-        "link_sdk": "実績＆SDK",
-        "link_discord": "Discord",
-        "header_application": "アプリケーション",
-        "link_updates": "アップデート",
-        "link_storage": "保存場所",
-        "header_developers": "開発者向け",
-        "link_testing": "SDKデバッグ",
-        "link_debug": "アプリケーション情報"
-      },
-      "section_backgrounds": {
-        "title": "背景画像",
-        "subtitle": "Doki Doki Mod Managerの背景画像を以下の中から選択できます",
-        "button_none": "背景なし",
-        "description_credit": "これらはTeam Salvatoによるドキドキ文芸部の背景画像です。"
-      },
-      "section_advanced_appearance": {
-        "title": "高度な設定",
-        "subtitle": "その他の外観設定はこちら",
-        "button_enable_sysborders": "システムボーターを有効化 (再起動後に反映)",
-        "button_disable_sysborders": "システムボーターを無効化 (再起動後に反映)"
-      },
-      "section_storage": {
-        "title": "保存場所",
-        "subtitle": "ゲームデータの保存場所を変更します",
-        "description_moving": "警告！保存場所を変更すると、全てのMOD・インストール・セーブデータが移動されます。これには数分かかることがあり、中断はできません。",
-        "description_current": "現在の保存場所 {0}",
-        "button_change": "保存場所の変更"
-      },
-      "section_updates": {
-        "title": "アップデート",
-        "subtitle": "最新のDoki Doki Mod Managerを入手してください。",
-        "description_current_version": "現在のバージョン：{0}",
-        "label_channel": "リリースチャンネル",
-        "option_stable": "安定版",
-        "option_beta": "ベータ",
-        "button_check": "アップデートを確認"
-      },
-      "section_sdk": {
-        "title": "実績＆SDK",
-        "subtitle": "実績の処理方法を変更します",
-        "description_mode": "実績：",
-        "checkbox_always": "有効 (推奨)",
-        "checkbox_specified": "MODがサポートしている場合のみ有効",
-        "checkbox_never": "無効"
-      },
-      "section_discord": {
-        "title": "Discord Rich Presence",
-        "subtitle": "プレイ中のMODをDiscordのフレンドに表示します",
-        "description": "Doki Doki Mod Managerを再起動することで変更が反映されます。",
-        "button_enable": "Rich Presenceを有効化",
-        "button_disable": "Rich Presenceを無効化"
-      },
-      "section_testing": {
-        "title": "SDKデバッグ",
-        "subtitle": "デバッグログを有効にして、あなたのMODをDoki Doki Mod Manager SDKでテストします",
-        "button_enable": "デバッグログを有効化",
-        "button_disable": "デバッグログを無効化"
-      },
-      "section_debug": {
-        "title": "アプリケーション情報",
-        "subtitle": "問題を診断するための内部情報です"
-      }
-    },
-    "tab_about": {
-      "title": "概要",
-      "description": "Doki Doki Mod Managerは有志によるアプリケーションで、Team Salvato製のビジュアルノベルであるドキドキ文芸部(原題：Doki Doki Literature Club)のMODを検索・インストール・プレイのサポートを行います。",
-      "title_disclaimer": "免責事項",
-      "disclaimer_1": "Doki Doki Mod Managerはドキドキ文芸部のファンによるアプリケーションであり、Team Salvatoと提携していません。Team SalvatoのIPガイドラインで定義されているファンワークに相当します。",
-      "disclaimer_2": "Doki Doki Mod ManagerはMODのプレイなどによりファイルやPCに生じた損害について責任を負いません。MODを安全にプレイできるかどうかはあなた次第です。",
-      "title_socials": "連絡先",
-      "social_discord": "DDMM Discordサーバーに参加",
-      "social_twitter": "Twitterで @DokiMod をフォロー",
-      "social_reddit": "Redditでメッセージを送る",
-      "social_email": "メールを送る",
-      "title_support": "開発支援",
-      "description_support": "Doki Doki Mod Managerはいつでも無料でダウンロードできます。もしあなたが更新の手助けをしたいなら、以下の方法があります。",
-      "support_donate": "1回限りの寄付をする",
-      "support_steelseries": "SteelSeriesのゲーミング周辺機器が1割引 (アフィリエイトリンク)",
-      "support_code": "プロジェクトへの貢献 (コードまたは翻訳)"
+    "main": {
+        "jumplist": {
+            "task_launch": "Doki Doki Mod Managerを開き、{0}を起動します。"
+        },
+        "running_cover": {
+            "title_running": "ドキドキ文芸部起動中",
+            "title_crashed": "何らかの問題が発生しています",
+            "button_browse": "Gameフォルダを開く",
+            "button_close": "OK",
+            "description_running": "ゲームを閉じ、MODに変更を加えます。",
+            "install_missing": "インストールが見つかりませんでした。",
+            "install_corrupt": "インストールが不完全、または破損しています。",
+            "install_crashed": "ゲームの起動に失敗したか、クラッシュしました。"
+        },
+        "move_install": {
+            "title": "新しいインストールフォルダを選択"
+        },
+        "mod_browse_dialog": {
+            "title": "インストールするMODを選択",
+            "file_format_name": "MOD"
+        },
+        "game_browse_dialog": {
+            "title": "オリジナル版のZIPファイルを選択",
+            "file_format_name": "DDLC"
+        },
+        "shortcut_dialog": {
+            "title": "ショートカットの作成場所を選択",
+            "file_format_name": "ショートカット"
+        },
+        "errors": {
+            "exception": {
+                "title": "Doki Doki Mod Managerはクラッシュしました",
+                "body": "問題が発生しています。アプリを再起動してください。"
+            },
+            "move_install": {
+                "title": "インストールフォルダの移動に失敗しました",
+                "body": "そのフォルダに移動する権限や十分な容量があることを確認してください。"
+            },
+            "shortcut": {
+                "title": "ショートカットの作成に失敗しました",
+                "body": "そのフォルダにファイルを作成する権限があることを確認してください。"
+            },
+            "install": {
+                "title": "インストールに失敗しました",
+                "body": "インストールする権限や十分な容量があることを確認してください。"
+            },
+            "rename": {
+                "title": "名前の変更に失敗しました",
+                "body": "干渉している可能性があるプログラムをすべて閉じたことを確認してから再試行してください。"
+            },
+            "uninstall": {
+                "title": "アンインストールに失敗しました",
+                "body": "干渉している可能性があるプログラムをすべて閉じたことを確認してから再試行してください。"
+            },
+            "save_delete": {
+                "title": "セーブデータの削除に失敗しました",
+                "body": "干渉している可能性があるプログラムをすべて閉じたことを確認してから再試行してください。"
+            },
+            "mod_delete": {
+                "title": "MODの削除に失敗しました",
+                "body": "干渉している可能性があるプログラムをすべて閉じたことを確認してから再試行してください。"
+            },
+            "renderer_freeze": {
+                "title": "Doki Doki Mod Managerが応答しません",
+                "body": "この問題が長く続く場合はアプリを再起動してください。"
+            }
+        }
     }
-  },
-  "main": {
-    "jumplist": {
-      "task_launch": "Doki Doki Mod Managerを開き、{0}を起動します。"
-    },
-    "running_cover": {
-      "title_running": "ドキドキ文芸部起動中",
-      "title_crashed": "何らかの問題が発生しています",
-      "button_browse": "Gameフォルダを開く",
-      "button_close": "OK",
-      "description_running": "ゲームを閉じ、MODに変更を加えます。",
-      "install_missing": "インストールが見つかりませんでした。",
-      "install_corrupt": "インストールが不完全、または破損しています。",
-      "install_crashed": "ゲームの起動に失敗したか、クラッシュしました。"
-    },
-    "move_install": {
-      "title": "新しいインストールフォルダを選択"
-    },
-    "mod_browse_dialog": {
-      "title": "インストールするMODを選択",
-      "file_format_name": "MOD"
-    },
-    "game_browse_dialog": {
-      "title": "オリジナル版のZIPファイルを選択",
-      "file_format_name": "DDLC"
-    },
-    "shortcut_dialog": {
-      "title": "ショートカットの作成場所を選択",
-      "file_format_name": "ショートカット"
-    },
-    "errors": {
-      "exception": {
-        "title": "Doki Doki Mod Managerはクラッシュしました",
-        "body": "問題が発生しています。アプリを再起動してください。"
-      },
-      "move_install": {
-        "title": "インストールフォルダの移動に失敗しました",
-        "body": "そのフォルダに移動する権限や十分な容量があることを確認してください。"
-      },
-      "shortcut": {
-        "title": "ショートカットの作成に失敗しました",
-        "body": "そのフォルダにファイルを作成する権限があることを確認してください。"
-      },
-      "install": {
-        "title": "インストールに失敗しました",
-        "body": "インストールする権限や十分な容量があることを確認してください。"
-      },
-      "rename": {
-        "title": "名前の変更に失敗しました",
-        "body": "干渉している可能性があるプログラムをすべて閉じたことを確認してから再試行してください。"
-      },
-      "uninstall": {
-        "title": "アンインストールに失敗しました",
-        "body": "干渉している可能性があるプログラムをすべて閉じたことを確認してから再試行してください。"
-      },
-      "save_delete": {
-        "title": "セーブデータの削除に失敗しました",
-        "body": "干渉している可能性があるプログラムをすべて閉じたことを確認してから再試行してください。"
-      },
-      "mod_delete": {
-        "title": "MODの削除に失敗しました",
-        "body": "干渉している可能性があるプログラムをすべて閉じたことを確認してから再試行してください。"
-      },
-      "renderer_freeze": {
-        "title": "Doki Doki Mod Managerが応答しません",
-        "body": "この問題が長く続く場合はアプリを再起動してください。"
-      }
-    }
-  }
 }
