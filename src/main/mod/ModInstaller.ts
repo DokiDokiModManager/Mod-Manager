@@ -74,6 +74,7 @@ export default class ModInstaller {
                                 fileContents += chunk.toString();
                             });
                             stream.on("end", () => {
+                                console.log("####", fileContents, "####");
                                 hasReadMetadata = true;
                                 try {
                                     const modDataPath: string = joinPath(installPath, "../install.json");
@@ -82,7 +83,6 @@ export default class ModInstaller {
                                     writeFileSync(modDataPath, JSON.stringify(oldInstallContents));
                                 } catch (err) {
                                     console.log(err);
-                                    rj(err);
                                 }
                             });
                         });
