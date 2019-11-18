@@ -1,230 +1,230 @@
 {
     "renderer": {
-        "language_change_instruction": "",
+        "language_change_instruction": "Dil değişimleri program yeniden başlayınca etkili olacaktır",
         "tabs": {
-            "tab_home": "",
-            "tab_mods": "",
-            "tab_store": "",
-            "tab_options": "",
-            "tab_about": ""
+            "tab_home": "Ana Sayfa",
+            "tab_mods": "Modlar",
+            "tab_store": "Market",
+            "tab_options": "Ayarlar",
+            "tab_about": "Hakkında"
         },
         "version": {
-            "link_changelog": ""
+            "link_changelog": "neler yeni?"
         },
         "help_menu": {
-            "option_help": "",
-            "option_feedback": "",
-            "option_discord": ""
+            "option_help": "Yardım sitesini göster",
+            "option_feedback": "Özel geri-bildirim gönder",
+            "option_discord": "Discord sunucusuna katıl"
         },
         "user_menu": {
-            "option_rename": "",
-            "option_logout": ""
+            "option_rename": "Kullanıcı adı değiştir",
+            "option_logout": "Çıkış yap"
         },
         "window_controls": {
-            "close": "",
-            "maximise": "",
-            "minimise": "",
-            "help": "",
-            "announcement": "",
-            "language": "",
-            "login": "",
+            "close": "Kapat",
+            "maximise": "Büyüt",
+            "minimise": "Küçült",
+            "help": "Yardım al",
+            "announcement": "En son duyuruyu oku",
+            "language": "Dil",
+            "login": "Giriş yap",
             "update": {
-                "checking": "",
-                "available": "",
-                "downloading": "",
-                "downloaded": ""
+                "checking": "Güncellemeler kontrol ediliyor...",
+                "available": "Bir güncelleme var. indirmek için TIKLA.",
+                "downloading": "Güncelleme indiriliyor...",
+                "downloaded": "Bir güncelleme çıkış yapılınca kurulacak."
             }
         },
         "crash_cover": {
-            "button_close": "",
-            "button_continue": ""
+            "button_close": "Çık",
+            "button_continue": "Devam et"
         },
         "drop_cover": {
-            "text": ""
+            "text": "Bir mod indirmek için buraya sürükleyin"
         },
         "announcement": {
-            "button_open": "",
-            "button_close": ""
+            "button_open": "Linki aç",
+            "button_close": "Kapat"
         },
         "onboarding": {
-            "title": "",
-            "description_download": "",
-            "button_download": "",
-            "button_choose": "",
-            "heading_step": "",
-            "s1_desc": "",
-            "s1_platform": "",
-            "s2_desc": "",
-            "description_location": "",
-            "link_change": ""
+            "title": "Hoş Geldin!",
+            "description_download": "Haydi bir DDLC kopyası bulalım.",
+            "button_download": "DDLC resmi indirme sitesine git",
+            "button_choose": "Bir kopya için göz at",
+            "heading_step": "Adım {0}",
+            "s1_desc": "Bir Doki Doki Edebiyat Kulübü kopyası indirmelisiniz. Websitesinden indirebilirsiniz (ddlc.moe) - gitmek için aşağıdaki düğmeye tıklayın.",
+            "s1_platform": "Sizden istendiğinde, \"DDLC ({0})\" adlı dosyayı indirmeyi seçin.",
+            "s2_desc": "İndirme işleminiz bittiğinde, aşağıdaki düğmeyi kullanarak seçin.",
+            "description_location": "Oyunlarınız {0} adresinde saklanacak",
+            "link_change": "(Değiştir)"
         },
         "login_input": {
-            "message": "",
-            "details": "",
-            "button_affirmative": "",
-            "button_negative": ""
+            "message": "Eposta adresinizi girin",
+            "details": "Bu adrese bir eposta gönderilecek. Giriş işlemini tamamlamak için e-postadaki bağlantıya tıklayın.",
+            "button_affirmative": "Giriş yap",
+            "button_negative": "İptal"
         },
         "change_username_input": {
-            "message": "",
-            "details": "",
-            "button_affirmative": "",
-            "button_negative": ""
+            "message": "Yeni kullanıcı adı girin",
+            "details": "Kullanıcı adlarının benzersiz olması gerekmez.",
+            "button_affirmative": "Değiştir",
+            "button_negative": "İptal"
         },
         "tab_mods": {
             "list": {
-                "placeholder_search": "",
-                "header_new": "",
-                "link_install": "",
-                "header_installed": "",
-                "header_downloaded": ""
+                "placeholder_search": "Modları ara...",
+                "header_new": "Başla",
+                "link_install": "DDLC KUR",
+                "header_installed": "Kurulmuş",
+                "header_downloaded": "İndirmeler"
             },
             "install_contextmenu": {
-                "launch": "",
-                "rename": "",
-                "shortcut": "",
-                "delete_save": "",
-                "uninstall": ""
+                "launch": "Çalıştır",
+                "rename": "Yeniden adlandır",
+                "shortcut": "Kısayol Oluştur",
+                "delete_save": "Kaydedilmiş veriyi sil",
+                "uninstall": "Kaldır"
             },
             "mod_contextmenu": {
-                "install": "",
-                "delete": ""
+                "install": "Kur",
+                "delete": "Sil"
             },
             "uninstall_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Kaldırmak istediğinize emin misiniz?",
+                "details": "{0} için kaydetme verileriniz silinecek ve tekrar kurmak için modun bir kopyasına ihtiyacınız olacak.",
+                "button_affirmative": "Kaldır",
+                "button_negative": "İptal"
             },
             "rename_input": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Yüklemeyi Yeniden Adlandır",
+                "details": "{0} için yeni adı girin.",
+                "button_affirmative": "Yeniden Adlandır",
+                "button_negative": "İptal"
             },
             "launch_lock_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Bulut kaydetme dosyası kullanılıyor!",
+                "details": "Şimdi başlatırsanız ilerlemenizi kaybedebilirsiniz.",
+                "button_affirmative": "Yine de Başlat",
+                "button_negative": "İptal"
             },
             "launch_noauth_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Giriş yapmadınız!",
+                "details": "Şimdi başlatırsanız, kaydetme dosyanız bulut ile senkronize edilmez.",
+                "button_affirmative": "Yine de Başlat",
+                "button_negative": "İptal"
             },
             "launch_offline_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Çevrimdışısınız!",
+                "details": "Şimdi başlatırsanız, kaydetme dosyanız bulut ile senkronize edilmez.",
+                "button_affirmative": "Yine de Başlat",
+                "button_negative": "İptal"
             },
             "mod_delete_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Mod'u silmek istediğinize emin misiniz?",
+                "details": "Tekrar kurmak için modun başka bir kopyasını indirmeniz gerekir.",
+                "button_affirmative": "Sil",
+                "button_negative": "İptal"
             },
             "save_delete_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Kaydetme verilerinizi silmek istediğinize emin misiniz?",
+                "details": "{0} 'ı baştan başlamanız gerekecek.",
+                "button_affirmative": "Sil",
+                "button_negative": "Sil"
             },
             "install": {
-                "button_launch": "",
-                "button_settings": "",
-                "tag_global_save": "",
-                "tag_sdk": "",
-                "tag_cloud": "",
-                "description_locked": "",
-                "title_achievements": "",
-                "description_achievements": "",
-                "description_achievements_complete": "",
-                "title_screenshots_none": "",
-                "title_screenshots_one": "",
-                "title_screenshots": "",
-                "description_screenshots": "",
-                "description_sdk": "",
-                "description_author": "",
-                "link_discord": "",
-                "link_website": "",
-                "description_external": ""
+                "button_launch": "Başlat",
+                "button_settings": "Ayarlar",
+                "tag_global_save": "Global kaydetme",
+                "tag_sdk": "SDK",
+                "tag_cloud": "Bulut'a kaydet",
+                "description_locked": "Farklı bir bilgisayarda bu bulut kaydetme dosyası ile oynuyorsunuz. Burada devam etmek için diğer bilgisayarda oynamayı bırakın.",
+                "title_achievements": "Başarılar ({0} / {1})",
+                "description_achievements": "Daha fazla başarının kilidini açmak için oynamaya devam et.",
+                "description_achievements_complete": "Tüm başarıların kilidini açtın. Tebrikler!",
+                "title_screenshots_none": "Ekran resmi yok",
+                "title_screenshots_one": "1 Ekran resmi",
+                "title_screenshots": "{0} ekran kaydı",
+                "description_screenshots": "Ekran görüntüsü almak için oynatırken S düğmesine basın.",
+                "description_sdk": "Bu mod, Doki Doki Mod Manager SDK'daki özellikleri destekler!",
+                "description_author": "{0} tarafından oluşturuldu",
+                "link_discord": "({0}) Discord",
+                "link_website": "Website ({0})",
+                "description_external": "Klasörde göster"
             },
             "mod": {
-                "button_install": "",
-                "button_settings": "",
-                "description_external": ""
+                "button_install": "Kur",
+                "button_settings": "Ayarlar",
+                "description_external": "Klasörde göster"
             },
             "install_creation": {
-                "title": "",
-                "label_install_name": "",
-                "label_folder_name": "",
-                "label_global_save": "",
-                "label_has_mod": "",
-                "label_mod": "",
-                "label_has_cloudsave": "",
-                "label_cloudsave": "",
-                "option_new_cloudsave": "",
-                "label_existing_saves": "",
-                "description_mod": "",
-                "header_summary": "",
-                "description_vanilla": "",
-                "description_vanilla_global_save": "",
-                "description_vanilla_cloudsave": "",
-                "description_modded": "",
-                "description_modded_global_save": "",
-                "description_modded_cloudsave": "",
-                "button_install": "",
-                "button_installing": "",
-                "status_exists": ""
+                "title": "DDLC Kur",
+                "label_install_name": "Kurulum Adı",
+                "label_folder_name": "Klasör Adı",
+                "label_global_save": "Global Kaydetme",
+                "label_has_mod": "Mod Kur",
+                "label_mod": "Mod",
+                "label_has_cloudsave": "Bulut Kaydetme (beta)",
+                "label_cloudsave": "Bulut kayıt dosyası",
+                "option_new_cloudsave": "Yeni kayıt dosyası oluştur",
+                "label_existing_saves": "Mevcut Kaydetme Dosyaları",
+                "description_mod": "Mod için göz atmak için tıklayın.",
+                "header_summary": "Özet",
+                "description_vanilla": "Temiz bir DDLC kopyası oluşturulacak. Kaydedilen veriler oyunun diğer herhangi bir kopyasından ayrı olacaktır.",
+                "description_vanilla_global_save": "Temiz bir DDLC kopyası oluşturulacak. Kayıtlı veriler oyunun diğer kopyalarıyla paylaşılacaktır (ör. Steam)",
+                "description_vanilla_cloudsave": "Temiz bir DDLC kopyası oluşturulacak. Kaydetme verileri bulutta depolanacaktır.",
+                "description_modded": "Bir DDLC kopyası oluşturulacak ve mod kurulacaktır. Kaydedilen veriler oyunun diğer herhangi bir kopyasından ayrı olacaktır.",
+                "description_modded_global_save": "Bir DDLC kopyası oluşturulacak ve mod kurulacaktır. Kaydedilen veriler oyunun diğer kopyalarıyla paylaşılacaktır (ör. Steam)",
+                "description_modded_cloudsave": "Bir DDLC kopyası oluşturulacak ve mod kurulacaktır. Kaydetme verileri bulutta depolanacaktır.",
+                "button_install": "Kur",
+                "button_installing": "Kuruluyor...",
+                "status_exists": "Bu klasör zaten var. Başka bir klasör adı seçin."
             }
         },
         "tab_store_placeholder": {
-            "title": "",
-            "description_1": "",
-            "description_2": "",
-            "error": "",
-            "button_download": ""
+            "title": "Mağaza çok yakında!",
+            "description_1": "Sayonika mod veritabanı, DDLC modlarını paylaşmak, indirmek ve incelemek için merkezi bir konum sağlar. Sayonika halka açık olduğunda, Doki Doki Mod Yöneticisi'ndeki modlara göz atabilirsiniz.",
+            "description_2": "Beklerken, önerilen bu modlardan bazılarını indirmekten çekinmeyin.",
+            "error": "Mod listesi yüklenemedi. Çevrimdışı mısınız?",
+            "button_download": "İndir"
         },
         "tab_options": {
             "list": {
-                "header_appearance": "",
-                "link_background": "",
-                "link_advanced_appearance": "",
-                "header_enhancements": "",
-                "link_sdk": "",
-                "link_discord": "",
-                "header_application": "",
-                "link_updates": "",
-                "link_storage": "",
-                "header_developers": "",
-                "link_testing": "",
-                "link_debug": ""
+                "header_appearance": "Görünüm",
+                "link_background": "Arkaplan",
+                "link_advanced_appearance": "Gelişmiş",
+                "header_enhancements": "Geliştirmeler",
+                "link_sdk": "Başarılar & SDK",
+                "link_discord": "Discord",
+                "header_application": "Uygulama",
+                "link_updates": "Güncellemeler",
+                "link_storage": "Depolama yeri",
+                "header_developers": "Geliştiriciler",
+                "link_testing": "SDK Hata Ayıklama",
+                "link_debug": "Uygulama Bilgisi"
             },
             "section_backgrounds": {
-                "title": "",
-                "subtitle": "",
-                "button_none": "",
-                "description_credit": ""
+                "title": "Arkaplan",
+                "subtitle": "Doki Doki Mod Manager kopyanızı bu arkaplanlardan biriyle özelleştirin.",
+                "button_none": "Arkaplan yok",
+                "description_credit": "Orijinal DDLC arkaplanları, Team Salvato'nun izniyle."
             },
             "section_advanced_appearance": {
-                "title": "",
-                "subtitle": "",
-                "button_enable_sysborders": "",
-                "button_disable_sysborders": ""
+                "title": "Gelişmiş",
+                "subtitle": "Diğer arayüz seçeneklerini burada bulabilirsiniz.",
+                "button_enable_sysborders": "Sistem Kenarlıklarını Kullan (yeniden başlatmayı gerektirir)",
+                "button_disable_sysborders": "Sistem Kenarlıklarını Devre Dışı Bırak (yeniden başlatma gerektirir)"
             },
             "section_storage": {
-                "title": "",
-                "subtitle": "",
-                "description_moving": "",
-                "description_current": "",
-                "button_change": ""
+                "title": "Depolama yeri",
+                "subtitle": "Oyun verilerinizin depolandığı yeri değiştirin.",
+                "description_moving": "Uyarı! Kurulum konumunuzu değiştirmeyi seçerseniz, tüm modlarınız, kurulumlarınız ve kaydettiğiniz veriler taşınacaktır. Bu birkaç dakika sürebilir ve Durdurulamaz.",
+                "description_current": "Geçerli konum: {0}",
+                "button_change": "Kurulum Konumunu Değiştir"
             },
             "section_updates": {
-                "title": "",
-                "subtitle": "",
-                "description_current_version": "",
+                "title": "Güncellemeler",
+                "subtitle": "Doki Doki Mod Manager'ın en son sürümünü edinin.",
+                "description_current_version": "Geçerli versiyon: {0}",
                 "label_channel": "",
                 "option_stable": "",
                 "option_beta": "",
