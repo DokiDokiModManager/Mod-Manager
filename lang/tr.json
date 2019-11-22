@@ -225,18 +225,18 @@
                 "title": "Güncellemeler",
                 "subtitle": "Doki Doki Mod Manager'ın en son sürümünü edinin.",
                 "description_current_version": "Geçerli versiyon: {0}",
-                "label_channel": "",
-                "option_stable": "",
-                "option_beta": "",
-                "button_check": ""
+                "label_channel": "Yayın Kanalı",
+                "option_stable": "Kararlı",
+                "option_beta": "Beta",
+                "button_check": "Güncellemeleri kontrol et"
             },
             "section_sdk": {
-                "title": "",
+                "title": "Başarılar & Yazılım Geliştirme Aracı",
                 "subtitle": "",
-                "description_mode": "",
-                "checkbox_always": "",
-                "checkbox_specified": "",
-                "checkbox_never": ""
+                "description_mode": "Başarımları Etkinleştir:",
+                "checkbox_always": "Her zaman (Tavsiye Edilen)",
+                "checkbox_specified": "Eğer mod için gerekliyse kullanımını destekle",
+                "checkbox_never": "Asla"
             },
             "section_discord": {
                 "title": "",
