@@ -1,87 +1,87 @@
 {
     "renderer": {
-        "language_change_instruction": "",
+        "language_change_instruction": "تغییرات زبان بعد از شروع مجدد موثر واقع می شوند",
         "tabs": {
-            "tab_home": "",
-            "tab_mods": "",
-            "tab_store": "",
-            "tab_options": "",
-            "tab_about": ""
+            "tab_home": "خانه",
+            "tab_mods": "مادها",
+            "tab_store": "فروشگاه",
+            "tab_options": "گزینه ها",
+            "tab_about": "درباره"
         },
         "version": {
-            "link_changelog": ""
+            "link_changelog": "چیز جدید چیا هست؟"
         },
         "help_menu": {
-            "option_help": "",
-            "option_feedback": "",
-            "option_discord": ""
+            "option_help": "مشاهده سایت کمکی",
+            "option_feedback": "فرستادن بازخورد به صورت شخصی",
+            "option_discord": "ملحق شدن به سرور دیسکورد"
         },
         "user_menu": {
-            "option_rename": "",
-            "option_logout": ""
+            "option_rename": "تغییر نام کاربری",
+            "option_logout": "خارج شدن"
         },
         "window_controls": {
-            "close": "",
-            "maximise": "",
-            "minimise": "",
-            "help": "",
-            "announcement": "",
-            "language": "",
-            "login": "",
+            "close": "بستن",
+            "maximise": "بزرگ کردن",
+            "minimise": "کوچک کردن",
+            "help": "کمک گرفتن",
+            "announcement": "خواندن اخرین اعلان",
+            "language": "زبان",
+            "login": "وارد شدن",
             "update": {
-                "checking": "",
-                "available": "",
-                "downloading": "",
-                "downloaded": ""
+                "checking": "در حال بررسی برای بروزرسانی ها در پس زمینه...",
+                "available": "به روزرسانی ای موجود می باشد. برای دانلود آن اینجا کلیک کنید.",
+                "downloading": "در حال دانلود به روزرسانی...",
+                "downloaded": "هنگامی خروج از نرم افزار به روزرسانی ای آماده ی نصب می شود."
             }
         },
         "crash_cover": {
-            "button_close": "",
-            "button_continue": ""
+            "button_close": "خروج",
+            "button_continue": "ادامه"
         },
         "drop_cover": {
-            "text": ""
+            "text": "مادی را برای نصب کردن اینجا رها کنید."
         },
         "announcement": {
-            "button_open": "",
-            "button_close": ""
+            "button_open": "بازکردن لینک",
+            "button_close": "بستن"
         },
         "onboarding": {
-            "title": "",
-            "description_download": "",
-            "button_download": "",
-            "button_choose": "",
-            "heading_step": "",
-            "s1_desc": "",
-            "s1_platform": "",
-            "s2_desc": "",
-            "description_location": "",
-            "link_change": ""
+            "title": "خوش آمدید!",
+            "description_download": "بیاید به دنبال یک کپی از DDLC بگردیم.",
+            "button_download": "مشاهد صفحه رسمی دانلود DDLC",
+            "button_choose": "گشتن به دنبال کپی ای از بازی",
+            "heading_step": "قدم {1}",
+            "s1_desc": "شما نیاز به دانلود نسخه ای از Doki Doki Literature Club دارید. می توانید این نسخه را در وبسایت رسمی بازی پیدا کنید (ddlc.moe) - برای اینکه هم اکنون به آنجا بروید، روی دکمه زیر کلیک کنید.",
+            "s1_platform": "وقتی که از شما سوالی در این باره پرسیده شد، گزینه دانلود فایلی به نام «DDLC ({0{( را انتخاب کنید.",
+            "s2_desc": "هنگامی که دانلودتان به اتمام رسید، با استفاده از گزینه زیر آن را انتخاب کنید.",
+            "description_location": "بازی هایتان در {0} ذخیره می شود",
+            "link_change": "(تغییر دادن)"
         },
         "login_input": {
-            "message": "",
-            "details": "",
-            "button_affirmative": "",
-            "button_negative": ""
+            "message": "آدرس ایمیلتان را وارد کنید",
+            "details": "ایمیلی به این آدرس فرستاده می شود. بر روی لینک موجود در ایمیل کلیک کنید تا داخل شدنتان کامل شود.",
+            "button_affirmative": "وارد شدن",
+            "button_negative": "لغو کردن"
         },
         "change_username_input": {
-            "message": "",
-            "details": "",
-            "button_affirmative": "",
-            "button_negative": ""
+            "message": "نام کاربری جدیدتان را وارد کنید",
+            "details": "نام های کاربری نبایستی یکسان باشند.",
+            "button_affirmative": "تغییر دادن",
+            "button_negative": "لغو کردن"
         },
         "tab_mods": {
             "list": {
-                "placeholder_search": "",
-                "header_new": "",
-                "link_install": "",
-                "header_installed": "",
-                "header_downloaded": ""
+                "placeholder_search": "جستجوی مادها...",
+                "header_new": "شروع به کار کردن",
+                "link_install": "نصب DDLC",
+                "header_installed": "نصب شد",
+                "header_downloaded": "دانلودها"
             },
             "install_contextmenu": {
-                "launch": "",
-                "rename": "",
-                "shortcut": "",
+                "launch": "اجرا",
+                "rename": "تغییر نام",
+                "shortcut": "ساخت میانبر",
                 "delete_save": "",
                 "uninstall": ""
             },
