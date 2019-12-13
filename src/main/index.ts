@@ -17,6 +17,7 @@ import DiscordManager from "./discord/DiscordManager";
 import DownloadManager from "./net/DownloadManager";
 import OnboardingManager from "./onboarding/OnboardingManager";
 import {checkSync, DiskUsage} from "diskusage";
+import OpenDialogReturnValue = Electron.OpenDialogReturnValue;
 
 Sentry.init({
     dsn: "https://bf0edf3f287344d4969e3171c33af4ea@sentry.io/1297252",
@@ -163,9 +164,9 @@ ipcMain.on("browse mods", (ev: IpcMainEvent) => {
             extensions: extensions,
             name: lang.translate("main.mod_browse_dialog.file_format_name")
         }],
-    }, (filePaths: string[]) => {
-        if (filePaths && filePaths[0] && extensions.find(ext => (filePaths[0].endsWith("." + ext)))) {
-            ev.returnValue = filePaths[0];
+    }).then((res: OpenDialogReturnValue) => {
+        if (res.filePaths && res.filePaths[0] && extensions.find(ext => (res.filePaths[0].endsWith("." + ext)))) {
+            ev.returnValue = res.filePaths[0];
         } else {
             ev.returnValue = null;
         }
@@ -346,11 +347,11 @@ ipcMain.on("move install", () => {
     dialog.showOpenDialog(appWindow, {
         title: lang.translate("main.move_install.title"),
         properties: ["openDirectory"]
-    }, filePaths => {
-        if (filePaths && filePaths[0]) {
+    }).then((res: OpenDialogReturnValue) => {
+        if (res.filePaths && res.filePaths[0]) {
             appWindow.hide();
             const oldInstallFolder: string = Config.readConfigValue("installFolder");
-            const newInstallFolder: string = joinPath(filePaths[0], "DDMM_GameData");
+            const newInstallFolder: string = joinPath(res.filePaths[0], "DDMM_GameData");
             if (!existsSync(newInstallFolder) || !statSync(newInstallFolder).isDirectory()) {
                 move(oldInstallFolder, newInstallFolder, {overwrite: false}, e => {
                     if (e) {
@@ -396,10 +397,10 @@ ipcMain.on("import mas", (ev: IpcMainEvent, folderName: string) => {
                 extensions: ["*"]
             }
         ]
-    }, filePaths => {
-        if (filePaths && filePaths[0]) {
-            copyFileSync(filePaths[0], joinPath(Config.readConfigValue("installFolder"), "installs", folderName, "install", "characters", "monika"));
-            removeSync(filePaths[0]);
+    }).then((res: OpenDialogReturnValue) => {
+        if (res.filePaths && res.filePaths[0]) {
+            copyFileSync(res.filePaths[0], joinPath(Config.readConfigValue("installFolder"), "installs", folderName, "install", "characters", "monika"));
+            removeSync(res.filePaths[0]);
             InstallManager.setMonikaExported(folderName, false).then(() => {
                 appWindow.webContents.send("got installs", InstallList.getInstallList());
             });
@@ -464,10 +465,10 @@ ipcMain.on("onboarding browse", () => {
             {name: lang.translate("main.game_browse_dialog.file_format_name"), extensions: ["zip"]}
         ],
         title: lang.translate("main.game_browse_dialog.title")
-    }, (files: string[]) => {
-        if (files && files[0] && files[0].endsWith(".zip")) {
+    }).then((res: OpenDialogReturnValue) => {
+        if (res.filePaths && res.filePaths[0] && res.filePaths[0].endsWith(".zip")) {
             try {
-                copyFileSync(files[0], joinPath(Config.readConfigValue("installFolder"), "ddlc.zip"));
+                copyFileSync(res.filePaths[0], joinPath(Config.readConfigValue("installFolder"), "ddlc.zip"));
                 OnboardingManager.requiresOnboarding().then(() => {
                     appWindow.webContents.send("onboarding downloaded");
                 }).catch(() => {
@@ -628,7 +629,7 @@ app.on("ready", () => {
     });
 
     // set user agent so web services can contact me if necessary
-    appWindow.webContents.setUserAgent(USER_AGENT);
+    appWindow.webContents.userAgent = USER_AGENT;
 
     appWindow.webContents.on("will-navigate", (ev, url) => {
         console.warn("Prevented navigation from app container", url);
