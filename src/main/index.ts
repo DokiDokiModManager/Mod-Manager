@@ -1,6 +1,14 @@
 import {app, BrowserWindow, dialog, ipcMain, IpcMainEvent, Notification, SaveDialogReturnValue, shell} from "electron";
 import {copyFileSync, existsSync, mkdirpSync, move, readdirSync, removeSync, statSync, unlinkSync} from "fs-extra";
 import {join as joinPath} from "path";
+
+if (existsSync(joinPath(app.getPath("appData"), "Doki Doki Mod Manager!"))) {
+    console.log("Overriding app data path");
+    app.setPath("userData", joinPath(app.getPath("appData"), "Doki Doki Mod Manager!"));
+} else {
+    app.setPath("userData", joinPath(app.getPath("appData"), "DokiDokiModManager"));
+}
+
 import {autoUpdater} from "electron-updater";
 import * as Sentry from "@sentry/electron";
 import * as semver from "semver";
@@ -25,15 +33,6 @@ Sentry.init({
         // workaround for stacktrace being displayed (see getsentry/sentry-electron#146)
     }
 });
-
-// One of my major regrets in life is putting an ! at the end of the application name
-// This should allow me to use a sane directory name but not break old installs.
-if (existsSync(joinPath(app.getPath("appData"), "Doki Doki Mod Manager!"))) {
-    console.log("Overriding app data path");
-    app.setPath("userData", joinPath(app.getPath("appData"), "Doki Doki Mod Manager!"));
-} else {
-    app.setPath("userData", joinPath(app.getPath("appData"), "DokiDokiModManager"));
-}
 
 const DISCORD_ID = "453299645725016074";
 
@@ -559,6 +558,7 @@ app.on("second-instance", (ev: Event, argv: string[]) => {
 });
 
 app.on("ready", () => {
+    console.log(app.getPath("userData"));
     if (!app.requestSingleInstanceLock()) {
         // we should quit, as another instance is running
         console.log("App already running.");
