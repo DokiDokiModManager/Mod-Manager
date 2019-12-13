@@ -84,12 +84,14 @@
     "modal_uninstall": {
       "title": "Are you sure you want to uninstall?",
       "body": "Your save data for {0} will be deleted, and you will need a copy of the mod to install it again.",
+      "confirmation": "Yes, I'm sure.",
       "button_affirmative": "Uninstall",
       "button_negative": "Cancel"
     },
     "modal_save_delete": {
       "title": "Are you sure you want to delete your save data?",
       "body": "You will have to start {0} again from scratch.",
+      "confirmation": "Yes, I'm sure.",
       "button_affirmative": "Delete",
       "button_negative": "Cancel"
     },
@@ -306,10 +308,7 @@
       "social_reddit": "Message me on Reddit",
       "social_email": "Send me an email",
       "title_translators": "Translations generously contributed by",
-      "link_weblate": "Help translate Doki Doki Mod Manager into your native language - visit the project homepage",
-      "title_supporters": "Thanks to the following Patreon supporters",
-      "title_supporters_none": "Support on Patreon",
-      "link_patreon": "Want to help the development of Doki Doki Mod Manager? Become a Patreon supporter!"
+      "link_weblate": "Help translate Doki Doki Mod Manager into your native language - visit the project homepage"
     },
     "tab_downloads": {
       "download": {

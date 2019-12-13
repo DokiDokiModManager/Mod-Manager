@@ -45,7 +45,6 @@ const USER_AGENT = "DokiDokiModManager/" + app.getVersion() + " (zudo@doki.space
 const lastArg: string = process.argv.pop();
 
 // Permanent reference to the main app window
-let splashWindow: BrowserWindow;
 let appWindow: BrowserWindow;
 
 // Discord rich presence
@@ -566,18 +565,6 @@ app.on("ready", () => {
         return; // avoid running for longer than needed
     }
 
-    splashWindow = new BrowserWindow({
-        width: 250,
-        height: 250,
-        center: true,
-        transparent: true,
-        frame: false,
-        alwaysOnTop: true,
-        opacity: 0.9,
-        focusable: false
-    });
-    splashWindow.loadURL(joinPath(__dirname, "../../src/renderer/html/splash.html"));
-
     if (
         !existsSync(joinPath(Config.readConfigValue("installFolder"), "mods")) ||
         !existsSync(joinPath(Config.readConfigValue("installFolder"), "installs"))
@@ -650,7 +637,6 @@ app.on("ready", () => {
 
     appWindow.on("ready-to-show", () => {
         appWindow.show();
-        splashWindow.hide();
 
         OnboardingManager.requiresOnboarding().catch(e => {
             console.warn("Onboarding required - reason: " + e);
