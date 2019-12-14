@@ -194,24 +194,16 @@
         "label_folder_name": "Folder Name",
         "label_has_mod": "Install Mod",
         "label_mod": "Mod",
-        "option_local_save": "Local Save",
+        "option_local_save": "Local Save (recommended)",
         "option_global_save": "Global Save",
+        "modlist_none": "Regular DDLC - no mods",
+        "modlist_library": "Mod Library",
+        "modlist_custom": "Mod isn't listed here",
         "description_mod": "Click to browse for a mod.",
-        "header_summary": "Summary",
-        "description_local_save": "Your save data will be stored separately from any other copy of DDLC. This is the recommended option.",
-        "description_global_save": "Your save data will be stored in the normal DDLC save folder.",
-        "warning_global_save": "Using Global Save may cause issues with other copies of the game. Only use it if you have a specific reason to.",
+        "warning_global_save": "Using Global Save may cause issues with other copies of the game, as it will save your progress in the regular save data folder. Only use it if you have a specific reason to.",
         "button_install": "Install",
-        "button_installing": "Installing...",
-        "status_exists": "That folder already exists. Pick another folder name."
+        "button_installing": "Installing..."
       }
-    },
-    "tab_store_placeholder": {
-      "title": "The store is coming soon!",
-      "description_1": "The Sayonika mod database will provide a central location to share, download and review DDLC mods. When Sayonika is publicly available, you'll be able to browse mods right here in Doki Doki Mod Manager.",
-      "description_2": "While you wait, feel free to download some of these recommended mods.",
-      "error": "Failed to load the list of mods. Are you offline?",
-      "button_download": "Download"
     },
     "tab_options": {
       "list": {
