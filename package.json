@@ -86,14 +86,10 @@
     },
     "linux": {
       "category": "Game",
+      "maintainer": "zudo@doki.space",
+      "synopsis": "Doki Doki Mod Manager",
       "target": [
-        {
-          "target": "AppImage",
-          "arch": [
-            "x64",
-            "ia32"
-          ]
-        }
+        "AppImage"
       ]
     },
     "mac": {
