@@ -31,7 +31,8 @@
                 "available": "",
                 "downloading": "",
                 "downloaded": ""
-            }
+            },
+            "language": "Språk"
         },
         "crash_cover": {
             "button_close": "",
