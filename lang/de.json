@@ -31,7 +31,8 @@
                 "available": "Ein Update ist verfügbar. Klicke hier um es herunterzuladen.",
                 "downloading": "Lade Update herunter...",
                 "downloaded": "Ein Update ist bereit zu installieren, wenn du beendest."
-            }
+            },
+            "language": "Sprache"
         },
         "crash_cover": {
             "button_close": "Beenden",
@@ -270,7 +271,8 @@
             "support_donate": "Machen Sie eine einmalige Spende",
             "support_steelseries": "Erhalten Sie 10% Rabatt auf SteelSeries Gaming-Peripheriegeräte (Affiliate-Link)",
             "support_code": "Mitwirken am Projekt (Code oder Übersetzungen)"
-        }
+        },
+        "language_change_instruction": "Das Ändern der Sprache wird nach einem Neustart wirksam"
     },
     "main": {
         "jumplist": {
