@@ -1,4 +1,14 @@
-import {app, BrowserWindow, dialog, ipcMain, IpcMainEvent, Notification, SaveDialogReturnValue, shell} from "electron";
+import {
+    app,
+    BrowserWindow,
+    dialog,
+    ipcMain,
+    IpcMainEvent,
+    Notification,
+    SaveDialogReturnValue,
+    OpenDialogReturnValue,
+    shell
+} from "electron";
 import {copyFileSync, existsSync, mkdirpSync, move, readdirSync, removeSync, statSync, unlinkSync} from "fs-extra";
 import {join as joinPath} from "path";
 
@@ -25,7 +35,6 @@ import DiscordManager from "./discord/DiscordManager";
 import DownloadManager from "./net/DownloadManager";
 import OnboardingManager from "./onboarding/OnboardingManager";
 import {checkSync, DiskUsage} from "diskusage";
-import OpenDialogReturnValue = Electron.OpenDialogReturnValue;
 
 Sentry.init({
     dsn: "https://bf0edf3f287344d4969e3171c33af4ea@sentry.io/1297252",
@@ -638,12 +647,8 @@ app.on("ready", () => {
 
     appWindow.on("ready-to-show", () => {
         appWindow.show();
-
-        OnboardingManager.requiresOnboarding().catch(e => {
-            console.warn("Onboarding required - reason: " + e);
-            appWindow.webContents.send("start onboarding");
-        });
     });
+
 
     appWindow.webContents.on("crashed", () => {
         const crashNotif = new Notification({
@@ -675,6 +680,12 @@ app.on("ready", () => {
         app.quit();
     });
 
+    appWindow.webContents.on("did-finish-load", () => {
+        OnboardingManager.requiresOnboarding().catch(e => {
+            console.warn("Onboarding required - reason: " + e);
+            appWindow.webContents.send("start onboarding");
+        });
+    });
 
     appWindow.webContents.once("did-finish-load", () => {
         handleURL();
