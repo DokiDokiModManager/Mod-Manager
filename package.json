@@ -20,7 +20,7 @@
   "dependencies": {
     "7zip-bin": "^5.0.3",
     "@fortawesome/fontawesome-free": "^5.12.0",
-    "@sentry/electron": "1.1.0",
+    "@sentry/electron": "1.2.0",
     "archiver": "^3.0.0",
     "chmodr": "^1.2.0",
     "datauri": "^2.0.0",
@@ -30,17 +30,17 @@
     "fs-extra": "^8.1.0",
     "fuse.js": "^3.4.6",
     "request": "^2.88.0",
-    "semver": "^6.3.0",
-    "vue": "^2.6.10",
+    "semver": "^7.1.1",
+    "vue": "^2.6.11",
     "vuex": "^3.1.2",
     "yauzl": "latest"
   },
   "devDependencies": {
     "@sentry/cli": "^1.49.0",
-    "electron": "^7.1.4",
-    "electron-builder": "^21.1.1",
-    "mocha": "^6.2.2",
-    "typescript": "^3.7.3"
+    "electron": "^7.1.10",
+    "electron-builder": "^22.2.0",
+    "mocha": "^7.0.0",
+    "typescript": "^3.7.5"
   },
   "build": {
     "appId": "space.doki.modmanager",
