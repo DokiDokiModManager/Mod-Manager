@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@sentry/cli": "^1.44.3",
-    "electron": "^5.0.2",
+    "electron": "^7.1.11",
     "electron-builder": "^21.0.15",
     "mocha": "^6.1.4",
     "typescript": "^3.5.3"
