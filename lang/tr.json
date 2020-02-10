@@ -136,7 +136,7 @@
                 "button_settings": "Ayarlar",
                 "tag_global_save": "Global kaydetme",
                 "tag_sdk": "SDK",
-                "tag_cloud": "Bulut'a kaydet",
+                "tag_cloud": "Bulut'a Kaydet",
                 "description_locked": "Farklı bir bilgisayarda bu bulut kaydetme dosyası ile oynuyorsunuz. Burada devam etmek için diğer bilgisayarda oynamayı bırakın.",
                 "title_achievements": "Başarılar ({0} / {1})",
                 "description_achievements": "Daha fazla başarının kilidini açmak için oynamaya devam et.",
@@ -232,7 +232,7 @@
             },
             "section_sdk": {
                 "title": "Başarılar & Yazılım Geliştirme Aracı",
-                "subtitle": "",
+                "subtitle": "Başarıların ele alınış şeklini değiştirin.",
                 "description_mode": "Başarımları Etkinleştir:",
                 "checkbox_always": "Her zaman (Tavsiye Edilen)",
                 "checkbox_specified": "Eğer mod için gerekliyse kullanımını destekle",
