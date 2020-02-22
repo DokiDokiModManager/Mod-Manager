@@ -1,33 +1,33 @@
 {
     "renderer": {
-        "language_change_instruction": "",
+        "language_change_instruction": "Zmiany języka zaczną obowiązywać po ponownym uruchomieniu",
         "tabs": {
-            "tab_home": "",
+            "tab_home": "Strona główna",
             "tab_mods": "",
             "tab_store": "",
-            "tab_options": "",
+            "tab_options": "Opcje",
             "tab_about": ""
         },
         "version": {
-            "link_changelog": ""
+            "link_changelog": "co nowego?"
         },
         "help_menu": {
-            "option_help": "",
+            "option_help": "Zobacz stronę pomocy",
             "option_feedback": "",
             "option_discord": ""
         },
         "user_menu": {
-            "option_rename": "",
-            "option_logout": ""
+            "option_rename": "Zmień nazwę użytkownika",
+            "option_logout": "Wyloguj"
         },
         "window_controls": {
-            "close": "",
-            "maximise": "",
-            "minimise": "",
+            "close": "Zamknij",
+            "maximise": "Maksymalizuj",
+            "minimise": "Minimalizuj",
             "help": "",
             "announcement": "",
-            "language": "",
-            "login": "",
+            "language": "Język",
+            "login": "Zaloguj",
             "update": {
                 "checking": "",
                 "available": "",
