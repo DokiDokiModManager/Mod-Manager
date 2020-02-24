@@ -1,58 +1,59 @@
 {
     "renderer": {
+        "language_change_instruction": "Зміни мови набудуть чинності після перезавантаження",
         "tabs": {
-            "tab_home": "Hjem",
-            "tab_mods": "Modder",
-            "tab_store": "Butikk",
-            "tab_options": "Valg",
-            "tab_about": "Om"
+            "tab_home": "Домівка",
+            "tab_mods": "Модифікації",
+            "tab_store": "Крамниця",
+            "tab_options": "Налаштування",
+            "tab_about": "Про застосунок"
         },
         "version": {
-            "link_changelog": "Hva er nytt?"
+            "link_changelog": "Що нового?"
         },
         "help_menu": {
-            "option_help": "Vis hjelpeside",
-            "option_feedback": "Send privat tilbakemelding",
-            "option_discord": "Ta del i Discord-tjeneren"
+            "option_help": "Відкрити довідку в оглядачі",
+            "option_feedback": "Відправити особистий відгук",
+            "option_discord": "Долучитися до сервера Discord"
         },
         "user_menu": {
-            "option_rename": "Endre brukernavn",
-            "option_logout": "Logg ut"
+            "option_rename": "Змінити ім'я користувача",
+            "option_logout": "Вийти"
         },
         "window_controls": {
-            "close": "Lukk",
-            "maximise": "Maksimer",
-            "minimise": "Minimer",
-            "help": "Få hjelp",
-            "announcement": "Les siste kunngjøring",
-            "login": "Logg inn",
+            "close": "Закрити",
+            "maximise": "Розгорнути",
+            "minimise": "Згорнути",
+            "help": "Отримати допомогу",
+            "announcement": "Прочитати останнє оголошення",
+            "language": "Мова",
+            "login": "Увійти",
             "update": {
-                "checking": "Ser etter oppdateringer i bakgrunnen…",
-                "available": "",
-                "downloading": "",
-                "downloaded": ""
-            },
-            "language": "Språk"
+                "checking": "Перевірка оновлень у тлі ...",
+                "available": "Оновлення доступно. Натисніть тут, щоб завантажити його.",
+                "downloading": "Завантаження оновлення...",
+                "downloaded": "Оновлення готово встановитись, коли ви вийдете."
+            }
         },
         "crash_cover": {
-            "button_close": "",
-            "button_continue": ""
+            "button_close": "Вихід",
+            "button_continue": "Продовжити"
         },
         "drop_cover": {
-            "text": ""
+            "text": "Скиньте мод сюди щоб встановити його"
         },
         "announcement": {
-            "button_open": "",
-            "button_close": ""
+            "button_open": "Відкрити посилання",
+            "button_close": "Закрити"
         },
         "onboarding": {
-            "title": "",
-            "description_download": "",
-            "button_download": "",
-            "button_choose": "",
-            "heading_step": "",
-            "s1_desc": "",
-            "s1_platform": "",
+            "title": "Ласкаво просимо!",
+            "description_download": "Нумо знайдемо копію DDLC.",
+            "button_download": "Відвідати офіційну сторінку завантаження DDLC",
+            "button_choose": "Шукати встановлену копію",
+            "heading_step": "Крок {0}",
+            "s1_desc": "Вам потрібно завантажити копію Doki Doki Literature Club. Його можна знайти на офіційному вебсайті (ddlc.moe) - натисніть кнопку нижче, щоб перейти туди зараз.",
+            "s1_platform": "Коли вас запитають, виберіть завантажити файл під назвою \"DDLC ({0})\".",
             "s2_desc": "",
             "description_location": "",
             "link_change": ""

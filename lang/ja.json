@@ -145,7 +145,7 @@
                 "title_screenshots": "{0}枚のスクリーンショット",
                 "description_screenshots": "プレイ中に S を押すことでスクリーンショットが撮れます。",
                 "description_sdk": "このMODはDoki Doki Mod Manager SDKに対応しています！",
-                "description_author": "Created by {0}",
+                "description_author": "{0} が作成した",
                 "link_discord": "Discord ({0})",
                 "link_website": "Webサイト ({0})",
                 "description_external": "フォルダを開く"

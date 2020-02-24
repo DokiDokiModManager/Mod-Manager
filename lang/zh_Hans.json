@@ -1,0 +1,345 @@
+{
+    "renderer": {
+        "language_change_instruction": "语言更改操作将会在重启后生效",
+        "tabs": {
+            "tab_home": "主页",
+            "tab_mods": "模组",
+            "tab_store": "商店",
+            "tab_options": "选项",
+            "tab_about": "关于"
+        },
+        "version": {
+            "link_changelog": "有什么新东西？"
+        },
+        "help_menu": {
+            "option_help": "浏览帮助站点",
+            "option_feedback": "发送私人反馈",
+            "option_discord": "加入我们的Discord服务器"
+        },
+        "user_menu": {
+            "option_rename": "更改用户名",
+            "option_logout": "登出"
+        },
+        "window_controls": {
+            "close": "关闭",
+            "maximise": "最大化",
+            "minimise": "最小化",
+            "help": "获取帮助",
+            "announcement": "获知最近一次的通告",
+            "language": "语言",
+            "login": "登入",
+            "update": {
+                "checking": "检查背景更新中。",
+                "available": "有一个可用更新。点击以下载。",
+                "downloading": "正在下载更新。",
+                "downloaded": "当你退出后将会安装更新。"
+            }
+        },
+        "crash_cover": {
+            "button_close": "退出",
+            "button_continue": "继续"
+        },
+        "drop_cover": {
+            "text": "把模组扔到这里以便安装"
+        },
+        "announcement": {
+            "button_open": "打开链接",
+            "button_close": "关闭"
+        },
+        "onboarding": {
+            "title": "欢迎！",
+            "description_download": "让我们寻找一个DDLC的档案拷贝吧。",
+            "button_download": "进入DDLC官方下载页面",
+            "button_choose": "浏览文件以寻找",
+            "heading_step": "步骤 {0}",
+            "s1_desc": "你需要下载一份心跳心跳文学部的游戏档案。可以在官方网站(ddlc.moe)中获取-点击下面的按钮立即跳转至官网。",
+            "s1_platform": "当你被询问时，选择下载名为 \"DDLC ({0})\"的文件。",
+            "s2_desc": "下载完成后，立即使用下面的按钮选择它。",
+            "description_location": "你的游戏文件将会存储在{0}",
+            "link_change": "(更改)"
+        },
+        "login_input": {
+            "message": "键入你的邮箱地址",
+            "details": "一封邮件将会被发送到这个地址。请点击邮件中的链接以便完成登录。",
+            "button_affirmative": "登入",
+            "button_negative": "取消"
+        },
+        "change_username_input": {
+            "message": "键入你的新用户名",
+            "details": "用户名不一定要唯一。",
+            "button_affirmative": "更改",
+            "button_negative": "取消"
+        },
+        "tab_mods": {
+            "list": {
+                "placeholder_search": "搜索模组。",
+                "header_new": "开始",
+                "link_install": "安装DDLC及模组文件",
+                "header_installed": "已安装",
+                "header_downloaded": "下载的"
+            },
+            "install_contextmenu": {
+                "launch": "启动",
+                "rename": "重命名",
+                "shortcut": "创建快捷方式",
+                "delete_save": "删除保存的数据",
+                "uninstall": "卸载"
+            },
+            "mod_contextmenu": {
+                "install": "安装",
+                "delete": "删除"
+            },
+            "uninstall_confirmation": {
+                "message": "你确定要卸载吗？",
+                "details": "你在{0}中保存的数据将会被删除，并且需要一份模组的拷贝来重新安装它。",
+                "button_affirmative": "卸载",
+                "button_negative": "取消"
+            },
+            "rename_input": {
+                "message": "重命名安装",
+                "details": "键入{0}的新名字。",
+                "button_affirmative": "重命名",
+                "button_negative": "取消"
+            },
+            "launch_lock_confirmation": {
+                "message": "正在使用云存储！",
+                "details": "如果你现在启动，可能丢失进度。",
+                "button_affirmative": "还是启动",
+                "button_negative": "取消"
+            },
+            "launch_noauth_confirmation": {
+                "message": "你没有登录！",
+                "details": "如果你现在启动，你的存档将不会同步到云。",
+                "button_affirmative": "还是启动",
+                "button_negative": "取消"
+            },
+            "launch_offline_confirmation": {
+                "message": "你处于离线状态！",
+                "details": "如果你现在启动，你的存档将不会同步到云。",
+                "button_affirmative": "还是启动",
+                "button_negative": "取消"
+            },
+            "mod_delete_confirmation": {
+                "message": "你确定要删粗这个模组吗？",
+                "details": "你将需要下载另一份这个模组的拷贝以便再次安装。",
+                "button_affirmative": "删除",
+                "button_negative": "取消"
+            },
+            "save_delete_confirmation": {
+                "message": "你确定要删除保存的数据吗？",
+                "details": "你将会从头开始{0}。",
+                "button_affirmative": "删除",
+                "button_negative": "删除"
+            },
+            "install": {
+                "button_launch": "启动",
+                "button_settings": "设置",
+                "tag_global_save": "全局保存",
+                "tag_sdk": "开发者",
+                "tag_cloud": "云储存",
+                "description_locked": "您正在使用另一台计算机上的云存储文件。要继续，请停止在另一台计算机上的游戏进程。",
+                "title_achievements": "成就 ({0} / {1})",
+                "description_achievements": "继续游玩以便解锁更多成就。",
+                "description_achievements_complete": "你已经解锁了全部成就。恭喜！",
+                "title_screenshots_none": "没有截图",
+                "title_screenshots_one": "一个截图",
+                "title_screenshots": "{0} 个截图",
+                "description_screenshots": "在游玩过程中按S键截图。",
+                "description_sdk": "这个模组支持心跳心跳模组管理器开发者工具包的特殊功能！",
+                "description_author": "由{0}制作",
+                "link_discord": "Discord({0})",
+                "link_website": "网站 ({0})",
+                "description_external": "打开文件夹"
+            },
+            "mod": {
+                "button_install": "安装",
+                "button_settings": "设置",
+                "description_external": "打开文件夹"
+            },
+            "install_creation": {
+                "title": "安装DDLC文件",
+                "label_install_name": "安装名称",
+                "label_folder_name": "文件夹名称",
+                "label_global_save": "全局存储",
+                "label_has_mod": "安装模组",
+                "label_mod": "模组",
+                "label_has_cloudsave": "云存储（测试版）",
+                "label_cloudsave": "云存储文件",
+                "option_new_cloudsave": "创建一个新存档",
+                "label_existing_saves": "退出存档",
+                "description_mod": "点击以浏览模组文件。",
+                "header_summary": "概述",
+                "description_vanilla": "一份DDLC的拷贝将会创建，存档文件将会与其他游戏分隔开来。",
+                "description_vanilla_global_save": "一份DDLC的拷贝将会创建，存档文件将会与其他游戏共享（比如Steam）",
+                "description_vanilla_cloudsave": "一份DDLC的拷贝将会创建，存档文件将会储存在云上。",
+                "description_modded": "一份DDLC的拷贝将会创建，同时将会安装模组。存档文件将会与其他模组分隔开来。",
+                "description_modded_global_save": "一份DDLC的拷贝将会创建，同时将会安装模组。存档文件将会与其他模组共享（比如Steam）",
+                "description_modded_cloudsave": "一份DDLC的拷贝将会创建，同时将会安装模组。存档文件将会存储在云上。",
+                "button_install": "安装",
+                "button_installing": "正在安装。",
+                "status_exists": "文件夹已存在。请重新取名。"
+            }
+        },
+        "tab_store_placeholder": {
+            "title": "商店加载中！",
+            "description_1": "Sayonika 模组数据库将提供一个共享、下载和审查DDLC 模组的中心。当Sayonika公开可用后，你将能够在这里浏览模组。",
+            "description_2": "在您等待的时候，随便下载一些推荐的模组吧。",
+            "error": "加载模组列表失败。你处于离线状态吗？",
+            "button_download": "下载"
+        },
+        "tab_options": {
+            "list": {
+                "header_appearance": "外观",
+                "link_background": "背景",
+                "link_advanced_appearance": "高级",
+                "header_enhancements": "增强功能",
+                "link_sdk": "成就&开发者工具包",
+                "link_discord": "Discord软件",
+                "header_application": "应用",
+                "link_updates": "更新",
+                "link_storage": "存储位置",
+                "header_developers": "开发者",
+                "link_testing": "开发者工具包漏洞反馈",
+                "link_debug": "应用信息"
+            },
+            "section_backgrounds": {
+                "title": "背景",
+                "subtitle": "通过应用这些背景自定义你的心跳心跳模组管理器。",
+                "button_none": "没有背景",
+                "description_credit": "原始的DDLC背景由Team Salvato提供。"
+            },
+            "section_advanced_appearance": {
+                "title": "高级",
+                "subtitle": "在这里寻找其他界面选项。",
+                "button_enable_sysborders": "使用系统选项边框（需要重启）",
+                "button_disable_sysborders": "不使用系统选项边框（需要重启）"
+            },
+            "section_storage": {
+                "title": "存储位置",
+                "subtitle": "更改游戏文件的存储位置。",
+                "description_moving": "警告！如果选择更改安装位置，则将移动所有模组、安装文件和存档。这可能需要几分钟，而且不可以中途停止。",
+                "description_current": "目前的位置： {0}",
+                "button_change": "更改安装位置"
+            },
+            "section_updates": {
+                "title": "更新",
+                "subtitle": "获取心跳心跳模组管理器的最新发布版本。",
+                "description_current_version": "当前版本: {0}",
+                "label_channel": "版本通道",
+                "option_stable": "稳定版",
+                "option_beta": "测试版",
+                "button_check": "检查更新"
+            },
+            "section_sdk": {
+                "title": "成就&开发者工具包",
+                "subtitle": "更改成就处理方式。",
+                "description_mode": "启用成就：",
+                "checkbox_always": "总是（推荐）",
+                "checkbox_specified": "当模组可以支持时",
+                "checkbox_never": "从不"
+            },
+            "section_discord": {
+                "title": "显示Discord状态",
+                "subtitle": "把你正在玩什么模组分享给Discord好友。",
+                "description": "重启心跳心跳模组管理器后，更改将会生效。",
+                "button_enable": "启用状态显示",
+                "button_disable": "关闭状态显示"
+            },
+            "section_testing": {
+                "title": "开发者工具包调试",
+                "subtitle": "启用调试日志来用心跳心跳模组开发者工具包测试您的模组。",
+                "button_enable": "启用调试",
+                "button_disable": "关闭调试"
+            },
+            "section_debug": {
+                "title": "应用信息",
+                "subtitle": "用来诊断问题的信息。"
+            }
+        },
+        "tab_about": {
+            "title": "关于",
+            "description": "心跳心跳模组管理器是一个由社区开发的项目，旨在帮助您寻找，安装并游玩心跳心跳文学部的模组。",
+            "title_disclaimer": "免责声明",
+            "disclaimer_1": "心跳心跳模组管理器是心跳心跳文学部的粉丝作品，不隶属于Team Salvato。根据Team Salvato的IP Guidelines定义，这是一个粉丝作品。",
+            "disclaimer_2": "心跳心跳模组管理器不对任何可能由于游玩模组或者其他操作而对您的文件或电脑造成的损害负责，确保模组的安全是您的责任。",
+            "title_socials": "联系我们",
+            "social_discord": "加入DDMM的Discord服务器",
+            "social_twitter": "在推特上关注@DokiMod",
+            "social_reddit": "在Reddit上向我发讯息",
+            "social_email": "发送电子邮件",
+            "title_support": "支持开发",
+            "description_support": "心跳心跳模组管理器永远可以免费下载和使用。如果你喜欢它，并想帮助我保持它的更新，请考虑用以下方式之一来支持我。",
+            "support_donate": "一次性捐助",
+            "support_steelseries": "SteelSeries游戏外设优惠10%(联盟链接)",
+            "support_code": "为项目做贡献（提交代码或制作翻译）"
+        }
+    },
+    "main": {
+        "jumplist": {
+            "task_launch": "打开心跳心跳模组管理器并启动游戏 {0}."
+        },
+        "running_cover": {
+            "title_running": "DDLC正在运行",
+            "title_crashed": "出现了一些故障",
+            "button_browse": "打开游戏文件夹",
+            "button_close": "好的",
+            "description_running": "关闭游戏以便对模组做出更改。",
+            "install_missing": "无法找到安装文件。",
+            "install_corrupt": "安装未完成或损坏。",
+            "install_crashed": "游戏无法启动或崩溃。"
+        },
+        "move_install": {
+            "title": "选择新的安装文件夹"
+        },
+        "mod_browse_dialog": {
+            "title": "寻找用来安装的模组",
+            "file_format_name": "模组"
+        },
+        "game_browse_dialog": {
+            "title": "定位一个DDLC的压缩文件",
+            "file_format_name": "DDLC"
+        },
+        "shortcut_dialog": {
+            "title": "选择放置快捷方式的位置",
+            "file_format_name": "快捷方式"
+        },
+        "errors": {
+            "exception": {
+                "title": "心跳心跳模组管理器崩溃了",
+                "body": "问题已被报告。请重启再次尝试。"
+            },
+            "move_install": {
+                "title": "移动安装文件夹失败",
+                "body": "请检查是否有权限和足够的空间移动到这个文件夹。"
+            },
+            "shortcut": {
+                "title": "创建快捷方式失败",
+                "body": "请检查是否有权限在这个文件夹创建文件。"
+            },
+            "install": {
+                "title": "安装游戏失败",
+                "body": "请检查是否有权限和足够的空间安装。"
+            },
+            "rename": {
+                "title": "重命名失败",
+                "body": "请检查是否已经关闭了所有可能造成干扰的程序并再次尝试。"
+            },
+            "uninstall": {
+                "title": "卸载失败",
+                "body": "请检查是否已经关闭了所有可能造成干扰的程序并再次尝试。"
+            },
+            "save_delete": {
+                "title": "删除保存的数据失败",
+                "body": "请检查是否已经关闭了所有可能造成干扰的程序并再次尝试。"
+            },
+            "mod_delete": {
+                "title": "删除模组失败",
+                "body": "请检查是否已经关闭了所有可能造成干扰的程序并再次尝试。"
+            },
+            "renderer_freeze": {
+                "title": "心跳心跳模组管理器停止响应",
+                "body": "如果问题持续时间过长，关闭程序并再次启动。"
+            }
+        }
+    }
+}

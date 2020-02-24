@@ -1,38 +1,39 @@
 {
     "renderer": {
+        "language_change_instruction": "Zmiany języka zaczną obowiązywać po ponownym uruchomieniu",
         "tabs": {
-            "tab_home": "Hjem",
-            "tab_mods": "Modder",
-            "tab_store": "Butikk",
-            "tab_options": "Valg",
-            "tab_about": "Om"
+            "tab_home": "Strona główna",
+            "tab_mods": "",
+            "tab_store": "",
+            "tab_options": "Opcje",
+            "tab_about": ""
         },
         "version": {
-            "link_changelog": "Hva er nytt?"
+            "link_changelog": "co nowego?"
         },
         "help_menu": {
-            "option_help": "Vis hjelpeside",
-            "option_feedback": "Send privat tilbakemelding",
-            "option_discord": "Ta del i Discord-tjeneren"
+            "option_help": "Zobacz stronę pomocy",
+            "option_feedback": "",
+            "option_discord": ""
         },
         "user_menu": {
-            "option_rename": "Endre brukernavn",
-            "option_logout": "Logg ut"
+            "option_rename": "Zmień nazwę użytkownika",
+            "option_logout": "Wyloguj"
         },
         "window_controls": {
-            "close": "Lukk",
-            "maximise": "Maksimer",
-            "minimise": "Minimer",
-            "help": "Få hjelp",
-            "announcement": "Les siste kunngjøring",
-            "login": "Logg inn",
+            "close": "Zamknij",
+            "maximise": "Maksymalizuj",
+            "minimise": "Minimalizuj",
+            "help": "",
+            "announcement": "",
+            "language": "Język",
+            "login": "Zaloguj",
             "update": {
-                "checking": "Ser etter oppdateringer i bakgrunnen…",
+                "checking": "",
                 "available": "",
                 "downloading": "",
                 "downloaded": ""
-            },
-            "language": "Språk"
+            }
         },
         "crash_cover": {
             "button_close": "",
