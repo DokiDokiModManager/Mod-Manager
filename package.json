@@ -30,7 +30,7 @@
     "hazardous": "^0.3.0",
     "request": "^2.88.0",
     "semver": "^6.2.0",
-    "vue": "^2.6.10"
+    "vue": "^2.6.11"
   },
   "devDependencies": {
     "@sentry/cli": "^1.44.3",
