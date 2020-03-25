@@ -138,7 +138,7 @@ api.window.handleLanguageMenu = function (mouseX, mouseY) {
     const current = api.config.readConfigValue("language");
     const languages = [
         {
-            name: "беларуская мова",
+            name: "Беларуская",
             code: "be"
         },
         {
@@ -158,12 +158,36 @@ api.window.handleLanguageMenu = function (mouseX, mouseY) {
             code: "ja"
         },
         {
-            name: "русский",
+            name: "Русский",
             code: "ru"
         },
         {
             name: "Norsk Bokmål",
             code: "nb_NO"
+        },
+        {
+            name: "简体中文",
+            code: "zh_Hans"
+        },
+        // {
+        //     name: "فارسی",
+        //     code: "fa"
+        // },
+        {
+            name: "Français",
+            code: "fr"
+        },
+        {
+            name: "Polski",
+            code: "pl"
+        },
+        {
+            name: "Türkçe",
+            code: "tr"
+        },
+        {
+            name: "Українська",
+            code: "uk"
         }
     ].sort((a,b) => (a.code > b.code) ? 1 : -1);
     remote.Menu.buildFromTemplate([{
