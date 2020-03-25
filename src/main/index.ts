@@ -5,6 +5,8 @@ import {autoUpdater} from "electron-updater";
 import * as Sentry from "@sentry/electron";
 import * as semver from "semver";
 
+require("hazardous");
+
 // Check if running from Windows Store
 const isAppx: boolean = (process.execPath.indexOf("WindowsApps") !== -1);
 
