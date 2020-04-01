@@ -33,7 +33,7 @@
     "vue": "^2.6.10"
   },
   "devDependencies": {
-    "@sentry/cli": "^1.44.3",
+    "@sentry/cli": "^1.52.1",
     "electron": "^5.0.2",
     "electron-builder": "^21.0.15",
     "mocha": "^6.1.4",
