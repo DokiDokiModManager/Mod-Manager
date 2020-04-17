@@ -18,7 +18,6 @@
     "tabs": {
       "tab_play": "Play",
       "tab_downloads": "Mods",
-      "tab_sayonika": "Sayonika",
       "tab_options": "Options",
       "tab_about": "About",
       "tab_experiments": "Experiments"
@@ -312,6 +311,14 @@
         "title": "Your Mods",
         "button_install": "Install",
         "button_options": "Options"
+      },
+      "downloads": {
+        "title": "Downloads",
+        "status_text_downloading": "Downloading - {0}% at {1} MB/s ({2} remaining)",
+        "status_text_downloading_uncertain": "Downloading - {0} MB downloaded at {1} MB/s",
+        "status_text_pending": "Waiting for other downloads",
+        "status_text_error": "Download failed",
+        "status_text_complete": "Download finished"
       }
     }
   },
