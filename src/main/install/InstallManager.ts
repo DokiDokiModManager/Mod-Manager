@@ -45,7 +45,7 @@ export default class InstallManager {
         return new Promise((ff, rj) => {
             const dirPath = joinPath(Config.readConfigValue("installFolder"), "installs", folderName);
             if (existsSync(dirPath)) {
-                remove(dirPath).then(ff).catch(rj);
+                remove(dirPath).then(() =>  ff()).catch(err => rj(err));
             } else {
                 rj(new Error("Install does not exist."))
             }
@@ -61,11 +61,11 @@ export default class InstallManager {
             const dirPath = joinPath(Config.readConfigValue("installFolder"), "installs", folderName);
             if (existsSync(dirPath)) {
                 if (process.platform === "win32") {
-                    emptyDir(joinPath(dirPath, "appdata")).then(ff).catch(rj);
+                    emptyDir(joinPath(dirPath, "appdata")).then(() => ff()).catch(err => rj(err));
                 } else if (process.platform === "darwin") {
-                    emptyDir(joinPath(dirPath, "appdata", "Library", "RenPy")).then(ff).catch(rj);
+                    emptyDir(joinPath(dirPath, "appdata", "Library", "RenPy")).then(() => ff()).catch(err => rj(err));
                 } else {
-                    emptyDir(joinPath(dirPath, "appdata", ".renpy")).then(ff).catch(rj);
+                    emptyDir(joinPath(dirPath, "appdata", ".renpy")).then(() => ff()).catch(err => rj(err));
                 }
             } else {
                 rj(new Error("Install does not exist."))

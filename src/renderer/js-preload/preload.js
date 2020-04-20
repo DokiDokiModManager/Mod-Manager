@@ -18,7 +18,7 @@ api.app = {};
 api.window = {};
 api.config = {};
 api.onboarding = {};
-api.account = {};
+api.downloads = {};
 
 // Called when the UI wants to refresh the mod list
 api.mods.refreshModList = function () {
@@ -201,16 +201,16 @@ api.mods.createShortcut = function (folderName, installName) {
 };
 
 // Change category
-api.mods.setCategory = function(folderName, category) {
+api.mods.setCategory = function (folderName, category) {
     ipcRenderer.send("set category", {folderName, category});
 };
 
 // Import / export Monika
-api.mods.importMAS = function(folderName) {
+api.mods.importMAS = function (folderName) {
     ipcRenderer.send("import mas", folderName);
 };
 
-api.mods.exportMAS = function(folderName) {
+api.mods.exportMAS = function (folderName) {
     ipcRenderer.send("export mas", folderName);
 };
 
@@ -253,39 +253,25 @@ api.app.update = function () {
     ipcRenderer.send("check update");
 };
 
-// Onboarding download
-api.onboarding.downloadGame = function () {
-    ipcRenderer.send("onboarding download");
-};
-
 api.onboarding.browseForGame = function () {
     ipcRenderer.send("onboarding browse");
 };
 
-ipcRenderer.on("download progress", (_, data) => {
-    api.emit("download progress", data);
-});
-
-ipcRenderer.on("download stalled", (_, data) => {
-    api.emit("download stalled", data);
-});
-
-ipcRenderer.on("onboarding downloaded", () => {
-    api.emit("onboarding downloaded");
-});
-
-ipcRenderer.on("onboarding download failed", () => {
-    api.emit("onboarding download failed");
-});
-
-// Winstore Appx UI handling
-ipcRenderer.on("is appx", (_, is) => {
-    api.emit("is appx", is);
-});
-
-api.reloadLanguages = function() {
-  ipcRenderer.send("reload languages");
+api.reloadLanguages = function () {
+    ipcRenderer.send("reload languages");
 };
+
+api.downloads.getActiveDownloads = function () {
+    ipcRenderer.send("get downloads");
+}
+
+ipcRenderer.on("got downloads", (ev, downloads) => {
+   api.emit("got downloads", downloads);
+});
+
+api.downloads.startDownload = function (url) {
+    ipcRenderer.send("start download", url);
+}
 
 // Application version
 api.version = packageData.version;

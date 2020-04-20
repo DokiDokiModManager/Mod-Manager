@@ -35,6 +35,8 @@ import DiscordManager from "./discord/DiscordManager";
 import DownloadManager from "./net/DownloadManager";
 import OnboardingManager from "./onboarding/OnboardingManager";
 import {checkSync, DiskUsage} from "diskusage";
+import DownloadItem = Electron.DownloadItem;
+import MessageBoxReturnValue = Electron.MessageBoxReturnValue;
 
 Sentry.init({
     dsn: "https://bf0edf3f287344d4969e3171c33af4ea@sentry.io/1297252",
@@ -161,6 +163,25 @@ ipcMain.on("read config", (ev: IpcMainEvent, key: string) => {
 // Launch install
 ipcMain.on("launch install", (ev: IpcMainEvent, folderName: string) => {
     launchInstall(folderName);
+});
+
+function sendDownloads()  {
+    appWindow.webContents.send("got downloads", downloadManager.getActiveDownloads().map((dl: DownloadItem) => {
+        return {
+            filename: dl.getFilename(),
+            downloaded: dl.getReceivedBytes(),
+            total: dl.getTotalBytes(),
+            startTime: dl.getStartTime()*1000
+        }
+    }));
+}
+
+ipcMain.on("get downloads", () => {
+    sendDownloads();
+});
+
+ipcMain.on("start download", (ev: IpcMainEvent, url: string) => {
+    downloadManager.downloadFile(url);
 });
 
 // Browse for a mod
@@ -449,23 +470,6 @@ ipcMain.on("reload languages", () => {
 
 // region Onboarding
 
-// Download start
-ipcMain.on("onboarding download", () => {
-    console.log("Starting game download");
-    onboardingManager.downloadGame().then(() => {
-        appWindow.flashFrame(true);
-        OnboardingManager.requiresOnboarding().then(() => {
-            appWindow.webContents.send("onboarding downloaded");
-        }).catch(() => {
-            // TODO: show a message and try again
-        });
-    }).catch(e => {
-        removeSync(joinPath(Config.readConfigValue("installFolder"), "ddlc.zip"));
-        console.warn("Failed to download game in onboarding: " + e);
-        appWindow.webContents.send("onboarding download failed");
-    });
-});
-
 // Import start
 ipcMain.on("onboarding browse", () => {
     dialog.showOpenDialog(appWindow, {
@@ -490,7 +494,7 @@ ipcMain.on("onboarding browse", () => {
 });
 
 ipcMain.on("download mod", (ev, url) => {
-    downloadManager.downloadFile(url, joinPath(Config.readConfigValue("installFolder"), "mods"), null, "DOWNLOADED_MOD");
+    downloadManager.downloadFile(url);
 });
 
 // endregion
@@ -577,11 +581,13 @@ app.on("ready", () => {
 
     if (
         !existsSync(joinPath(Config.readConfigValue("installFolder"), "mods")) ||
-        !existsSync(joinPath(Config.readConfigValue("installFolder"), "installs"))
+        !existsSync(joinPath(Config.readConfigValue("installFolder"), "installs")) ||
+        !existsSync(joinPath(Config.readConfigValue("installFolder"), "downloads"))
     ) {
         console.log("Creating directory structure");
         mkdirpSync(joinPath(Config.readConfigValue("installFolder"), "mods"));
         mkdirpSync(joinPath(Config.readConfigValue("installFolder"), "installs"));
+        mkdirpSync(joinPath(Config.readConfigValue("installFolder"), "downloads"));
     }
 
     // set protocol handler
@@ -609,31 +615,19 @@ app.on("ready", () => {
     });
 
     // Activate download manager
-    downloadManager = new DownloadManager(appWindow);
+    downloadManager = new DownloadManager();
 
     // ...and the onboarding manager
-    onboardingManager = new OnboardingManager(downloadManager);
+    onboardingManager = new OnboardingManager();
 
     // ...and the mod list
     modList = new ModList(downloadManager);
 
-    downloadManager.on("download progress", (data: { filename: string, downloaded: number, total: number, startTime: number, meta?: any }) => {
-        appWindow.webContents.send("download progress", data);
+    downloadManager.on("updated", () => {
+        sendDownloads();
     });
 
-    downloadManager.on("download stalled", (data: { filename: string, downloaded: number, total: number, startTime: number, meta?: any }) => {
-        appWindow.webContents.send("download stalled", data);
-    });
-
-    downloadManager.on("download started", () => {
-        appWindow.webContents.send("got modlist", modList.getModList());
-    });
-
-    downloadManager.on("download complete", () => {
-        appWindow.webContents.send("got modlist", modList.getModList());
-    });
-
-    downloadManager.on("download failed", () => {
+    downloadManager.on("finished", () => {
         appWindow.webContents.send("got modlist", modList.getModList());
     });
 
@@ -648,7 +642,6 @@ app.on("ready", () => {
     appWindow.on("ready-to-show", () => {
         appWindow.show();
     });
-
 
     appWindow.webContents.on("crashed", () => {
         const crashNotif = new Notification({
@@ -669,9 +662,9 @@ app.on("ready", () => {
         freezeNotif.show();
     });
 
-    appWindow.on("close", e => {
-        if (downloadManager.hasDownloads()) {
-            e.preventDefault();
+    appWindow.on("close", (ev: Event) => {
+        if (downloadManager.hasActiveDownloads()) {
+            ev.preventDefault();
         }
     });
 

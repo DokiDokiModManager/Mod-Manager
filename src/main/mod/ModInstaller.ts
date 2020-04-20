@@ -78,7 +78,7 @@ export default class ModInstaller {
                                 hasReadMetadata = true;
                                 try {
                                     const modDataPath: string = joinPath(installPath, "../install.json");
-                                    const oldInstallContents: any = JSON.parse(readFileSync(modDataPath));
+                                    const oldInstallContents: any = JSON.parse(readFileSync(modDataPath).toString());
                                     oldInstallContents.mod = JSON.parse(fileContents);
                                     writeFileSync(modDataPath, JSON.stringify(oldInstallContents));
                                 } catch (err) {

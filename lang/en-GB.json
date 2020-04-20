@@ -316,9 +316,7 @@
         "title": "Downloads",
         "status_text_downloading": "Downloading - {0}% at {1} MB/s ({2} remaining)",
         "status_text_downloading_uncertain": "Downloading - {0} MB downloaded at {1} MB/s",
-        "status_text_pending": "Waiting for other downloads",
-        "status_text_error": "Download failed",
-        "status_text_complete": "Download finished"
+        "message_none": "No downloads in progress."
       }
     }
   },
