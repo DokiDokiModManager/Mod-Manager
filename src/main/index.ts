@@ -168,7 +168,7 @@ ipcMain.on("launch install", (ev: IpcMainEvent, folderName: string) => {
 function sendDownloads()  {
     appWindow.webContents.send("got downloads", downloadManager.getActiveDownloads().map((dl: DownloadItem) => {
         return {
-            filename: dl.getFilename(),
+            filename: downloadManager.getSavedFilename(dl.getURLChain()[0]) || dl.getFilename(),
             downloaded: dl.getReceivedBytes(),
             total: dl.getTotalBytes(),
             startTime: dl.getStartTime()*1000
@@ -180,8 +180,8 @@ ipcMain.on("get downloads", () => {
     sendDownloads();
 });
 
-ipcMain.on("start download", (ev: IpcMainEvent, url: string) => {
-    downloadManager.downloadFile(url);
+ipcMain.on("start download", (ev: IpcMainEvent, data: { url: string, filename?: string }) => {
+    downloadManager.downloadFile(data.url, data.filename);
 });
 
 // Browse for a mod

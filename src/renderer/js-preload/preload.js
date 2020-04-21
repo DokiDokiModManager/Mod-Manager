@@ -269,8 +269,8 @@ ipcRenderer.on("got downloads", (ev, downloads) => {
    api.emit("got downloads", downloads);
 });
 
-api.downloads.startDownload = function (url) {
-    ipcRenderer.send("start download", url);
+api.downloads.startDownload = function (url, filename) {
+    ipcRenderer.send("start download", {url, filename});
 }
 
 // Application version
