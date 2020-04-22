@@ -305,7 +305,8 @@
         "link_downloaded": "Your Mods",
         "link_downloads": "Downloads",
         "header_browse": "Find Mods",
-        "link_featured": "Featured Mods"
+        "link_featured": "Featured Mods",
+        "link_ddmc": "Doki Doki Mod Club"
       },
       "downloaded": {
         "title": "Your Mods",
@@ -317,6 +318,15 @@
         "status_text_downloading": "Downloading - {0}% at {1} MB/s ({2} remaining)",
         "status_text_downloading_uncertain": "Downloading - {0} MB downloaded at {1} MB/s",
         "message_none": "No downloads in progress."
+      },
+      "featured": {
+        "title": "Featured Mods",
+        "button_download": "Download"
+      },
+      "store": {
+        "title_ddmc": "Doki Doki Mod Club",
+        "description": "Mods listed here are not moderated or endorsed by Doki Doki Mod Manager. Proceed with caution!",
+        "text_loading": "Loading mod list..."
       }
     }
   },

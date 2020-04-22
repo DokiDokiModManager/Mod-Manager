@@ -1,4 +1,4 @@
-import {session, DownloadItem} from "electron";
+import {session, DownloadItem, BrowserWindow} from "electron";
 import {join as joinPath} from "path";
 import * as EventEmitter from "events";
 import Config from "../utils/Config";
@@ -10,11 +10,18 @@ export default class DownloadManager extends EventEmitter {
 
     private filenames: Map<string, string> = new Map();
 
+    private interactionWin: BrowserWindow;
+
     constructor() {
         super();
 
         session.defaultSession.on("will-download", (ev, item: DownloadItem) => {
             this.downloads.push(item);
+
+            if (this.interactionWin) {
+                this.interactionWin.close();
+            }
+            this.emit("started", item.getURLChain()[0]);
 
             const filename: string = this.filenames.get(item.getURLChain()[0]) || item.getFilename();
             item.savePath = joinPath(Config.readConfigValue("installFolder"), "downloads", filename);
@@ -69,5 +76,28 @@ export default class DownloadManager extends EventEmitter {
             this.filenames.set(url, filename);
         }
         session.defaultSession.downloadURL(url);
+    }
+
+    /**
+     * Downloads a file from a URL by showing it in a new window
+     *
+     * @param url The URL to download
+     */
+    public downloadFileWithInteraction(url: string) {
+        this.interactionWin = new BrowserWindow({
+            webPreferences: {
+                nodeIntegration: false,
+            }
+        });
+
+        this.interactionWin.on("close", () => {
+            this.interactionWin = null;
+        });
+
+        this.interactionWin.webContents.on("new-window", event => {
+            event.preventDefault();
+        });
+
+        this.interactionWin.loadURL(url);
     }
 }

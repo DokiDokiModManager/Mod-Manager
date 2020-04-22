@@ -11,6 +11,7 @@ import {
 } from "electron";
 import {copyFileSync, existsSync, mkdirpSync, move, readdirSync, removeSync, statSync, unlinkSync} from "fs-extra";
 import {join as joinPath} from "path";
+import {URL} from "url";
 
 if (existsSync(joinPath(app.getPath("appData"), "Doki Doki Mod Manager!"))) {
     console.log("Overriding app data path");
@@ -37,6 +38,8 @@ import OnboardingManager from "./onboarding/OnboardingManager";
 import {checkSync, DiskUsage} from "diskusage";
 import DownloadItem = Electron.DownloadItem;
 import MessageBoxReturnValue = Electron.MessageBoxReturnValue;
+import session = Electron.session;
+import WebContents = Electron.WebContents;
 
 Sentry.init({
     dsn: "https://bf0edf3f287344d4969e3171c33af4ea@sentry.io/1297252",
@@ -180,8 +183,12 @@ ipcMain.on("get downloads", () => {
     sendDownloads();
 });
 
-ipcMain.on("start download", (ev: IpcMainEvent, data: { url: string, filename?: string }) => {
-    downloadManager.downloadFile(data.url, data.filename);
+ipcMain.on("start download", (ev: IpcMainEvent, data: { url: string, filename?: string, interaction?: boolean }) => {
+    if (data.interaction) {
+        downloadManager.downloadFileWithInteraction(data.url);
+    } else {
+        downloadManager.downloadFile(data.url, data.filename);
+    }
 });
 
 // Browse for a mod
@@ -570,6 +577,20 @@ app.on("second-instance", (ev: Event, argv: string[]) => {
     handleURL(argv.pop());
 });
 
+// app.on("web-contents-created", (ev: Event, contents: WebContents) => {
+//    if (contents.getType() === "webview") {
+//        contents.on("new-window", (nwEv: Event, url: string) => {
+//            // nwEv.preventDefault();
+//            console.log(url);
+//            // const urlObj: URL = new URL(url);
+//            // if (urlObj.pathname.match(/.*\.(zip|7z|rar|gz|tar)$/)) {
+//            //     downloadManager.downloadFile(url);
+//            // }
+//        });
+//    }
+// });
+
+
 app.on("ready", () => {
     console.log(app.getPath("userData"));
     if (!app.requestSingleInstanceLock()) {
@@ -608,6 +629,7 @@ app.on("ready", () => {
             sandbox: true,
             nodeIntegration: false,
             nativeWindowOpen: true,
+            webviewTag: true,
             preload: joinPath(__dirname, "../../src/renderer/js-preload/preload.js") // contains all the IPC scripts
         },
         titleBarStyle: "hiddenInset",
@@ -622,6 +644,10 @@ app.on("ready", () => {
 
     // ...and the mod list
     modList = new ModList(downloadManager);
+
+    downloadManager.on("started", url => {
+       appWindow.webContents.send("download started", url);
+    });
 
     downloadManager.on("updated", () => {
         sendDownloads();
