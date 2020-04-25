@@ -90,7 +90,8 @@
       "maintainer": "zudo@doki.space",
       "synopsis": "Doki Doki Mod Manager",
       "target": [
-        "AppImage"
+        "AppImage",
+        "snap"
       ]
     },
     "mac": {
