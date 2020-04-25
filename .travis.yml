@@ -17,9 +17,10 @@ matrix:
     node_js: "10"
     sudo: required
     dist: xenial
-    snaps:
-      - name: snapcraft
-        classic: true
+    addons:
+      snaps:
+        - name: snapcraft
+          classic: true
     env:
       - ELECTRON_CACHE=$HOME/.cache/electron
       - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
