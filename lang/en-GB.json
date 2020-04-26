@@ -262,8 +262,8 @@
       },
       "section_language": {
         "title": "Language",
-        "subtitle": "Choose your preferred language. Not all translations will be complete.",
-        "link_contribute": "Can you help translate Doki Doki Mod Manager?",
+        "subtitle": "Choose your preferred language. Translations may not be 100% accurate or complete.",
+        "link_contribute": "Can you help translate Doki Doki Mod Manager? Click to join the community translation project.",
         "label_language": "Language"
       },
       "section_sdk": {
