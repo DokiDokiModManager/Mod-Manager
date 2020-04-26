@@ -32,6 +32,12 @@ matrix:
       - sudo apt-get update
       - sudo apt-get install -y gcc-multilib g++-multilib
 
+    deploy:
+      provider: snap
+      snap: dist/ddmm-*.snap
+      channel: edge
+      skip_cleanup: true
+
 script:
 - |
   if [ "$TRAVIS_OS_NAME" == "linux" ]; then

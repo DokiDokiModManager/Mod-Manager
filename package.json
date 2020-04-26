@@ -92,7 +92,8 @@
       "target": [
         "AppImage",
         "snap"
-      ]
+      ],
+      "publish": ["github"]
     },
     "snap": {
       "confinement": "strict",
