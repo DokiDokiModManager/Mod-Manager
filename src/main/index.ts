@@ -11,7 +11,6 @@ import {
 } from "electron";
 import {copyFileSync, existsSync, mkdirpSync, move, readdirSync, removeSync, statSync, unlinkSync} from "fs-extra";
 import {join as joinPath} from "path";
-import {URL} from "url";
 
 if (existsSync(joinPath(app.getPath("appData"), "Doki Doki Mod Manager!"))) {
     console.log("Overriding app data path");

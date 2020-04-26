@@ -123,6 +123,12 @@
       "delete": "Delete",
       "cancel": "Cancel"
     },
+    "modal_mod_preview": {
+      "button_close": "Close",
+      "button_download_direct": "Download",
+      "button_download_external": "Download in Browser",
+      "text_loading": "Loading download options..."
+    },
     "tab_mods": {
       "list": {
         "placeholder_search": "Search mods...",
