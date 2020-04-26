@@ -36,9 +36,6 @@ import DownloadManager from "./net/DownloadManager";
 import OnboardingManager from "./onboarding/OnboardingManager";
 import {checkSync, DiskUsage} from "diskusage";
 import DownloadItem = Electron.DownloadItem;
-import MessageBoxReturnValue = Electron.MessageBoxReturnValue;
-import session = Electron.session;
-import WebContents = Electron.WebContents;
 
 Sentry.init({
     dsn: "https://bf0edf3f287344d4969e3171c33af4ea@sentry.io/1297252",
@@ -636,7 +633,7 @@ app.on("ready", () => {
     });
 
     // Activate download manager
-    downloadManager = new DownloadManager();
+    downloadManager = new DownloadManager(appWindow, lang);
 
     // ...and the onboarding manager
     onboardingManager = new OnboardingManager();

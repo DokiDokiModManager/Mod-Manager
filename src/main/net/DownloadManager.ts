@@ -1,8 +1,9 @@
-import {session, DownloadItem, BrowserWindow} from "electron";
+import {session, DownloadItem, BrowserWindow, dialog} from "electron";
 import {join as joinPath} from "path";
 import * as EventEmitter from "events";
 import Config from "../utils/Config";
-import {moveSync} from "fs-extra";
+import {moveSync, existsSync} from "fs-extra";
+import I18n from "../utils/i18n";
 
 export default class DownloadManager extends EventEmitter {
 
@@ -12,8 +13,13 @@ export default class DownloadManager extends EventEmitter {
 
     private interactionWin: BrowserWindow;
 
-    constructor() {
+    private readonly lang: I18n;
+    private readonly mainWin: BrowserWindow;
+
+    constructor(mainWin: BrowserWindow, lang: I18n) {
         super();
+        this.lang = lang;
+        this.mainWin = mainWin;
 
         session.defaultSession.on("will-download", (ev, item: DownloadItem) => {
             this.downloads.push(item);
@@ -21,9 +27,24 @@ export default class DownloadManager extends EventEmitter {
             if (this.interactionWin) {
                 this.interactionWin.close();
             }
-            this.emit("started", item.getURLChain()[0]);
 
             const filename: string = this.filenames.get(item.getURLChain()[0]) || item.getFilename();
+            const newPath: string = joinPath(Config.readConfigValue("installFolder"), "mods", filename);
+
+            if (existsSync(newPath)) {
+                if (dialog.showMessageBoxSync(mainWin, {
+                    message: this.lang.translate("main.redownload_confirmation.message"),
+                    detail: this.lang.translate("main.redownload_confirmation.detail", filename),
+                    buttons: [this.lang.translate("main.redownload_confirmation.button_confirm"), this.lang.translate("main.redownload_confirmation.button_cancel")],
+                    type: "warning"
+                }) === 0) {
+                    item.cancel();
+                    return;
+                }
+            }
+
+            this.emit("started", item.getURLChain()[0]);
+
             item.savePath = joinPath(Config.readConfigValue("installFolder"), "downloads", filename);
 
             item.on("updated", () => {
@@ -34,7 +55,9 @@ export default class DownloadManager extends EventEmitter {
                 this.downloads.splice(this.downloads.indexOf(item), 1);
                 if (state === "completed") {
                     this.filenames.delete(item.getURLChain()[0]);
-                    moveSync(item.savePath, joinPath(Config.readConfigValue("installFolder"), "mods", filename));
+                    moveSync(item.savePath, newPath, {
+                        overwrite: true
+                    });
                     this.emit("finished", item);
                 }
                 this.emit("updated", item);
@@ -85,13 +108,23 @@ export default class DownloadManager extends EventEmitter {
      */
     public downloadFileWithInteraction(url: string) {
         this.interactionWin = new BrowserWindow({
+            parent: this.mainWin,
+            modal: true,
+            show: false,
             webPreferences: {
                 nodeIntegration: false,
             }
         });
 
+        this.interactionWin.minimize();
+        this.interactionWin.setMenu(null);
+
         this.interactionWin.on("close", () => {
             this.interactionWin = null;
+        });
+
+        this.interactionWin.on("ready-to-show", () => {
+            this.interactionWin.show();
         });
 
         this.interactionWin.webContents.on("new-window", event => {

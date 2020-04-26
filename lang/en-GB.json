@@ -380,6 +380,12 @@
       "title": "Choose where you want to copy Monika to",
       "filter": "Just Monika"
     },
+    "redownload_confirmation": {
+      "message": "Mod already downloaded",
+      "detail": "There is already a copy of {0} in your mod library. Would you like to download it again? (This will overwrite the old copy)",
+      "button_confirm": "Download",
+      "button_cancel": "Cancel"
+    },
     "errors": {
       "dev_ui_load_fail": {
         "title": "Failed to load from development server",
