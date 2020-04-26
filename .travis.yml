@@ -20,7 +20,9 @@ matrix:
     addons:
       snaps:
         - name: snapcraft
-          classic: true
+          confinement: classic
+        - name: multipass
+          confinement: classic
     env:
       - ELECTRON_CACHE=$HOME/.cache/electron
       - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
