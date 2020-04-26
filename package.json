@@ -94,6 +94,13 @@
         "snap"
       ]
     },
+    "snap": {
+      "confinement": "strict",
+      "stagePackages": [
+        "default",
+        "libglu1-mesa"
+      ]
+    },
     "mac": {
       "category": "public.app-category.games",
       "target": [
