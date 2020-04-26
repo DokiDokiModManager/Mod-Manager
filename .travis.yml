@@ -16,13 +16,15 @@ matrix:
     language: node_js
     node_js: "10"
     sudo: required
-    dist: xenial
+    dist: bionic
     addons:
       snaps:
         - name: snapcraft
           confinement: classic
         - name: multipass
           confinement: classic
+          channel: beta
+
     env:
       - ELECTRON_CACHE=$HOME/.cache/electron
       - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
