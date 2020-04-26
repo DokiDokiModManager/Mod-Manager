@@ -28,20 +28,23 @@
     "diskusage": "^1.1.3",
     "electron-updater": "^4.2.0",
     "fs-extra": "^9.0.0",
-    "fuse.js": "^5.1.0",
+    "fuse.js": "^5.2.3",
     "request": "^2.88.0",
     "semver": "^7.1.1",
     "vue": "^2.6.11",
-    "vuex": "^3.1.2",
+    "vuex": "^3.3.0",
     "yauzl": "latest"
   },
   "devDependencies": {
-    "@sentry/cli": "^1.49.0",
-    "@types/node": "12.12.36",
-    "electron": "^9.0.0-beta.17",
+    "@sentry/cli": "^1.52.3",
+    "@types/node": "12.12.6",
+    "electron": "^8.2.3",
     "electron-builder": "^22.2.0",
-    "mocha": "^7.0.0",
+    "mocha": "^7.1.2",
     "typescript": "^3.7.5"
+  },
+  "resolutions": {
+    "@types/node": "12.12.6"
   },
   "build": {
     "appId": "space.doki.modmanager",
@@ -93,10 +96,11 @@
         "AppImage",
         "snap"
       ],
-      "publish": ["github"]
+      "publish": [
+        "github"
+      ]
     },
     "snap": {
-      "confinement": "strict",
       "stagePackages": [
         "default",
         "libglu1-mesa"
