@@ -3,18 +3,18 @@
         "language_change_instruction": "Zmiany języka zaczną obowiązywać po ponownym uruchomieniu",
         "tabs": {
             "tab_home": "Strona główna",
-            "tab_mods": "",
-            "tab_store": "",
+            "tab_mods": "Modyfikacje",
+            "tab_store": "Sklep",
             "tab_options": "Opcje",
-            "tab_about": ""
+            "tab_about": "O DDMM"
         },
         "version": {
             "link_changelog": "co nowego?"
         },
         "help_menu": {
             "option_help": "Zobacz stronę pomocy",
-            "option_feedback": "",
-            "option_discord": ""
+            "option_feedback": "Wyślij prywatną ocenę",
+            "option_discord": "Dołącz do serwera Discord"
         },
         "user_menu": {
             "option_rename": "Zmień nazwę użytkownika",
@@ -24,321 +24,321 @@
             "close": "Zamknij",
             "maximise": "Maksymalizuj",
             "minimise": "Minimalizuj",
-            "help": "",
-            "announcement": "",
+            "help": "Przejdź do pomocy",
+            "announcement": "Przeczytaj ostatnie ogłoszenia",
             "language": "Język",
             "login": "Zaloguj",
             "update": {
-                "checking": "",
-                "available": "",
-                "downloading": "",
-                "downloaded": ""
+                "checking": "Sprawdzanie aktualizacji w tle...",
+                "available": "Aktualizacja jest dostępna. Kliknij, aby ją pobrać.",
+                "downloading": "Pobieranie aktualizacji...",
+                "downloaded": "Aktualizacja jest gotowa do zainstalowania po zamknięciu."
             }
         },
         "crash_cover": {
-            "button_close": "",
-            "button_continue": ""
+            "button_close": "Wyjdź",
+            "button_continue": "Kontynuuj"
         },
         "drop_cover": {
-            "text": ""
+            "text": "Wrzuć modyfikacje tutaj, aby ją zainstalować"
         },
         "announcement": {
-            "button_open": "",
-            "button_close": ""
+            "button_open": "Otwórz link",
+            "button_close": "Zamknij"
         },
         "onboarding": {
-            "title": "",
-            "description_download": "",
-            "button_download": "",
-            "button_choose": "",
-            "heading_step": "",
-            "s1_desc": "",
-            "s1_platform": "",
-            "s2_desc": "",
-            "description_location": "",
-            "link_change": ""
+            "title": "Witaj!",
+            "description_download": "Znajdźmy kopię DDLC.",
+            "button_download": "Odwiedź oficjalną stronę DDLC",
+            "button_choose": "Wyszukaj kopię",
+            "heading_step": "Krok {0}",
+            "s1_desc": "Musisz pobrać kopię Doki Doki Literature Club. Może być znaleziona na oficjalnej stronie (ddlc.moe) - kliknij guzik poniżej, aby przenieść się tam teraz.",
+            "s1_platform": "Kiedy będziesz zapytany, wybierz opcję pobrania pliku \"DDLC ({0})\".",
+            "s2_desc": "Kiedy pobieranie się skończy, wybierz ją używając przycisku poniżej.",
+            "description_location": "Twoje gry będą zapisywane w {0}",
+            "link_change": "(Zmień)"
         },
         "login_input": {
-            "message": "",
-            "details": "",
-            "button_affirmative": "",
-            "button_negative": ""
+            "message": "Wpisz swój adres email",
+            "details": "Wiadomość zostanie wysłana pod ten adres. Kliknij link w wiadomości, aby zakończyć logowanie.",
+            "button_affirmative": "Zaloguj się",
+            "button_negative": "Anuluj"
         },
         "change_username_input": {
-            "message": "",
-            "details": "",
-            "button_affirmative": "",
-            "button_negative": ""
+            "message": "Wpisz swoją nową nazwę użytkownika",
+            "details": "Nazwa użytkownika nie musi być wyjątkowa.",
+            "button_affirmative": "Zmień",
+            "button_negative": "Anuluj"
         },
         "tab_mods": {
             "list": {
-                "placeholder_search": "",
-                "header_new": "",
-                "link_install": "",
-                "header_installed": "",
-                "header_downloaded": ""
+                "placeholder_search": "Wyszukaj mody...",
+                "header_new": "Zacznijmy",
+                "link_install": "Zainstaluj DDLC",
+                "header_installed": "Zainstalowano",
+                "header_downloaded": "Pobrane"
             },
             "install_contextmenu": {
-                "launch": "",
-                "rename": "",
-                "shortcut": "",
-                "delete_save": "",
-                "uninstall": ""
+                "launch": "Wystartuj",
+                "rename": "Zmień nazwę",
+                "shortcut": "Utwórz skrót",
+                "delete_save": "Usuń dane zapisu",
+                "uninstall": "Odinstaluj"
             },
             "mod_contextmenu": {
-                "install": "",
-                "delete": ""
+                "install": "Zainstaluj",
+                "delete": "Usuń"
             },
             "uninstall_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Czy jesteś pewien, że chcesz odinstalować?",
+                "details": "Dane twoich zapisów dla {0} zostaną usunięte, i będziesz potrzebował kopii moda, aby zainstalować je ponownie.",
+                "button_affirmative": "Odinstaluj",
+                "button_negative": "Anuluj"
             },
             "rename_input": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Zmień nazwę instalacji",
+                "details": "Wpisz nową nazwę dla {0}.",
+                "button_affirmative": "Zmień nazwę",
+                "button_negative": "Anuluj"
             },
             "launch_lock_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Zapis w chmurze jest w użyciu!",
+                "details": "Jeśli wystartujesz teraz, możesz stracić swój postęp.",
+                "button_affirmative": "Wystartuj mimo to",
+                "button_negative": "Anuluj"
             },
             "launch_noauth_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Nie jesteś zalogowany!",
+                "details": "Jeśli wystartujesz teraz, twój zapis w chmurze nie zostanie zsynchronizowany.",
+                "button_affirmative": "Wystartuj mimo to",
+                "button_negative": "Anuluj"
             },
             "launch_offline_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Nie masz internetu!",
+                "details": "Jeśli uruchomisz teraz, plik zapisu nie będzie synchronizowany z chmurą.",
+                "button_affirmative": "Wystartuj mimo to",
+                "button_negative": "Anuluj"
             },
             "mod_delete_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Czy jesteś pewny, że chcesz usunąć tą modyfikację?",
+                "details": "Będziesz musiał pobrać inną kopię modyfikacji, aby zainstalować ją ponownie.",
+                "button_affirmative": "Usuń",
+                "button_negative": "Anuluj"
             },
             "save_delete_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Czy na pewno chcesz usunąć zapis gry?",
+                "details": "Będziesz musiał zacząć {0} od nowa.",
+                "button_affirmative": "Usuń",
+                "button_negative": "Anuluj"
             },
             "install": {
-                "button_launch": "",
-                "button_settings": "",
-                "tag_global_save": "",
-                "tag_sdk": "",
-                "tag_cloud": "",
-                "description_locked": "",
-                "title_achievements": "",
-                "description_achievements": "",
-                "description_achievements_complete": "",
-                "title_screenshots_none": "",
-                "title_screenshots_one": "",
-                "title_screenshots": "",
-                "description_screenshots": "",
-                "description_sdk": "",
-                "description_author": "",
-                "link_discord": "",
-                "link_website": "",
-                "description_external": ""
+                "button_launch": "Uruchom",
+                "button_settings": "Ustawienia",
+                "tag_global_save": "Zapis lokalny",
+                "tag_sdk": "SDK",
+                "tag_cloud": "Zapis w chmurze",
+                "description_locked": "Grasz z tym zapisem w chmurze na innym komputerze. Aby kontynuować tutaj, przestań grać na innym komputerze.",
+                "title_achievements": "Osiągnięcia ({0} / {1})",
+                "description_achievements": "Graj dalej, aby odblokować więcej osiągnięć.",
+                "description_achievements_complete": "Odblokowałeś wszystkie osiągnięcia. Gratulacje!",
+                "title_screenshots_none": "Brak zrzutów ekranu",
+                "title_screenshots_one": "1 zrzut ekranu",
+                "title_screenshots": "{0} zrzuty ekranu",
+                "description_screenshots": "Naciśnij klawisz S podczas gry, aby zrobić zrzut ekranu.",
+                "description_sdk": "Ten mod obsługuje specjalne funkcje z Doki Doki Mod Manager SDK!",
+                "description_author": "Stworzone przez {0}",
+                "link_discord": "Discord ({0})",
+                "link_website": "Strona internetowa ({0})",
+                "description_external": "Pokaż w folderze"
             },
             "mod": {
-                "button_install": "",
-                "button_settings": "",
-                "description_external": ""
+                "button_install": "Zainstaluj",
+                "button_settings": "Ustawienia",
+                "description_external": "Pokaż w folderze"
             },
             "install_creation": {
-                "title": "",
-                "label_install_name": "",
-                "label_folder_name": "",
-                "label_global_save": "",
-                "label_has_mod": "",
-                "label_mod": "",
-                "label_has_cloudsave": "",
-                "label_cloudsave": "",
-                "option_new_cloudsave": "",
-                "label_existing_saves": "",
-                "description_mod": "",
-                "header_summary": "",
-                "description_vanilla": "",
-                "description_vanilla_global_save": "",
-                "description_vanilla_cloudsave": "",
-                "description_modded": "",
-                "description_modded_global_save": "",
-                "description_modded_cloudsave": "",
-                "button_install": "",
-                "button_installing": "",
-                "status_exists": ""
+                "title": "Zainstaluj DDLC",
+                "label_install_name": "Nazwa instalacji",
+                "label_folder_name": "Nazwa folderu",
+                "label_global_save": "Zapis lokalny",
+                "label_has_mod": "Zainstaluj modyfikację",
+                "label_mod": "Modyfikacja",
+                "label_has_cloudsave": "Zapis w chmurze (beta)",
+                "label_cloudsave": "Plik zapisu w chmurze",
+                "option_new_cloudsave": "Stwórz nowy plik zapisu",
+                "label_existing_saves": "Istniejące pliki zapisu",
+                "description_mod": "Kliknij, aby przeglądać w poszukiwaniu modyfikacji.",
+                "header_summary": "Podsumowanie",
+                "description_vanilla": "Zostanie utworzona czysta kopia DDLC. Zapisane dane będą umieszczone odrębnie od każdej innej kopii gry.",
+                "description_vanilla_global_save": "Zostanie utworzona czysta kopia DDLC. Zapisane dane zostaną udostępnione dla innych kopii gry (np. Steam)",
+                "description_vanilla_cloudsave": "Zostanie utworzona czysta kopia DDLC. Dane zapisu będą przechowywane w chmurze.",
+                "description_modded": "Zostanie utworzona kopia DDLC, a mod zostanie zainstalowany.  Zapisane dane będą odseparowane od jakiejkolwiek innej kopii gry.",
+                "description_modded_global_save": "Zostanie utworzona kopia DDLC, a mod zostanie zainstalowany.  Zapisane dane zostaną udostępnione dla innych kopii gry (np. Steam)",
+                "description_modded_cloudsave": "Zostanie utworzona kopia DDLC, a mod zostanie zainstalowany. Dane zapisu będą przechowywane w chmurze.",
+                "button_install": "Zainstaluj",
+                "button_installing": "Instalowanie...",
+                "status_exists": "Ten folder już istnieje. Wybierz inną nazwę folderu."
             }
         },
         "tab_store_placeholder": {
-            "title": "",
-            "description_1": "",
-            "description_2": "",
-            "error": "",
-            "button_download": ""
+            "title": "Sklep już wkrótce!",
+            "description_1": "Baza danych modów Sayonika zapewni centralną lokalizację do udostępniania, pobierania i przeglądania modów DDLC. Kiedy Sayonika zostanie publicznie dostępna, będziesz mógł przeglądać mody tutaj w Doki Doki Mod Manager.",
+            "description_2": "Podczas oczekiwania, zapraszamy do pobrania niektórych z tych zalecanych modów.",
+            "error": "Nie można załadować listy modów. Czy jesteś w trybie offline?",
+            "button_download": "Pobierz"
         },
         "tab_options": {
             "list": {
-                "header_appearance": "",
-                "link_background": "",
-                "link_advanced_appearance": "",
-                "header_enhancements": "",
-                "link_sdk": "",
-                "link_discord": "",
-                "header_application": "",
-                "link_updates": "",
-                "link_storage": "",
-                "header_developers": "",
-                "link_testing": "",
-                "link_debug": ""
+                "header_appearance": "Wygląd",
+                "link_background": "Tło",
+                "link_advanced_appearance": "Zaawansowane",
+                "header_enhancements": "Udoskonalenia",
+                "link_sdk": "Osiągnięcia i SDK",
+                "link_discord": "Discord",
+                "header_application": "Aplikacja",
+                "link_updates": "Aktualizacje",
+                "link_storage": "Lokalizacja magazynu",
+                "header_developers": "Deweloperzy",
+                "link_testing": "Debugowanie zestawu SDK",
+                "link_debug": "Informacje o aplikacji"
             },
             "section_backgrounds": {
-                "title": "",
-                "subtitle": "",
-                "button_none": "",
-                "description_credit": ""
+                "title": "Tło",
+                "subtitle": "Dostosuj swoją kopię Doki Doki Mod Menager dzięki jednemu z tych teł.",
+                "button_none": "Brak tła",
+                "description_credit": "Oryginalne tła DDLC dzięki uprzejmości Team Salvato."
             },
             "section_advanced_appearance": {
-                "title": "",
-                "subtitle": "",
-                "button_enable_sysborders": "",
-                "button_disable_sysborders": ""
+                "title": "Zaawansowane",
+                "subtitle": "Tutaj znajdziesz inne opcje interfejsu.",
+                "button_enable_sysborders": "Używanie obramowania systemu (wymaga ponownego uruchomienia)",
+                "button_disable_sysborders": "Wyłączanie obramowania systemowego (wymaga ponownego uruchomienia)"
             },
             "section_storage": {
-                "title": "",
-                "subtitle": "",
-                "description_moving": "",
-                "description_current": "",
-                "button_change": ""
+                "title": "Lokalizacja magazynu",
+                "subtitle": "Zmień miejsce, w którym przechowywane są dane Twojej gry.",
+                "description_moving": "Ostrzeżenie! Jeśli zdecydujesz się zmienić lokalizację instalacji, wszystkie mody, instalacje i dane zapisy zostaną przeniesione. Może to potrwać kilka minut i nie może zostać przerwane.",
+                "description_current": "Aktualna lokalizacja: {0}",
+                "button_change": "Zmień lokalizację instalacji"
             },
             "section_updates": {
-                "title": "",
-                "subtitle": "",
-                "description_current_version": "",
-                "label_channel": "",
-                "option_stable": "",
-                "option_beta": "",
-                "button_check": ""
+                "title": "Aktualizacje",
+                "subtitle": "Pobierz najnowszą wersję Doki Doki Mod Manager.",
+                "description_current_version": "Aktualna wersja: {0}",
+                "label_channel": "Kanał",
+                "option_stable": "Stabilna",
+                "option_beta": "Beta",
+                "button_check": "Sprawdzanie dostępności aktualizacji"
             },
             "section_sdk": {
-                "title": "",
-                "subtitle": "",
-                "description_mode": "",
-                "checkbox_always": "",
-                "checkbox_specified": "",
-                "checkbox_never": ""
+                "title": "Osiągnięcia i Zestaw SDK",
+                "subtitle": "Zmień sposób obsługi osiągnięć.",
+                "description_mode": "Włącz osiągnięcia:",
+                "checkbox_always": "Zawsze (zalecane)",
+                "checkbox_specified": "Gdy mod je obsługuje",
+                "checkbox_never": "Nigdy"
             },
             "section_discord": {
-                "title": "",
-                "subtitle": "",
-                "description": "",
-                "button_enable": "",
-                "button_disable": ""
+                "title": "Discord Rich Presence",
+                "subtitle": "Podziel się modem, w który grasz ze znajomymi na Discordzie.",
+                "description": "Zmiany zostaną zastosowane po ponownym uruchomieniu Doki Doki Mod Manager.",
+                "button_enable": "Zezwól na Rich Presence",
+                "button_disable": "Nie zezwalaj na Rich Presence"
             },
             "section_testing": {
-                "title": "",
-                "subtitle": "",
-                "button_enable": "",
-                "button_disable": ""
+                "title": "Debugowanie zestawu SDK",
+                "subtitle": "Włącz rejestrowanie debugowania, aby przetestować swoje mody za pomocą SDK Doki Doki Mod Manager.",
+                "button_enable": "Włącz debugowanie",
+                "button_disable": "Wyłącz debugowanie"
             },
             "section_debug": {
-                "title": "",
-                "subtitle": ""
+                "title": "Informacje o aplikacji",
+                "subtitle": "Informacje dotyczące diagnozowania problemów."
             }
         },
         "tab_about": {
-            "title": "",
-            "description": "",
-            "title_disclaimer": "",
-            "disclaimer_1": "",
-            "disclaimer_2": "",
-            "title_socials": "",
-            "social_discord": "",
-            "social_twitter": "",
-            "social_reddit": "",
-            "social_email": "",
-            "title_support": "",
-            "description_support": "",
-            "support_donate": "",
-            "support_steelseries": "",
-            "support_code": ""
+            "title": "O DDMM",
+            "description": "Doki Doki Mod Manager to opracowany przez społeczność projekt, który pomaga znaleźć, zainstalować i grać w mody dla Doki Doki Literature Club, darmowej gry typu Visual Novel od Team Salvato.",
+            "title_disclaimer": "Zastrzeżenia",
+            "disclaimer_1": "Doki Doki Mod Manager fanowskim dodatkiem do Doki Doki Literature Club i nie jest związany z Team Salvato. Jest to praca fanów, zgodnie z definicją zawartą w wytycznych IP Team Salvato.",
+            "disclaimer_2": "Doki Doki Mod Manager nie ponosi odpowiedzialności za jakiekolwiek szkody wyrządzone twoim plikom lub komputerowi, w wyniku odtwarzania modu lub w inny sposób. Należy do Ciebie, aby upewnić się, że mody są bezpieczne dla gry.",
+            "title_socials": "Skontaktuj się z nami",
+            "social_discord": "Dołącz do serwera Discord DDMM",
+            "social_twitter": "Śledź @DokiMod na Twitterze",
+            "social_reddit": "Napisz do mnie na Reddicie",
+            "social_email": "Wyślij mi wiadomość e-mail",
+            "title_support": "Wesprzyj projekt",
+            "description_support": "Doki Doki Mod Manager zawsze będzie do pobrania za darmo i używać. Jeśli ci się spodoba i chcesz mi pomóc aktualizować je na bieżąco, rozważ wspieranie mnie w jeden z poniższych sposobów.",
+            "support_donate": "Dokonaj jednorazowej darowizny",
+            "support_steelseries": "Uzyskaj 10% zniżki na urządzenia peryferyjne do gier SteelSeries (link partnerski)",
+            "support_code": "Współtwórz z nami ten projektu (kod lub tłumaczenia)"
         }
     },
     "main": {
         "jumplist": {
-            "task_launch": ""
+            "task_launch": "Otwórz Doki Doki Mod Manager i uruchom {0}."
         },
         "running_cover": {
-            "title_running": "",
-            "title_crashed": "",
-            "button_browse": "",
-            "button_close": "",
-            "description_running": "",
-            "install_missing": "",
-            "install_corrupt": "",
-            "install_crashed": ""
+            "title_running": "DDLC działa",
+            "title_crashed": "Coś poszło nie tak",
+            "button_browse": "Otwórz folder z grą",
+            "button_close": "OK",
+            "description_running": "Zamknij grę, aby dokonać zmian w swoich modach.",
+            "install_missing": "Nie można odnaleźć piku instalacji.",
+            "install_corrupt": "Plik instalacji jest niekompletny lub uszkodzony.",
+            "install_crashed": "Gra nie została uruchomiona lub uległa awarii."
         },
         "move_install": {
-            "title": ""
+            "title": "Wybierz nowy folder instalacyjny"
         },
         "mod_browse_dialog": {
-            "title": "",
-            "file_format_name": ""
+            "title": "Znajdź mod do zainstalowania",
+            "file_format_name": "Mody"
         },
         "game_browse_dialog": {
-            "title": "",
-            "file_format_name": ""
+            "title": "Znajdź kopię pliku zip DDLC",
+            "file_format_name": "DDLC"
         },
         "shortcut_dialog": {
-            "title": "",
-            "file_format_name": ""
+            "title": "Wybierz, gdzie umieścić twój skrót",
+            "file_format_name": "Skrót"
         },
         "errors": {
             "exception": {
-                "title": "",
-                "body": ""
+                "title": "Doki Doki Mod Manager zawiesił się",
+                "body": "Problem został zgłoszony. Uruchom ponownie i spróbuj ponownie."
             },
             "move_install": {
-                "title": "",
-                "body": ""
+                "title": "Nie udało się przenieść folderu instalacyjnego",
+                "body": "Sprawdź, czy masz uprawnienia i wystarczająco dużo miejsca, aby przenieść pliki do tego folderu."
             },
             "shortcut": {
-                "title": "",
-                "body": ""
+                "title": "Nie udało się utworzyć skrótu",
+                "body": "Sprawdź, czy masz uprawnienia do tworzenia plików w tym folderze."
             },
             "install": {
-                "title": "",
-                "body": ""
+                "title": "Nie udało się zainstalować gry",
+                "body": "Sprawdź, czy masz uprawnienia i wystarczająco dużo miejsca do zainstalowania."
             },
             "rename": {
-                "title": "",
-                "body": ""
+                "title": "Nie można zmienić nazwy",
+                "body": "Sprawdź, czy zostały zamknięte wszystkie programy, które mogą zakłócać działanie aplikacji i spróbuj ponownie."
             },
             "uninstall": {
-                "title": "",
-                "body": ""
+                "title": "Nie udało się odinstalować",
+                "body": "Sprawdź, czy zostały zamknięte wszystkie programy, które mogą zakłócać odinstalowywanie i spróbuj ponownie."
             },
             "save_delete": {
-                "title": "",
-                "body": ""
+                "title": "Nie można usunąć pliku zapisu",
+                "body": "Sprawdź, czy zostały zamknięte wszystkie programy, które mogą zakłócać i spróbuj ponownie."
             },
             "mod_delete": {
-                "title": "",
-                "body": ""
+                "title": "Nie można usunąć modyfikacji",
+                "body": "Sprawdź, czy zostały zamknięte wszystkie programy, które mogą zakłócać działanie aplikacji i spróbuj ponownie."
             },
             "renderer_freeze": {
-                "title": "",
-                "body": ""
+                "title": "Doki Doki Mod Manager przestał odpowiadać",
+                "body": "Jeśli ten problem trwa długo, zamknij aplikację i uruchom ponownie."
             }
         }
     }
