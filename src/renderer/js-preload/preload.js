@@ -40,6 +40,11 @@ api.mods.launchInstall = function (folderName) {
     ipcRenderer.send("launch install", folderName);
 };
 
+// Kill game
+api.mods.killGame = function() {
+    ipcRenderer.send("kill game");
+};
+
 // Creates an install
 api.mods.createInstall = function (options) {
     ipcRenderer.send("create install", options);

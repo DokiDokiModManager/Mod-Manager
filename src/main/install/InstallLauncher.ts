@@ -1,6 +1,6 @@
 import {join as joinPath} from "path";
 import {readFileSync, writeFileSync} from "fs";
-import {spawn} from "child_process";
+import {ChildProcess, spawn} from "child_process";
 import I18n from "../utils/i18n";
 import Config from "../utils/Config";
 import DiscordManager from "../discord/DiscordManager";
@@ -15,14 +15,16 @@ const SDK_PORT: number = 41420;
 
 export default class InstallLauncher {
 
-    private static debugConsole: SDKDebugConsole;
+    private debugConsole: SDKDebugConsole;
+
+    private procHandle: ChildProcess;
 
     /**
      * Launches an install by the folder name
      * @param folderName The folder of the install to be launched
      * @param richPresence The Discord rich presence instance to be updated
      */
-    static launchInstall(folderName: string, richPresence?: DiscordManager): Promise<any> {
+    launchInstall(folderName: string, richPresence?: DiscordManager): Promise<any> {
         return new Promise((ff, rj) => {
             const installFolder: string = joinPath(Config.readConfigValue("installFolder"), "installs", folderName);
             let installData: any;
@@ -34,9 +36,9 @@ export default class InstallLauncher {
                 this.debugConsole = new SDKDebugConsole(folderName);
             }
 
-            function logToConsole(text: string, clazz?: LogClass) {
-                if (InstallLauncher.debugConsole) {
-                    InstallLauncher.debugConsole.log(text, clazz);
+            const logToConsole = (text: string, clazz?: LogClass) => {
+                if (this.debugConsole) {
+                    this.debugConsole.log(text, clazz);
                 }
             }
 
@@ -127,7 +129,7 @@ export default class InstallLauncher {
 
             const startTime: number = Date.now();
 
-            const procHandle = spawn(gameExecutable, {
+            this.procHandle = spawn(gameExecutable, {
                 // Overwrite the environment variables to force Ren'Py to save where we want it to.
                 // On Windows, the save location is determined by the value of %appdata% but on macOS / Linux
                 // it saves based on the home directory location. This can be changed with $HOME but means the save
@@ -136,15 +138,15 @@ export default class InstallLauncher {
                 env,
             });
 
-            procHandle.stdout.on("data", data => {
+            this.procHandle.stdout.on("data", data => {
                 logToConsole("[STDOUT] " + data.toString());
             });
 
-            procHandle.stderr.on("data", data => {
+            this.procHandle.stderr.on("data", data => {
                 logToConsole("[STDERR] " + data.toString(), LogClass.ERROR);
             });
 
-            procHandle.on("error", e => {
+            this.procHandle.on("error", e => {
                 console.log(e);
                 if (sdkServer) {
                     sdkServer.shutdown();
@@ -153,7 +155,7 @@ export default class InstallLauncher {
                 rj(lang.translate("main.running_cover.install_crashed"))
             });
 
-            procHandle.on("close", () => {
+            this.procHandle.on("close", () => {
                 // calculate total play time
                 const sessionTime: number = Date.now() - startTime;
                 const totalTime: number = installData.playTime ? installData.playTime + sessionTime : sessionTime;
@@ -173,5 +175,17 @@ export default class InstallLauncher {
                 ff();
             });
         });
+    }
+
+    /**
+     * Kills the currently running game
+     */
+    forceKill() {
+        if (this.procHandle) {
+            if (this.debugConsole) {
+                this.debugConsole.log("User killed the game.", LogClass.ERROR);
+            }
+            this.procHandle.kill();
+        }
     }
 }

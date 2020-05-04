@@ -71,6 +71,9 @@ let downloadManager: DownloadManager;
 // Onboarding manager
 let onboardingManager: OnboardingManager;
 
+// Install launcher
+let installLauncher: InstallLauncher;
+
 let lang: I18n = new I18n();
 
 // endregion
@@ -102,7 +105,7 @@ async function launchInstall(folderName): Promise<void> {
     });
     Config.saveConfigValue("lastLaunchedInstall", folderName);
     appWindow.minimize(); // minimise the window to draw attention to the fact another window will be appearing
-    InstallLauncher.launchInstall(folderName, richPresence).then(() => {
+    installLauncher.launchInstall(folderName, richPresence).then(() => {
         appWindow.restore(); // show DDMM again
         appWindow.focus();
         appWindow.webContents.send("running cover", {display: false});
@@ -162,6 +165,11 @@ ipcMain.on("read config", (ev: IpcMainEvent, key: string) => {
 // Launch install
 ipcMain.on("launch install", (ev: IpcMainEvent, folderName: string) => {
     launchInstall(folderName);
+});
+
+// Kill game
+ipcMain.on("kill game", () => {
+    installLauncher.forceKill();
 });
 
 function sendDownloads()  {
@@ -645,6 +653,9 @@ app.on("ready", () => {
 
     // ...and the mod list
     modList = new ModList(downloadManager);
+
+    // ...and the install launcher
+    installLauncher = new InstallLauncher();
 
     downloadManager.on("started", url => {
        appWindow.webContents.send("download started", url);
