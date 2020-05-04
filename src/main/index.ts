@@ -629,7 +629,12 @@ app.on("ready", () => {
             preload: joinPath(__dirname, "../../src/renderer/js-preload/preload.js") // contains all the IPC scripts
         },
         titleBarStyle: "hiddenInset",
-        show: false
+        show: false,
+        title: "Doki Doki Mod Manager" + (process.env.DDMM_DEVELOPER ? " - Development Mode" : "")
+    });
+
+    appWindow.on("page-title-updated", event => {
+        event.preventDefault();
     });
 
     // Activate download manager
@@ -732,8 +737,6 @@ app.on("ready", () => {
     } else {
         appWindow.loadURL(`https://${uiSubdomain}.ui.doki.space`);
     }
-
-    appWindow.setTitle("Doki Doki Mod Manager");
 
     if (!Config.readConfigValue("installFolder", true)) {
         Config.saveConfigValue("installFolder", Config.readConfigValue("installFolder"));
