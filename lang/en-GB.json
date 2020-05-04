@@ -106,7 +106,9 @@
     "modal_running": {
       "title": "Game running",
       "description": "Close the game to make changes to your mods.",
-      "button_browse": "Browse Game Files"
+      "button_browse": "Browse Game Files",
+      "link_more": "Click for more options",
+      "button_kill": "Force Quit"
     },
     "menu_install_options": {
       "launch": "Launch",
@@ -333,7 +335,9 @@
       "store": {
         "title_ddmc": "Doki Doki Mod Club",
         "description": "Mods listed here are not moderated or endorsed by Doki Doki Mod Manager. Proceed with caution!",
-        "text_loading": "Loading mod list..."
+        "text_loading": "Loading mod list...",
+        "error_loading": "Can't load the mods right now.",
+        "placeholder_search": "Search for a mod..."
       }
     }
   },
