@@ -81,6 +81,7 @@
     "modal_uninstall": {
       "title": "Are you sure you want to uninstall?",
       "body": "Your save data for {0} will be deleted, and you will need a copy of the mod to install it again.",
+      "body_globalsave": "Your save data for {0} will not be deleted. However, you will need a copy of the mod to install it again.",
       "confirmation": "Yes, I'm sure.",
       "button_affirmative": "Uninstall",
       "button_negative": "Cancel"
