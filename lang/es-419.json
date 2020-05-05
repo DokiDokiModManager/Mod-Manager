@@ -27,7 +27,8 @@
                 "downloading": "Descargando actualización...",
                 "downloaded": "La actualización está lista y se instalará cuando cierres este programa."
             },
-            "login": "Iniciar sesión"
+            "login": "Iniciar sesión",
+            "language": "Idioma"
         },
         "crash_cover": {
             "button_close": "Salir",
@@ -271,7 +272,8 @@
             "details": "Los nombres de usuario no son únicos.",
             "button_affirmative": "Cambiar",
             "button_negative": "Cancelar"
-        }
+        },
+        "language_change_instruction": "Los cambios de idioma surtirán efecto después de reiniciar"
     },
     "main": {
         "jumplist": {
