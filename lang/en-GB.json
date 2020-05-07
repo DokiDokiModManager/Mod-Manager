@@ -321,7 +321,8 @@
       "downloaded": {
         "title": "Your Mods",
         "button_install": "Install",
-        "button_options": "Options"
+        "button_options": "Options",
+        "placeholder_search": "Search for a mod..."
       },
       "downloads": {
         "title": "Downloads",
