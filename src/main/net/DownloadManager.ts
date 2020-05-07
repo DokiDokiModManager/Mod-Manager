@@ -37,7 +37,7 @@ export default class DownloadManager extends EventEmitter {
                     detail: this.lang.translate("main.redownload_confirmation.detail", filename),
                     buttons: [this.lang.translate("main.redownload_confirmation.button_confirm"), this.lang.translate("main.redownload_confirmation.button_cancel")],
                     type: "warning"
-                }) === 0) {
+                }) !== 0) {
                     item.cancel();
                     return;
                 }
@@ -116,7 +116,6 @@ export default class DownloadManager extends EventEmitter {
             }
         });
 
-        this.interactionWin.minimize();
         this.interactionWin.setMenu(null);
 
         this.interactionWin.on("close", () => {
