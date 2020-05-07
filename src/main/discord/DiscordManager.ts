@@ -3,6 +3,7 @@ import {app} from "electron";
 import Config from "../utils/Config";
 import Timeout = NodeJS.Timeout;
 import I18n from "../utils/i18n";
+import getDebugString from "../utils/DebugString";
 
 const lang: I18n = new I18n();
 
@@ -46,7 +47,7 @@ export default class DiscordManager {
             startTimestamp: Date.now(),
             largeImageKey: "logo",
             smallImageKey: "idle",
-            largeImageText: lang.translate("main.discord.description_version", app.getVersion()),
+            largeImageText: lang.translate("main.discord.description_version", app.getVersion()) + " [" + getDebugString() + "]",
             smallImageText: lang.translate("main.discord.description_idle")
         };
 

@@ -349,7 +349,7 @@
       "status_active": "In Game",
       "description_idle": "Not playing anything",
       "description_active": "Playing DDLC",
-      "description_version": "Version {0} - see https://doki.space for more information"
+      "description_version": "Version {0}"
     },
     "jumplist": {
       "task_launch": "Open Doki Doki Mod Manager and launch {0}."
