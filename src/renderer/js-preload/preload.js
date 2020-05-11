@@ -257,6 +257,10 @@ api.onboarding.validateGame = function(path) {
     ipcRenderer.send("onboarding validate", path);
 };
 
+api.onboarding.finalise = function(pathToDDLC) {
+    ipcRenderer.send("onboarding finalise", pathToDDLC);
+};
+
 ipcRenderer.on("onboarding validated", (ev, response) => {
    api.emit("onboarding validated", response);
 });

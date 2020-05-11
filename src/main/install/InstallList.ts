@@ -20,7 +20,14 @@ export default class InstallList {
 
         console.log("Reading installs from " + installFolder);
 
-        const installs = readdirSync(installFolder);
+        let installs: string[];
+
+        try {
+            installs = readdirSync(installFolder);
+        } catch (e) {
+            return [];
+        }
+
         let returned: Install[] = [];
 
         for (let folder of installs) {

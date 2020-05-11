@@ -499,6 +499,14 @@ ipcMain.on("onboarding validate", (ev: IpcMainEvent, path: string) => {
     })
 });
 
+ipcMain.on("onboarding finalise", (ev: IpcMainEvent, ddlcPath: string) => {
+    console.log("Creating directory structure");
+    mkdirpSync(joinPath(Config.readConfigValue("installFolder"), "mods"));
+    mkdirpSync(joinPath(Config.readConfigValue("installFolder"), "installs"));
+    mkdirpSync(joinPath(Config.readConfigValue("installFolder"), "downloads"));
+    copyFileSync(ddlcPath, joinPath(Config.readConfigValue("installFolder"), "ddlc.zip"));
+});
+
 ipcMain.on("download mod", (ev, url) => {
     downloadManager.downloadFile(url);
 });
@@ -597,17 +605,6 @@ app.on("ready", () => {
         console.log("App already running.");
         app.quit();
         return; // avoid running for longer than needed
-    }
-
-    if (
-        !existsSync(joinPath(Config.readConfigValue("installFolder"), "mods")) ||
-        !existsSync(joinPath(Config.readConfigValue("installFolder"), "installs")) ||
-        !existsSync(joinPath(Config.readConfigValue("installFolder"), "downloads"))
-    ) {
-        console.log("Creating directory structure");
-        mkdirpSync(joinPath(Config.readConfigValue("installFolder"), "mods"));
-        mkdirpSync(joinPath(Config.readConfigValue("installFolder"), "installs"));
-        mkdirpSync(joinPath(Config.readConfigValue("installFolder"), "downloads"));
     }
 
     // set protocol handler
