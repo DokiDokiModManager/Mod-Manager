@@ -7,7 +7,8 @@ import {
     Notification,
     SaveDialogReturnValue,
     OpenDialogReturnValue,
-    shell
+    shell,
+    DownloadItem
 } from "electron";
 import {copyFileSync, existsSync, mkdirpSync, move, readdirSync, removeSync, statSync, unlinkSync} from "fs-extra";
 import {join as joinPath} from "path";
@@ -35,7 +36,7 @@ import DiscordManager from "./discord/DiscordManager";
 import DownloadManager from "./net/DownloadManager";
 import OnboardingManager from "./onboarding/OnboardingManager";
 import {checkSync, DiskUsage} from "diskusage";
-import DownloadItem = Electron.DownloadItem;
+import IntegrityCheck from "./onboarding/IntegrityCheck";
 
 Sentry.init({
     dsn: "https://bf0edf3f287344d4969e3171c33af4ea@sentry.io/1297252",
@@ -482,26 +483,20 @@ ipcMain.on("reload languages", () => {
 // region Onboarding
 
 // Import start
-ipcMain.on("onboarding browse", () => {
-    dialog.showOpenDialog(appWindow, {
-        filters: [
-            {name: lang.translate("main.game_browse_dialog.file_format_name"), extensions: ["zip"]}
-        ],
-        title: lang.translate("main.game_browse_dialog.title")
-    }).then((res: OpenDialogReturnValue) => {
-        if (res.filePaths && res.filePaths[0] && res.filePaths[0].endsWith(".zip")) {
-            try {
-                copyFileSync(res.filePaths[0], joinPath(Config.readConfigValue("installFolder"), "ddlc.zip"));
-                OnboardingManager.requiresOnboarding().then(() => {
-                    appWindow.webContents.send("onboarding downloaded");
-                }).catch(() => {
-                    // TODO: show a message and try again
-                });
-            } catch (e) {
-                // TODO: catch any FS errors
-            }
-        }
-    });
+ipcMain.on("onboarding select", (ev: IpcMainEvent, path: string) => {
+    copyFileSync(path, joinPath(Config.readConfigValue("installFolder"), "ddlc.zip"))
+});
+
+ipcMain.on("onboarding validate", (ev: IpcMainEvent, path: string) => {
+    IntegrityCheck.checkGameIntegrity(path).then(version => {
+        appWindow.webContents.send("onboarding validated", {
+            path, success: true, version_match: (process.platform === "darwin" ? version === "mac" : version == "windows")
+        });
+    }).catch(() => {
+        appWindow.webContents.send("onboarding validated", {
+            path, success: false, version_match: false
+        });
+    })
 });
 
 ipcMain.on("download mod", (ev, url) => {

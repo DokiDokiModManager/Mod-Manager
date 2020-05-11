@@ -253,13 +253,17 @@ ipcRenderer.on("start onboarding", () => {
     api.emit("start onboarding");
 });
 
+api.onboarding.validateGame = function(path) {
+    ipcRenderer.send("onboarding validate", path);
+};
+
+ipcRenderer.on("onboarding validated", (ev, response) => {
+   api.emit("onboarding validated", response);
+});
+
 // Check for updates
 api.app.update = function () {
     ipcRenderer.send("check update");
-};
-
-api.onboarding.browseForGame = function () {
-    ipcRenderer.send("onboarding browse");
 };
 
 api.reloadLanguages = function () {
