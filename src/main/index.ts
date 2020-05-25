@@ -37,6 +37,7 @@ import DownloadManager from "./net/DownloadManager";
 import OnboardingManager from "./onboarding/OnboardingManager";
 import {checkSync, DiskUsage} from "diskusage";
 import IntegrityCheck from "./onboarding/IntegrityCheck";
+import {downloadLanguageFile} from "./i18n/TranslationDownload";
 
 Sentry.init({
     dsn: "https://bf0edf3f287344d4969e3171c33af4ea@sentry.io/1297252",
@@ -75,7 +76,14 @@ let onboardingManager: OnboardingManager;
 // Install launcher
 let installLauncher: InstallLauncher;
 
+// Localisation
+mkdirpSync(joinPath(app.getPath("userData"), "language"));
+
 let lang: I18n = new I18n();
+
+downloadLanguageFile(Config.readConfigValue("language")).catch(err => {
+    console.warn("Language update failed", err);
+});
 
 // endregion
 
