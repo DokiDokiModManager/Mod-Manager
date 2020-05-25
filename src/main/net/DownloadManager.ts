@@ -3,7 +3,7 @@ import {join as joinPath} from "path";
 import * as EventEmitter from "events";
 import Config from "../utils/Config";
 import {moveSync, existsSync} from "fs-extra";
-import I18n from "../utils/i18n";
+import I18n from "../i18n/i18n";
 
 export default class DownloadManager extends EventEmitter {
 

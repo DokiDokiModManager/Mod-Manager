@@ -64,6 +64,19 @@
     "modal_news": {
       "button": "Done"
     },
+    "modal_issue_report": {
+      "title": "Report an issue",
+      "description": "If your issue requires a direct reply, or doesn't fit any of the categories listed here, please send an email instead.",
+      "label_type": "Issue type",
+      "option_bug": "Application bug",
+      "option_broken_mod": "Mod not working",
+      "label_mod": "Link to mod",
+      "placeholder_mod": "Please paste a link to the mod's website or download page.",
+      "label_body": "Issue details",
+      "placeholder_body": "Please give as much detail as possible. If it is relevant, please provide instructions on how to reproduce the issue.",
+      "button_submit": "Send Report",
+      "button_cancel": "Cancel"
+    },
     "modal_rename": {
       "title": "Rename Install",
       "body": "Enter the new name for {0}.",

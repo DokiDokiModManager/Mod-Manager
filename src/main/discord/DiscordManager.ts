@@ -2,7 +2,7 @@ import * as makeClient from "discord-rich-presence";
 import {app} from "electron";
 import Config from "../utils/Config";
 import Timeout = NodeJS.Timeout;
-import I18n from "../utils/i18n";
+import I18n from "../i18n/i18n";
 import getDebugString from "../utils/DebugString";
 
 const lang: I18n = new I18n();

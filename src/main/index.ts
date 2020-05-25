@@ -25,7 +25,7 @@ import * as Sentry from "@sentry/electron";
 import * as semver from "semver";
 import {sync as getDataURI} from "datauri";
 import ModList from "./mod/ModList";
-import I18n from "./utils/i18n";
+import I18n from "./i18n/i18n";
 import InstallList from "./install/InstallList";
 import InstallLauncher from "./install/InstallLauncher";
 import Config from "./utils/Config";

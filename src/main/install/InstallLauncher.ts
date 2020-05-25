@@ -1,7 +1,7 @@
 import {join as joinPath} from "path";
 import {readFileSync, writeFileSync} from "fs";
 import {ChildProcess, spawn} from "child_process";
-import I18n from "../utils/i18n";
+import I18n from "../i18n/i18n";
 import Config from "../utils/Config";
 import DiscordManager from "../discord/DiscordManager";
 import SDKDebugConsole from "../sdk/SDKDebugConsole";

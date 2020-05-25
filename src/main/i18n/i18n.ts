@@ -1,6 +1,6 @@
 import {join as joinPath} from "path";
 import {readFileSync, existsSync} from "fs";
-import Config from "./Config";
+import Config from "../utils/Config";
 
 const DEFAULT_LOCALE = joinPath(__dirname, "../../../lang/", "en-GB" + ".json");
 
@@ -31,7 +31,7 @@ export default class I18n {
         });
     }
 
-    private getValue(obj: any, key: string) {
+    private static getValue(obj: any, key: string) {
         try {
             return key.split(".").reduce((o, i) => o[i], obj);
         } catch {
@@ -41,7 +41,7 @@ export default class I18n {
 
     translate(key: string, ...args: string[]) {
         return this.formatString(
-            this.getValue(this.languageData, key) || this.getValue(this.defaultLanguageData, key) || key,
+            I18n.getValue(this.languageData, key) || I18n.getValue(this.defaultLanguageData, key) || key,
             args
         );
     };

@@ -3,7 +3,7 @@ import {join as joinPath} from "path";
 import {existsSync, readdirSync, readFileSync} from "fs";
 import Install from "../types/Install";
 import Config from "../utils/Config";
-import I18n from "../utils/i18n";
+import I18n from "../i18n/i18n";
 import {MonikaExportStatus} from "../types/MonikaExportStatus";
 
 const lang: I18n = new I18n();
