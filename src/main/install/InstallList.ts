@@ -39,14 +39,12 @@ export default class InstallList {
 
                 let screenshots: string[];
 
-                if (!data.archived) {
-                    try {
-                        screenshots = readdirSync(joinPath(installFolder, folder, "install")).filter(fn => {
-                            return fn.match(/^screenshot(\d+)\.png$/);
-                        });
-                    } catch (e) {
-                        screenshots = [];
-                    }
+                try {
+                    screenshots = readdirSync(joinPath(installFolder, folder, "install")).filter(fn => {
+                        return fn.match(/^screenshot(\d+)\.png$/);
+                    });
+                } catch (e) {
+                    screenshots = [];
                 }
 
                 let monikaExportStatus: MonikaExportStatus;
