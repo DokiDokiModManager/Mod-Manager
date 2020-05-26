@@ -1,9 +1,10 @@
 import * as chmodr from "chmodr";
 import {createWriteStream, writeFileSync} from "fs";
-import {mkdirsSync} from "fs-extra";
+import {mkdirsSync, existsSync} from "fs-extra";
 import {join as joinPath, sep as pathSep} from "path";
 import Config from "../utils/Config";
 import unzip from "../archive/Unzipper";
+import InstallManager from "./InstallManager";
 
 export default class InstallCreator {
 
@@ -13,34 +14,43 @@ export default class InstallCreator {
      * @param installName The user facing name of the install
      * @param globalSave Whether it should use the global save
      */
-    public static createInstall(folderName: string, installName: string, globalSave: boolean): Promise<null> {
+    public static createInstall(folderName: string, installName?: string, globalSave?: boolean): Promise<null> {
         return new Promise((ff, rj) => {
+            let unarchiving: boolean = false;
+
             console.log("Creating clean install in " + folderName);
             const canonicalPath = joinPath(Config.readConfigValue("installFolder"), "installs", folderName);
 
             try {
                 // create the install and appdata directories
-                mkdirsSync(joinPath(canonicalPath, "appdata"));
-                mkdirsSync(joinPath(canonicalPath, "install"));
 
-                if (process.platform === "win32") {
-                    mkdirsSync(joinPath(canonicalPath, "appdata", "RenPy"));
-                } else if (process.platform === "darwin") {
-                    mkdirsSync(joinPath(canonicalPath, "appdata", "Library", "RenPy"));
+                if (existsSync(canonicalPath)) {
+                    unarchiving = true;
                 } else {
-                    mkdirsSync(joinPath(canonicalPath, "appdata", ".renpy"));
+                    if (!installName) {
+                        rj("No install name provided");
+                        return;
+                    }
+
+                    mkdirsSync(joinPath(canonicalPath, "appdata"));
+
+                    if (process.platform === "win32") {
+                        mkdirsSync(joinPath(canonicalPath, "appdata", "RenPy"));
+                    } else if (process.platform === "darwin") {
+                        mkdirsSync(joinPath(canonicalPath, "appdata", "Library", "RenPy"));
+                    } else {
+                        mkdirsSync(joinPath(canonicalPath, "appdata", ".renpy"));
+                    }
                 }
+
+                mkdirsSync(joinPath(canonicalPath, "install"));
 
                 // extract the game from the zip file
                 const zip = unzip(joinPath(Config.readConfigValue("installFolder"), "ddlc.zip"));
 
                 zip.on("file", (file) => {
-                    console.log("Extracting " + file.path);
-
                     // get the new path
                     const pathParts = file.path.split("/");
-
-                    console.log(pathParts);
 
                     pathParts.shift(); // remove the base ddlc directory
                     if (pathParts.length == 0) return;
@@ -69,13 +79,18 @@ export default class InstallCreator {
                     console.log("Install completed.");
 
                     // write the install data file
-                    writeFileSync(joinPath(canonicalPath, "install.json"), JSON.stringify({
-                        globalSave,
-                        mod: null,
-                        name: installName,
-                        playTime: 0,
-                        category: ""
-                    }));
+                    if (unarchiving) {
+                        InstallManager.updateInstallDataValue(folderName, "archived", false);
+                    } else {
+                        writeFileSync(joinPath(canonicalPath, "install.json"), JSON.stringify({
+                            globalSave,
+                            mod: null,
+                            name: installName,
+                            playTime: 0,
+                            category: "",
+                            archived: false
+                        }));
+                    }
 
                     if (process.platform !== "win32") {
                         // make the directory executable for *nix users

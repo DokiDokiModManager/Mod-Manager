@@ -119,13 +119,11 @@ async function launchInstall(folderName): Promise<void> {
         appWindow.focus();
         appWindow.webContents.send("running cover", {display: false});
         appWindow.webContents.send("got installs", InstallList.getInstallList());
-    }).catch(() => {
+    }).catch(e => {
         appWindow.restore();
         appWindow.focus();
-        appWindow.webContents.send("running cover", {
-            display: true,
-            folder_path: joinPath(Config.readConfigValue("installFolder"), "installs", folderName)
-        });
+        appWindow.webContents.send("running cover", {display: false});
+        showError(e, false);
     });
 }
 
@@ -181,13 +179,13 @@ ipcMain.on("kill game", () => {
     installLauncher.forceKill();
 });
 
-function sendDownloads()  {
+function sendDownloads() {
     appWindow.webContents.send("got downloads", downloadManager.getActiveDownloads().map((dl: DownloadItem) => {
         return {
             filename: downloadManager.getSavedFilename(dl.getURLChain()[0]) || dl.getFilename(),
             downloaded: dl.getReceivedBytes(),
             total: dl.getTotalBytes(),
-            startTime: dl.getStartTime()*1000
+            startTime: dl.getStartTime() * 1000
         }
     }));
 }
@@ -252,6 +250,35 @@ ipcMain.on("create install", (ev: IpcMainEvent, install: { folderName: string, i
     });
 });
 
+ipcMain.on("unarchive install", (ev: IpcMainEvent, install: { folderName: string, mod: string }) => {
+    appWindow.setClosable(false);
+    InstallCreator.createInstall(install.folderName).then(() => {
+        if (!install.mod) {
+            appWindow.webContents.send("got installs", InstallList.getInstallList());
+            appWindow.setClosable(true);
+            launchInstall(install.folderName);
+        } else {
+            ModInstaller.installMod(install.mod, joinPath(Config.readConfigValue("installFolder"), "installs", install.folderName, "install")).then(() => {
+                appWindow.webContents.send("got installs", InstallList.getInstallList());
+                appWindow.setClosable(true);
+                launchInstall(install.folderName);
+            }).catch((e: Error) => {
+                appWindow.webContents.send("got installs", InstallList.getInstallList());
+                showError(
+                    e,
+                    false
+                );
+            });
+        }
+    }).catch((e: Error) => {
+        appWindow.webContents.send("got installs", InstallList.getInstallList());
+        showError(
+            e,
+            false
+        );
+    });
+});
+
 // Rename an install
 ipcMain.on("rename install", (ev: IpcMainEvent, options: { folderName: string, newName: string }) => {
     console.log("[IPC rename install] Renaming " + options.folderName);
@@ -263,6 +290,13 @@ ipcMain.on("rename install", (ev: IpcMainEvent, options: { folderName: string, n
             e,
             false
         );
+    });
+});
+
+// Archive an install
+ipcMain.on("archive install", (ev: IpcMainEvent, folderName: string) => {
+    InstallManager.archiveInstall(folderName).then(() => {
+        appWindow.webContents.send("got installs", InstallList.getInstallList());
     });
 });
 
@@ -362,14 +396,14 @@ ipcMain.on("get install background", (ev: IpcMainEvent, folder: string) => {
     let bgPath: string = joinPath(installFolder, folder, "ddmm-bg.png");
     let bgDataURL: string;
 
-    let screenshots: string[] = [];
+    let screenshots: string[];
 
     try {
         screenshots = readdirSync(joinPath(installFolder, folder, "install")).filter(fn => {
             return fn.match(/^screenshot(\d+)\.png$/);
         });
     } catch (e) {
-        console.log("Could not load screenshots due to an IO error", e.message);
+        screenshots = [];
     }
 
     if (existsSync(bgPath)) {
@@ -503,7 +537,9 @@ ipcMain.on("onboarding select", (ev: IpcMainEvent, path: string) => {
 ipcMain.on("onboarding validate", (ev: IpcMainEvent, path: string) => {
     IntegrityCheck.checkGameIntegrity(path).then(version => {
         appWindow.webContents.send("onboarding validated", {
-            path, success: true, version_match: (process.platform === "darwin" ? version === "mac" : version == "windows")
+            path,
+            success: true,
+            version_match: (process.platform === "darwin" ? version === "mac" : version == "windows")
         });
     }).catch(() => {
         appWindow.webContents.send("onboarding validated", {
@@ -663,7 +699,7 @@ app.on("ready", () => {
     installLauncher = new InstallLauncher();
 
     downloadManager.on("started", url => {
-       appWindow.webContents.send("download started", url);
+        appWindow.webContents.send("download started", url);
     });
 
     downloadManager.on("updated", () => {

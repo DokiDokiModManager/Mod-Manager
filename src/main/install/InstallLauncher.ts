@@ -152,7 +152,7 @@ export default class InstallLauncher {
                     sdkServer.shutdown();
                 }
                 richPresence.setIdleStatus();
-                rj(lang.translate("main.running_cover.install_crashed"))
+                rj(e);
             });
 
             this.procHandle.on("close", () => {

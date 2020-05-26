@@ -114,6 +114,16 @@
       "title": "Installation in progress",
       "description": "Please wait a minute or so while the game installs."
     },
+    "modal_unarchive": {
+      "title": "Launch game",
+      "description": "Please select the mod that was originally installed, then click Launch. {0} will no longer be archived.",
+      "button_launch": "Launch",
+      "button_cancel": "Cancel"
+    },
+    "modal_unarchiving": {
+      "title": "Reinstalling game",
+      "description": "The game will start once it has finished reinstalling."
+    },
     "modal_category": {
       "title": "Change Category",
       "label_none": "none",
@@ -186,6 +196,7 @@
         "button_settings": "Settings",
         "tag_global_save": "Global Save",
         "tag_sdk": "SDK",
+        "tag_archived": "Archived",
         "title_achievements": "Achievements ({0}/{1})",
         "description_achievements": "Keep playing to unlock more achievements.",
         "description_achievements_complete": "You've unlocked all achievements. Congratulations!",

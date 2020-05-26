@@ -14,17 +14,6 @@ export default class Install {
     public playTime: number;
     public category: string;
     public monikaExportStatus: MonikaExportStatus;
-
-    constructor(name: string, folderName: string, globalSave: boolean, screenshots: string[], achievements: any[], mod: ModMetadata, playTime: number, category: string, monikaExportStatus: MonikaExportStatus) {
-        this.name = name;
-        this.folderName = folderName;
-        this.globalSave = globalSave;
-        this.screenshots = screenshots;
-        this.achievements = achievements;
-        this.mod = mod;
-        this.playTime = playTime;
-        this.category = category;
-        this.monikaExportStatus = monikaExportStatus;
-    }
+    public archived: boolean;
 }
 

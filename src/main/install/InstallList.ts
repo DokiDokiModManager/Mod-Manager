@@ -37,14 +37,16 @@ export default class InstallList {
                 const fileContents: string = readFileSync(dataFilePath, "utf8");
                 const data: any = JSON.parse(fileContents);
 
-                let screenshots: string[] = [];
+                let screenshots: string[];
 
-                try {
-                    screenshots = readdirSync(joinPath(installFolder, folder, "install")).filter(fn => {
-                        return fn.match(/^screenshot(\d+)\.png$/);
-                    });
-                } catch (e) {
-                    console.log("Could not load screenshots due to an IO error", e.message);
+                if (!data.archived) {
+                    try {
+                        screenshots = readdirSync(joinPath(installFolder, folder, "install")).filter(fn => {
+                            return fn.match(/^screenshot(\d+)\.png$/);
+                        });
+                    } catch (e) {
+                        screenshots = [];
+                    }
                 }
 
                 let monikaExportStatus: MonikaExportStatus;
@@ -57,7 +59,18 @@ export default class InstallList {
 
 
                 if (data.name) {
-                    returned.push(new Install(data.name, folder, data.globalSave, screenshots, data.achievements, data.mod, data.playTime || 0, data.category, monikaExportStatus));
+                    returned.push({
+                        name: data.name,
+                        folderName: folder,
+                        globalSave: data.globalSave,
+                        screenshots: screenshots,
+                        achievements: data.achievements,
+                        mod: data.mod,
+                        playTime: data.playTime || 0,
+                        category: data.category,
+                        monikaExportStatus,
+                        archived: data.archived
+                    });
                 }
             } catch (e) {
                 console.info("Failed to read install data from " + dataFilePath, e.message);

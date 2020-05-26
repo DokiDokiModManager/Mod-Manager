@@ -14,7 +14,7 @@ export default class InstallManager {
         return existsSync(joinPath(Config.readConfigValue("installFolder"), "installs", folderName));
     }
 
-    private static updateInstallDataValue(folderName: string, key: string, value: any): Promise<null> {
+    public static updateInstallDataValue(folderName: string, key: string, value: any): Promise<null> {
         return new Promise((ff, rj) => {
             const installDataPath: string = joinPath(Config.readConfigValue("installFolder"), "installs", folderName, "install.json");
             if (existsSync(installDataPath)) {
@@ -46,6 +46,20 @@ export default class InstallManager {
             const dirPath = joinPath(Config.readConfigValue("installFolder"), "installs", folderName);
             if (existsSync(dirPath)) {
                 remove(dirPath).then(() =>  ff()).catch(err => rj(err));
+            } else {
+                rj(new Error("Install does not exist."))
+            }
+        });
+    }
+
+    public static archiveInstall(folderName: string): Promise<null> {
+        return new Promise((ff, rj) => {
+            const dirPath = joinPath(Config.readConfigValue("installFolder"), "installs", folderName, "install");
+            if (existsSync(dirPath)) {
+                remove(dirPath).then(() =>  {
+                    InstallManager.updateInstallDataValue(folderName, "archived", true);
+                    ff();
+                }).catch(err => rj(err));
             } else {
                 rj(new Error("Install does not exist."))
             }

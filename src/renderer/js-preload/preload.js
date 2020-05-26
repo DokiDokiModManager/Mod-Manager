@@ -40,8 +40,12 @@ api.mods.launchInstall = function (folderName) {
     ipcRenderer.send("launch install", folderName);
 };
 
+api.mods.unarchiveInstall = function (install) {
+    ipcRenderer.send("unarchive install", install);
+};
+
 // Kill game
-api.mods.killGame = function() {
+api.mods.killGame = function () {
     ipcRenderer.send("kill game");
 };
 
@@ -190,6 +194,11 @@ api.mods.deleteInstall = function (folderName) {
     ipcRenderer.send("delete install", folderName);
 };
 
+// Archive install
+api.mods.archiveInstall = function(folderName) {
+    ipcRenderer.send("archive install", folderName);
+};
+
 // Delete mod
 api.mods.deleteMod = function (fileName) {
     ipcRenderer.send("delete mod", fileName);
@@ -253,16 +262,16 @@ ipcRenderer.on("start onboarding", () => {
     api.emit("start onboarding");
 });
 
-api.onboarding.validateGame = function(path) {
+api.onboarding.validateGame = function (path) {
     ipcRenderer.send("onboarding validate", path);
 };
 
-api.onboarding.finalise = function(pathToDDLC) {
+api.onboarding.finalise = function (pathToDDLC) {
     ipcRenderer.send("onboarding finalise", pathToDDLC);
 };
 
 ipcRenderer.on("onboarding validated", (ev, response) => {
-   api.emit("onboarding validated", response);
+    api.emit("onboarding validated", response);
 });
 
 // Check for updates
@@ -283,7 +292,7 @@ api.downloads.getActiveDownloads = function () {
 }
 
 ipcRenderer.on("got downloads", (ev, downloads) => {
-   api.emit("got downloads", downloads);
+    api.emit("got downloads", downloads);
 });
 
 ipcRenderer.on("download started", (ev, url) => {
