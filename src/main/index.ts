@@ -20,7 +20,7 @@ if (existsSync(joinPath(app.getPath("appData"), "Doki Doki Mod Manager!"))) {
     app.setPath("userData", joinPath(app.getPath("appData"), "DokiDokiModManager"));
 }
 
-import {autoUpdater} from "electron-updater";
+import {autoUpdater, UpdateCheckResult} from "electron-updater";
 import * as Sentry from "@sentry/electron";
 import * as semver from "semver";
 import {sync as getDataURI} from "datauri";
@@ -563,42 +563,24 @@ ipcMain.on("download mod", (ev, url) => {
 // endregion
 
 // region Updates etc.
-function showUpdating(status: "checking" | "available" | "downloading" | "downloaded" | "none") {
-    if (appWindow && appWindow.webContents) {
-        appWindow.webContents.send("updating", status);
-    }
-}
-
-function checkForUpdate() {
-    showUpdating("checking");
-    autoUpdater.checkForUpdatesAndNotify().then(update => {
-        if (update && semver.gt(update.updateInfo.version, app.getVersion())) {
-            showUpdating("available");
-        } else {
-            showUpdating("none");
-        }
-    }).catch(err => {
-        console.warn("Error checking for updates", err);
-        showUpdating("none");
-    });
-}
-
 autoUpdater.autoDownload = false;
 
-autoUpdater.on("update-downloaded", () => {
-    showUpdating("downloaded");
+autoUpdater.on("download-progress", () => {
+    appWindow.webContents.send("update status", "downloading");
 });
 
-ipcMain.on("check update", () => {
-    checkForUpdate();
+autoUpdater.on("update-downloaded", () => {
+    appWindow.webContents.send("update status", "downloaded");
 });
+
 
 ipcMain.on("download update", () => {
-    showUpdating("downloading");
-    autoUpdater.downloadUpdate();
+    autoUpdater.checkForUpdates().then((update: UpdateCheckResult) => {
+        if (update) {
+            autoUpdater.downloadUpdate();
+        }
+    })
 });
-
-checkForUpdate();
 
 // endregion
 

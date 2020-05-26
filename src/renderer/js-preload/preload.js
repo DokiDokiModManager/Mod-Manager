@@ -248,14 +248,18 @@ ipcRenderer.on("debug info", (ev, data) => {
     api.debug = data;
 });
 
-// Handler for updates
-ipcRenderer.on("updating", (ev, status) => {
-    api.emit("updating", status);
-});
+// Check for updates
+api.app.update = function () {
+    ipcRenderer.send("check update");
+};
 
 api.app.downloadUpdate = function () {
     ipcRenderer.send("download update");
 };
+
+ipcRenderer.on("update status", (ev, status) => {
+    api.emit("update status", status);
+});
 
 // Onboarding flow trigger
 ipcRenderer.on("start onboarding", () => {
@@ -273,11 +277,6 @@ api.onboarding.finalise = function (pathToDDLC) {
 ipcRenderer.on("onboarding validated", (ev, response) => {
     api.emit("onboarding validated", response);
 });
-
-// Check for updates
-api.app.update = function () {
-    ipcRenderer.send("check update");
-};
 
 api.reloadLanguages = function () {
     ipcRenderer.send("reload languages");

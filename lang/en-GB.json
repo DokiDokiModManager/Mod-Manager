@@ -287,9 +287,11 @@
         "description_latest_version": "Latest version: {0}",
         "description_has_update": "A new version of Doki Doki Mod Manager is available!",
         "description_no_update": "You are on the latest version of Doki Doki Mod Manager.",
+        "description_downloading": "Downloading the update - feel free to continue using the application while you wait.",
+        "description_downloaded": "The update has been downloaded and will be installed when you quit.",
         "description_error": "Unable to check for updates right now, please try again later.",
         "button_check": "Check Again",
-        "button_update": "Install Update"
+        "button_download": "Download Update"
       },
       "section_language": {
         "title": "Language",
