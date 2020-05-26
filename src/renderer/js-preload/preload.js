@@ -274,6 +274,10 @@ api.reloadLanguages = function () {
     ipcRenderer.send("reload languages");
 };
 
+ipcRenderer.on("languages reloaded", () => {
+    api.emit("languages reloaded");
+});
+
 api.downloads.getActiveDownloads = function () {
     ipcRenderer.send("get downloads");
 }

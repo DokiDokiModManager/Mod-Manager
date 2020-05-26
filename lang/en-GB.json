@@ -15,6 +15,10 @@
       "button_restart": "Restart",
       "button_copy": "Copy error to clipboard"
     },
+    "modal_language_switch": {
+      "title": "Switching languages",
+      "description": "Please wait a moment..."
+    },
     "tabs": {
       "tab_play": "Play",
       "tab_downloads": "Mods",

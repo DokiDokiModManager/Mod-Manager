@@ -12,8 +12,8 @@
   "scripts": {
     "postinstall": "electron-builder install-app-deps",
     "build-typescript": "tsc",
-    "start": "yarn build-typescript && electron . --enable-sandbox",
-    "start-dev": "yarn build-typescript && electron --inspect=5858 . --enable-sandbox",
+    "start": "yarn build-typescript && electron .",
+    "start-dev": "yarn build-typescript && electron --inspect=5858 .",
     "release": "yarn build-typescript && electron-builder",
     "test": "yarn build-typescript && mocha"
   },

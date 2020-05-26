@@ -483,7 +483,12 @@ ipcMain.on("export mas", (ev: IpcMainEvent, folderName: string) => {
 });
 
 ipcMain.on("reload languages", () => {
-    lang = new I18n();
+    downloadLanguageFile(Config.readConfigValue("language")).catch(err => {
+        console.warn("Language update failed", err);
+    }).finally(() => {
+        lang = new I18n();
+        appWindow.webContents.send("languages reloaded");
+    });
 });
 
 // endregion
