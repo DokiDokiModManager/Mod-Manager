@@ -2,6 +2,7 @@ import {app} from "electron";
 import {join as joinPath} from "path";
 import {readFileSync, existsSync} from "fs";
 import Config from "../utils/Config";
+import Logger from "../utils/Logger";
 
 const DEFAULT_LOCALE: string = joinPath(__dirname, "../../../lang/", "en-GB" + ".json");
 
@@ -18,16 +19,16 @@ export default class I18n {
         this.defaultLanguageData = JSON.parse(readFileSync(DEFAULT_LOCALE).toString("utf-8"));
 
         if (!existsSync(this.langFile)) {
-            console.log("Using preloaded language data", this.langFile)
+            Logger.info("i18n", "Using preloaded language data from " + this.langFile)
             this.langFile = joinPath(__dirname, "../../../lang/", this.language + ".json");
         } else {
-            console.log("Using cached language data", this.langFile)
+            Logger.info("i18n", "Using cached language data from " + this.langFile)
         }
 
         try {
             this.languageData = JSON.parse(readFileSync(this.langFile).toString("utf-8"));
         } catch (e) {
-            console.warn("No language data found for " + this.language);
+            Logger.warn("i18n", "No language data found for " + this.language);
             this.languageData = this.defaultLanguageData;
         }
     }

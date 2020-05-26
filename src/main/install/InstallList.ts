@@ -5,6 +5,7 @@ import Install from "../types/Install";
 import Config from "../utils/Config";
 import I18n from "../i18n/i18n";
 import {MonikaExportStatus} from "../types/MonikaExportStatus";
+import Logger from "../utils/Logger";
 
 const lang: I18n = new I18n();
 
@@ -18,7 +19,7 @@ export default class InstallList {
         // find and read the folders
         const installFolder: string = joinPath(Config.readConfigValue("installFolder"), "installs");
 
-        console.log("Reading installs from " + installFolder);
+        Logger.info("Install List", "Reading installs from " + installFolder);
 
         let installs: string[];
 
@@ -71,8 +72,8 @@ export default class InstallList {
                     });
                 }
             } catch (e) {
-                console.info("Failed to read install data from " + dataFilePath, e.message);
-                console.log("Ignoring the folder.");
+                Logger.warn("Install List", "Failed to read install data from " + dataFilePath);
+                console.warn(e);
                 // do nothing, the folder should be ignored
             }
         }

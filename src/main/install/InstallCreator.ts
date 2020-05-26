@@ -5,6 +5,7 @@ import {join as joinPath, sep as pathSep} from "path";
 import Config from "../utils/Config";
 import unzip from "../archive/Unzipper";
 import InstallManager from "./InstallManager";
+import Logger from "../utils/Logger";
 
 export default class InstallCreator {
 
@@ -18,7 +19,7 @@ export default class InstallCreator {
         return new Promise((ff, rj) => {
             let unarchiving: boolean = false;
 
-            console.log("Creating clean install in " + folderName);
+            Logger.info("Install Creator", "Creating install folder in " + folderName);
             const canonicalPath = joinPath(Config.readConfigValue("installFolder"), "installs", folderName);
 
             try {
@@ -76,7 +77,7 @@ export default class InstallCreator {
                 });
 
                 zip.on("close", () => {
-                    console.log("Install completed.");
+                    Logger.info("Install Creator", "Game installation completed");
 
                     // write the install data file
                     if (unarchiving) {

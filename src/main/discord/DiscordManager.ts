@@ -4,6 +4,7 @@ import Config from "../utils/Config";
 import Timeout = NodeJS.Timeout;
 import I18n from "../i18n/i18n";
 import getDebugString from "../utils/DebugString";
+import Logger from "../utils/Logger";
 
 const lang: I18n = new I18n();
 
@@ -21,7 +22,8 @@ export default class DiscordManager {
 
             this.client.on("error", e => {
                 this.client = null;
-                console.log("Could not enable Rich Presence: " + e.message);
+                Logger.warn("Discord", "Error while initialising RPC");
+                console.warn(e);
             });
 
             this.presenceUpdateTimer = setInterval(() => {

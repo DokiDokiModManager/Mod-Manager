@@ -3,6 +3,7 @@ import {join as joinPath} from "path";
 import Config from "../utils/Config";
 import DownloadManager from "../net/DownloadManager";
 import DownloadItem = Electron.DownloadItem;
+import Logger from "../utils/Logger";
 
 export default class ModList {
 
@@ -19,13 +20,15 @@ export default class ModList {
     public getModList(): string[] {
         const modFolder: string = joinPath(Config.readConfigValue("installFolder"), "mods");
 
-        console.log("Reading mods from " + modFolder);
+        Logger.info("Mod List", "Reading mods from " + modFolder);
 
         try {
             return readdirSync(modFolder).filter(fn => {
                 return ["zip", "rar", "7z", "gz"].filter(ext => fn.endsWith("." + ext)).length > 0;
             });
         } catch (e) {
+            Logger.warn("Mod List", "Failed to read mods folder");
+            console.warn(e);
             return [];
         }
     }

@@ -4,6 +4,7 @@ import * as EventEmitter from "events";
 import Config from "../utils/Config";
 import {moveSync, existsSync} from "fs-extra";
 import I18n from "../i18n/i18n";
+import Logger from "../utils/Logger";
 
 export default class DownloadManager extends EventEmitter {
 
@@ -94,7 +95,7 @@ export default class DownloadManager extends EventEmitter {
      * @param filename An optional file name
      */
     public downloadFile(url: string, filename?: string): void {
-        console.log("Beginning download of " + url + " (manual initiation)");
+        Logger.info("Download Manager", "Beginning download of " + url + " (manual initiation)");
         if (filename) {
             this.filenames.set(url, filename);
         }

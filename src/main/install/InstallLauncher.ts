@@ -106,8 +106,6 @@ export default class InstallLauncher {
                 throw new Error("I have no idea what kind of computer you're using!");
             }
 
-            console.log(gameExecutable);
-
             // get the path to the save data folder
             const dataFolder = joinPath(installFolder, "appdata");
 
@@ -147,7 +145,6 @@ export default class InstallLauncher {
             });
 
             this.procHandle.on("error", e => {
-                console.log(e);
                 if (sdkServer) {
                     sdkServer.shutdown();
                 }

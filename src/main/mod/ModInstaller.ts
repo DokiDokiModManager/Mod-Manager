@@ -6,6 +6,7 @@ import {inferMapper} from "./ModNormaliser";
 import ArchiveConverter from "../archive/ArchiveConverter";
 import {app} from "electron";
 import {randomBytes} from "crypto";
+import Logger from "../utils/Logger";
 
 export default class ModInstaller {
 
@@ -45,27 +46,27 @@ export default class ModInstaller {
             let hasReadBG: boolean = false;
 
             // determine how we should deal with files
-            console.log("Preparing to install mod from " + modPath);
+            Logger.info("Mod Installer", "Preparing to install mod from " + modPath);
             inferMapper(modPath).then((mapper) => {
                 // delete files that need to be removed (e.g. with DDLCtVN)
                 for (const file of mapper.getFilesToDelete()) {
-                    console.log("Deleting " + file);
+                    Logger.info("Mod Installer", "Deleting file " + file);
                     unlinkSync(joinPath(installPath, "game", file));
                 }
 
                 // extract the mod
                 const zip = unzip(modPath);
 
-                console.log("Installing with mapper: " + mapper.getFriendlyName());
+                Logger.info("Mod Installer", "Using mapper " + mapper.getFriendlyName());
 
                 zip.on("file", (file) => {
                     // mod metadata loading
                     if (file.path.endsWith("ddmm-mod.json")) {
                         if (hasReadMetadata) {
-                            console.warn("Warning: more than one ddmm-mod.json file was found. Skipping.");
+                            Logger.warn("Mod Installer", "More than one ddmm-mod.json was found. Skipping this one.");
                             return;
                         }
-                        console.log("Writing metadata to install.json");
+                        Logger.info("Mod Installer", "Writing metadata to install.json");
                         file.openStream((err, stream) => {
                             if (err) {
                                 rj(err);
@@ -82,7 +83,8 @@ export default class ModInstaller {
                                     oldInstallContents.mod = JSON.parse(fileContents);
                                     writeFileSync(modDataPath, JSON.stringify(oldInstallContents));
                                 } catch (err) {
-                                    console.log(err);
+                                    Logger.warn("Mod Installer", "Failed to update install.json");
+                                    console.warn(err);
                                     rj(err);
                                 }
                             });
@@ -91,10 +93,10 @@ export default class ModInstaller {
                     }
                     else if (file.path.endsWith("ddmm-bg.png")) {
                         if (hasReadBG) {
-                            console.warn("Warning: more than one ddmm-bg.png file was found. Skipping.");
+                            Logger.warn("Mod Installer", "More than one ddmm-bg.png was found. Skipping this one.");
                             return;
                         }
-                        console.log("Copying ddmm-bg.png");
+                        Logger.info("Mod Installer", "Copying ddmm-bg.png to install directory");
 
                         const bgPath: string = joinPath(installPath, "../ddmm-bg.png");
 
@@ -112,7 +114,7 @@ export default class ModInstaller {
                     if (!newPath) {
                         return;
                     }
-                    // console.log("Mapping " + file.path + " to " + newPath);
+
                     // convert the relative path to an absolute path
                     let newPathFull;
 
@@ -135,15 +137,17 @@ export default class ModInstaller {
 
                 zip.on("close", () => {
                     ff();
-                    console.log("Install completed.");
+                    Logger.info("Mod Installer", "Installation complete");
                 });
 
                 zip.on("error", (e) => {
-                    console.log("ZIP ERROR: " + e);
+                    Logger.warn("Mod Installer", "Encountered an error while extracting archive");
+                    console.warn(e);
                     rj(e);
                 });
-            }).catch((err) => {
-                console.log(err);
+            }).catch(err => {
+                Logger.error("Mod Installer", "Failed to pick a mapper. Something is seriously wrong.");
+                console.warn(err);
                 rj(err);
             });
         });

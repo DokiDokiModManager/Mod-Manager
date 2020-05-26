@@ -2,6 +2,7 @@ import {app} from "electron";
 import {mkdirsSync} from "fs-extra";
 import {existsSync as fileExists, readFileSync, writeFileSync} from "fs";
 import {join as joinPath, sep as pathSep} from "path";
+import Logger from "./Logger";
 
 export default class Config {
 
@@ -59,7 +60,7 @@ export default class Config {
             }
             config = JSON.parse(contents);
         }
-        console.log("Config: " + key + " is now " + value);
+        Logger.info("Config", key + " was set to " + JSON.stringify(value));
         config[key] = value;
         mkdirsSync(this.configPath.split(pathSep).slice(0, -1).join(pathSep));
         writeFileSync(this.configPath, JSON.stringify(config));

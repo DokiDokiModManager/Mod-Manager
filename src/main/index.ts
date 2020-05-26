@@ -14,7 +14,7 @@ import {copyFileSync, existsSync, mkdirpSync, move, readdirSync, removeSync, sta
 import {join as joinPath} from "path";
 
 if (existsSync(joinPath(app.getPath("appData"), "Doki Doki Mod Manager!"))) {
-    console.log("Overriding app data path");
+    Logger.info("Startup", "Prehistoric install folder found, using that.");
     app.setPath("userData", joinPath(app.getPath("appData"), "Doki Doki Mod Manager!"));
 } else {
     app.setPath("userData", joinPath(app.getPath("appData"), "DokiDokiModManager"));
@@ -38,6 +38,7 @@ import OnboardingManager from "./onboarding/OnboardingManager";
 import {checkSync, DiskUsage} from "diskusage";
 import IntegrityCheck from "./onboarding/IntegrityCheck";
 import {downloadLanguageFile} from "./i18n/TranslationDownload";
+import Logger from "./utils/Logger";
 
 Sentry.init({
     dsn: "https://bf0edf3f287344d4969e3171c33af4ea@sentry.io/1297252",
@@ -223,13 +224,13 @@ ipcMain.on("browse mods", (ev: IpcMainEvent) => {
 // Trigger install creation
 ipcMain.on("create install", (ev: IpcMainEvent, install: { folderName: string, installName: string, globalSave: boolean, mod: string }) => {
     appWindow.setClosable(false);
-    console.log("[IPC create install] Creating install in " + install.folderName);
+    Logger.info("IPC", "Creating install in folder " + install.folderName)
     InstallCreator.createInstall(install.folderName, install.installName, install.globalSave).then(() => {
         if (!install.mod) {
             appWindow.webContents.send("got installs", InstallList.getInstallList());
             appWindow.setClosable(true);
         } else {
-            console.log("[IPC create install] Installing mod " + install.mod + " in " + install.folderName);
+            Logger.info("IPC", "Installing mod " + install.mod + " in " + install.folderName);
             ModInstaller.installMod(install.mod, joinPath(Config.readConfigValue("installFolder"), "installs", install.folderName, "install")).then(() => {
                 appWindow.webContents.send("got installs", InstallList.getInstallList());
                 appWindow.setClosable(true);
@@ -281,9 +282,8 @@ ipcMain.on("unarchive install", (ev: IpcMainEvent, install: { folderName: string
 
 // Rename an install
 ipcMain.on("rename install", (ev: IpcMainEvent, options: { folderName: string, newName: string }) => {
-    console.log("[IPC rename install] Renaming " + options.folderName);
+    Logger.info("IPC", "Renaming install in " + options.folderName + " to " + options.newName)
     InstallManager.renameInstall(options.folderName, options.newName).then(() => {
-        console.log("[IPC rename install] Renamed " + options.folderName);
         appWindow.webContents.send("got installs", InstallList.getInstallList());
     }).catch((e: Error) => {
         showError(
@@ -302,9 +302,8 @@ ipcMain.on("archive install", (ev: IpcMainEvent, folderName: string) => {
 
 // Delete an install permanently
 ipcMain.on("delete install", (ev: IpcMainEvent, folderName: string) => {
-    console.log("[IPC delete install] Deleting " + folderName);
+    Logger.info("IPC", "Deleting install in " + folderName);
     InstallManager.deleteInstall(folderName).then(() => {
-        console.log("[IPC delete install] Deleted " + folderName);
         appWindow.webContents.send("got installs", InstallList.getInstallList());
     }).catch((e: Error) => {
         showError(
@@ -316,10 +315,9 @@ ipcMain.on("delete install", (ev: IpcMainEvent, folderName: string) => {
 
 // Delete a mod
 ipcMain.on("delete mod", (ev: IpcMainEvent, fileName: string) => {
-    console.log("[IPC delete mod] Deleting " + fileName);
+    Logger.info("IPC", "Deleting mod " + fileName);
     try {
         unlinkSync(joinPath(Config.readConfigValue("installFolder"), "mods", fileName));
-        console.log("[IPC delete mod] Deleted " + fileName);
         appWindow.webContents.send("got modlist", modList.getModList());
     } catch (e) {
         showError(
@@ -331,9 +329,8 @@ ipcMain.on("delete mod", (ev: IpcMainEvent, fileName: string) => {
 
 // Delete a save file for an install
 ipcMain.on("delete save", (ev: IpcMainEvent, folderName: string) => {
-    console.log("[IPC delete save] Deleting save data for " + folderName);
+    Logger.info("IPC", "Deleting save data for " + folderName);
     InstallManager.deleteSaveData(folderName).then(() => {
-        console.log("[IPC delete save] Deleted save data for " + folderName);
         appWindow.webContents.send("got installs", InstallList.getInstallList());
     }).catch((e: Error) => {
         showError(
@@ -345,9 +342,8 @@ ipcMain.on("delete save", (ev: IpcMainEvent, folderName: string) => {
 
 // Sets install category
 ipcMain.on("set category", (ev: IpcMainEvent, options: { folderName: string, category: string }) => {
-    console.log("[IPC set category] Setting category for " + options.folderName + " to " + options.category);
+    Logger.info("IPC", "Setting category of " + options.folderName + " to " + options.category);
     InstallManager.setCategory(options.folderName, options.category).then(() => {
-        console.log("[IPC set category] Set category");
         appWindow.webContents.send("got installs", InstallList.getInstallList());
     }).catch((e: Error) => {
         showError(
@@ -373,7 +369,7 @@ ipcMain.on("create shortcut", (ev: IpcMainEvent, options: { folderName: string, 
     }).then((dialogReturn: SaveDialogReturnValue) => {
         const file: string = dialogReturn.filePath;
         if (file) {
-            console.log("[IPC create shortcut] Writing shortcut to " + file);
+            Logger.info("IPC", "Creating shortcut to " + options.folderName);
             if (!shell.writeShortcutLink(file, "create", {
                 target: "ddmm://launch-install/" + options.folderName,
                 icon: process.execPath,
@@ -383,8 +379,6 @@ ipcMain.on("create shortcut", (ev: IpcMainEvent, options: { folderName: string, 
                     new Error("Attempt to write shortcut failed"),
                     false
                 );
-            } else {
-                console.log("[IPC create shortcut] Written shortcut to " + file);
             }
         }
     });
@@ -432,13 +426,14 @@ ipcMain.on("move install", () => {
         properties: ["openDirectory"]
     }).then((res: OpenDialogReturnValue) => {
         if (res.filePaths && res.filePaths[0]) {
+            Logger.info("Install Move", "Moving install directory to " + res.filePaths[0]);
             appWindow.hide();
             const oldInstallFolder: string = Config.readConfigValue("installFolder");
             const newInstallFolder: string = joinPath(res.filePaths[0], "DDMM_GameData");
             if (!existsSync(newInstallFolder) || !statSync(newInstallFolder).isDirectory()) {
                 move(oldInstallFolder, newInstallFolder, {overwrite: false}, e => {
                     if (e) {
-                        console.log(e);
+                        Logger.warn("Install Move", "Failed to move install directory: " + e.message);
                         dialog.showErrorBox(lang.translate("main.errors.move_install.title"), lang.translate("main.errors.move_install.body"));
                     } else {
                         Config.saveConfigValue("installFolder", newInstallFolder);
@@ -502,13 +497,11 @@ ipcMain.on("export mas", (ev: IpcMainEvent, folderName: string) => {
             }
         ]
     }).then((dialogReturn: SaveDialogReturnValue) => {
-        console.log(dialogReturn);
         if (dialogReturn.filePath) {
-            console.log("exporting");
+            Logger.info("MAS", "Exporting Monika from " + folderName);
             const source: string = joinPath(Config.readConfigValue("installFolder"), "installs", folderName, "install", "characters", "monika");
             copyFileSync(source, dialogReturn.filePath);
             removeSync(source);
-            console.log("exported");
             InstallManager.setMonikaExported(folderName, true).then(() => {
                 appWindow.webContents.send("got installs", InstallList.getInstallList());
             });
@@ -549,7 +542,7 @@ ipcMain.on("onboarding validate", (ev: IpcMainEvent, path: string) => {
 });
 
 ipcMain.on("onboarding finalise", (ev: IpcMainEvent, ddlcPath: string) => {
-    console.log("Creating directory structure");
+    Logger.info("Onboarding", "Creating directory structure");
     mkdirpSync(joinPath(Config.readConfigValue("installFolder"), "mods"));
     mkdirpSync(joinPath(Config.readConfigValue("installFolder"), "installs"));
     mkdirpSync(joinPath(Config.readConfigValue("installFolder"), "downloads"));
@@ -586,7 +579,7 @@ ipcMain.on("download update", () => {
 
 // region Global exception handler
 process.on("uncaughtException", (e: Error) => {
-    console.log("Uncaught exception occurred - treating this as a crash.");
+    Logger.error("Application", "An uncaught exception occurred in the main process");
     console.error(e);
     showError(
         e,
@@ -615,25 +608,11 @@ app.on("second-instance", (ev: Event, argv: string[]) => {
     handleURL(argv.pop());
 });
 
-// app.on("web-contents-created", (ev: Event, contents: WebContents) => {
-//    if (contents.getType() === "webview") {
-//        contents.on("new-window", (nwEv: Event, url: string) => {
-//            // nwEv.preventDefault();
-//            console.log(url);
-//            // const urlObj: URL = new URL(url);
-//            // if (urlObj.pathname.match(/.*\.(zip|7z|rar|gz|tar)$/)) {
-//            //     downloadManager.downloadFile(url);
-//            // }
-//        });
-//    }
-// });
-
 
 app.on("ready", () => {
-    console.log(app.getPath("userData"));
     if (!app.requestSingleInstanceLock()) {
         // we should quit, as another instance is running
-        console.log("App already running.");
+        Logger.info("Startup", "Another instance is running, quitting.");
         app.quit();
         return; // avoid running for longer than needed
     }
@@ -752,7 +731,7 @@ app.on("ready", () => {
 
     const uiSubdomain: string = "v" + app.getVersion().replace(/\./g, "-");
 
-    appWindow.webContents.once("did-fail-load", () => {
+    appWindow.webContents.on("did-fail-load", () => {
         if (Config.readConfigValue("localUI")) {
             dialog.showErrorBox(lang.translate("main.errors.dev_ui_load_fail.title"), lang.translate("main.errors.dev_ui_load_fail.body"));
             appWindow.loadURL(`https://${uiSubdomain}.ui.doki.space`);
@@ -775,5 +754,7 @@ app.on("ready", () => {
     if (!Config.readConfigValue("installFolder", true)) {
         Config.saveConfigValue("installFolder", Config.readConfigValue("installFolder"));
     }
+
+    Logger.info("Startup", "Application startup complete!");
 });
 // endregion
