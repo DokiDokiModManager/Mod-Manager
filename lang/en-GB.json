@@ -88,17 +88,25 @@
       "button_negative": "Cancel"
     },
     "modal_uninstall": {
-      "title": "Are you sure you want to uninstall?",
+      "title": "Are you sure you want to uninstall this?",
       "body": "Your save data for {0} will be deleted, and you will need a copy of the mod to install it again.",
       "body_globalsave": "Your save data for {0} will not be deleted. However, you will need a copy of the mod to install it again.",
-      "confirmation": "Yes, I'm sure.",
+      "confirmation": "I understand.",
       "button_affirmative": "Uninstall",
+      "button_negative": "Cancel"
+    },
+    "modal_archive": {
+      "title": "Are you sure you want to archive?",
+      "body": "Archiving will delete the game data for {0} to save disk space. Your save data will not be deleted, but you'll need a copy of the mod to install it again.",
+      "body_warning": "Any changes made to other data, such as character files, will be undone if you archive the game. Be careful!",
+      "confirmation": "I understand.",
+      "button_affirmative": "Archive",
       "button_negative": "Cancel"
     },
     "modal_save_delete": {
       "title": "Are you sure you want to delete your save data?",
       "body": "You will have to start {0} again from scratch.",
-      "confirmation": "Yes, I'm sure.",
+      "confirmation": "I understand.",
       "button_affirmative": "Delete",
       "button_negative": "Cancel"
     },
@@ -124,7 +132,7 @@
       "launch": "Launch",
       "rename": "Rename",
       "category": "Change Category",
-      "addons": "Install Additional Mod",
+      "archive": "Archive",
       "shortcut": "Create Shortcut",
       "delete_save": "Delete Save Data",
       "uninstall": "Uninstall",
@@ -146,7 +154,6 @@
         "placeholder_search": "Search mods...",
         "header_new": "Get Started",
         "link_install": "Install DDLC",
-        "link_install_advanced": "Advanced Install",
         "header_installed": "Installed",
         "header_downloaded": "Downloads"
       },
