@@ -91,8 +91,7 @@
       "maintainer": "zudo@doki.space",
       "synopsis": "Doki Doki Mod Manager",
       "target": [
-        "AppImage",
-        "snap"
+        "AppImage"
       ],
       "publish": [
         "github"
