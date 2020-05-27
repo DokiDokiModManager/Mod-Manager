@@ -655,7 +655,7 @@ app.on("ready", () => {
         useContentSize: true,
         webPreferences: {
             contextIsolation: false,
-            sandbox: true,
+            sandbox: false,
             nodeIntegration: false,
             nativeWindowOpen: true,
             webviewTag: true,
