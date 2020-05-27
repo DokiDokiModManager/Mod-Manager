@@ -1,3 +1,12 @@
+import * as Sentry from "@sentry/electron";
+
+Sentry.init({
+    dsn: "https://bf0edf3f287344d4969e3171c33af4ea@sentry.io/1297252",
+    onFatalError: () => {
+        // workaround for stacktrace being displayed (see getsentry/sentry-electron#146)
+    }
+});
+
 import {
     app,
     BrowserWindow,
@@ -21,7 +30,6 @@ if (existsSync(joinPath(app.getPath("appData"), "Doki Doki Mod Manager!"))) {
 }
 
 import {autoUpdater, UpdateCheckResult} from "electron-updater";
-import * as Sentry from "@sentry/electron";
 import {sync as getDataURI} from "datauri";
 import ModList from "./mod/ModList";
 import I18n from "./i18n/i18n";
@@ -38,13 +46,6 @@ import {checkSync, DiskUsage} from "diskusage";
 import IntegrityCheck from "./onboarding/IntegrityCheck";
 import {downloadLanguageFile} from "./i18n/TranslationDownload";
 import Logger from "./utils/Logger";
-
-Sentry.init({
-    dsn: "https://bf0edf3f287344d4969e3171c33af4ea@sentry.io/1297252",
-    onFatalError: () => {
-        // workaround for stacktrace being displayed (see getsentry/sentry-electron#146)
-    }
-});
 
 const DISCORD_ID = "453299645725016074";
 
@@ -655,7 +656,6 @@ app.on("ready", () => {
         useContentSize: true,
         webPreferences: {
             contextIsolation: false,
-            sandbox: true,
             nodeIntegration: false,
             nativeWindowOpen: true,
             webviewTag: true,
