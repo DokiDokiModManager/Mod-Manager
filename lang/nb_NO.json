@@ -5,7 +5,10 @@
             "tab_mods": "Modder",
             "tab_store": "Butikk",
             "tab_options": "Valg",
-            "tab_about": "Om"
+            "tab_about": "Om",
+            "tab_experiments": "Eksperimenter",
+            "tab_downloads": "Modder",
+            "tab_play": "Spill"
         },
         "version": {
             "link_changelog": "Hva er nytt?"
@@ -32,18 +35,19 @@
                 "downloading": "",
                 "downloaded": ""
             },
-            "language": "Språk"
+            "language": "Språk",
+            "issue_report": "Innrapporter en feil"
         },
         "crash_cover": {
             "button_close": "",
             "button_continue": ""
         },
         "drop_cover": {
-            "text": ""
+            "text": "Slipp en modd her for å installere den"
         },
         "announcement": {
-            "button_open": "",
-            "button_close": ""
+            "button_open": "Åpne lenke",
+            "button_close": "Lukk"
         },
         "onboarding": {
             "title": "",
@@ -71,11 +75,11 @@
         },
         "tab_mods": {
             "list": {
-                "placeholder_search": "",
-                "header_new": "",
-                "link_install": "",
-                "header_installed": "",
-                "header_downloaded": ""
+                "placeholder_search": "Søk etter modder…",
+                "header_new": "Begynn",
+                "link_install": "Installer DDLC",
+                "header_installed": "Installert",
+                "header_downloaded": "Nedlastinger"
             },
             "install_contextmenu": {
                 "launch": "",
@@ -101,28 +105,28 @@
                 "button_negative": ""
             },
             "launch_lock_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Skylagringsfilen er i bruk!",
+                "details": "Hvis du starter nå, kan du miste fremdriften din.",
+                "button_affirmative": "Kjør uansett",
+                "button_negative": "Avbryt"
             },
             "launch_noauth_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Du er ikke innlogget.",
+                "details": "Hvis du starter nå, vil ikke lagringsfilen din synkroniseres mot skyen.",
+                "button_affirmative": "Kjør uansett",
+                "button_negative": "Avbryt"
             },
             "launch_offline_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Du er frakoblet.",
+                "details": "Hvis du starter nå, vil ikke filen din synkroniseres mot skyen.",
+                "button_affirmative": "Kjør uansett",
+                "button_negative": "Avbryt"
             },
             "mod_delete_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Er du sikker på at du ønsker å slette modden?",
+                "details": "Du vil måtte laste ned en annen kopi av modden for å installere den igjen.",
+                "button_affirmative": "Slett",
+                "button_negative": "Avbryt"
             },
             "save_delete_confirmation": {
                 "message": "",
@@ -131,42 +135,49 @@
                 "button_negative": ""
             },
             "install": {
-                "button_launch": "",
-                "button_settings": "",
-                "tag_global_save": "",
-                "tag_sdk": "",
+                "button_launch": "Kjør",
+                "button_settings": "Innstillinger",
+                "tag_global_save": "Lagre globalt",
+                "tag_sdk": "SDK",
                 "tag_cloud": "",
                 "description_locked": "",
-                "title_achievements": "",
-                "description_achievements": "",
-                "description_achievements_complete": "",
-                "title_screenshots_none": "",
-                "title_screenshots_one": "",
-                "title_screenshots": "",
-                "description_screenshots": "",
-                "description_sdk": "",
-                "description_author": "",
-                "link_discord": "",
-                "link_website": "",
-                "description_external": ""
+                "title_achievements": "Prestasjoner ({0}/{1})",
+                "description_achievements": "Fortsett å spille for å låse opp flere prestasjoner.",
+                "description_achievements_complete": "Du har låst opp alle prestasjonene. Gratulerer.",
+                "title_screenshots_none": "Ingen skjermavbildninger",
+                "title_screenshots_one": "Én skjermavbildning",
+                "title_screenshots": "{0} skjermavbildninger",
+                "description_screenshots": "Trykk «S» mens du spiller for å utføre skjermavbildning.",
+                "description_sdk": "Denne modden støtter spesialfunksjoner med SDK-en for Doki Doki Manager!",
+                "description_author": "Opprettet av {0}",
+                "link_discord": "Discord ({0})",
+                "link_website": "Nettside ({0})",
+                "description_external": "Vis i mappe",
+                "button_mas_import": "Legg til Monika igjen",
+                "button_mas_export": "Kopier ut Monika",
+                "description_mas_export": "Monika er klar for en tur ut.",
+                "title_mas_export": "Ta Monika med deg",
+                "description_achievement_not_earned": "Uferdig",
+                "description_achievement_earned": "Fullført",
+                "tag_archived": "Arkivert"
             },
             "mod": {
-                "button_install": "",
-                "button_settings": "",
-                "description_external": ""
+                "button_install": "Installer",
+                "button_settings": "Innstillinger",
+                "description_external": "Vis i mappe"
             },
             "install_creation": {
-                "title": "",
-                "label_install_name": "",
-                "label_folder_name": "",
+                "title": "Installer DDLC",
+                "label_install_name": "Navn på installasjon",
+                "label_folder_name": "Mappenavn",
                 "label_global_save": "",
-                "label_has_mod": "",
-                "label_mod": "",
+                "label_has_mod": "Installer modd",
+                "label_mod": "Modd",
                 "label_has_cloudsave": "",
                 "label_cloudsave": "",
                 "option_new_cloudsave": "",
                 "label_existing_saves": "",
-                "description_mod": "",
+                "description_mod": "Klikk for å finne en modd.",
                 "header_summary": "",
                 "description_vanilla": "",
                 "description_vanilla_global_save": "",
@@ -174,9 +185,17 @@
                 "description_modded": "",
                 "description_modded_global_save": "",
                 "description_modded_cloudsave": "",
-                "button_install": "",
-                "button_installing": "",
-                "status_exists": ""
+                "button_install": "Installer",
+                "button_installing": "Installerer…",
+                "status_exists": "Mappenavnet er allerede i bruk.",
+                "warning_no_space": "Beklager, du har ikke nok ledig plass til å installere DDLC, du trenger minst 2 GiB ledig plass. Lukk Doki Doki Mod Manager, frigjør plass og prøv igjen. Alternativt kan du installere på en annen lagringsenhet i Valg > Lagringsplassering.",
+                "warning_global_save": "Global lagring kan forårsake problemer med andre kopier av spillet, siden det lagrer fremdriften din i den vanlige lagringsdatamappen. Kun bruk dette hvis du har en spesiell grunn til det.",
+                "option_global_save": "Global lagring",
+                "placeholder_install_name": "Navnet på modden du spiller, eller vilkårlig tekst.",
+                "modlist_custom": "Modden er ikke opplistet her",
+                "modlist_library": "Moddbibliotek",
+                "modlist_none": "Vanlig DDLC - ingen modder",
+                "option_local_save": "Lokal lagring (anbefalt)"
             }
         },
         "tab_store_placeholder": {
@@ -188,119 +207,337 @@
         },
         "tab_options": {
             "list": {
-                "header_appearance": "",
-                "link_background": "",
-                "link_advanced_appearance": "",
-                "header_enhancements": "",
-                "link_sdk": "",
-                "link_discord": "",
-                "header_application": "",
-                "link_updates": "",
-                "link_storage": "",
-                "header_developers": "",
-                "link_testing": "",
-                "link_debug": ""
+                "header_appearance": "Utseende",
+                "link_background": "Bakgrunn",
+                "link_advanced_appearance": "Avansert",
+                "header_enhancements": "Forbedringer",
+                "link_sdk": "Prestasjoner og SDK",
+                "link_discord": "Discord",
+                "header_application": "Program",
+                "link_updates": "Oppdateringer",
+                "link_storage": "Lagringsplassering",
+                "header_developers": "Utviklere",
+                "link_testing": "Avlusingsvalg",
+                "link_debug": "",
+                "link_language": "Språk",
+                "link_accmanagement": "Kontobehandling",
+                "link_cloudsaves": "Skylagringer",
+                "header_account": "Konto"
             },
             "section_backgrounds": {
-                "title": "",
-                "subtitle": "",
-                "button_none": "",
-                "description_credit": ""
+                "title": "Bakgrunn",
+                "subtitle": "Tilpass din kopi av Doki Doki Mod Manager med én av disse bakgrunnene.",
+                "button_none": "Ingen bakgrunn",
+                "description_credit": "Opprinnelige DDLC-bakgrunner på vegne av Team Salvato.",
+                "description_custom": "Hvis du flytter eller sletter det egendefinerte bakgrunnsbildet, vil bakgrunnen din tilbakestilles.",
+                "checkbox_modbg": "Tillat modder å vise egendefinerte bakgrunner (fra skjermavbildninger eller fra moddutviklere)",
+                "button_custom": "Egendefinert bakgrunn"
             },
             "section_advanced_appearance": {
-                "title": "",
-                "subtitle": "",
-                "button_enable_sysborders": "",
+                "title": "Avansert",
+                "subtitle": "Finn andre grensesnittsvalg her.",
+                "button_enable_sysborders": "Bruk systemkantlinjer (krever omstart)",
                 "button_disable_sysborders": ""
             },
             "section_storage": {
-                "title": "",
-                "subtitle": "",
-                "description_moving": "",
-                "description_current": "",
-                "button_change": ""
+                "title": "Lagringsplassering",
+                "subtitle": "Endre hvor spilldataen din lagres.",
+                "description_moving": "Advarsel! Hvis du velger å endre din installasjonsplassering, vil alle dine modder, installasjoner og lagringsdata bli flyttet. Dette kan ta flere minutter, og kan ikke forstyrres.",
+                "description_current": "Nåværende plassering: {0}",
+                "button_change": "Endre isntallasjonsplassering"
             },
             "section_updates": {
-                "title": "",
-                "subtitle": "",
-                "description_current_version": "",
+                "title": "Oppdateringer",
+                "subtitle": "Hent siste versjon av Doki Doki Mod Manager.",
+                "description_current_version": "Nåværende versjon: {0}",
                 "label_channel": "",
                 "option_stable": "",
                 "option_beta": "",
-                "button_check": ""
+                "button_check": "Sjekk igjen",
+                "description_error": "Klarte ikke å se etter oppdateringer akkurat nå, prøv igjen senere.",
+                "description_downloaded": "Oppgraderingen har blitt lastet ned og vil bli installert når du avslutter.",
+                "description_downloading": "Laster ned oppdateringen. Fortsett gjerne å bruke programmet mens du venter.",
+                "button_download": "Last ned oppdatering",
+                "description_no_update": "Du har siste versjon av Doki Doki Mod Manager.",
+                "description_has_update": "En ny versjon av Doki Doki Mod Manager er tilgjengelig!",
+                "description_latest_version": "Siste versjon: {0}"
             },
             "section_sdk": {
-                "title": "",
-                "subtitle": "",
-                "description_mode": "",
-                "checkbox_always": "",
-                "checkbox_specified": "",
-                "checkbox_never": ""
+                "title": "Prestasjoner og SDK",
+                "subtitle": "Endre måten prestasjoner håndteres på.",
+                "description_mode": "Skru på prestasjoner:",
+                "checkbox_always": "Alltid (anbefalt)",
+                "checkbox_specified": "Når modden angir at de støttes",
+                "checkbox_never": "Aldri"
             },
             "section_discord": {
-                "title": "",
-                "subtitle": "",
-                "description": "",
-                "button_enable": "",
+                "title": "Rik Discord-framtreden",
+                "subtitle": "Del hvilke modder du spiller med dine Discord-venner.",
+                "description": "Endringer trer i effekt etter omstart av Doki Doki Mod Manager.",
+                "button_enable": "Skru på rik fremtreden",
                 "button_disable": ""
             },
             "section_testing": {
-                "title": "",
-                "subtitle": "",
+                "title": "Avlusingsvalg",
+                "subtitle": "Skru på avlusingsvalg for utviklere.",
                 "button_enable": "",
-                "button_disable": ""
+                "button_disable": "",
+                "checkbox_renpy_skipsplash": "Skru av velkomstbilde",
+                "checkbox_logging": "Skru på avlusingslogging",
+                "checkbox_renpy_skipmenu": "Hopp over meny",
+                "description_renpy": "Sett spesielle avlusingsvalg for Ren'Py.",
+                "header_renpy": "Ren'Py-oppstartsvalg",
+                "description_mod_debug": "Vis et avlusingsvindu med konsollutdata fra din modd. Nyttig for testing av DDMM-SDK-en.",
+                "header_mod_debug": "Modd-avlusing"
             },
             "section_debug": {
                 "title": "",
                 "subtitle": ""
+            },
+            "section_language": {
+                "link_contribute": "Kan du hjelpe til å oversette Doki Doki Mod Manager? Klikk for å ta del i gemenskapsoversettelsen.",
+                "subtitle": "Velg foretrukket språk. Det kan hende oversettelsene ikke er 100% riktige eller fullstendige.",
+                "label_language": "Språk",
+                "title": "Språk"
             }
         },
         "tab_about": {
-            "title": "",
-            "description": "",
-            "title_disclaimer": "",
-            "disclaimer_1": "",
-            "disclaimer_2": "",
-            "title_socials": "",
-            "social_discord": "",
+            "title": "Om",
+            "description": "Doki Doki Mod Manager er et gemenskapsdrevet prosjekt som hjelper deg å finne, installere og spille modder for Doki Doki-bokklubben, et grafisk novellespill fra Team Salvato.",
+            "title_disclaimer": "Ansvarsfraskrivelse",
+            "disclaimer_1": "Doki Doki Mod Manager er tilhengere av Doki Doki-bokklubben, og er ikke en del av Team Salvato. Dette er laget av tilhengere, som definert av Team Salvato sine opphavsretningslinjer.",
+            "disclaimer_2": "Doki Doki Mod Manager tar ikke ansvar for skade på filer eller datamaskin som resultat av å spille en modd eller annet. Det er opp til deg å forsikre deg om at de er trygge.",
+            "title_socials": "Ta kontakt",
+            "social_discord": "Ta del i Discord-tjeneren",
             "social_twitter": "",
-            "social_reddit": "",
-            "social_email": "",
+            "social_reddit": "Send meg en melding på Reddit",
+            "social_email": "Send meg en e-post",
             "title_support": "",
             "description_support": "",
             "support_donate": "",
             "support_steelseries": "",
-            "support_code": ""
+            "support_code": "",
+            "link_weblate": "Hjelp til i oversettelsen av Doki Doki Mod Manager. Besøk prosjektets hjemmeside.",
+            "title_v4_beta": "Doki Doki Mod Manager 4-betatestere",
+            "title_translators": "Oversettelser ved"
+        },
+        "tab_downloads": {
+            "store": {
+                "text_loading": "Laster inn moddliste…",
+                "placeholder_search": "Søk etter en modd…",
+                "description": "Modder opplistet her hverken modereres eller anbefales av Doki Doki Mod Manager. På eget ansvar!",
+                "error_loading": "Kan ikke laste inn moddene akkurat nå.",
+                "title_ddmc": "Doki Doki Mod-klubb"
+            },
+            "downloaded": {
+                "placeholder_search": "Søk etter en modd…",
+                "button_options": "Valg",
+                "button_install": "Installer",
+                "title": "Dine modder"
+            },
+            "featured": {
+                "button_download": "Last ned",
+                "title": "Framhevede modder"
+            },
+            "downloads": {
+                "message_none": "Ingen nedlastninger underveis.",
+                "status_text_downloading_uncertain": "Laster ned - {0} MB nedlastet {1} MB/s",
+                "status_text_downloading": "Laster ned - {0}% {1} MB/s ({2} gjenstår)",
+                "title": "Nedlastinger"
+            },
+            "list": {
+                "link_ddmc": "Doki Doki Mod-klubb",
+                "link_featured": "Framhevede modder",
+                "header_browse": "Finn modder",
+                "link_downloads": "Nedlastinger",
+                "link_downloaded": "Dine modder",
+                "header_library": "Bibliotek"
+            }
+        },
+        "onboarding_v4": {
+            "text_scanning": "Vent…",
+            "header_success": "Fant din kopi av DDLC",
+            "text_select": "Åpne mappen du har lagret din nedlastede kopi av DDLC i. Dra og slipp deretter filen inn i området nedenfor.",
+            "text_version_mismatch": "Det kan hende du har lastet ned feil versjon av DDLC for ditt operativsystem. Forsikre deg om at du har lastet ned {0} og prøv igjen.",
+            "text_save_location": "Hvis du ønsker å lagre moddene dine på en annen disk, nå har du muligheten.",
+            "subtitle_last": "Disse valgene kan endres når som helst.",
+            "text_hash_mismatch": "Dobbeltsjekk at du har valgt rett fil og prøv igjen.",
+            "text_success": "Du er allerede klar til å forsere til neste steg.",
+            "header_hash_mismatch": "Det ser ikke ut til å være riktig fil",
+            "header_version_mismatch": "Det ser ikke ut til å være riktig ZIP-fil",
+            "text_directory_selected": "Forsikre deg om at du ikke velger en utpakket kopi av spillet og prøv igjen.",
+            "button_start": "Begynn",
+            "label_waifu": "Favorittjente",
+            "label_save_location": "Lagringsplassering",
+            "header_save_location": "Lagringsplassering",
+            "text_welcome": "Velkommen til den beste versjonen av Doki Doki Mod Manager så langt.",
+            "option_waifu_yuri": "Yuri",
+            "option_waifu_sayori": "Sayori",
+            "option_waifu_natsuki": "Natsuki",
+            "option_waifu_monika": "Monika",
+            "option_waifu_all": "Alle!",
+            "subtitle_waifu": "Ikke tenk, bare svar",
+            "header_waifu": "Hvem er din favorittkarakter?",
+            "button_change_save_location": "Endre",
+            "header_directory_selected": "Du valgte en mappe istedenfor den sammenpakkede DDLC-filen",
+            "text_validating": "Vent…",
+            "text_dropzone": "Dra din nedlastede kopi av DDLC hit",
+            "button_next": "Neste",
+            "link_safari_warning": "Klikk her for en visuell veiledning",
+            "text_safari_warning": "Safari kan pakke ut det nedlastede spillet automatisk. Du bør skru av denne funksjonen, siden det krangler med oppsettsprosessen. Dette kan gjøres fra Safari sine innstillinger.",
+            "header_safari_warning": "Viktig info for Safari-brukere",
+            "text_modification_warning": "Ikke gjør noen endringer i den nedlastede filen.",
+            "text_s2_next": "Når nedlastingen din er fullført, fortsett til neste steg.",
+            "button_ddlc_website": "Besøk DDLC-nettsiden",
+            "text_download": "Besøk DDLC-nettsiden, klikk «Last ned nå» og følg instruksen. Når forespurt, velg filen ved navn {0} og lagre den et sted som er enkelt å finne.",
+            "header_download": "Last ned DDLC",
+            "subtitle_careful": "Les instruksen nøye.",
+            "header_setup": "Førstegangsoppsett",
+            "button_finish": "Fullfør",
+            "button_previous": "Forrige"
+        },
+        "menu_install_options": {
+            "archive": "Arkiver",
+            "cancel": "Avbryt",
+            "uninstall": "Avinstaller",
+            "delete_save": "Slett lagret data",
+            "shortcut": "Opprett snarvei",
+            "category": "Endre kategori",
+            "rename": "Gi nytt navn",
+            "launch": "Kjør"
+        },
+        "modal_category": {
+            "label_none": "Ingen",
+            "placeholder_category": "Skriv inn en ny kategori…",
+            "button_cancel": "Avbryt",
+            "button_save": "Lagre",
+            "title": "Endre kategori"
+        },
+        "modal_unarchive": {
+            "description": "Velg modden som ble installert opprinnelig, klikk så «Kjør». {0} vil ikke lenger være arkivert.",
+            "button_cancel": "Avbryt",
+            "button_launch": "Kjør",
+            "title": "Kjør spill"
+        },
+        "modal_archive": {
+            "body_warning": "Alle endringer gjort av annen data, som karakterfiler, vil bli tilbakeført hvis du arkiverer spillet. Vær forsiktig!",
+            "body": "Arkivering vil slette spilldata for {0} for å spare diskplass. Din spillframdriftsdata vil ikke bli slettet, men du vil måtte skaffe en kopi av modden for å installere den igjen.",
+            "confirmation": "Jeg forstår",
+            "button_negative": "Avbryt",
+            "button_affirmative": "Arkiver",
+            "title": "Er du sikker på at du ønsker å arkivere?"
+        },
+        "modal_uninstall": {
+            "body_globalsave": "Din lagringsdata for {0} vil ikke bli slettet. Dog vil du trenge en kopi av modden for å installere den igjen.",
+            "body": "Din lagringsdata for {0} vil bli slettet, og du vil trenge en kopi av modden for å installere den igjen.",
+            "button_negative": "Avbryt",
+            "button_affirmative": "Avinstaller",
+            "confirmation": "Jeg forstår.",
+            "title": "Er du sikker på at du vil avinstallere dette?"
+        },
+        "modal_issue_report": {
+            "placeholder_body": "Få med så mange detaljer som mulig. Hvis mulig, angi forklaring av hva som skjedde, og hvordan man kan reprodusere feilen.",
+            "description": "Hvis ditt problem krever direkte svar, eller ikke passer inn i noen av kategoriene opplistet her, send en e-post istedenfor.",
+            "button_cancel": "Avbryt",
+            "button_submit": "Send rapport",
+            "label_body": "Problemdetaljer",
+            "placeholder_mod": "Lim inn en lenke til moddens nettside eller nedlastingsside.",
+            "label_mod": "Lenke til modd",
+            "option_broken_mod": "Modd fungerer ikke",
+            "option_bug": "Programfeil",
+            "label_type": "Forespørselstype",
+            "title": "Innrapporter en feil"
+        },
+        "modal_language_switch": {
+            "description": "Vent…",
+            "title": "Bytter språk"
+        },
+        "modal_mod_preview": {
+            "text_loading": "Laster inn nedlastingsvalg…",
+            "button_download_external": "Last ned i nettleser",
+            "button_close": "Lukk",
+            "button_download_direct": "Last ned"
+        },
+        "modal_rename": {
+            "title": "Gi installasjon nytt navn",
+            "button_negative": "Avbryt",
+            "button_affirmative": "Gi nytt navn",
+            "body": "Skriv inn nytt navn for {0}."
+        },
+        "menu_mod_options": {
+            "install": "Installer",
+            "cancel": "Avbryt",
+            "delete": "Slett"
+        },
+        "modal_running": {
+            "button_kill": "Påtving avslutning",
+            "link_more": "Klikk for flere valg",
+            "button_browse": "Utforsk spillfiler",
+            "description": "Lukk spillet for å utføre endringer for moddene dine.",
+            "title": "Spill kjører"
+        },
+        "modal_unarchiving": {
+            "description": "Spillet vil starte når det har blitt reinstallert.",
+            "title": "Reinstallerer spill"
+        },
+        "modal_installing": {
+            "description": "Vent ett minutt til spillet er installert",
+            "title": "Installasjon underveis"
+        },
+        "modal_save_delete": {
+            "button_negative": "Avbryt",
+            "button_affirmative": "Slett",
+            "confirmation": "Jeg forstår.",
+            "body": "Du vil måtte starte {0} igjen fra begynnelsen.",
+            "title": "Er du sikker på at du ønsker å slette lagret data?"
+        },
+        "modal_news": {
+            "button": "Ferdig"
+        },
+        "modal_error": {
+            "description_stacktrace": "Tekniske detaljer om hva som gikk galt, ha disse tilgjengelige hår du spør om hjelp.",
+            "description_general": "Prøv å utføre det du gjorde igjen. Hvis problemet vedvarer kan du la det komme meg til kjenne.",
+            "title_fatal": "Oida, Doki Doki Manager kræsjet",
+            "button_copy": "Kopier feilmelding til utklippstavle",
+            "button_restart": "Start på ny",
+            "button_continue": "Fortsett",
+            "title_non_fatal": "Oida, noe gikk galt"
+        },
+        "online_error": {
+            "body": "Doki Doki Mod Manager krever tilgang til Internett for å laste ned ressurser første gang. Sørg for at det er i orden, og start på ny.",
+            "title": "Koble til Internett",
+            "button_restart": "Omstart",
+            "button_quit": "Avslutt"
         }
     },
     "main": {
         "jumplist": {
-            "task_launch": ""
+            "task_launch": "Åpne Doki Doki Mod Manager og kjør {0}."
         },
         "running_cover": {
-            "title_running": "",
-            "title_crashed": "",
-            "button_browse": "",
-            "button_close": "",
-            "description_running": "",
-            "install_missing": "",
-            "install_corrupt": "",
-            "install_crashed": ""
+            "title_running": "DDLC kjører",
+            "title_crashed": "Noe gikk galt",
+            "button_browse": "Åpne spillmappe",
+            "button_close": "OK",
+            "description_running": "Lukk spillet for å gjøre endringer i moddene dine.",
+            "install_missing": "Finner ikke installasjonen.",
+            "install_corrupt": "Installasjonen er ufullstendig eller korrupt.",
+            "install_crashed": "Kunne ikke kjøre spillet, eller så kræsjet det."
         },
         "move_install": {
-            "title": ""
+            "title": "Velg ny installasjonsmappe"
         },
         "mod_browse_dialog": {
-            "title": "",
-            "file_format_name": ""
+            "title": "Finn en modd å installere",
+            "file_format_name": "Modder"
         },
         "game_browse_dialog": {
-            "title": "",
-            "file_format_name": ""
+            "title": "Finn en kopi av DDLC-ZIP-filen",
+            "file_format_name": "DDLC"
         },
         "shortcut_dialog": {
-            "title": "",
-            "file_format_name": ""
+            "title": "Velg hvor du vil passere snarveien din",
+            "file_format_name": "Snarvei"
         },
         "errors": {
             "exception": {
@@ -336,9 +573,34 @@
                 "body": ""
             },
             "renderer_freeze": {
-                "title": "",
-                "body": ""
+                "title": "Doki Doki Mod Manager sluttet å svare",
+                "body": "Hvis dette problemet vedvarer, lukk programmet og start det igjen."
+            },
+            "dev_ui_load_fail": {
+                "body": "Laster inn fra sanntidsgrensesnittstjenere istedenfor.",
+                "title": "Klarte ikke å laste inn fra utviklingstjeneren"
             }
+        },
+        "discord": {
+            "status_active": "I spill",
+            "status_idle": "Håndtering av modder",
+            "description_active": "Spiller DDLC",
+            "description_idle": "Spiller ikke noe",
+            "description_version": "Versjon{0}"
+        },
+        "redownload_confirmation": {
+            "detail": "Det er allerede en kopi av {0} i ditt moddbibliotek. Ønsker du å laste den ned igjen? (Dette vil overskrive den gamle kopien)",
+            "button_confirm": "Last ned",
+            "message": "Modd allerede nedlastet",
+            "button_cancel": "Avbryt"
+        },
+        "import_mas": {
+            "title": "Finn stedet du kopierte Monika sin karakterfil til",
+            "filter": "Kun Monika"
+        },
+        "export_mas": {
+            "filter": "Kun Monika",
+            "title": "Velg hvor du ønsker å kopiere Monika til"
         }
     }
 }
