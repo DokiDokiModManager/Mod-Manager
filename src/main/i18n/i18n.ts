@@ -19,8 +19,8 @@ export default class I18n {
         this.defaultLanguageData = JSON.parse(readFileSync(DEFAULT_LOCALE).toString("utf-8"));
 
         if (!existsSync(this.langFile)) {
-            Logger.info("i18n", "Using preloaded language data from " + this.langFile)
             this.langFile = joinPath(__dirname, "../../../lang/", this.language + ".json");
+            Logger.info("i18n", "Using preloaded language data from " + this.langFile)
         } else {
             Logger.info("i18n", "Using cached language data from " + this.langFile)
         }
