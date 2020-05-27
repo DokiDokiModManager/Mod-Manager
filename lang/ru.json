@@ -331,7 +331,7 @@
                 "title_ddmc": "Клуб модификаций"
             },
             "downloaded": {
-                "placeholder_search": "Поиск модификации...",
+                "placeholder_search": "Поиск модификации…",
                 "button_install": "Установить",
                 "button_options": "Настройки",
                 "title": "Ваши моды"
@@ -356,7 +356,7 @@
             }
         },
         "onboarding_v4": {
-            "text_scanning": "Подождите...",
+            "text_scanning": "Подождите…",
             "header_success": "Мы нашли вашу копию DDLC",
             "text_select": "Откройте папку, в которой вы сохранили свою скачанную копию DDLC, после чего перенесите файл в пустую область ниже.",
             "text_welcome": "Добро пожаловать в лучшую на данный момент версию программы Doki Doki Mod Manager.",
