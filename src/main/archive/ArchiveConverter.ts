@@ -3,6 +3,7 @@ import {spawnSync, SpawnSyncReturns} from "child_process";
 import {join as joinPath} from "path";
 import {app} from "electron";
 import {path7za} from "7zip-bin";
+import Logger from "../utils/Logger";
 
 export default class ArchiveConverter {
 
@@ -10,7 +11,7 @@ export default class ArchiveConverter {
         return new Promise((ff, rj) => {
             const tempDir: string = mkdtempSync(joinPath(app.getPath("temp"), "ddmm-archive"));
 
-            console.log("Converting " + tempDir);
+            Logger.info("Archive Converter", "Converting " + tempDir + " to a zip file");
 
             // run 7zip to extract the archive
             const extractOut: SpawnSyncReturns<string> = spawnSync(path7za, ["x", pathToArchive, "-y", "-o" + tempDir]);

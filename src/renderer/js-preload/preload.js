@@ -9,7 +9,7 @@ const {ipcRenderer, remote} = require("electron");
 const EventEmitter = remote.require("events");
 const packageData = remote.require("../../package");
 const path = remote.require("path");
-const fileUrl = remote.require("file-url");
+const datauri = remote.require("datauri");
 
 const api = new EventEmitter();
 
@@ -18,6 +18,7 @@ api.app = {};
 api.window = {};
 api.config = {};
 api.onboarding = {};
+api.downloads = {};
 
 // Called when the UI wants to refresh the mod list
 api.mods.refreshModList = function () {
@@ -36,9 +37,16 @@ api.mods.browseForMod = function () {
 
 // Launches an install
 api.mods.launchInstall = function (folderName) {
-    if (!ready) return;
-
     ipcRenderer.send("launch install", folderName);
+};
+
+api.mods.unarchiveInstall = function (install) {
+    ipcRenderer.send("unarchive install", install);
+};
+
+// Kill game
+api.mods.killGame = function () {
+    ipcRenderer.send("kill game");
 };
 
 // Creates an install
@@ -56,6 +64,10 @@ api.mods.download = function (url) {
     ipcRenderer.send("download mod", url);
 };
 
+api.mods.getInstallBackground = function (install) {
+    return ipcRenderer.sendSync("get install background", install);
+};
+
 // Fires an event on the DDMM object when the mod list has been retrieved
 ipcRenderer.on("got modlist", (ev, list) => {
     api.emit("mod list", list);
@@ -68,7 +80,6 @@ ipcRenderer.on("got installs", (ev, list) => {
 
 // Fires an event when the running cover should be shown / hidden
 ipcRenderer.on("running cover", (ev, data) => {
-    console.log("Running cover updated", data);
     api.emit("running cover", data);
 });
 
@@ -92,6 +103,16 @@ api.app.crash = function () {
     ipcRenderer.send("debug crash");
 };
 
+// Get disk space
+api.app.getDiskSpace = function () {
+    return ipcRenderer.sendSync("disk space");
+};
+
+// Clipboard copy
+api.app.copyToClipboard = function (text) {
+    remote.clipboard.writeText(text);
+};
+
 // Localisation function
 api.translate = function (key, ...args) {
     return ipcRenderer.sendSync("translate", {
@@ -101,7 +122,23 @@ api.translate = function (key, ...args) {
 };
 
 // Path to URL conversion
-api.pathToFile = fileUrl;
+api.fileToURL = function (file) {
+    try {
+        return path.isAbsolute(file) ? datauri.sync(file) : datauri.sync(path.join(remote.app.getAppPath(), file));
+    } catch {
+        return "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjEuNv1OCegAAAANSURBVBhXY2BgYEgBAABpAGW2L9BbAAAAAElFTkSuQmCC";
+    }
+};
+
+api.fileToURLAsync = function (file) {
+    return new Promise(ff => {
+        datauri.promise(path.isAbsolute(file) ? file : path.join(remote.app.getAppPath(), file)).then(uri => {
+            ff(uri);
+        }).catch(() => {
+            ff("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjEuNv1OCegAAAANSURBVBhXY2BgYEgBAABpAGW2L9BbAAAAAElFTkSuQmCC");
+        });
+    });
+};
 
 // Close window
 api.window.close = function () {
@@ -132,186 +169,9 @@ api.window.input = function (data) {
     api.emit("input", data);
 };
 
-// before you scream at me: this is temporary
-// v4 will have a far more robust system for this
-api.window.handleLanguageMenu = function (mouseX, mouseY) {
-    const current = api.config.readConfigValue("language");
-    const languages = [
-        {
-            name: "Беларуская",
-            code: "be"
-        },
-        {
-            name: "Deutsch",
-            code: "de"
-        },
-        {
-            name: "English (UK)",
-            code: "en-GB"
-        },
-        {
-            name: "Español (Latinoamérica)",
-            code: "es"
-        },
-        {
-            name: "日本語",
-            code: "ja"
-        },
-        {
-            name: "Русский",
-            code: "ru"
-        },
-        {
-            name: "Norsk Bokmål",
-            code: "nb_NO"
-        },
-        {
-            name: "简体中文",
-            code: "zh_Hans"
-        },
-        // {
-        //     name: "فارسی",
-        //     code: "fa"
-        // },
-        {
-            name: "Français",
-            code: "fr"
-        },
-        {
-            name: "Polski",
-            code: "pl"
-        },
-        {
-            name: "Türkçe",
-            code: "tr"
-        },
-        {
-            name: "Українська",
-            code: "uk"
-        }
-    ].sort((a,b) => (a.code > b.code) ? 1 : -1);
-    remote.Menu.buildFromTemplate([{
-        label: api.translate("renderer.language_change_instruction"),
-        enabled: false
-    }].concat(languages.map(lang => {
-        return {
-            label: lang.name,
-            type: "radio",
-            checked: current === lang.code,
-            click: () => {
-              api.config.saveConfigValue("language", lang.code);
-            }
-        };
-    }))).popup({
-        x: mouseX,
-        y: mouseY
-    });
-};
-
-// Show right click for install
-api.window.handleInstallRightClick = function (folderName, installName, mouseX, mouseY) {
-    remote.Menu.buildFromTemplate([
-        {
-            label: api.translate("renderer.tab_mods.install_contextmenu.launch"), click: () => {
-                api.mods.launchInstall(folderName)
-            }, accelerator: "enter"
-        },
-        {type: "separator"},
-        {
-            label: api.translate("renderer.tab_mods.install_contextmenu.rename"), click: () => {
-                api.emit("input", {
-                    title: api.translate("renderer.tab_mods.rename_input.message"),
-                    description: api.translate("renderer.tab_mods.rename_input.details", installName),
-                    button_affirmative: api.translate("renderer.tab_mods.rename_input.button_affirmative"),
-                    button_negative: api.translate("renderer.tab_mods.rename_input.button_negative"),
-                    callback: (newName) => {
-                        if (newName) {
-                            api.mods.renameInstall(folderName, newName);
-                        }
-                    }
-                });
-            },
-            accelerator: "F2"
-        },
-        {
-            label: api.translate("renderer.tab_mods.install_contextmenu.shortcut"), click: () => {
-                api.mods.createShortcut(folderName, installName)
-            },
-            enabled: api.platform === "win32"
-        },
-        {type: "separator"},
-        {
-            label: api.translate("renderer.tab_mods.install_contextmenu.delete_save"),
-            click: () => {
-                api.emit("prompt", {
-                    title: api.translate("renderer.tab_mods.save_delete_confirmation.message"),
-                    description: api.translate("renderer.tab_mods.save_delete_confirmation.details", installName),
-                    affirmative_style: "danger",
-                    button_affirmative: api.translate("renderer.tab_mods.save_delete_confirmation.button_affirmative"),
-                    button_negative: api.translate("renderer.tab_mods.save_delete_confirmation.button_negative"),
-                    callback: (uninstall) => {
-                        if (uninstall) {
-                            api.mods.deleteSaveData(folderName);
-                        }
-                    }
-                });
-            }
-        },
-        {
-            label: api.translate("renderer.tab_mods.install_contextmenu.uninstall"),
-            accelerator: "delete",
-            click: () => {
-                api.emit("prompt", {
-                    title: api.translate("renderer.tab_mods.uninstall_confirmation.message"),
-                    description: api.translate("renderer.tab_mods.uninstall_confirmation.details", installName),
-                    affirmative_style: "danger",
-                    button_affirmative: api.translate("renderer.tab_mods.uninstall_confirmation.button_affirmative"),
-                    button_negative: api.translate("renderer.tab_mods.uninstall_confirmation.button_negative"),
-                    callback: (uninstall) => {
-                        if (uninstall) {
-                            api.mods.deleteInstall(folderName);
-                            ddmm.emit("create install");
-                        }
-                    }
-                });
-            }
-        }
-    ]).popup({
-        x: mouseX,
-        y: mouseY
-    });
-};
-
-// Show right click for mod
-api.window.handleModRightClick = function (filename, mouseX, mouseY) {
-    remote.Menu.buildFromTemplate([
-        {
-            label: api.translate("renderer.tab_mods.mod_contextmenu.install"), accelerator: "enter", click: () => {
-                ddmm.emit("create install", filename);
-            }
-        },
-        {type: "separator"},
-        {
-            label: api.translate("renderer.tab_mods.mod_contextmenu.delete"), accelerator: "delete", click: () => {
-                api.window.prompt({
-                    title: api.translate("renderer.tab_mods.mod_delete_confirmation.message"),
-                    description: api.translate("renderer.tab_mods.mod_delete_confirmation.details"),
-                    affirmative_style: "danger",
-                    button_affirmative: api.translate("renderer.tab_mods.mod_delete_confirmation.button_affirmative"),
-                    button_negative: api.translate("renderer.tab_mods.mod_delete_confirmation.button_negative"),
-                    callback: (del) => {
-                        if (del) {
-                            api.mods.deleteMod(filename);
-                            ddmm.emit("create install");
-                        }
-                    }
-                });
-            }
-        }
-    ]).popup({
-        x: mouseX,
-        y: mouseY
-    });
+// Devtools
+api.window.openDevtools = function () {
+    remote.getCurrentWindow().webContents.openDevTools({mode: "detach"});
 };
 
 // Change a setting in config
@@ -334,6 +194,11 @@ api.mods.deleteInstall = function (folderName) {
     ipcRenderer.send("delete install", folderName);
 };
 
+// Archive install
+api.mods.archiveInstall = function(folderName) {
+    ipcRenderer.send("archive install", folderName);
+};
+
 // Delete mod
 api.mods.deleteMod = function (fileName) {
     ipcRenderer.send("delete mod", fileName);
@@ -349,41 +214,18 @@ api.mods.createShortcut = function (folderName, installName) {
     ipcRenderer.send("create shortcut", {folderName, installName});
 };
 
-// Help meny
-api.app.showHelpMenu = function (x, y) {
-    remote.Menu.buildFromTemplate([
-        {
-            label: api.translate("renderer.help_menu.option_help"), click: () => {
-                api.app.openURL("https://help.doki.space");
-            }
-        },
-        {
-            label: api.translate("renderer.help_menu.option_discord"), click: () => {
-                api.app.openURL("https://doki.space/discord");
-            }
-        },
-        {
-            label: api.translate("renderer.help_menu.option_feedback"), click: () => {
-                api.app.openURL("mailto:zudo@doki.space");
-            }
-        }
-    ]).popup({x, y})
+// Change category
+api.mods.setCategory = function (folderName, category) {
+    ipcRenderer.send("set category", {folderName, category});
 };
 
-// User menu
-api.app.showUserMenu = function (x, y) {
-    remote.Menu.buildFromTemplate([
-        {
-            label: api.translate("renderer.user_menu.option_rename"), click: () => {
-                api.emit("change username")
-            }
-        },
-        {
-            label: api.translate("renderer.user_menu.option_logout"), click: () => {
-                api.emit("logout");
-            }
-        }
-    ]).popup({x, y})
+// Import / export Monika
+api.mods.importMAS = function (folderName) {
+    ipcRenderer.send("import mas", folderName);
+};
+
+api.mods.exportMAS = function (folderName) {
+    ipcRenderer.send("export mas", folderName);
 };
 
 // Move install folder
@@ -406,74 +248,67 @@ ipcRenderer.on("debug info", (ev, data) => {
     api.debug = data;
 });
 
-// Handler for updates
-ipcRenderer.on("updating", (ev, status) => {
-    api.emit("updating", status);
-});
+// Check for updates
+api.app.update = function () {
+    ipcRenderer.send("check update");
+};
 
 api.app.downloadUpdate = function () {
     ipcRenderer.send("download update");
 };
+
+ipcRenderer.on("update status", (ev, status) => {
+    api.emit("update status", status);
+});
 
 // Onboarding flow trigger
 ipcRenderer.on("start onboarding", () => {
     api.emit("start onboarding");
 });
 
-// Check for updates
-api.app.update = function () {
-    ipcRenderer.send("check update");
+api.onboarding.scan = function() {
+    ipcRenderer.send("onboarding scan");
 };
 
-// Onboarding download
-
-api.onboarding.browseForGame = function () {
-    ipcRenderer.send("onboarding browse");
+api.onboarding.validateGame = function (path) {
+    ipcRenderer.send("onboarding validate", path);
 };
 
-ipcRenderer.on("download progress", (_, data) => {
-    api.emit("download progress", data);
+api.onboarding.finalise = function (pathToDDLC) {
+    ipcRenderer.send("onboarding finalise", pathToDDLC);
+};
+
+ipcRenderer.on("onboarding validated", (ev, response) => {
+    api.emit("onboarding validated", response);
 });
 
-ipcRenderer.on("download stalled", (_, data) => {
-    api.emit("download stalled", data);
+api.reloadLanguages = function () {
+    ipcRenderer.send("reload languages");
+};
+
+ipcRenderer.on("languages reloaded", () => {
+    api.emit("languages reloaded");
 });
 
-ipcRenderer.on("onboarding downloaded", () => {
-    api.emit("onboarding downloaded");
+api.downloads.getActiveDownloads = function () {
+    ipcRenderer.send("get downloads");
+}
+
+ipcRenderer.on("got downloads", (ev, downloads) => {
+    api.emit("got downloads", downloads);
 });
 
-ipcRenderer.on("onboarding download failed", () => {
-    api.emit("onboarding download failed");
+ipcRenderer.on("download started", (ev, url) => {
+    api.emit("download started", url);
 });
 
-ipcRenderer.on("auth handoff", (_, url) => {
-    api.emit("auth handoff", url);
-});
+api.downloads.startDownload = function (url, filename) {
+    ipcRenderer.send("start download", {url, filename});
+}
 
-ipcRenderer.on("get save url", (ev, filename) => {
-    api.emit("get save url", filename);
-    api.on("got save url", url => {
-        ipcRenderer.send("got save url", url);
-    });
-});
-
-ipcRenderer.on("upload save", (ev, data) => {
-    api.emit("upload save", data);
-});
-
-ipcRenderer.on("lock save", (ev, fn) => {
-    api.emit("lock save", fn);
-});
-
-ipcRenderer.on("unlock save", (ev, fn) => {
-    api.emit("unlock save", fn);
-});
-
-// Winstore Appx UI handling
-ipcRenderer.on("is appx", (_, is) => {
-    api.emit("is appx", is);
-});
+api.downloads.downloadWithInteraction = function (url) {
+    ipcRenderer.send("start download", {url, interaction: true});
+}
 
 // Application version
 api.version = packageData.version;

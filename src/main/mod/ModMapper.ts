@@ -2,8 +2,6 @@ export abstract class ModMapper {
 
     private readonly filesToDelete: string[];
 
-    // no it can't
-    // noinspection TypeScriptAbstractClassConstructorCanBeMadeProtected
     public constructor(filesToDelete?: string[]) {
         this.filesToDelete = filesToDelete || [];
     }

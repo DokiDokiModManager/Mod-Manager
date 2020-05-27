@@ -2,6 +2,7 @@ import {app} from "electron";
 import {mkdirsSync} from "fs-extra";
 import {existsSync as fileExists, readFileSync, writeFileSync} from "fs";
 import {join as joinPath, sep as pathSep} from "path";
+import Logger from "./Logger";
 
 export default class Config {
 
@@ -12,17 +13,28 @@ export default class Config {
      * @returns any The config value
      */
     public static readConfigValue(key: string, noDefault?: boolean): any {
-        if (fileExists(this.configPath)) {
-            const contents: string = readFileSync(this.configPath).toString("utf8");
-            const config: object = JSON.parse(contents);
-            if (config.hasOwnProperty(key)) {
-                return config[key];
-            } else if (!noDefault && this.defaultConfig[key]) {
-                return this.defaultConfig[key];
+        try {
+            if (fileExists(this.configPath)) {
+                const contents: string = readFileSync(this.configPath).toString("utf8");
+                const config: object = JSON.parse(contents);
+                if (config.hasOwnProperty(key)) {
+                    return config[key];
+                } else if (!noDefault && this.defaultConfig[key]) {
+                    return this.defaultConfig[key];
+                } else {
+                    return undefined;
+                }
             } else {
-                return undefined;
+                if (!noDefault && this.defaultConfig[key]) {
+                    return this.defaultConfig[key];
+                } else {
+                    return undefined;
+                }
             }
-        } else {
+        } catch (e) {
+            // issue reading the file?
+            writeFileSync(this.configPath, "{}"); // overwrite config file
+
             if (!noDefault && this.defaultConfig[key]) {
                 return this.defaultConfig[key];
             } else {
@@ -39,10 +51,16 @@ export default class Config {
     public static saveConfigValue(key: string, value: any) {
         let config: object = {};
         if (fileExists(this.configPath)) {
-            const contents: string = readFileSync(this.configPath).toString("utf8");
+            let contents: string;
+            try {
+                contents = readFileSync(this.configPath).toString("utf8");
+            } catch(e) {
+                contents = "{}";
+                writeFileSync(this.configPath, "{}"); // overwrite config file
+            }
             config = JSON.parse(contents);
         }
-        console.log("Config: " + key + " is now " + value);
+        Logger.info("Config", key + " was set to " + JSON.stringify(value));
         config[key] = value;
         mkdirsSync(this.configPath.split(pathSep).slice(0, -1).join(pathSep));
         writeFileSync(this.configPath, JSON.stringify(config));
@@ -57,7 +75,14 @@ export default class Config {
         discordEnabled: true,
         sdkMode: "always",
         updateChannel: "latest",
-        language: "en-GB"
+        language: "en-GB",
+        localUI: false,
+        modBackgrounds: true,
+        renpy: {
+            skipSplash: false,
+            skipMenu: false,
+            screenVariant: null
+        }
     };
 
     private static configPath = joinPath(app.getPath("userData"), "config.json");

@@ -1,29 +1,30 @@
 import {join as joinPath} from "path";
-import {readFileSync} from "fs";
-import {app} from "electron";
-import {spawn} from "child_process";
-import I18n from "../utils/i18n";
+import {readFileSync, writeFileSync} from "fs";
+import {ChildProcess, spawn} from "child_process";
+import I18n from "../i18n/i18n";
 import Config from "../utils/Config";
 import DiscordManager from "../discord/DiscordManager";
 import SDKDebugConsole from "../sdk/SDKDebugConsole";
 import {LogClass} from "../sdk/LogClass";
 import SDKServer from "../sdk/SDKServer";
 
-const lang: I18n = new I18n(app.getLocale());
+const lang: I18n = new I18n();
 
 const SDK_HOST: string = "127.0.0.1";
 const SDK_PORT: number = 41420;
 
 export default class InstallLauncher {
 
-    private static debugConsole: SDKDebugConsole;
+    private debugConsole: SDKDebugConsole;
+
+    private procHandle: ChildProcess;
 
     /**
      * Launches an install by the folder name
      * @param folderName The folder of the install to be launched
      * @param richPresence The Discord rich presence instance to be updated
      */
-    static launchInstall(folderName: string, richPresence?: DiscordManager): Promise<any> {
+    launchInstall(folderName: string, richPresence?: DiscordManager): Promise<any> {
         return new Promise((ff, rj) => {
             const installFolder: string = joinPath(Config.readConfigValue("installFolder"), "installs", folderName);
             let installData: any;
@@ -35,9 +36,9 @@ export default class InstallLauncher {
                 this.debugConsole = new SDKDebugConsole(folderName);
             }
 
-            function logToConsole(text: string, clazz?: LogClass) {
-                if (InstallLauncher.debugConsole) {
-                    InstallLauncher.debugConsole.log(text, clazz);
+            const logToConsole = (text: string, clazz?: LogClass) => {
+                if (this.debugConsole) {
+                    this.debugConsole.log(text, clazz);
                 }
             }
 
@@ -87,8 +88,8 @@ export default class InstallLauncher {
                 logToConsole("Starting SDK server on " + SDK_PORT);
                 sdkServer = new SDKServer(SDK_PORT, SDK_HOST, folderName);
 
-                sdkServer.on("log", (data: {clazz: LogClass, text: string}) => {
-                   logToConsole("[SDK] " + data.text, data.clazz);
+                sdkServer.on("log", (data: { clazz: LogClass, text: string }) => {
+                    logToConsole("[SDK] " + data.text, data.clazz);
                 });
             }
 
@@ -105,8 +106,6 @@ export default class InstallLauncher {
                 throw new Error("I have no idea what kind of computer you're using!");
             }
 
-            console.log(gameExecutable);
-
             // get the path to the save data folder
             const dataFolder = joinPath(installFolder, "appdata");
 
@@ -116,9 +115,19 @@ export default class InstallLauncher {
                 HOME: dataFolder, // macOS and Linux
             });
 
+            const renpyConfig = Config.readConfigValue("renpy");
+
+            Object.assign(env, {
+                RENPY_SKIP_SPLASHSCREEN: renpyConfig.skipSplash ? "1": undefined,
+                RENPY_SKIP_MAIN_MENU: renpyConfig.skipMenu ? "1": undefined,
+            });
+
+
             logToConsole("Launching game...");
 
-            const procHandle = spawn(gameExecutable, [], {
+            const startTime: number = Date.now();
+
+            this.procHandle = spawn(gameExecutable, {
                 // Overwrite the environment variables to force Ren'Py to save where we want it to.
                 // On Windows, the save location is determined by the value of %appdata% but on macOS / Linux
                 // it saves based on the home directory location. This can be changed with $HOME but means the save
@@ -127,27 +136,53 @@ export default class InstallLauncher {
                 env,
             });
 
-            procHandle.stdout.on("data", data => {
+            this.procHandle.stdout.on("data", data => {
                 logToConsole("[STDOUT] " + data.toString());
             });
 
-            procHandle.stderr.on("data", data => {
+            this.procHandle.stderr.on("data", data => {
                 logToConsole("[STDERR] " + data.toString(), LogClass.ERROR);
             });
 
-            procHandle.on("error", e => {
-                console.log(e);
-                if (sdkServer) { sdkServer.shutdown(); }
+            this.procHandle.on("error", e => {
+                if (sdkServer) {
+                    sdkServer.shutdown();
+                }
                 richPresence.setIdleStatus();
-                rj(lang.translate("main.running_cover.install_crashed"))
+                rj(e);
             });
 
-            procHandle.on("close", () => {
-                if (sdkServer) { sdkServer.shutdown(); }
+            this.procHandle.on("close", () => {
+                // calculate total play time
+                const sessionTime: number = Date.now() - startTime;
+                const totalTime: number = installData.playTime ? installData.playTime + sessionTime : sessionTime;
+
+                if (sdkServer) {
+                    sdkServer.shutdown();
+                }
+
+                // read again, so sdk data isn't overwritten
+                const newInstallData: any = JSON.parse(readFileSync(joinPath(installFolder, "install.json")).toString("utf8"));
+                newInstallData.playTime = totalTime;
+
+                writeFileSync(joinPath(installFolder, "install.json"), JSON.stringify(newInstallData));
+
                 logToConsole("Game has closed.");
                 richPresence.setIdleStatus();
                 ff();
             });
         });
+    }
+
+    /**
+     * Kills the currently running game
+     */
+    forceKill() {
+        if (this.procHandle) {
+            if (this.debugConsole) {
+                this.debugConsole.log("User killed the game.", LogClass.ERROR);
+            }
+            this.procHandle.kill();
+        }
     }
 }

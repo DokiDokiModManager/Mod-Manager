@@ -1,97 +1,67 @@
-import {BrowserWindow, DownloadItem} from "electron";
-import * as EventEmitter from "events";
+import {session, DownloadItem, BrowserWindow, dialog} from "electron";
 import {join as joinPath} from "path";
+import * as EventEmitter from "events";
+import Config from "../utils/Config";
+import {moveSync, existsSync} from "fs-extra";
+import I18n from "../i18n/i18n";
+import Logger from "../utils/Logger";
 
 export default class DownloadManager extends EventEmitter {
 
-    private win: BrowserWindow;
+    private downloads: DownloadItem[] = [];
 
-    private downloadCount: number = 0;
+    private filenames: Map<string, string> = new Map();
 
-    private saveLocationMap: Map<string, string>;
-    private filenameMap: Map<string, string>;
-    private metadataMap: Map<string, any>;
-    private downloadingFileNames: string[];
+    private interactionWin: BrowserWindow;
 
-    constructor(win: BrowserWindow) {
+    private readonly lang: I18n;
+    private readonly mainWin: BrowserWindow;
+
+    constructor(mainWin: BrowserWindow, lang: I18n) {
         super();
+        this.lang = lang;
+        this.mainWin = mainWin;
 
-        this.win = win;
+        session.defaultSession.on("will-download", (ev, item: DownloadItem) => {
+            this.downloads.push(item);
 
-        this.saveLocationMap = new Map();
-        this.filenameMap = new Map();
-        this.metadataMap = new Map();
-        this.downloadingFileNames = [];
-
-        this.win.webContents.session.on("will-download", (ev, item: DownloadItem) => {
-            const url: string = item.getURLChain()[0];
-
-            if (!this.saveLocationMap.has(url)) {
-                return;
+            if (this.interactionWin) {
+                this.interactionWin.close();
             }
 
-            let filename: string = this.filenameMap.has(url) ? this.filenameMap.get(url) : null;
+            const filename: string = this.filenames.get(item.getURLChain()[0]) || item.getFilename();
+            const newPath: string = joinPath(Config.readConfigValue("installFolder"), "mods", filename);
 
-            if (filename) {
-                this.filenameMap.delete(url);
-            } else {
-                filename = item.getFilename();
-            }
-
-            const meta = this.metadataMap.has(url) ? this.metadataMap.get(url) : null;
-
-            if (meta) {
-                this.metadataMap.delete(url);
-            }
-
-            this.emit("download started", {
-                filename: item.getFilename(),
-                startTime: item.getStartTime(),
-                meta
-            });
-
-            console.log("Downloading " + item.getFilename() + " from " + item.getURL());
-            item.setSavePath(joinPath(this.saveLocationMap.get(url), filename));
-            this.saveLocationMap.delete(url);
-
-            this.downloadingFileNames.push(item.getFilename());
-
-            item.on("updated", (ev, state: string) => {
-                if (state === "progressing") {
-                    this.emit("download progress", {
-                        filename: item.getFilename(),
-                        downloaded: item.getReceivedBytes(),
-                        total: item.getTotalBytes(),
-                        startTime: item.getStartTime(),
-                        meta
-                    });
-                } else {
-                    console.log("Download of " + item.getFilename() + " stalled");
-                    this.emit("download stalled", {
-                        filename: item.getFilename(),
-                        downloaded: item.getReceivedBytes(),
-                        total: item.getTotalBytes(),
-                        startTime: item.getStartTime(),
-                        meta
-                    });
+            if (existsSync(newPath)) {
+                if (dialog.showMessageBoxSync(mainWin, {
+                    message: this.lang.translate("main.redownload_confirmation.message"),
+                    detail: this.lang.translate("main.redownload_confirmation.detail", filename),
+                    buttons: [this.lang.translate("main.redownload_confirmation.button_confirm"), this.lang.translate("main.redownload_confirmation.button_cancel")],
+                    type: "warning"
+                }) !== 0) {
+                    item.cancel();
+                    return;
                 }
+            }
+
+            this.emit("started", item.getURLChain()[0]);
+
+            item.savePath = joinPath(Config.readConfigValue("installFolder"), "downloads", filename);
+
+            item.on("updated", () => {
+                this.emit("updated", item);
             });
 
-            item.once("done", (ev, state: string) => {
-                this.downloadCount -= 1;
-                this.downloadingFileNames.splice(this.downloadingFileNames.indexOf(item.getFilename()), 1);
+            item.on("done", (ev: Event, state) => {
+                this.downloads.splice(this.downloads.indexOf(item), 1);
                 if (state === "completed") {
-                    console.log("Download of " + item.getFilename() + " complete.");
-                    this.emit("download complete", {
-                        filename: item.getFilename(),
-                        meta
+                    this.filenames.delete(item.getURLChain()[0]);
+                    moveSync(item.savePath, newPath, {
+                        overwrite: true
                     });
-                } else {
-                    this.emit("download failed", {
-                        filename: item.getFilename(),
-                        meta
-                    });
+                    this.emit("finished", item);
                 }
+                this.emit("updated", item);
             });
         });
     }
@@ -99,30 +69,68 @@ export default class DownloadManager extends EventEmitter {
     /**
      * Returns whether or not there are downloads in progress
      */
-    public hasDownloads(): boolean {
-        return this.downloadCount > 0;
+    public hasActiveDownloads(): boolean {
+        return this.downloads.length > 0;
     }
 
     /**
-     * Gets all files currently being downloaded (filenames)
+     * Gets all files currently being downloaded
      */
-    public getDownloads(): string[] {
-        return this.downloadingFileNames;
+    public getActiveDownloads(): DownloadItem[] {
+        return this.downloads;
+    }
+
+    /**
+     * Gets the custom filename for a downloading file, if it was set.
+     * @param url The URL being downloaded.
+     */
+    public getSavedFilename(url: string): string {
+        return this.filenames.get(url);
     }
 
     /**
      * Downloads a file from a URL
      *
      * @param url The URL to download
-     * @param saveLocation The path to save the file to
-     * @param filename An optional filename
-     * @param meta Optional metadata to apply to the download
+     * @param filename An optional file name
      */
-    public downloadFile(url: string, saveLocation: string, filename?: string, meta?: any): void {
-        this.downloadCount += 1;
-        this.saveLocationMap.set(url, saveLocation);
-        this.filenameMap.set(url, filename);
-        this.metadataMap.set(url, meta);
-        this.win.webContents.downloadURL(url);
+    public downloadFile(url: string, filename?: string): void {
+        Logger.info("Download Manager", "Beginning download of " + url + " (manual initiation)");
+        if (filename) {
+            this.filenames.set(url, filename);
+        }
+        session.defaultSession.downloadURL(url);
+    }
+
+    /**
+     * Downloads a file from a URL by showing it in a new window
+     *
+     * @param url The URL to download
+     */
+    public downloadFileWithInteraction(url: string) {
+        this.interactionWin = new BrowserWindow({
+            parent: this.mainWin,
+            modal: true,
+            show: false,
+            webPreferences: {
+                nodeIntegration: false,
+            }
+        });
+
+        this.interactionWin.setMenu(null);
+
+        this.interactionWin.on("close", () => {
+            this.interactionWin = null;
+        });
+
+        this.interactionWin.on("ready-to-show", () => {
+            this.interactionWin.show();
+        });
+
+        this.interactionWin.webContents.on("new-window", event => {
+            event.preventDefault();
+        });
+
+        this.interactionWin.loadURL(url);
     }
 }

@@ -2,42 +2,49 @@
   "name": "doki-doki-mod-manager",
   "productName": "Doki Doki Mod Manager",
   "description": "Mod Manager for Doki Doki Literature Club",
-  "author": "u/zuudo",
-  "version": "3.2.8",
+  "author": "Zudo",
+  "version": "4.0.0-prerelease",
   "homepage": "https://doki.space",
   "license": "MIT",
   "main": "lib/main/index.js",
   "repository": "https://github.com/DokiDokiModManager/Mod-Manager",
   "bugs": "zudo@doki.space",
   "scripts": {
-    "start": "tsc && electron . --enable-sandbox",
-    "start-dev": "tsc && electron --inspect=5858 . --enable-sandbox",
-    "release": "tsc && electron-builder",
-    "test": "tsc && mocha"
+    "postinstall": "electron-builder install-app-deps",
+    "build-typescript": "tsc",
+    "start": "yarn build-typescript && electron .",
+    "start-dev": "yarn build-typescript && electron --inspect=5858 .",
+    "release": "yarn build-typescript && electron-builder",
+    "test": "yarn build-typescript && mocha"
   },
   "dependencies": {
-    "7zip-bin": "^4.1.0",
-    "@fortawesome/fontawesome-free": "^5.9.0",
-    "@sentry/electron": "^0.17.1",
-    "@zudo/unzipper": "^0.0.4",
-    "archiver": "^3.0.0",
+    "7zip-bin": "^5.0.3",
+    "@fortawesome/fontawesome-free": "^5.12.0",
+    "@sentry/electron": "1.3.0",
+    "archiver": "^4.0.1",
+    "chalk": "^4.0.0",
     "chmodr": "^1.2.0",
+    "datauri": "^2.0.0",
     "discord-rich-presence": "^0.0.8",
-    "electron-updater": "^4.0.6",
-    "file-url": "^3.0.0",
-    "fs-extra": "^8.0.1",
-    "fuse.js": "^3.4.5",
-    "hazardous": "^0.3.0",
+    "diskusage": "^1.1.3",
+    "du": "^1.0.0",
+    "electron-updater": "^4.3.1",
+    "fs-extra": "^9.0.0",
+    "fuse.js": "^5.2.3",
+    "node-fetch": "^2.6.0",
     "request": "^2.88.0",
-    "semver": "^6.2.0",
-    "vue": "^2.6.10"
+    "semver": "^7.1.1",
+    "vue": "^2.6.11",
+    "vuex": "^3.3.0",
+    "yauzl": "latest"
   },
   "devDependencies": {
-    "@sentry/cli": "^1.44.3",
-    "electron": "^5.0.2",
-    "electron-builder": "^21.0.15",
-    "mocha": "^6.1.4",
-    "typescript": "^3.5.3"
+    "@sentry/cli": "^1.52.3",
+    "@types/node": "12.12.37",
+    "electron": "^9.0.0-beta.22",
+    "electron-builder": "^22.6.0",
+    "mocha": "^7.1.2",
+    "typescript": "^3.7.5"
   },
   "build": {
     "appId": "space.doki.modmanager",
@@ -51,7 +58,9 @@
       "!**/fontawesome-free/js",
       "!**/fontawesome-free/less",
       "!**/fontawesome-free/scss",
-      "!**/vue/src"
+      "!**/vue/",
+      "!**/src/renderer/css",
+      "!**/src/renderer/js"
     ],
     "protocols": [
       {
@@ -81,15 +90,19 @@
     },
     "linux": {
       "category": "Game",
-      "icon": "build/icon.png",
+      "maintainer": "zudo@doki.space",
+      "synopsis": "Doki Doki Mod Manager",
       "target": [
-        {
-          "target": "AppImage",
-          "arch": [
-            "x64",
-            "ia32"
-          ]
-        }
+        "AppImage"
+      ],
+      "publish": [
+        "github"
+      ]
+    },
+    "snap": {
+      "stagePackages": [
+        "default",
+        "libglu1-mesa"
       ]
     },
     "mac": {

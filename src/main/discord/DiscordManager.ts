@@ -2,12 +2,17 @@ import * as makeClient from "discord-rich-presence";
 import {app} from "electron";
 import Config from "../utils/Config";
 import Timeout = NodeJS.Timeout;
+import I18n from "../i18n/i18n";
+import getDebugString from "../utils/DebugString";
+import Logger from "../utils/Logger";
+
+const lang: I18n = new I18n();
 
 export default class DiscordManager {
 
     private client: any;
 
-    private presenceUpdateTimer: Timeout;
+    private readonly presenceUpdateTimer: Timeout;
 
     private presence: RichPresenceData = null;
 
@@ -17,7 +22,8 @@ export default class DiscordManager {
 
             this.client.on("error", e => {
                 this.client = null;
-                console.log("Could not enable Rich Presence: " + e.message);
+                Logger.warn("Discord", "Error while initialising RPC");
+                console.warn(e);
             });
 
             this.presenceUpdateTimer = setInterval(() => {
@@ -39,12 +45,12 @@ export default class DiscordManager {
      */
     public setIdleStatus(): void {
         this.presence = {
-            details: "Managing Mods",
+            details: lang.translate("main.discord.status_idle"),
             startTimestamp: Date.now(),
             largeImageKey: "logo",
             smallImageKey: "idle",
-            largeImageText: "Version " + app.getVersion(),
-            smallImageText: "Not playing anything"
+            largeImageText: lang.translate("main.discord.description_version", app.getVersion()) + " [" + getDebugString() + "]",
+            smallImageText: lang.translate("main.discord.description_idle")
         };
 
         this.sendPresence();
@@ -56,13 +62,13 @@ export default class DiscordManager {
      */
     public setPlayingStatus(installName: string): void {
         this.presence = {
-            details: "In Game",
+            details: lang.translate("main.discord.status_active"),
             state: installName,
             startTimestamp: Date.now(),
             largeImageKey: "logo",
             smallImageKey: "playing",
-            largeImageText: "Version " + app.getVersion(),
-            smallImageText: "Playing DDLC"
+            largeImageText: lang.translate("main.discord.description_version", app.getVersion()),
+            smallImageText: lang.translate("main.discord.description_active")
         };
 
         this.sendPresence();
