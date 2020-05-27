@@ -527,9 +527,27 @@ ipcMain.on("reload languages", () => {
 
 // region Onboarding
 
-// Import start
-ipcMain.on("onboarding select", (ev: IpcMainEvent, path: string) => {
-    copyFileSync(path, joinPath(Config.readConfigValue("installFolder"), "ddlc.zip"))
+ipcMain.on("onboarding scan", () => {
+    // the user has likely saved ddlc to their downloads folder, check there.
+    const guessPath: string = joinPath(app.getPath("downloads"), process.platform === "darwin" ? "ddlc-mac.zip" : "ddlc-win.zip");
+    Logger.info("Onboarding", "Testing " + guessPath);
+    if (existsSync(guessPath)) {
+        Logger.info("Onboarding", "Download guess exists, checking...");
+        IntegrityCheck.checkGameIntegrity(guessPath).then(version => {
+            Logger.info("Onboarding", "Game found automatically!");
+            appWindow.webContents.send("onboarding validated", {
+                path: guessPath,
+                success: true,
+                version_match: (process.platform === "darwin" ? version === "mac" : version == "windows")
+            });
+        });
+    } else {
+        appWindow.webContents.send("onboarding validated", {
+            path: guessPath,
+            success: false,
+            version_match: false
+        });
+    }
 });
 
 ipcMain.on("onboarding validate", (ev: IpcMainEvent, path: string) => {
@@ -720,7 +738,7 @@ app.on("ready", () => {
 
     appWindow.webContents.on("did-finish-load", () => {
         OnboardingManager.requiresOnboarding().catch(e => {
-            console.warn("Onboarding required - reason: " + e);
+            Logger.info("Onboarding", "Onboarding required - reason: " + e);
             appWindow.webContents.send("start onboarding");
         });
     });

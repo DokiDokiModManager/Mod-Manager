@@ -266,6 +266,10 @@ ipcRenderer.on("start onboarding", () => {
     api.emit("start onboarding");
 });
 
+api.onboarding.scan = function() {
+    ipcRenderer.send("onboarding scan");
+};
+
 api.onboarding.validateGame = function (path) {
     ipcRenderer.send("onboarding validate", path);
 };
