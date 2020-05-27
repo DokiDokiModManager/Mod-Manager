@@ -22,7 +22,6 @@ if (existsSync(joinPath(app.getPath("appData"), "Doki Doki Mod Manager!"))) {
 
 import {autoUpdater, UpdateCheckResult} from "electron-updater";
 import * as Sentry from "@sentry/electron";
-import * as semver from "semver";
 import {sync as getDataURI} from "datauri";
 import ModList from "./mod/ModList";
 import I18n from "./i18n/i18n";
@@ -119,7 +118,7 @@ async function launchInstall(folderName): Promise<void> {
         appWindow.restore(); // show DDMM again
         appWindow.focus();
         appWindow.webContents.send("running cover", {display: false});
-        appWindow.webContents.send("got installs", InstallList.getInstallList());
+        refreshInstalls();
     }).catch(e => {
         appWindow.restore();
         appWindow.focus();
@@ -140,8 +139,14 @@ ipcMain.on("get modlist", () => {
 });
 
 // Retrieves a list of installs
+function refreshInstalls() {
+    InstallList.getInstallList().then(installs => {
+        appWindow.webContents.send("got installs", installs);
+    });
+}
+
 ipcMain.on("get installs", () => {
-    appWindow.webContents.send("got installs", InstallList.getInstallList());
+    refreshInstalls();
 });
 
 // Handler for renderer process localisation functions
@@ -227,15 +232,15 @@ ipcMain.on("create install", (ev: IpcMainEvent, install: { folderName: string, i
     Logger.info("IPC", "Creating install in folder " + install.folderName)
     InstallCreator.createInstall(install.folderName, install.installName, install.globalSave).then(() => {
         if (!install.mod) {
-            appWindow.webContents.send("got installs", InstallList.getInstallList());
+            refreshInstalls();
             appWindow.setClosable(true);
         } else {
             Logger.info("IPC", "Installing mod " + install.mod + " in " + install.folderName);
             ModInstaller.installMod(install.mod, joinPath(Config.readConfigValue("installFolder"), "installs", install.folderName, "install")).then(() => {
-                appWindow.webContents.send("got installs", InstallList.getInstallList());
+                refreshInstalls();
                 appWindow.setClosable(true);
             }).catch((e: Error) => {
-                appWindow.webContents.send("got installs", InstallList.getInstallList());
+                refreshInstalls();
                 showError(
                     e,
                     false
@@ -243,7 +248,7 @@ ipcMain.on("create install", (ev: IpcMainEvent, install: { folderName: string, i
             });
         }
     }).catch((e: Error) => {
-        appWindow.webContents.send("got installs", InstallList.getInstallList());
+        refreshInstalls();
         showError(
             e,
             false
@@ -255,16 +260,16 @@ ipcMain.on("unarchive install", (ev: IpcMainEvent, install: { folderName: string
     appWindow.setClosable(false);
     InstallCreator.createInstall(install.folderName).then(() => {
         if (!install.mod) {
-            appWindow.webContents.send("got installs", InstallList.getInstallList());
+            refreshInstalls();
             appWindow.setClosable(true);
             launchInstall(install.folderName);
         } else {
             ModInstaller.installMod(install.mod, joinPath(Config.readConfigValue("installFolder"), "installs", install.folderName, "install")).then(() => {
-                appWindow.webContents.send("got installs", InstallList.getInstallList());
+                refreshInstalls();
                 appWindow.setClosable(true);
                 launchInstall(install.folderName);
             }).catch((e: Error) => {
-                appWindow.webContents.send("got installs", InstallList.getInstallList());
+                refreshInstalls();
                 showError(
                     e,
                     false
@@ -272,7 +277,7 @@ ipcMain.on("unarchive install", (ev: IpcMainEvent, install: { folderName: string
             });
         }
     }).catch((e: Error) => {
-        appWindow.webContents.send("got installs", InstallList.getInstallList());
+        refreshInstalls();
         showError(
             e,
             false
@@ -284,7 +289,7 @@ ipcMain.on("unarchive install", (ev: IpcMainEvent, install: { folderName: string
 ipcMain.on("rename install", (ev: IpcMainEvent, options: { folderName: string, newName: string }) => {
     Logger.info("IPC", "Renaming install in " + options.folderName + " to " + options.newName)
     InstallManager.renameInstall(options.folderName, options.newName).then(() => {
-        appWindow.webContents.send("got installs", InstallList.getInstallList());
+        refreshInstalls();
     }).catch((e: Error) => {
         showError(
             e,
@@ -296,7 +301,7 @@ ipcMain.on("rename install", (ev: IpcMainEvent, options: { folderName: string, n
 // Archive an install
 ipcMain.on("archive install", (ev: IpcMainEvent, folderName: string) => {
     InstallManager.archiveInstall(folderName).then(() => {
-        appWindow.webContents.send("got installs", InstallList.getInstallList());
+        refreshInstalls();
     });
 });
 
@@ -304,7 +309,7 @@ ipcMain.on("archive install", (ev: IpcMainEvent, folderName: string) => {
 ipcMain.on("delete install", (ev: IpcMainEvent, folderName: string) => {
     Logger.info("IPC", "Deleting install in " + folderName);
     InstallManager.deleteInstall(folderName).then(() => {
-        appWindow.webContents.send("got installs", InstallList.getInstallList());
+        refreshInstalls();
     }).catch((e: Error) => {
         showError(
             e,
@@ -331,7 +336,7 @@ ipcMain.on("delete mod", (ev: IpcMainEvent, fileName: string) => {
 ipcMain.on("delete save", (ev: IpcMainEvent, folderName: string) => {
     Logger.info("IPC", "Deleting save data for " + folderName);
     InstallManager.deleteSaveData(folderName).then(() => {
-        appWindow.webContents.send("got installs", InstallList.getInstallList());
+        refreshInstalls();
     }).catch((e: Error) => {
         showError(
             e,
@@ -344,7 +349,7 @@ ipcMain.on("delete save", (ev: IpcMainEvent, folderName: string) => {
 ipcMain.on("set category", (ev: IpcMainEvent, options: { folderName: string, category: string }) => {
     Logger.info("IPC", "Setting category of " + options.folderName + " to " + options.category);
     InstallManager.setCategory(options.folderName, options.category).then(() => {
-        appWindow.webContents.send("got installs", InstallList.getInstallList());
+        refreshInstalls();
     }).catch((e: Error) => {
         showError(
             e,
@@ -480,7 +485,7 @@ ipcMain.on("import mas", (ev: IpcMainEvent, folderName: string) => {
             copyFileSync(res.filePaths[0], joinPath(Config.readConfigValue("installFolder"), "installs", folderName, "install", "characters", "monika"));
             removeSync(res.filePaths[0]);
             InstallManager.setMonikaExported(folderName, false).then(() => {
-                appWindow.webContents.send("got installs", InstallList.getInstallList());
+                refreshInstalls();
             });
         }
     });
@@ -503,7 +508,7 @@ ipcMain.on("export mas", (ev: IpcMainEvent, folderName: string) => {
             copyFileSync(source, dialogReturn.filePath);
             removeSync(source);
             InstallManager.setMonikaExported(folderName, true).then(() => {
-                appWindow.webContents.send("got installs", InstallList.getInstallList());
+
             });
         }
     });

@@ -15,5 +15,6 @@ export default class Install {
     public category: string;
     public monikaExportStatus: MonikaExportStatus;
     public archived: boolean;
+    public size: number;
 }
 
