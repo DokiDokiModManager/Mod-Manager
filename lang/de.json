@@ -75,7 +75,7 @@
         },
         "tab_mods": {
             "list": {
-                "placeholder_search": "Suche mods...",
+                "placeholder_search": "Suche mods…",
                 "header_new": "Erste Schritte",
                 "link_install": "DDLC installieren",
                 "header_installed": "Installiert",
@@ -179,7 +179,7 @@
                 "description_modded_global_save": "Eine Kopie von DDLC wird erstellt und die Mod installiert.  Die gespeicherten Daten werden mit anderen Kopien des Spiels (z.B. Steam) geteilt",
                 "description_modded_cloudsave": "Eine Kopie von DDLC wird erstellt und die Mod installiert. Die Speicherdaten werden in der Cloud gespeichert.",
                 "button_install": "Installieren",
-                "button_installing": "Wird installiert ...",
+                "button_installing": "Wird installiert …",
                 "status_exists": "Dieser Ordner existiert bereits. Wählen Sie einen anderen Ordnernamen."
             }
         },
@@ -278,7 +278,7 @@
         },
         "language_change_instruction": "Das Ändern der Sprache wird nach einem Neustart wirksam",
         "onboarding_v4": {
-            "text_scanning": "Bitte warten...",
+            "text_scanning": "Bitte warten…",
             "header_safari_warning": "Wichtige Informationen für Safari-Nutzer",
             "text_modification_warning": "Nehmen Sie keine Änderungen an der heruntergeladenen Datei vor.",
             "text_s2_next": "Wenn Ihr Download abgeschlossen ist, fahren Sie bitte mit dem nächsten Schritt fort.",
