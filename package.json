@@ -30,12 +30,12 @@
     "du": "^1.0.0",
     "electron-updater": "^4.3.1",
     "fs-extra": "^9.0.0",
-    "fuse.js": "^5.2.3",
+    "fuse.js": "^6.0.0",
     "node-fetch": "^2.6.0",
     "request": "^2.88.0",
     "semver": "^7.1.1",
     "vue": "^2.6.11",
-    "vuex": "^3.3.0",
+    "vuex": "^3.4.0",
     "yauzl": "latest"
   },
   "devDependencies": {
