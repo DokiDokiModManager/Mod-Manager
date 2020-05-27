@@ -5,7 +5,9 @@
             "tab_mods": "MOD",
             "tab_store": "ストア",
             "tab_options": "オプション",
-            "tab_about": "概要"
+            "tab_about": "概要",
+            "tab_downloads": "MOD",
+            "tab_play": "プレイ"
         },
         "version": {
             "link_changelog": "更新内容"
@@ -176,7 +178,14 @@
                 "description_modded_cloudsave": "ドキドキ文芸部のコピーが作成され、MODがインストールされます。セーブデータはクラウドに保存されます。",
                 "button_install": "インストール",
                 "button_installing": "インストール中……",
-                "status_exists": "その名前のフォルダは既に存在しています。別のフォルダ名を入力してください。"
+                "status_exists": "その名前のフォルダは既に存在しています。別のフォルダ名を入力してください。",
+                "modlist_custom": "リスト外のMOD",
+                "placeholder_install_name": "プレイする MOD 名など、好きな名前を付けて下さい。",
+                "warning_global_save": "グローバルセーブを選択した場合、既定のセーブデータフォルダに進行状況が保存されるため、他のコピーで問題が発生する可能性があります。特別な理由が無ければ選択しないで下さい。",
+                "option_global_save": "グローバルセーブ",
+                "option_local_save": "ローカルセーブ (推奨)",
+                "modlist_library": "MODライブラリ",
+                "modlist_none": "ドキドキ文芸部本編 - MOD なし"
             }
         },
         "tab_store_placeholder": {
@@ -272,7 +281,57 @@
             "support_steelseries": "SteelSeriesのゲーミング周辺機器が1割引 (アフィリエイトリンク)",
             "support_code": "プロジェクトへの貢献 (コードまたは翻訳)"
         },
-        "language_change_instruction": "言語の変更は再起動後に反映されます"
+        "language_change_instruction": "言語の変更は再起動後に反映されます",
+        "modal_rename": {
+            "title": "表示名の変更",
+            "button_negative": "キャンセル",
+            "button_affirmative": "名前の変更"
+        },
+        "modal_save_delete": {
+            "button_negative": "キャンセル",
+            "button_affirmative": "削除",
+            "confirmation": "わかりました。",
+            "body": "{0}を最初からやり直すことになります。",
+            "title": "セーブデータを削除してよろしいですか？"
+        },
+        "modal_archive": {
+            "button_negative": "キャンセル",
+            "button_affirmative": "アーカイブ",
+            "confirmation": "わかりました。",
+            "body_warning": "ゲームをアーカイブすると、キャラクターファイルなど他のデータの変更は全て取り消されます。注意して下さい！",
+            "body": "アーカイブすると{0}のゲームデータが削除され、ディスク容量を節約できます。セーブデータは削除されませんが、再インストールにはMODが必要になります。",
+            "title": "アーカイブしてもよろしいですか？"
+        },
+        "modal_uninstall": {
+            "button_negative": "キャンセル",
+            "button_affirmative": "アンインストール",
+            "confirmation": "わかりました。",
+            "body_globalsave": "{0}のセーブデータは削除されません。再インストールするにはMODが必要になります。",
+            "body": "{0}のセーブデータは削除されます。再インストールするにはMODが必要になります。",
+            "title": "アンインストールしてよろしいですか？"
+        },
+        "menu_mod_options": {
+            "cancel": "キャンセル",
+            "delete": "削除",
+            "install": "インストール"
+        },
+        "menu_install_options": {
+            "launch": "起動",
+            "delete_save": "セーブデータを削除",
+            "cancel": "キャンセル",
+            "category": "カテゴリの変更",
+            "archive": "アーカイブ",
+            "uninstall": "アンインストール",
+            "shortcut": "ショートカットを作成",
+            "rename": "名前の変更"
+        },
+        "modal_unarchive": {
+            "button_launch": "起動"
+        },
+        "modal_installing": {
+            "description": "インストールが完了するまで、1分程かかります。",
+            "title": "インストール中"
+        }
     },
     "main": {
         "jumplist": {

@@ -72,7 +72,7 @@
         },
         "tab_mods": {
             "list": {
-                "placeholder_search": "Wyszukaj mody...",
+                "placeholder_search": "Wyszukaj mody…",
                 "header_new": "Zacznijmy",
                 "link_install": "Zainstaluj DDLC",
                 "header_installed": "Zainstalowano",
@@ -176,7 +176,7 @@
                 "description_modded_global_save": "Zostanie utworzona kopia DDLC, a mod zostanie zainstalowany.  Zapisane dane zostaną udostępnione dla innych kopii gry (np. Steam)",
                 "description_modded_cloudsave": "Zostanie utworzona kopia DDLC, a mod zostanie zainstalowany. Dane zapisu będą przechowywane w chmurze.",
                 "button_install": "Zainstaluj",
-                "button_installing": "Instalowanie...",
+                "button_installing": "Instalowanie…",
                 "status_exists": "Ten folder już istnieje. Wybierz inną nazwę folderu."
             }
         },
