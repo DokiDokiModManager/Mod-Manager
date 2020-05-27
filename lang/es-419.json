@@ -43,7 +43,7 @@
         },
         "tab_mods": {
             "list": {
-                "placeholder_search": "Buscando mods...",
+                "placeholder_search": "Buscando mods…",
                 "header_new": "Empecemos",
                 "link_install": "Instala DDLC",
                 "header_installed": "Mods Instalados",
@@ -131,7 +131,7 @@
                 "label_existing_saves": "Partidas Guardadas Existentes",
                 "description_vanilla_cloudsave": "Crearemos una copia de DDLC. Se guardarán las partidas en la nube.",
                 "description_modded_cloudsave": "Crearemos una copia de DDLC, y se instalará el mod. Se guardarán las partidas en la nube.",
-                "button_installing": "Instalando..."
+                "button_installing": "Instalando…"
             },
             "launch_lock_confirmation": {
                 "message": "¡Tus partidas se están guardando en la nube!",
