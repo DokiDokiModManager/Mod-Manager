@@ -2,7 +2,6 @@ import {readdirSync} from "fs";
 import {join as joinPath} from "path";
 import Config from "../utils/Config";
 import DownloadManager from "../net/DownloadManager";
-import DownloadItem = Electron.DownloadItem;
 import Logger from "../utils/Logger";
 
 export default class ModList {
@@ -24,7 +23,7 @@ export default class ModList {
 
         try {
             return readdirSync(modFolder).filter(fn => {
-                return ["zip", "rar", "7z", "gz"].filter(ext => fn.endsWith("." + ext)).length > 0;
+                return ["zip", "rar", "7z"].filter(ext => fn.endsWith("." + ext)).length > 0;
             });
         } catch (e) {
             Logger.warn("Mod List", "Failed to read mods folder");

@@ -211,7 +211,7 @@ ipcMain.on("start download", (ev: IpcMainEvent, data: { url: string, filename?: 
 
 // Browse for a mod
 ipcMain.on("browse mods", (ev: IpcMainEvent) => {
-    const extensions = ["zip", "gz", "tar", "7z"];
+    const extensions = ["zip", "7z", "rar"];
     dialog.showOpenDialog(appWindow, {
         title: lang.translate("main.mod_browse_dialog.title"),
         filters: [{

@@ -380,6 +380,7 @@
                 "title": "Your Mods",
                 "button_install": "Install",
                 "button_options": "Options",
+                "description_type": "File type: {0}",
                 "placeholder_search": "Search for a mod…"
             },
             "downloads": {

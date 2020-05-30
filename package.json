@@ -34,6 +34,7 @@
     "node-fetch": "^2.6.0",
     "request": "^2.88.0",
     "semver": "^7.1.1",
+    "unrar-promise": "^2.0.1",
     "vue": "^2.6.11",
     "vuex": "^3.4.0",
     "yauzl": "latest"
