@@ -418,7 +418,6 @@ ipcMain.on("get install background", (ev: IpcMainEvent, folder: string) => {
 // Check if install exists
 ipcMain.on("install exists", (ev: IpcMainEvent, folderName: string) => {
     if (!folderName || typeof folderName !== "string") {
-        console.warn("[IPC install exists] Folder name should be a string, received " + typeof folderName);
         ev.returnValue = false;
         return;
     }
