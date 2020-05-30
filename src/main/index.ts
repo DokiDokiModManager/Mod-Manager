@@ -17,7 +17,8 @@ import {
     SaveDialogReturnValue,
     OpenDialogReturnValue,
     shell,
-    DownloadItem
+    DownloadItem,
+    session
 } from "electron";
 import {copyFileSync, existsSync, mkdirpSync, move, readdirSync, removeSync, statSync, unlinkSync} from "fs-extra";
 import {join as joinPath} from "path";
@@ -638,6 +639,10 @@ app.on("ready", () => {
         Logger.info("Startup", "Another instance is running, quitting.");
         app.quit();
         return; // avoid running for longer than needed
+    }
+
+    if (process.env.DDMM_LOAD_EXT) {
+        session.defaultSession.loadExtension(process.env.DDMM_LOAD_EXT);
     }
 
     // set protocol handler
