@@ -759,15 +759,18 @@ app.on("ready", () => {
 
     const uiSubdomain: string = "v" + app.getVersion().replace(/\./g, "-");
 
-    appWindow.webContents.on("did-fail-load", () => {
+    appWindow.webContents.once("did-fail-load", () => {
         if (Config.readConfigValue("localUI")) {
             dialog.showErrorBox(lang.translate("main.errors.dev_ui_load_fail.title"), lang.translate("main.errors.dev_ui_load_fail.body"));
             appWindow.loadURL(`https://${uiSubdomain}.ui.doki.space`);
         } else {
             const lastVersion: string = Config.readConfigValue("lastKnownGoodVersion");
+            const lastVersionSubdomain: string = "v" + lastVersion.replace(/\./g, "-");
             if (app.getVersion() !== lastVersion) { // if there is an older version available
-                appWindow.loadURL(`https://${lastVersion}.ui.doki.space`);
+                Logger.debug("UI", "Loading last known good version: " + lastVersionSubdomain);
+                appWindow.loadURL(`https://${lastVersionSubdomain}.ui.doki.space/#fallback`);
             } else {
+                Logger.warn("UI", "No last good version found, displaying offline message.");
                 appWindow.loadFile(joinPath(__dirname, "../../src/renderer/html/offline.html"))
             }
         }
