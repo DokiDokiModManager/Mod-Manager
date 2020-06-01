@@ -19,6 +19,9 @@ export default class ArchiveConverter {
             // run 7zip to extract the archive
             const extractOut: SpawnSyncReturns<string> = spawnSync(path7za, ["x", pathToArchive, "-y", "-o" + tempDir]);
 
+            Logger.debug("Archive Converter", "STDOUT: " + extractOut.stdout);
+            Logger.debug("Archive Converter", "STDERR: " + extractOut.status);
+
             if (extractOut.error) {
                 throw extractOut.error;
             }
@@ -28,11 +31,15 @@ export default class ArchiveConverter {
         } else {
             Logger.info("Archive Converter", "Using unrar to convert");
 
-            await unrar(pathToArchive, tempDir)
+            await unrar(pathToArchive, tempDir);
         }
 
         // run 7zip to compress to zip
+        Logger.info("Archive Converter", "Recompressing " + tempDir);
         const compressOut: SpawnSyncReturns<string> = spawnSync(path7za, ["a", output, "-y", tempDir + "\\*"]);
+
+        Logger.debug("Archive Converter", "STDOUT: " + compressOut.stdout);
+        Logger.debug("Archive Converter", "STDERR: " + compressOut.status);
 
         if (compressOut.error) {
             throw compressOut.error;

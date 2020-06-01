@@ -17,4 +17,10 @@ export default class Logger {
     static error(module: string, message: string) {
         Logger.log("Error", module, message, chalk.red);
     }
+
+    static debug(module: string, message: string) {
+        if (process.env.NODE_ENV !== "production") {
+            Logger.log("Debug", module, message, chalk.gray);
+        }
+    }
 }

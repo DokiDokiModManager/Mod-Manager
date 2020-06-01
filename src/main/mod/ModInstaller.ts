@@ -22,6 +22,7 @@ export default class ModInstaller {
             return new Promise((ff, rj) => {
                 const tempZipPath: string = joinPath(app.getPath("temp"), "ddmm" + randomBytes(8).toString("hex") + ".zip");
                 ArchiveConverter.convertToZip(modPath, tempZipPath).then(() => {
+                    Logger.debug("Mod Installer", tempZipPath);
                     ModInstaller.installZip(tempZipPath, installPath).then(() => {
                         removeSync(tempZipPath);
                         ff();
