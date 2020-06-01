@@ -3,7 +3,7 @@ import {spawnSync, SpawnSyncReturns} from "child_process";
 import {join as joinPath} from "path";
 import {app} from "electron";
 import {path7za} from "7zip-bin";
-import {unrar} from "unrar-promise";
+import * as pathUnrar from "unrar-binaries";
 import Logger from "../utils/Logger";
 
 export default class ArchiveConverter {
@@ -13,25 +13,28 @@ export default class ArchiveConverter {
 
         Logger.info("Archive Converter", "Converting " + tempDir + " to a zip file");
 
+        let extractOut: SpawnSyncReturns<string>;
+
         if (!pathToArchive.endsWith(".rar")) {
             Logger.info("Archive Converter", "Using 7za to convert");
 
             // run 7zip to extract the archive
-            const extractOut: SpawnSyncReturns<string> = spawnSync(path7za, ["x", pathToArchive, "-y", "-o" + tempDir]);
-
-            Logger.debug("Archive Converter", "STDOUT: " + extractOut.stdout);
-            Logger.debug("Archive Converter", "STDERR: " + extractOut.status);
-
-            if (extractOut.error) {
-                throw extractOut.error;
-            }
-            if (extractOut.status !== 0) {
-                throw new Error("7-Zip exited with a non-zero exit code (" + extractOut.status + ")");
-            }
+            extractOut = spawnSync(path7za, ["x", pathToArchive, "-y", "-o" + tempDir]);
         } else {
             Logger.info("Archive Converter", "Using unrar to convert");
 
-            await unrar(pathToArchive, tempDir);
+            // run unrar
+            extractOut = spawnSync(pathUnrar, ["x", "-y", pathToArchive, tempDir]);
+        }
+
+        Logger.debug("Archive Converter", "STDOUT: " + extractOut.stdout);
+        Logger.debug("Archive Converter", "STDERR: " + extractOut.status);
+
+        if (extractOut.error) {
+            throw extractOut.error;
+        }
+        if (extractOut.status !== 0) {
+            throw new Error("7-Zip or unrar exited with a non-zero exit code (" + extractOut.status + ")");
         }
 
         // run 7zip to compress to zip

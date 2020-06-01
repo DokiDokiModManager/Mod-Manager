@@ -2656,6 +2656,11 @@ universalify@^1.0.0:
   resolved "https://registry.yarnpkg.com/universalify/-/universalify-1.0.0.tgz#b61a1da173e8435b2fe3c67d29b9adf8594bd16d"
   integrity sha512-rb6X1W158d7pRQBg5gkR8uPaSfiids68LTJQYOtEUhoJUWBdaQHsuT/EUduxXYxcrt4r5PJ4fuHW1MHT6p0qug==
 
+unrar-binaries@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/unrar-binaries/-/unrar-binaries-1.0.1.tgz#719897f055362802457f1ca71bf7c9aa2867cea9"
+  integrity sha512-r++OmRpabS+RrlnOakfjsTmroM7X+ahBw/LOinISolJRc+rVTk2kRBoE/IY9ph/NWC9y3CmPqJC0FfE4g2NSZQ==
+
 unrar-promise@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/unrar-promise/-/unrar-promise-2.0.1.tgz#8ad18d62536ddca89cd55055db64b22d99c6e6fe"
