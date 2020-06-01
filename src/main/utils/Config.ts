@@ -76,7 +76,7 @@ export default class Config {
         sdkMode: "always",
         updateChannel: "latest",
         language: "en-GB",
-        localUI: false,
+        localUI: null,
         modBackgrounds: true,
         renpy: {
             skipSplash: false,

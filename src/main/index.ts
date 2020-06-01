@@ -774,7 +774,7 @@ app.on("ready", () => {
     });
 
     if (Config.readConfigValue("localUI")) {
-        appWindow.loadURL("http://localhost:1234/");
+        appWindow.loadURL(Config.readConfigValue("localUI"));
     } else {
         appWindow.loadURL(`https://${uiSubdomain}.ui.doki.space`);
     }
