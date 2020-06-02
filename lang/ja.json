@@ -405,6 +405,13 @@
             "placeholder_category": "新しいカテゴリ名を入力……",
             "label_none": "(無し)",
             "title": "カテゴリの変更"
+        },
+        "modal_running": {
+            "link_more": "追加のオプションを開く",
+            "description": "MODに変更を加える場合は一度ゲームを閉じて下さい。",
+            "button_browse": "フォルダを開く",
+            "button_kill": "強制終了",
+            "title": "ゲーム起動中"
         }
     },
     "main": {
