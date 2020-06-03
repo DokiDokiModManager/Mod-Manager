@@ -212,7 +212,7 @@
                 "link_advanced_appearance": "Дадаткова",
                 "header_enhancements": "Паляпшэння",
                 "link_sdk": "Дасягненні і камплект распрацоўшчыка ПЗ",
-                "link_discord": "Сервер ў Discord",
+                "link_discord": "Гульнявы статус ў Discord",
                 "header_application": "Прыкладанне",
                 "link_updates": "Абнаўленні",
                 "link_storage": "Месца захоўвання",
@@ -230,7 +230,7 @@
                 "button_none": "Без фону",
                 "description_credit": "Арыгінальныя фоны DDLC ласкава прадастаўлены Team Salvato.",
                 "description_custom": "Дазволіць можам паказаць свае фоны (у тым ліку і скрыншоты ад аўтараў мода)",
-                "checkbox_modbg": "Дазволіць можам паказаць свае фоны (у тым ліку і скрыншоты ад аўтараў можа)",
+                "checkbox_modbg": "Дазволіць модам паказаць свае фоны (у тым ліку і скрыншоты ад аўтараў мода)",
                 "button_custom": "Свой фон"
             },
             "section_advanced_appearance": {
@@ -499,7 +499,8 @@
                 "placeholder_search": "Знайсці мод…",
                 "button_options": "Налады",
                 "button_install": "Усталяваць",
-                "title": "Вашы моды"
+                "title": "Вашы моды",
+                "description_type": "Тып файлу: {0}"
             },
             "list": {
                 "link_ddmc": "Тук-тук: Клуб мадыфікацый",

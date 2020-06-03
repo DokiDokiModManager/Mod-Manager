@@ -212,7 +212,7 @@
                 "link_advanced_appearance": "Дополнительно",
                 "header_enhancements": "Улучшения",
                 "link_sdk": "Достижения и набор разработчика",
-                "link_discord": "Сервер в Дискорде",
+                "link_discord": "Дискорд",
                 "header_application": "Приложение",
                 "link_updates": "Обновления",
                 "link_storage": "Место хранения",
@@ -334,7 +334,8 @@
                 "placeholder_search": "Поиск модификации…",
                 "button_install": "Установить",
                 "button_options": "Настройки",
-                "title": "Ваши моды"
+                "title": "Ваши моды",
+                "description_type": "Тип файла: {0}"
             },
             "featured": {
                 "button_download": "Скачать",
