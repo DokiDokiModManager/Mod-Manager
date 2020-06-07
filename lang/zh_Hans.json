@@ -17,7 +17,7 @@
         "help_menu": {
             "option_help": "浏览帮助站点",
             "option_feedback": "发送私人反馈",
-            "option_discord": "加入我们的Discord服务器"
+            "option_discord": "加入我们的 Discord 服务器"
         },
         "user_menu": {
             "option_rename": "更改用户名",
@@ -44,7 +44,7 @@
             "button_continue": "继续"
         },
         "drop_cover": {
-            "text": "把模组扔到这里以便安装"
+            "text": "把模组拖入这里以便安装"
         },
         "announcement": {
             "button_open": "打开链接",
@@ -78,7 +78,7 @@
             "list": {
                 "placeholder_search": "搜索模组…",
                 "header_new": "开始",
-                "link_install": "安装DDLC及模组文件",
+                "link_install": "安装 DDLC 及模组文件",
                 "header_installed": "已安装",
                 "header_downloaded": "下载的"
             },
@@ -125,7 +125,7 @@
             },
             "mod_delete_confirmation": {
                 "message": "你确定要删除这个模组吗？",
-                "details": "你将需要下载另一份这个模组的拷贝以便再次安装。",
+                "details": "你将需要下载另一份这个模组的副本以便再次安装。",
                 "button_affirmative": "删除",
                 "button_negative": "取消"
             },
@@ -138,21 +138,21 @@
             "install": {
                 "button_launch": "启动",
                 "button_settings": "设置",
-                "tag_global_save": "全局保存",
+                "tag_global_save": "全局储存",
                 "tag_sdk": "开发者",
                 "tag_cloud": "云储存",
                 "description_locked": "您正在使用另一台计算机上的云存储文件。要继续，请停止在另一台计算机上的游戏进程。",
-                "title_achievements": "成就 ({0}/{1})",
+                "title_achievements": "成就（{0}/{1}）",
                 "description_achievements": "继续游玩以便解锁更多成就。",
                 "description_achievements_complete": "你已经解锁了全部成就。恭喜！",
                 "title_screenshots_none": "没有截图",
-                "title_screenshots_one": "一个截图",
+                "title_screenshots_one": "1 个截图",
                 "title_screenshots": "{0} 个截图",
-                "description_screenshots": "在游玩过程中按S键截图。",
+                "description_screenshots": "在游玩过程中按 S 键截图。",
                 "description_sdk": "这个模组支持心跳心跳模组管理器开发者工具包的特殊功能！",
-                "description_author": "由{0}制作",
-                "link_discord": "Discord ({0})",
-                "link_website": "网站 ({0})",
+                "description_author": "由 {0} 制作",
+                "link_discord": "Discord（{0}）",
+                "link_website": "网站（{0}）",
                 "description_external": "打开文件夹",
                 "button_mas_import": "将 Monika 添加回来",
                 "button_mas_export": "将 Monika 复制出来",
@@ -168,7 +168,7 @@
                 "description_external": "打开文件夹"
             },
             "install_creation": {
-                "title": "安装DDLC文件",
+                "title": "安装 DDLC 文件",
                 "label_install_name": "安装名称",
                 "label_folder_name": "文件夹名称",
                 "label_global_save": "全局存储",
@@ -189,14 +189,14 @@
                 "button_install": "安装",
                 "button_installing": "正在安装…",
                 "status_exists": "文件夹名称已在使用。",
-                "warning_global_save": "使用全局保存可能会导致游戏的其他副本出现问题，因为它会将您的进度保存在常规保存数据文件夹中。只有在您有特定原因时才使用它。",
+                "warning_global_save": "使用全局储存可能会导致游戏的其他副本出现问题，因为它会将您的进度保存在常规保存数据文件夹中。只有在您有特定原因时才使用它。",
                 "modlist_custom": "此处不列出模组",
                 "modlist_library": "模组库",
                 "modlist_none": "常规 DDLC - 无模组",
-                "option_global_save": "全局保存",
-                "option_local_save": "本地保存（推荐）",
+                "option_global_save": "全局储存",
+                "option_local_save": "本地储存（推荐）",
                 "placeholder_install_name": "您正在游戏中的模组的名称，或者是您想要的任何其他内容。",
-                "warning_no_space": "抱歉，您至少需要 2 GiB 的可用空间才能安装DDLC。关闭心跳心跳模组管理器，清除一些空间，然后重试。或者，在选项 > 存储位置中将其安装在其他驱动器上。"
+                "warning_no_space": "抱歉，您至少需要 2 GiB 的可用空间才能安装 DDLC。关闭心跳心跳模组管理器，清除一些空间，然后重试。或者，在选项 > 存储位置中将其安装在其他驱动器上。"
             }
         },
         "tab_store_placeholder": {
@@ -213,7 +213,7 @@
                 "link_advanced_appearance": "高级",
                 "header_enhancements": "增强功能",
                 "link_sdk": "成就和 SDK",
-                "link_discord": "Discord软件",
+                "link_discord": "Discord 软件",
                 "header_application": "应用",
                 "link_updates": "更新",
                 "link_storage": "存储位置",
@@ -229,9 +229,9 @@
                 "title": "背景",
                 "subtitle": "通过应用这些背景自定义你的心跳心跳模组管理器。",
                 "button_none": "没有背景",
-                "description_credit": "原始的DDLC背景由Team Salvato提供。",
+                "description_credit": "原始的 DDLC 背景由 Team Salvato 提供。",
                 "description_custom": "如果自定义背景图像被移动或删除，您的背景将被重置。",
-                "checkbox_modbg": "允许 mod 显示自定义背景（可以来自屏幕截图或来自模组作者）",
+                "checkbox_modbg": "允许模组显示自定义背景（可以来自屏幕截图或来自模组作者）",
                 "button_custom": "自定义背景"
             },
             "section_advanced_appearance": {
@@ -244,7 +244,7 @@
                 "title": "存储位置",
                 "subtitle": "更改游戏文件的存储位置。",
                 "description_moving": "警告！如果选择更改安装位置，则将移动所有模组、安装文件和存档。这可能需要几分钟，而且不可以中途停止。",
-                "description_current": "目前的位置： {0}",
+                "description_current": "目前的位置：{0}",
                 "button_change": "更改安装位置"
             },
             "section_updates": {
@@ -272,8 +272,8 @@
                 "checkbox_never": "从不"
             },
             "section_discord": {
-                "title": "显示Discord状态",
-                "subtitle": "把你正在玩什么模组分享给Discord好友。",
+                "title": "显示 Discord 状态（Rich Presence）",
+                "subtitle": "把你正在玩什么模组分享给 Discord 好友。",
                 "description": "重启心跳心跳模组管理器后，更改将会生效。",
                 "button_enable": "启用状态显示",
                 "button_disable": "关闭状态显示"
@@ -287,7 +287,7 @@
                 "checkbox_renpy_skipsplash": "跳过启动画面",
                 "description_renpy": "为 Ren'Py 设置特殊的调试选项。",
                 "header_renpy": "Ren'Py 启动选项",
-                "description_mod_debug": "显示一个调试窗口，其中带有来自 mod 的控制台输出。可用于测试 DDMM SDK。",
+                "description_mod_debug": "显示一个调试窗口，其中带有来自模组的控制台输出。可用于测试 DDMM SDK。",
                 "header_mod_debug": "模组调试",
                 "checkbox_logging": "启用调试日志记录"
             },
@@ -306,12 +306,12 @@
             "title": "关于",
             "description": "心跳心跳模组管理器是一个由社区开发的项目，旨在帮助您寻找，安装并游玩心跳心跳文学部的模组。",
             "title_disclaimer": "免责声明",
-            "disclaimer_1": "心跳心跳模组管理器是心跳心跳文学部的粉丝作品，不隶属于Team Salvato。根据Team Salvato的IP Guidelines定义，这是一个粉丝作品。",
+            "disclaimer_1": "心跳心跳模组管理器是心跳心跳文学部的粉丝作品，不隶属于 Team Salvato。根据 Team Salvato 的 IP Guidelines 定义，这是一个粉丝作品。",
             "disclaimer_2": "心跳心跳模组管理器不对任何可能由于游玩模组或者其他操作而对您的文件或电脑造成的损害负责，确保模组的安全是您的责任。",
             "title_socials": "联系我们",
             "social_discord": "加入 Discord 服务器",
             "social_twitter": "在推特上关注@DokiMod",
-            "social_reddit": "在Reddit上向我发讯息",
+            "social_reddit": "在 Reddit 上向我发讯息",
             "social_email": "发送电子邮件",
             "title_support": "支持开发",
             "description_support": "心跳心跳模组管理器永远可以免费下载和使用。如果你喜欢它，并想帮助我保持它的更新，请考虑用以下方式之一来支持我。",
@@ -323,7 +323,7 @@
             "title_translators": "翻译由这些人慷慨贡献："
         },
         "onboarding_v4": {
-            "label_waifu": "最佳少女",
+            "label_waifu": "最佳老婆",
             "button_previous": "上一页",
             "button_next": "下一页",
             "link_safari_warning": "单击此处获得视觉性指南",
@@ -358,7 +358,7 @@
             "text_modification_warning": "不要对下载的文件进行任何更改。",
             "text_s2_next": "下载完成后，请继续下一步。",
             "button_ddlc_website": "访问 DDLC 网站",
-            "text_download": "请访问 DDLC 网站，单击\"立即下载\"并按照说明进行操作。当您被问到时，选择名为{0}的文件，并将其保存在容易找到的地方。",
+            "text_download": "请访问 DDLC 网站，单击”立即下载“，并按照说明进行操作。当您被问到时，选择名为 {0} 的文件，并将其保存在容易找到的地方。",
             "subtitle_careful": "请仔细阅读以下说明。",
             "text_scanning": "请稍候…",
             "button_start": "开始",
@@ -440,7 +440,7 @@
         "modal_unarchive": {
             "button_cancel": "取消",
             "button_launch": "启动",
-            "description": "请选择原来安装的模组，然后点击启动。 {0} 将不再处于存档状态。",
+            "description": "请选择原来安装的模组，然后点击启动。{0} 将不再处于存档状态。",
             "title": "启动游戏"
         },
         "modal_installing": {
@@ -459,7 +459,7 @@
             "button_affirmative": "存档",
             "confirmation": "我理解。",
             "body_warning": "如果存档游戏，则对其他数据（例如角色文件）所做的任何更改都将被撤消。请务必要小心！",
-            "body": "存档将删除{0}的游戏数据，以节省磁盘空间。您的保存数据不会被删除，但是您需要一份模组的副本才能重新安装。",
+            "body": "存档将删除 {0} 的游戏数据，以节省磁盘空间。您的保存数据不会被删除，但是您需要一份模组的副本才能重新安装。",
             "title": "您确定要存档吗？"
         },
         "modal_uninstall": {
@@ -481,7 +481,7 @@
             "button_submit": "发送报告",
             "placeholder_body": "请尽可能详细。如果相关，请提供重现问题的说明。",
             "label_body": "问题详情",
-            "placeholder_mod": "请粘贴 mod 网站或下载页面的链接。",
+            "placeholder_mod": "请粘贴模组网站或下载页面的链接。",
             "label_mod": "链接到模组",
             "option_broken_mod": "模组不能用",
             "option_bug": "应用程序错误",
@@ -514,10 +514,10 @@
     },
     "main": {
         "jumplist": {
-            "task_launch": "打开心跳心跳模组管理器并启动游戏 {0}."
+            "task_launch": "打开心跳心跳模组管理器并启动游戏 {0}。"
         },
         "running_cover": {
-            "title_running": "DDLC正在运行",
+            "title_running": "DDLC 正在运行",
             "title_crashed": "出现了一些故障",
             "button_browse": "打开游戏文件夹",
             "button_close": "好的",
@@ -534,7 +534,7 @@
             "file_format_name": "模组"
         },
         "game_browse_dialog": {
-            "title": "定位一个DDLC的压缩文件",
+            "title": "定位一份 DDLC 压缩文件",
             "file_format_name": "DDLC"
         },
         "shortcut_dialog": {
@@ -586,7 +586,7 @@
         "redownload_confirmation": {
             "button_cancel": "取消",
             "button_confirm": "下载",
-            "detail": "您的模组库中已经存在 {0} 的副本。您要重新下载吗？ （这将覆盖旧副本）",
+            "detail": "您的模组库中已经存在 {0} 的副本。您要重新下载吗？（这将覆盖旧副本）",
             "message": "模组已下载过"
         },
         "export_mas": {
@@ -595,7 +595,7 @@
         },
         "import_mas": {
             "filter": "只显示 Monika",
-            "title": "查找您在哪里将 Monika 的角色文件拷贝出去了"
+            "title": "查找您在哪里将 Monika 的角色文件复制出去了"
         },
         "discord": {
             "description_version": "版本 {0}",
