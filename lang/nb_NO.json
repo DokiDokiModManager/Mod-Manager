@@ -333,7 +333,8 @@
                 "placeholder_search": "Søk etter en modd…",
                 "button_options": "Valg",
                 "button_install": "Installer",
-                "title": "Dine modder"
+                "title": "Dine modder",
+                "description_type": "Filtype: {0}"
             },
             "featured": {
                 "button_download": "Last ned",

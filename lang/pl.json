@@ -6,7 +6,10 @@
             "tab_mods": "Modyfikacje",
             "tab_store": "Sklep",
             "tab_options": "Opcje",
-            "tab_about": "O DDMM"
+            "tab_about": "O DDMM",
+            "tab_experiments": "Eksperymenty",
+            "tab_downloads": "Modyfikacje",
+            "tab_play": "Graj"
         },
         "version": {
             "link_changelog": "co nowego?"
@@ -33,7 +36,8 @@
                 "available": "Aktualizacja jest dostępna. Kliknij, aby ją pobrać.",
                 "downloading": "Pobieranie aktualizacji...",
                 "downloaded": "Aktualizacja jest gotowa do zainstalowania po zamknięciu."
-            }
+            },
+            "issue_report": "Zgłoś problem"
         },
         "crash_cover": {
             "button_close": "Wyjdź",
@@ -272,6 +276,100 @@
             "support_donate": "Dokonaj jednorazowej darowizny",
             "support_steelseries": "Uzyskaj 10% zniżki na urządzenia peryferyjne do gier SteelSeries (link partnerski)",
             "support_code": "Współtwórz z nami ten projektu (kod lub tłumaczenia)"
+        },
+        "modal_installing": {
+            "title": "Instalacja w toku"
+        },
+        "modal_save_delete": {
+            "button_negative": "Anuluj",
+            "button_affirmative": "Usuń",
+            "confirmation": "Rozumiem.",
+            "title": "Jesteś pewien, że chcesz usunąć zapisane dane?"
+        },
+        "modal_archive": {
+            "button_negative": "Anuluj",
+            "button_affirmative": "Zarchiwizuj",
+            "confirmation": "Rozumiem."
+        },
+        "modal_uninstall": {
+            "button_negative": "Anuluj",
+            "button_affirmative": "Odinstaluj",
+            "confirmation": "Rozumiem.",
+            "title": "Czy jesteś pewien, że chcesz odinstalować?"
+        },
+        "modal_rename": {
+            "button_negative": "Anuluj",
+            "button_affirmative": "Zmień nazwę",
+            "body": "Wpisz nową nazwę dla {0}.",
+            "title": "Zmień nazwę instalacji"
+        },
+        "modal_issue_report": {
+            "button_cancel": "Anuluj",
+            "button_submit": "Wyślij raport",
+            "label_body": "Szczegóły problemu",
+            "placeholder_mod": "Wklej link do strony modyfikacji lub strony pobierania.",
+            "label_mod": "Link do modyfikacji",
+            "option_broken_mod": "Mod nie działa",
+            "option_bug": "Błąd aplikacji",
+            "label_type": "Typ problemu",
+            "title": "Zgłoś problem"
+        },
+        "modal_news": {
+            "button": "Zrobione"
+        },
+        "onboarding_v4": {
+            "option_waifu_yuri": "Yuri",
+            "option_waifu_sayori": "Sayori",
+            "option_waifu_natsuki": "Natsuki",
+            "option_waifu_monika": "Monika",
+            "option_waifu_all": "Wszystkie z nich!",
+            "label_waifu": "Najlepsza dziewczyna",
+            "subtitle_waifu": "Nie myśl, po prostu odpowiedz.",
+            "header_waifu": "Kto jest Twoją ulubioną postacią?",
+            "button_change_save_location": "Zmień",
+            "label_save_location": "Zapisz lokalizację",
+            "header_save_location": "Zapisz lokalizację",
+            "subtitle_last": "Opcje te można zmienić w dowolnym momencie.",
+            "text_hash_mismatch": "Proszę, sprawdź dwa razy, czy wybrałeś odpowiedni plik i spróbuj ponownie.",
+            "header_hash_mismatch": "To nie wygląda jak właściwy plik zip",
+            "text_success": "Teraz możesz przejść do następnego kroku!",
+            "header_success": "Znaleziono kopię DDLC",
+            "header_version_mismatch": "To nie wygląda jak właściwy plik zip",
+            "header_directory_selected": "Wybrano folder zamiast pliku zip DDLC",
+            "text_validating": "Proszę czekać…",
+            "button_finish": "Zakończ",
+            "button_previous": "Wstecz",
+            "button_next": "Dalej",
+            "link_safari_warning": "Kliknij tutaj, aby zobaczyć wizualny przewodnik",
+            "header_safari_warning": "Ważne informacje dla użytkowników Safari",
+            "text_modification_warning": "Nie wprowadzaj żadnych zmian w pobranym pliku.",
+            "text_s2_next": "Po zakończeniu pobierania przejdź do następnego kroku.",
+            "button_ddlc_website": "Odwiedź stronę DDLC",
+            "header_download": "Pobierz DDLC",
+            "subtitle_careful": "Proszę uważnie przeczytać poniższe instrukcje.",
+            "header_setup": "Pierwsza konfiguracja",
+            "text_scanning": "Proszę czekać…",
+            "button_start": "Rozpocznij",
+            "text_welcome": "Witaj w najlepszej do tej pory wersji Doki Doki Mod Manager'a."
+        },
+        "modal_language_switch": {
+            "description": "Proszę czekać…",
+            "title": "Przełączanie języków"
+        },
+        "modal_error": {
+            "button_copy": "Skopiuj błąd do schowka",
+            "button_restart": "Zrestartuj",
+            "button_continue": "Kontynuuj",
+            "description_stacktrace": "Tu są dane techniczne błędu - zanotuj je jeśli zamierzasz napisać do mnie o pomoc.",
+            "description_general": "Proszę spróbować jeszcze raz. Jeśli problem będzie się powtarzał, napisz do mnie!",
+            "title_fatal": "Ups, Doki Doki Mod Manager się zcrashował",
+            "title_non_fatal": "Ups, coś poszło nie tak"
+        },
+        "online_error": {
+            "button_quit": "Wyjdź",
+            "button_restart": "Zrestartuj",
+            "body": "Doki Doki Mod Manager potrzebuje połączenia z internetem, aby pobierać zasoby pierwszy raz. Sprawdź połączenie z internetem, a potem zrestartuj.",
+            "title": "Połącz się z internetem"
         }
     },
     "main": {
