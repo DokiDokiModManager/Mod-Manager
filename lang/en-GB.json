@@ -181,6 +181,12 @@
             "delete": "Delete",
             "cancel": "Cancel"
         },
+        "modal_mod_delete": {
+            "title": "Are you sure you want to delete this mod?",
+            "body": "You will need to redownload {0} if you want to install it again.",
+            "button_affirmative": "Install",
+            "button_negative": "Cancel"
+        },
         "modal_mod_preview": {
             "button_close": "Close",
             "button_download_direct": "Download",
