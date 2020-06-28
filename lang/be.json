@@ -510,6 +510,12 @@
                 "link_downloaded": "Вашы моды",
                 "header_library": "Бібліятэка"
             }
+        },
+        "modal_mod_delete": {
+            "button_affirmative": "Выдаліць",
+            "button_negative": "Адмяніць",
+            "body": "Каб зноў усталяваць {0}, вам спатрэбіцца спампаваць яго копію.",
+            "title": "Вы сапраўды хочаце выдаліць гэты мод?"
         }
     },
     "main": {
