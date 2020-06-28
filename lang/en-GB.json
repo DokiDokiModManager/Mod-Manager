@@ -42,7 +42,9 @@
             "close": "Close",
             "maximise": "Maximise",
             "minimise": "Minimise",
-            "issue_report": "Report an issue"
+            "issue_report": "Report an issue",
+            "guide": "User Guide",
+            "discord": "Join the Discord server"
         },
         "drop_cover": {
             "text": "Drop a mod here to install it"
@@ -387,7 +389,8 @@
                 "button_install": "Install",
                 "button_options": "Options",
                 "description_type": "File type: {0}",
-                "placeholder_search": "Search for a mod…"
+                "placeholder_search": "Search for a mod…",
+                "message_none": "You have no mods. Go out and download some!"
             },
             "downloads": {
                 "title": "Downloads",

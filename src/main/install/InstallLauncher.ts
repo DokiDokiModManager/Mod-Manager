@@ -134,6 +134,7 @@ export default class InstallLauncher {
                 // files cannot be directly ported between operating systems.
                 cwd: joinPath(installFolder, "install"),
                 env,
+                detached: true
             });
 
             this.procHandle.stdout.on("data", data => {
@@ -175,7 +176,9 @@ export default class InstallLauncher {
     }
 
     /**
-     * Kills the currently running game
+     * Kills the currently running game.
+     *
+     * This doesn't work on Windows for some reason.
      */
     forceKill() {
         if (this.procHandle) {
