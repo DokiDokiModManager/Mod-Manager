@@ -46,8 +46,7 @@ export default class ModInstaller {
     private static installRPA(modPath: string, installPath: string): Promise<null> {
         return new Promise((ff, rj) => {
             Logger.info("Mod Installer", "Preparing to install RPA from " + modPath);
-            const filename: string = modPath.split(pathSep).pop();
-            copyFile(modPath, joinPath(installPath, "game", filename), err => {
+            copyFile(modPath, joinPath(installPath, "game", "scripts.rpa"), err => {
                 if (err) {
                     rj(err);
                 } else {
