@@ -195,7 +195,7 @@ api.mods.deleteInstall = function (folderName) {
 };
 
 // Archive install
-api.mods.archiveInstall = function(folderName) {
+api.mods.archiveInstall = function (folderName) {
     ipcRenderer.send("archive install", folderName);
 };
 
@@ -266,7 +266,7 @@ ipcRenderer.on("start onboarding", () => {
     api.emit("start onboarding");
 });
 
-api.onboarding.scan = function() {
+api.onboarding.scan = function () {
     ipcRenderer.send("onboarding scan");
 };
 
@@ -302,9 +302,15 @@ ipcRenderer.on("download started", (ev, url) => {
     api.emit("download started", url);
 });
 
+// call when the mod preview modal appears, and call with null when the modal is closed
+// this allows the filename to be correct
+api.downloads.preloadFilename = function (name) {
+    ipcRenderer.send("preload download name", name);
+};
+
 api.downloads.startDownload = function (url, filename) {
-    ipcRenderer.send("start download", {url, filename});
-}
+    // ipcRenderer.send("start download", {url, filename});
+};
 
 api.downloads.downloadWithInteraction = function (url) {
     ipcRenderer.send("start download", {url, interaction: true});

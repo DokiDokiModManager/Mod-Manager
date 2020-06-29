@@ -1,4 +1,4 @@
-import {session, DownloadItem, BrowserWindow, dialog} from "electron";
+import {session, DownloadItem, BrowserWindow, dialog, Event} from "electron";
 import {join as joinPath} from "path";
 import * as EventEmitter from "events";
 import Config from "../utils/Config";
@@ -10,9 +10,9 @@ export default class DownloadManager extends EventEmitter {
 
     private downloads: DownloadItem[] = [];
 
-    private filenames: Map<string, string> = new Map();
-
     private interactionWin: BrowserWindow;
+
+    private preloadedFileName: string;
 
     private readonly lang: I18n;
     private readonly mainWin: BrowserWindow;
@@ -22,14 +22,14 @@ export default class DownloadManager extends EventEmitter {
         this.lang = lang;
         this.mainWin = mainWin;
 
-        session.defaultSession.on("will-download", (ev, item: DownloadItem) => {
+        session.defaultSession.on("will-download", (ev: Event, item: DownloadItem) => {
             this.downloads.push(item);
 
             if (this.interactionWin) {
                 this.interactionWin.close();
             }
 
-            const filename: string = this.filenames.get(item.getURLChain()[0]) || item.getFilename();
+            const filename: string = this.preloadedFileName ? (this.preloadedFileName + "." + item.getFilename().split(".").pop())  : item.getFilename();
             const newPath: string = joinPath(Config.readConfigValue("installFolder"), "mods", filename);
 
             if (existsSync(newPath)) {
@@ -55,7 +55,6 @@ export default class DownloadManager extends EventEmitter {
             item.on("done", (ev: Event, state) => {
                 this.downloads.splice(this.downloads.indexOf(item), 1);
                 if (state === "completed") {
-                    this.filenames.delete(item.getURLChain()[0]);
                     moveSync(item.savePath, newPath, {
                         overwrite: true
                     });
@@ -81,24 +80,12 @@ export default class DownloadManager extends EventEmitter {
     }
 
     /**
-     * Gets the custom filename for a downloading file, if it was set.
-     * @param url The URL being downloaded.
-     */
-    public getSavedFilename(url: string): string {
-        return this.filenames.get(url);
-    }
-
-    /**
      * Downloads a file from a URL
      *
      * @param url The URL to download
-     * @param filename An optional file name
      */
-    public downloadFile(url: string, filename?: string): void {
+    public downloadFile(url: string): void {
         Logger.info("Download Manager", "Beginning download of " + url + " (manual initiation)");
-        if (filename) {
-            this.filenames.set(url, filename);
-        }
         session.defaultSession.downloadURL(url);
     }
 
@@ -132,5 +119,14 @@ export default class DownloadManager extends EventEmitter {
         });
 
         this.interactionWin.loadURL(url);
+    }
+
+    /**
+     * Preloads a file name, so the next download gets that instead of the file name provided on download
+     * @param name The name, or null
+     */
+    public preloadFilename(name?: string) {
+        this.preloadedFileName = name ? name.replace(/[*"\/\\<>\[\]:;|,]/g, " ") : null;
+        Logger.info("Download Manager", name ? "Preloaded filename " + this.preloadedFileName + " for downloads." : "No longer preloading a filename");
     }
 }

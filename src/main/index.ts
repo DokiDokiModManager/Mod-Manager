@@ -190,7 +190,7 @@ ipcMain.on("kill game", () => {
 function sendDownloads() {
     appWindow.webContents.send("got downloads", downloadManager.getActiveDownloads().map((dl: DownloadItem) => {
         return {
-            filename: downloadManager.getSavedFilename(dl.getURLChain()[0]) || dl.getFilename(),
+            filename: dl.getFilename(),
             downloaded: dl.getReceivedBytes(),
             total: dl.getTotalBytes(),
             startTime: dl.getStartTime() * 1000
@@ -202,12 +202,14 @@ ipcMain.on("get downloads", () => {
     sendDownloads();
 });
 
-ipcMain.on("start download", (ev: IpcMainEvent, data: { url: string, filename?: string, interaction?: boolean }) => {
+ipcMain.on("start download", (ev: IpcMainEvent, data: { url: string, interaction?: boolean }) => {
     if (data.interaction) {
         downloadManager.downloadFileWithInteraction(data.url);
-    } else {
-        downloadManager.downloadFile(data.url, data.filename);
     }
+});
+
+ipcMain.on("preload download name", (ev: IpcMainEvent, name: string) => {
+    downloadManager.preloadFilename(name);
 });
 
 // Browse for a mod
