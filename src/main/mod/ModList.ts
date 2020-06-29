@@ -23,7 +23,7 @@ export default class ModList {
 
         try {
             return readdirSync(modFolder).filter(fn => {
-                return ["zip", "rar", "7z"].filter(ext => fn.endsWith("." + ext)).length > 0;
+                return ["rpa", "zip", "rar", "7z"].filter(ext => fn.endsWith("." + ext)).length > 0;
             });
         } catch (e) {
             Logger.warn("Mod List", "Failed to read mods folder");

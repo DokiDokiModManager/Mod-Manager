@@ -7,6 +7,7 @@ import ArchiveConverter from "../archive/ArchiveConverter";
 import {app} from "electron";
 import {randomBytes} from "crypto";
 import Logger from "../utils/Logger";
+import {copyFile} from "fs";
 
 export default class ModInstaller {
 
@@ -18,6 +19,8 @@ export default class ModInstaller {
     public static installMod(modPath: string, installPath: string): Promise<null> {
         if (modPath.endsWith(".zip")) {
             return ModInstaller.installZip(modPath, installPath);
+        } else if (modPath.endsWith(".rpa")) {
+            return ModInstaller.installRPA(modPath, installPath);
         } else if (ModInstaller.isArchive(modPath)) {
             return new Promise((ff, rj) => {
                 const tempZipPath: string = joinPath(app.getPath("temp"), "ddmm" + randomBytes(8).toString("hex") + ".zip");
@@ -36,8 +39,23 @@ export default class ModInstaller {
         } else {
             return new Promise((ff, rj) => {
                 rj(new Error("File was not an archive."));
-            })
+            });
         }
+    }
+
+    private static installRPA(modPath: string, installPath: string): Promise<null> {
+        return new Promise((ff, rj) => {
+            Logger.info("Mod Installer", "Preparing to install RPA from " + modPath);
+            const filename: string = modPath.split(pathSep).pop();
+            copyFile(modPath, joinPath(installPath, "game", filename), err => {
+                if (err) {
+                    rj(err);
+                } else {
+                    Logger.info("Mod Installer", "RPA installaton complete");
+                    ff();
+                }
+            });
+        });
     }
 
     private static installZip(modPath: string, installPath: string): Promise<null> {
@@ -91,8 +109,7 @@ export default class ModInstaller {
                             });
                         });
                         return;
-                    }
-                    else if (file.path.endsWith("ddmm-bg.png")) {
+                    } else if (file.path.endsWith("ddmm-bg.png")) {
                         if (hasReadBG) {
                             Logger.warn("Mod Installer", "More than one ddmm-bg.png was found. Skipping this one.");
                             return;

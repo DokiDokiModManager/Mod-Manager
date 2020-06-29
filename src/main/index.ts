@@ -214,7 +214,7 @@ ipcMain.on("preload download name", (ev: IpcMainEvent, name: string) => {
 
 // Browse for a mod
 ipcMain.on("browse mods", (ev: IpcMainEvent) => {
-    const extensions = ["zip", "7z", "rar"];
+    const extensions: string[] = ["zip", "7z", "rar", "rpa"];
     dialog.showOpenDialog(appWindow, {
         title: lang.translate("main.mod_browse_dialog.title"),
         filters: [{
