@@ -153,6 +153,16 @@ export default class ModInstaller {
                 });
 
                 zip.on("close", () => {
+                    try {
+                        const modDataPath: string = joinPath(installPath, "../install.json");
+                        const oldInstallContents: any = JSON.parse(readFileSync(modDataPath).toString());
+                        oldInstallContents.modded = true;
+                        writeFileSync(modDataPath, JSON.stringify(oldInstallContents));
+                    } catch (err) {
+                        Logger.warn("Mod Installer", "Failed to update install.json");
+                        console.warn(err);
+                        rj(err);
+                    }
                     ff();
                     Logger.info("Mod Installer", "Installation complete");
                 });

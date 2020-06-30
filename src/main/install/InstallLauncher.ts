@@ -7,6 +7,7 @@ import DiscordManager from "../discord/DiscordManager";
 import SDKDebugConsole from "../sdk/SDKDebugConsole";
 import {LogClass} from "../sdk/LogClass";
 import SDKServer from "../sdk/SDKServer";
+import Logger from "../utils/Logger";
 
 const lang: I18n = new I18n();
 
@@ -56,6 +57,10 @@ export default class InstallLauncher {
             }
 
             if (richPresence) richPresence.setPlayingStatus(installData.name);
+
+            // should we check with the user if the injected script reports no mod installed?
+            const checkInstall: boolean = installData.modded && installData.firstRun;
+            let checkWithUser: boolean = false;
 
             if (Config.readConfigValue("sdkMode") !== "never") {
                 if (installData.mod && installData.mod.hasOwnProperty("uses_sdk")) {
@@ -143,6 +148,10 @@ export default class InstallLauncher {
 
             this.procHandle.stderr.on("data", data => {
                 logToConsole("[STDERR] " + data.toString(), LogClass.ERROR);
+                if (checkInstall && data.toString().indexOf("ddmm-modded:no") !== -1) {
+                    Logger.warn("Install Launcher", "Mod installation probably failed");
+                    checkWithUser = true;
+                }
             });
 
             this.procHandle.on("error", e => {
@@ -153,10 +162,12 @@ export default class InstallLauncher {
                 rj(e);
             });
 
-            this.procHandle.on("close", () => {
+            this.procHandle.on("close", (code: number) => {
                 // calculate total play time
                 const sessionTime: number = Date.now() - startTime;
                 const totalTime: number = installData.playTime ? installData.playTime + sessionTime : sessionTime;
+
+                if (code !== 0) checkWithUser = true;
 
                 if (sdkServer) {
                     sdkServer.shutdown();
@@ -165,10 +176,12 @@ export default class InstallLauncher {
                 // read again, so sdk data isn't overwritten
                 const newInstallData: any = JSON.parse(readFileSync(joinPath(installFolder, "install.json")).toString("utf8"));
                 newInstallData.playTime = totalTime;
+                newInstallData.firstRun = false;
+                newInstallData.installFailed = checkWithUser;
 
                 writeFileSync(joinPath(installFolder, "install.json"), JSON.stringify(newInstallData));
 
-                logToConsole("Game has closed.");
+                logToConsole("Game has closed with exit code " + code);
                 richPresence.setIdleStatus();
                 ff();
             });

@@ -6,6 +6,7 @@ import Config from "../utils/Config";
 import unzip from "../archive/Unzipper";
 import InstallManager from "./InstallManager";
 import Logger from "../utils/Logger";
+import ModManagerHookInjector from "./ModManagerHookInjector";
 
 export default class InstallCreator {
 
@@ -77,30 +78,34 @@ export default class InstallCreator {
                 });
 
                 zip.on("close", () => {
-                    Logger.info("Install Creator", "Game installation completed");
+                    ModManagerHookInjector.injectScript(folderName).finally(() => {
+                        Logger.info("Install Creator", "Game installation completed");
 
-                    // write the install data file
-                    if (unarchiving) {
-                        InstallManager.updateInstallDataValue(folderName, "archived", false);
-                    } else {
-                        writeFileSync(joinPath(canonicalPath, "install.json"), JSON.stringify({
-                            globalSave,
-                            mod: null,
-                            name: installName,
-                            playTime: 0,
-                            category: "",
-                            archived: false
-                        }));
-                    }
+                        // write the install data file
+                        if (unarchiving) {
+                            InstallManager.updateInstallDataValue(folderName, "archived", false);
+                        } else {
+                            writeFileSync(joinPath(canonicalPath, "install.json"), JSON.stringify({
+                                globalSave,
+                                mod: null,
+                                name: installName,
+                                playTime: 0,
+                                category: "",
+                                archived: false,
+                                firstRun: true,
+                                modded: false
+                            }));
+                        }
 
-                    if (process.platform !== "win32") {
-                        // make the directory executable for *nix users
-                        chmodr(joinPath(canonicalPath, "install"), 0o774, () => { // it needs to be octal!
+                        if (process.platform !== "win32") {
+                            // make the directory executable for *nix users
+                            chmodr(joinPath(canonicalPath, "install"), 0o774, () => { // it needs to be octal!
+                                ff();
+                            });
+                        } else {
                             ff();
-                        });
-                    } else {
-                        ff();
-                    }
+                        }
+                    });
                 });
             } catch (e) {
                 rj(e);

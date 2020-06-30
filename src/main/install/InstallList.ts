@@ -73,7 +73,8 @@ export default class InstallList {
                         category: data.category,
                         monikaExportStatus,
                         archived: data.archived,
-                        size
+                        size,
+                        installFailed: data.installFailed
                     });
                 }
             } catch (e) {

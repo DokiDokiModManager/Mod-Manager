@@ -57,9 +57,7 @@
       "!**/fontawesome-free/js",
       "!**/fontawesome-free/less",
       "!**/fontawesome-free/scss",
-      "!**/vue/",
-      "!**/src/renderer/css",
-      "!**/src/renderer/js"
+      "!**/vue/"
     ],
     "protocols": [
       {

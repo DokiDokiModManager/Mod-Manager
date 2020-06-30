@@ -250,7 +250,11 @@
                 "title_mas_export": "Take Monika with you",
                 "description_mas_export": "Monika is ready to be taken out with you.",
                 "button_mas_export": "Copy Monika Out",
-                "button_mas_import": "Add Monika Back"
+                "button_mas_import": "Add Monika Back",
+                "title_install_failed": "Did your mod install properly?",
+                "description_install_failed": "It looks like the mod you were trying to play may not have installed correctly. You may want to read the troubleshooting guide for help fixing the problem.",
+                "link_troubleshooting": "Troubleshooting guide",
+                "description_install_failed_launch_again": "This message will disappear when you next launch this mod."
             },
             "mod": {
                 "button_install": "Install",

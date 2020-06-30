@@ -16,5 +16,6 @@ export default class Install {
     public monikaExportStatus: MonikaExportStatus;
     public archived: boolean;
     public size: number;
+    public installFailed: false;
 }
 
