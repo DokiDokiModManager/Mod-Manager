@@ -42,9 +42,9 @@ script:
 - |
   if [ "$TRAVIS_OS_NAME" == "linux" ]; then
     echo $SNAP_TOKEN | snapcraft login --with -
-    yarn && yarn test && yarn release -l
+    yarn && yarn release -l
   else
-    yarn && yarn test && yarn release -m
+    yarn && yarn release -m
   fi
 
 branches:
