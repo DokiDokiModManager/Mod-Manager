@@ -308,8 +308,8 @@ api.downloads.preloadFilename = function (name) {
     ipcRenderer.send("preload download name", name);
 };
 
-api.downloads.startDownload = function (url, filename) {
-    // ipcRenderer.send("start download", {url, filename});
+api.downloads.startDownload = function (url) {
+    ipcRenderer.send("start download", {url});
 };
 
 api.downloads.downloadWithInteraction = function (url) {

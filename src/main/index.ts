@@ -205,6 +205,8 @@ ipcMain.on("get downloads", () => {
 ipcMain.on("start download", (ev: IpcMainEvent, data: { url: string, interaction?: boolean }) => {
     if (data.interaction) {
         downloadManager.downloadFileWithInteraction(data.url);
+    } else {
+        downloadManager.downloadFile(data.url);
     }
 });
 

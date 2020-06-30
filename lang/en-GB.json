@@ -411,7 +411,9 @@
             },
             "store": {
                 "title_ddmc": "Doki Doki Mod Club",
-                "description": "Mods listed here are not moderated or endorsed by Doki Doki Mod Manager. Proceed with caution!",
+                "description_ddmc": "Browse through this database of mods, provided by Doki Doki Mod Club.",
+                "link_ddmc": "Visit the website to submit your own mod.",
+                "description_featured": "Spoilt for choice? Try one of the highlighted mods!",
                 "text_loading": "Loading mod list…",
                 "error_loading": "Can't load the mods right now.",
                 "placeholder_search": "Search for a mod…"
