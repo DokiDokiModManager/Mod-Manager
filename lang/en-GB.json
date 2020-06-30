@@ -378,6 +378,8 @@
             "social_email": "Send me an e-mail",
             "title_translators": "Translations generously contributed by",
             "title_v4_beta": "Doki Doki Mod Manager 4 beta testers",
+            "title_patreon": "Thanks to the kind support of the following Patreon supporters",
+            "link_patreon": "Support further development of Doki Doki Mod Manager on Patreon",
             "link_weblate": "Help translate Doki Doki Mod Manager into your native language - visit the project homepage"
         },
         "tab_downloads": {
