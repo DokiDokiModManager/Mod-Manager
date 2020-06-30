@@ -6,7 +6,10 @@
             "tab_mods": "Mods",
             "tab_store": "Magasin",
             "tab_options": "Options",
-            "tab_about": "À propos"
+            "tab_about": "À propos",
+            "tab_experiments": "Expériences",
+            "tab_downloads": "Mods",
+            "tab_play": "Jouer"
         },
         "version": {
             "link_changelog": "Quoi de neuf ?"
@@ -33,7 +36,10 @@
                 "available": "Une mise à jour est disponible. Cliquez ici pour la télécharger.",
                 "downloading": "Téléchargement de la mise à jour...",
                 "downloaded": "Une mise à jour est prête à être installé au prochain redémarrage."
-            }
+            },
+            "discord": "Rejoindre le serveur Discord",
+            "guide": "Guide utilisateur",
+            "issue_report": "Signaler un problème"
         },
         "crash_cover": {
             "button_close": "Quitter",
@@ -272,6 +278,45 @@
             "support_donate": "Faire une donation unique",
             "support_steelseries": "Obtenir 10% de réduction sur les périphériques gaming SteelSeries (lien affilié)",
             "support_code": "Contribuer au projet (code ou traductions)"
+        },
+        "onboarding_v4": {
+            "text_validating": "Veuillez patienter un moment, s'il vous plait…",
+            "text_dropzone": "Déplacer votre copie téléchargée de DDLC ici",
+            "button_finish": "Terminer",
+            "button_previous": "Précédent",
+            "button_next": "Suivant",
+            "link_safari_warning": "Cliquez ici pour un guide visuel",
+            "text_safari_warning": "Il se peut que Safari extrait automatiquement le jeu téléchargé. Nous vous recommandons de désactiver cette fonction car elle interfère avec le processus d'installation. Cela peut être effectué depuis la fenêtre de préférence de Safari.",
+            "header_safari_warning": "Important pour les utilisateurs de Safari",
+            "text_modification_warning": "Veillez à ne pas modifier le fichier téléchargé.",
+            "text_s2_next": "Lorsque votre téléchargement est complet, veuillez procéder à l'étape suivante.",
+            "button_ddlc_website": "Visiter le site DDLC",
+            "text_download": "Visitez le site DDLC, cliquez sur Télécharger maintenant et suivez les instructions. Lorsqu'on vous le demande, choisissez le fichier intitulé {0} et sauvegardez le dans un emplacement facile à retrouver.",
+            "header_download": "Télécharger DDLC",
+            "subtitle_careful": "Veuillez prendre connaissance des instructions qui suivent.",
+            "header_setup": "Première configuration",
+            "text_scanning": "Veuillez attendre…",
+            "button_start": "Débuter",
+            "text_welcome": "Bienvenue sur la meilleure version de Doki Doki Mod Manager disponible à ce jour."
+        },
+        "modal_language_switch": {
+            "description": "Veuillez patienter, s'il vous plait…",
+            "title": "Modifier la langue"
+        },
+        "modal_error": {
+            "button_copy": "Copier l'erreur dans le presse-papier",
+            "button_restart": "Redémarrer",
+            "button_continue": "Continuer",
+            "description_stacktrace": "Voici les détails techniques du problème rencontré - veuillez en conserver une note dans le cas où vous auriez besoin d'assistance.",
+            "description_general": "Veuillez réessayer ce que vous étiez en train de faire, et si continuez à rencontrer des problèmes, veuillez me le faire savoir !",
+            "title_fatal": "Oups, Doki Doki Mod Manager a planté",
+            "title_non_fatal": "Oups, il semble que quelque chose a mal tourné"
+        },
+        "online_error": {
+            "button_quit": "Quitter",
+            "button_restart": "Redémarrer",
+            "body": "Doki Doki Mod Manager nécessite une connexion internet afin de télécharger les ressources la première fois. Veuillez vérifier votre connexion internet et redémarrer.",
+            "title": "Veuillez vous connecter à l'internet"
         }
     },
     "main": {
