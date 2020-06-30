@@ -44,7 +44,8 @@
             "minimise": "Minimise",
             "issue_report": "Report an issue",
             "guide": "User Guide",
-            "discord": "Join the Discord server"
+            "discord": "Join the Discord server",
+            "patreon": "Support Doki Doki Mod Manager on Patreon"
         },
         "drop_cover": {
             "text": "Drop a mod here to install it"
