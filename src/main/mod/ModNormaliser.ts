@@ -5,11 +5,14 @@ import ModTemplateFormat from "./mappers/ModTemplateFormat";
 import InstallAppropriateFiles from "./mappers/InstallAppropriateFiles";
 import DumpAndHopeForTheBest from "./mappers/DumpAndHopeForTheBest";
 import unzip from "../archive/Unzipper";
+import Logger from "../utils/Logger";
 
 /*
     This script is intended to take any zip file and try and determine how DDMM should install it, if it is a mod.
     There's so many different ways mods are packaged, so this won't cover every scenario, but DDMM will allow the user
     to install a mod manually if this fails.
+
+    Update (2020): so that was a f***ing lie
  */
 
 /*
@@ -35,6 +38,7 @@ export function inferMapper(zipPath: string): Promise<ModMapper> {
         zip.on("close", () => {
             if (structure.indexOf("mod.json") !== -1
                 || structure.indexOf("game/") !== -1) {
+                Logger.debug("Mod Normaliser", "This mod is probably using the DDMMv1 mod format. Surprised? Me too!");
                 ff(new ModManagerFormat());
                 return;
             }
@@ -53,10 +57,12 @@ export function inferMapper(zipPath: string): Promise<ModMapper> {
                 const pathParts = path.split("/");
 
                 if (pathParts[1] === "game") {
+                    Logger.debug("Mod Normaliser", "This mod appears to be using the DDLC Mod Template format (or similar)");
                     isModTemplate = true;
                 }
 
-                if (["mod_assets", "python-packages", "saves", "audio.rpa"].indexOf(pathParts[1]) !== -1) {
+                if (["mod_assets", "python-packages", "saves", "audio.rpa", "fonts.rpa", "scripts.rpa"].indexOf(pathParts[1]) !== -1) {
+                    Logger.debug("Mod Normaliser", "Detected " + pathParts[1] + " not in the root of the zip");
                     isNested = true;
                 }
 
