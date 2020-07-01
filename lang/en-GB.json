@@ -19,6 +19,10 @@
             "title": "Switching languages",
             "description": "Please wait a moment…"
         },
+        "modal_download_starting": {
+            "title": "Download starting",
+            "description": "Please follow any prompts shown to complete the download"
+        },
         "tabs": {
             "tab_play": "Play",
             "tab_downloads": "Mods",

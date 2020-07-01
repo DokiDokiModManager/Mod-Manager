@@ -95,30 +95,33 @@ export default class DownloadManager extends EventEmitter {
      * @param url The URL to download
      */
     public downloadFileWithInteraction(url: string) {
-        this.interactionWin = new BrowserWindow({
-            parent: this.mainWin,
-            modal: true,
-            show: false,
-            webPreferences: {
-                nodeIntegration: false,
-            }
+        return new Promise((resolve, reject) => {
+            this.interactionWin = new BrowserWindow({
+                parent: this.mainWin,
+                modal: true,
+                show: false,
+                webPreferences: {
+                    nodeIntegration: false,
+                }
+            });
+
+            this.interactionWin.setMenu(null);
+
+            this.interactionWin.on("close", () => {
+                this.interactionWin = null;
+                resolve();
+            });
+
+            this.interactionWin.on("ready-to-show", () => {
+                this.interactionWin.show();
+            });
+
+            this.interactionWin.webContents.on("new-window", event => {
+                event.preventDefault();
+            });
+
+            this.interactionWin.loadURL(url);
         });
-
-        this.interactionWin.setMenu(null);
-
-        this.interactionWin.on("close", () => {
-            this.interactionWin = null;
-        });
-
-        this.interactionWin.on("ready-to-show", () => {
-            this.interactionWin.show();
-        });
-
-        this.interactionWin.webContents.on("new-window", event => {
-            event.preventDefault();
-        });
-
-        this.interactionWin.loadURL(url);
     }
 
     /**
@@ -128,5 +131,13 @@ export default class DownloadManager extends EventEmitter {
     public preloadFilename(name?: string) {
         this.preloadedFileName = name ? name.replace(/[*"\/\\<>\[\]:;|,]/g, " ") : null;
         Logger.info("Download Manager", name ? "Preloaded filename " + this.preloadedFileName + " for downloads." : "No longer preloading a filename");
+    }
+
+    /**
+     * Get the preloaded file name
+     * @return The filename, or null
+     */
+    public getPreloadedFilename(): string {
+        return this.preloadedFileName;
     }
 }

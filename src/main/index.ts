@@ -204,7 +204,9 @@ ipcMain.on("get downloads", () => {
 
 ipcMain.on("start download", (ev: IpcMainEvent, data: { url: string, interaction?: boolean }) => {
     if (data.interaction) {
-        downloadManager.downloadFileWithInteraction(data.url);
+        downloadManager.downloadFileWithInteraction(data.url).then(() => {
+            appWindow.webContents.send("download started");
+        });
     } else {
         downloadManager.downloadFile(data.url);
     }
@@ -630,8 +632,11 @@ function handleURL(forcedArg?: string) {
         } else if (command === "download-mod") {
             const data: any = JSON.parse(Buffer.from(commandParts.join("/"), "base64").toString());
             if (data.filename && data.url) {
+                const oldFilename: string = downloadManager.getPreloadedFilename();
                 downloadManager.preloadFilename(data.filename);
-                downloadManager.downloadFileWithInteraction(data.url);
+                downloadManager.downloadFileWithInteraction(data.url).then(() => {
+                    downloadManager.preloadFilename(oldFilename);
+                });
             }
         }
     }
@@ -698,8 +703,8 @@ app.on("ready", () => {
     // ...and the install launcher
     installLauncher = new InstallLauncher();
 
-    downloadManager.on("started", url => {
-        appWindow.webContents.send("download started", url);
+    downloadManager.on("started", () => {
+        appWindow.webContents.send("download started");
     });
 
     downloadManager.on("updated", () => {
