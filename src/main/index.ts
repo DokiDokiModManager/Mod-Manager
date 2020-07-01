@@ -621,11 +621,18 @@ function handleURL(forcedArg?: string) {
     // logic for handling various command line arguments
     const url = forcedArg ? forcedArg : lastArg;
     if (url.startsWith("ddmm://")) {
-        const command: string = url.split("ddmm://")[1];
+        const commandParts: string[] = url.split("ddmm://")[1].split("/");
+        const command: string = commandParts.shift();
 
-        if (command.startsWith("launch-install/")) {
-            const installFolder: string = command.split("launch-install/")[1];
+        if (command === "launch-install") {
+            const installFolder: string = commandParts[0];
             launchInstall(installFolder);
+        } else if (command === "download-mod") {
+            const data: any = JSON.parse(Buffer.from(commandParts.join("/"), "base64").toString());
+            if (data.filename && data.url) {
+                downloadManager.preloadFilename(data.filename);
+                downloadManager.downloadFileWithInteraction(data.url);
+            }
         }
     }
 }

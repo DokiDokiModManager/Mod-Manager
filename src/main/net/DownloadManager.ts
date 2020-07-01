@@ -76,7 +76,7 @@ export default class DownloadManager extends EventEmitter {
      * Gets all files currently being downloaded
      */
     public getActiveDownloads(): DownloadItem[] {
-        return this.downloads;
+        return this.downloads.filter(item => !!item);
     }
 
     /**
