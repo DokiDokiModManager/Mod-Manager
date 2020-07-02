@@ -93,7 +93,8 @@ export default class InstallCreator {
                                 category: "",
                                 archived: false,
                                 firstRun: true,
-                                modded: false
+                                modded: false,
+                                singletonError: false
                             }));
                         }
 

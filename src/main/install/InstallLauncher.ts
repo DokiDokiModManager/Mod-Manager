@@ -60,7 +60,8 @@ export default class InstallLauncher {
 
             // should we check with the user if the injected script reports no mod installed?
             const checkInstall: boolean = installData.modded && installData.firstRun;
-            let checkWithUser: boolean = false;
+            let installFailedCheck: boolean = false;
+            let singletonErrorCheck: boolean = false;
 
             if (Config.readConfigValue("sdkMode") !== "never") {
                 if (installData.mod && installData.mod.hasOwnProperty("uses_sdk")) {
@@ -150,7 +151,11 @@ export default class InstallLauncher {
                 logToConsole("[STDERR] " + data.toString(), LogClass.ERROR);
                 if (checkInstall && data.toString().indexOf("ddmm-modded:no") !== -1) {
                     Logger.warn("Install Launcher", "Mod installation probably failed");
-                    checkWithUser = true;
+                    installFailedCheck = true;
+                }
+                if (data.toString().indexOf("singleton.SingleInstanceException") !== -1) {
+                    Logger.warn("Install Launcher", "Game threw SingleInstanceException");
+                    singletonErrorCheck = true;
                 }
             });
 
@@ -167,7 +172,7 @@ export default class InstallLauncher {
                 const sessionTime: number = Date.now() - startTime;
                 const totalTime: number = installData.playTime ? installData.playTime + sessionTime : sessionTime;
 
-                if (code !== 0) checkWithUser = true;
+                if (code !== 0) installFailedCheck = true;
 
                 if (sdkServer) {
                     sdkServer.shutdown();
@@ -177,7 +182,8 @@ export default class InstallLauncher {
                 const newInstallData: any = JSON.parse(readFileSync(joinPath(installFolder, "install.json")).toString("utf8"));
                 newInstallData.playTime = totalTime;
                 newInstallData.firstRun = false;
-                newInstallData.installFailed = checkWithUser;
+                newInstallData.installFailed = installFailedCheck;
+                newInstallData.singletonError = singletonErrorCheck;
 
                 writeFileSync(joinPath(installFolder, "install.json"), JSON.stringify(newInstallData));
 

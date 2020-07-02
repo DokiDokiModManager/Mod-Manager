@@ -259,6 +259,8 @@
                 "title_install_failed": "Did your mod install properly?",
                 "description_install_failed": "It looks like the mod you were trying to play may not have installed correctly. You may want to read the troubleshooting guide for help fixing the problem.",
                 "link_troubleshooting": "Troubleshooting guide",
+                "title_singleton_error": "Did your game close?",
+                "description_singleton_error": "Make sure you aren't running more than one instance of DDLC and try launching again. You may want to read the troubleshooting guide if the problem continues.",
                 "description_install_failed_launch_again": "This message will disappear when you next launch this mod."
             },
             "mod": {

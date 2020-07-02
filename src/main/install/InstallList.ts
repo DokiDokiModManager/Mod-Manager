@@ -74,7 +74,8 @@ export default class InstallList {
                         monikaExportStatus,
                         archived: data.archived,
                         size,
-                        installFailed: data.installFailed
+                        installFailed: data.installFailed,
+                        singletonError: data.singletonError
                     });
                 }
             } catch (e) {
