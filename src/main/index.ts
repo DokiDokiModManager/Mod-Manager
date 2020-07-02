@@ -17,8 +17,7 @@ import {
     SaveDialogReturnValue,
     OpenDialogReturnValue,
     shell,
-    DownloadItem,
-    session
+    DownloadItem
 } from "electron";
 import {copyFileSync, existsSync, mkdirpSync, move, readdirSync, removeSync, statSync, unlinkSync} from "fs-extra";
 import {join as joinPath} from "path";
@@ -53,7 +52,7 @@ const DISCORD_ID = "453299645725016074";
 // region Flags and references
 
 // User agent for API requests
-const USER_AGENT = "DokiDokiModManager/" + app.getVersion() + " (zudo@doki.space)";
+app.userAgentFallback = "DokiDokiModManager/" + app.getVersion() + " (zudo@doki.space)";
 
 // The last argument, might be a ddmm:// url
 const lastArg: string = process.argv.pop();
@@ -657,12 +656,10 @@ app.on("ready", () => {
         return; // avoid running for longer than needed
     }
 
-    if (process.env.DDMM_LOAD_EXT) {
-        session.defaultSession.loadExtension(process.env.DDMM_LOAD_EXT);
-    }
-
     // set protocol handler
-    app.setAsDefaultProtocolClient("ddmm");
+    if (app.isPackaged) {
+        app.setAsDefaultProtocolClient("ddmm");
+    }
 
     // create browser window
     appWindow = new BrowserWindow({
@@ -714,9 +711,6 @@ app.on("ready", () => {
     downloadManager.on("finished", () => {
         appWindow.webContents.send("got modlist", modList.getModList());
     });
-
-    // set user agent so web services can contact me if necessary
-    appWindow.webContents.userAgent = USER_AGENT;
 
     appWindow.webContents.on("will-navigate", (ev, url) => {
         console.warn("Prevented navigation from app container", url);
