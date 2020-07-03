@@ -239,13 +239,21 @@ ipcMain.on("select folder", (ev: IpcMainEvent) => {
         properties: ["openDirectory"]
     }).then((res: OpenDialogReturnValue) => {
         if (res.filePaths && res.filePaths[0]) {
-            if (readdirSync(res.filePaths[0]).length > 0) {
+            let error: string = null;
+            try {
+                const files: string[] = readdirSync(res.filePaths[0]);
+
+                if (files.length > 0) {
+                    if (!(files.length <= 4 && files.indexOf("installs") !== -1 && files.indexOf("mods") !== -1)) {
+                        error = lang.translate("main.move_install.error_not_empty");
+                    }
+                }
+            } catch {
+                error = lang.translate("main.move_install.error_read");
+            } finally {
                 ev.returnValue = {
-                    error: lang.translate("main.move_install.error_not_empty")
-                };
-            } else {
-                ev.returnValue = {
-                    path: res.filePaths[0],
+                    error,
+                    path: res.filePaths[0]
                 };
             }
         } else {

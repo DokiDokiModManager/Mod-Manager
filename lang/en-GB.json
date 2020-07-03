@@ -451,7 +451,8 @@
         },
         "move_install": {
             "title": "Select new install folder",
-            "error_not_empty": "This folder is not empty. Pick an empty folder."
+            "error_not_empty": "This folder is not empty. Pick an empty folder.",
+            "error_read": "Cannot read from this folder. Please try again."
         },
         "mod_browse_dialog": {
             "title": "Find a mod to install",
