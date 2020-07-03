@@ -19,7 +19,7 @@ import {
     shell,
     DownloadItem
 } from "electron";
-import {copyFileSync, existsSync, mkdirpSync, move, readdirSync, removeSync, statSync, unlinkSync} from "fs-extra";
+import {copyFileSync, existsSync, mkdirpSync, move, readdirSync, removeSync, unlinkSync} from "fs-extra";
 import {join as joinPath} from "path";
 
 if (existsSync(joinPath(app.getPath("appData"), "Doki Doki Mod Manager!"))) {
@@ -233,6 +233,27 @@ ipcMain.on("browse mods", (ev: IpcMainEvent) => {
     });
 });
 
+ipcMain.on("select folder", (ev: IpcMainEvent) => {
+    dialog.showOpenDialog(appWindow, {
+        title: lang.translate("main.move_install.title"),
+        properties: ["openDirectory"]
+    }).then((res: OpenDialogReturnValue) => {
+        if (res.filePaths && res.filePaths[0]) {
+            if (readdirSync(res.filePaths[0]).length > 0) {
+                ev.returnValue = {
+                    error: lang.translate("main.move_install.error_not_empty")
+                };
+            } else {
+                ev.returnValue = {
+                    path: res.filePaths[0],
+                };
+            }
+        } else {
+            ev.returnValue = null;
+        }
+    });
+});
+
 // Trigger install creation
 ipcMain.on("create install", (ev: IpcMainEvent, install: { folderName: string, installName: string, globalSave: boolean, mod: string }) => {
     appWindow.setClosable(false);
@@ -431,33 +452,19 @@ ipcMain.on("install exists", (ev: IpcMainEvent, folderName: string) => {
 });
 
 // move installation folder
-ipcMain.on("move install", () => {
-    dialog.showOpenDialog(appWindow, {
-        title: lang.translate("main.move_install.title"),
-        properties: ["openDirectory"]
-    }).then((res: OpenDialogReturnValue) => {
-        if (res.filePaths && res.filePaths[0]) {
-            Logger.info("Install Move", "Moving install directory to " + res.filePaths[0]);
-            appWindow.hide();
-            const oldInstallFolder: string = Config.readConfigValue("installFolder");
-            const newInstallFolder: string = joinPath(res.filePaths[0], "DDMM_GameData");
-            if (!existsSync(newInstallFolder) || !statSync(newInstallFolder).isDirectory()) {
-                move(oldInstallFolder, newInstallFolder, {overwrite: false}, e => {
-                    if (e) {
-                        Logger.warn("Install Move", "Failed to move install directory: " + e.message);
-                        dialog.showErrorBox(lang.translate("main.errors.move_install.title"), lang.translate("main.errors.move_install.body"));
-                    } else {
-                        Config.saveConfigValue("installFolder", newInstallFolder);
-                    }
-                    app.relaunch();
-                    app.quit();
-                });
-            } else {
-                Config.saveConfigValue("installFolder", newInstallFolder);
-                app.relaunch();
-                app.quit();
-            }
+ipcMain.on("move install", (ev: IpcMainEvent, newInstallFolder: string) => {
+    Logger.info("Install Move", "Moving install directory to " + newInstallFolder);
+    appWindow.hide();
+    const oldInstallFolder: string = Config.readConfigValue("installFolder");
+    move(oldInstallFolder, newInstallFolder, {overwrite: true}, e => {
+        if (e) {
+            Logger.warn("Install Move", "Failed to move install directory: " + e.message);
+            dialog.showErrorBox(lang.translate("main.errors.move_install.title"), lang.translate("main.errors.move_install.body"));
+        } else {
+            Config.saveConfigValue("installFolder", newInstallFolder);
         }
+        app.relaunch();
+        app.quit();
     });
 });
 

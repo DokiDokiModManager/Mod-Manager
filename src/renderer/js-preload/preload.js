@@ -228,10 +228,13 @@ api.mods.exportMAS = function (folderName) {
     ipcRenderer.send("export mas", folderName);
 };
 
-// Move install folder
-api.app.beginMoveInstall = function () {
-    ipcRenderer.send("move install");
+api.app.selectFolder = function () {
+    return ipcRenderer.sendSync("select folder");
 };
+
+api.app.moveInstallFolder = function(destination) {
+    ipcRenderer.send("move install", destination);
+}
 
 // Get available backgrounds
 api.app.getBackgrounds = function () {

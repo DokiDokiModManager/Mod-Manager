@@ -89,8 +89,6 @@
             "subtitle_last": "These options can be changed at any time.",
             "header_save_location": "Save Location",
             "text_save_location": "If you want to store your mods on a different drive, now's your chance to choose it.",
-            "label_save_location": "Save Location",
-            "button_change_save_location": "Change",
             "header_waifu": "Who's your favourite character?",
             "subtitle_waifu": "Don't think, just answer.",
             "label_waifu": "Best Girl",
@@ -323,9 +321,9 @@
             "section_storage": {
                 "title": "Storage Location",
                 "subtitle": "Change where your game data is stored.",
+                "description": "You can choose where your Doki Doki Mod Manager install data is stored, for example if you want to use a different hard drive. Choose an empty folder to move your install data to.",
                 "description_moving": "Warning! If you choose to change your install location, all your mods, installations and save data will be moved. This may take several minutes, and cannot be interrupted.",
-                "description_current": "Current location: {0}",
-                "button_change": "Change Install Location"
+                "button_confirm": "Change"
             },
             "section_updates": {
                 "title": "Updates",
@@ -424,6 +422,10 @@
                 "error_loading": "Can't load the mods right now.",
                 "placeholder_search": "Search for a mod…"
             }
+        },
+        "component_install_folder_selector": {
+            "label": "Save Location",
+            "button_select": "Select"
         }
     },
     "main": {
@@ -448,7 +450,8 @@
             "install_crashed": "The game failed to launch or crashed."
         },
         "move_install": {
-            "title": "Select new install folder"
+            "title": "Select new install folder",
+            "error_not_empty": "This folder is not empty. Pick an empty folder."
         },
         "mod_browse_dialog": {
             "title": "Find a mod to install",
@@ -484,6 +487,10 @@
             "renderer_freeze": {
                 "title": "Doki Doki Mod Manager stopped responding",
                 "body": "If this issue lasts for a long time, close the app and start again."
+            },
+            "move_install": {
+                "title": "Failed to move the install folder",
+                "body": "Make sure you have permission to move to the destination folder and try again."
             }
         }
     }
