@@ -36,7 +36,10 @@
                 "downloaded": ""
             },
             "language": "Språk",
-            "issue_report": "Innrapporter en feil"
+            "issue_report": "Innrapporter en feil",
+            "patreon": "Støtt Doki Doki Mod Manager på Patreon",
+            "discord": "Ta del i Discord-tjeneren",
+            "guide": "Brukerveiledning"
         },
         "crash_cover": {
             "button_close": "",
@@ -159,7 +162,8 @@
                 "title_mas_export": "Ta Monika med deg",
                 "description_achievement_not_earned": "Uferdig",
                 "description_achievement_earned": "Fullført",
-                "tag_archived": "Arkivert"
+                "tag_archived": "Arkivert",
+                "title_install_failed": "Installerte modden din seg riktig?"
             },
             "mod": {
                 "button_install": "Installer",
@@ -509,6 +513,16 @@
             "title": "Koble til Internett",
             "button_restart": "Omstart",
             "button_quit": "Avslutt"
+        },
+        "modal_mod_delete": {
+            "button_negative": "Avbryt",
+            "button_affirmative": "Installer",
+            "body": "Du vil måtte laste ned {0} igjen hvis du installerer det igjen.",
+            "title": "Er du sikker på at du ønsker å slette denne modden?"
+        },
+        "modal_download_starting": {
+            "description": "Følg anvisningene for å fullføre nedlastingen",
+            "title": "Nedlasting starter"
         }
     },
     "main": {
