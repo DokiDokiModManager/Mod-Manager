@@ -77,6 +77,13 @@
     "win": {
       "target": [
         {
+          "target": "nsis-web",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        },
+        {
           "target": "nsis",
           "arch": [
             "x64",
@@ -107,6 +114,9 @@
       "target": [
         "dmg"
       ]
+    },
+    "nsis": {
+      "artifactName": "ddmm-${version}-${os}-offline.${ext}"
     }
   }
 }
