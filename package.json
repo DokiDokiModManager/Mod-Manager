@@ -41,7 +41,7 @@
   "devDependencies": {
     "@sentry/cli": "^1.52.3",
     "@types/node": "12.12.37",
-    "electron": "^9.0.0-beta.22",
+    "electron": "^9.0.5",
     "electron-builder": "^22.6.0",
     "typescript": "^3.7.5"
   },
