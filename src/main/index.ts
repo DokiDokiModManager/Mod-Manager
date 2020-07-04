@@ -488,9 +488,14 @@ ipcMain.on("debug crash", () => {
 
 // Disk space check
 ipcMain.on("disk space", (ev: IpcMainEvent, path: string) => {
-    const usage: DiskUsage = checkSync(path);
-    Logger.debug("Disk Usage", "Remaining space in " + path + " is " + usage.free);
-    ev.returnValue = usage.free;
+    try {
+        const usage: DiskUsage = checkSync(path);
+        Logger.debug("Disk Usage", "Remaining space in " + path + " is " + usage.free);
+        ev.returnValue = usage.free;
+    } catch (e) {
+        Logger.warn("Disk Usage", "Unable to read disk usage from " + path);
+        ev.returnValue = 999999; // assume there is space
+    }
 });
 
 ipcMain.on("import mas", (ev: IpcMainEvent, folderName: string) => {
@@ -697,7 +702,6 @@ app.on("ready", () => {
 
     // create browser window
     appWindow = new BrowserWindow({
-        // title: "Doki Doki Mod Manager",
         width: 1024,
         height: 600,
         minWidth: 1000,
