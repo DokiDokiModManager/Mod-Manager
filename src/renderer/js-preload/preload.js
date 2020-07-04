@@ -104,8 +104,8 @@ api.app.crash = function () {
 };
 
 // Get disk space
-api.app.getDiskSpace = function () {
-    return ipcRenderer.sendSync("disk space");
+api.app.getDiskSpace = function (path) {
+    return ipcRenderer.sendSync("disk space", path);
 };
 
 // Clipboard copy
@@ -232,9 +232,9 @@ api.app.selectFolder = function () {
     return ipcRenderer.sendSync("select folder");
 };
 
-api.app.moveInstallFolder = function(destination) {
+api.app.moveInstallFolder = function (destination) {
     ipcRenderer.send("move install", destination);
-}
+};
 
 // Get available backgrounds
 api.app.getBackgrounds = function () {
@@ -279,6 +279,10 @@ api.onboarding.validateGame = function (path) {
 
 api.onboarding.finalise = function (pathToDDLC) {
     ipcRenderer.send("onboarding finalise", pathToDDLC);
+};
+
+api.onboarding.browse = function () {
+    return ipcRenderer.sendSync("onboarding browse");
 };
 
 ipcRenderer.on("onboarding validated", (ev, response) => {

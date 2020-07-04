@@ -487,8 +487,9 @@ ipcMain.on("debug crash", () => {
 });
 
 // Disk space check
-ipcMain.on("disk space", (ev: IpcMainEvent) => {
-    const usage: DiskUsage = checkSync(Config.readConfigValue("installFolder"));
+ipcMain.on("disk space", (ev: IpcMainEvent, path: string) => {
+    const usage: DiskUsage = checkSync(path);
+    Logger.debug("Disk Usage", "Remaining space in " + path + " is " + usage.free);
     ev.returnValue = usage.free;
 });
 
@@ -569,6 +570,24 @@ ipcMain.on("onboarding scan", () => {
             version_match: false
         });
     }
+});
+
+ipcMain.on("onboarding browse", (ev: IpcMainEvent) => {
+    dialog.showOpenDialog(appWindow, {
+        title: lang.translate("main.game_browse_dialog.title"),
+        filters: [
+            {
+                name: lang.translate("main.game_browse_dialog.file_format_name"),
+                extensions: ["zip"]
+            }
+        ]
+    }).then((res: OpenDialogReturnValue) => {
+        if (res.filePaths && res.filePaths[0]) {
+            ev.returnValue = res.filePaths[0];
+        } else {
+            ev.returnValue = null;
+        }
+    });
 });
 
 ipcMain.on("onboarding validate", (ev: IpcMainEvent, path: string) => {

@@ -75,7 +75,7 @@
             "button_next": "Next",
             "button_previous": "Previous",
             "button_finish": "Finish",
-            "text_select": "Open the folder you downloaded copy of DDLC to, then drag and drop the file into the space below.",
+            "text_select": "Open the folder where you saved the copy of DDLC, then drag and drop the file into the space below.",
             "text_dropzone": "Drag your downloaded copy of DDLC here",
             "text_validating": "Please wait a moment…",
             "header_directory_selected": "You selected a folder instead of the DDLC zip file",
@@ -425,7 +425,8 @@
         },
         "component_install_folder_selector": {
             "label": "Save Location",
-            "button_select": "Select"
+            "button_select": "Select",
+            "error_disk_space": "This drive does not have at least 2 GiB of free space"
         }
     },
     "main": {
