@@ -114,9 +114,6 @@
       "target": [
         "dmg"
       ]
-    },
-    "nsis": {
-      "artifactName": "ddmm-${version}-${os}-offline.${ext}"
     }
   }
 }
