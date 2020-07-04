@@ -7,7 +7,7 @@ export default class ModManagerHookInjector {
     public static injectScript(installName: string) {
         return new Promise((ff, rj) => {
             copyFile(
-                "src/renpy/ddmm.rpy",
+                joinPath(__dirname, "../../../src/renpy/ddmm.rpy"),
                 joinPath(Config.readConfigValue("installFolder"), "installs", installName, "install", "game", "ddmm.rpy"),
                 err => {
                     if (err) rj(err);
