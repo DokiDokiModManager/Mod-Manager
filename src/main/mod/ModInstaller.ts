@@ -140,6 +140,8 @@ export default class ModInstaller {
                     } else {
                         newPathFull = joinPath(installPath, newPath);
                     }
+                    Logger.debug("Mod Installer", file.path + " > " + newPathFull);
+
                     const newPathParts = newPathFull.split(pathSep);
                     newPathParts.pop();
                     mkdirsSync(newPathParts.join(pathSep));

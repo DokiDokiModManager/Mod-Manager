@@ -10,9 +10,9 @@ export default class ModTemplateFormat extends ModMapper {
 
     public mapFile(path: string): string {
         const pathParts = path.split("/");
-        const baseFolder = pathParts.shift();
+        pathParts.shift();
 
-        if (pathParts[0] === "game" || pathParts[0] === "characters") {
+        if (pathParts[0] === "game" || pathParts[0] === "characters" || pathParts[0] === "renpy" || pathParts[0] === "lib") {
             return pathParts.join(pathSep);
         }
 
