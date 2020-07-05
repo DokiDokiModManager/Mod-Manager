@@ -1,3 +1,5 @@
+import Logger from "./utils/Logger";
+
 import * as Sentry from "@sentry/electron";
 
 Sentry.init({
@@ -45,7 +47,6 @@ import OnboardingManager from "./onboarding/OnboardingManager";
 import {checkSync, DiskUsage} from "diskusage";
 import IntegrityCheck from "./onboarding/IntegrityCheck";
 import {downloadLanguageFile} from "./i18n/TranslationDownload";
-import Logger from "./utils/Logger";
 
 const DISCORD_ID = "453299645725016074";
 
