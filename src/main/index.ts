@@ -66,6 +66,9 @@ let richPresence: DiscordManager = new DiscordManager(process.env.DDMM_DISCORD_I
 
 richPresence.setIdleStatus();
 
+// url to load the UI from
+const uiURL: string = require("../../ddmm.json").ui;
+
 // Mod list
 let modList: ModList;
 
@@ -806,29 +809,20 @@ app.on("ready", () => {
         appWindow.setMenuBarVisibility(false);
     }
 
-    const uiSubdomain: string = "v" + app.getVersion().replace(/\./g, "-");
-
     appWindow.webContents.once("did-fail-load", () => {
         if (Config.readConfigValue("localUI")) {
             dialog.showErrorBox(lang.translate("main.errors.dev_ui_load_fail.title"), lang.translate("main.errors.dev_ui_load_fail.body"));
-            appWindow.loadURL(`https://${uiSubdomain}.ui.doki.space`);
+            appWindow.loadURL(uiURL);
         } else {
-            const lastVersion: string = Config.readConfigValue("lastKnownGoodVersion");
-            const lastVersionSubdomain: string = "v" + lastVersion.replace(/\./g, "-");
-            if (app.getVersion() !== lastVersion) { // if there is an older version available
-                Logger.debug("UI", "Loading last known good version: " + lastVersionSubdomain);
-                appWindow.loadURL(`https://${lastVersionSubdomain}.ui.doki.space/#fallback`);
-            } else {
-                Logger.warn("UI", "No last good version found, displaying offline message.");
-                appWindow.loadFile(joinPath(__dirname, "../../src/renderer/html/offline.html"))
-            }
+            Logger.warn("UI", "Displaying offline message.");
+            appWindow.loadFile(joinPath(__dirname, "../../src/renderer/html/offline.html"))
         }
     });
 
     if (Config.readConfigValue("localUI")) {
         appWindow.loadURL(Config.readConfigValue("localUI"));
     } else {
-        appWindow.loadURL(`https://${uiSubdomain}.ui.doki.space`);
+        appWindow.loadURL(uiURL);
     }
 
     if (!Config.readConfigValue("installFolder", true)) {
