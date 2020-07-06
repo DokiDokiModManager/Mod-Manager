@@ -1,0 +1,499 @@
+{
+    "renderer": {
+        "online_error": {
+            "title": "",
+            "body": "",
+            "button_restart": "",
+            "button_quit": ""
+        },
+        "modal_error": {
+            "title_non_fatal": "",
+            "title_fatal": "",
+            "description_general": "",
+            "description_stacktrace": "",
+            "button_continue": "",
+            "button_restart": "",
+            "button_copy": ""
+        },
+        "modal_language_switch": {
+            "title": "",
+            "description": ""
+        },
+        "modal_download_starting": {
+            "title": "",
+            "description": ""
+        },
+        "tabs": {
+            "tab_play": "",
+            "tab_downloads": "",
+            "tab_options": "",
+            "tab_about": "",
+            "tab_experiments": ""
+        },
+        "version": {
+            "link_changelog": ""
+        },
+        "help_menu": {
+            "option_help": "",
+            "option_feedback": "",
+            "option_discord": ""
+        },
+        "user_menu": {
+            "option_rename": "",
+            "option_logout": ""
+        },
+        "window_controls": {
+            "close": "",
+            "maximise": "",
+            "minimise": "",
+            "issue_report": "",
+            "guide": "",
+            "discord": "",
+            "patreon": ""
+        },
+        "drop_cover": {
+            "text": ""
+        },
+        "announcement": {
+            "button_open": "",
+            "button_close": ""
+        },
+        "onboarding_v4": {
+            "text_welcome": "",
+            "button_start": "",
+            "text_scanning": "",
+            "header_setup": "",
+            "subtitle_careful": "",
+            "header_download": "",
+            "text_download": "",
+            "button_ddlc_website": "",
+            "text_s2_next": "",
+            "text_modification_warning": "",
+            "header_safari_warning": "",
+            "text_safari_warning": "",
+            "link_safari_warning": "",
+            "button_next": "",
+            "button_previous": "",
+            "button_finish": "",
+            "text_select": "",
+            "text_dropzone": "",
+            "text_validating": "",
+            "header_directory_selected": "",
+            "text_directory_selected": "",
+            "header_version_mismatch": "",
+            "text_version_mismatch": "",
+            "header_success": "",
+            "text_success": "",
+            "header_hash_mismatch": "",
+            "text_hash_mismatch": "",
+            "subtitle_last": "",
+            "header_save_location": "",
+            "text_save_location": "",
+            "header_waifu": "",
+            "subtitle_waifu": "",
+            "label_waifu": "",
+            "option_waifu_all": "",
+            "option_waifu_monika": "",
+            "option_waifu_natsuki": "",
+            "option_waifu_sayori": "",
+            "option_waifu_yuri": ""
+        },
+        "modal_news": {
+            "button": ""
+        },
+        "modal_issue_report": {
+            "title": "",
+            "description": "",
+            "label_type": "",
+            "option_bug": "",
+            "option_broken_mod": "",
+            "label_mod": "",
+            "placeholder_mod": "",
+            "label_body": "",
+            "placeholder_body": "",
+            "button_submit": "",
+            "button_cancel": ""
+        },
+        "modal_rename": {
+            "title": "",
+            "body": "",
+            "button_affirmative": "",
+            "button_negative": ""
+        },
+        "modal_uninstall": {
+            "title": "",
+            "body": "",
+            "body_globalsave": "",
+            "confirmation": "",
+            "button_affirmative": "",
+            "button_negative": ""
+        },
+        "modal_archive": {
+            "title": "",
+            "body": "",
+            "body_warning": "",
+            "confirmation": "",
+            "button_affirmative": "",
+            "button_negative": ""
+        },
+        "modal_save_delete": {
+            "title": "",
+            "body": "",
+            "confirmation": "",
+            "button_affirmative": "",
+            "button_negative": ""
+        },
+        "modal_installing": {
+            "title": "",
+            "description": ""
+        },
+        "modal_unarchive": {
+            "title": "",
+            "description": "",
+            "button_launch": "",
+            "button_cancel": ""
+        },
+        "modal_unarchiving": {
+            "title": "",
+            "description": ""
+        },
+        "modal_category": {
+            "title": "",
+            "label_none": "",
+            "placeholder_category": "",
+            "button_save": "",
+            "button_cancel": ""
+        },
+        "modal_running": {
+            "title": "",
+            "description": "",
+            "button_browse": "",
+            "link_more": "",
+            "button_kill": ""
+        },
+        "menu_install_options": {
+            "launch": "",
+            "rename": "",
+            "category": "",
+            "archive": "",
+            "shortcut": "",
+            "delete_save": "",
+            "uninstall": "",
+            "cancel": ""
+        },
+        "menu_mod_options": {
+            "install": "",
+            "delete": "",
+            "cancel": ""
+        },
+        "modal_mod_delete": {
+            "title": "",
+            "body": "",
+            "button_affirmative": "",
+            "button_negative": ""
+        },
+        "modal_mod_preview": {
+            "button_close": "",
+            "button_download_direct": "",
+            "button_download_external": "",
+            "text_loading": ""
+        },
+        "tab_mods": {
+            "list": {
+                "placeholder_search": "",
+                "header_new": "",
+                "link_install": "",
+                "header_installed": "",
+                "header_downloaded": ""
+            },
+            "launch_lock_confirmation": {
+                "message": "",
+                "details": "",
+                "button_affirmative": "",
+                "button_negative": ""
+            },
+            "launch_noauth_confirmation": {
+                "message": "",
+                "details": "",
+                "button_affirmative": "",
+                "button_negative": ""
+            },
+            "launch_offline_confirmation": {
+                "message": "",
+                "details": "",
+                "button_affirmative": "",
+                "button_negative": ""
+            },
+            "mod_delete_confirmation": {
+                "message": "",
+                "details": "",
+                "button_affirmative": "",
+                "button_negative": ""
+            },
+            "install": {
+                "button_launch": "",
+                "button_settings": "",
+                "tag_global_save": "",
+                "tag_sdk": "",
+                "tag_archived": "",
+                "title_achievements": "",
+                "description_achievements": "",
+                "description_achievements_complete": "",
+                "description_achievement_earned": "",
+                "description_achievement_not_earned": "",
+                "title_screenshots_none": "",
+                "title_screenshots_one": "",
+                "title_screenshots": "",
+                "description_screenshots": "",
+                "description_sdk": "",
+                "description_author": "",
+                "link_discord": "",
+                "link_website": "",
+                "description_external": "",
+                "title_mas_export": "",
+                "description_mas_export": "",
+                "button_mas_export": "",
+                "button_mas_import": "",
+                "title_install_failed": "",
+                "description_install_failed": "",
+                "link_troubleshooting": "",
+                "title_singleton_error": "",
+                "description_singleton_error": "",
+                "description_install_failed_launch_again": ""
+            },
+            "mod": {
+                "button_install": "",
+                "button_settings": "",
+                "description_external": ""
+            },
+            "install_creation": {
+                "title": "",
+                "status_exists": "",
+                "warning_no_space": "",
+                "label_install_name": "",
+                "placeholder_install_name": "",
+                "label_folder_name": "",
+                "label_has_mod": "",
+                "label_mod": "",
+                "option_local_save": "",
+                "option_global_save": "",
+                "modlist_none": "",
+                "modlist_library": "",
+                "modlist_custom": "",
+                "description_mod": "",
+                "warning_global_save": "",
+                "button_install": "",
+                "button_installing": ""
+            }
+        },
+        "tab_options": {
+            "list": {
+                "header_appearance": "",
+                "link_background": "",
+                "link_advanced_appearance": "",
+                "header_account": "",
+                "link_cloudsaves": "",
+                "link_accmanagement": "",
+                "header_enhancements": "",
+                "link_sdk": "",
+                "link_discord": "",
+                "header_application": "",
+                "link_updates": "",
+                "link_storage": "",
+                "link_language": "",
+                "header_developers": "",
+                "link_testing": ""
+            },
+            "section_backgrounds": {
+                "title": "",
+                "subtitle": "",
+                "button_none": "",
+                "button_custom": "",
+                "checkbox_modbg": "",
+                "description_credit": "",
+                "description_custom": ""
+            },
+            "section_advanced_appearance": {
+                "title": "",
+                "subtitle": "",
+                "button_enable_sysborders": ""
+            },
+            "section_storage": {
+                "title": "",
+                "subtitle": "",
+                "description": "",
+                "description_moving": "",
+                "button_confirm": ""
+            },
+            "section_updates": {
+                "title": "",
+                "subtitle": "",
+                "description_current_version": "",
+                "description_latest_version": "",
+                "description_has_update": "",
+                "description_no_update": "",
+                "description_downloading": "",
+                "description_downloaded": "",
+                "description_error": "",
+                "button_check": "",
+                "button_download": ""
+            },
+            "section_language": {
+                "title": "",
+                "subtitle": "",
+                "link_contribute": "",
+                "label_language": ""
+            },
+            "section_sdk": {
+                "title": "",
+                "subtitle": "",
+                "description_mode": "",
+                "checkbox_always": "",
+                "checkbox_specified": "",
+                "checkbox_never": ""
+            },
+            "section_discord": {
+                "title": "",
+                "subtitle": "",
+                "description": "",
+                "button_enable": ""
+            },
+            "section_testing": {
+                "title": "",
+                "subtitle": "",
+                "checkbox_logging": "",
+                "header_mod_debug": "",
+                "description_mod_debug": "",
+                "header_renpy": "",
+                "description_renpy": "",
+                "checkbox_renpy_skipsplash": "",
+                "checkbox_renpy_skipmenu": ""
+            }
+        },
+        "tab_about": {
+            "title": "",
+            "description": "",
+            "title_disclaimer": "",
+            "disclaimer_1": "",
+            "disclaimer_2": "",
+            "title_socials": "",
+            "social_discord": "",
+            "social_reddit": "",
+            "social_email": "",
+            "title_translators": "",
+            "title_v4_beta": "",
+            "title_patreon": "",
+            "link_patreon": "",
+            "link_weblate": ""
+        },
+        "tab_downloads": {
+            "list": {
+                "header_library": "",
+                "link_downloaded": "",
+                "link_downloads": "",
+                "header_browse": "",
+                "link_featured": "",
+                "link_ddmc": ""
+            },
+            "downloaded": {
+                "title": "",
+                "button_install": "",
+                "button_options": "",
+                "description_type": "",
+                "placeholder_search": "",
+                "message_none": ""
+            },
+            "downloads": {
+                "title": "",
+                "status_text_downloading": "",
+                "status_text_downloading_uncertain": "",
+                "message_none": ""
+            },
+            "featured": {
+                "title": "",
+                "button_download": ""
+            },
+            "store": {
+                "title_ddmc": "",
+                "description_ddmc": "",
+                "link_ddmc": "",
+                "description_featured": "",
+                "text_loading": "",
+                "error_loading": "",
+                "placeholder_search": ""
+            }
+        },
+        "component_install_folder_selector": {
+            "label": "",
+            "button_select": "",
+            "error_disk_space": ""
+        }
+    },
+    "main": {
+        "discord": {
+            "status_idle": "",
+            "status_active": "",
+            "description_idle": "",
+            "description_active": "",
+            "description_version": ""
+        },
+        "jumplist": {
+            "task_launch": ""
+        },
+        "running_cover": {
+            "title_running": "",
+            "title_crashed": "",
+            "button_browse": "",
+            "button_close": "",
+            "description_running": "",
+            "install_missing": "",
+            "install_corrupt": "",
+            "install_crashed": ""
+        },
+        "move_install": {
+            "title": "",
+            "error_not_empty": "",
+            "error_read": ""
+        },
+        "mod_browse_dialog": {
+            "title": "",
+            "file_format_name": ""
+        },
+        "game_browse_dialog": {
+            "title": "",
+            "file_format_name": ""
+        },
+        "shortcut_dialog": {
+            "title": "",
+            "file_format_name": ""
+        },
+        "import_mas": {
+            "title": "",
+            "filter": ""
+        },
+        "export_mas": {
+            "title": "",
+            "filter": ""
+        },
+        "redownload_confirmation": {
+            "message": "",
+            "detail": "",
+            "button_confirm": "",
+            "button_cancel": ""
+        },
+        "errors": {
+            "dev_ui_load_fail": {
+                "title": "",
+                "body": ""
+            },
+            "renderer_freeze": {
+                "title": "",
+                "body": ""
+            },
+            "move_install": {
+                "title": "",
+                "body": ""
+            }
+        }
+    }
+}
