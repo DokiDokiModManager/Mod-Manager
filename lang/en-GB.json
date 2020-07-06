@@ -44,8 +44,8 @@
         },
         "window_controls": {
             "close": "Close",
-            "maximise": "Maximise",
-            "minimise": "Minimise",
+            "maximise": "Maximize",
+            "minimise": "Minimize",
             "issue_report": "Report an issue",
             "guide": "User Guide",
             "discord": "Join the Discord server",
