@@ -1,93 +1,93 @@
 {
     "renderer": {
         "online_error": {
-            "title": "",
-            "body": "",
-            "button_restart": "",
-            "button_quit": ""
+            "title": "Không thể kết nối Internet",
+            "body": "Doki Doki Mod Manager cần kết nối mạng Internet để tải về những dữ liệu cần thiết cho lần khởi động đầu tiên. Hãy kiểm tra lại kết nối Internet của bạn, rồi khởi động lại ứng dụng.",
+            "button_restart": "Khởi động lại",
+            "button_quit": "Thoát"
         },
         "modal_error": {
-            "title_non_fatal": "",
-            "title_fatal": "",
-            "description_general": "",
-            "description_stacktrace": "",
-            "button_continue": "",
-            "button_restart": "",
-            "button_copy": ""
+            "title_non_fatal": "Có gì đó không đúng đã xảy ra",
+            "title_fatal": "Oops, Doki Doki Mod Manager đã bị crash",
+            "description_general": "Hãy thử lại, nếu lỗi vẫn xuất hiện, xin hãy cho chúng tôi biết!",
+            "description_stacktrace": "Đây là thông tin về lỗi đã xảy ra. Xin hãy lưu lại những dữ liệu này khi bạn muốn hỗ trợ.",
+            "button_continue": "Tiếp tục",
+            "button_restart": "Khởi động lại",
+            "button_copy": "Hãy sao chép lỗi"
         },
         "modal_language_switch": {
-            "title": "",
-            "description": ""
+            "title": "Đổi ngôn ngữ",
+            "description": "Hãy đợi trong giây lát…"
         },
         "modal_download_starting": {
-            "title": "",
-            "description": ""
+            "title": "Bắt đầu tải về",
+            "description": "Hãy làm theo chỉ dẫn của tất cả thông báo hiện lên để hoàn tất quá trình tải về"
         },
         "tabs": {
-            "tab_play": "",
-            "tab_downloads": "",
-            "tab_options": "",
-            "tab_about": "",
+            "tab_play": "Chơi",
+            "tab_downloads": "Bản mods",
+            "tab_options": "Tuỳ chỉnh",
+            "tab_about": "Về Ứng Dụng",
             "tab_experiments": ""
         },
         "version": {
-            "link_changelog": ""
+            "link_changelog": "có gì mới?"
         },
         "help_menu": {
-            "option_help": "",
-            "option_feedback": "",
-            "option_discord": ""
+            "option_help": "Xem trang web hỗ trợ",
+            "option_feedback": "Gửi phản hồi riêng tư",
+            "option_discord": "Tham gia máy chủ Discord"
         },
         "user_menu": {
-            "option_rename": "",
-            "option_logout": ""
+            "option_rename": "Đổi tên",
+            "option_logout": "Đăng xuất"
         },
         "window_controls": {
-            "close": "",
-            "maximise": "",
-            "minimise": "",
-            "issue_report": "",
-            "guide": "",
-            "discord": "",
-            "patreon": ""
+            "close": "Đóng",
+            "maximise": "Tối đa",
+            "minimise": "Tối thiểu",
+            "issue_report": "Báo lỗi",
+            "guide": "Hướng dẫn",
+            "discord": "Tham gia vào server Discord",
+            "patreon": "Hỗ trợ Doki Doki Mod Manager tại Patreon"
         },
         "drop_cover": {
-            "text": ""
+            "text": "Kéo/Thả bản mod vào đây để cài đặt nó"
         },
         "announcement": {
-            "button_open": "",
-            "button_close": ""
+            "button_open": "Mở link",
+            "button_close": "Đóng"
         },
         "onboarding_v4": {
-            "text_welcome": "",
-            "button_start": "",
-            "text_scanning": "",
-            "header_setup": "",
-            "subtitle_careful": "",
-            "header_download": "",
-            "text_download": "",
-            "button_ddlc_website": "",
-            "text_s2_next": "",
-            "text_modification_warning": "",
-            "header_safari_warning": "",
-            "text_safari_warning": "",
-            "link_safari_warning": "",
-            "button_next": "",
-            "button_previous": "",
-            "button_finish": "",
-            "text_select": "",
-            "text_dropzone": "",
-            "text_validating": "",
-            "header_directory_selected": "",
-            "text_directory_selected": "",
-            "header_version_mismatch": "",
-            "text_version_mismatch": "",
-            "header_success": "",
-            "text_success": "",
-            "header_hash_mismatch": "",
-            "text_hash_mismatch": "",
-            "subtitle_last": "",
-            "header_save_location": "",
+            "text_welcome": "Chào mừng bạn đến với phiên bản \"tuyệt vời nhất\" của Doki Doki Mod Manager.",
+            "button_start": "Khởi đầu",
+            "text_scanning": "Vui lòng chờ…",
+            "header_setup": "Lần đầu cài đặt",
+            "subtitle_careful": "Xin hãy đọc những hướng dẫn sau thật kĩ.",
+            "header_download": "Tải DDLC",
+            "text_download": "Vào website DDLC, bấm vào mục \"Download Now\" và làm theo chỉ dẫn. Sau đó chọn đường dẫn dễ nhớ của file {0} và lưu nó.",
+            "button_ddlc_website": "Vào website DDLC",
+            "text_s2_next": "Khi tải về đã hoàn tất, hãy bấm \"Tiếp tục\" để đến với bước kế tiếp.",
+            "text_modification_warning": "Không thay đổi với bất kì file được tải về.",
+            "header_safari_warning": "Thông tin quan trọng cho người sử dụng Safari",
+            "text_safari_warning": "Safari có thể tự động giải nén tập tin game đang tải về. Bạn nên vô hiệu hoá tính năng bởi vì nó can thiệp vào quá trình cài đặt. Bạn có thể vô hiệu hoá tính năng này tại mục \"Preferences\" của Safari.",
+            "link_safari_warning": "Bấm vào đây để xem hướng dẫn bằng hình ảnh",
+            "button_next": "Tiếp theo",
+            "button_previous": "Quay lại",
+            "button_finish": "Hoàn tất",
+            "text_select": "Mở tập tin nơi bạn lưu bản sao chép của game DDLC, sau đó hãy kéo/thả vào mục phía dưới.",
+            "text_dropzone": "Kéo/Thả bản sao chép của DDLC ở đây",
+            "text_validating": "Xin vui lòng đợi trong giây lát…",
+            "header_directory_selected": "Không đúng định dạng zip của bản sao DDLC",
+            "text_directory_selected": "Hãy chắc chắn rằng bạn không chọn bản sao chép game Đã Giải Nén, đồng thời hãy thử lại.",
+            "header_version_mismatch": "Trông không giống file Zip được yêu cầu",
+            "text_version_mismatch": "Bạn đã tải sai phiên bản DDLC cho hệ điều hành bạn đang sử dụng. Hãy chắc rằng bạn đã tải {0} và thử lại.",
+            "header_success": "Đã tìm thấy bản sao chép DDLC",
+            "text_success": "Bạn đã sẵn sàng đến với bước kế tiếp!",
+            "header_hash_mismatch": "Trông không giống tập tin được yêu cầu",
+            "text_hash_mismatch": "Xin hãy kiểm tra kĩ hơn file bạn đã lựa chọn và thử lại lần nữa.",
+            "subtitle_last": "Những tuỳ chỉnh trên có thể thay đổi bất cứ lúc nào.",
+            "header_save_location": "Lưu vào",
             "text_save_location": "",
             "header_waifu": "",
             "subtitle_waifu": "",
@@ -398,7 +398,7 @@
             "downloaded": {
                 "title": "",
                 "button_install": "",
-                "button_options": "",
+                "button_options": "Tuỳ chỉnh",
                 "description_type": "",
                 "placeholder_search": "",
                 "message_none": ""
