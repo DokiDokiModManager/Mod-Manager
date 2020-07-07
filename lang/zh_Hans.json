@@ -12,11 +12,11 @@
             "tab_downloads": "模组"
         },
         "version": {
-            "link_changelog": "有什么新东西？"
+            "link_changelog": "有什么新功能？"
         },
         "help_menu": {
-            "option_help": "浏览帮助站点",
-            "option_feedback": "发送私人反馈",
+            "option_help": "浏览帮助网站",
+            "option_feedback": "发送私信反馈",
             "option_discord": "加入我们的 Discord 服务器"
         },
         "user_menu": {
@@ -37,7 +37,10 @@
                 "downloading": "正在下载更新。",
                 "downloaded": "当你退出后将会安装更新。"
             },
-            "issue_report": "报告问题"
+            "issue_report": "报告问题",
+            "patreon": "在 Patreon 支持心跳心跳模组管理器",
+            "discord": "加入 Discord 服务器",
+            "guide": "用户指南（英文）"
         },
         "crash_cover": {
             "button_close": "退出",
@@ -160,7 +163,13 @@
                 "title_mas_export": "随身携带 Monika",
                 "description_achievement_not_earned": "未完成",
                 "description_achievement_earned": "完成",
-                "tag_archived": "已存档"
+                "tag_archived": "已存档",
+                "link_troubleshooting": "故障排除指南",
+                "description_install_failed_launch_again": "下次运行此模组时将不会再显示此消息。",
+                "description_singleton_error": "请确认您没有运行多个 DDLC 程序后再启动模组。如果问题仍然存在，请阅读故障排除指南。",
+                "title_singleton_error": "你关闭了游戏吗？",
+                "description_install_failed": "看上去你正在启动一个没有被正确安装的模组。请阅读故障排除指南以解决此问题。",
+                "title_install_failed": "模组是否正确地安装了？"
             },
             "mod": {
                 "button_install": "安装",
@@ -190,7 +199,7 @@
                 "button_installing": "正在安装…",
                 "status_exists": "文件夹名称已在使用。",
                 "warning_global_save": "使用全局储存可能会导致游戏的其他副本出现问题，因为它会将您的进度保存在常规保存数据文件夹中。只有在您有特定原因时才使用它。",
-                "modlist_custom": "此处不列出模组",
+                "modlist_custom": "此处没有列出的模组",
                 "modlist_library": "模组库",
                 "modlist_none": "常规 DDLC - 无模组",
                 "option_global_save": "全局储存",
@@ -245,7 +254,9 @@
                 "subtitle": "更改游戏文件的存储位置。",
                 "description_moving": "警告！如果选择更改安装位置，则将移动所有模组、安装文件和存档。这可能需要几分钟，而且不可以中途停止。",
                 "description_current": "目前的位置：{0}",
-                "button_change": "更改安装位置"
+                "button_change": "更改安装位置",
+                "button_confirm": "转移",
+                "description": "您可以选择心跳心跳模组管理器存放模组数据的位置，例如您可以更改模组所在的分区。选择一个空白文件夹以转移模组数据。"
             },
             "section_updates": {
                 "title": "更新",
@@ -298,7 +309,7 @@
             "section_language": {
                 "label_language": "语言",
                 "link_contribute": "您能帮忙翻译心跳心跳模组管理器吗？单击以加入社区翻译项目。",
-                "subtitle": "选择您的首选语言。翻译可能并非 100% 准确或完整。",
+                "subtitle": "选择您的首选语言。翻译可能并非完全准确或完整。",
                 "title": "语言"
             }
         },
@@ -318,15 +329,17 @@
             "support_donate": "一次性捐助",
             "support_steelseries": "SteelSeries游戏外设优惠10%(联盟链接)",
             "support_code": "为项目做贡献（提交代码或制作翻译）",
-            "link_weblate": "帮助将心跳心跳模组管理器管理器翻译成您的母语 - 请访问项目主页",
+            "link_weblate": "帮助将心跳心跳模组管理器管理器翻译成您的语言 - 请访问项目主页",
             "title_v4_beta": "心跳心跳模组管理器 4 测试人员",
-            "title_translators": "翻译由这些人慷慨贡献："
+            "title_translators": "翻译由以下人员慷慨贡献",
+            "link_patreon": "在 Patreon 支持心跳心跳模组管理器的开发",
+            "title_patreon": "感谢 Patreon 支持者的赞助"
         },
         "onboarding_v4": {
-            "label_waifu": "最佳老婆",
-            "button_previous": "上一页",
-            "button_next": "下一页",
-            "link_safari_warning": "单击此处获得视觉性指南",
+            "label_waifu": "我最爱的老婆",
+            "button_previous": "上一步",
+            "button_next": "下一步",
+            "link_safari_warning": "单击此处获得引导式指南",
             "header_download": "下载 DDLC",
             "header_setup": "首次设置",
             "option_waifu_yuri": "Yuri / 优里",
@@ -334,7 +347,7 @@
             "option_waifu_natsuki": "Natsuki / 夏树",
             "option_waifu_monika": "Monika / 莫妮卡",
             "option_waifu_all": "我全都要！",
-            "subtitle_waifu": "不要想，只要回答即可。",
+            "subtitle_waifu": "不要想太多，选就完事了。",
             "header_waifu": "谁是您最喜欢的角色？",
             "button_change_save_location": "更改",
             "label_save_location": "保存位置",
@@ -346,23 +359,23 @@
             "text_success": "您现在可以进行下一步了！",
             "header_success": "找到了您的 DDLC 副本",
             "text_version_mismatch": "您可能为您的操作系统下载了错误的 DDLC 版本。请确保您下载了 {0}，然后重试。",
-            "header_version_mismatch": "这看起来不像正确的 zip 文件",
-            "text_directory_selected": "请确保您没有选择游戏解压后的副本，然后重试。",
+            "header_version_mismatch": "看上去这不像正常的 zip 文件",
+            "text_directory_selected": "请务必确保您没有选择游戏解压后的副本，然后重试。",
             "header_directory_selected": "您选择了一个文件夹，而不是 DDLC 的 zip 文件",
             "text_validating": "请稍等片刻…",
             "text_dropzone": "将已下载的 DDLC 副本拖入此处",
-            "text_select": "打开您下载的 DDLC 副本的文件夹，然后将文件拖放到下面的空白处。",
+            "text_select": "打开您下载的 DDLC 副本所在的文件夹，然后将该副本拖放到下面的空白处。",
             "button_finish": "完成",
-            "text_safari_warning": "Safari 可能会自动提取下载的游戏。您应该通过 Safari 的首选项菜单禁用此功能，因为它干扰了设置过程。",
-            "header_safari_warning": "供 Safari 用户的重要信息",
+            "text_safari_warning": "Safari 可能会自动解压下载的游戏。请通过 Safari 的首选项菜单禁用此功能，因为它干扰了模组管理器的设置过程。",
+            "header_safari_warning": "对于 Safari 用户的重要信息",
             "text_modification_warning": "不要对下载的文件进行任何更改。",
             "text_s2_next": "下载完成后，请继续下一步。",
-            "button_ddlc_website": "访问 DDLC 网站",
-            "text_download": "请访问 DDLC 网站，单击”立即下载“，并按照说明进行操作。当您被问到时，选择名为 {0} 的文件，并将其保存在容易找到的地方。",
+            "button_ddlc_website": "访问 DDLC 官网",
+            "text_download": "请访问 DDLC 网站，单击“Download Now”（立即下载），并按照说明进行操作。当您被询问时，选择名为 {0} 的文件，并将其保存在容易找到的地方。",
             "subtitle_careful": "请仔细阅读以下说明。",
             "text_scanning": "请稍候…",
-            "button_start": "开始",
-            "text_welcome": "欢迎使用心跳心跳模组管理器目前的最佳版本。"
+            "button_start": "开始使用",
+            "text_welcome": "欢迎使用心跳心跳模组管理器至今最好的版本。"
         },
         "tab_downloads": {
             "store": {
@@ -370,7 +383,10 @@
                 "error_loading": "当前无法加载任何模组。",
                 "text_loading": "正在加载模组列表…",
                 "description": "心跳心跳模组管理器不主持或认可此处列出的模组。请谨慎操作！",
-                "title_ddmc": "心跳心跳模组俱乐部"
+                "title_ddmc": "心跳心跳模组俱乐部",
+                "description_featured": "犯选择困难症了？去尝试一下高亮的精选模组吧！",
+                "link_ddmc": "如果想上传你自己开发的模组，请访问这个网站。",
+                "description_ddmc": "浏览由 Doki Doki Mod Club 提供的模组数据库。"
             },
             "featured": {
                 "button_download": "下载",
@@ -387,7 +403,8 @@
                 "description_type": "文件类型：{0}",
                 "button_options": "选项",
                 "button_install": "安装",
-                "title": "您的模组"
+                "title": "您的模组",
+                "message_none": "这里还没有模组呢，去下载一点吧！"
             },
             "list": {
                 "link_ddmc": "心跳心跳模组俱乐部",
@@ -465,7 +482,7 @@
         "modal_uninstall": {
             "button_negative": "取消",
             "button_affirmative": "卸载",
-            "confirmation": "我理解。",
+            "confirmation": "我明白了。",
             "body_globalsave": "你在 {0} 中保存的数据不会被删除。但是，您需要一份模组的副本来重新安装它。",
             "body": "你在 {0} 中保存的数据将会被删除，并且需要一份模组的副本来重新安装它。",
             "title": "您确定要卸载它吗？"
@@ -474,16 +491,16 @@
             "button_negative": "取消",
             "button_affirmative": "重命名",
             "body": "请键入 {0} 的新名字。",
-            "title": "重命名安装"
+            "title": "重命名模组"
         },
         "modal_issue_report": {
             "button_cancel": "取消",
             "button_submit": "发送报告",
-            "placeholder_body": "请尽可能详细。如果相关，请提供重现问题的说明。",
+            "placeholder_body": "请尽可能提供详细内容。如果相关，请提供重现问题的说明。",
             "label_body": "问题详情",
             "placeholder_mod": "请粘贴模组网站或下载页面的链接。",
-            "label_mod": "链接到模组",
-            "option_broken_mod": "模组不能用",
+            "label_mod": "模组的链接",
+            "option_broken_mod": "模组不能正常运行",
             "option_bug": "应用程序错误",
             "label_type": "问题类型",
             "description": "如果您的问题需要直接答复，或者不适合此处列出的任何类别，请改为发送电子邮件。",
@@ -494,22 +511,37 @@
         },
         "modal_language_switch": {
             "description": "请稍等片刻…",
-            "title": "切换语言"
+            "title": "正在切换语言"
         },
         "modal_error": {
-            "button_copy": "复制错误到剪贴板",
-            "button_restart": "重启",
+            "button_copy": "将错误日志复制到剪贴板",
+            "button_restart": "重新启动",
             "button_continue": "继续",
-            "description_stacktrace": "以下是问题所在的技术细节 - 如果您寻求帮助，请记下这些详细信息。",
-            "description_general": "请再试一次您的操作，如果仍然遇到问题，请告诉我！",
+            "description_stacktrace": "以下是问题的技术性详情 - 如果您需要寻求帮助，请记下这些详细信息。",
+            "description_general": "请再试一次您之前的操作，如果仍然遇到问题，请告诉我！",
             "title_fatal": "糟糕，心跳心跳模组管理器崩溃了",
-            "title_non_fatal": "哎呀，出事了"
+            "title_non_fatal": "哎呀，好像哪里出错了"
         },
         "online_error": {
             "button_quit": "退出",
-            "button_restart": "重启",
-            "body": "心跳心跳模组管理器需要网络连接以在首次启动时下载资源。请检查网络连接，然后重启。",
+            "button_restart": "重新启动",
+            "body": "在首次启动时，心跳心跳模组管理器需要网络连接以下载资源。请检查网络连接，然后重启。",
             "title": "请连接到网络"
+        },
+        "component_install_folder_selector": {
+            "error_disk_space": "这个磁盘 / 分区的剩余空间不足 2 GB",
+            "button_select": "选择",
+            "label": "保存位置"
+        },
+        "modal_download_starting": {
+            "description": "请跟随出现的任何提示以完成下载",
+            "title": "开始下载"
+        },
+        "modal_mod_delete": {
+            "button_negative": "取消",
+            "button_affirmative": "安装",
+            "body": "如果需要重新安装，您将需要重新下载 {0}。",
+            "title": "确认要删除此模组？"
         }
     },
     "main": {
@@ -527,7 +559,9 @@
             "install_crashed": "游戏无法启动或崩溃。"
         },
         "move_install": {
-            "title": "选择新的安装文件夹"
+            "title": "选择新的安装文件夹",
+            "error_read": "无法从这个文件夹进行读取。请重试。",
+            "error_not_empty": "这个文件夹里有东西。请选择一个空白文件夹。"
         },
         "mod_browse_dialog": {
             "title": "寻找用来安装的模组",
