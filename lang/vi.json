@@ -82,93 +82,93 @@
             "text_directory_selected": "Hãy chắc chắn rằng bạn không chọn bản sao chép game Đã Giải Nén, đồng thời hãy thử lại.",
             "header_version_mismatch": "Trông không giống file Zip được yêu cầu",
             "text_version_mismatch": "Bạn đã tải sai phiên bản DDLC cho hệ điều hành bạn đang sử dụng. Hãy chắc rằng bạn đã tải {0} và thử lại.",
-            "header_success": "Đã tìm thấy bản sao chép DDLC",
+            "header_success": "Đã tìm thấy bản sao chép của game DDLC",
             "text_success": "Bạn đã sẵn sàng đến với bước kế tiếp!",
             "header_hash_mismatch": "Trông không giống tập tin được yêu cầu",
             "text_hash_mismatch": "Xin hãy kiểm tra kĩ hơn file bạn đã lựa chọn và thử lại lần nữa.",
             "subtitle_last": "Những tuỳ chỉnh trên có thể thay đổi bất cứ lúc nào.",
             "header_save_location": "Lưu vào",
-            "text_save_location": "",
-            "header_waifu": "",
-            "subtitle_waifu": "",
-            "label_waifu": "",
-            "option_waifu_all": "",
-            "option_waifu_monika": "",
-            "option_waifu_natsuki": "",
-            "option_waifu_sayori": "",
-            "option_waifu_yuri": ""
+            "text_save_location": "Nếu như bạn muốn lưu trữ mods tại ổ đĩa khác thì giờ là lúc bạn có thể chọn.",
+            "header_waifu": "Nhân vật nào trong DDLC bạn yêu thích nhất?",
+            "subtitle_waifu": "Đừng có nghĩ gì cả, hãy trả lời đi.",
+            "label_waifu": "Best Girl",
+            "option_waifu_all": "Tất cả mọi nhân vật!",
+            "option_waifu_monika": "Monika",
+            "option_waifu_natsuki": "Natsuki",
+            "option_waifu_sayori": "Sayori",
+            "option_waifu_yuri": "Yuri"
         },
         "modal_news": {
-            "button": ""
+            "button": "Xong"
         },
         "modal_issue_report": {
-            "title": "",
-            "description": "",
-            "label_type": "",
-            "option_bug": "",
-            "option_broken_mod": "",
-            "label_mod": "",
-            "placeholder_mod": "",
-            "label_body": "",
-            "placeholder_body": "",
-            "button_submit": "",
-            "button_cancel": ""
+            "title": "Báo lỗi",
+            "description": "Nếu như lỗi mà bạn gặp phải cần phải báo lỗi trực tiếp hoặc nó không có trong mục phân loại lỗi ở trên, xin vui lòng báo lỗi qua email.",
+            "label_type": "Loại lỗi",
+            "option_bug": "Lỗi ứng dụng",
+            "option_broken_mod": "Bản mod không hoạt động",
+            "label_mod": "Đường dẫn tới bản mod",
+            "placeholder_mod": "Hãy dán đường dẫn đến website của bản mod hoặc tại trang tải về.",
+            "label_body": "Thông tin về lỗi",
+            "placeholder_body": "Xin hãy trình bày rõ ràng nhất có thể. Nếu không, hãy nếu cách để có thể tái tạo lại lỗi đó.",
+            "button_submit": "Gửi báo lỗi",
+            "button_cancel": "Huỷ"
         },
         "modal_rename": {
-            "title": "",
-            "body": "",
-            "button_affirmative": "",
-            "button_negative": ""
+            "title": "Đổi tên folder game",
+            "body": "Hãy nhập tên folder mới cho {0}.",
+            "button_affirmative": "Đổi tên",
+            "button_negative": "Huỷ"
         },
         "modal_uninstall": {
-            "title": "",
-            "body": "",
-            "body_globalsave": "",
-            "confirmation": "",
-            "button_affirmative": "",
-            "button_negative": ""
+            "title": "Bạn có chắc rằng muốn gỡ cài đặt chứ?",
+            "body": "File save của {0} sẽ bị xoá, đồng thời bạn sẽ cần bản sao chép của bản mod nếu muốn cài đặt lại.",
+            "body_globalsave": "File save của {0} sẽ không bị xoá. Nhưng, bạn sẽ cần bản sao chép của bản mod nếu muốn cài đặt lại.",
+            "confirmation": "Tôi hiểu và chắc chắn.",
+            "button_affirmative": "Gỡ cài đặt",
+            "button_negative": "Huỷ"
         },
         "modal_archive": {
-            "title": "",
-            "body": "",
-            "body_warning": "",
-            "confirmation": "",
-            "button_affirmative": "",
-            "button_negative": ""
+            "title": "Bạn có chắc chắn muốn đặt vào chế độ lưu trữ?",
+            "body": "Lưu trữ sẽ xoá đi data của {0} để tiết kiệm dữ liệu. File save của game sẽ không bị xoá, nhưng bạn cần bản sao chép của bản mod để cài đặt lại.",
+            "body_warning": "Mọi chỉnh sửa đến dữ liệu khác như nhân vật sẽ bị loại bỏ nếu như bạn lưu trữ. Nên hãy cẩn thận!",
+            "confirmation": "Tôi hiểu và chắc chắn.",
+            "button_affirmative": "Lưu trữ",
+            "button_negative": "Huỷ"
         },
         "modal_save_delete": {
-            "title": "",
-            "body": "",
-            "confirmation": "",
-            "button_affirmative": "",
-            "button_negative": ""
+            "title": "Bạn có chắc chắn muốn xoá đi file save?",
+            "body": "Bạn sẽ phải chơi {0} lại từ đầu.",
+            "confirmation": "Tôi hiểu và chắc chắn.",
+            "button_affirmative": "Xoá",
+            "button_negative": "Huỷ"
         },
         "modal_installing": {
-            "title": "",
-            "description": ""
+            "title": "Đang tải về",
+            "description": "Xin vui lòng chờ, game đang trong quá trình tải về."
         },
         "modal_unarchive": {
-            "title": "",
-            "description": "",
-            "button_launch": "",
-            "button_cancel": ""
+            "title": "Chơi game",
+            "description": "Hãy chọn bản mod đã được cài đặt ban đầu rồi bấm Chơi. {0} sẽ không còn bị lưu trữ.",
+            "button_launch": "Chơi",
+            "button_cancel": "Huỷ"
         },
         "modal_unarchiving": {
-            "title": "",
-            "description": ""
+            "title": "Cài đặt lại game",
+            "description": "Trò chơi sẽ bắt đầu một khi hoàn tất quá trình cài đặt lại."
         },
         "modal_category": {
-            "title": "",
-            "label_none": "",
-            "placeholder_category": "",
-            "button_save": "",
-            "button_cancel": ""
+            "title": "Đổi thư mục game",
+            "label_none": "none",
+            "placeholder_category": "Hãy nhập tên thư mục mới…",
+            "button_save": "Lưu",
+            "button_cancel": "Huỷ"
         },
         "modal_running": {
-            "title": "",
-            "description": "",
-            "button_browse": "",
-            "link_more": "",
+            "title": "Game đang chạy",
+            "description": "Đóng trò chơi nếu như bạn muốn thay đổi bản mods.",
+            "button_browse": "Xem thư mục game",
+            "link_more": "Ấn vào để xem thêm chi tiết",
             "button_kill": ""
         },
         "menu_install_options": {
