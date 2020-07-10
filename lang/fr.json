@@ -122,7 +122,7 @@
             },
             "launch_offline_confirmation": {
                 "message": "Vous êtes hors-ligne !",
-                "details": "Si vous le lancez maintenant, votre sauvegharde ne se synchronisera pas avec le cloud.",
+                "details": "Si vous le lancez maintenant, votre sauvegarde ne se synchronisera pas avec le cloud.",
                 "button_affirmative": "Lancer quand même",
                 "button_negative": "Annuler"
             },
@@ -145,7 +145,7 @@
                 "tag_sdk": "SDK",
                 "tag_cloud": "Sauvergarde dans le cloud",
                 "description_locked": "Vous utilisez ces données de sauvegarde sur un autre ordinateur. Pour continuer, arrêtez de jouer sur l'autre ordinateur.",
-                "title_achievements": "Succès ({0} / {1})",
+                "title_achievements": "Succès ({0}/{1})",
                 "description_achievements": "Continuez à jouer pour débloquer plus de succès.",
                 "description_achievements_complete": "Vous avez débloqué tout les succès. Félicitations !",
                 "title_screenshots_none": "Aucunes captures d'écran",
@@ -184,7 +184,7 @@
                 "description_modded_cloudsave": "Une copie neuve de DDLC sera créée, et le mod sera installé. Les données de sauvegarde seront enregistrées sur le cloud.",
                 "button_install": "Installer",
                 "button_installing": "Installation…",
-                "status_exists": "Ce dossier existe déjà. Choisissez un autre nom pour le dossier."
+                "status_exists": "Le nom du dossier est déjà utilisé."
             }
         },
         "tab_store_placeholder": {
@@ -206,12 +206,12 @@
                 "link_updates": "Mises à jour",
                 "link_storage": "Emplacement de stockage",
                 "header_developers": "Développeurs",
-                "link_testing": "SDK Debug",
+                "link_testing": "Options de débogage",
                 "link_debug": "Infos de l'app"
             },
             "section_backgrounds": {
                 "title": "Arrière-plan",
-                "subtitle": "Customisez votre copie de Doki Doki Mod Manager avec un de ces arrière-plans.",
+                "subtitle": "Personnalisez votre copie de Doki Doki Mod Manager avec un de ces arrière-plans.",
                 "button_none": "Aucun arrière-plan",
                 "description_credit": "Arrières-plans originaux de DDLC crées par la Team Salvato."
             },
@@ -235,15 +235,15 @@
                 "label_channel": "Canal de distribution",
                 "option_stable": "Stable",
                 "option_beta": "Beta",
-                "button_check": "Vérifier les mises à jour"
+                "button_check": "Vérifiez à nouveau"
             },
             "section_sdk": {
-                "title": "Succès & SDK",
+                "title": "Succès et SDK",
                 "subtitle": "Modifie la manière dont les succès sont gérés.",
                 "description_mode": "Activer les succès :",
                 "checkbox_always": "Toujours (recommandé)",
                 "checkbox_specified": "Quand le mod précise qu'il les supporte",
-                "checkbox_never": "jamais"
+                "checkbox_never": "Jamais"
             },
             "section_discord": {
                 "title": "Présence Riche sur Discord",
@@ -253,8 +253,8 @@
                 "button_disable": "Désactiver la Présence Riche sur Discord"
             },
             "section_testing": {
-                "title": "SDK Debug",
-                "subtitle": "Active les fichiers de debug afin de tester vos mods avec le SDK du Doki Doki Mod Manager.",
+                "title": "Options de débogage",
+                "subtitle": "Activer les options de débogage pour les développeurs.",
                 "button_enable": "Activer le débugging",
                 "button_disable": "Désactiver le débugging"
             },
@@ -267,13 +267,13 @@
             "title": "À propos",
             "description": "Doki Doki Mod Manager est un projet développé par la communauté afin de vous aider à trouver, installer et jouer à des mods pour Doki Doki Literature Club, un Visual Novel crée par la Team Salvato.",
             "title_disclaimer": "Disclaimer",
-            "disclaimer_1": "Doki Doki Mod Manager est un un projet créé par les fans de Doki Doki Literature Club et n'est pas affilié à la Team Salvato. C'est un projet créé par les fans, comme indiqué dans les régles de conduite de la Team Salvato.",
+            "disclaimer_1": "Doki Doki Mod Manager est un un projet créé par les fans de Doki Doki Literature Club et n'est pas affilié à la Team Salvato. C'est un projet créé par les fans, comme indiqué dans les règles de conduite de la Team Salvato.",
             "disclaimer_2": "Doki DOki Mod Manager ne prends pas la responsabilité pour tout dommages sur vos fichiers ou votre ordinateur, causés par un mod ou autre. C'est à vous de vous assurer que les mods sont fiables.",
             "title_socials": "Rentrer en contact",
-            "social_discord": "Rejoind le serveur Discord DDMM",
+            "social_discord": "Rejoignez le serveur Discord",
             "social_twitter": "Suivre @DokiMod sur Twitter",
             "social_reddit": "Me parler sur Reddit",
-            "social_email": "M'envoyer un email",
+            "social_email": "Envoyez-moi un e-mail",
             "title_support": "Supporter le développement",
             "description_support": "Doki Doki Mod Manager sera toujours gratuit à télécgarger et utiliser. Si vous l'appréciez et que vous souhaiteriez m'aider à le garder à jour, pensez à me supporter avec l'une des méthodes suivantes.",
             "support_donate": "Faire une donation unique",
@@ -317,7 +317,8 @@
             "header_version_mismatch": "Cela ne semble pas être le bon fichier zip",
             "text_directory_selected": "Veuillez vous assurer que vous ne sélectionnez pas une copie extraite du jeu et essayez à nouveau.",
             "header_directory_selected": "Vous avez sélectionné un dossier au lieu du fichier zip DDLC",
-            "text_select": "Ouvrez le dossier où vous avez enregistré votre copie de DDLC et déplacer ensuite le fichier dans l'espace situé en-dessous. "
+            "text_select": "Ouvrez le dossier où vous avez enregistré votre copie de DDLC et déplacer ensuite le fichier dans l'espace situé en-dessous.",
+            "subtitle_waifu": "Ne réfléchissez pas, répondez simplement."
         },
         "modal_language_switch": {
             "description": "Veuillez patienter, s'il vous plait…",
@@ -345,7 +346,11 @@
             "option_bug": "Bug de l'application",
             "label_type": "Type de probleme",
             "description": "Si votre question nécessite une réponse directe, ou si elle ne correspond à aucune des catégories énumérées ici, veuillez envoyer un courriel à la place.",
-            "title": "Signaler un problème"
+            "title": "Signaler un problème",
+            "button_cancel": "Annuler",
+            "button_submit": "Envoyer un rapport",
+            "placeholder_body": "Veuillez donner autant de détails que possible. Si cela est pertinent, veuillez fournir des instructions sur la façon de reproduire le problème.",
+            "label_body": "Détails du problème"
         },
         "modal_news": {
             "button": "Terminé"
@@ -353,6 +358,31 @@
         "modal_download_starting": {
             "description": "Veuillez suivre les instructions qui s'affichent pour terminer le téléchargement",
             "title": "Début du téléchargement"
+        },
+        "modal_save_delete": {
+            "title": "Êtes-vous sûr de vouloir supprimer les données que vous avez sauvegardées ?"
+        },
+        "modal_archive": {
+            "button_negative": "Annuler",
+            "button_affirmative": "Archive",
+            "confirmation": "Je comprends.",
+            "body_warning": "Toute modification apportée à d'autres données, telles que les fichiers de personnages, sera annulée si vous archivez le jeu. Faites attention !",
+            "body": "L'archivage supprimera les données du jeu pour {0} afin d'économiser de l'espace disque. Les données sauvegardées ne seront pas supprimées, mais vous aurez besoin d'une copie du mod pour l'installer à nouveau.",
+            "title": "Vous êtes sûr de vouloir archiver ?"
+        },
+        "modal_uninstall": {
+            "button_negative": "Annuler",
+            "button_affirmative": "Désinstaller",
+            "confirmation": "Je comprends.",
+            "body_globalsave": "Vos données sauvegardées pour {0} ne seront pas supprimées. Cependant, vous aurez besoin d'une copie du mod pour l'installer à nouveau.",
+            "body": "Vos données sauvegardées pour {0} seront supprimées, et vous aurez besoin d'une copie du mod pour l'installer à nouveau.",
+            "title": "Voulez-vous vraiment désinstaller cela ?"
+        },
+        "modal_rename": {
+            "button_negative": "Annuler",
+            "button_affirmative": "Renommer",
+            "body": "Entrez le nouveau nom pour {0}.",
+            "title": "Renommer l'installation"
         }
     },
     "main": {
@@ -365,12 +395,12 @@
             "button_browse": "Ouvrir le dossier du jeu",
             "button_close": "OK",
             "description_running": "Ferme le jeu afin d'appliquer les changement à tes mods.",
-            "install_missing": "L'installation n'a pas pu être trouvée.",
-            "install_corrupt": "L'installation est incompléte ou corrompue.",
+            "install_missing": "Impossible de trouver l'installation.",
+            "install_corrupt": "L'installation est incomplète ou corrompue.",
             "install_crashed": "Le jeu n'a pas réussi à se lancer, ou s'est fermé subitement."
         },
         "move_install": {
-            "title": "Séctionner un nouveau d'installation"
+            "title": "Sélectionnez un nouveau dossier d'installation"
         },
         "mod_browse_dialog": {
             "title": "Trouver un mod à installer",
