@@ -316,7 +316,8 @@
             "text_version_mismatch": "Vous avez peut-être téléchargé la mauvaise version de DDLC pour votre système d'exploitation. Vérifiez que vous avez bien téléchargé {0} et réessayez.",
             "header_version_mismatch": "Cela ne semble pas être le bon fichier zip",
             "text_directory_selected": "Veuillez vous assurer que vous ne sélectionnez pas une copie extraite du jeu et essayez à nouveau.",
-            "header_directory_selected": "Vous avez sélectionné un dossier au lieu du fichier zip DDLC"
+            "header_directory_selected": "Vous avez sélectionné un dossier au lieu du fichier zip DDLC",
+            "text_select": "Ouvrez le dossier où vous avez enregistré votre copie de DDLC et déplacer ensuite le fichier dans l'espace situé en-dessous. "
         },
         "modal_language_switch": {
             "description": "Veuillez patienter, s'il vous plait…",
