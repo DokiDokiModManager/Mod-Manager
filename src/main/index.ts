@@ -47,6 +47,7 @@ import OnboardingManager from "./onboarding/OnboardingManager";
 import {checkSync, DiskUsage} from "diskusage";
 import IntegrityCheck from "./onboarding/IntegrityCheck";
 import {downloadLanguageFile} from "./i18n/TranslationDownload";
+import FeatureFlags from "./utils/FeatureFlags";
 
 const DISCORD_ID = "453299645725016074";
 
@@ -68,6 +69,9 @@ richPresence.setIdleStatus();
 
 // url to load the UI from
 const uiURL: string = require("../../ddmm.json").ui;
+
+// Feature flags
+let featureFlags: FeatureFlags = new FeatureFlags();
 
 // Mod list
 let modList: ModList;
@@ -180,6 +184,10 @@ ipcMain.on("read config", (ev: IpcMainEvent, key: string) => {
     ev.returnValue = Config.readConfigValue(key);
 });
 
+ipcMain.on("get feature flag", (ev: IpcMainEvent, flag: string) => {
+    ev.returnValue = featureFlags.get(flag);
+});
+
 // Launch install
 ipcMain.on("launch install", (ev: IpcMainEvent, folderName: string) => {
     launchInstall(folderName);
@@ -270,7 +278,7 @@ ipcMain.on("select folder", (ev: IpcMainEvent) => {
 ipcMain.on("create install", (ev: IpcMainEvent, install: { folderName: string, installName: string, globalSave: boolean, mod: string }) => {
     appWindow.setClosable(false);
     Logger.info("IPC", "Creating install in folder " + install.folderName)
-    InstallCreator.createInstall(install.folderName, install.installName, install.globalSave).then(() => {
+    InstallCreator.createInstall(install.folderName, install.installName, install.globalSave, featureFlags.get("hookInjector")).then(() => {
         if (!install.mod) {
             refreshInstalls();
             appWindow.setClosable(true);

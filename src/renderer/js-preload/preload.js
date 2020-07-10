@@ -113,6 +113,11 @@ api.app.copyToClipboard = function (text) {
     remote.clipboard.writeText(text);
 };
 
+// Feature flag
+api.app.getFeatureFlag = function(flag) {
+    return ipcRenderer.sendSync("get feature flag", flag);
+};
+
 // Localisation function
 api.translate = function (key, ...args) {
     return ipcRenderer.sendSync("translate", {

@@ -15,8 +15,9 @@ export default class InstallCreator {
      * @param folderName The folder name to store the install in
      * @param installName The user facing name of the install
      * @param globalSave Whether it should use the global save
+     * @param injectScript Whether to inject the ddmm.rpy script
      */
-    public static createInstall(folderName: string, installName?: string, globalSave?: boolean): Promise<null> {
+    public static createInstall(folderName: string, installName?: string, globalSave?: boolean, injectScript?: boolean): Promise<null> {
         return new Promise((ff, rj) => {
             let unarchiving: boolean = false;
 
@@ -78,7 +79,7 @@ export default class InstallCreator {
                 });
 
                 zip.on("close", () => {
-                    ModManagerHookInjector.injectScript(folderName).finally(() => {
+                    function finish() {
                         Logger.info("Install Creator", "Game installation completed");
 
                         // write the install data file
@@ -106,7 +107,13 @@ export default class InstallCreator {
                         } else {
                             ff();
                         }
-                    });
+
+                    }
+                    if (injectScript) {
+                        ModManagerHookInjector.injectScript(folderName).finally(finish);
+                    } else {
+                        finish();
+                    }
                 });
             } catch (e) {
                 rj(e);

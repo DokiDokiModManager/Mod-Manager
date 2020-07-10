@@ -83,11 +83,6 @@ export default class InstallLauncher {
                 logToConsole("[SDK] The SDK server will not be started due to user preference.", LogClass.WARNING);
             }
 
-            Config.saveConfigValue("lastInstall", {
-                "name": installData.name,
-                "folder": folderName
-            });
-
             let sdkServer: SDKServer;
 
             if (startSDKServer) {
