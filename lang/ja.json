@@ -35,7 +35,10 @@
                 "downloaded": "アップデートの準備が完了しました。終了するとアップデートが始まります。"
             },
             "language": "言語",
-            "issue_report": "問題を報告"
+            "issue_report": "問題を報告",
+            "patreon": "PatreonでDoki Doki Mod Managerを支援",
+            "discord": "Discordサーバーに参加",
+            "guide": "ユーザーガイド"
         },
         "crash_cover": {
             "button_close": "終了",
@@ -216,7 +219,10 @@
                 "title": "背景画像",
                 "subtitle": "Doki Doki Mod Managerの背景画像を以下の中から選択できます。",
                 "button_none": "背景なし",
-                "description_credit": "これらはTeam Salvatoによるドキドキ文芸部の背景画像です。"
+                "description_credit": "これらはTeam Salvatoによるドキドキ文芸部の背景画像です。",
+                "button_custom": "カスタム背景画像",
+                "description_custom": "設定したカスタム背景画像は移動または削除するとリセットされます。",
+                "checkbox_modbg": "MODのカスタム背景画像を表示する（スクリーンショットまたはMOD製作者指定の画像）"
             },
             "section_advanced_appearance": {
                 "title": "高度な設定",
@@ -229,7 +235,9 @@
                 "subtitle": "ゲームデータの保存場所を変更します。",
                 "description_moving": "警告！保存場所を変更すると、全てのMOD・インストール・セーブデータが移動されます。これには数分かかることがあり、中断はできません。",
                 "description_current": "現在の保存場所 {0}",
-                "button_change": "保存場所の変更"
+                "button_change": "保存場所の変更",
+                "description": "Doki Doki Mod Managerが使用するゲームの保存場所を変更することができます。別のハードディスクに保存したい場合などに使用してください。インストールデータの移動先となる空のフォルダを選択してください。",
+                "button_confirm": "変更"
             },
             "section_updates": {
                 "title": "アップデート",
@@ -240,7 +248,12 @@
                 "option_beta": "ベータ",
                 "button_check": "アップデートを再確認",
                 "description_no_update": "Doki Doki Mod Managerは最新です。",
-                "description_latest_version": "最新のバージョン: {0}"
+                "description_latest_version": "最新のバージョン: {0}",
+                "button_download": "アップデートをダウンロード",
+                "description_downloaded": "アップデートのダウンロードが完了しました。終了後に適用されます。",
+                "description_error": "現在アップデートを確認できません。時間をおいて再試行してください。",
+                "description_has_update": "Doki Doki Mod Managerの新しいバージョンが利用可能です！",
+                "description_downloading": "ダウンロード中 - 完了するまでの間、アプリの操作を続けることができます。"
             },
             "section_sdk": {
                 "title": "実績とSDK",
@@ -277,7 +290,8 @@
             "section_language": {
                 "link_contribute": "Doki Doki Mod Managerの翻訳を手伝っていただけますか？クリックしてコミュニティ翻訳プロジェクトに参加して下さい。",
                 "subtitle": "言語を選択して下さい。翻訳は完全では無い可能性があります。",
-                "label_language": "言語"
+                "label_language": "言語",
+                "title": "言語"
             }
         },
         "tab_about": {
@@ -357,11 +371,16 @@
         "modal_error": {
             "button_copy": "エラー内容をコピー",
             "button_continue": "続行",
-            "button_restart": "再起動"
+            "button_restart": "再起動",
+            "description_general": "再試行してください。問題が解決しない場合は報告してください！",
+            "title_fatal": "Doki Doki Mod Managerがクラッシュしました",
+            "title_non_fatal": "不明なエラー"
         },
         "online_error": {
             "button_quit": "終了",
-            "button_restart": "再起動"
+            "button_restart": "再起動",
+            "body": "Doki Doki Mod Managerは初回ダウンロードのためにインターネットへの接続が必要です。接続を確認してから再起動してください。",
+            "title": "インターネットに接続してください"
         },
         "modal_issue_report": {
             "placeholder_mod": "MODのWebサイト、またはダウンロードページを記入して下さい。",
@@ -387,7 +406,9 @@
                 "link_downloaded": "保存済みMOD",
                 "link_ddmc": "Doki Doki Mod Club",
                 "header_browse": "MODを探す",
-                "header_library": "ライブラリ"
+                "header_library": "ライブラリ",
+                "link_featured": "主要MOD",
+                "link_downloads": "ダウンロード中"
             },
             "featured": {
                 "button_download": "ダウンロード"
@@ -412,6 +433,30 @@
             "button_browse": "フォルダを開く",
             "button_kill": "強制終了",
             "title": "ゲーム起動中"
+        },
+        "onboarding_v4": {
+            "header_save_location": "保存場所",
+            "button_finish": "完了",
+            "button_previous": "戻る",
+            "button_next": "次へ",
+            "text_safari_warning": "Safariはダウンロードしたゲームを自動的に解凍してしまう場合があります。この機能は初期設定の妨げになるためSafariの設定画面から無効化してください。",
+            "header_safari_warning": "Safari利用者のための重要な情報",
+            "text_modification_warning": "ダウンロードしたファイルの解凍は不要です。",
+            "text_s2_next": "ダウンロードが完了したら、次のステップへ進んでください。",
+            "button_ddlc_website": "ドキドキ文芸部！公式サイトへ(English)",
+            "text_download": "ドキドキ文芸部公式サイトへアクセスし、ページ内にある\"Download Now\"をクリックします。するとダイアログが開くので、中の\"No thanks, just take me to the downloads\"をクリックします。するとダウンロードページに切り替わるので、{0}をわかりやすい場所にダウンロードします。",
+            "header_download": "ドキドキ文芸部！をダウンロード",
+            "subtitle_careful": "以下の説明をお読みください。",
+            "header_setup": "初回セットアップ",
+            "text_scanning": "お待ち下さい……"
+        },
+        "modal_download_starting": {
+            "description": "指示に従ってダウンロードしてください",
+            "title": "ダウンロード開始"
+        },
+        "modal_language_switch": {
+            "description": "少々お待ち下さい……",
+            "title": "言語の切り替え中"
         }
     },
     "main": {
@@ -480,6 +525,10 @@
                 "title": "Doki Doki Mod Managerが応答しません",
                 "body": "この問題が長く続く場合はアプリを再起動してください。"
             }
+        },
+        "redownload_confirmation": {
+            "button_cancel": "キャンセル",
+            "button_confirm": "ダウンロード"
         }
     }
 }

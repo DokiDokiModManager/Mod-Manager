@@ -1,0 +1,499 @@
+{
+    "renderer": {
+        "online_error": {
+            "title": "Không thể kết nối Internet",
+            "body": "Doki Doki Mod Manager cần kết nối mạng Internet để tải về những dữ liệu cần thiết cho lần khởi động đầu tiên. Hãy kiểm tra lại kết nối Internet của bạn, rồi khởi động lại ứng dụng.",
+            "button_restart": "Khởi động lại",
+            "button_quit": "Thoát"
+        },
+        "modal_error": {
+            "title_non_fatal": "Có gì đó không đúng đã xảy ra",
+            "title_fatal": "Oops, Doki Doki Mod Manager đã bị crash",
+            "description_general": "Hãy thử lại, nếu lỗi vẫn xuất hiện, xin hãy cho chúng tôi biết!",
+            "description_stacktrace": "Đây là thông tin về lỗi đã xảy ra. Xin hãy lưu lại những dữ liệu này khi bạn muốn hỗ trợ.",
+            "button_continue": "Tiếp tục",
+            "button_restart": "Khởi động lại",
+            "button_copy": "Hãy sao chép lỗi"
+        },
+        "modal_language_switch": {
+            "title": "Đổi ngôn ngữ",
+            "description": "Hãy đợi trong giây lát…"
+        },
+        "modal_download_starting": {
+            "title": "Bắt đầu tải về",
+            "description": "Hãy làm theo chỉ dẫn của tất cả thông báo hiện lên để hoàn tất quá trình tải về"
+        },
+        "tabs": {
+            "tab_play": "Chơi",
+            "tab_downloads": "Bản mods",
+            "tab_options": "Tuỳ chỉnh",
+            "tab_about": "Về Ứng Dụng",
+            "tab_experiments": ""
+        },
+        "version": {
+            "link_changelog": "có gì mới?"
+        },
+        "help_menu": {
+            "option_help": "Xem trang web hỗ trợ",
+            "option_feedback": "Gửi phản hồi riêng tư",
+            "option_discord": "Tham gia máy chủ Discord"
+        },
+        "user_menu": {
+            "option_rename": "Đổi tên",
+            "option_logout": "Đăng xuất"
+        },
+        "window_controls": {
+            "close": "Đóng",
+            "maximise": "Tối đa",
+            "minimise": "Tối thiểu",
+            "issue_report": "Báo lỗi",
+            "guide": "Hướng dẫn",
+            "discord": "Tham gia vào server Discord",
+            "patreon": "Hỗ trợ Doki Doki Mod Manager tại Patreon"
+        },
+        "drop_cover": {
+            "text": "Kéo/Thả bản mod vào đây để cài đặt nó"
+        },
+        "announcement": {
+            "button_open": "Mở link",
+            "button_close": "Đóng"
+        },
+        "onboarding_v4": {
+            "text_welcome": "Chào mừng bạn đến với phiên bản \"tuyệt vời nhất\" của Doki Doki Mod Manager.",
+            "button_start": "Khởi đầu",
+            "text_scanning": "Vui lòng chờ…",
+            "header_setup": "Lần đầu cài đặt",
+            "subtitle_careful": "Xin hãy đọc những hướng dẫn sau thật kĩ.",
+            "header_download": "Tải DDLC",
+            "text_download": "Vào website DDLC, bấm vào mục \"Download Now\" và làm theo chỉ dẫn. Sau đó chọn đường dẫn dễ nhớ của file {0} và lưu nó.",
+            "button_ddlc_website": "Vào website DDLC",
+            "text_s2_next": "Khi tải về đã hoàn tất, hãy bấm \"Tiếp tục\" để đến với bước kế tiếp.",
+            "text_modification_warning": "Không thay đổi với bất kì file được tải về.",
+            "header_safari_warning": "Thông tin quan trọng cho người sử dụng Safari",
+            "text_safari_warning": "Safari có thể tự động giải nén tập tin game đang tải về. Bạn nên vô hiệu hoá tính năng bởi vì nó can thiệp vào quá trình cài đặt. Bạn có thể vô hiệu hoá tính năng này tại mục \"Preferences\" của Safari.",
+            "link_safari_warning": "Bấm vào đây để xem hướng dẫn bằng hình ảnh",
+            "button_next": "Tiếp theo",
+            "button_previous": "Quay lại",
+            "button_finish": "Hoàn tất",
+            "text_select": "Mở tập tin nơi bạn lưu bản sao chép của game DDLC, sau đó hãy kéo/thả vào mục phía dưới.",
+            "text_dropzone": "Kéo/Thả bản sao chép của DDLC ở đây",
+            "text_validating": "Xin vui lòng đợi trong giây lát…",
+            "header_directory_selected": "Không đúng định dạng zip của bản sao DDLC",
+            "text_directory_selected": "Hãy chắc chắn rằng bạn không chọn bản sao chép game Đã Giải Nén, đồng thời hãy thử lại.",
+            "header_version_mismatch": "Trông không giống file Zip được yêu cầu",
+            "text_version_mismatch": "Bạn đã tải sai phiên bản DDLC cho hệ điều hành bạn đang sử dụng. Hãy chắc rằng bạn đã tải {0} và thử lại.",
+            "header_success": "Đã tìm thấy bản sao chép của game DDLC",
+            "text_success": "Bạn đã sẵn sàng đến với bước kế tiếp!",
+            "header_hash_mismatch": "Trông không giống tập tin được yêu cầu",
+            "text_hash_mismatch": "Xin hãy kiểm tra kĩ hơn file bạn đã lựa chọn và thử lại lần nữa.",
+            "subtitle_last": "Những tuỳ chỉnh trên có thể thay đổi bất cứ lúc nào.",
+            "header_save_location": "Lưu vào",
+            "text_save_location": "Nếu như bạn muốn lưu trữ mods tại ổ đĩa khác thì giờ là lúc bạn có thể chọn.",
+            "header_waifu": "Nhân vật nào trong DDLC bạn yêu thích nhất?",
+            "subtitle_waifu": "Đừng có nghĩ gì cả, hãy trả lời đi.",
+            "label_waifu": "Best Girl",
+            "option_waifu_all": "Tất cả mọi nhân vật!",
+            "option_waifu_monika": "Monika",
+            "option_waifu_natsuki": "Natsuki",
+            "option_waifu_sayori": "Sayori",
+            "option_waifu_yuri": "Yuri"
+        },
+        "modal_news": {
+            "button": "Xong"
+        },
+        "modal_issue_report": {
+            "title": "Báo lỗi",
+            "description": "Nếu như lỗi mà bạn gặp phải cần phải báo lỗi trực tiếp hoặc nó không có trong mục phân loại lỗi ở trên, xin vui lòng báo lỗi qua email.",
+            "label_type": "Loại lỗi",
+            "option_bug": "Lỗi ứng dụng",
+            "option_broken_mod": "Bản mod không hoạt động",
+            "label_mod": "Đường dẫn tới bản mod",
+            "placeholder_mod": "Hãy dán đường dẫn đến website của bản mod hoặc tại trang tải về.",
+            "label_body": "Thông tin về lỗi",
+            "placeholder_body": "Xin hãy trình bày rõ ràng nhất có thể. Nếu không, hãy nếu cách để có thể tái tạo lại lỗi đó.",
+            "button_submit": "Gửi báo lỗi",
+            "button_cancel": "Huỷ"
+        },
+        "modal_rename": {
+            "title": "Đổi tên folder game",
+            "body": "Hãy nhập tên folder mới cho {0}.",
+            "button_affirmative": "Đổi tên",
+            "button_negative": "Huỷ"
+        },
+        "modal_uninstall": {
+            "title": "Bạn có chắc rằng muốn gỡ cài đặt chứ?",
+            "body": "File save của {0} sẽ bị xoá, đồng thời bạn sẽ cần bản sao chép của bản mod nếu muốn cài đặt lại.",
+            "body_globalsave": "File save của {0} sẽ không bị xoá. Nhưng, bạn sẽ cần bản sao chép của bản mod nếu muốn cài đặt lại.",
+            "confirmation": "Tôi hiểu và chắc chắn.",
+            "button_affirmative": "Gỡ cài đặt",
+            "button_negative": "Huỷ"
+        },
+        "modal_archive": {
+            "title": "Bạn có chắc chắn muốn đặt vào chế độ lưu trữ?",
+            "body": "Lưu trữ sẽ xoá đi data của {0} để tiết kiệm dữ liệu. File save của game sẽ không bị xoá, nhưng bạn cần bản sao chép của bản mod để cài đặt lại.",
+            "body_warning": "Mọi chỉnh sửa đến dữ liệu khác như nhân vật sẽ bị loại bỏ nếu như bạn lưu trữ. Nên hãy cẩn thận!",
+            "confirmation": "Tôi hiểu và chắc chắn.",
+            "button_affirmative": "Lưu trữ",
+            "button_negative": "Huỷ"
+        },
+        "modal_save_delete": {
+            "title": "Bạn có chắc chắn muốn xoá đi file save?",
+            "body": "Bạn sẽ phải chơi {0} lại từ đầu.",
+            "confirmation": "Tôi hiểu và chắc chắn.",
+            "button_affirmative": "Xoá",
+            "button_negative": "Huỷ"
+        },
+        "modal_installing": {
+            "title": "Đang tải về",
+            "description": "Xin vui lòng chờ, game đang trong quá trình tải về."
+        },
+        "modal_unarchive": {
+            "title": "Chơi game",
+            "description": "Hãy chọn bản mod đã được cài đặt ban đầu rồi bấm Chơi. {0} sẽ không còn bị lưu trữ.",
+            "button_launch": "Chơi",
+            "button_cancel": "Huỷ"
+        },
+        "modal_unarchiving": {
+            "title": "Cài đặt lại game",
+            "description": "Trò chơi sẽ bắt đầu một khi hoàn tất quá trình cài đặt lại."
+        },
+        "modal_category": {
+            "title": "Đổi thư mục game",
+            "label_none": "none",
+            "placeholder_category": "Hãy nhập tên thư mục mới…",
+            "button_save": "Lưu",
+            "button_cancel": "Huỷ"
+        },
+        "modal_running": {
+            "title": "Game đang chạy",
+            "description": "Đóng trò chơi nếu như bạn muốn thay đổi bản mods.",
+            "button_browse": "Xem thư mục game",
+            "link_more": "Ấn vào để xem thêm chi tiết",
+            "button_kill": ""
+        },
+        "menu_install_options": {
+            "launch": "",
+            "rename": "",
+            "category": "",
+            "archive": "",
+            "shortcut": "",
+            "delete_save": "",
+            "uninstall": "",
+            "cancel": ""
+        },
+        "menu_mod_options": {
+            "install": "",
+            "delete": "",
+            "cancel": ""
+        },
+        "modal_mod_delete": {
+            "title": "",
+            "body": "",
+            "button_affirmative": "",
+            "button_negative": ""
+        },
+        "modal_mod_preview": {
+            "button_close": "",
+            "button_download_direct": "",
+            "button_download_external": "",
+            "text_loading": ""
+        },
+        "tab_mods": {
+            "list": {
+                "placeholder_search": "",
+                "header_new": "",
+                "link_install": "",
+                "header_installed": "",
+                "header_downloaded": ""
+            },
+            "launch_lock_confirmation": {
+                "message": "",
+                "details": "",
+                "button_affirmative": "",
+                "button_negative": ""
+            },
+            "launch_noauth_confirmation": {
+                "message": "",
+                "details": "",
+                "button_affirmative": "",
+                "button_negative": ""
+            },
+            "launch_offline_confirmation": {
+                "message": "",
+                "details": "",
+                "button_affirmative": "",
+                "button_negative": ""
+            },
+            "mod_delete_confirmation": {
+                "message": "",
+                "details": "",
+                "button_affirmative": "",
+                "button_negative": ""
+            },
+            "install": {
+                "button_launch": "",
+                "button_settings": "",
+                "tag_global_save": "",
+                "tag_sdk": "",
+                "tag_archived": "",
+                "title_achievements": "",
+                "description_achievements": "",
+                "description_achievements_complete": "",
+                "description_achievement_earned": "",
+                "description_achievement_not_earned": "",
+                "title_screenshots_none": "",
+                "title_screenshots_one": "",
+                "title_screenshots": "",
+                "description_screenshots": "",
+                "description_sdk": "",
+                "description_author": "",
+                "link_discord": "",
+                "link_website": "",
+                "description_external": "",
+                "title_mas_export": "",
+                "description_mas_export": "",
+                "button_mas_export": "",
+                "button_mas_import": "",
+                "title_install_failed": "",
+                "description_install_failed": "",
+                "link_troubleshooting": "",
+                "title_singleton_error": "",
+                "description_singleton_error": "",
+                "description_install_failed_launch_again": ""
+            },
+            "mod": {
+                "button_install": "",
+                "button_settings": "",
+                "description_external": ""
+            },
+            "install_creation": {
+                "title": "",
+                "status_exists": "",
+                "warning_no_space": "",
+                "label_install_name": "",
+                "placeholder_install_name": "",
+                "label_folder_name": "",
+                "label_has_mod": "",
+                "label_mod": "",
+                "option_local_save": "",
+                "option_global_save": "",
+                "modlist_none": "",
+                "modlist_library": "",
+                "modlist_custom": "",
+                "description_mod": "",
+                "warning_global_save": "",
+                "button_install": "",
+                "button_installing": ""
+            }
+        },
+        "tab_options": {
+            "list": {
+                "header_appearance": "",
+                "link_background": "",
+                "link_advanced_appearance": "",
+                "header_account": "",
+                "link_cloudsaves": "",
+                "link_accmanagement": "",
+                "header_enhancements": "",
+                "link_sdk": "",
+                "link_discord": "",
+                "header_application": "",
+                "link_updates": "",
+                "link_storage": "",
+                "link_language": "",
+                "header_developers": "",
+                "link_testing": ""
+            },
+            "section_backgrounds": {
+                "title": "",
+                "subtitle": "",
+                "button_none": "",
+                "button_custom": "",
+                "checkbox_modbg": "",
+                "description_credit": "",
+                "description_custom": ""
+            },
+            "section_advanced_appearance": {
+                "title": "",
+                "subtitle": "",
+                "button_enable_sysborders": ""
+            },
+            "section_storage": {
+                "title": "",
+                "subtitle": "",
+                "description": "",
+                "description_moving": "",
+                "button_confirm": ""
+            },
+            "section_updates": {
+                "title": "",
+                "subtitle": "",
+                "description_current_version": "",
+                "description_latest_version": "",
+                "description_has_update": "",
+                "description_no_update": "",
+                "description_downloading": "",
+                "description_downloaded": "",
+                "description_error": "",
+                "button_check": "",
+                "button_download": ""
+            },
+            "section_language": {
+                "title": "",
+                "subtitle": "",
+                "link_contribute": "",
+                "label_language": ""
+            },
+            "section_sdk": {
+                "title": "",
+                "subtitle": "",
+                "description_mode": "",
+                "checkbox_always": "",
+                "checkbox_specified": "",
+                "checkbox_never": ""
+            },
+            "section_discord": {
+                "title": "",
+                "subtitle": "",
+                "description": "",
+                "button_enable": ""
+            },
+            "section_testing": {
+                "title": "",
+                "subtitle": "",
+                "checkbox_logging": "",
+                "header_mod_debug": "",
+                "description_mod_debug": "",
+                "header_renpy": "",
+                "description_renpy": "",
+                "checkbox_renpy_skipsplash": "",
+                "checkbox_renpy_skipmenu": ""
+            }
+        },
+        "tab_about": {
+            "title": "",
+            "description": "",
+            "title_disclaimer": "",
+            "disclaimer_1": "",
+            "disclaimer_2": "",
+            "title_socials": "",
+            "social_discord": "",
+            "social_reddit": "",
+            "social_email": "",
+            "title_translators": "",
+            "title_v4_beta": "",
+            "title_patreon": "",
+            "link_patreon": "",
+            "link_weblate": ""
+        },
+        "tab_downloads": {
+            "list": {
+                "header_library": "",
+                "link_downloaded": "",
+                "link_downloads": "",
+                "header_browse": "",
+                "link_featured": "",
+                "link_ddmc": ""
+            },
+            "downloaded": {
+                "title": "",
+                "button_install": "",
+                "button_options": "Tuỳ chỉnh",
+                "description_type": "",
+                "placeholder_search": "",
+                "message_none": ""
+            },
+            "downloads": {
+                "title": "",
+                "status_text_downloading": "",
+                "status_text_downloading_uncertain": "",
+                "message_none": ""
+            },
+            "featured": {
+                "title": "",
+                "button_download": ""
+            },
+            "store": {
+                "title_ddmc": "",
+                "description_ddmc": "",
+                "link_ddmc": "",
+                "description_featured": "",
+                "text_loading": "",
+                "error_loading": "",
+                "placeholder_search": ""
+            }
+        },
+        "component_install_folder_selector": {
+            "label": "",
+            "button_select": "",
+            "error_disk_space": ""
+        }
+    },
+    "main": {
+        "discord": {
+            "status_idle": "",
+            "status_active": "",
+            "description_idle": "",
+            "description_active": "",
+            "description_version": ""
+        },
+        "jumplist": {
+            "task_launch": ""
+        },
+        "running_cover": {
+            "title_running": "",
+            "title_crashed": "",
+            "button_browse": "",
+            "button_close": "",
+            "description_running": "",
+            "install_missing": "",
+            "install_corrupt": "",
+            "install_crashed": ""
+        },
+        "move_install": {
+            "title": "",
+            "error_not_empty": "",
+            "error_read": ""
+        },
+        "mod_browse_dialog": {
+            "title": "",
+            "file_format_name": ""
+        },
+        "game_browse_dialog": {
+            "title": "",
+            "file_format_name": ""
+        },
+        "shortcut_dialog": {
+            "title": "",
+            "file_format_name": ""
+        },
+        "import_mas": {
+            "title": "",
+            "filter": ""
+        },
+        "export_mas": {
+            "title": "",
+            "filter": ""
+        },
+        "redownload_confirmation": {
+            "message": "",
+            "detail": "",
+            "button_confirm": "",
+            "button_cancel": ""
+        },
+        "errors": {
+            "dev_ui_load_fail": {
+                "title": "",
+                "body": ""
+            },
+            "renderer_freeze": {
+                "title": "",
+                "body": ""
+            },
+            "move_install": {
+                "title": "",
+                "body": ""
+            }
+        }
+    }
+}
