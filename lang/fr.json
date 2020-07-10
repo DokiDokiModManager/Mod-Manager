@@ -39,7 +39,8 @@
             },
             "discord": "Rejoindre le serveur Discord",
             "guide": "Guide utilisateur",
-            "issue_report": "Signaler un problème"
+            "issue_report": "Signaler un problème",
+            "patreon": "Soutenez Doki Doki Mod Manager sur Patreon"
         },
         "crash_cover": {
             "button_close": "Quitter",
@@ -297,7 +298,25 @@
             "header_setup": "Première configuration",
             "text_scanning": "Veuillez attendre…",
             "button_start": "Débuter",
-            "text_welcome": "Bienvenue sur la meilleure version de Doki Doki Mod Manager disponible à ce jour."
+            "text_welcome": "Bienvenue sur la meilleure version de Doki Doki Mod Manager disponible à ce jour.",
+            "option_waifu_yuri": "Yuri",
+            "option_waifu_sayori": "Sayori",
+            "option_waifu_natsuki": "Natsuki",
+            "option_waifu_monika": "Monika",
+            "option_waifu_all": "Toutes !",
+            "label_waifu": "Meilleure fille",
+            "header_waifu": "Quel est votre personnage préféré ?",
+            "text_save_location": "Si vous souhaitez stocker vos mods sur un autre disque, c'est le moment de le choisir.",
+            "header_save_location": "Emplacement de sauvegarde",
+            "subtitle_last": "Ces options peuvent être modifiées à tout moment.",
+            "text_hash_mismatch": "Veuillez vérifier que vous avez sélectionné le bon fichier et réessayer.",
+            "header_hash_mismatch": "Cela ne semble pas être le bon dossier",
+            "text_success": "Vous êtes maintenant prêt à passer à l'étape suivante !",
+            "header_success": "Trouvez votre exemplaire de DDLC",
+            "text_version_mismatch": "Vous avez peut-être téléchargé la mauvaise version de DDLC pour votre système d'exploitation. Vérifiez que vous avez bien téléchargé {0} et réessayez.",
+            "header_version_mismatch": "Cela ne semble pas être le bon fichier zip",
+            "text_directory_selected": "Veuillez vous assurer que vous ne sélectionnez pas une copie extraite du jeu et essayez à nouveau.",
+            "header_directory_selected": "Vous avez sélectionné un dossier au lieu du fichier zip DDLC"
         },
         "modal_language_switch": {
             "description": "Veuillez patienter, s'il vous plait…",
@@ -317,6 +336,22 @@
             "button_restart": "Redémarrer",
             "body": "Doki Doki Mod Manager nécessite une connexion internet afin de télécharger les ressources la première fois. Veuillez vérifier votre connexion internet et redémarrer.",
             "title": "Veuillez vous connecter à l'internet"
+        },
+        "modal_issue_report": {
+            "placeholder_mod": "Veuillez coller un lien vers le site web du mod ou vers la page de téléchargement.",
+            "label_mod": "Lien vers le mod",
+            "option_broken_mod": "Le mod ne fonctionne pas",
+            "option_bug": "Bug de l'application",
+            "label_type": "Type de probleme",
+            "description": "Si votre question nécessite une réponse directe, ou si elle ne correspond à aucune des catégories énumérées ici, veuillez envoyer un courriel à la place.",
+            "title": "Signaler un problème"
+        },
+        "modal_news": {
+            "button": "Terminé"
+        },
+        "modal_download_starting": {
+            "description": "Veuillez suivre les instructions qui s'affichent pour terminer le téléchargement",
+            "title": "Début du téléchargement"
         }
     },
     "main": {
