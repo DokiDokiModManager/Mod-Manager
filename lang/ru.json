@@ -82,7 +82,8 @@
                 "header_new": "Приступить к работе",
                 "link_install": "Установить DDLC",
                 "header_installed": "Установлено",
-                "header_downloaded": "Загрузки"
+                "header_downloaded": "Загрузки",
+                "link_home": "Домой"
             },
             "install_contextmenu": {
                 "launch": "Запуск",
