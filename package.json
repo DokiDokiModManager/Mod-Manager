@@ -3,7 +3,7 @@
   "productName": "Doki Doki Mod Manager",
   "description": "Mod Manager for Doki Doki Literature Club",
   "author": "Zudo",
-  "version": "4.3.0",
+  "version": "4.3.1",
   "homepage": "https://doki.space",
   "license": "MIT",
   "main": "lib/main/index.js",
@@ -18,32 +18,32 @@
   },
   "dependencies": {
     "7zip-bin": "^5.0.3",
-    "@fortawesome/fontawesome-free": "^5.12.0",
-    "@sentry/electron": "1.3.0",
-    "archiver": "^4.0.1",
-    "chalk": "^4.0.0",
+    "@fortawesome/fontawesome-free": "^5.14.0",
+    "@sentry/electron": "1.5.2",
+    "archiver": "^5.0.0",
+    "chalk": "^4.1.0",
     "chmodr": "^1.2.0",
     "datauri": "^2.0.0",
     "discord-rich-presence": "^0.0.8",
     "diskusage": "^1.1.3",
     "du": "^1.0.0",
-    "electron-updater": "^4.3.1",
+    "electron-updater": "^4.3.4",
     "fs-extra": "^9.0.1",
-    "fuse.js": "^6.0.0",
+    "fuse.js": "^6.4.1",
     "node-fetch": "^2.6.0",
     "request": "^2.88.0",
     "semver": "^7.1.1",
-    "unrar-binaries": "^1.0.1",
+    "unrar-binaries": "^1.0.2",
     "vue": "^2.6.11",
-    "vuex": "^3.4.0",
+    "vuex": "^3.5.1",
     "yauzl": "latest"
   },
   "devDependencies": {
-    "@sentry/cli": "^1.52.3",
-    "@types/node": "12.12.37",
-    "electron": "^9.0.5",
-    "electron-builder": "^22.6.0",
-    "typescript": "^3.7.5"
+    "@sentry/cli": "^1.55.1",
+    "@types/node": "12.12.53",
+    "electron": "^9.1.2",
+    "electron-builder": "^22.8.0",
+    "typescript": "^3.9.7"
   },
   "build": {
     "appId": "space.doki.modmanager",
@@ -90,7 +90,10 @@
       "maintainer": "zudo@doki.space",
       "synopsis": "Doki Doki Mod Manager",
       "target": [
-        "AppImage","deb", "rpm", "tar.gz"
+        "AppImage",
+        "deb",
+        "rpm",
+        "tar.gz"
       ],
       "publish": [
         "github"
@@ -106,7 +109,8 @@
       "category": "public.app-category.games",
       "icon": "build/icon.icns",
       "target": [
-        "dmg"
+        "dmg",
+        "zip"
       ]
     }
   }
