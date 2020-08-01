@@ -8,6 +8,7 @@ import {app} from "electron";
 import {randomBytes} from "crypto";
 import Logger from "../utils/Logger";
 import {copyFile} from "fs";
+import SpecialCaseManager from "./SpecialCaseManager";
 
 export default class ModInstaller {
 
@@ -15,14 +16,21 @@ export default class ModInstaller {
      * Installs a mod into a copy of DDLC by guessing which files should go where
      * @param modPath The path to the mod
      * @param installPath The path to the game installation
+     * @param specialCaseManager Instance of SpecialCaseManager
      */
-    public static installMod(modPath: string, installPath: string): Promise<null> {
+    public static async installMod(modPath: string, installPath: string, specialCaseManager: SpecialCaseManager): Promise<null> {
+        const specialCases = await specialCaseManager.get(modPath);
+
+        specialCases.filter(sc =>  sc.time === "preinstall").forEach(sc => {
+            ModInstaller.handleSpecialCaseAction(sc.action, sc.parameter, installPath);
+        });
+
         if (modPath.endsWith(".zip")) {
-            return ModInstaller.installZip(modPath, installPath);
+            await ModInstaller.installZip(modPath, installPath);
         } else if (modPath.endsWith(".rpa")) {
-            return ModInstaller.installRPA(modPath, installPath);
+            await ModInstaller.installRPA(modPath, installPath);
         } else if (ModInstaller.isArchive(modPath)) {
-            return new Promise((ff, rj) => {
+            await new Promise((ff, rj) => {
                 const tempZipPath: string = joinPath(app.getPath("temp"), "ddmm" + randomBytes(8).toString("hex") + ".zip");
                 ArchiveConverter.convertToZip(modPath, tempZipPath).then(() => {
                     Logger.debug("Mod Installer", tempZipPath);
@@ -41,6 +49,10 @@ export default class ModInstaller {
                 rj(new Error("File was not an archive."));
             });
         }
+
+        specialCases.filter(sc =>  sc.time === "postinstall").forEach(sc => {
+           ModInstaller.handleSpecialCaseAction(sc.action, sc.parameter, installPath);
+        });
     }
 
     private static installRPA(modPath: string, installPath: string): Promise<null> {
@@ -180,6 +192,17 @@ export default class ModInstaller {
                 rj(err);
             });
         });
+    }
+
+    private static handleSpecialCaseAction(action: string, parameter: string, installPath: string) {
+        Logger.debug("Special Case Action", `Action: ${action} Parameter: ${parameter} Install: ${installPath}`);
+        switch (action) {
+            case "delete":
+                Logger.debug("Special Case Action", "Deleting " + parameter);
+                const toDelete: string = joinPath(installPath, parameter);
+                removeSync(toDelete)
+                break;
+        }
     }
 
     private static isArchive(filename: string): boolean {

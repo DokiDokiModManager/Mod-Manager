@@ -43,11 +43,11 @@ export function inferMapper(zipPath: string): Promise<ModMapper> {
                 return;
             }
 
-            // DDLCtVN special case
-            if (structure.find((file) => file.startsWith("DDLCtVN"))) {
-                ff(new NestedGameFolder(["scripts.rpa"]));
-                return;
-            }
+            // // DDLCtVN special case
+            // if (structure.find((file) => file.startsWith("DDLCtVN"))) {
+            //     ff(new NestedGameFolder(["scripts.rpa"]));
+            //     return;
+            // }
 
             let isNested: boolean = false;
             let isModTemplate: boolean = false;

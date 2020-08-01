@@ -1,5 +1,4 @@
-import {createHash, Hash} from "crypto";
-import {createReadStream, ReadStream, unlinkSync} from "fs";
+import FileHash from "../utils/FileHash";
 
 export default class IntegrityCheck {
 
@@ -13,18 +12,10 @@ export default class IntegrityCheck {
      */
     static checkGameIntegrity(path: string): Promise<"windows" | "mac"> {
         return new Promise((ff, rj) => {
-            const hash: Hash = createHash("sha256");
-            const fileStream: ReadStream = createReadStream(path);
-
-            fileStream.on("data", chunk => {
-                hash.update(chunk);
-            });
-
-            fileStream.on("end", () => {
-                const testHash: string = hash.digest().toString("hex");
-                if (testHash === IntegrityCheck.DDLC_WIN_SHA256) {
+            FileHash.hash(path, "sha256").then(hash => {
+                if (hash === IntegrityCheck.DDLC_WIN_SHA256) {
                     ff("windows");
-                } else if (testHash === IntegrityCheck.DDLC_MAC_SHA256) {
+                } else if (hash === IntegrityCheck.DDLC_MAC_SHA256) {
                     ff("mac");
                 } else {
                     rj("Integrity check failed");

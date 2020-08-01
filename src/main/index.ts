@@ -48,6 +48,7 @@ import {checkSync, DiskUsage} from "diskusage";
 import IntegrityCheck from "./onboarding/IntegrityCheck";
 import {downloadLanguageFile} from "./i18n/TranslationDownload";
 import FeatureFlags from "./utils/FeatureFlags";
+import SpecialCaseManager from "./mod/SpecialCaseManager";
 
 const DISCORD_ID = "453299645725016074";
 
@@ -72,6 +73,9 @@ const uiURL: string = require("../../ddmm.json").ui;
 
 // Feature flags
 let featureFlags: FeatureFlags = new FeatureFlags();
+
+// Special case data
+const specialCaseManager: SpecialCaseManager = new SpecialCaseManager();
 
 // Mod list
 let modList: ModList;
@@ -284,7 +288,7 @@ ipcMain.on("create install", (ev: IpcMainEvent, install: { folderName: string, i
             appWindow.setClosable(true);
         } else {
             Logger.info("IPC", "Installing mod " + install.mod + " in " + install.folderName);
-            ModInstaller.installMod(install.mod, joinPath(Config.readConfigValue("installFolder"), "installs", install.folderName, "install")).then(() => {
+            ModInstaller.installMod(install.mod, joinPath(Config.readConfigValue("installFolder"), "installs", install.folderName, "install"), specialCaseManager).then(() => {
                 refreshInstalls();
                 appWindow.setClosable(true);
             }).catch((e: Error) => {
@@ -312,7 +316,7 @@ ipcMain.on("unarchive install", (ev: IpcMainEvent, install: { folderName: string
             appWindow.setClosable(true);
             launchInstall(install.folderName);
         } else {
-            ModInstaller.installMod(install.mod, joinPath(Config.readConfigValue("installFolder"), "installs", install.folderName, "install")).then(() => {
+            ModInstaller.installMod(install.mod, joinPath(Config.readConfigValue("installFolder"), "installs", install.folderName, "install"), specialCaseManager).then(() => {
                 refreshInstalls();
                 appWindow.setClosable(true);
                 launchInstall(install.folderName);
