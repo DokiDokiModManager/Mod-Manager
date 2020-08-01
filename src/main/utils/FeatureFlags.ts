@@ -16,7 +16,6 @@ export default class FeatureFlags {
     constructor() {
         fetch(FEATURE_FLAGS_URL).then(res => res.json()).then(flagsData => {
             this.flagsData = flagsData;
-            this.ready = true;
 
             Logger.info("Feature Flags", "Using live feature flag data");
 
@@ -29,6 +28,8 @@ export default class FeatureFlags {
             } catch (e) {
                 Logger.warn("Feature Flags", "No cached feature flag data was found or unable to load. Defaulting all to FALSE!");
             }
+        }).finally(() => {
+            this.ready = true;
         });
     }
 
