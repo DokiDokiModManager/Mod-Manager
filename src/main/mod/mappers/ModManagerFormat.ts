@@ -1,4 +1,3 @@
-import {join as joinPath} from "path";
 import {ModMapper} from "../ModMapper";
 
 /*
@@ -11,7 +10,7 @@ export default class ModManagerFormat extends ModMapper {
     public mapFile(path: string): string {
         const baseFolder = path.split("/")[0];
 
-        if (baseFolder === "game" || baseFolder === "characters") {
+        if (baseFolder === "game" || baseFolder === "characters" || baseFolder === "renpy" || baseFolder === "lib") {
             return path;
         }
 
