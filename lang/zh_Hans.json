@@ -83,7 +83,8 @@
                 "header_new": "开始",
                 "link_install": "安装 DDLC 及模组文件",
                 "header_installed": "已安装",
-                "header_downloaded": "下载的"
+                "header_downloaded": "下载的",
+                "link_home": "主页"
             },
             "install_contextmenu": {
                 "launch": "启动",
@@ -315,10 +316,10 @@
         },
         "tab_about": {
             "title": "关于",
-            "description": "心跳心跳模组管理器是一个由社区开发的项目，旨在帮助您寻找，安装并游玩心跳心跳文学部的模组。",
+            "description": "心跳心跳模组管理器是一个由社区开发的项目，旨在帮助您寻找、安装并游玩由 Team Salvato 开发的免费视觉小说游戏，心跳心跳文学部的模组。",
             "title_disclaimer": "免责声明",
             "disclaimer_1": "心跳心跳模组管理器是心跳心跳文学部的粉丝作品，不隶属于 Team Salvato。根据 Team Salvato 的 IP Guidelines 定义，这是一个粉丝作品。",
-            "disclaimer_2": "心跳心跳模组管理器不对任何可能由于游玩模组或者其他操作而对您的文件或电脑造成的损害负责，确保模组的安全是您的责任。",
+            "disclaimer_2": "心跳心跳模组管理器不对任何可能由于游玩模组或者其他操作而对您的文件或电脑造成的损害负责，请自行确保模组安全。",
             "title_socials": "联系我们",
             "social_discord": "加入 Discord 服务器",
             "social_twitter": "在推特上关注@DokiMod",
