@@ -8,7 +8,7 @@
     "!**/*.rpy"
   ],
   "extraFiles": [
-    "**/*.rpy",
+    "dist/ui/**/*.*",
     {
       "from": "src/renpy/ddmm.rpy",
       "to": "ddmm.rpy"
