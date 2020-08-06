@@ -15,7 +15,8 @@
     }
   ],
   "extraMetadata": {
-    "description": "中国用户的Doki Doki Mod Manager版本"
+    "description": "中国用户的Doki Doki Mod Manager版本",
+    "name": "doki-doki-mod-manager-cn"
   },
   "protocols": [
     {
