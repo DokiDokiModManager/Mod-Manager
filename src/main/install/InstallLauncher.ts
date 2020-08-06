@@ -3,11 +3,11 @@ import {readFileSync, writeFileSync} from "fs";
 import {ChildProcess, spawn} from "child_process";
 import I18n from "../i18n/i18n";
 import Config from "../utils/Config";
-import DiscordManager from "../discord/DiscordManager";
 import SDKDebugConsole from "../sdk/SDKDebugConsole";
 import {LogClass} from "../sdk/LogClass";
 import SDKServer from "../sdk/SDKServer";
 import Logger from "../utils/Logger";
+import IDiscordManager from "../discord/IDiscordManager";
 
 const lang: I18n = new I18n();
 
@@ -25,7 +25,7 @@ export default class InstallLauncher {
      * @param folderName The folder of the install to be launched
      * @param richPresence The Discord rich presence instance to be updated
      */
-    launchInstall(folderName: string, richPresence?: DiscordManager): Promise<any> {
+    launchInstall(folderName: string, richPresence?: IDiscordManager): Promise<any> {
         return new Promise((ff, rj) => {
             const installFolder: string = joinPath(Config.readConfigValue("installFolder"), "installs", folderName);
             let installData: any;

@@ -1,0 +1,61 @@
+{
+  "appId": "space.doki.modmanager",
+  "artifactName": "ddmm-${version}-${os}-${arch}.${ext}",
+  "files": [
+    "!**/*.ts",
+    "!**/*.map",
+    "!lib/constants/china.js",
+    "!**/*.rpy"
+  ],
+  "extraFiles": [
+
+  ],
+  "protocols": [
+    {
+      "name": "Doki Doki Mod Manager",
+      "schemes": [
+        "ddmm"
+      ]
+    }
+  ],
+  "publish": [
+    {
+      "provider": "github",
+      "repo": "Mod-Manager",
+      "owner": "DokiDokiModManager"
+    }
+  ],
+  "win": {
+    "target": [
+      {
+        "target": "nsis-web",
+        "arch": [
+          "x64",
+          "ia32"
+        ]
+      }
+    ]
+  },
+  "linux": {
+    "category": "Game",
+    "maintainer": "zudo@doki.space",
+    "synopsis": "Doki Doki Mod Manager",
+    "target": [
+      "AppImage",
+      "deb",
+      "rpm",
+      "tar.gz"
+    ],
+    "publish": [
+      "github"
+    ]
+  },
+  "mac": {
+    "category": "public.app-category.games",
+    "icon": "build/icon.icns",
+    "target": [
+      "dmg",
+      "zip"
+    ]
+  }
+}

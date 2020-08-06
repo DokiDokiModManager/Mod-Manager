@@ -17,6 +17,7 @@ install:
   - yarn
 
 build_script:
-  -  yarn release -w
+  - yarn release -w
+  - yarn release-china -w
 
 test: off

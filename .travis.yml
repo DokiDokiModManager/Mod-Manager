@@ -30,7 +30,7 @@ matrix:
       - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
     before_install:
       - sudo apt-get update
-      - sudo apt-get install -y gcc-multilib g++-multilib rpm
+#      - sudo apt-get install -y gcc-multilib g++-multilib rpm
 
 #    deploy:
 #      provider: snap
@@ -40,11 +40,13 @@ matrix:
 
 script:
 - |
+  yarn
   if [ "$TRAVIS_OS_NAME" == "linux" ]; then
-    echo $SNAP_TOKEN | snapcraft login --with -
-    yarn && yarn release -l
+    yarn release -l
+    yarn release-china -l
   else
-    yarn && yarn release -m
+    yarn release -m
+    yarn release-china -l
   fi
 
 branches:

@@ -328,6 +328,8 @@ api.downloads.downloadWithInteraction = function (url) {
     ipcRenderer.send("start download", {url, interaction: true});
 }
 
+api.constants = ipcRenderer.sendSync("get constants");
+
 // Application version
 api.version = packageData.version;
 

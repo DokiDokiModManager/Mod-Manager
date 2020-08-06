@@ -75,7 +75,7 @@ export default class Config {
         discordEnabled: true,
         sdkMode: "always",
         updateChannel: "latest",
-        language: "en-GB",
+        language: global.ddmm_constants.default_language,
         localUI: null,
         modBackgrounds: true,
         renpy: {

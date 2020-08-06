@@ -3,7 +3,7 @@
   "productName": "Doki Doki Mod Manager",
   "description": "Mod Manager for Doki Doki Literature Club",
   "author": "Zudo",
-  "version": "4.3.1",
+  "version": "4.4.0",
   "homepage": "https://doki.space",
   "license": "MIT",
   "main": "lib/main/index.js",
@@ -14,7 +14,9 @@
     "build-typescript": "tsc",
     "start": "yarn build-typescript && electron .",
     "start-dev": "yarn build-typescript && electron --inspect=5858 .",
-    "release": "yarn build-typescript && electron-builder"
+    "release": "rimraf dist lib && yarn build-typescript && node build/bundle-ui.js && yarn release-global && yarn release-china",
+    "release-global": "electron-builder --config electron-builder.json",
+    "release-china": "electron-builder --config electron-builder-china.json"
   },
   "dependencies": {
     "7zip-bin": "^5.0.3",
@@ -28,6 +30,7 @@
     "diskusage": "^1.1.3",
     "du": "^1.0.0",
     "electron-updater": "^4.3.4",
+    "express": "^4.17.1",
     "fs-extra": "^9.0.1",
     "fuse.js": "^6.4.1",
     "node-fetch": "^2.6.0",
@@ -43,75 +46,7 @@
     "@types/node": "12.12.53",
     "electron": "^9.1.2",
     "electron-builder": "^22.8.0",
+    "rimraf": "^3.0.2",
     "typescript": "^3.9.7"
-  },
-  "build": {
-    "appId": "space.doki.modmanager",
-    "artifactName": "ddmm-${version}-${os}-${arch}.${ext}",
-    "files": [
-      "!**/*.ts",
-      "!**/*.map",
-      "!**/fontawesome-free/svgs",
-      "!**/fontawesome-free/sprites",
-      "!**/fontawesome-free/svgs",
-      "!**/fontawesome-free/js",
-      "!**/fontawesome-free/less",
-      "!**/fontawesome-free/scss",
-      "!**/vue/"
-    ],
-    "protocols": [
-      {
-        "name": "Doki Doki Mod Manager",
-        "schemes": [
-          "ddmm"
-        ]
-      }
-    ],
-    "publish": [
-      {
-        "provider": "github",
-        "repo": "Mod-Manager",
-        "owner": "DokiDokiModManager"
-      }
-    ],
-    "win": {
-      "target": [
-        {
-          "target": "nsis-web",
-          "arch": [
-            "x64",
-            "ia32"
-          ]
-        }
-      ]
-    },
-    "linux": {
-      "category": "Game",
-      "maintainer": "zudo@doki.space",
-      "synopsis": "Doki Doki Mod Manager",
-      "target": [
-        "AppImage",
-        "deb",
-        "rpm",
-        "tar.gz"
-      ],
-      "publish": [
-        "github"
-      ]
-    },
-    "snap": {
-      "stagePackages": [
-        "default",
-        "libglu1-mesa"
-      ]
-    },
-    "mac": {
-      "category": "public.app-category.games",
-      "icon": "build/icon.icns",
-      "target": [
-        "dmg",
-        "zip"
-      ]
-    }
   }
 }

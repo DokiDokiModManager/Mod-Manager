@@ -15,6 +15,7 @@ export default class SpecialCaseManager {
     private specialCasesData: any = {};
 
     constructor() {
+        if (global.ddmm_constants.special_cases_disabled) return;
         fetch(SPECIAL_CASES_URL).then(res => res.text()).then(casesDataRaw => {
             Logger.info("Special Cases", "Using live special case data");
             const lines = casesDataRaw.split("\n").filter(line => line && !line.startsWith("#"));
@@ -44,6 +45,7 @@ export default class SpecialCaseManager {
     }
 
     async get(path: string): Promise<any[]> {
+        if (global.ddmm_constants.special_cases_disabled) return [];
         const hash = await FileHash.hash(path, "sha1");
         return this.specialCasesData[hash] ? this.specialCasesData[hash] : [];
     }

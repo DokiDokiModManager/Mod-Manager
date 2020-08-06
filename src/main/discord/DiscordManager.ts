@@ -5,10 +5,11 @@ import Timeout = NodeJS.Timeout;
 import I18n from "../i18n/i18n";
 import getDebugString from "../utils/DebugString";
 import Logger from "../utils/Logger";
+import IDiscordManager from "./IDiscordManager";
 
 const lang: I18n = new I18n();
 
-export default class DiscordManager {
+export default class DiscordManager implements IDiscordManager {
 
     private client: any;
 

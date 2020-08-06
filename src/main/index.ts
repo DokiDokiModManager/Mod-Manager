@@ -1,13 +1,25 @@
+import DummyDiscordManager from "./discord/DummyDiscordManager";
+
+try {
+    global.ddmm_constants = require("./constants/china");
+} catch (e) {
+    global.ddmm_constants = require("./constants/global");
+}
+
+console.dir(global.ddmm_constants);
+
 import Logger from "./utils/Logger";
 
 import * as Sentry from "@sentry/electron";
 
-Sentry.init({
-    dsn: "https://bf0edf3f287344d4969e3171c33af4ea@sentry.io/1297252",
-    onFatalError: () => {
-        // workaround for stacktrace being displayed (see getsentry/sentry-electron#146)
-    }
-});
+if (!global.ddmm_constants.sentry_disabled) {
+    Sentry.init({
+        dsn: "https://bf0edf3f287344d4969e3171c33af4ea@sentry.io/1297252",
+        onFatalError: () => {
+            // workaround for stacktrace being displayed (see getsentry/sentry-electron#146)
+        }
+    });
+}
 
 import {
     app,
@@ -49,6 +61,8 @@ import IntegrityCheck from "./onboarding/IntegrityCheck";
 import {downloadLanguageFile} from "./i18n/TranslationDownload";
 import FeatureFlags from "./utils/FeatureFlags";
 import SpecialCaseManager from "./mod/SpecialCaseManager";
+import IDiscordManager from "./discord/IDiscordManager";
+import BundledUIServer from "./utils/BundledUIServer";
 
 const DISCORD_ID = "453299645725016074";
 
@@ -64,7 +78,7 @@ const lastArg: string = process.argv.pop();
 let appWindow: BrowserWindow;
 
 // Discord rich presence
-let richPresence: DiscordManager = new DiscordManager(process.env.DDMM_DISCORD_ID || DISCORD_ID);
+let richPresence: IDiscordManager = global.ddmm_constants.discord_disabled ? new DummyDiscordManager() : new DiscordManager(process.env.DDMM_DISCORD_ID || DISCORD_ID);
 
 richPresence.setIdleStatus();
 
@@ -497,6 +511,11 @@ ipcMain.on("get backgrounds", (ev: IpcMainEvent) => {
     ev.returnValue = readdirSync(joinPath(__dirname, "../../src/renderer/images/backgrounds"));
 });
 
+// Get constants
+ipcMain.on("get constants", (ev: IpcMainEvent) => {
+    ev.returnValue = global.ddmm_constants;
+});
+
 // Crash for debugging
 ipcMain.on("debug crash", () => {
     throw new Error("User forced debug crash with DevTools");
@@ -649,7 +668,6 @@ autoUpdater.on("download-progress", () => {
 autoUpdater.on("update-downloaded", () => {
     appWindow.webContents.send("update status", "downloaded");
 });
-
 
 ipcMain.on("download update", () => {
     autoUpdater.checkForUpdates().then((update: UpdateCheckResult) => {
@@ -827,14 +845,26 @@ app.on("ready", () => {
             appWindow.loadURL(uiURL);
         } else {
             Logger.warn("UI", "Displaying offline message.");
-            appWindow.loadFile(joinPath(__dirname, "../../src/renderer/html/offline.html"))
+            if (global.ddmm_constants.force_bundled_ui) {
+                appWindow.loadFile(joinPath(__dirname, "../../src/renderer/html/offline.html"))
+            } else {
+                BundledUIServer.start().then(port => {
+                    appWindow.loadURL(`http://localhost:${port}/`);
+                });
+            }
         }
     });
 
     if (Config.readConfigValue("localUI")) {
         appWindow.loadURL(Config.readConfigValue("localUI"));
     } else {
-        appWindow.loadURL(uiURL);
+        if (global.ddmm_constants.force_bundled_ui) {
+            BundledUIServer.start().then(port => {
+                appWindow.loadURL(`http://localhost:${port}/`);
+            });
+        } else {
+            appWindow.loadURL(uiURL);
+        }
     }
 
     if (!Config.readConfigValue("installFolder", true)) {
