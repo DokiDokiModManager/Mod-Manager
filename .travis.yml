@@ -43,10 +43,8 @@ script:
   yarn
   if [ "$TRAVIS_OS_NAME" == "linux" ]; then
     yarn release -l
-    yarn release-china -l
   else
     yarn release -m
-    yarn release-china -l
   fi
 
 branches:

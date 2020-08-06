@@ -8,7 +8,8 @@
     "!**/*.rpy"
   ],
   "extraFiles": [
-    "dist/ui/**/*.*"
+    "dist/ui/**/*.*",
+    "**/*.rpy"
   ],
   "extraMetadata": {
     "description": "中国用户的Doki Doki Mod Manager版本"
