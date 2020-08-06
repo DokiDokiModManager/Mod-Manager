@@ -9,7 +9,10 @@
   ],
   "extraFiles": [
     "dist/ui/**/*.*",
-    "**/*.rpy"
+    {
+      "from": "src/renpy/ddmm.rpy",
+      "to": "ddmm.rpy"
+    }
   ],
   "extraMetadata": {
     "description": "中国用户的Doki Doki Mod Manager版本"

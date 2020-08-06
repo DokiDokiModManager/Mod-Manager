@@ -8,7 +8,11 @@
     "!**/*.rpy"
   ],
   "extraFiles": [
-    "**/*.rpy"
+    "**/*.rpy",
+    {
+      "from": "src/renpy/ddmm.rpy",
+      "to": "ddmm.rpy"
+    }
   ],
   "protocols": [
     {
