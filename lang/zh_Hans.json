@@ -112,19 +112,19 @@
             "launch_lock_confirmation": {
                 "message": "正在使用云存储！",
                 "details": "如果你现在启动，可能丢失进度。",
-                "button_affirmative": "还是启动",
+                "button_affirmative": "仍然启动",
                 "button_negative": "取消"
             },
             "launch_noauth_confirmation": {
                 "message": "你没有登录！",
                 "details": "如果你现在启动，你的存档将不会同步到云。",
-                "button_affirmative": "还是启动",
+                "button_affirmative": "仍然启动",
                 "button_negative": "取消"
             },
             "launch_offline_confirmation": {
                 "message": "你处于离线状态！",
                 "details": "如果你现在启动，你的存档将不会同步到云。",
-                "button_affirmative": "还是启动",
+                "button_affirmative": "仍然启动",
                 "button_negative": "取消"
             },
             "mod_delete_confirmation": {
@@ -239,7 +239,7 @@
                 "title": "背景",
                 "subtitle": "通过应用这些背景自定义你的心跳心跳模组管理器。",
                 "button_none": "没有背景",
-                "description_credit": "原始的 DDLC 背景由 Team Salvato 提供。",
+                "description_credit": "原版 DDLC 背景由 Team Salvato 提供。",
                 "description_custom": "如果自定义背景图像被移动或删除，您的背景将被重置。",
                 "checkbox_modbg": "允许模组显示自定义背景（可以来自屏幕截图或来自模组作者）",
                 "button_custom": "自定义背景"
@@ -356,11 +356,11 @@
             "header_save_location": "保存位置",
             "subtitle_last": "您随时可以更改这些选项。",
             "text_hash_mismatch": "请仔细检查您是否选择了正确的文件，然后重试。",
-            "header_hash_mismatch": "这看起来不像正确的文件",
+            "header_hash_mismatch": "这好像不是正确的文件",
             "text_success": "您现在可以进行下一步了！",
             "header_success": "找到了您的 DDLC 副本",
-            "text_version_mismatch": "您可能为您的操作系统下载了错误的 DDLC 版本。请确保您下载了 {0}，然后重试。",
-            "header_version_mismatch": "看上去这不像正常的 zip 文件",
+            "text_version_mismatch": "您可能下载了错误的 DDLC 版本。请确保您下载的是 {0} 这个文件，然后重试。",
+            "header_version_mismatch": "这好像不是正确的 zip 文件",
             "text_directory_selected": "请务必确保您没有选择游戏解压后的副本，然后重试。",
             "header_directory_selected": "您选择了一个文件夹，而不是 DDLC 的 zip 文件",
             "text_validating": "请稍等片刻…",
@@ -430,9 +430,9 @@
         "menu_install_options": {
             "cancel": "取消",
             "uninstall": "卸载",
-            "delete_save": "删除保存的数据",
+            "delete_save": "删除存档",
             "shortcut": "创建快捷方式",
-            "archive": "存档",
+            "archive": "归档",
             "category": "更改类别",
             "rename": "重命名",
             "launch": "启动"
@@ -484,8 +484,8 @@
             "button_negative": "取消",
             "button_affirmative": "卸载",
             "confirmation": "我明白了。",
-            "body_globalsave": "你在 {0} 中保存的数据不会被删除。但是，您需要一份模组的副本来重新安装它。",
-            "body": "你在 {0} 中保存的数据将会被删除，并且需要一份模组的副本来重新安装它。",
+            "body_globalsave": "你在 {0} 中的存档不会被删除，但是，如果需要继续游玩该模组，则需要一份模组的副本。",
+            "body": "你在 {0} 中的存档将会被删除，同时如果需要重新安装模组，将可能需要再次下载。",
             "title": "您确定要卸载它吗？"
         },
         "modal_rename": {
@@ -504,7 +504,7 @@
             "option_broken_mod": "模组不能正常运行",
             "option_bug": "应用程序错误",
             "label_type": "问题类型",
-            "description": "如果您的问题需要直接答复，或者不适合此处列出的任何类别，请改为发送电子邮件。",
+            "description": "如果您需要直接答复，或者您的问题不符合此处列出的类别，请改为发送电子邮件。",
             "title": "报告问题"
         },
         "modal_news": {
@@ -565,7 +565,7 @@
             "error_not_empty": "这个文件夹里有东西。请选择一个空白文件夹。"
         },
         "mod_browse_dialog": {
-            "title": "寻找用来安装的模组",
+            "title": "寻找需要安装的模组",
             "file_format_name": "模组"
         },
         "game_browse_dialog": {
