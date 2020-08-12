@@ -44,10 +44,10 @@ script:
   yarn
   if [ "$TRAVIS_OS_NAME" == "linux" ]; then
     echo $SNAP_TOKEN | snapcraft login --with -
-    yarn release -l
+    yarn release-global -l
     yarn release-china -l
   else
-    yarn release -m
+    yarn release-global -m
     yarn release-china -l
   fi
 
