@@ -12,7 +12,7 @@
             "tab_downloads": "模组"
         },
         "version": {
-            "link_changelog": "有什么新功能？"
+            "link_changelog": "更改了什么？"
         },
         "help_menu": {
             "option_help": "浏览帮助网站",
@@ -47,7 +47,7 @@
             "button_continue": "继续"
         },
         "drop_cover": {
-            "text": "把模组拖入这里以便安装"
+            "text": "把模组拖入这里来安装它"
         },
         "announcement": {
             "button_open": "打开链接",
@@ -112,19 +112,19 @@
             "launch_lock_confirmation": {
                 "message": "正在使用云存储！",
                 "details": "如果你现在启动，可能丢失进度。",
-                "button_affirmative": "还是启动",
+                "button_affirmative": "仍然启动",
                 "button_negative": "取消"
             },
             "launch_noauth_confirmation": {
                 "message": "你没有登录！",
                 "details": "如果你现在启动，你的存档将不会同步到云。",
-                "button_affirmative": "还是启动",
+                "button_affirmative": "仍然启动",
                 "button_negative": "取消"
             },
             "launch_offline_confirmation": {
                 "message": "你处于离线状态！",
                 "details": "如果你现在启动，你的存档将不会同步到云。",
-                "button_affirmative": "还是启动",
+                "button_affirmative": "仍然启动",
                 "button_negative": "取消"
             },
             "mod_delete_confirmation": {
@@ -239,7 +239,7 @@
                 "title": "背景",
                 "subtitle": "通过应用这些背景自定义你的心跳心跳模组管理器。",
                 "button_none": "没有背景",
-                "description_credit": "原始的 DDLC 背景由 Team Salvato 提供。",
+                "description_credit": "原版 DDLC 背景由 Team Salvato 提供。",
                 "description_custom": "如果自定义背景图像被移动或删除，您的背景将被重置。",
                 "checkbox_modbg": "允许模组显示自定义背景（可以来自屏幕截图或来自模组作者）",
                 "button_custom": "自定义背景"
@@ -340,7 +340,7 @@
             "label_waifu": "我最爱的老婆",
             "button_previous": "上一步",
             "button_next": "下一步",
-            "link_safari_warning": "单击此处获得引导式指南",
+            "link_safari_warning": "单击此处查看视觉上的指导",
             "header_download": "下载 DDLC",
             "header_setup": "首次设置",
             "option_waifu_yuri": "Yuri / 优里",
@@ -349,25 +349,25 @@
             "option_waifu_monika": "Monika / 莫妮卡",
             "option_waifu_all": "我全都要！",
             "subtitle_waifu": "不要想太多，选就完事了。",
-            "header_waifu": "谁是您最喜欢的角色？",
+            "header_waifu": "您最喜欢哪个角色？",
             "button_change_save_location": "更改",
             "label_save_location": "保存位置",
-            "text_save_location": "如果你想将你的模组存储在不同的驱动器上，现在你有机会选择了。",
+            "text_save_location": "现在，你可以在这里选择你想要存储模组的驱动器。",
             "header_save_location": "保存位置",
             "subtitle_last": "您随时可以更改这些选项。",
             "text_hash_mismatch": "请仔细检查您是否选择了正确的文件，然后重试。",
-            "header_hash_mismatch": "这看起来不像正确的文件",
+            "header_hash_mismatch": "这好像不是正确的文件",
             "text_success": "您现在可以进行下一步了！",
             "header_success": "找到了您的 DDLC 副本",
-            "text_version_mismatch": "您可能为您的操作系统下载了错误的 DDLC 版本。请确保您下载了 {0}，然后重试。",
-            "header_version_mismatch": "看上去这不像正常的 zip 文件",
+            "text_version_mismatch": "您可能下载了错误的 DDLC 版本。请确保您下载的是 {0} 这个文件，然后重试。",
+            "header_version_mismatch": "这好像不是正确的 zip 文件",
             "text_directory_selected": "请务必确保您没有选择游戏解压后的副本，然后重试。",
             "header_directory_selected": "您选择了一个文件夹，而不是 DDLC 的 zip 文件",
             "text_validating": "请稍等片刻…",
             "text_dropzone": "将已下载的 DDLC 副本拖入此处",
             "text_select": "打开您下载的 DDLC 副本所在的文件夹，然后将该副本拖放到下面的空白处。",
             "button_finish": "完成",
-            "text_safari_warning": "Safari 可能会自动解压下载的游戏。请通过 Safari 的首选项菜单禁用此功能，因为它干扰了模组管理器的设置过程。",
+            "text_safari_warning": "Safari 可能会自动解压下载的游戏，这样会干扰模组管理器的设置过程。请在 Safari 的首选项页面关闭这个功能。",
             "header_safari_warning": "对于 Safari 用户的重要信息",
             "text_modification_warning": "不要对下载的文件进行任何更改。",
             "text_s2_next": "下载完成后，请继续下一步。",
@@ -430,9 +430,9 @@
         "menu_install_options": {
             "cancel": "取消",
             "uninstall": "卸载",
-            "delete_save": "删除保存的数据",
+            "delete_save": "删除存档",
             "shortcut": "创建快捷方式",
-            "archive": "存档",
+            "archive": "归档",
             "category": "更改类别",
             "rename": "重命名",
             "launch": "启动"
@@ -462,7 +462,7 @@
             "title": "启动游戏"
         },
         "modal_installing": {
-            "description": "在游戏安装时，请等待一分钟左右。",
+            "description": "请等待游戏安装一分钟左右。",
             "title": "正在安装"
         },
         "modal_save_delete": {
@@ -484,8 +484,8 @@
             "button_negative": "取消",
             "button_affirmative": "卸载",
             "confirmation": "我明白了。",
-            "body_globalsave": "你在 {0} 中保存的数据不会被删除。但是，您需要一份模组的副本来重新安装它。",
-            "body": "你在 {0} 中保存的数据将会被删除，并且需要一份模组的副本来重新安装它。",
+            "body_globalsave": "你在 {0} 中的存档不会被删除，但是，如果需要继续游玩该模组，则需要一份模组的副本。",
+            "body": "你在 {0} 中的存档将会被删除，同时如果需要重新安装模组，你可能需要再次获取一份副本。",
             "title": "您确定要卸载它吗？"
         },
         "modal_rename": {
@@ -497,14 +497,14 @@
         "modal_issue_report": {
             "button_cancel": "取消",
             "button_submit": "发送报告",
-            "placeholder_body": "请尽可能提供详细内容。如果相关，请提供重现问题的说明。",
+            "placeholder_body": "请尽可能提供详细内容。如果相关的话，也请提供重现问题的说明。",
             "label_body": "问题详情",
             "placeholder_mod": "请粘贴模组网站或下载页面的链接。",
-            "label_mod": "模组的链接",
+            "label_mod": "模组链接",
             "option_broken_mod": "模组不能正常运行",
             "option_bug": "应用程序错误",
             "label_type": "问题类型",
-            "description": "如果您的问题需要直接答复，或者不适合此处列出的任何类别，请改为发送电子邮件。",
+            "description": "如果您需要一个直接的答复，或者您的问题类别没有被列出，请改为发送电子邮件。",
             "title": "报告问题"
         },
         "modal_news": {
@@ -518,15 +518,15 @@
             "button_copy": "将错误日志复制到剪贴板",
             "button_restart": "重新启动",
             "button_continue": "继续",
-            "description_stacktrace": "以下是问题的技术性详情 - 如果您需要寻求帮助，请记下这些详细信息。",
-            "description_general": "请再试一次您之前的操作，如果仍然遇到问题，请告诉我！",
+            "description_stacktrace": "以下是问题的技术性详情。如果您需要寻求帮助，请记下这些详细信息。",
+            "description_general": "请再试一次您之前的操作。如果仍然遇到问题，请联系我！",
             "title_fatal": "糟糕，心跳心跳模组管理器崩溃了",
-            "title_non_fatal": "哎呀，好像哪里出错了"
+            "title_non_fatal": "哎呀，好像有什么出错了"
         },
         "online_error": {
             "button_quit": "退出",
             "button_restart": "重新启动",
-            "body": "在首次启动时，心跳心跳模组管理器需要网络连接以下载资源。请检查网络连接，然后重启。",
+            "body": "心跳心跳模组管理器需要网络连接以在首次启动时下载资源。请检查网络连接，然后重启。",
             "title": "请连接到网络"
         },
         "component_install_folder_selector": {
@@ -535,7 +535,7 @@
             "label": "保存位置"
         },
         "modal_download_starting": {
-            "description": "请跟随出现的任何提示以完成下载",
+            "description": "请遵循出现的任何提示以完成下载",
             "title": "开始下载"
         },
         "modal_mod_delete": {
@@ -565,7 +565,7 @@
             "error_not_empty": "这个文件夹里有东西。请选择一个空白文件夹。"
         },
         "mod_browse_dialog": {
-            "title": "寻找用来安装的模组",
+            "title": "寻找需要安装的模组",
             "file_format_name": "模组"
         },
         "game_browse_dialog": {
@@ -635,7 +635,7 @@
         "discord": {
             "description_version": "版本 {0}",
             "description_active": "正在玩 DDLC",
-            "description_idle": "不在玩任何东西",
+            "description_idle": "没玩什么",
             "status_active": "正在游戏",
             "status_idle": "管理模组"
         }
