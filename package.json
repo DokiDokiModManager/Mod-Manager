@@ -14,9 +14,9 @@
     "build-typescript": "tsc",
     "start": "yarn build-typescript && electron .",
     "start-dev": "yarn build-typescript && electron --inspect=5858 .",
-    "release": "rimraf dist lib && yarn build-typescript && node build/bundle-ui.js && yarn release-global && yarn release-china",
-    "release-global": "electron-builder --config electron-builder.json --publish=always",
-    "release-china": "electron-builder --config electron-builder-china.json --publish=always"
+    "pre-release": "rimraf dist lib && yarn build-typescript && node build/bundle-ui.js",
+    "release-global": "yarn pre-release && electron-builder --config electron-builder.json --publish=always",
+    "release-china": "yarn pre-release && electron-builder --config electron-builder-china.json --publish=always"
   },
   "dependencies": {
     "7zip-bin": "^5.0.3",

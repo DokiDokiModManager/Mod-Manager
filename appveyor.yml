@@ -18,5 +18,5 @@ install:
 
 build_script:
   - yarn release -w
-
+  - yarn release-china -w
 test: false

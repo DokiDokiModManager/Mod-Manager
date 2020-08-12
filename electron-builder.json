@@ -46,6 +46,7 @@
     "synopsis": "Doki Doki Mod Manager",
     "target": [
       "AppImage",
+      "snap",
       "deb",
       "rpm",
       "tar.gz"
@@ -60,6 +61,12 @@
     "target": [
       "dmg",
       "zip"
+    ]
+  },
+  "snap": {
+    "stagePackages": [
+      "default",
+      "libglu1-mesa"
     ]
   }
 }

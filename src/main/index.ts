@@ -1,25 +1,4 @@
-import DummyDiscordManager from "./discord/DummyDiscordManager";
-
-try {
-    global.ddmm_constants = require("./constants/china");
-} catch (e) {
-    global.ddmm_constants = require("./constants/global");
-}
-
-console.dir(global.ddmm_constants);
-
 import Logger from "./utils/Logger";
-
-import * as Sentry from "@sentry/electron";
-
-if (!global.ddmm_constants.sentry_disabled) {
-    Sentry.init({
-        dsn: "https://bf0edf3f287344d4969e3171c33af4ea@sentry.io/1297252",
-        onFatalError: () => {
-            // workaround for stacktrace being displayed (see getsentry/sentry-electron#146)
-        }
-    });
-}
 
 import {
     app,
@@ -33,6 +12,36 @@ import {
     shell,
     DownloadItem
 } from "electron";
+
+if (!app.isPackaged) {
+    if (process.env.DDMM_CHINA) {
+        Logger.debug("Localised Mode", "DDMM_CHINA set, using China constants");
+        global.ddmm_constants = require("./constants/china");
+    } else {
+        Logger.debug("Localised Mode", "Defaulting to global mode");
+        global.ddmm_constants = require("./constants/global");
+    }
+} else {
+    try {
+        global.ddmm_constants = require("./constants/china");
+    } catch (e) {
+        global.ddmm_constants = require("./constants/global");
+    }
+}
+
+console.dir(global.ddmm_constants);
+
+import * as Sentry from "@sentry/electron";
+
+if (!global.ddmm_constants.sentry_disabled) {
+    Sentry.init({
+        dsn: "https://bf0edf3f287344d4969e3171c33af4ea@sentry.io/1297252",
+        onFatalError: () => {
+            // workaround for stacktrace being displayed (see getsentry/sentry-electron#146)
+        }
+    });
+}
+
 import {copyFileSync, existsSync, mkdirpSync, move, readdirSync, removeSync, unlinkSync} from "fs-extra";
 import {join as joinPath} from "path";
 
@@ -43,6 +52,7 @@ if (existsSync(joinPath(app.getPath("appData"), "Doki Doki Mod Manager!"))) {
     app.setPath("userData", joinPath(app.getPath("appData"), "DokiDokiModManager"));
 }
 
+import DummyDiscordManager from "./discord/DummyDiscordManager";
 import {autoUpdater, UpdateCheckResult} from "electron-updater";
 import {sync as getDataURI} from "datauri";
 import ModList from "./mod/ModList";

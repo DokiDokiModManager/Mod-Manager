@@ -17,10 +17,10 @@ matrix:
     node_js: "10"
     sudo: required
     dist: bionic
-#    addons:
-#      snaps:
-#        - name: snapcraft
-#          confinement: classic
+    addons:
+      snaps:
+        - name: snapcraft
+          confinement: classic
 #        - name: multipass
 #          confinement: classic
 #          channel: beta
@@ -28,23 +28,27 @@ matrix:
     env:
       - ELECTRON_CACHE=$HOME/.cache/electron
       - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+      - SNAPCRAFT_BUILD_ENVIRONMENT=host
     before_install:
       - sudo apt-get update
       - sudo apt-get install -y rpm
 
-#    deploy:
-#      provider: snap
-#      snap: dist/ddmm-*.snap
-#      channel: edge
-#      skip_cleanup: true
+    deploy:
+      provider: snap
+      snap: dist/ddmm-*.snap
+      channel: edge
+      skip_cleanup: true
 
 script:
 - |
   yarn
   if [ "$TRAVIS_OS_NAME" == "linux" ]; then
+    echo $SNAP_TOKEN | snapcraft login --with -
     yarn release -l
+    yarn release-china -l
   else
     yarn release -m
+    yarn release-china -l
   fi
 
 branches:
