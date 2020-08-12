@@ -17,7 +17,7 @@ function runCommand(command) {
 }
 
 (async () => {
-    console.log("Bundling UI for Chinese users");
+    console.log("Bundling UI");
     await fs.mkdirp(cwd);
     console.log("Cloning");
     await runCommand("git clone https://github.com/DokiDokiModManager/DDMM-UI ui");
