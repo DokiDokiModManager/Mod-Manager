@@ -52,7 +52,8 @@
       "tar.gz"
     ],
     "publish": [
-      "github"
+      "github",
+      "snap"
     ]
   },
   "mac": {

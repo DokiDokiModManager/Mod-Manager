@@ -33,12 +33,6 @@ matrix:
       - sudo apt-get update
       - sudo apt-get install -y rpm
 
-    deploy:
-      provider: snap
-      snap: dist/ddmm-*.snap
-      channel: edge
-      skip_cleanup: true
-
 script:
 - |
   yarn
