@@ -1,112 +1,112 @@
 {
     "renderer": {
         "online_error": {
-            "title": "",
-            "body": "",
-            "button_restart": "",
-            "button_quit": ""
+            "title": "請連接到網路",
+            "body": "心跳心跳模組管理器需要網絡連接以在首次啟動時下載資源。請檢查網絡連接，然後重啟。",
+            "button_restart": "重新啟動",
+            "button_quit": "退出"
         },
         "modal_error": {
-            "title_non_fatal": "",
-            "title_fatal": "",
-            "description_general": "",
-            "description_stacktrace": "",
-            "button_continue": "",
-            "button_restart": "",
-            "button_copy": ""
+            "title_non_fatal": "糟糕，好像有什麼出錯了",
+            "title_fatal": "糟糕，心跳心跳模組管理器崩潰了",
+            "description_general": "請再試一次你之前的操作。如果仍然遇到問題，請聯繫我！",
+            "description_stacktrace": "以下是問題的技術性詳情。如果您需要尋求幫助，請記下這些詳細信息。",
+            "button_continue": "繼續",
+            "button_restart": "重新啟動",
+            "button_copy": "將錯誤日誌複製到剪貼板"
         },
         "modal_language_switch": {
-            "title": "",
-            "description": ""
+            "title": "正在切換語言",
+            "description": "请稍等一下…"
         },
         "modal_download_starting": {
-            "title": "",
-            "description": ""
+            "title": "開始下載",
+            "description": "請遵循出現的任何提示以完成下載"
         },
         "tabs": {
-            "tab_play": "",
-            "tab_downloads": "",
-            "tab_options": "",
-            "tab_about": "",
-            "tab_experiments": ""
+            "tab_play": "開始遊戲",
+            "tab_downloads": "模組",
+            "tab_options": "選項",
+            "tab_about": "關於",
+            "tab_experiments": "實驗"
         },
         "version": {
-            "link_changelog": ""
+            "link_changelog": "什麼新功能？"
         },
         "help_menu": {
-            "option_help": "",
-            "option_feedback": "",
-            "option_discord": ""
+            "option_help": "瀏覽幫助網站",
+            "option_feedback": "發送私信反饋",
+            "option_discord": "加入我們的 Discord 伺服器"
         },
         "user_menu": {
-            "option_rename": "",
-            "option_logout": ""
+            "option_rename": "更改用戶名",
+            "option_logout": "登出"
         },
         "window_controls": {
-            "close": "",
-            "maximise": "",
-            "minimise": "",
-            "issue_report": "",
-            "guide": "",
-            "discord": "",
-            "patreon": ""
+            "close": "關閉",
+            "maximise": "最大化",
+            "minimise": "最小化",
+            "issue_report": "報告問題",
+            "guide": "用戶指南 （英文）",
+            "discord": "加入 Discord 伺服器",
+            "patreon": "在 Patreon 支持心跳心跳模組管理器"
         },
         "drop_cover": {
-            "text": ""
+            "text": "把模組拖入這裡來安裝它"
         },
         "announcement": {
-            "button_open": "",
-            "button_close": ""
+            "button_open": "打開鏈接",
+            "button_close": "關閉"
         },
         "onboarding_v4": {
-            "text_welcome": "",
-            "button_start": "",
-            "text_scanning": "",
-            "header_setup": "",
-            "subtitle_careful": "",
-            "header_download": "",
-            "text_download": "",
-            "button_ddlc_website": "",
-            "text_s2_next": "",
-            "text_modification_warning": "",
-            "header_safari_warning": "",
-            "text_safari_warning": "",
-            "link_safari_warning": "",
-            "button_next": "",
-            "button_previous": "",
-            "button_finish": "",
-            "text_select": "",
-            "text_dropzone": "",
-            "text_validating": "",
-            "header_directory_selected": "",
-            "text_directory_selected": "",
-            "header_version_mismatch": "",
-            "text_version_mismatch": "",
-            "header_success": "",
-            "text_success": "",
-            "header_hash_mismatch": "",
-            "text_hash_mismatch": "",
-            "subtitle_last": "",
-            "header_save_location": "",
-            "text_save_location": "",
-            "header_waifu": "",
-            "subtitle_waifu": "",
-            "label_waifu": "",
-            "option_waifu_all": "",
-            "option_waifu_monika": "",
-            "option_waifu_natsuki": "",
-            "option_waifu_sayori": "",
-            "option_waifu_yuri": ""
+            "text_welcome": "歡迎使用心跳心跳模組管理器至今最好的版本。",
+            "button_start": "開始使用",
+            "text_scanning": "請稍候…",
+            "header_setup": "首次設置",
+            "subtitle_careful": "請仔細閱讀以下說明。",
+            "header_download": "下載心跳心跳文學部",
+            "text_download": "請訪問心跳心跳文學部網站，單擊“Download Now”（立即下載），並按照說明進行操作。當您被詢問時，選擇名為 {0} 的文件，並將其保存在容易找到的地方。",
+            "button_ddlc_website": "訪問心跳心跳文學部網站",
+            "text_s2_next": "下載完成後，請繼續下一步。",
+            "text_modification_warning": "不要對下載的文件進行任何更改。",
+            "header_safari_warning": "對於 Safari 用戶的重要信息",
+            "text_safari_warning": "Safari 可能會自動解壓下載的遊戲，這樣會干擾模組管理器的設置過程。請在 Safari 的首選項頁面關閉這個功能。",
+            "link_safari_warning": "單擊此處查看視覺上的指導",
+            "button_next": "下一步",
+            "button_previous": "上一步",
+            "button_finish": "完成",
+            "text_select": "打開您下載的心跳心跳文學部副本所在的文件夾，然後將該副本拖放到下面的空白處。",
+            "text_dropzone": "將已下載的心跳心跳文學部副本拖入此處",
+            "text_validating": "請稍候片刻…",
+            "header_directory_selected": "您選擇了一個文件夾，而不是 ddlc-win 的 zip 文件",
+            "text_directory_selected": "請最佳確保您沒有選擇遊戲解壓後的副本，然後重試。",
+            "header_version_mismatch": "這好像不是正確的zip檔案",
+            "text_version_mismatch": "您可能下載了錯誤的心跳心跳文學部版本。請確保您下載的是{0}這個文件，然後重試。",
+            "header_success": "找到了你的心跳心跳文學部副本",
+            "text_success": "你現在可以進行下一步了！",
+            "header_hash_mismatch": "這好像不是正確的文件",
+            "text_hash_mismatch": "請仔細檢查您是否選擇了正確的文件，然後重試。",
+            "subtitle_last": "您隨時可以更改這些選項。",
+            "header_save_location": "保存位置",
+            "text_save_location": "現在，你可以在這裡選擇你想要的存儲模組的驅動器。",
+            "header_waifu": "你最喜歡這個角色？",
+            "subtitle_waifu": "不要想太多，選完就可以了。",
+            "label_waifu": "我最愛的老婆",
+            "option_waifu_all": "全都我也喜歡！",
+            "option_waifu_monika": "莫妮卡 (Monika)",
+            "option_waifu_natsuki": "夏樹 (Natsuki)",
+            "option_waifu_sayori": "紗世里 (Sayori)",
+            "option_waifu_yuri": "優里 (Yuri)"
         },
         "modal_news": {
-            "button": ""
+            "button": "完成"
         },
         "modal_issue_report": {
-            "title": "",
-            "description": "",
-            "label_type": "",
-            "option_bug": "",
-            "option_broken_mod": "",
+            "title": "報告問題",
+            "description": "如果您需要一個直接的答复，或者您的問題類別沒有被列出，請轉換發送電子郵件。",
+            "label_type": "問題類型",
+            "option_bug": "應用程序錯誤",
+            "option_broken_mod": "模組不能正常運行",
             "label_mod": "",
             "placeholder_mod": "",
             "label_body": "",
