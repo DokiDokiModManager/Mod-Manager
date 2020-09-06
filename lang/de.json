@@ -36,7 +36,10 @@
                 "downloaded": "Ein Update ist bereit zu installieren, wenn du beendest."
             },
             "language": "Sprache",
-            "issue_report": "Ein Problem melden"
+            "issue_report": "Ein Problem melden",
+            "discord": "Tritt dem Discord Server bei",
+            "guide": "Benutzerhandbuch",
+            "patreon": "Unterstütze Doki Doki Mod Manager auf Patreon"
         },
         "crash_cover": {
             "button_close": "Beenden",
@@ -159,7 +162,8 @@
                 "title_mas_export": "Nehmen Sie Monika mit",
                 "description_achievement_not_earned": "Unvollständig",
                 "description_achievement_earned": "Komplett",
-                "tag_archived": "Archiviert"
+                "tag_archived": "Archiviert",
+                "title_install_failed": "Wurde die Mod vollständig installiert?"
             },
             "mod": {
                 "button_install": "Installieren",
@@ -510,6 +514,15 @@
         },
         "modal_news": {
             "button": "Fertig"
+        },
+        "modal_mod_delete": {
+            "button_negative": "Abbrechen",
+            "button_affirmative": "Installieren",
+            "body": "Sie müssten {0} erneut herunterladen, wenn Sie es wieder installieren wollen.",
+            "title": "Wollen Sie diese Mod wirklich löschen?"
+        },
+        "modal_download_starting": {
+            "title": "Download startet"
         }
     },
     "main": {
