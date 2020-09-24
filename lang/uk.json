@@ -196,11 +196,12 @@
                 "link_sdk": "",
                 "link_discord": "",
                 "header_application": "",
-                "link_updates": "",
+                "link_updates": "Оновлення",
                 "link_storage": "",
                 "header_developers": "",
                 "link_testing": "",
-                "link_debug": ""
+                "link_debug": "",
+                "link_language": "Мова"
             },
             "section_backgrounds": {
                 "title": "",
@@ -222,13 +223,20 @@
                 "button_change": ""
             },
             "section_updates": {
-                "title": "",
-                "subtitle": "",
-                "description_current_version": "",
+                "title": "Оновлення",
+                "subtitle": "Отримайте останню версію Doki Doki Mod Manager.",
+                "description_current_version": "Поточна версія: {0}",
                 "label_channel": "",
                 "option_stable": "",
                 "option_beta": "",
-                "button_check": ""
+                "button_check": "Перевірити знову",
+                "button_download": "Завантажити оновлення",
+                "description_error": "Зараз перевірити оновлення неможливо, будь ласка спробуйте пізніше.",
+                "description_downloaded": "Оновлення було завантажено, та буде встановлено після виходу з програми.",
+                "description_downloading": "Завантажується оновлення - Ви можете користуватися програмою, поки чекаєте.",
+                "description_no_update": "Ви користуєтесь останньою версією Doki Doki Mod Manager.",
+                "description_has_update": "Наявна нова версія Doki Doki Mod Manager!",
+                "description_latest_version": "Остання версія: {0}"
             },
             "section_sdk": {
                 "title": "",
@@ -254,6 +262,11 @@
             "section_debug": {
                 "title": "",
                 "subtitle": ""
+            },
+            "section_language": {
+                "label_language": "Мова",
+                "link_contribute": "Чи можете Ви допомогти з перекладом Doki Doki Mod Manager? Натисніть, щоб приєднатися до проекту перекладу спільнотою.",
+                "title": "Мова"
             }
         },
         "tab_about": {
@@ -271,7 +284,18 @@
             "description_support": "",
             "support_donate": "",
             "support_steelseries": "",
-            "support_code": ""
+            "support_code": "",
+            "link_weblate": "Допоможіть перекласти Doki Doki Mod Manager на Вашу рідну мову - відвідайте домашню сторінку проекта"
+        },
+        "modal_error": {
+            "title_fatal": "Ой, Doki Doki Mod Manager впав",
+            "title_non_fatal": "Ой, щось пішло не так"
+        },
+        "online_error": {
+            "button_quit": "Вихід",
+            "button_restart": "Перезапустити",
+            "body": "Doki Doki Mod Manager потребує інтернет-з'єднання для завантаження ресурсів у перший раз. Будь ласка, перевірте Ваше інтернет-з'єднання та перезапустіть програму.",
+            "title": "Будь ласка, з'єднайтеся з Інтернетом"
         }
     },
     "main": {
