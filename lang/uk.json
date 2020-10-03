@@ -242,20 +242,20 @@
                 "title": "",
                 "subtitle": "",
                 "description_mode": "",
-                "checkbox_always": "",
+                "checkbox_always": "Завжди (рекомендовано)",
                 "checkbox_specified": "",
-                "checkbox_never": ""
+                "checkbox_never": "Ніколи"
             },
             "section_discord": {
                 "title": "",
                 "subtitle": "",
-                "description": "",
+                "description": "Зміни будуть прийняті після перезапуску Doki Doki Mod Manager.",
                 "button_enable": "",
                 "button_disable": ""
             },
             "section_testing": {
-                "title": "",
-                "subtitle": "",
+                "title": "Відлажувальні налаштування",
+                "subtitle": "Увімкнути відлажувальні налаштування для розробників.",
                 "button_enable": "",
                 "button_disable": ""
             },
@@ -266,7 +266,8 @@
             "section_language": {
                 "label_language": "Мова",
                 "link_contribute": "Чи можете Ви допомогти з перекладом Doki Doki Mod Manager? Натисніть, щоб приєднатися до проекту перекладу спільнотою.",
-                "title": "Мова"
+                "title": "Мова",
+                "subtitle": "Оберіть Вашу бажану мову. Переклади можуть не бути повністю завершеними або вірними."
             }
         },
         "tab_about": {
