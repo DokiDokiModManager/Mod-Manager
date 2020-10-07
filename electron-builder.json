@@ -53,7 +53,7 @@
     ],
     "publish": [
       "github",
-      "snapcraft"
+      "snap"
     ]
   },
   "mac": {
