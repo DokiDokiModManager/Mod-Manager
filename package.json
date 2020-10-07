@@ -3,7 +3,7 @@
   "productName": "Doki Doki Mod Manager",
   "description": "Mod Manager for Doki Doki Literature Club",
   "author": "Zudo",
-  "version": "4.4.0",
+  "version": "4.4.1",
   "homepage": "https://doki.space",
   "license": "MIT",
   "main": "lib/main/index.js",
