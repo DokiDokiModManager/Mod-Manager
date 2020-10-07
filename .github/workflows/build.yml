@@ -28,6 +28,7 @@ jobs:
         if: startsWith(matrix.os, 'ubuntu')
         with:
           snapcraft_token: ${{ secrets.snapcraft_token }}
+          use_lxd: true
 
       - name: Build and release
         uses: samuelmeuli/action-electron-builder@v1
