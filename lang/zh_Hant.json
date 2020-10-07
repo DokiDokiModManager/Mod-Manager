@@ -1,0 +1,500 @@
+{
+    "renderer": {
+        "online_error": {
+            "title": "請連接到網路",
+            "body": "心跳心跳模組管理器需要網絡連接以在首次啟動時下載資源。請檢查網絡連接，然後重啟。",
+            "button_restart": "重新啟動",
+            "button_quit": "退出"
+        },
+        "modal_error": {
+            "title_non_fatal": "糟糕，好像有什麼出錯了",
+            "title_fatal": "糟糕，心跳心跳模組管理器崩潰了",
+            "description_general": "請再試一次你之前的操作。如果仍然遇到問題，請聯繫我！",
+            "description_stacktrace": "以下是問題的技術性詳情。如果您需要尋求幫助，請記下這些詳細信息。",
+            "button_continue": "繼續",
+            "button_restart": "重新啟動",
+            "button_copy": "將錯誤日誌複製到剪貼板"
+        },
+        "modal_language_switch": {
+            "title": "正在切換語言",
+            "description": "请稍等一下…"
+        },
+        "modal_download_starting": {
+            "title": "開始下載",
+            "description": "請遵循出現的任何提示以完成下載"
+        },
+        "tabs": {
+            "tab_play": "開始遊戲",
+            "tab_downloads": "模組",
+            "tab_options": "選項",
+            "tab_about": "關於",
+            "tab_experiments": "實驗"
+        },
+        "version": {
+            "link_changelog": "什麼新功能？"
+        },
+        "help_menu": {
+            "option_help": "瀏覽幫助網站",
+            "option_feedback": "發送私信反饋",
+            "option_discord": "加入我們的 Discord 伺服器"
+        },
+        "user_menu": {
+            "option_rename": "更改用戶名",
+            "option_logout": "登出"
+        },
+        "window_controls": {
+            "close": "關閉",
+            "maximise": "最大化",
+            "minimise": "最小化",
+            "issue_report": "報告問題",
+            "guide": "用戶指南 （英文）",
+            "discord": "加入 Discord 伺服器",
+            "patreon": "在 Patreon 支持心跳心跳模組管理器"
+        },
+        "drop_cover": {
+            "text": "把模組拖入這裡來安裝它"
+        },
+        "announcement": {
+            "button_open": "打開鏈接",
+            "button_close": "關閉"
+        },
+        "onboarding_v4": {
+            "text_welcome": "歡迎使用心跳心跳模組管理器至今最好的版本。",
+            "button_start": "開始使用",
+            "text_scanning": "請稍候…",
+            "header_setup": "首次設置",
+            "subtitle_careful": "請仔細閱讀以下說明。",
+            "header_download": "下載心跳心跳文學部",
+            "text_download": "請訪問心跳心跳文學部網站，單擊“Download Now”（立即下載），並按照說明進行操作。當您被詢問時，選擇名為 {0} 的文件，並將其保存在容易找到的地方。",
+            "button_ddlc_website": "訪問心跳心跳文學部網站",
+            "text_s2_next": "下載完成後，請繼續下一步。",
+            "text_modification_warning": "不要對下載的文件進行任何更改。",
+            "header_safari_warning": "對於 Safari 用戶的重要信息",
+            "text_safari_warning": "Safari 可能會自動解壓下載的遊戲，這樣會干擾模組管理器的設置過程。請在 Safari 的首選項頁面關閉這個功能。",
+            "link_safari_warning": "單擊此處查看視覺上的指導",
+            "button_next": "下一步",
+            "button_previous": "上一步",
+            "button_finish": "完成",
+            "text_select": "打開您下載的心跳心跳文學部副本所在的文件夾，然後將該副本拖放到下面的空白處。",
+            "text_dropzone": "將已下載的心跳心跳文學部副本拖入此處",
+            "text_validating": "請稍候片刻…",
+            "header_directory_selected": "您選擇了一個文件夾，而不是 ddlc-win 的 zip 文件",
+            "text_directory_selected": "請最佳確保您沒有選擇遊戲解壓後的副本，然後重試。",
+            "header_version_mismatch": "這好像不是正確的zip檔案",
+            "text_version_mismatch": "您可能下載了錯誤的心跳心跳文學部版本。請確保您下載的是{0}這個文件，然後重試。",
+            "header_success": "找到了你的心跳心跳文學部副本",
+            "text_success": "你現在可以進行下一步了！",
+            "header_hash_mismatch": "這好像不是正確的文件",
+            "text_hash_mismatch": "請仔細檢查您是否選擇了正確的文件，然後重試。",
+            "subtitle_last": "您隨時可以更改這些選項。",
+            "header_save_location": "保存位置",
+            "text_save_location": "現在，你可以在這裡選擇你想要的存儲模組的驅動器。",
+            "header_waifu": "你最喜歡這個角色？",
+            "subtitle_waifu": "不要想太多，選完就可以了。",
+            "label_waifu": "我最愛的老婆",
+            "option_waifu_all": "全都我也喜歡！",
+            "option_waifu_monika": "莫妮卡 (Monika)",
+            "option_waifu_natsuki": "夏樹 (Natsuki)",
+            "option_waifu_sayori": "紗世里 (Sayori)",
+            "option_waifu_yuri": "優里 (Yuri)"
+        },
+        "modal_news": {
+            "button": "完成"
+        },
+        "modal_issue_report": {
+            "title": "報告問題",
+            "description": "如果您需要一個直接的答复，或者您的問題類別沒有被列出，請轉換發送電子郵件。",
+            "label_type": "問題類型",
+            "option_bug": "應用程序錯誤",
+            "option_broken_mod": "模組不能正常運行",
+            "label_mod": "",
+            "placeholder_mod": "",
+            "label_body": "",
+            "placeholder_body": "",
+            "button_submit": "",
+            "button_cancel": ""
+        },
+        "modal_rename": {
+            "title": "",
+            "body": "",
+            "button_affirmative": "",
+            "button_negative": ""
+        },
+        "modal_uninstall": {
+            "title": "",
+            "body": "",
+            "body_globalsave": "",
+            "confirmation": "",
+            "button_affirmative": "",
+            "button_negative": ""
+        },
+        "modal_archive": {
+            "title": "",
+            "body": "",
+            "body_warning": "",
+            "confirmation": "",
+            "button_affirmative": "",
+            "button_negative": ""
+        },
+        "modal_save_delete": {
+            "title": "",
+            "body": "",
+            "confirmation": "",
+            "button_affirmative": "",
+            "button_negative": ""
+        },
+        "modal_installing": {
+            "title": "",
+            "description": ""
+        },
+        "modal_unarchive": {
+            "title": "",
+            "description": "",
+            "button_launch": "",
+            "button_cancel": ""
+        },
+        "modal_unarchiving": {
+            "title": "",
+            "description": ""
+        },
+        "modal_category": {
+            "title": "",
+            "label_none": "",
+            "placeholder_category": "",
+            "button_save": "",
+            "button_cancel": ""
+        },
+        "modal_running": {
+            "title": "",
+            "description": "",
+            "button_browse": "",
+            "link_more": "",
+            "button_kill": ""
+        },
+        "menu_install_options": {
+            "launch": "",
+            "rename": "",
+            "category": "",
+            "archive": "",
+            "shortcut": "",
+            "delete_save": "",
+            "uninstall": "",
+            "cancel": ""
+        },
+        "menu_mod_options": {
+            "install": "",
+            "delete": "",
+            "cancel": ""
+        },
+        "modal_mod_delete": {
+            "title": "",
+            "body": "",
+            "button_affirmative": "",
+            "button_negative": ""
+        },
+        "modal_mod_preview": {
+            "button_close": "",
+            "button_download_direct": "",
+            "button_download_external": "",
+            "text_loading": ""
+        },
+        "tab_mods": {
+            "list": {
+                "placeholder_search": "",
+                "header_new": "",
+                "link_install": "",
+                "link_home": "",
+                "header_installed": "",
+                "header_downloaded": ""
+            },
+            "launch_lock_confirmation": {
+                "message": "",
+                "details": "",
+                "button_affirmative": "",
+                "button_negative": ""
+            },
+            "launch_noauth_confirmation": {
+                "message": "",
+                "details": "",
+                "button_affirmative": "",
+                "button_negative": ""
+            },
+            "launch_offline_confirmation": {
+                "message": "",
+                "details": "",
+                "button_affirmative": "",
+                "button_negative": ""
+            },
+            "mod_delete_confirmation": {
+                "message": "",
+                "details": "",
+                "button_affirmative": "",
+                "button_negative": ""
+            },
+            "install": {
+                "button_launch": "",
+                "button_settings": "",
+                "tag_global_save": "",
+                "tag_sdk": "",
+                "tag_archived": "",
+                "title_achievements": "",
+                "description_achievements": "",
+                "description_achievements_complete": "",
+                "description_achievement_earned": "",
+                "description_achievement_not_earned": "",
+                "title_screenshots_none": "",
+                "title_screenshots_one": "",
+                "title_screenshots": "",
+                "description_screenshots": "",
+                "description_sdk": "",
+                "description_author": "",
+                "link_discord": "",
+                "link_website": "",
+                "description_external": "",
+                "title_mas_export": "",
+                "description_mas_export": "",
+                "button_mas_export": "",
+                "button_mas_import": "",
+                "title_install_failed": "",
+                "description_install_failed": "",
+                "link_troubleshooting": "",
+                "title_singleton_error": "",
+                "description_singleton_error": "",
+                "description_install_failed_launch_again": ""
+            },
+            "mod": {
+                "button_install": "",
+                "button_settings": "",
+                "description_external": ""
+            },
+            "install_creation": {
+                "title": "",
+                "status_exists": "",
+                "warning_no_space": "",
+                "label_install_name": "",
+                "placeholder_install_name": "",
+                "label_folder_name": "",
+                "label_has_mod": "",
+                "label_mod": "",
+                "option_local_save": "",
+                "option_global_save": "",
+                "modlist_none": "",
+                "modlist_library": "",
+                "modlist_custom": "",
+                "description_mod": "",
+                "warning_global_save": "",
+                "button_install": "",
+                "button_installing": ""
+            }
+        },
+        "tab_options": {
+            "list": {
+                "header_appearance": "",
+                "link_background": "",
+                "link_advanced_appearance": "",
+                "header_account": "",
+                "link_cloudsaves": "",
+                "link_accmanagement": "",
+                "header_enhancements": "",
+                "link_sdk": "",
+                "link_discord": "",
+                "header_application": "",
+                "link_updates": "",
+                "link_storage": "",
+                "link_language": "",
+                "header_developers": "",
+                "link_testing": ""
+            },
+            "section_backgrounds": {
+                "title": "",
+                "subtitle": "",
+                "button_none": "",
+                "button_custom": "",
+                "checkbox_modbg": "",
+                "description_credit": "",
+                "description_custom": ""
+            },
+            "section_advanced_appearance": {
+                "title": "",
+                "subtitle": "",
+                "button_enable_sysborders": ""
+            },
+            "section_storage": {
+                "title": "",
+                "subtitle": "",
+                "description": "",
+                "description_moving": "",
+                "button_confirm": ""
+            },
+            "section_updates": {
+                "title": "",
+                "subtitle": "",
+                "description_current_version": "",
+                "description_latest_version": "",
+                "description_has_update": "",
+                "description_no_update": "",
+                "description_downloading": "",
+                "description_downloaded": "",
+                "description_error": "",
+                "button_check": "",
+                "button_download": ""
+            },
+            "section_language": {
+                "title": "",
+                "subtitle": "",
+                "link_contribute": "",
+                "label_language": ""
+            },
+            "section_sdk": {
+                "title": "",
+                "subtitle": "",
+                "description_mode": "",
+                "checkbox_always": "",
+                "checkbox_specified": "",
+                "checkbox_never": ""
+            },
+            "section_discord": {
+                "title": "",
+                "subtitle": "",
+                "description": "",
+                "button_enable": ""
+            },
+            "section_testing": {
+                "title": "",
+                "subtitle": "",
+                "checkbox_logging": "",
+                "header_mod_debug": "",
+                "description_mod_debug": "",
+                "header_renpy": "",
+                "description_renpy": "",
+                "checkbox_renpy_skipsplash": "",
+                "checkbox_renpy_skipmenu": ""
+            }
+        },
+        "tab_about": {
+            "title": "",
+            "description": "",
+            "title_disclaimer": "",
+            "disclaimer_1": "",
+            "disclaimer_2": "",
+            "title_socials": "",
+            "social_discord": "",
+            "social_reddit": "",
+            "social_email": "",
+            "title_translators": "",
+            "title_v4_beta": "",
+            "title_patreon": "",
+            "link_patreon": "",
+            "link_weblate": ""
+        },
+        "tab_downloads": {
+            "list": {
+                "header_library": "",
+                "link_downloaded": "",
+                "link_downloads": "",
+                "header_browse": "",
+                "link_featured": "",
+                "link_ddmc": ""
+            },
+            "downloaded": {
+                "title": "",
+                "button_install": "",
+                "button_options": "",
+                "description_type": "",
+                "placeholder_search": "",
+                "message_none": ""
+            },
+            "downloads": {
+                "title": "",
+                "status_text_downloading": "",
+                "status_text_downloading_uncertain": "",
+                "message_none": ""
+            },
+            "featured": {
+                "title": "",
+                "button_download": ""
+            },
+            "store": {
+                "title_ddmc": "",
+                "description_ddmc": "",
+                "link_ddmc": "",
+                "description_featured": "",
+                "text_loading": "",
+                "error_loading": "",
+                "placeholder_search": ""
+            }
+        },
+        "component_install_folder_selector": {
+            "label": "",
+            "button_select": "",
+            "error_disk_space": ""
+        }
+    },
+    "main": {
+        "discord": {
+            "status_idle": "",
+            "status_active": "",
+            "description_idle": "",
+            "description_active": "",
+            "description_version": ""
+        },
+        "jumplist": {
+            "task_launch": ""
+        },
+        "running_cover": {
+            "title_running": "",
+            "title_crashed": "",
+            "button_browse": "",
+            "button_close": "",
+            "description_running": "",
+            "install_missing": "",
+            "install_corrupt": "",
+            "install_crashed": ""
+        },
+        "move_install": {
+            "title": "",
+            "error_not_empty": "",
+            "error_read": ""
+        },
+        "mod_browse_dialog": {
+            "title": "",
+            "file_format_name": ""
+        },
+        "game_browse_dialog": {
+            "title": "",
+            "file_format_name": ""
+        },
+        "shortcut_dialog": {
+            "title": "",
+            "file_format_name": ""
+        },
+        "import_mas": {
+            "title": "",
+            "filter": ""
+        },
+        "export_mas": {
+            "title": "",
+            "filter": ""
+        },
+        "redownload_confirmation": {
+            "message": "",
+            "detail": "",
+            "button_confirm": "",
+            "button_cancel": ""
+        },
+        "errors": {
+            "dev_ui_load_fail": {
+                "title": "",
+                "body": ""
+            },
+            "renderer_freeze": {
+                "title": "",
+                "body": ""
+            },
+            "move_install": {
+                "title": "",
+                "body": ""
+            }
+        }
+    }
+}

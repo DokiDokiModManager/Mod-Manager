@@ -12,7 +12,7 @@
             "tab_downloads": "模组"
         },
         "version": {
-            "link_changelog": "更改了什么？"
+            "link_changelog": "有什么新功能？"
         },
         "help_menu": {
             "option_help": "浏览帮助网站",
@@ -462,7 +462,7 @@
             "title": "启动游戏"
         },
         "modal_installing": {
-            "description": "请等待游戏安装一分钟左右。",
+            "description": "请等待游戏安装，这需要一分钟左右。",
             "title": "正在安装"
         },
         "modal_save_delete": {
