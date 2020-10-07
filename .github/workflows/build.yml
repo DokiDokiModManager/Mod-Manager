@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Install rpmbuild
         if: startsWith(matrix.os, 'ubuntu')
-        run: sudo apt install rpmbuild
+        run: sudo apt install rpm
 
       - name: Check out repo
         uses: actions/checkout@v1
