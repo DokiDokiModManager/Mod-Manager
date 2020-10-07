@@ -53,7 +53,7 @@
     ],
     "publish": [
       "github",
-      "snap"
+      "snapStore"
     ]
   },
   "mac": {
