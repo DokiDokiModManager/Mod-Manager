@@ -1,8 +1,6 @@
 name: Build and release
 
-on:
-  release:
-    types: [created]
+on: push
 
 env:
   SNAPCRAFT_BUILD_ENVIRONMENT: host
