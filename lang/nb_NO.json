@@ -163,7 +163,10 @@
                 "description_achievement_not_earned": "Uferdig",
                 "description_achievement_earned": "Fullført",
                 "tag_archived": "Arkivert",
-                "title_install_failed": "Installerte modden din seg riktig?"
+                "title_install_failed": "Installerte modden din seg riktig?",
+                "description_install_failed_launch_again": "Denne meldingen vil forsvinne neste gang du kjører denne modden.",
+                "description_singleton_error": "Forsikre deg om at du ikke kjører mer enn én instans av DDLC og start igjen. Feilsøkingsveiledningen kan ha løsningen hvis problemet vedvarer.",
+                "title_singleton_error": "Lukket spillet ditt seg?"
             },
             "mod": {
                 "button_install": "Installer",
@@ -560,7 +563,7 @@
                 "body": ""
             },
             "move_install": {
-                "title": "",
+                "title": "Klarte ikke å flytte installasjonsmappen",
                 "body": ""
             },
             "shortcut": {
