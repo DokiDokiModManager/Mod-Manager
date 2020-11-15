@@ -505,7 +505,7 @@
         "modal_error": {
             "description_stacktrace": "Tekniske detaljer om hva som gikk galt, ha disse tilgjengelige hår du spør om hjelp.",
             "description_general": "Prøv å utføre det du gjorde igjen. Hvis problemet vedvarer kan du la det komme meg til kjenne.",
-            "title_fatal": "Oida, Doki Doki Manager kræsjet",
+            "title_fatal": "Oida, Doki Doki Manager krasjet",
             "button_copy": "Kopier feilmelding til utklippstavle",
             "button_restart": "Start på ny",
             "button_continue": "Fortsett",
@@ -540,7 +540,7 @@
             "description_running": "Lukk spillet for å gjøre endringer i moddene dine.",
             "install_missing": "Finner ikke installasjonen.",
             "install_corrupt": "Installasjonen er ufullstendig eller korrupt.",
-            "install_crashed": "Kunne ikke kjøre spillet, eller så kræsjet det."
+            "install_crashed": "Kunne ikke kjøre spillet, eller så krasjet det."
         },
         "move_install": {
             "title": "Velg ny installasjonsmappe"
