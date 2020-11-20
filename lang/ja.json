@@ -248,7 +248,7 @@
                 "option_beta": "ベータ",
                 "button_check": "アップデートを再確認",
                 "description_no_update": "Doki Doki Mod Managerは最新です。",
-                "description_latest_version": "最新のバージョン: {0}",
+                "description_latest_version": "最新のバージョン：{0}",
                 "button_download": "アップデートをダウンロード",
                 "description_downloaded": "アップデートのダウンロードが完了しました。終了後に適用されます。",
                 "description_error": "現在アップデートを確認できません。時間をおいて再試行してください。",
