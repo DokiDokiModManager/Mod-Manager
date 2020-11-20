@@ -1,0 +1,67 @@
+@import "variables";
+
+.dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+}
+
+.dialog-body {
+  width: 75%;
+  max-width: 600px;
+  min-width: 200px;
+  margin: 2em auto;
+  background-color: darken($ui-dark-colour-bg, 5%);
+  padding: 1em;
+  border-radius: 3px;
+  box-shadow: 1px 1px 15px #000;
+  -webkit-app-region: no-drag;
+}
+
+.dialog-body.nopad {
+  padding: 0;
+}
+
+.dialog-body:not(.nopad) {
+  //max-height: 75vh;
+}
+
+.dialog-menu-description {
+  padding: 1em 2em;
+  text-align: center;
+}
+
+.dialog-menu-item {
+  font-size: 0.9em;
+  padding: 0.65em 1em;
+  transition: background-color 0.5s;
+}
+
+.dialog-menu-item:first-child {
+  border-radius: 3px 3px 0 0;
+}
+
+.dialog-menu-item:last-child {
+  border-radius: 0 0 3px 3px;
+}
+
+.dialog-menu-item.disabled {
+  color: $ui-muted-text-colour;
+}
+
+.dialog-menu-item:not(.disabled):hover {
+  background-color: darken($ui-dark-colour-bg, 10%);
+}
+
+.dialog-menu-item:not(.disabled).danger:hover {
+  background-color: darken($ui-danger-colour-bg, 20%);
+}
+
+.dialog-menu-separator {
+  margin: 0.5em;
+  border-top: 1px solid $ui-dark-colour-bg;
+}

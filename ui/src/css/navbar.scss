@@ -1,0 +1,130 @@
+@import "variables";
+
+.titlebar {
+  color: $ui-highlight-text-colour;
+  -webkit-app-region: drag;
+  text-align: right;
+  padding: 0.5em;
+  display: flex;
+  align-items: flex-start;
+  justify-items: flex-start;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.app-title {
+  padding: 0.5em;
+  font-size: 1.25em;
+}
+
+// macOS adjust title position
+.os-darwin .app-title {
+  padding-left: 100px;
+}
+
+.navbar {
+  color: $ui-highlight-text-colour;
+  display: flex;
+  flex-shrink: 0;
+}
+
+.navbar > div {
+  padding: 0.5em;
+}
+
+.navbar img {
+  vertical-align: middle;
+}
+
+.nav-links {
+  display: flex;
+  height: 100%;
+  font-size: 1.25em;
+
+}
+
+.nav-links.long {
+  flex-grow: 1;
+}
+
+.nav-links > div {
+  height: 100%;
+  padding: 0.5em;
+  -webkit-app-region: no-drag;
+  color: $ui-muted-text-colour;
+  transition: color 0.25s, text-shadow 0.25s;
+}
+
+.nav-links > div:hover {
+  color: $ui-highlight-text-colour;
+}
+
+.nav-links div.active {
+  color: $ui-highlight-text-colour;
+  text-shadow: 0 0 10px #fff;
+}
+
+// macOS hide buttons
+.os-darwin .window-buttons {
+  visibility: hidden;
+}
+
+.titlebar .spacer {
+  margin: 0 1em;
+  height: 10px;
+}
+
+.window-buttons {
+  display: flex;
+  color: $ui-text-colour;
+  font-weight: bold;
+  padding: 0 0.5em;
+  -webkit-app-region: no-drag;
+}
+
+.window-buttons .button {
+  padding: 0.5em;
+  transition: color 0.25s;
+}
+
+.window-buttons div:hover {
+  color: $ui-highlight-text-colour;
+}
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link-badge {
+  background-color: $ui-danger-colour-bg;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 50;
+  pointer-events: none;
+}
+
+.nav-link-text {
+  position: relative;
+  top: 0;
+  left: 0;
+  padding: 0 0.5em;
+}
+
+@keyframes draw-attention {
+  from {
+    color: white;
+  }
+
+  to {
+    color: red;
+  }
+}
+
+.window-button-draw-attention {
+  animation: draw-attention 1s infinite alternate;
+}

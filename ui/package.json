@@ -1,0 +1,27 @@
+{
+  "name": "ddmm-app-ui",
+  "version": "1.0.0",
+  "main": "src/html/index.html",
+  "license": "MIT",
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^3.1.2",
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.26.3",
+    "typescript": "^3.8.3",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "scripts": {
+    "dev": "parcel src/html/index.html",
+    "build": "parcel build src/html/index.html"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.0",
+    "@sentry/browser": "^5.15.4",
+    "@sentry/integrations": "^5.15.4",
+    "fuse": "^0.4.0",
+    "fuse.js": "^5.2.3",
+    "vue": "^2.6.11",
+    "vue-hot-reload-api": "^2.3.4",
+    "vuex": "^3.2.0"
+  }
+}

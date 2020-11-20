@@ -1,0 +1,30 @@
+@import "variables";
+
+.form-group {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+input[type="text"], input[type="number"], input[type="url"], input[type="email"], input[type="password"], textarea, select {
+  font-family: "Open Sans", sans-serif;
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px solid $ui-dark-colour-bg;
+  color: $ui-text-colour;
+  font-weight: normal;
+  min-width: 350px;
+  padding: 0.5em 1em;
+  font-size: 1em;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.25s;
+}
+
+input.small {
+  font-size: 0.75em;
+  min-width: 0;
+}
+
+input:focus, textarea:focus {
+  border-color: $ui-muted-text-colour;
+}

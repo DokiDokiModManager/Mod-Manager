@@ -1,0 +1,36 @@
+@import "variables";
+
+@keyframes bar-uncertain {
+  0% {
+    left: 0;
+  }
+
+  100% {
+    left: 50%;
+  }
+}
+
+.progress {
+  width: 100%;
+  padding: 0;
+  background-color: transparentize($ui-background-colour, 0.25);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress .bar {
+  min-width: 1%;
+  padding: 0;
+  margin: 0;
+  height: 16px;
+  background-color: $ui-success-colour-bg;
+  transition: width 0.5s;
+  border-radius: 5px;
+}
+
+.progress.uncertain .bar {
+  background-color: $ui-warning-colour-bg;
+  width: 50% !important;
+  animation: 2s bar-uncertain ease-in-out infinite alternate;
+  position: relative;
+}

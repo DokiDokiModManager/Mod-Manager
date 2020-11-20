@@ -1,0 +1,98 @@
+@import "variables";
+
+button {
+  font-family: "Open Sans", sans-serif;
+  color: $ui-highlight-text-colour;
+  user-select: none;
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.75em 2em;
+  font-size: 14px;
+  border-radius: 3px;
+  text-align: center;
+  font-weight: normal;
+  outline: none;
+  transition: background-color 0.25s;
+  border: none;
+}
+
+button.huge {
+  font-size: 1.25em;
+}
+
+button.primary {
+  background-color: $ui-primary-colour-bg;
+}
+
+button.primary:hover {
+  background-color: darken($ui-primary-colour-bg, 10%);
+}
+
+button.secondary {
+  background-color: lighten($ui-background-colour, 10%);
+  color: $ui-text-colour;
+}
+
+button.secondary:hover {
+  background-color: lighten($ui-background-colour, 5%);
+}
+
+button.dark {
+  background-color: $ui-dark-colour-bg;
+}
+
+button.dark:hover {
+  background-color: darken($ui-dark-colour-bg, 10%);
+}
+
+button.danger {
+  background-color: $ui-danger-colour-bg;
+}
+
+button.danger:hover {
+  background-color: darken($ui-danger-colour-bg, 10%);
+}
+
+button.warning {
+  background-color: $ui-warning-colour-bg;
+}
+
+button.warning:hover {
+  background-color: darken($ui-warning-colour-bg, 10%);
+}
+
+button.success {
+  background-color: $ui-success-colour-bg;
+}
+
+button.success:hover {
+  background-color: darken($ui-success-colour-bg, 10%);
+}
+
+button[disabled], button[disabled]:hover {
+  background-color: $ui-muted-text-colour;
+  color: $ui-text-colour;
+}
+
+.chunky-radio-buttons {
+  border: 1px solid $ui-text-colour;
+  border-radius: 3px;
+  display: flex;
+}
+
+.chunky-button {
+  flex-grow: 1;
+  padding: 0.5em;
+  border-collapse: collapse;
+  border-right: 1px solid $ui-text-colour;
+  text-align: center;
+}
+
+.chunky-button.active {
+  background-color: $ui-text-colour;
+  color: $ui-background-colour;
+}
+
+.chunky-button:last-child {
+  border-right: none;
+}

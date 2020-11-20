@@ -1,0 +1,49 @@
+.onboarding-wizard {
+  pointer-events: all;
+}
+
+.wizard-step {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.wizard-step-content {
+  padding: 0 1.5em;
+  flex-grow: 1;
+}
+
+.wizard-step-controls {
+  padding: 1.5em;
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.full-center {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 4em;
+}
+
+.regular-font {
+  font-size: 0.95em;
+}
+
+.input-row {
+  display: flex;
+}
+
+.input-row > :first-child {
+  margin-right: 0.25em;
+}
+
+.input-row input {
+  width: auto;
+  flex-grow: 1;
+  flex-basis: 75%;
+}

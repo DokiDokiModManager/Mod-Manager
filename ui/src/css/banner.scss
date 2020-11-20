@@ -1,0 +1,19 @@
+@import "variables";
+
+//.news-banner {
+//  position: fixed;
+//  top: 63px;
+//  left: 0;
+//  width: 100%;
+//  text-align: center;
+//}
+
+.news-banner-content {
+  display: block;
+  z-index: 99999;
+  pointer-events: all;
+  padding: 0.5em 1em;
+  margin-bottom: 1em;
+  background-color: $ui-primary-colour-bg;
+  cursor: pointer;
+}

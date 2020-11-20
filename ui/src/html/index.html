@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Doki Doki Mod Manager</title>
+
+    <link rel="stylesheet" href="../../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="../css/app.scss">
+</head>
+<body>
+
+<div id="app-mount"></div>
+
+<script>
+    if (!("ddmm" in window)) { // being opened through browser
+        window.location.replace("https://doki.space");
+    }
+
+    if (!ddmm.config.readConfigValue("localUI") && window.location.hash !== "#fallback") {
+        ddmm.config.saveConfigValue("lastKnownGoodVersion", ddmm.version);
+    }
+
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+            navigator.serviceWorker.register("../js/sw/worker.js", {scope: "/"}).then(registration => {
+                console.log("Service worker registration", registration);
+            }).catch(err => {
+                console.warn(err.toString());
+            });
+        });
+    }
+</script>
+<script src="../js/app.js"></script>
+</body>
+</html>

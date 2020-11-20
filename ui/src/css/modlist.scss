@@ -1,0 +1,139 @@
+@import "variables";
+
+.mod-viewer-pane {
+  display: flex;
+  height: 100%;
+  flex-grow: 1;
+}
+
+.mod-viewer-mod-list {
+  width: 25%;
+  max-height: 100%;
+  padding-left: 1em;
+  padding-right: 1em;
+  overflow-y: scroll;
+}
+
+.mod-viewer-mod-display {
+  width: 75%;
+}
+
+.mod-viewer-mod-display > div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.mod-viewer-mod-display .header-content {
+  width: 100%;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.mod-viewer-mod-display .main-content {
+  flex-grow: 1;
+  overflow-y: scroll;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.mod-view-mod-list-title {
+  padding: 0.25em 0.25em 0;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: $ui-muted-text-colour;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+
+.mod-view-mod-list-entry {
+  padding: 0.25em 0.5em;
+  width: 100%;
+  border-radius: 3px;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  justify-content: space-between;
+  display: flex;
+}
+
+.mod-view-mod-list-entry span {
+  transition: color 0.25s;
+}
+
+.mod-view-mod-list-entry span:hover {
+  color: $ui-highlight-text-colour;
+}
+
+.mod-view-mod-list-entry .mod-view-mod-list-entry-title {
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+}
+
+.mod-view-mod-list-entry-button {
+  flex-grow: 0;
+  flex-shrink: 0;
+  display: none;
+}
+
+.mod-view-mod-list-entry.active .mod-view-mod-list-entry-button, .mod-view-mod-list-entry:hover .mod-view-mod-list-entry-button {
+  display: inline;
+}
+
+.mod-view-mod-list-entry.disabled {
+  color: $ui-muted-text-colour !important;
+}
+
+.mod-view-mod-list-entry.active {
+  background-image: $ui-highlight-gradient;
+  color: $ui-highlight-text-colour;
+}
+
+.mod-view-mod-list-tag {
+  flex-grow: 0;
+  flex-shrink: 0;
+  display: inline;
+  text-align: right;
+}
+
+.mod-view-mod-list-tag > span {
+  text-align: center;
+  background-color: $ui-text-colour;
+  color: #000;
+  border-radius: 3px;
+  font-size: 0.85em;
+  padding: 0 0.5em;
+  line-height: 1rem;
+}
+
+
+.mod-view-mod-list-tag:hover {
+  color: #000 !important;
+}
+
+.screenshots {
+  max-width: 100%;
+  overflow-x: scroll;
+  display: flex;
+}
+
+.screenshots img {
+  flex-shrink: 0;
+  flex-grow: 0;
+  display: block;
+  width: 192px;
+  height: 108px;
+  padding: 0.5em;
+  cursor: pointer;
+  -webkit-user-drag: none;
+}
+
+.mod-view-empty-panel {
+  text-align: center;
+  opacity: 0.5;
+  height: 100%;
+  padding-top: 10%;
+}
