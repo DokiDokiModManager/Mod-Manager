@@ -1,0 +1,81 @@
+{
+  "appId": "space.doki.modmanager",
+  "artifactName": "ddmm-${version}-${os}-${arch}.${ext}",
+  "files": [
+    "!**/*.ts",
+    "!**/*.map",
+    "!**/china.js",
+    "!**/*.rpy"
+  ],
+  "extraResources": [
+    {
+      "from": "ui/dist",
+      "to": "ui"
+    },
+    {
+      "from": "src/renpy/ddmm.rpy",
+      "to": "ddmm.rpy"
+    }
+  ],
+  "protocols": [
+    {
+      "name": "Doki Doki Mod Manager",
+      "schemes": [
+        "ddmm"
+      ]
+    }
+  ],
+  "publish": [
+    {
+      "provider": "github",
+      "repo": "Mod-Manager",
+      "owner": "DokiDokiModManager"
+    }
+  ],
+  "win": {
+    "target": [
+      {
+        "target": "nsis-web",
+        "arch": [
+          "x64",
+          "ia32"
+        ]
+      }
+    ]
+  },
+  "linux": {
+    "category": "Game",
+    "maintainer": "zudo@doki.space",
+    "synopsis": "Doki Doki Mod Manager",
+    "target": [
+      "AppImage",
+      "snap",
+      "deb",
+      "rpm",
+      "tar.gz"
+    ],
+    "publish": [
+      "github",
+      "snapStore"
+    ]
+  },
+  "mac": {
+    "category": "public.app-category.games",
+    "icon": "build/icon.icns",
+    "target": [
+      {
+        "target": "dmg",
+        "arch": [
+          "x64",
+          "arm64"
+        ]
+      }
+    ]
+  },
+  "snap": {
+    "stagePackages": [
+      "default",
+      "libglu1-mesa"
+    ]
+  }
+}

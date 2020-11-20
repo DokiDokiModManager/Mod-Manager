@@ -1,7 +1,14 @@
+# node modules
 node_modules/
-dist/
-src/main/**/*.js
+
+# compiled typescript and sourcemaps
 *.map
-lib/
+app/lib/
+
+# application builds
+dist/
+
+# various junk
 .idea/
 yarn-error.log
+.cache/
