@@ -383,6 +383,13 @@
             "button_affirmative": "Renommer",
             "body": "Entrez le nouveau nom pour {0}.",
             "title": "Renommer l'installation"
+        },
+        "modal_unarchive": {
+            "description": "Veuillez séléctionner le mod qui a été originalement installé, et cliquez lancer. {0} ne va plus être archivé désormais.",
+            "title": "Lancer le jeu"
+        },
+        "modal_installing": {
+            "description": "Veuillez patienter une minute ou plus pendant que le jeu s'installe."
         }
     },
     "main": {
