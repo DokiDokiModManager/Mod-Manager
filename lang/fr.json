@@ -455,7 +455,8 @@
             "title": "Installation en cours"
         },
         "modal_unarchiving": {
-            "description": "Le jeu démarrera quand la réinstallation sera terminée."
+            "description": "Le jeu démarrera quand la réinstallation sera terminée.",
+            "title": "Réinstallation du jeu"
         },
         "modal_mod_delete": {
             "button_negative": "Annuler",
@@ -528,7 +529,17 @@
         },
         "modal_running": {
             "button_kill": "Forcer l'arrêt",
-            "button_browse": "Parcourir les fichiers du jeu"
+            "button_browse": "Parcourir les fichiers du jeu",
+            "link_more": "Cliquez pour plus d'options",
+            "description": "Fermez le programme pour faire des changements à vos mods.",
+            "title": "Jeu en cours d'éxécution"
+        },
+        "modal_category": {
+            "button_cancel": "Annuler",
+            "button_save": "Sauvegarder",
+            "placeholder_category": "Entrez une nouvelle catégorie…",
+            "label_none": "aucun",
+            "title": "Changer de catégorie"
         }
     },
     "main": {
