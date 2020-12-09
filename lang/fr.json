@@ -529,7 +529,7 @@
         },
         "modal_running": {
             "button_kill": "Forcer l'arrêt",
-            "button_browse": "parcourir les fichiers du jeu",
+            "button_browse": "Parcourir les fichiers du jeu",
             "link_more": "Cliquez pour plus d'options",
             "description": "Fermez le programme pour faire des changements à vos mods.",
             "title": "Jeu en cours d'éxécution"
