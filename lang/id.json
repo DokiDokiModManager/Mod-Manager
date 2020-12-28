@@ -1,499 +1,499 @@
 {
     "renderer": {
         "online_error": {
-            "title": "",
-            "body": "",
-            "button_restart": "",
-            "button_quit": ""
+            "title": "Anda memerlukan koneksi Internet",
+            "body": "Doki Doki Mod Manager memerlukan koneksi internet untuk mengunduh data pertama kali. Harap periksa koneksi internet anda, lalu tutup dan buka kembali aplikasi.",
+            "button_restart": "Muat Ulang",
+            "button_quit": "Keluar"
         },
         "modal_error": {
-            "title_non_fatal": "",
-            "title_fatal": "",
-            "description_general": "",
-            "description_stacktrace": "",
-            "button_continue": "",
-            "button_restart": "",
-            "button_copy": ""
+            "title_non_fatal": "Ups, terjadi suatu kesalahan",
+            "title_fatal": "Ups, Doki Doki Mod Manager berhenti bekerja",
+            "description_general": "Mohon coba kembali, dan jika anda tetap mengalami masalah, harap beritahu kami!",
+            "description_stacktrace": "Berikut rincian teknis tentang kesalahan yang terjadi - mohon disimpan jika anda ingin meminta bantuan.",
+            "button_continue": "Lanjut",
+            "button_restart": "Restart",
+            "button_copy": "Salin pesan kesalahan pada clipboard"
         },
         "modal_language_switch": {
-            "title": "",
-            "description": ""
+            "title": "Ganti bahasa",
+            "description": "Harap menunggu…"
         },
         "modal_download_starting": {
-            "title": "",
-            "description": ""
+            "title": "Mulai mengunduh",
+            "description": "Mohon ikuti arahan yang ditunjukkan untuk menyelesaikan unduhan"
         },
         "tabs": {
-            "tab_play": "",
-            "tab_downloads": "",
-            "tab_options": "",
-            "tab_about": "",
-            "tab_experiments": ""
+            "tab_play": "Mulai",
+            "tab_downloads": "Mod",
+            "tab_options": "Opsi",
+            "tab_about": "Tentang",
+            "tab_experiments": "Eksperimen"
         },
         "version": {
-            "link_changelog": ""
+            "link_changelog": "apa yang terbaru?"
         },
         "help_menu": {
-            "option_help": "",
-            "option_feedback": "",
-            "option_discord": ""
+            "option_help": "Lihat laman bantuan",
+            "option_feedback": "Kirim tanggapan pribadi",
+            "option_discord": "Gabung server Discord"
         },
         "user_menu": {
-            "option_rename": "",
-            "option_logout": ""
+            "option_rename": "Ganti Nama Pengguna",
+            "option_logout": "Keluar"
         },
         "window_controls": {
-            "close": "",
-            "maximise": "",
-            "minimise": "",
-            "issue_report": "",
-            "guide": "",
-            "discord": "",
-            "patreon": ""
+            "close": "Tutup",
+            "maximise": "Maksimalkan",
+            "minimise": "Minimalkan",
+            "issue_report": "Laporkan isu",
+            "guide": "Panduan Pengguna",
+            "discord": "Gabung server Discord",
+            "patreon": "Dukung Doki Doki Mod Manager di Patreon"
         },
         "drop_cover": {
-            "text": ""
+            "text": "Taruh mod disini untuk memasangnya"
         },
         "announcement": {
-            "button_open": "",
-            "button_close": ""
+            "button_open": "Buka Tautan",
+            "button_close": "Tutup"
         },
         "onboarding_v4": {
-            "text_welcome": "",
-            "button_start": "",
-            "text_scanning": "",
-            "header_setup": "",
-            "subtitle_careful": "",
-            "header_download": "",
-            "text_download": "",
-            "button_ddlc_website": "",
-            "text_s2_next": "",
-            "text_modification_warning": "",
-            "header_safari_warning": "",
-            "text_safari_warning": "",
-            "link_safari_warning": "",
-            "button_next": "",
-            "button_previous": "",
-            "button_finish": "",
-            "text_select": "",
-            "text_dropzone": "",
-            "text_validating": "",
-            "header_directory_selected": "",
-            "text_directory_selected": "",
-            "header_version_mismatch": "",
-            "text_version_mismatch": "",
-            "header_success": "",
-            "text_success": "",
-            "header_hash_mismatch": "",
-            "text_hash_mismatch": "",
-            "subtitle_last": "",
-            "header_save_location": "",
-            "text_save_location": "",
-            "header_waifu": "",
-            "subtitle_waifu": "",
-            "label_waifu": "",
-            "option_waifu_all": "",
-            "option_waifu_monika": "",
-            "option_waifu_natsuki": "",
-            "option_waifu_sayori": "",
-            "option_waifu_yuri": ""
+            "text_welcome": "Selamat datang di versi terbaik Doki Doki Mod Manager saat ini.",
+            "button_start": "Memulai",
+            "text_scanning": "Harap menunggu…",
+            "header_setup": "Persiapan Pertama Kali",
+            "subtitle_careful": "Harap baca instruksi berikut dengan saksama.",
+            "header_download": "Unduh DDLC",
+            "text_download": "Kunjungi situs DDLC, klik 'Download Now' dan ikuti instruksinya. Ketika diminta, pilih file dengan nama {0} dan simpan di tempat yang mudah ditemukan.",
+            "button_ddlc_website": "Kunjungi situs DDLC",
+            "text_s2_next": "Ketika unduhan anda selesai, silahkan lanjutkan ke tahap berikutnya.",
+            "text_modification_warning": "Jangan merubah apapun pada file yang telah diunduh.",
+            "header_safari_warning": "Info penting bagi pengguna Safari",
+            "text_safari_warning": "Safari kemungkinan mengekstrak game secara otomatis. Anda sebaiknya mematikan fitur ini karena dapat mengganggu proses instalasi. Hal ini bisa dilakukan pada laman preferensi Safari.",
+            "link_safari_warning": "Klik disini untuk panduan visual",
+            "button_next": "Lanjut",
+            "button_previous": "Kembali",
+            "button_finish": "Selesai",
+            "text_select": "Buka folder tempat anda menyimpan salinan DDLC, kemudian drag and drop file tersebut pada tempat di bawah ini.",
+            "text_dropzone": "Taruh salinan DDLC anda disini",
+            "text_validating": "Harap menunggu…",
+            "header_directory_selected": "Anda memilih folder, bukan file zip DDLC",
+            "text_directory_selected": "Pastikan anda tidak memilih salinan game yang telah diekstrak dan coba lagi.",
+            "header_version_mismatch": "File tersebut sepertinya bukan file zip yang benar",
+            "text_version_mismatch": "Anda mungkin mengunduh versi DDLC yang salah untuk sistem operasi anda. Pastikan anda mengunduh {0} dan coba lagi.",
+            "header_success": "Salinan DDLC anda ditemukan",
+            "text_success": "Sekarang anda siap untuk lanjut ke tahap berikutnya!",
+            "header_hash_mismatch": "Sepertinya itu bukan file yang tepat",
+            "text_hash_mismatch": "Pastikan anda memilih file yang tepat dan coba lagi.",
+            "subtitle_last": "Opsi berikut dapat diganti kapanpun.",
+            "header_save_location": "Lokasi Save",
+            "text_save_location": "Jika anda ingin menyimpan mods anda pada drive yang berbeda, sekarang kesempatan anda untuk memilihnya.",
+            "header_waifu": "Siapa karakter favorit anda?",
+            "subtitle_waifu": "Tidak perlu berpikir keras, jawab saja.",
+            "label_waifu": "Gadis Terbaik",
+            "option_waifu_all": "Mereka semua!",
+            "option_waifu_monika": "Monika",
+            "option_waifu_natsuki": "Natsuki",
+            "option_waifu_sayori": "Sayori",
+            "option_waifu_yuri": "Yuri"
         },
         "modal_news": {
-            "button": ""
+            "button": "Selesai"
         },
         "modal_issue_report": {
-            "title": "",
-            "description": "",
-            "label_type": "",
-            "option_bug": "",
-            "option_broken_mod": "",
-            "label_mod": "",
-            "placeholder_mod": "",
-            "label_body": "",
-            "placeholder_body": "",
-            "button_submit": "",
-            "button_cancel": ""
+            "title": "Laporkan isu",
+            "description": "Jika isu anda membutuhkan balasan langsung, atau tidak cocok dengan kategori yang terdaftar disini, silahkan kirimkan email.",
+            "label_type": "Tipe isu",
+            "option_bug": "Bug aplikasi",
+            "option_broken_mod": "Mod tidak bekerja",
+            "label_mod": "Tautan mod",
+            "placeholder_mod": "Silahkan salin tautan menuju situs atau laman unduh mod.",
+            "label_body": "Detil isu",
+            "placeholder_body": "Mohon jelaskan sedetil mungkin. Jika relevan, silahkan berikan instruksi untuk membantu kami memicu isu tersebut.",
+            "button_submit": "Kirim Laporan",
+            "button_cancel": "Batal"
         },
         "modal_rename": {
-            "title": "",
-            "body": "",
-            "button_affirmative": "",
-            "button_negative": ""
+            "title": "Ganti Nama Instalasi",
+            "body": "Masukkan nama baru untuk {0}.",
+            "button_affirmative": "Ganti Nama",
+            "button_negative": "Batal"
         },
         "modal_uninstall": {
-            "title": "",
-            "body": "",
-            "body_globalsave": "",
-            "confirmation": "",
-            "button_affirmative": "",
-            "button_negative": ""
+            "title": "Apakah anda yakin untuk uninstall?",
+            "body": "Save data anda untuk {0} akan dihapus, dan anda memerlukan salinan mod tersebut jika ingin instalasi ulang.",
+            "body_globalsave": "Save data anda untuk {0} tidak akan dihapus. Namun, anda memerlukan salinan mod tersebut jika ingin instalasi ulang.",
+            "confirmation": "Saya mengerti.",
+            "button_affirmative": "Uninstall",
+            "button_negative": "Batal"
         },
         "modal_archive": {
-            "title": "",
-            "body": "",
-            "body_warning": "",
-            "confirmation": "",
-            "button_affirmative": "",
-            "button_negative": ""
+            "title": "Apakah anda yakin untuk mengarsipkan?",
+            "body": "Mengarsipkan akan menghapus game data untuk {0} supaya menghemat penyimpanan pada disk. Save data anda tidak akan dihapus, tapi anda membutuhkan salinan mod tersebut jika ingin instalasi ulang.",
+            "body_warning": "Semua perubahan pada data lainnya, seperti file karakter, akan dikembalikan ke semula jika anda mengarsipkan game. Harap hati-hati!",
+            "confirmation": "Saya mengerti.",
+            "button_affirmative": "Arsipkan",
+            "button_negative": "Batal"
         },
         "modal_save_delete": {
-            "title": "",
-            "body": "",
-            "confirmation": "",
-            "button_affirmative": "",
-            "button_negative": ""
+            "title": "Apakah anda yakin ingin menghapus save data anda?",
+            "body": "Anda harus memulai {0} dari awal.",
+            "confirmation": "Saya mengerti.",
+            "button_affirmative": "Hapus",
+            "button_negative": "Batal"
         },
         "modal_installing": {
-            "title": "",
-            "description": ""
+            "title": "Instalasi sedang berlangsung",
+            "description": "Harap tunggu sejenak sampai instalasi game selesai."
         },
         "modal_unarchive": {
-            "title": "",
-            "description": "",
-            "button_launch": "",
-            "button_cancel": ""
+            "title": "Luncurkan game",
+            "description": "Silahkan pilih mod yang pernah dipasang, kemudian klik Luncurkan. {0} akan dikeluarkan dari arsip.",
+            "button_launch": "Luncurkan",
+            "button_cancel": "Batal"
         },
         "modal_unarchiving": {
-            "title": "",
-            "description": ""
+            "title": "Memasang kembali",
+            "description": "Game akan dimulai setelah proses instalasi ulang selesai."
         },
         "modal_category": {
-            "title": "",
-            "label_none": "",
-            "placeholder_category": "",
-            "button_save": "",
-            "button_cancel": ""
+            "title": "Ganti Kategori",
+            "label_none": "tidak ada",
+            "placeholder_category": "Masukkan kategori baru…",
+            "button_save": "Simpan",
+            "button_cancel": "Batal"
         },
         "modal_running": {
-            "title": "",
-            "description": "",
-            "button_browse": "",
-            "link_more": "",
-            "button_kill": ""
+            "title": "Game sedang berjalan",
+            "description": "Tutup game untuk membuat perubahan pada mod anda.",
+            "button_browse": "Telusuri File Game",
+            "link_more": "Klik untuk opsi lainnya",
+            "button_kill": "Hentikan Paksa"
         },
         "menu_install_options": {
-            "launch": "",
-            "rename": "",
-            "category": "",
-            "archive": "",
-            "shortcut": "",
-            "delete_save": "",
-            "uninstall": "",
-            "cancel": ""
+            "launch": "Luncurkan",
+            "rename": "Ganti Nama",
+            "category": "Ganti Kategori",
+            "archive": "Arsipkan",
+            "shortcut": "Buat Shortcut",
+            "delete_save": "Hapus Save Data",
+            "uninstall": "Uninstall",
+            "cancel": "Batal"
         },
         "menu_mod_options": {
-            "install": "",
-            "delete": "",
-            "cancel": ""
+            "install": "Pasang",
+            "delete": "Hapus",
+            "cancel": "Batal"
         },
         "modal_mod_delete": {
-            "title": "",
-            "body": "",
-            "button_affirmative": "",
-            "button_negative": ""
+            "title": "Apakah anda yakin ingin menghapus mod ini?",
+            "body": "Anda perlu mengunduh ulang {0} jika ingin instalasi ulang.",
+            "button_affirmative": "Pasang",
+            "button_negative": "Batal"
         },
         "modal_mod_preview": {
-            "button_close": "",
-            "button_download_direct": "",
-            "button_download_external": "",
-            "text_loading": ""
+            "button_close": "Tutup",
+            "button_download_direct": "Unduh",
+            "button_download_external": "Unduh di Browser",
+            "text_loading": "Memuat opsi unduhan…"
         },
         "tab_mods": {
             "list": {
-                "placeholder_search": "",
-                "header_new": "",
-                "link_install": "",
-                "link_home": "",
-                "header_installed": "",
-                "header_downloaded": ""
+                "placeholder_search": "Cari mod…",
+                "header_new": "Memulai",
+                "link_install": "Pasang DDLC",
+                "link_home": "Home",
+                "header_installed": "Terpasang",
+                "header_downloaded": "Unduhan"
             },
             "launch_lock_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Save file di cloud sedang digunakan!",
+                "details": "Jika anda meluncurkan game sekarang, anda bisa kehilangan progress anda.",
+                "button_affirmative": "Tetap Luncurkan",
+                "button_negative": "Batal"
             },
             "launch_noauth_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Anda belum masuk!",
+                "details": "Jika anda meluncurkan game sekarang, save file anda tidak akan sinkron dengan cloud.",
+                "button_affirmative": "Tetap Luncurkan",
+                "button_negative": "Batal"
             },
             "launch_offline_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Anda sedang offline!",
+                "details": "Jika anda meluncurkan game sekarang, save file anda tidak akan sinkron dengan cloud.",
+                "button_affirmative": "Tetap Luncurkan",
+                "button_negative": "Batal"
             },
             "mod_delete_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Apakah anda yakin ingin menghapus mod ini?",
+                "details": "Anda perlu mengunduh ulang mod tersebut jika ingin instalasi ulang.",
+                "button_affirmative": "Hapus",
+                "button_negative": "Batal"
             },
             "install": {
-                "button_launch": "",
-                "button_settings": "",
-                "tag_global_save": "",
-                "tag_sdk": "",
-                "tag_archived": "",
-                "title_achievements": "",
-                "description_achievements": "",
-                "description_achievements_complete": "",
-                "description_achievement_earned": "",
-                "description_achievement_not_earned": "",
-                "title_screenshots_none": "",
-                "title_screenshots_one": "",
-                "title_screenshots": "",
-                "description_screenshots": "",
-                "description_sdk": "",
-                "description_author": "",
-                "link_discord": "",
-                "link_website": "",
-                "description_external": "",
-                "title_mas_export": "",
-                "description_mas_export": "",
-                "button_mas_export": "",
-                "button_mas_import": "",
-                "title_install_failed": "",
-                "description_install_failed": "",
-                "link_troubleshooting": "",
-                "title_singleton_error": "",
-                "description_singleton_error": "",
-                "description_install_failed_launch_again": ""
+                "button_launch": "Luncurkan",
+                "button_settings": "Pengaturan",
+                "tag_global_save": "Global Save",
+                "tag_sdk": "SDK",
+                "tag_archived": "Arsip",
+                "title_achievements": "Pencapaian ({0}/{1})",
+                "description_achievements": "Tetap bermain untuk membuka semua pencapaian.",
+                "description_achievements_complete": "Anda telah membuka semua pencapaian. Selamat!",
+                "description_achievement_earned": "Tercapai",
+                "description_achievement_not_earned": "Belum Tercapai",
+                "title_screenshots_none": "Tidak ada tangkapan layar",
+                "title_screenshots_one": "1 tangkapan layar",
+                "title_screenshots": "{0} tangkapan layar",
+                "description_screenshots": "Tekan S ketika bermain untuk menangkap layar.",
+                "description_sdk": "Mod ini mendukung fitur spesial dengan SDK Doki Doki Mod Manager!",
+                "description_author": "Dibuat oleh {0}",
+                "link_discord": "Discord ({0})",
+                "link_website": "Situs ({0})",
+                "description_external": "Tunjukkan di folder",
+                "title_mas_export": "Bawa Monika bersama anda",
+                "description_mas_export": "Monika sudah siap untuk kencan dengan anda.",
+                "button_mas_export": "Salin Monika",
+                "button_mas_import": "Tambahkan Kembali Monika",
+                "title_install_failed": "Apakah mod anda terpasang dengan benar?",
+                "description_install_failed": "Sepertinya mod yang anda coba mainkan tidak terpasang dengan benar. Anda mungkin ingin membaca panduan penyelesaian masalah untuk membantu memperbaikinya.",
+                "link_troubleshooting": "Panduan penyelesaian masalah",
+                "title_singleton_error": "Apakah game anda tertutup dengan sendirinya?",
+                "description_singleton_error": "Pastikan anda tidak menjalankan instansi DDLC lebih dari satu dan coba luncurkan kembali. Anda mungkin perlu membaca panduan penyelesaian masalah jika masalah berlanjut.",
+                "description_install_failed_launch_again": "Pesan ini akan hilang setelah anda meluncurkan mod ini untuk kedua kali dan seterusnya."
             },
             "mod": {
-                "button_install": "",
-                "button_settings": "",
-                "description_external": ""
+                "button_install": "Pasang",
+                "button_settings": "Pengaturan",
+                "description_external": "Tunjukkan di folder"
             },
             "install_creation": {
-                "title": "",
-                "status_exists": "",
-                "warning_no_space": "",
-                "label_install_name": "",
-                "placeholder_install_name": "",
-                "label_folder_name": "",
-                "label_has_mod": "",
-                "label_mod": "",
-                "option_local_save": "",
-                "option_global_save": "",
-                "modlist_none": "",
-                "modlist_library": "",
-                "modlist_custom": "",
-                "description_mod": "",
-                "warning_global_save": "",
-                "button_install": "",
-                "button_installing": ""
+                "title": "Pasang DDLC",
+                "status_exists": "Nama folder tersebut sudah terpakai.",
+                "warning_no_space": "Maaf, anda memerlukan minimal 2 GB sisa penyimpanan kosong untuk instalasi DDLC. Tutup Doki Doki Mod Manager, buat ruang pada disk, dan coba lagi. Sebagai alternatif, anda bisa melakukan instalasi di drive yang berbeda dengan memilih Opsi > Lokasi Penyimpanan.",
+                "label_install_name": "Nama Instalasi",
+                "placeholder_install_name": "Nama mod yang anda mainkan, atau terserah anda.",
+                "label_folder_name": "Nama Folder",
+                "label_has_mod": "Pasang Mod",
+                "label_mod": "Mod",
+                "option_local_save": "Local Save (direkomendasikan)",
+                "option_global_save": "Global Save",
+                "modlist_none": "DDLC Reguler - tanpa mod",
+                "modlist_library": "Pustaka Mod",
+                "modlist_custom": "Mod tidak terdaftar disini",
+                "description_mod": "Klik untuk mencari mod.",
+                "warning_global_save": "Menggunakan Global Save dapat menyebabkan isu dengan salinan game lainnya, karena progress akan disimpan pada folder save reguler. Gunakan ini hanya untuk suatu alasan spesifik.",
+                "button_install": "Pasang",
+                "button_installing": "Memasang…"
             }
         },
         "tab_options": {
             "list": {
-                "header_appearance": "",
-                "link_background": "",
-                "link_advanced_appearance": "",
-                "header_account": "",
-                "link_cloudsaves": "",
-                "link_accmanagement": "",
-                "header_enhancements": "",
-                "link_sdk": "",
-                "link_discord": "",
-                "header_application": "",
-                "link_updates": "",
-                "link_storage": "",
-                "link_language": "",
-                "header_developers": "",
-                "link_testing": ""
+                "header_appearance": "Tampilan",
+                "link_background": "Latar Belakang",
+                "link_advanced_appearance": "Tingkat Lanjut",
+                "header_account": "Akun",
+                "link_cloudsaves": "Penyimpanan Cloud",
+                "link_accmanagement": "Manajemen Akun",
+                "header_enhancements": "Peningkatan",
+                "link_sdk": "Pencapaian dan SDK",
+                "link_discord": "Discord",
+                "header_application": "Aplikasi",
+                "link_updates": "Pembaruan",
+                "link_storage": "Lokasi Penyimpanan",
+                "link_language": "Bahasa",
+                "header_developers": "Pengembang",
+                "link_testing": "Opsi Debugging"
             },
             "section_backgrounds": {
-                "title": "",
-                "subtitle": "",
-                "button_none": "",
-                "button_custom": "",
-                "checkbox_modbg": "",
-                "description_credit": "",
-                "description_custom": ""
+                "title": "Latar Belakang",
+                "subtitle": "Kostumisasi salinan Doki Doki Mod Manager anda dengan salah satu latar belakang ini.",
+                "button_none": "Tanpa Latar Belakang",
+                "button_custom": "Latar Belakang Sendiri",
+                "checkbox_modbg": "Izinkan mod untuk menampilkan latar belakang tersendiri (dari tangkapan layar atau dari penulis mod)",
+                "description_credit": "Latar belakang orisinil DDLC dipersembahkan oleh Team Salvato.",
+                "description_custom": "Jika anda memindahkan atau menghapus latar belakang yang anda pilih sendiri, latar belakang anda akan dikembalikan seperti semula."
             },
             "section_advanced_appearance": {
-                "title": "",
-                "subtitle": "",
-                "button_enable_sysborders": ""
+                "title": "Tingkat Lanjut",
+                "subtitle": "Cari opsi antarmuka disini.",
+                "button_enable_sysborders": "Gunakan bordir sistem (memerlukan restart)"
             },
             "section_storage": {
-                "title": "",
-                "subtitle": "",
-                "description": "",
-                "description_moving": "",
-                "button_confirm": ""
+                "title": "Lokasi Penyimpanan",
+                "subtitle": "Ganti lokasi game data anda.",
+                "description": "Anda dapat memilih dimana data pemasangan Doki Doki Mod Manager disimpan, misalnya pada drive yang berbeda. Pilih folder kosong untuk memindahkan data pemasangan.",
+                "description_moving": "Peringatan! Jika anda memilih untuk mengganti lokasi pemasangan, semua mod anda, termasuk lokasi instalasi dan save data mod anda akan dipindahkan juga. Hal ini memerlukan waktu beberapa menit, dan tidak dapat diinterupsi.",
+                "button_confirm": "Ubah"
             },
             "section_updates": {
-                "title": "",
-                "subtitle": "",
-                "description_current_version": "",
-                "description_latest_version": "",
-                "description_has_update": "",
-                "description_no_update": "",
-                "description_downloading": "",
-                "description_downloaded": "",
-                "description_error": "",
-                "button_check": "",
-                "button_download": ""
+                "title": "Pembaruan",
+                "subtitle": "Dapatkan versi terbaru Doki Doki Mod Manager.",
+                "description_current_version": "Versi sekarang: {0}",
+                "description_latest_version": "Versi Terbaru: {0}",
+                "description_has_update": "Versi terbaru Doki Doki Mod Manager telah tersedia!",
+                "description_no_update": "Anda telah menggunakan versi terbaru Doki Doki Mod Manager.",
+                "description_downloading": "Mengunduh pembaruan - anda boleh menggunakan aplikasi sambil menunggu.",
+                "description_downloaded": "Pembaruan telah diunduh dan akan dipasang setelah anda menutup aplikasi.",
+                "description_error": "Tidak dapat memeriksa pembaruan, silahkan coba lagi.",
+                "button_check": "Periksa Kembali",
+                "button_download": "Unduh Pembaruan"
             },
             "section_language": {
-                "title": "",
-                "subtitle": "",
-                "link_contribute": "",
-                "label_language": ""
+                "title": "Bahasa",
+                "subtitle": "Pilih bahasa yang diinginkan. Terjemahan mungkin saja tidak 100% akurat atau lengkap.",
+                "link_contribute": "Maukah anda membantu menerjemahkan Doki Doki Mod Manager? Klik untuk bergabung dengan proyek terjemahan komunitas.",
+                "label_language": "Bahasa"
             },
             "section_sdk": {
-                "title": "",
-                "subtitle": "",
-                "description_mode": "",
-                "checkbox_always": "",
-                "checkbox_specified": "",
-                "checkbox_never": ""
+                "title": "Pencapaian dan SDK",
+                "subtitle": "Ubah cara pencapaian ditangani.",
+                "description_mode": "Aktifkan pencapaian:",
+                "checkbox_always": "Selalu (direkomendasikan)",
+                "checkbox_specified": "Ketika mod mendukung",
+                "checkbox_never": "Jangan Pernah"
             },
             "section_discord": {
-                "title": "",
-                "subtitle": "",
-                "description": "",
-                "button_enable": ""
+                "title": "Discord Rich Presence",
+                "subtitle": "Tunjukkan mod apa yang anda mainkan dengan teman Discord anda.",
+                "description": "Perubahan akan diimplementasikan setelah memulai ulang Doki Doki Mod Manager.",
+                "button_enable": "Aktifkan Rich Presence"
             },
             "section_testing": {
-                "title": "",
-                "subtitle": "",
-                "checkbox_logging": "",
-                "header_mod_debug": "",
-                "description_mod_debug": "",
-                "header_renpy": "",
-                "description_renpy": "",
-                "checkbox_renpy_skipsplash": "",
-                "checkbox_renpy_skipmenu": ""
+                "title": "Opsi Debug",
+                "subtitle": "Aktifkan opsi debug untuk pengembang.",
+                "checkbox_logging": "Aktifkan Debug Logging",
+                "header_mod_debug": "Mod Debugging",
+                "description_mod_debug": "Tunjukkan jendela debug dengan keluaran konsol dari mod anda. Berguna untuk mengetes SDK DDMM.",
+                "header_renpy": "Opsi Peluncuran Ren'Py",
+                "description_renpy": "Setel opsi debugging khusus untuk Ren'Py.",
+                "checkbox_renpy_skipsplash": "Lewati Splash Screen",
+                "checkbox_renpy_skipmenu": "Lewati Menu"
             }
         },
         "tab_about": {
-            "title": "",
-            "description": "",
-            "title_disclaimer": "",
-            "disclaimer_1": "",
-            "disclaimer_2": "",
-            "title_socials": "",
-            "social_discord": "",
-            "social_reddit": "",
-            "social_email": "",
-            "title_translators": "",
-            "title_v4_beta": "",
-            "title_patreon": "",
-            "link_patreon": "",
-            "link_weblate": ""
+            "title": "Tentang",
+            "description": "Doki Doki Mod Manager adalah proyek kembangan komunitas yang membantu anda menemukan, memasang, dan memainkan mod untuk Doki Doki Literature Club, game visual novel gratis oleh Team Salvato.",
+            "title_disclaimer": "Penafian",
+            "disclaimer_1": "Doki Doki Mod Manager adalah karya penggemar Doki Doki Literature Club dan tidak berafiliasi dengan Team Salvato. Ini adalah karya penggemar, sesuai yang didefinisikan Pedoman Kekayaan Intelektual Team Salvato.",
+            "disclaimer_2": "Doki Doki Mod Manager tidak bertanggung jawab atas segala kerusakan pada file atau komputer anda, akibat dari memainkan mod ataupun tidak. Anda bertanggung jawab untuk memastikan mod yang anda pasang aman untuk dimainkan.",
+            "title_socials": "Hubungi kami",
+            "social_discord": "Gabung server Discord",
+            "social_reddit": "Kirim pesan melalui Reddit",
+            "social_email": "Kirimkan email",
+            "title_translators": "Terjemahan dikontribusikan dengan murah hati oleh",
+            "title_v4_beta": "Penguji versi beta Doki Doki Mod Manager 4",
+            "title_patreon": "Terima kasih atas dukungan dari para pendukung Patreon berikut",
+            "link_patreon": "Dukung pengembangan lebih lanjut Doki Doki Mod Manager melalui Patreon",
+            "link_weblate": "Bantu terjemahkan Doki Doki Mod Manager ke bahasa asli anda - kunjungi laman utama proyek"
         },
         "tab_downloads": {
             "list": {
-                "header_library": "",
-                "link_downloaded": "",
-                "link_downloads": "",
-                "header_browse": "",
-                "link_featured": "",
-                "link_ddmc": ""
+                "header_library": "Pustaka",
+                "link_downloaded": "Mod Anda",
+                "link_downloads": "Unduhan",
+                "header_browse": "Cari Mod",
+                "link_featured": "Mod Unggulan",
+                "link_ddmc": "Klub Modifikasi Doki Doki"
             },
             "downloaded": {
-                "title": "",
-                "button_install": "",
-                "button_options": "",
-                "description_type": "",
-                "placeholder_search": "",
-                "message_none": ""
+                "title": "Mod Anda",
+                "button_install": "Pasang",
+                "button_options": "Opsi",
+                "description_type": "Tipe file: {0}",
+                "placeholder_search": "Cari suatu mod…",
+                "message_none": "Anda belum punya mod. Cari dan unduh yang anda suka!"
             },
             "downloads": {
-                "title": "",
-                "status_text_downloading": "",
-                "status_text_downloading_uncertain": "",
-                "message_none": ""
+                "title": "Unduhan",
+                "status_text_downloading": "Mengunduh - {0}% dengan {1} MB/s ({2} tersisa)",
+                "status_text_downloading_uncertain": "Mengunduh - {0} MB terunduh dengan {1} MB/s",
+                "message_none": "Tidak ada unduhan yang sedang berlangsung."
             },
             "featured": {
-                "title": "",
-                "button_download": ""
+                "title": "Mod Unggulan",
+                "button_download": "Unduh"
             },
             "store": {
-                "title_ddmc": "",
-                "description_ddmc": "",
-                "link_ddmc": "",
-                "description_featured": "",
-                "text_loading": "",
-                "error_loading": "",
-                "placeholder_search": ""
+                "title_ddmc": "Klub Modifikasi Doki Doki",
+                "description_ddmc": "Telusuri basis data mod, disediakan oleh Klub Modifikasi Doki Doki.",
+                "link_ddmc": "Kunjungi situs untuk mengajukan mod anda sendiri.",
+                "description_featured": "Malas memilih? Coba salah satu mod yang tersorot!",
+                "text_loading": "Memuat daftar mod…",
+                "error_loading": "Tidak dapat memuat mod sekarang.",
+                "placeholder_search": "Mencari mod…"
             }
         },
         "component_install_folder_selector": {
-            "label": "",
-            "button_select": "",
-            "error_disk_space": ""
+            "label": "Lokasi Save",
+            "button_select": "Pilih",
+            "error_disk_space": "Drive ini tidak memiliki sisa penyimpanan minimal 2 GB"
         }
     },
     "main": {
         "discord": {
-            "status_idle": "",
-            "status_active": "",
-            "description_idle": "",
-            "description_active": "",
-            "description_version": ""
+            "status_idle": "Mengatur Mod",
+            "status_active": "Sedang Bermain",
+            "description_idle": "Tidak bermain apapun",
+            "description_active": "Memainkan DDLC",
+            "description_version": "Versi {0}"
         },
         "jumplist": {
-            "task_launch": ""
+            "task_launch": "Buka Doki Doki Mod Manager dan luncurkan {0}."
         },
         "running_cover": {
-            "title_running": "",
-            "title_crashed": "",
-            "button_browse": "",
-            "button_close": "",
-            "description_running": "",
-            "install_missing": "",
-            "install_corrupt": "",
-            "install_crashed": ""
+            "title_running": "DDLC sedang berjalan",
+            "title_crashed": "Terjadi suatu kesalahan",
+            "button_browse": "Buka Folder Game",
+            "button_close": "Oke",
+            "description_running": "Tutup game untuk melakukan perubahan pada mod anda.",
+            "install_missing": "Tidak dapat menemukan instalasi.",
+            "install_corrupt": "Instalasi tidak lengkap atau rusak.",
+            "install_crashed": "Game gagal diluncurkan."
         },
         "move_install": {
-            "title": "",
-            "error_not_empty": "",
-            "error_read": ""
+            "title": "Pilih folder instalasi baru",
+            "error_not_empty": "Folder ini tidak kosong. Pilih folder yang kosong.",
+            "error_read": "Tidak dapat membaca folder ini. Silahkan coba lagi."
         },
         "mod_browse_dialog": {
-            "title": "",
-            "file_format_name": ""
+            "title": "Cari mod untuk dipasang",
+            "file_format_name": "Mod"
         },
         "game_browse_dialog": {
-            "title": "",
-            "file_format_name": ""
+            "title": "Cari salinan file zip DDLC",
+            "file_format_name": "DDLC"
         },
         "shortcut_dialog": {
-            "title": "",
-            "file_format_name": ""
+            "title": "Pilih lokasi untuk meletakkan shortcut",
+            "file_format_name": "Shortcut"
         },
         "import_mas": {
-            "title": "",
-            "filter": ""
+            "title": "Cari lokasi dimana anda menyimpan salinan file karakter Monika",
+            "filter": "Monika Saja"
         },
         "export_mas": {
-            "title": "",
-            "filter": ""
+            "title": "Pilih dimana anda ingin menyalin Monika",
+            "filter": "Monika Saja"
         },
         "redownload_confirmation": {
-            "message": "",
-            "detail": "",
-            "button_confirm": "",
-            "button_cancel": ""
+            "message": "Mod telah diunduh",
+            "detail": "Sudah ada salinan {0} dalam pustaka mod anda. Apakah anda ingin mengunduhnya lagi? (Hal ini akan menimpa salinan lama)",
+            "button_confirm": "Unduh",
+            "button_cancel": "Batal"
         },
         "errors": {
             "dev_ui_load_fail": {
-                "title": "",
-                "body": ""
+                "title": "Gagal memuat dari server pengembangan",
+                "body": "Memuat dari server live UI."
             },
             "renderer_freeze": {
-                "title": "",
-                "body": ""
+                "title": "Doki Doki Mod Manager berhenti merespon",
+                "body": "Jika isu ini berlangsung dalam jangka waktu yang lama, tutup aplikasi dan jalankan kembali."
             },
             "move_install": {
-                "title": "",
-                "body": ""
+                "title": "Gagal memindahkan folder instalasi",
+                "body": "Pastikan anda memiliki izin untuk memindahkan ke folder tujuan dan coba kembali."
             }
         }
     }
