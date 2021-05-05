@@ -33,7 +33,7 @@
                 "checking": "Überprüfe im Hintergrund nach Updates...",
                 "available": "Ein Update ist verfügbar. Klicke hier um es herunterzuladen.",
                 "downloading": "Lade Update herunter...",
-                "downloaded": "Ein Update ist bereit zu installieren, wenn du beendest."
+                "downloaded": "Ein Update ist bereit zu installieren, wenn du das programm schließt."
             },
             "language": "Sprache",
             "issue_report": "Ein Problem melden",
@@ -54,7 +54,7 @@
         },
         "onboarding": {
             "title": "Willkommen!",
-            "description_download": "Finden wir eine Kopie von DDLC.",
+            "description_download": "Finde eine Kopie von DDLC.",
             "button_download": "Besuche DDLC's offizielle Download-Seite",
             "button_choose": "Durchsuche nach einer Kopie",
             "heading_step": "Schritt {0}",
@@ -72,7 +72,7 @@
         },
         "change_username_input": {
             "message": "Geben Sie Ihren neuen Benutzernamen ein",
-            "details": "Benutzernamen müssen nicht einzigartig sein.",
+            "details": "Benutzernamen dürfen nicht einzigartig sein.",
             "button_affirmative": "Ändern",
             "button_negative": "Abbrechen"
         },
