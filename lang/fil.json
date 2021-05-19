@@ -1,112 +1,112 @@
 {
     "renderer": {
         "online_error": {
-            "title": "",
-            "body": "",
-            "button_restart": "",
-            "button_quit": ""
+            "title": "Kumonekta po kayo sa Internet",
+            "body": "Ang Doki Doki Mod Manager ay nangangailangan ng koneksyon sa internet upang mai-download ang mga kailangan na resources. Suriin ninyo ang inyong koneksyon sa internet, pagkatapos ay mag-restart.",
+            "button_restart": "Mag-restart",
+            "button_quit": "Tumigil"
         },
         "modal_error": {
-            "title_non_fatal": "",
-            "title_fatal": "",
-            "description_general": "",
-            "description_stacktrace": "",
-            "button_continue": "",
-            "button_restart": "",
-            "button_copy": ""
+            "title_non_fatal": "Oops, may nangyaring mali",
+            "title_fatal": "Oops, nag-crash ang Doki Doki Mod Manager",
+            "description_general": "Subukan mo ulit ang ginagawa mo, at kung patuloy ka paring nagkakaroon ng mga problema, ipaalam mo sa akin!",
+            "description_stacktrace": "Narito ang mga teknikal na detalye ng kung ano ang nagkamali - itala mo ang mga ito kung hihingi ka ng tulong.",
+            "button_continue": "Magpatuloy",
+            "button_restart": "Mag-restart",
+            "button_copy": "Kopyahin ang error sa clipboard"
         },
         "modal_language_switch": {
-            "title": "",
-            "description": ""
+            "title": "Palitan ang linguahe",
+            "description": "Maghintay po ng saglit…"
         },
         "modal_download_starting": {
-            "title": "",
-            "description": ""
+            "title": "Nagsisimula ang pag-download",
+            "description": "Sundin ang mga prompts na ipapakita upang mai-kumpleto ang download"
         },
         "tabs": {
-            "tab_play": "",
-            "tab_downloads": "",
-            "tab_options": "",
-            "tab_about": "",
-            "tab_experiments": ""
+            "tab_play": "Mag-laro",
+            "tab_downloads": "Mods",
+            "tab_options": "Pagpipilian",
+            "tab_about": "Tungkol",
+            "tab_experiments": "Mga eksperimento"
         },
         "version": {
-            "link_changelog": ""
+            "link_changelog": "Anong bago?"
         },
         "help_menu": {
-            "option_help": "",
-            "option_feedback": "",
-            "option_discord": ""
+            "option_help": "Tingnan ang help site",
+            "option_feedback": "Magbigay ng pribadong puna",
+            "option_discord": "Sumali sa Discord server"
         },
         "user_menu": {
-            "option_rename": "",
-            "option_logout": ""
+            "option_rename": "Baguhin ang Username",
+            "option_logout": "Mag-Log out"
         },
         "window_controls": {
-            "close": "",
-            "maximise": "",
-            "minimise": "",
-            "issue_report": "",
-            "guide": "",
-            "discord": "",
-            "patreon": ""
+            "close": "Isara",
+            "maximise": "Palakihin",
+            "minimise": "Itago",
+            "issue_report": "Magbigay-alam ng isyu",
+            "guide": "Gabay sa paggamit",
+            "discord": "Sumali sa Discord server",
+            "patreon": "Suportahan ang Doki Doki Mod Manager sa Patreon"
         },
         "drop_cover": {
-            "text": ""
+            "text": "Maghulog a mod here upang ma-install ito"
         },
         "announcement": {
-            "button_open": "",
-            "button_close": ""
+            "button_open": "Buksan ang Link",
+            "button_close": "Isara"
         },
         "onboarding_v4": {
-            "text_welcome": "",
-            "button_start": "",
-            "text_scanning": "",
-            "header_setup": "",
-            "subtitle_careful": "",
-            "header_download": "",
-            "text_download": "",
-            "button_ddlc_website": "",
-            "text_s2_next": "",
-            "text_modification_warning": "",
-            "header_safari_warning": "",
-            "text_safari_warning": "",
-            "link_safari_warning": "",
-            "button_next": "",
-            "button_previous": "",
-            "button_finish": "",
-            "text_select": "",
-            "text_dropzone": "",
-            "text_validating": "",
-            "header_directory_selected": "",
-            "text_directory_selected": "",
-            "header_version_mismatch": "",
-            "text_version_mismatch": "",
-            "header_success": "",
-            "text_success": "",
-            "header_hash_mismatch": "",
-            "text_hash_mismatch": "",
-            "subtitle_last": "",
-            "header_save_location": "",
-            "text_save_location": "",
-            "header_waifu": "",
-            "subtitle_waifu": "",
+            "text_welcome": "Maligayang pagdating sa pinakamagaling na bersyon ng Doki Doki Mod Manager.",
+            "button_start": "Magsimula",
+            "text_scanning": "Maghintay po…",
+            "header_setup": "Unang Beses na Pag-setup",
+            "subtitle_careful": "Basahin ng maingat ang mga sumusunod na hakbang.",
+            "header_download": "I-Download ang DDLC",
+            "text_download": "Pumunta sa DDLC website, i-click ang Download Now at sundin ang mga hakbang. Kapag tinanong ka, piliin mo ang file na nakapangalang {0} at i-save ito sa lugar na madali hanapin.",
+            "button_ddlc_website": "Pumunta sa DDLC website",
+            "text_s2_next": "Kapag natapos na ang iyong download, tumuloy sa susunod na hakbang.",
+            "text_modification_warning": "Huwag gumawa ng anumang pagbabago sa nai-download na file.",
+            "header_safari_warning": "Importanteng impormasyon para sa mga gumagamit ng Safari",
+            "text_safari_warning": "Maaaring awtomatikong i-extract ng Safari ang nai-download na laro. Dapat mo patayin ito sapagkat humahadlang ito sa proseso ng pag-setup. Maaring ito gawin sa preferences screen ng Safari.",
+            "link_safari_warning": "Mag-click dito para sa biswal na guide",
+            "button_next": "Sunod",
+            "button_previous": "Nakaraan",
+            "button_finish": "Tapusin",
+            "text_select": "Buksan ang folder kung saan isinave mo ang kopya ng DDLC, at pagkatapos ay ihulog ito sa lugar sa ibaba.",
+            "text_dropzone": "Ihulog mo ang nai-download mo na kopya ng DDLC dito",
+            "text_validating": "Maghintay po ng saglit…",
+            "header_directory_selected": "Ang nai-select mo ay folder sa halip ng DDLC zip file",
+            "text_directory_selected": "Siguraduhin mo na hindi mo nai-select ang extracted na kopya ng laro at subukan mo ulit.",
+            "header_version_mismatch": "Mukang hindi iyan ang tamang zip file",
+            "text_version_mismatch": "Nai-download mo ang maling bersyon ng DDLC para sa iyong operating system. Siguraduhin mo na naidownload mo ang {0} at subukan muli.",
+            "header_success": "Nahanap ang kopya mo ng DDLC",
+            "text_success": "Handa ka nang magpatuloy sa susunod na hakbang!",
+            "header_hash_mismatch": "Mukang hindi iyan ang tamang file",
+            "text_hash_mismatch": "I-check mo ulit kung tama ang napili mong file at subukan muli.",
+            "subtitle_last": "Ang mga pagpipilian na ito ay maaring mong baguhin sa anumang oras.",
+            "header_save_location": "Lokasyon na isa-save ito",
+            "text_save_location": "Kung gusto mong i-save ang iyong mga mods sa ibang drive, ngayon ang pagkakataon mong piliin ito.",
+            "header_waifu": "Sino ang paborito mong karakter?",
+            "subtitle_waifu": "Huwag mo isipin, magsagot ka lang.",
             "label_waifu": "",
-            "option_waifu_all": "",
-            "option_waifu_monika": "",
-            "option_waifu_natsuki": "",
-            "option_waifu_sayori": "",
-            "option_waifu_yuri": ""
+            "option_waifu_all": "Lahat sila!",
+            "option_waifu_monika": "Monika",
+            "option_waifu_natsuki": "Natsuki",
+            "option_waifu_sayori": "Sayori",
+            "option_waifu_yuri": "Yuri"
         },
         "modal_news": {
-            "button": ""
+            "button": "Tapos na"
         },
         "modal_issue_report": {
-            "title": "",
-            "description": "",
-            "label_type": "",
-            "option_bug": "",
-            "option_broken_mod": "",
+            "title": "Magbigay-alam ng isyu",
+            "description": "Kung ang iyong isyu ay nangangailangan ng direktang tugon, o hindi umaangkop sa mga kategorya na nakalista dito, magpadala ka ng email.",
+            "label_type": "Uri ng isyu",
+            "option_bug": "Depekto sa aplikasyon",
+            "option_broken_mod": "Hindi gumagana ang mod",
             "label_mod": "",
             "placeholder_mod": "",
             "label_body": "",
