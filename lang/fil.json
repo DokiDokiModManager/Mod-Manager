@@ -26,8 +26,8 @@
         "tabs": {
             "tab_play": "Mag-laro",
             "tab_downloads": "Mods",
-            "tab_options": "Pagpipilian",
-            "tab_about": "Tungkol",
+            "tab_options": "Mga pagpipilian",
+            "tab_about": "Tungkol sa",
             "tab_experiments": "Mga eksperimento"
         },
         "version": {
@@ -107,26 +107,26 @@
             "label_type": "Uri ng isyu",
             "option_bug": "Depekto sa aplikasyon",
             "option_broken_mod": "Hindi gumagana ang mod",
-            "label_mod": "",
-            "placeholder_mod": "",
-            "label_body": "",
-            "placeholder_body": "",
-            "button_submit": "",
-            "button_cancel": ""
+            "label_mod": "link papunta sa mod",
+            "placeholder_mod": "I-paste ang link sa website ng mod o ang lugar ng pag-download ng mod.",
+            "label_body": "Detalyes ng isyu",
+            "placeholder_body": "Magbigay ng maraming detalye hangga't maaari. Kung may kaugnayan ito, magbigay ng mga hakbang upang maiulit ang isyu.",
+            "button_submit": "I-send ang isyu",
+            "button_cancel": "Kanselahin"
         },
         "modal_rename": {
-            "title": "",
-            "body": "",
-            "button_affirmative": "",
-            "button_negative": ""
+            "title": "Baguhin ang pangalan ng instalasyon",
+            "body": "Maglagay ng bagong pangalan para sa {0}.",
+            "button_affirmative": "Baguhin",
+            "button_negative": "Kanselahin"
         },
         "modal_uninstall": {
-            "title": "",
-            "body": "",
-            "body_globalsave": "",
-            "confirmation": "",
-            "button_affirmative": "",
-            "button_negative": ""
+            "title": "Sigurado ka bang gusto mong i-uninstall ito?",
+            "body": "Ang iyong Save Data para sa {0} ay tatangalin, at Kakailanganin mo ng kopya ng mod upang ma-install ito muli.",
+            "body_globalsave": "Ang iyong Save Data para sa {0} ay hindi tatangalin. Pero, kakailanganin mo ng kopya ng mod upang ma-install ito muli.",
+            "confirmation": "Naiintindihan ko.",
+            "button_affirmative": "I-uninstall",
+            "button_negative": "Kanselahin"
         },
         "modal_archive": {
             "title": "",
@@ -315,35 +315,35 @@
                 "description_custom": ""
             },
             "section_advanced_appearance": {
-                "title": "",
-                "subtitle": "",
-                "button_enable_sysborders": ""
+                "title": "Advanced",
+                "subtitle": "Hanapin ang ibanbg mga pagpipilian sa interface dito.",
+                "button_enable_sysborders": "Gumamit ng System Borders(nangangailangan ng restart)"
             },
             "section_storage": {
                 "title": "",
-                "subtitle": "",
-                "description": "",
-                "description_moving": "",
-                "button_confirm": ""
+                "subtitle": "Baguhin ang lokasyon na nakalagay ang iyong Game Data.",
+                "description": "Pwede mo piliin kung saaan nakalagay ang Install Data ng Doki Doki Mod Manager, halimbawa ay kung gusto mong gumamit ng ibang Hard Drive. Pumili ka ng folder na walang laman para mailipat ang iyong Install Data.",
+                "description_moving": "Babala! Kung pipiliin mong ilipat ang lokasyon ng mga install mo, lahat ng iyong mga mods, mga instalasyon at Save Data ay ililipat. Maaring ito tumagal ng ilang minuto, at hindi pwedeng patigilin.",
+                "button_confirm": "Baguhin"
             },
             "section_updates": {
-                "title": "",
-                "subtitle": "",
-                "description_current_version": "",
-                "description_latest_version": "",
-                "description_has_update": "",
-                "description_no_update": "",
-                "description_downloading": "",
-                "description_downloaded": "",
-                "description_error": "",
-                "button_check": "",
-                "button_download": ""
+                "title": "Mga Updates",
+                "subtitle": "Kunin ang pinakabagong bersyon ng Doki Doki Mod Manager.",
+                "description_current_version": "Kasalukuyang Bersyon: {0}",
+                "description_latest_version": "Pinakabagong bersyon: {0}",
+                "description_has_update": "Mayroong bagong bersyon ng Doki Doki Mod Manager!",
+                "description_no_update": "Nasa pinakabago kang bersyon ng Doki Doki Mod Manager.",
+                "description_downloading": "Nagdo-download ng update - Pwede mo gamitin ang aplikasyon habang naghihintay ka.",
+                "description_downloaded": "Nai-download na ang updata at magsisimula ang pag-install kapag isinara mo ito.",
+                "description_error": "Hindi ma-check kung mayroong mga update ngayon, subukan muli sa ibang pagkakataon.",
+                "button_check": "I-check ulit",
+                "button_download": "I-download ang Update"
             },
             "section_language": {
-                "title": "",
-                "subtitle": "",
-                "link_contribute": "",
-                "label_language": ""
+                "title": "Linguahe",
+                "subtitle": "Piliin ang iyong gustong linguahe. Ang mga pagsasalin ay hindi 100% na eksakto o kumpleto.",
+                "link_contribute": "Pwede mo bang tulungang isalin ang Doki Doki Mod Manager? I-click ito upang makasali sa proyektong komunidad para sa pagsasalin.",
+                "label_language": "Linguahe"
             },
             "section_sdk": {
                 "title": "",
@@ -354,10 +354,10 @@
                 "checkbox_never": ""
             },
             "section_discord": {
-                "title": "",
-                "subtitle": "",
-                "description": "",
-                "button_enable": ""
+                "title": "Discord Rich Presence",
+                "subtitle": "Ibahagi mo ang mod na linalaro mo sa iyong mga kaibigan sa Discord.",
+                "description": "Ang mga pagbabago ay magpapakita pagkatapos i-restart ang Doki Doki Mod Manager.",
+                "button_enable": "Paganahin ang Rich Presence"
             },
             "section_testing": {
                 "title": "",
@@ -372,7 +372,7 @@
             }
         },
         "tab_about": {
-            "title": "",
+            "title": "Tungkol sa",
             "description": "",
             "title_disclaimer": "",
             "disclaimer_1": "",
@@ -389,111 +389,111 @@
         },
         "tab_downloads": {
             "list": {
-                "header_library": "",
-                "link_downloaded": "",
-                "link_downloads": "",
-                "header_browse": "",
-                "link_featured": "",
-                "link_ddmc": ""
+                "header_library": "Librerya",
+                "link_downloaded": "Ang iyong mga Mods",
+                "link_downloads": "Mga downloads",
+                "header_browse": "Maghanap ng mga Mods",
+                "link_featured": "Mga ipinapakitang Mods",
+                "link_ddmc": "Doki Doki Mod Club"
             },
             "downloaded": {
-                "title": "",
-                "button_install": "",
-                "button_options": "",
-                "description_type": "",
-                "placeholder_search": "",
-                "message_none": ""
+                "title": "Ang iyong mga mods",
+                "button_install": "I-install",
+                "button_options": "Mga pagpipilian",
+                "description_type": "Uri ng file: {0}",
+                "placeholder_search": "Mag-search ng mod…",
+                "message_none": "Wala kang mga mods. Lumabas ka at mag-download ng mga ilan!"
             },
             "downloads": {
-                "title": "",
-                "status_text_downloading": "",
-                "status_text_downloading_uncertain": "",
-                "message_none": ""
+                "title": "Mga downloads",
+                "status_text_downloading": "Nag-Dodownload - {0}% sa {1} MB/s ({2} natitira)",
+                "status_text_downloading_uncertain": "Nag-Dodownload - {0} MB nai-download na sa {1} MB/s",
+                "message_none": "Walang mga dina-download."
             },
             "featured": {
-                "title": "",
-                "button_download": ""
+                "title": "Mga pinapakita na Mods",
+                "button_download": "I-download"
             },
             "store": {
-                "title_ddmc": "",
-                "description_ddmc": "",
-                "link_ddmc": "",
-                "description_featured": "",
-                "text_loading": "",
-                "error_loading": "",
-                "placeholder_search": ""
+                "title_ddmc": "Doki Doki Mod Club",
+                "description_ddmc": "Mag-browse sa database ng mga mod, na mula sa Doki Doki Mod Club.",
+                "link_ddmc": "Pumunta sa website upang isumite ang sariling mong mod.",
+                "description_featured": "Sira para sa pagpili? Subukan ang isa sa mga naka-highlight na mod!",
+                "text_loading": "Lino-load ang mod list…",
+                "error_loading": "Hindi ma-load ang mga mods ngayon.",
+                "placeholder_search": "Mag-search ng mod…"
             }
         },
         "component_install_folder_selector": {
-            "label": "",
-            "button_select": "",
-            "error_disk_space": ""
+            "label": "Lokasyon ng Save",
+            "button_select": "Piliin",
+            "error_disk_space": "Ang drive na ito ay walang hindi bababa sa 2 GiB ng libreng memorya"
         }
     },
     "main": {
         "discord": {
-            "status_idle": "",
-            "status_active": "",
-            "description_idle": "",
-            "description_active": "",
-            "description_version": ""
+            "status_idle": "Nangangasiwa ng mga Mods",
+            "status_active": "Nasa laro",
+            "description_idle": "Hindi naglalaro",
+            "description_active": "Naglalaro ng DDLC",
+            "description_version": "Bersyon {0}"
         },
         "jumplist": {
-            "task_launch": ""
+            "task_launch": "Buksan ang Doki Doki Mod Manager at buksan {0}."
         },
         "running_cover": {
-            "title_running": "",
-            "title_crashed": "",
-            "button_browse": "",
-            "button_close": "",
-            "description_running": "",
-            "install_missing": "",
-            "install_corrupt": "",
-            "install_crashed": ""
+            "title_running": "Ang DDLC ay nakabukas",
+            "title_crashed": "Mayrong maling nangyari",
+            "button_browse": "Buksan ang Game Folder",
+            "button_close": "OK",
+            "description_running": "Isara ang laro para makagawa ng mga pagbabago sa iyong mga mods.",
+            "install_missing": "Hindi mahanap ang installation.",
+            "install_corrupt": "Ang install ay hindi kumpleto o sira.",
+            "install_crashed": "Hindi naka-bukas ang laro o nag-crash."
         },
         "move_install": {
-            "title": "",
-            "error_not_empty": "",
-            "error_read": ""
+            "title": "Pumili ng bagong install folder",
+            "error_not_empty": "Ang folder na ito ay mayroong laman. Pumili ng folder na walang laman.",
+            "error_read": "Hindi makabasa mula sa folder na ito. Subukan mo ulit."
         },
         "mod_browse_dialog": {
-            "title": "",
-            "file_format_name": ""
+            "title": "Maghanap ng mod na mai-install",
+            "file_format_name": "Mods"
         },
         "game_browse_dialog": {
-            "title": "",
-            "file_format_name": ""
+            "title": "Maghanap ng kopya ng zip file ng DDLC",
+            "file_format_name": "DDLC"
         },
         "shortcut_dialog": {
-            "title": "",
-            "file_format_name": ""
+            "title": "Piliin mo ang lugar na gusto mong ilagay ang shortcut mo",
+            "file_format_name": "Shortcut"
         },
         "import_mas": {
-            "title": "",
-            "filter": ""
+            "title": "Hanapin mo ang lugar na linagay mo ang kopya ng karakter file ni Monika",
+            "filter": "Si Monika lamang"
         },
         "export_mas": {
-            "title": "",
-            "filter": ""
+            "title": "Piliin mo kung saan mo gustong kopyahin si Monika",
+            "filter": "Si Monika lamang"
         },
         "redownload_confirmation": {
-            "message": "",
-            "detail": "",
-            "button_confirm": "",
-            "button_cancel": ""
+            "message": "Nai-download na ang Mod",
+            "detail": "Mayroon nang kopya ng {0} sa iyong library ng mod. Gusto mo bang i-download ito muli? (Ii-overwrite nito ang lumang kopya)",
+            "button_confirm": "Mag-download",
+            "button_cancel": "Kanselahin"
         },
         "errors": {
             "dev_ui_load_fail": {
-                "title": "",
-                "body": ""
+                "title": "Nabigong i-load mula sa development server",
+                "body": "Naglo-load mula sa live UI server."
             },
             "renderer_freeze": {
-                "title": "",
-                "body": ""
+                "title": "Ang Doki Doki Mod Manager ay huminto",
+                "body": "Kung ang isyu na ito ay nagpapatuloy ng mahabang panahon, isara ang app at buksan ulit."
             },
             "move_install": {
-                "title": "",
-                "body": ""
+                "title": "Nabigong ilipat ang install folder",
+                "body": "Siguraduhing may permiso kang lumipat sa destinasyon na folder at subukan ulit."
             }
         }
     }
