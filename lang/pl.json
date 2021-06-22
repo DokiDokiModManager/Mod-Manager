@@ -159,7 +159,7 @@
                 "link_website": "Strona internetowa ({0})",
                 "description_external": "Pokaż w folderze",
                 "description_install_failed_launch_again": "Ten komunikat zniknie po następnym uruchomieniu tego moda.",
-                "description_singleton_error": "Upewnij się, że nie uruchamiasz więcej niż jednej instancji DDLC i spróbuj uruchomić ją ponownie. Jeśli problem będzie się powtarzał, możesz przeczytać przewodnik rozwiązywania problemów.",
+                "description_singleton_error": "Upewnij się, że nie uruchomiona jest tylko jedna instancja DDLC i spróbuj uruchomić ją ponownie. Jeśli problem będzie się powtarzał, możesz przeczytać przewodnik rozwiązywania problemów.",
                 "title_singleton_error": "Czy twoja gra została zamknięta?",
                 "link_troubleshooting": "Przewodnik rozwiązywania problemów",
                 "description_install_failed": "Wygląda na to, że mod, w który próbowałeś grać, mógł nie zostać poprawnie zainstalowany. Możesz przeczytać przewodnik rozwiązywania problemów, aby uzyskać pomoc w rozwiązaniu problemu.",
@@ -168,8 +168,8 @@
                 "button_mas_export": "Skopiuj Monikę",
                 "description_mas_export": "Monika jest gotowa, by z tobą wyjść .",
                 "title_mas_export": "Zabierz Monikę ze sobą",
-                "description_achievement_not_earned": "Niegotowe",
-                "description_achievement_earned": "Gotowe",
+                "description_achievement_not_earned": "Nieukończono",
+                "description_achievement_earned": "Ukończono",
                 "tag_archived": "Zarchiwizowano"
             },
             "mod": {

@@ -125,7 +125,7 @@
             "body": "Save data anda untuk {0} akan dihapus, dan anda memerlukan salinan mod tersebut jika ingin instalasi ulang.",
             "body_globalsave": "Save data anda untuk {0} tidak akan dihapus. Namun, anda memerlukan salinan mod tersebut jika ingin instalasi ulang.",
             "confirmation": "Saya mengerti.",
-            "button_affirmative": "Uninstall",
+            "button_affirmative": "Copot pemasangan",
             "button_negative": "Batal"
         },
         "modal_archive": {
@@ -178,7 +178,7 @@
             "archive": "Arsipkan",
             "shortcut": "Buat Shortcut",
             "delete_save": "Hapus Save Data",
-            "uninstall": "Uninstall",
+            "uninstall": "Copot Pemasangan",
             "cancel": "Batal"
         },
         "menu_mod_options": {
@@ -234,7 +234,7 @@
             "install": {
                 "button_launch": "Luncurkan",
                 "button_settings": "Pengaturan",
-                "tag_global_save": "Global Save",
+                "tag_global_save": "Simpan Global",
                 "tag_sdk": "SDK",
                 "tag_archived": "Arsip",
                 "title_achievements": "Pencapaian ({0}/{1})",
@@ -277,7 +277,7 @@
                 "label_has_mod": "Pasang Mod",
                 "label_mod": "Mod",
                 "option_local_save": "Local Save (direkomendasikan)",
-                "option_global_save": "Global Save",
+                "option_global_save": "Simpan Global",
                 "modlist_none": "DDLC Reguler - tanpa mod",
                 "modlist_library": "Pustaka Mod",
                 "modlist_custom": "Mod tidak terdaftar disini",
@@ -354,7 +354,7 @@
                 "checkbox_never": "Jangan Pernah"
             },
             "section_discord": {
-                "title": "Discord Rich Presence",
+                "title": "Kehadiran Discord Rich",
                 "subtitle": "Tunjukkan mod apa yang anda mainkan dengan teman Discord anda.",
                 "description": "Perubahan akan diimplementasikan setelah memulai ulang Doki Doki Mod Manager.",
                 "button_enable": "Aktifkan Rich Presence"
@@ -466,7 +466,7 @@
         },
         "shortcut_dialog": {
             "title": "Pilih lokasi untuk meletakkan shortcut",
-            "file_format_name": "Shortcut"
+            "file_format_name": "Pintasan"
         },
         "import_mas": {
             "title": "Cari lokasi dimana anda menyimpan salinan file karakter Monika",
