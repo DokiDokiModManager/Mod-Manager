@@ -1,127 +1,127 @@
 {
     "renderer": {
         "online_error": {
-            "title": "",
-            "body": "",
-            "button_restart": "",
-            "button_quit": ""
+            "title": "Por favor, conecte-se à internet",
+            "body": "Doki Doki Mod Manager requer uma conexão com a Internet para instalar recursos pela primeira vez. Por favor, verifique sua conexão com a Internet e reinicie.",
+            "button_restart": "Reiniciar",
+            "button_quit": "Sair"
         },
         "modal_error": {
-            "title_non_fatal": "",
-            "title_fatal": "",
-            "description_general": "",
-            "description_stacktrace": "",
-            "button_continue": "",
-            "button_restart": "",
-            "button_copy": ""
+            "title_non_fatal": "Oops, algo deu errado",
+            "title_fatal": "Oops, Doki Doki Mod Manager falhou",
+            "description_general": "Por favor, tente o que estava fazendo de novo, e se continuar tendo problemas, por favor me diga!",
+            "description_stacktrace": "Aqui estão os detalhes técnicos do que deu errado - por favor, deixe uma anotação desses caso peça por ajuda.",
+            "button_continue": "Continuar",
+            "button_restart": "Reiniciar",
+            "button_copy": "Erro em copiar para a área de transferência"
         },
         "modal_language_switch": {
-            "title": "",
-            "description": ""
+            "title": "Mudar de idioma",
+            "description": "Por favor, espere um momento…"
         },
         "modal_download_starting": {
-            "title": "",
-            "description": ""
+            "title": "Instalação iniciando",
+            "description": "Por favor, siga qualquer comando apresentado para completar o download"
         },
         "tabs": {
-            "tab_play": "",
-            "tab_downloads": "",
-            "tab_options": "",
-            "tab_about": "",
+            "tab_play": "Jogar",
+            "tab_downloads": "Mods",
+            "tab_options": "Opções",
+            "tab_about": "Sobre",
             "tab_experiments": ""
         },
         "version": {
-            "link_changelog": ""
+            "link_changelog": "o que há de novo?"
         },
         "help_menu": {
-            "option_help": "",
-            "option_feedback": "",
-            "option_discord": ""
+            "option_help": "Visitar site de ajuda",
+            "option_feedback": "Enviar comentários privados",
+            "option_discord": "Entre no servidor do Discord"
         },
         "user_menu": {
-            "option_rename": "",
-            "option_logout": ""
+            "option_rename": "Mudar nome de usuário",
+            "option_logout": "Encerrar sessão"
         },
         "window_controls": {
-            "close": "",
-            "maximise": "",
-            "minimise": "",
-            "issue_report": "",
-            "guide": "",
-            "discord": "",
-            "patreon": ""
+            "close": "Fechar",
+            "maximise": "Maximizar",
+            "minimise": "Minimizar",
+            "issue_report": "Reportar um erro",
+            "guide": "Guia de usuário",
+            "discord": "Entre no servidor do Discord",
+            "patreon": "Ajude Doki Doki Mod Manager no Patreon"
         },
         "drop_cover": {
-            "text": ""
+            "text": "Solte um mod aqui para instalá-lo"
         },
         "announcement": {
-            "button_open": "",
-            "button_close": ""
+            "button_open": "Abrir Link",
+            "button_close": "Fechar"
         },
         "onboarding_v4": {
-            "text_welcome": "",
-            "button_start": "",
-            "text_scanning": "",
-            "header_setup": "",
-            "subtitle_careful": "",
-            "header_download": "",
-            "text_download": "",
-            "button_ddlc_website": "",
-            "text_s2_next": "",
-            "text_modification_warning": "",
-            "header_safari_warning": "",
-            "text_safari_warning": "",
-            "link_safari_warning": "",
-            "button_next": "",
-            "button_previous": "",
-            "button_finish": "",
-            "text_select": "",
-            "text_dropzone": "",
-            "text_validating": "",
-            "header_directory_selected": "",
-            "text_directory_selected": "",
-            "header_version_mismatch": "",
-            "text_version_mismatch": "",
-            "header_success": "",
-            "text_success": "",
-            "header_hash_mismatch": "",
-            "text_hash_mismatch": "",
-            "subtitle_last": "",
-            "header_save_location": "",
-            "text_save_location": "",
-            "header_waifu": "",
-            "subtitle_waifu": "",
-            "label_waifu": "",
-            "option_waifu_all": "",
-            "option_waifu_monika": "",
-            "option_waifu_natsuki": "",
-            "option_waifu_sayori": "",
-            "option_waifu_yuri": ""
+            "text_welcome": "Bem vindo à melhor versão do Doki Doki Mod Manager até agora.",
+            "button_start": "Começar a usar",
+            "text_scanning": "Por favor, espere…",
+            "header_setup": "Primeira Instalação",
+            "subtitle_careful": "Por favor, leia as seguintes instruções com cuidado.",
+            "header_download": "Instalar DDLC",
+            "text_download": "Visite o site do DDLC, clique Download Now e siga as instruções. Quando for perguntado, escolha o arquivo chamado {0} e salve-o em um lugar fácil de encontrar.",
+            "button_ddlc_website": "Visitar o site do DDLC",
+            "text_s2_next": "Quando a instalação estiver completa, por favor prossiga para o próximo passo.",
+            "text_modification_warning": "Não faça nenhuma alteração no arquivo instalado.",
+            "header_safari_warning": "Informações importantes para usuários do Safari",
+            "text_safari_warning": "Safari pode automaticamente extrair o jogo instalado. Você deve desativar essa opção, já que interfere no processo de instalações. Isso pode ser feito na tela de preferências do Safari.",
+            "link_safari_warning": "Clique aqui para um guia visual",
+            "button_next": "Próximo",
+            "button_previous": "Anterior",
+            "button_finish": "Finalizar",
+            "text_select": "Abra a pasta na qual você salvou a cópia de DDLC, e arraste o arquivo no espaço abaixo.",
+            "text_dropzone": "Arraste sua cópia instalada de DDLC aqui",
+            "text_validating": "Por favor, aguarde um momento…",
+            "header_directory_selected": "Você selecionou uma pasta ao invés do arquivo zip do DDLC",
+            "text_directory_selected": "Por favor, certifique-se de que você não está selecionando uma cópia extraída do jogo e tente novamente.",
+            "header_version_mismatch": "Esse não parece ser o arquivo zip correto",
+            "text_version_mismatch": "Você pode ter instalado a versão errada de DDLC para o seu sistema operacional. Certifique-se de que você instalou {0} e tente novamente.",
+            "header_success": "Cópia de DDLC encontrada",
+            "text_success": "Agora você está pronto para ir para o próximo passo!",
+            "header_hash_mismatch": "Esse não parece ser o arquivo correto",
+            "text_hash_mismatch": "Por favor, certifique-se novamente de que você selecionou o arquivo correto e tente novamente.",
+            "subtitle_last": "Essas opções podem ser alteradas a qualquer momento.",
+            "header_save_location": "Local de save",
+            "text_save_location": "Caso queira armazenar seus mods em um dispositivo de armazenamento diferente, agora é sua chance de escolher.",
+            "header_waifu": "Qual é sua personagem favorita?",
+            "subtitle_waifu": "Não pense, apenas responda.",
+            "label_waifu": "Best Girl",
+            "option_waifu_all": "Todas elas!",
+            "option_waifu_monika": "Monika",
+            "option_waifu_natsuki": "Natsuki",
+            "option_waifu_sayori": "Sayori",
+            "option_waifu_yuri": "Yuri"
         },
         "modal_news": {
-            "button": ""
+            "button": "Pronto"
         },
         "modal_issue_report": {
-            "title": "",
-            "description": "",
-            "label_type": "",
-            "option_bug": "",
-            "option_broken_mod": "",
-            "label_mod": "",
-            "placeholder_mod": "",
-            "label_body": "",
-            "placeholder_body": "",
-            "button_submit": "",
-            "button_cancel": ""
+            "title": "Reportar um erro",
+            "description": "Caso seu problema requeira uma resposta direta, ou não está dentro de nenhuma das categorias listadas aqui, por favor, mande um e-mail.",
+            "label_type": "Tipo do problema",
+            "option_bug": "Erro no aplicativo",
+            "option_broken_mod": "Mod não funcionando",
+            "label_mod": "Link para o mod",
+            "placeholder_mod": "Por favor, cole um link para o website ou página de download do mod.",
+            "label_body": "Detalhes do problema",
+            "placeholder_body": "Por favor, dê o máximo de detalhes possíveis. Caso seja relevante, por favor, forneça instruções de como reproduzir o problema.",
+            "button_submit": "Enviar",
+            "button_cancel": "Cancelar"
         },
         "modal_rename": {
-            "title": "",
-            "body": "",
-            "button_affirmative": "",
-            "button_negative": ""
+            "title": "Renomear Instalação",
+            "body": "Insira o novo nome para {0}.",
+            "button_affirmative": "Renomear",
+            "button_negative": "Cancelar"
         },
         "modal_uninstall": {
-            "title": "",
+            "title": "Tem certeza de que deseja desinstalar isso?",
             "body": "",
             "body_globalsave": "",
             "confirmation": "",
