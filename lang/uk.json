@@ -265,7 +265,7 @@
             },
             "section_language": {
                 "label_language": "Мова",
-                "link_contribute": "Чи можете Ви допомогти з перекладом Doki Doki Mod Manager? Натисніть, щоб приєднатися до проекту перекладу спільнотою.",
+                "link_contribute": "Чи можете Ви допомогти з перекладом Doki Doki Mod Manager? Натисніть, щоб приєднатися до проєкту перекладу спільнотою.",
                 "title": "Мова",
                 "subtitle": "Оберіть Вашу бажану мову. Переклади можуть не бути повністю завершеними або вірними."
             }
@@ -286,7 +286,7 @@
             "support_donate": "",
             "support_steelseries": "",
             "support_code": "",
-            "link_weblate": "Допоможіть перекласти Doki Doki Mod Manager на Вашу рідну мову - відвідайте домашню сторінку проекта"
+            "link_weblate": "Допоможіть перекласти Doki Doki Mod Manager на Вашу рідну мову - відвідайте домашню сторінку проєкта"
         },
         "modal_error": {
             "title_fatal": "Ой, Doki Doki Mod Manager впав",
