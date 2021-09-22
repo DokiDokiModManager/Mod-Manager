@@ -1,135 +1,135 @@
 {
     "renderer": {
         "online_error": {
-            "title": "",
-            "body": "",
-            "button_restart": "",
-            "button_quit": ""
+            "title": "โปรดเชื่อมต่อกับสัญญาณอินเทอร์เน็ต",
+            "body": "Doki Doki Mod Manager ต้องการ การเชื่อมอินเทอร์เน็ตเพื่อดาวน์โหลดทรัพยากรในครั้งแรก โปรดตรวจสอบการเชื่อมต่อของคุณ แล้ว รีสตาร์ท",
+            "button_restart": "รีสตาร์ท",
+            "button_quit": "ออก"
         },
         "modal_error": {
-            "title_non_fatal": "",
-            "title_fatal": "",
-            "description_general": "",
-            "description_stacktrace": "",
-            "button_continue": "",
-            "button_restart": "",
-            "button_copy": ""
+            "title_non_fatal": "อุ๊ปส์ มีบางอย่างผิดปกติ",
+            "title_fatal": "อุ๊ปส์ Doki Doki Mod Manager ของคุณค้าง",
+            "description_general": "โปรดลองใหม่อีกครั้ง และถ้ายังมีปัญหา บอกเราได้นะ!",
+            "description_stacktrace": "นี้คือรายละเอียดของปัญหา -โน้ตเอาไว้ได้เลยถ้าต้องการความช่วยเหลือ",
+            "button_continue": "ดำเนินการต่อ",
+            "button_restart": "รีสตาร์ท",
+            "button_copy": "คัดลอกข้อผิดพล้าดไปยังคลิปบอร์ด"
         },
         "modal_language_switch": {
-            "title": "",
-            "description": ""
+            "title": "เปลี่ยนภาษา",
+            "description": "โปรดรอซักครู่…"
         },
         "modal_download_starting": {
-            "title": "",
-            "description": ""
+            "title": "การดาวน์โหลดเริ่มขึ้น",
+            "description": "โปรดปฏิบัติตามคำแนะนำที่ปรากฏเพื่อทำการดาวน์โหลดให้เสร็จสิ้น"
         },
         "tabs": {
-            "tab_play": "",
-            "tab_downloads": "",
-            "tab_options": "",
-            "tab_about": "",
-            "tab_experiments": ""
+            "tab_play": "เล่น",
+            "tab_downloads": "ม็อด",
+            "tab_options": "ตั้งค่า",
+            "tab_about": "เกี่ยวกับ",
+            "tab_experiments": "การทดลอง"
         },
         "version": {
-            "link_changelog": ""
+            "link_changelog": "มีอะไรใหม่?"
         },
         "help_menu": {
-            "option_help": "",
-            "option_feedback": "",
-            "option_discord": ""
+            "option_help": "ดูเว็บไซต์ช่วยเหลือ",
+            "option_feedback": "ส่งความคิดเห็นส่วนตัว",
+            "option_discord": "เข้าร่วมเซิฟเวอร์ Discord"
         },
         "user_menu": {
-            "option_rename": "",
-            "option_logout": ""
+            "option_rename": "เปลี่ยน Username",
+            "option_logout": "ออกจากบัญชี"
         },
         "window_controls": {
-            "close": "",
+            "close": "ปิด",
             "maximise": "",
             "minimise": "",
-            "issue_report": "",
-            "guide": "",
-            "discord": "",
-            "patreon": ""
+            "issue_report": "รายงานปัญหา",
+            "guide": "คู่มือผู้ใช้",
+            "discord": "เข้าร่วมเซิฟเวอร์ Discord",
+            "patreon": "สนับสนุน Doki Doki Mod Manager ได้ใน Patreon"
         },
         "drop_cover": {
-            "text": ""
+            "text": "วางม็อดที่จะติดตั้งไว้ตรงนี้"
         },
         "announcement": {
-            "button_open": "",
-            "button_close": ""
+            "button_open": "เปิดลิงค์",
+            "button_close": "ปิด"
         },
         "onboarding_v4": {
-            "text_welcome": "",
-            "button_start": "",
-            "text_scanning": "",
-            "header_setup": "",
-            "subtitle_careful": "",
-            "header_download": "",
-            "text_download": "",
-            "button_ddlc_website": "",
-            "text_s2_next": "",
-            "text_modification_warning": "",
-            "header_safari_warning": "",
-            "text_safari_warning": "",
-            "link_safari_warning": "",
-            "button_next": "",
-            "button_previous": "",
-            "button_finish": "",
-            "text_select": "",
-            "text_dropzone": "",
-            "text_validating": "",
-            "header_directory_selected": "",
-            "text_directory_selected": "",
-            "header_version_mismatch": "",
-            "text_version_mismatch": "",
-            "header_success": "",
-            "text_success": "",
-            "header_hash_mismatch": "",
-            "text_hash_mismatch": "",
-            "subtitle_last": "",
-            "header_save_location": "",
-            "text_save_location": "",
-            "header_waifu": "",
-            "subtitle_waifu": "",
-            "label_waifu": "",
-            "option_waifu_all": "",
-            "option_waifu_monika": "",
-            "option_waifu_natsuki": "",
-            "option_waifu_sayori": "",
-            "option_waifu_yuri": ""
+            "text_welcome": "ยินดีต้อนรับสู่ Doki Doki Mod Manager ในเวอร์ชันที่ดีที่สุด",
+            "button_start": "เริ่ม",
+            "text_scanning": "โปรดรอสักครู่…",
+            "header_setup": "การตั้งค่าครั้งแรก",
+            "subtitle_careful": "โปรดอ่านคำแนะนำต่อไปนี้อย่างละเอียด",
+            "header_download": "ดาวน์โหลด DDLC",
+            "text_download": "เข้าไปในเว็บไซต์ของ DDLC แล้วดาวน์โหลดตัวเกม และทำตามคำแนะนำต่างๆ เมื่อถูกถาม เลือกไฟล์ที่มีชื่อว่า {0} และบันทึกไว้ในที่ที่จะหาง่ายที่สุด",
+            "button_ddlc_website": "เยี่ยมชมเว็บไซต์ DDLC",
+            "text_s2_next": "เมื่อการดาวน์โหลดของคุณเสร็จสิ้นแล้ว โปรดดำเนินการในขั้นตอนต่อไป",
+            "text_modification_warning": "อย่าทำการเปลี่ยนแปลงใด ๆ กับไฟล์ที่ดาวน์โหลด",
+            "header_safari_warning": "สำคัญสำหรับคนที่ใช้ Safari",
+            "text_safari_warning": "Safari จะทำการแตกไฟล์เกมออกมาให้เลยอัตโนมัติ คุณควรปิดใช้ฟีเจอร์นี้เนื่องจากจะรบกวนกระบวนการตั้งค่า สามารถทำได้จากหน้าจอ การตั้งค่า ของ Safari",
+            "link_safari_warning": "คลิกตรงนี้สำหรับ คู่มือภาพ",
+            "button_next": "ถัดไป",
+            "button_previous": "ก่อนหน้า",
+            "button_finish": "เสร็จสิ้น",
+            "text_select": "เปิดโฟลเดอร์ที่คุณบันทึกสำเนาของ DDLC เอาไว้ แล้วลากและวางไฟล์ลงในช่องว่างด้านล่าง",
+            "text_dropzone": "ลากสำเนา DDLC ที่คุณดาวน์โหลดมาที่นี่",
+            "text_validating": "โปรดรอสักครู่…",
+            "header_directory_selected": "เลือกโฟลเดอร์แทนไฟล์ Zip",
+            "text_directory_selected": "โปรดตรวจสอบให้แน่ใจว่าคุณไม่ได้เลือกสำเนาของเกมที่แยกออกมา แล้วลองอีกครั้ง",
+            "header_version_mismatch": "มันดูไม่เหมือนไฟล์ zip ที่ถูกต้อง",
+            "text_version_mismatch": "คุณอาจดาวน์โหลด DDLC เวอร์ชันที่ไม่รองรับสำหรับระบบปฏิบัติการของคุณ ตรวจสอบให้แน่ใจว่าคุณดาวน์โหลด {0} แล้วลองใหม่อีกครั้ง",
+            "header_success": "พบสำเนา DDLC ของคุณ",
+            "text_success": "คุณพร้อมสำหรับขั้นตอนต่อไป!",
+            "header_hash_mismatch": "มันดูเหมือนจะไม่ใช่ไฟล์ที่ถูกต้อง",
+            "text_hash_mismatch": "โปรดตรวจสอบอีกครั้งว่าคุณได้เลือกไฟล์ที่ถูกต้องแล้วลองอีกครั้ง",
+            "subtitle_last": "การตั้งค่าเหล่านี้สามารถเปลี่ยนแปลงได้ตลอด",
+            "header_save_location": "ตำแหน่งของไฟล์",
+            "text_save_location": "หากคุณต้องการจัดเก็บม็อดของคุณไว้ในไดรฟ์อื่น ตอนนี้เป็นโอกาสของคุณที่จะเลือกไดรฟ์ที่คุณต้องการจะเก็บ",
+            "header_waifu": "ตัวละครโปรดของคุณคือใคร?",
+            "subtitle_waifu": "ไม่ต้องคิด แค่ตอบ",
+            "label_waifu": "สาวคนโปรด",
+            "option_waifu_all": "ทุกคนเลย!",
+            "option_waifu_monika": "โมนิก้า (Monika)",
+            "option_waifu_natsuki": "นัทสุกิ (Natsuki)",
+            "option_waifu_sayori": "ซาโยริ (Sayori)",
+            "option_waifu_yuri": "ยูริ (Yuri)"
         },
         "modal_news": {
-            "button": ""
+            "button": "เสร็จสิ้น"
         },
         "modal_issue_report": {
-            "title": "",
-            "description": "",
-            "label_type": "",
-            "option_bug": "",
-            "option_broken_mod": "",
-            "label_mod": "",
-            "placeholder_mod": "",
-            "label_body": "",
-            "placeholder_body": "",
-            "button_submit": "",
-            "button_cancel": ""
+            "title": "รายงานปัญหา",
+            "description": "หากคุณต้องการรายงานปัญหาโดยตรง หรือไม่มีหมู่ใดตรงกับปัญหาที่ระบุไว้ที่นี่ โปรดส่งอีเมลแทน",
+            "label_type": "ประเภทปัญหา",
+            "option_bug": "ข้อผิดพลาดของแอปพลิเคชัน",
+            "option_broken_mod": "ตัวม็อดไม่ทำงาน",
+            "label_mod": "ลิงค์ไปยังม็อด",
+            "placeholder_mod": "โปรดวางลิงก์ไปยังเว็บไซต์ของม็อดนั้นๆ หรือหน้าดาวน์โหลดของม็อดนั้นๆ",
+            "label_body": "รายละเอียดปัญหา",
+            "placeholder_body": "กรุณาเขียนมาให้รายละเอียดให้มากที่สุดเท่าที่เป็นไปได้ หากมีความเกี่ยวข้อง โปรดให้คำแนะนำเกี่ยวกับวิธีการเอาปัญหาดังกล่าวไปแก้ไข",
+            "button_submit": "ส่งรายงานปัญหา",
+            "button_cancel": "ยกเลิก"
         },
         "modal_rename": {
-            "title": "",
-            "body": "",
-            "button_affirmative": "",
-            "button_negative": ""
+            "title": "เปลี่ยนชื่อตัวติดตั้ง",
+            "body": "ป้อนชื่อใหม่สำหรับ {0}",
+            "button_affirmative": "เปลี่ยนชื่อ",
+            "button_negative": "ยกเลิก"
         },
         "modal_uninstall": {
-            "title": "",
-            "body": "",
-            "body_globalsave": "",
-            "confirmation": "",
-            "button_affirmative": "",
-            "button_negative": ""
+            "title": "คุณแน่ใจหรือไม่ว่าต้องการถอนการติดตั้งสิ่งนี้?",
+            "body": "ข้อมูลที่บันทึกไว้สำหรับ {0} จะถูกลบ คุณจะต้องมีสำเนาของม็อดเพื่อติดตั้งอีกครั้ง",
+            "body_globalsave": "ข้อมูลที่บันทึกของคุณสำหรับ {0} จะไม่ถูกลบ อย่างไรก็ตาม คุณจะต้องมีสำเนาของม็อดเพื่อติดตั้งอีกครั้ง",
+            "confirmation": "ฉันเข้าใจแล้ว",
+            "button_affirmative": "ถอนการติดตั้ง",
+            "button_negative": "ยกเลิก"
         },
         "modal_archive": {
-            "title": "",
+            "title": "คุณแน่ใจหรือไม่ว่าต้องการเก็บถาวร?",
             "body": "",
             "body_warning": "",
             "confirmation": "",
