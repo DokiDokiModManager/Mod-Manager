@@ -28,7 +28,7 @@
             "tab_downloads": "Mods",
             "tab_options": "Opções",
             "tab_about": "Sobre",
-            "tab_experiments": ""
+            "tab_experiments": "Experimentos"
         },
         "version": {
             "link_changelog": "o que há de novo?"
@@ -122,90 +122,90 @@
         },
         "modal_uninstall": {
             "title": "Tem certeza de que deseja desinstalar isso?",
-            "body": "",
-            "body_globalsave": "",
-            "confirmation": "",
-            "button_affirmative": "",
-            "button_negative": ""
+            "body": "Os dados salvos para {0} serão deletados, e você precisará de uma cópia do mod para instalá-los novamente.",
+            "body_globalsave": "Os dados salvos para {0} não serão deletados. Entretanto, você precisará de uma cópia do mod para instalá-los novamente.",
+            "confirmation": "Eu entendo.",
+            "button_affirmative": "Desinstalar",
+            "button_negative": "Cancelar"
         },
         "modal_archive": {
-            "title": "",
-            "body": "",
-            "body_warning": "",
-            "confirmation": "",
-            "button_affirmative": "",
-            "button_negative": ""
+            "title": "Você tem certeza que quer arquivar?",
+            "body": "Arquivar irá deletar os arquivos do jogo para {0} para economizar espaço em disco. Seus dados salvos não serão deletados, mas você precisara de uma cópia do mod para instalá-lo novamente.",
+            "body_warning": "Quaisquer alterações feitas em outros dados, como arquivos de personagem, serão desfeitas se você arquivar o jogo. Tome cuidado!",
+            "confirmation": "Eu entendi.",
+            "button_affirmative": "Arquivar",
+            "button_negative": "Cancelar"
         },
         "modal_save_delete": {
             "title": "",
             "body": "",
-            "confirmation": "",
-            "button_affirmative": "",
-            "button_negative": ""
+            "confirmation": "Eu entendi.",
+            "button_affirmative": "Deletar",
+            "button_negative": "Cancelar"
         },
         "modal_installing": {
-            "title": "",
-            "description": ""
+            "title": "Instalação em progresso",
+            "description": "Por favor aguarde enquanto o jogo é instalado."
         },
         "modal_unarchive": {
-            "title": "",
-            "description": "",
-            "button_launch": "",
-            "button_cancel": ""
+            "title": "Iniciar jogo",
+            "description": "Por favor secione o mod que foi originalmente instalado, então clique em Iniciar. {0} não será mais arquivado.",
+            "button_launch": "Iniciar",
+            "button_cancel": "Cancelar"
         },
         "modal_unarchiving": {
-            "title": "",
-            "description": ""
+            "title": "Reinstalando jogo",
+            "description": "O jogo irá iniciar quando a reinstalação for concluída."
         },
         "modal_category": {
-            "title": "",
-            "label_none": "",
-            "placeholder_category": "",
-            "button_save": "",
-            "button_cancel": ""
+            "title": "Mudar Categoria",
+            "label_none": "nada",
+            "placeholder_category": "Digite uma nova categoria…",
+            "button_save": "Salvar",
+            "button_cancel": "Cancelar"
         },
         "modal_running": {
-            "title": "",
-            "description": "",
-            "button_browse": "",
-            "link_more": "",
+            "title": "Jogo em execução",
+            "description": "Feche o jogo para fazer alterações em seus mods.",
+            "button_browse": "Navegar nos aquivos do Jogo",
+            "link_more": "Clique para mais opções",
             "button_kill": ""
         },
         "menu_install_options": {
-            "launch": "",
-            "rename": "",
-            "category": "",
-            "archive": "",
-            "shortcut": "",
-            "delete_save": "",
-            "uninstall": "",
-            "cancel": ""
+            "launch": "Iniciar",
+            "rename": "Renomear",
+            "category": "Mudar categoria",
+            "archive": "Arquivar",
+            "shortcut": "Criar Atalho",
+            "delete_save": "Apagar Dados Salvos",
+            "uninstall": "Desinstalar",
+            "cancel": "Cancelar"
         },
         "menu_mod_options": {
-            "install": "",
-            "delete": "",
-            "cancel": ""
+            "install": "Instalar",
+            "delete": "Apagar",
+            "cancel": "Cancelar"
         },
         "modal_mod_delete": {
-            "title": "",
-            "body": "",
+            "title": "Você tem certeza de que quer apagar este mod?",
+            "body": "Você precisará baixar {0} novamente se quiser instalá-lo de novo.",
             "button_affirmative": "",
-            "button_negative": ""
+            "button_negative": "Cancelar"
         },
         "modal_mod_preview": {
-            "button_close": "",
-            "button_download_direct": "",
-            "button_download_external": "",
-            "text_loading": ""
+            "button_close": "Fechar",
+            "button_download_direct": "Baixar",
+            "button_download_external": "Baixar no Navegador",
+            "text_loading": "Carregando opções de download…"
         },
         "tab_mods": {
             "list": {
-                "placeholder_search": "",
-                "header_new": "",
-                "link_install": "",
-                "link_home": "",
-                "header_installed": "",
-                "header_downloaded": ""
+                "placeholder_search": "Procurar mods…",
+                "header_new": "Começar",
+                "link_install": "Instalar DDLC",
+                "link_home": "Início",
+                "header_installed": "Instalado",
+                "header_downloaded": "Downloads"
             },
             "launch_lock_confirmation": {
                 "message": "",
