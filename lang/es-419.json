@@ -175,7 +175,7 @@
                 "button_negative": "Cancelar"
             },
             "launch_offline_confirmation": {
-                "message": "No hay conexión a internet",
+                "message": "¡Estas desconectado!",
                 "details": "Si abres el juego ahora, tu partida guardada no se guardará en la nube.",
                 "button_affirmative": "Iniciar de todos modos",
                 "button_negative": "Cancelar"
@@ -496,7 +496,7 @@
             "button_negative": "Cancelar",
             "button_affirmative": "Archivar",
             "confirmation": "Comprendo.",
-            "body_warning": "¡Cuidado! Cualquier cambio hecho a otros archivos, como por ejemplo los archivos de personaje (chr), serán anulados si archivas el juego.",
+            "body_warning": "Cualquier cambio realizado en otros datos, como archivos de caracteres, se deshará si archiva el juego. ¡Tenga cuidado!",
             "body": "Archivar borrará los datos de juego de {0} para ahorrar espacio en disco. Tus datos de guardado no se borrarán, pero necesitarás una copia del mod para instalarlo de nuevo.",
             "title": "¿Estás seguro que quieres archivarlo?"
         },
