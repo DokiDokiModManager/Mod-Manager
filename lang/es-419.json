@@ -54,7 +54,8 @@
                 "header_new": "Primeros pasos",
                 "link_install": "Instalar DDLC",
                 "header_installed": "Instalados",
-                "header_downloaded": "Descargas"
+                "header_downloaded": "Descargas",
+                "link_home": "Inicio"
             },
             "install_contextmenu": {
                 "launch": "Abrir",
