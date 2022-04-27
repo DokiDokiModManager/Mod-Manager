@@ -255,7 +255,9 @@
                 "subtitle": "Zmień miejsce, w którym przechowywane są dane Twojej gry.",
                 "description_moving": "Ostrzeżenie! Jeśli zdecydujesz się zmienić lokalizację instalacji, wszystkie mody, instalacje i dane zapisy zostaną przeniesione. Może to potrwać kilka minut i nie może zostać przerwane.",
                 "description_current": "Aktualna lokalizacja: {0}",
-                "button_change": "Zmień lokalizację instalacji"
+                "button_change": "Zmień lokalizację instalacji",
+                "description": "Możesz wybrać gdzie dane Doki Doki Mod Manager są przechowywane, na przykład jeżeli chcesz użyć innego dysku. Wybierz pusty folder, aby przenieść dane.",
+                "button_confirm": "Zmień"
             },
             "section_updates": {
                 "title": "Aktualizacje",
@@ -264,7 +266,14 @@
                 "label_channel": "Kanał",
                 "option_stable": "Stabilna",
                 "option_beta": "Beta",
-                "button_check": "Sprawdź ponownie"
+                "button_check": "Sprawdź ponownie",
+                "description_latest_version": "Poprzednia wersja: {0}",
+                "description_has_update": "Nowa wersja Doki Doki Mod Manager jest dostępna!",
+                "description_no_update": "Posiadasz najnowszą wersję Doki Doki Mod Manager.",
+                "description_downloading": "Pobieranie aktualizacji - możesz używać aplikacji podczas czekania.",
+                "description_downloaded": "Aktualizacja została pobrana i zostanie zainstalowana po zamknięciu aplikacji.",
+                "description_error": "Nie można sprawdzić teraz aktualizacji, proszę spróbuj później.",
+                "button_download": "Pobierz aktualizację"
             },
             "section_sdk": {
                 "title": "Osiągnięcia i Zestaw SDK",
@@ -285,11 +294,24 @@
                 "title": "Opcje debugowania",
                 "subtitle": "Włącz opcje debugowania dla deweloperów.",
                 "button_enable": "Włącz debugowanie",
-                "button_disable": "Wyłącz debugowanie"
+                "button_disable": "Wyłącz debugowanie",
+                "checkbox_logging": "Włącz logowanie Debug",
+                "checkbox_renpy_skipmenu": "Pomiń Menu",
+                "description_mod_debug": "Pokaż okno debugowania z wyjściem konsoli z Twojego modu. Użyteczne podczas testowania DDMM SDK.",
+                "header_mod_debug": "Debugowanie Modu",
+                "description_renpy": "Ustaw specjalne opcje debugowania dla Ren'Py.",
+                "header_renpy": "Opcje uruchamiania Ren'Py",
+                "checkbox_renpy_skipsplash": "Pomiń Splash Screen"
             },
             "section_debug": {
                 "title": "Informacje o aplikacji",
                 "subtitle": "Informacje dotyczące diagnozowania problemów."
+            },
+            "section_language": {
+                "link_contribute": "Możesz pomóc w tłumaczeniu Doki Doki Mod Manager? Kliknij aby dołączyć do społeczności tłumaczącej.",
+                "label_language": "Język",
+                "title": "Język",
+                "subtitle": "Wybierz preferowany język. Tłumaczenie może nie być w 100% dokładne lub pełna."
             }
         },
         "tab_about": {
@@ -307,7 +329,12 @@
             "description_support": "Doki Doki Mod Manager zawsze będzie do pobrania za darmo i używać. Jeśli ci się spodoba i chcesz mi pomóc aktualizować je na bieżąco, rozważ wspieranie mnie w jeden z poniższych sposobów.",
             "support_donate": "Dokonaj jednorazowej darowizny",
             "support_steelseries": "Uzyskaj 10% zniżki na urządzenia peryferyjne do gier SteelSeries (link partnerski)",
-            "support_code": "Współtwórz z nami ten projektu (kod lub tłumaczenia)"
+            "support_code": "Współtwórz z nami ten projektu (kod lub tłumaczenia)",
+            "title_patreon": "Podziękowania dla hojnego wsparcia następujących Patronów",
+            "title_translators": "Tłumaczenia hojnie dostarczone przez",
+            "link_patreon": "Wspieraj dalszy rozwój Doki Doki Mod Manager na Patreon",
+            "title_v4_beta": "Betatesterzy Doki Doki Mod Manager 4",
+            "link_weblate": "Pomóż przetłumaczyć Doki Doki Mod Manager na swój natywny język - odwiedź stronę projektu"
         },
         "modal_installing": {
             "title": "Instalacja w toku",
@@ -449,15 +476,44 @@
         "tab_downloads": {
             "downloaded": {
                 "description_type": "Typ pliku: {0}",
-                "button_options": "Opcje"
+                "button_options": "Opcje",
+                "title": "Twoje Mody",
+                "button_install": "Zainstaluj",
+                "placeholder_search": "Szukam modów…",
+                "message_none": "Nie posiadasz żadnych modów. Pobierz kilka!"
             },
             "store": {
-                "text_loading": "Ładowanie listy modów…"
+                "text_loading": "Ładowanie listy modów…",
+                "description_ddmc": "Przejrzyj tę bazę danych modów, dostarczoną przez Doki Doki Mod Club.",
+                "link_ddmc": "Odwiedź stronę internetową, aby przesłać własny mod.",
+                "error_loading": "Nie można teraz wczytać modów.",
+                "title_ddmc": "Doki Doki Mod Club",
+                "description_featured": "Rozpieszczany wyborem? Wypróbuj jeden z podświetlonych modów!",
+                "placeholder_search": "Szukam moda…"
+            },
+            "list": {
+                "link_downloads": "Pobrane",
+                "link_featured": "Polecane Mody",
+                "header_browse": "Znajdź Mody",
+                "link_ddmc": "Doki Doki Mod Club",
+                "header_library": "Biblioteka",
+                "link_downloaded": "Twoje Mody"
+            },
+            "downloads": {
+                "status_text_downloading_uncertain": "Pobieranie - {0} MB pobrane z prędkością {1} MB/s",
+                "status_text_downloading": "Pobieranie - {0}% z prędkością {1} MB/s (pozostało {2})",
+                "message_none": "Brak aktywnych pobierań.",
+                "title": "Pobrane"
+            },
+            "featured": {
+                "title": "Polecane Mody",
+                "button_download": "Pobrane"
             }
         },
         "component_install_folder_selector": {
             "label": "Zapisz Lokalizację",
-            "button_select": "Wybierz"
+            "button_select": "Wybierz",
+            "error_disk_space": "Ten dyski nie ma co najmniej 2 GiB wolnego miejsca"
         },
         "modal_running": {
             "button_kill": "Wymuś zamknięcie",
@@ -503,7 +559,9 @@
             "install_crashed": "Gra nie została uruchomiona lub uległa awarii."
         },
         "move_install": {
-            "title": "Wybierz nowy folder instalacyjny"
+            "title": "Wybierz nowy folder instalacyjny",
+            "error_not_empty": "Ten folder nie jest pusty. Wybierz pusty folder.",
+            "error_read": "Nie mogę otworzyć tego folderu. Proszę spróbuj ponownie."
         },
         "mod_browse_dialog": {
             "title": "Znajdź mod do zainstalowania",
@@ -553,10 +611,32 @@
             "renderer_freeze": {
                 "title": "Doki Doki Mod Manager przestał odpowiadać",
                 "body": "Jeśli ten problem trwa długo, zamknij aplikację i uruchom ponownie."
+            },
+            "dev_ui_load_fail": {
+                "body": "Zamiast tego ładowanie z działających serwerów UI.",
+                "title": "Nie udało się załadować z serwera deweloperskiego"
             }
         },
         "discord": {
-            "status_active": "W Grze"
+            "status_active": "W Grze",
+            "description_version": "Wersja {0}",
+            "status_idle": "Zarządzanie Modami",
+            "description_idle": "Nie gram w nic",
+            "description_active": "Gram w DDLC"
+        },
+        "import_mas": {
+            "title": "Znajdź, gdzie skopiowałeś plik postaci Moniki",
+            "filter": "Tylko Monika"
+        },
+        "export_mas": {
+            "title": "Wybierz, gdzie chcesz skopiować Monikę",
+            "filter": "Tylko Monika"
+        },
+        "redownload_confirmation": {
+            "message": "Mod został już pobrany",
+            "button_confirm": "Pobierz",
+            "detail": "W twojej bibliotece modów jest już kopia {0}. Czy chcesz go ponownie pobrać? (To nadpisze starą kopię)",
+            "button_cancel": "Anuluj"
         }
     }
 }
