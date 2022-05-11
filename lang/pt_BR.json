@@ -137,8 +137,8 @@
             "button_negative": "Cancelar"
         },
         "modal_save_delete": {
-            "title": "",
-            "body": "",
+            "title": "Você tem certeza que quer deletar seus dados de salvamento?",
+            "body": "Você terá que iniciar {0} de novo do zero.",
             "confirmation": "Eu entendi.",
             "button_affirmative": "Deletar",
             "button_negative": "Cancelar"
@@ -169,7 +169,7 @@
             "description": "Feche o jogo para fazer alterações em seus mods.",
             "button_browse": "Navegar nos aquivos do Jogo",
             "link_more": "Clique para mais opções",
-            "button_kill": ""
+            "button_kill": "Forçar saída"
         },
         "menu_install_options": {
             "launch": "Iniciar",
@@ -189,7 +189,7 @@
         "modal_mod_delete": {
             "title": "Você tem certeza de que quer apagar este mod?",
             "body": "Você precisará baixar {0} novamente se quiser instalá-lo de novo.",
-            "button_affirmative": "",
+            "button_affirmative": "Instalar",
             "button_negative": "Cancelar"
         },
         "modal_mod_preview": {
@@ -208,32 +208,32 @@
                 "header_downloaded": "Downloads"
             },
             "launch_lock_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "O arquivo em nuvem está em uso!",
+                "details": "Se você iniciar agora, você perca seu progresso.",
+                "button_affirmative": "Iniciar mesmo assim",
+                "button_negative": "Cancelar"
             },
             "launch_noauth_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Você não está logado!",
+                "details": "Se você iniciar agora, seus dados salvos não vão sincronizar com a nuvem.",
+                "button_affirmative": "Iniciar mesmo assim",
+                "button_negative": "Cancelar"
             },
             "launch_offline_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Você está sem conexão com a internet!",
+                "details": "Se você iniciar agora, seus dados salvos não vão sincronizar com a nuvem.",
+                "button_affirmative": "Iniciar mesmo assim",
+                "button_negative": "Cancelar"
             },
             "mod_delete_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Você tem certeza que quer deletar o mod?",
+                "details": "Você terá que baixar outra cópia do mod para instalar de novo.",
+                "button_affirmative": "Deletar",
+                "button_negative": "Cancelar"
             },
             "install": {
-                "button_launch": "",
-                "button_settings": "",
+                "button_launch": "Iniciar",
+                "button_settings": "Configurações",
                 "tag_global_save": "",
                 "tag_sdk": "",
                 "tag_archived": "",
