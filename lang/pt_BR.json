@@ -1,0 +1,500 @@
+{
+    "renderer": {
+        "online_error": {
+            "title": "Por favor, conecte-se à internet",
+            "body": "Doki Doki Mod Manager requer uma conexão com a Internet para instalar recursos pela primeira vez. Por favor, verifique sua conexão com a Internet e reinicie.",
+            "button_restart": "Reiniciar",
+            "button_quit": "Sair"
+        },
+        "modal_error": {
+            "title_non_fatal": "Oops, algo deu errado",
+            "title_fatal": "Oops, Doki Doki Mod Manager falhou",
+            "description_general": "Por favor, tente o que estava fazendo de novo, e se continuar tendo problemas, por favor me diga!",
+            "description_stacktrace": "Aqui estão os detalhes técnicos do que deu errado - por favor, deixe uma anotação desses caso peça por ajuda.",
+            "button_continue": "Continuar",
+            "button_restart": "Reiniciar",
+            "button_copy": "Erro em copiar para a área de transferência"
+        },
+        "modal_language_switch": {
+            "title": "Mudar de idioma",
+            "description": "Por favor, espere um momento…"
+        },
+        "modal_download_starting": {
+            "title": "Instalação iniciando",
+            "description": "Por favor, siga qualquer comando apresentado para completar o download"
+        },
+        "tabs": {
+            "tab_play": "Jogar",
+            "tab_downloads": "Mods",
+            "tab_options": "Opções",
+            "tab_about": "Sobre",
+            "tab_experiments": "Experimentos"
+        },
+        "version": {
+            "link_changelog": "o que há de novo?"
+        },
+        "help_menu": {
+            "option_help": "Visitar site de ajuda",
+            "option_feedback": "Enviar comentários privados",
+            "option_discord": "Entre no servidor do Discord"
+        },
+        "user_menu": {
+            "option_rename": "Mudar nome de usuário",
+            "option_logout": "Encerrar sessão"
+        },
+        "window_controls": {
+            "close": "Fechar",
+            "maximise": "Maximizar",
+            "minimise": "Minimizar",
+            "issue_report": "Reportar um erro",
+            "guide": "Guia de usuário",
+            "discord": "Entre no servidor do Discord",
+            "patreon": "Ajude Doki Doki Mod Manager no Patreon"
+        },
+        "drop_cover": {
+            "text": "Solte um mod aqui para instalá-lo"
+        },
+        "announcement": {
+            "button_open": "Abrir Link",
+            "button_close": "Fechar"
+        },
+        "onboarding_v4": {
+            "text_welcome": "Bem vindo à melhor versão do Doki Doki Mod Manager até agora.",
+            "button_start": "Começar a usar",
+            "text_scanning": "Por favor, espere…",
+            "header_setup": "Primeira Instalação",
+            "subtitle_careful": "Por favor, leia as seguintes instruções com cuidado.",
+            "header_download": "Instalar DDLC",
+            "text_download": "Visite o site do DDLC, clique Download Now e siga as instruções. Quando for perguntado, escolha o arquivo chamado {0} e salve-o em um lugar fácil de encontrar.",
+            "button_ddlc_website": "Visitar o site do DDLC",
+            "text_s2_next": "Quando a instalação estiver completa, por favor prossiga para o próximo passo.",
+            "text_modification_warning": "Não faça nenhuma alteração no arquivo instalado.",
+            "header_safari_warning": "Informações importantes para usuários do Safari",
+            "text_safari_warning": "Safari pode automaticamente extrair o jogo instalado. Você deve desativar essa opção, já que interfere no processo de instalações. Isso pode ser feito na tela de preferências do Safari.",
+            "link_safari_warning": "Clique aqui para um guia visual",
+            "button_next": "Próximo",
+            "button_previous": "Anterior",
+            "button_finish": "Finalizar",
+            "text_select": "Abra a pasta na qual você salvou a cópia de DDLC, e arraste o arquivo no espaço abaixo.",
+            "text_dropzone": "Arraste sua cópia instalada de DDLC aqui",
+            "text_validating": "Por favor, aguarde um momento…",
+            "header_directory_selected": "Você selecionou uma pasta ao invés do arquivo zip do DDLC",
+            "text_directory_selected": "Por favor, certifique-se de que você não está selecionando uma cópia extraída do jogo e tente novamente.",
+            "header_version_mismatch": "Esse não parece ser o arquivo zip correto",
+            "text_version_mismatch": "Você pode ter instalado a versão errada de DDLC para o seu sistema operacional. Certifique-se de que você instalou {0} e tente novamente.",
+            "header_success": "Cópia de DDLC encontrada",
+            "text_success": "Agora você está pronto para ir para o próximo passo!",
+            "header_hash_mismatch": "Esse não parece ser o arquivo correto",
+            "text_hash_mismatch": "Por favor, certifique-se novamente de que você selecionou o arquivo correto e tente novamente.",
+            "subtitle_last": "Essas opções podem ser alteradas a qualquer momento.",
+            "header_save_location": "Local de save",
+            "text_save_location": "Caso queira armazenar seus mods em um dispositivo de armazenamento diferente, agora é sua chance de escolher.",
+            "header_waifu": "Qual é sua personagem favorita?",
+            "subtitle_waifu": "Não pense, apenas responda.",
+            "label_waifu": "Best Girl",
+            "option_waifu_all": "Todas elas!",
+            "option_waifu_monika": "Monika",
+            "option_waifu_natsuki": "Natsuki",
+            "option_waifu_sayori": "Sayori",
+            "option_waifu_yuri": "Yuri"
+        },
+        "modal_news": {
+            "button": "Pronto"
+        },
+        "modal_issue_report": {
+            "title": "Reportar um erro",
+            "description": "Caso seu problema requeira uma resposta direta, ou não está dentro de nenhuma das categorias listadas aqui, por favor, mande um e-mail.",
+            "label_type": "Tipo do problema",
+            "option_bug": "Erro no aplicativo",
+            "option_broken_mod": "Mod não funcionando",
+            "label_mod": "Link para o mod",
+            "placeholder_mod": "Por favor, cole um link para o website ou página de download do mod.",
+            "label_body": "Detalhes do problema",
+            "placeholder_body": "Por favor, dê o máximo de detalhes possíveis. Caso seja relevante, por favor, forneça instruções de como reproduzir o problema.",
+            "button_submit": "Enviar",
+            "button_cancel": "Cancelar"
+        },
+        "modal_rename": {
+            "title": "Renomear Instalação",
+            "body": "Insira o novo nome para {0}.",
+            "button_affirmative": "Renomear",
+            "button_negative": "Cancelar"
+        },
+        "modal_uninstall": {
+            "title": "Tem certeza de que deseja desinstalar isso?",
+            "body": "Os dados salvos para {0} serão deletados, e você precisará de uma cópia do mod para instalá-los novamente.",
+            "body_globalsave": "Os dados salvos para {0} não serão deletados. Entretanto, você precisará de uma cópia do mod para instalá-los novamente.",
+            "confirmation": "Eu entendo.",
+            "button_affirmative": "Desinstalar",
+            "button_negative": "Cancelar"
+        },
+        "modal_archive": {
+            "title": "Você tem certeza que quer arquivar?",
+            "body": "Arquivar irá deletar os arquivos do jogo para {0} para economizar espaço em disco. Seus dados salvos não serão deletados, mas você precisara de uma cópia do mod para instalá-lo novamente.",
+            "body_warning": "Quaisquer alterações feitas em outros dados, como arquivos de personagem, serão desfeitas se você arquivar o jogo. Tome cuidado!",
+            "confirmation": "Eu entendi.",
+            "button_affirmative": "Arquivar",
+            "button_negative": "Cancelar"
+        },
+        "modal_save_delete": {
+            "title": "Você tem certeza que quer deletar seus dados de salvamento?",
+            "body": "Você terá que iniciar {0} de novo do zero.",
+            "confirmation": "Eu entendi.",
+            "button_affirmative": "Deletar",
+            "button_negative": "Cancelar"
+        },
+        "modal_installing": {
+            "title": "Instalação em progresso",
+            "description": "Por favor aguarde enquanto o jogo é instalado."
+        },
+        "modal_unarchive": {
+            "title": "Iniciar jogo",
+            "description": "Por favor secione o mod que foi originalmente instalado, então clique em Iniciar. {0} não será mais arquivado.",
+            "button_launch": "Iniciar",
+            "button_cancel": "Cancelar"
+        },
+        "modal_unarchiving": {
+            "title": "Reinstalando jogo",
+            "description": "O jogo irá iniciar quando a reinstalação for concluída."
+        },
+        "modal_category": {
+            "title": "Mudar Categoria",
+            "label_none": "nada",
+            "placeholder_category": "Digite uma nova categoria…",
+            "button_save": "Salvar",
+            "button_cancel": "Cancelar"
+        },
+        "modal_running": {
+            "title": "Jogo em execução",
+            "description": "Feche o jogo para fazer alterações em seus mods.",
+            "button_browse": "Navegar nos aquivos do Jogo",
+            "link_more": "Clique para mais opções",
+            "button_kill": "Forçar saída"
+        },
+        "menu_install_options": {
+            "launch": "Iniciar",
+            "rename": "Renomear",
+            "category": "Mudar categoria",
+            "archive": "Arquivar",
+            "shortcut": "Criar Atalho",
+            "delete_save": "Apagar Dados Salvos",
+            "uninstall": "Desinstalar",
+            "cancel": "Cancelar"
+        },
+        "menu_mod_options": {
+            "install": "Instalar",
+            "delete": "Apagar",
+            "cancel": "Cancelar"
+        },
+        "modal_mod_delete": {
+            "title": "Você tem certeza de que quer apagar este mod?",
+            "body": "Você precisará baixar {0} novamente se quiser instalá-lo de novo.",
+            "button_affirmative": "Instalar",
+            "button_negative": "Cancelar"
+        },
+        "modal_mod_preview": {
+            "button_close": "Fechar",
+            "button_download_direct": "Baixar",
+            "button_download_external": "Baixar no Navegador",
+            "text_loading": "Carregando opções de download…"
+        },
+        "tab_mods": {
+            "list": {
+                "placeholder_search": "Procurar mods…",
+                "header_new": "Começar",
+                "link_install": "Instalar DDLC",
+                "link_home": "Início",
+                "header_installed": "Instalado",
+                "header_downloaded": "Downloads"
+            },
+            "launch_lock_confirmation": {
+                "message": "O arquivo em nuvem está em uso!",
+                "details": "Se você iniciar agora, você perca seu progresso.",
+                "button_affirmative": "Iniciar mesmo assim",
+                "button_negative": "Cancelar"
+            },
+            "launch_noauth_confirmation": {
+                "message": "Você não está logado!",
+                "details": "Se você iniciar agora, seus dados salvos não vão sincronizar com a nuvem.",
+                "button_affirmative": "Iniciar mesmo assim",
+                "button_negative": "Cancelar"
+            },
+            "launch_offline_confirmation": {
+                "message": "Você está sem conexão com a internet!",
+                "details": "Se você iniciar agora, seus dados salvos não vão sincronizar com a nuvem.",
+                "button_affirmative": "Iniciar mesmo assim",
+                "button_negative": "Cancelar"
+            },
+            "mod_delete_confirmation": {
+                "message": "Você tem certeza que quer deletar o mod?",
+                "details": "Você terá que baixar outra cópia do mod para instalar de novo.",
+                "button_affirmative": "Deletar",
+                "button_negative": "Cancelar"
+            },
+            "install": {
+                "button_launch": "Iniciar",
+                "button_settings": "Configurações",
+                "tag_global_save": "Save global",
+                "tag_sdk": "",
+                "tag_archived": "",
+                "title_achievements": "Conquistas ({0}/{1})",
+                "description_achievements": "Continue jogando para desbloquear mais conquistas.",
+                "description_achievements_complete": "Você desbloqueou todas as conquistas. Parabéns!",
+                "description_achievement_earned": "Completo",
+                "description_achievement_not_earned": "Incompleto",
+                "title_screenshots_none": "Sem captura de tela",
+                "title_screenshots_one": "1 captura de tela",
+                "title_screenshots": "{0} capturas de tela",
+                "description_screenshots": "Pressione S enquanto joga para tirar uma captura de tela.",
+                "description_sdk": "Esse mod suporta recursos especiais com o SDK do Doki Doki Mod Manager.",
+                "description_author": "Criado por {0}",
+                "link_discord": "Discord ({0})",
+                "link_website": "Site oficial ({0})",
+                "description_external": "",
+                "title_mas_export": "",
+                "description_mas_export": "",
+                "button_mas_export": "",
+                "button_mas_import": "",
+                "title_install_failed": "Seu mod foi instalado corretamente?",
+                "description_install_failed": "Parece que o mod que você esta tentando jogar não foi instalado corretamente. Você pode ler o guia de solução de problemas para ajudar a solucionar o problema.",
+                "link_troubleshooting": "Guia de solução de problema",
+                "title_singleton_error": "Seu jogo fechou?",
+                "description_singleton_error": "Confirme que você não esta rodando mais de uma instancia do DDLC e tente executar novamente. Você pode ler o guia de solução de problemas para ajudar a solucionar o problema se ele continuar.",
+                "description_install_failed_launch_again": "Essa mensagem vai desaparecer quando você abrir esse mod."
+            },
+            "mod": {
+                "button_install": "Instalar",
+                "button_settings": "Configurações",
+                "description_external": ""
+            },
+            "install_creation": {
+                "title": "Instalar DDLC",
+                "status_exists": "O nome dessa pasta ja esta em uso.",
+                "warning_no_space": "Desculpa, você precisa de pelo menos 2GB de espaço livre para instalar o DDLC. Feche o Doki Doki Mod Manager, limpe algum espaço e tente novamente. Você tambem pode instalar em um dispositivo diferente em Opções >",
+                "label_install_name": "Nome da instalação",
+                "placeholder_install_name": "",
+                "label_folder_name": "",
+                "label_has_mod": "",
+                "label_mod": "",
+                "option_local_save": "",
+                "option_global_save": "",
+                "modlist_none": "",
+                "modlist_library": "",
+                "modlist_custom": "",
+                "description_mod": "",
+                "warning_global_save": "",
+                "button_install": "",
+                "button_installing": ""
+            }
+        },
+        "tab_options": {
+            "list": {
+                "header_appearance": "",
+                "link_background": "",
+                "link_advanced_appearance": "",
+                "header_account": "",
+                "link_cloudsaves": "",
+                "link_accmanagement": "",
+                "header_enhancements": "",
+                "link_sdk": "",
+                "link_discord": "",
+                "header_application": "",
+                "link_updates": "",
+                "link_storage": "",
+                "link_language": "",
+                "header_developers": "",
+                "link_testing": ""
+            },
+            "section_backgrounds": {
+                "title": "",
+                "subtitle": "",
+                "button_none": "",
+                "button_custom": "",
+                "checkbox_modbg": "",
+                "description_credit": "",
+                "description_custom": ""
+            },
+            "section_advanced_appearance": {
+                "title": "",
+                "subtitle": "",
+                "button_enable_sysborders": ""
+            },
+            "section_storage": {
+                "title": "",
+                "subtitle": "",
+                "description": "",
+                "description_moving": "",
+                "button_confirm": ""
+            },
+            "section_updates": {
+                "title": "",
+                "subtitle": "",
+                "description_current_version": "",
+                "description_latest_version": "",
+                "description_has_update": "",
+                "description_no_update": "",
+                "description_downloading": "",
+                "description_downloaded": "",
+                "description_error": "",
+                "button_check": "",
+                "button_download": ""
+            },
+            "section_language": {
+                "title": "",
+                "subtitle": "",
+                "link_contribute": "",
+                "label_language": ""
+            },
+            "section_sdk": {
+                "title": "",
+                "subtitle": "",
+                "description_mode": "",
+                "checkbox_always": "",
+                "checkbox_specified": "",
+                "checkbox_never": ""
+            },
+            "section_discord": {
+                "title": "",
+                "subtitle": "",
+                "description": "",
+                "button_enable": ""
+            },
+            "section_testing": {
+                "title": "",
+                "subtitle": "",
+                "checkbox_logging": "",
+                "header_mod_debug": "",
+                "description_mod_debug": "",
+                "header_renpy": "",
+                "description_renpy": "",
+                "checkbox_renpy_skipsplash": "",
+                "checkbox_renpy_skipmenu": ""
+            }
+        },
+        "tab_about": {
+            "title": "",
+            "description": "",
+            "title_disclaimer": "",
+            "disclaimer_1": "",
+            "disclaimer_2": "",
+            "title_socials": "",
+            "social_discord": "",
+            "social_reddit": "",
+            "social_email": "",
+            "title_translators": "",
+            "title_v4_beta": "",
+            "title_patreon": "",
+            "link_patreon": "",
+            "link_weblate": ""
+        },
+        "tab_downloads": {
+            "list": {
+                "header_library": "",
+                "link_downloaded": "",
+                "link_downloads": "",
+                "header_browse": "",
+                "link_featured": "",
+                "link_ddmc": ""
+            },
+            "downloaded": {
+                "title": "",
+                "button_install": "",
+                "button_options": "",
+                "description_type": "",
+                "placeholder_search": "",
+                "message_none": ""
+            },
+            "downloads": {
+                "title": "",
+                "status_text_downloading": "",
+                "status_text_downloading_uncertain": "",
+                "message_none": ""
+            },
+            "featured": {
+                "title": "",
+                "button_download": ""
+            },
+            "store": {
+                "title_ddmc": "",
+                "description_ddmc": "",
+                "link_ddmc": "",
+                "description_featured": "",
+                "text_loading": "",
+                "error_loading": "",
+                "placeholder_search": ""
+            }
+        },
+        "component_install_folder_selector": {
+            "label": "",
+            "button_select": "",
+            "error_disk_space": ""
+        }
+    },
+    "main": {
+        "discord": {
+            "status_idle": "",
+            "status_active": "",
+            "description_idle": "",
+            "description_active": "",
+            "description_version": ""
+        },
+        "jumplist": {
+            "task_launch": ""
+        },
+        "running_cover": {
+            "title_running": "",
+            "title_crashed": "",
+            "button_browse": "",
+            "button_close": "",
+            "description_running": "",
+            "install_missing": "",
+            "install_corrupt": "",
+            "install_crashed": ""
+        },
+        "move_install": {
+            "title": "",
+            "error_not_empty": "",
+            "error_read": ""
+        },
+        "mod_browse_dialog": {
+            "title": "",
+            "file_format_name": ""
+        },
+        "game_browse_dialog": {
+            "title": "",
+            "file_format_name": ""
+        },
+        "shortcut_dialog": {
+            "title": "",
+            "file_format_name": ""
+        },
+        "import_mas": {
+            "title": "",
+            "filter": ""
+        },
+        "export_mas": {
+            "title": "",
+            "filter": ""
+        },
+        "redownload_confirmation": {
+            "message": "",
+            "detail": "",
+            "button_confirm": "",
+            "button_cancel": ""
+        },
+        "errors": {
+            "dev_ui_load_fail": {
+                "title": "",
+                "body": ""
+            },
+            "renderer_freeze": {
+                "title": "",
+                "body": ""
+            },
+            "move_install": {
+                "title": "",
+                "body": ""
+            }
+        }
+    }
+}

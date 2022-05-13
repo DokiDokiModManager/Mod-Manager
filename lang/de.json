@@ -82,7 +82,8 @@
                 "header_new": "Erste Schritte",
                 "link_install": "DDLC installieren",
                 "header_installed": "Installiert",
-                "header_downloaded": "Downloads"
+                "header_downloaded": "Downloads",
+                "link_home": "Zuhause"
             },
             "install_contextmenu": {
                 "launch": "Starten",
@@ -163,7 +164,8 @@
                 "description_achievement_not_earned": "Unvollständig",
                 "description_achievement_earned": "Komplett",
                 "tag_archived": "Archiviert",
-                "title_install_failed": "Wurde die Mod vollständig installiert?"
+                "title_install_failed": "Wurde die Mod richtig installiert?",
+                "description_install_failed": "Es sieht so aus, als wäre der Mod den du spielen wolltest nicht richtig installiert. Du solltest in der Problemlösungsanleitung nachschauen wie du das Problem lösen kannst"
             },
             "mod": {
                 "button_install": "Installieren",
@@ -361,7 +363,7 @@
             "header_directory_selected": "Sie haben einen Ordner anstelle der DDLC-ZIP-Datei ausgewählt",
             "text_validating": "Bitte warten Sie einen Moment…",
             "text_dropzone": "Ziehen Sie Ihre heruntergeladene Kopie von DDLC hierher",
-            "text_select": "Öffnen Sie den Ordner in den sie DDLC heruntergeladen haben und ziehen Sie dann die Datei in das Feld unten ein.",
+            "text_select": "Öffnen Sie den Ordner in den sie DDLC heruntergeladen haben und ziehen Sie dann die Datei in das Feld unten.",
             "button_finish": "Beenden",
             "button_previous": "Zurück",
             "button_next": "Weiter",
@@ -522,7 +524,8 @@
             "title": "Wollen Sie diese Mod wirklich löschen?"
         },
         "modal_download_starting": {
-            "title": "Download startet"
+            "title": "Download startet",
+            "description": "Bitte folge allen Anweisungen um den Download zu vervollständigen"
         }
     },
     "main": {

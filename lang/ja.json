@@ -154,7 +154,11 @@
                 "description_author": "{0} が作成",
                 "link_discord": "Discord ({0})",
                 "link_website": "Webサイト ({0})",
-                "description_external": "フォルダを開く"
+                "description_external": "フォルダを開く",
+                "description_mas_export": "",
+                "title_mas_export": "",
+                "button_mas_export": "",
+                "button_mas_import": ""
             },
             "mod": {
                 "button_install": "インストール",
