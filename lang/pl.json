@@ -284,7 +284,7 @@
                 "checkbox_never": "Nigdy"
             },
             "section_discord": {
-                "title": "Discord Rich Presence",
+                "title": "\"Aktywność w grze\" Discorda",
                 "subtitle": "Podziel się modem, w który grasz ze znajomymi na Discordzie.",
                 "description": "Zmiany zostaną zastosowane po ponownym uruchomieniu Doki Doki Mod Manager.",
                 "button_enable": "Zezwól na Rich Presence",
