@@ -1,82 +1,82 @@
 {
     "renderer": {
         "online_error": {
-            "title": "",
-            "body": "",
-            "button_restart": "",
-            "button_quit": ""
+            "title": "Lūdzu, izveidojiet savienojumu ar internetu",
+            "body": "Lai pirmo reizi lejupielādētu resursus, Doki Doki Mod Manager ir nepieciešams interneta savienojums. Lūdzu, pārbaudiet interneta savienojumu un pēc tam restartējiet.",
+            "button_restart": "Restartēt",
+            "button_quit": "Iziet"
         },
         "modal_error": {
-            "title_non_fatal": "",
-            "title_fatal": "",
-            "description_general": "",
-            "description_stacktrace": "",
-            "button_continue": "",
-            "button_restart": "",
-            "button_copy": ""
+            "title_non_fatal": "Hmm! Kaut kas nogāja greizi",
+            "title_fatal": "Hmm... Doki Doki Mod Manager avarēja",
+            "description_general": "Lūdzu, mēģiniet vēlreiz, un, ja joprojām rodas problēmas, lūdzu, informējiet mani!",
+            "description_stacktrace": "Šeit ir sniegta tehniskā informācija par to, kas nogāja greizi. Lūdzu, pierakstiet to, ja lūdzat palīdzību.",
+            "button_continue": "Turpināt",
+            "button_restart": "Restartēt",
+            "button_copy": "Kopēt kļūdu starpliktuvē"
         },
         "modal_language_switch": {
-            "title": "",
-            "description": ""
+            "title": "Valodu maiņa",
+            "description": "Lūdzu, uzgaidiet mirkli…"
         },
         "modal_download_starting": {
-            "title": "",
-            "description": ""
+            "title": "Sākas lejupielāde",
+            "description": "Lūdzu, izpildiet visus parādītos norādījumus, lai pabeigtu lejupielādi"
         },
         "tabs": {
-            "tab_play": "",
-            "tab_downloads": "",
-            "tab_options": "",
-            "tab_about": "",
-            "tab_experiments": ""
+            "tab_play": "Spēlēt",
+            "tab_downloads": "Mod",
+            "tab_options": "Iespējas",
+            "tab_about": "Par",
+            "tab_experiments": "Eksperimenti"
         },
         "version": {
-            "link_changelog": ""
+            "link_changelog": "kas jauns?"
         },
         "help_menu": {
-            "option_help": "",
-            "option_feedback": "",
-            "option_discord": ""
+            "option_help": "Skatīt palīdzības vietni",
+            "option_feedback": "Sūtiet privātas atsauksmes",
+            "option_discord": "Pievienojieties Discord serverim"
         },
         "user_menu": {
-            "option_rename": "",
-            "option_logout": ""
+            "option_rename": "Mainīt lietotājvārdu",
+            "option_logout": "Izlogoties"
         },
         "window_controls": {
-            "close": "",
-            "maximise": "",
-            "minimise": "",
-            "issue_report": "",
-            "guide": "",
-            "discord": "",
-            "patreon": ""
+            "close": "Aizvērt",
+            "maximise": "Maksimizēt",
+            "minimise": "Minimizēt",
+            "issue_report": "Ziņot par problēmu",
+            "guide": "Lietotāja rokasgrāmata",
+            "discord": "Pievienojieties Discord serverim",
+            "patreon": "Support Doki Doki Mod Manager on Patreon"
         },
         "drop_cover": {
-            "text": ""
+            "text": "Nometiet modi šeit, lai to instalētu"
         },
         "announcement": {
-            "button_open": "",
-            "button_close": ""
+            "button_open": "Atvērt saiti",
+            "button_close": "Aizvērt"
         },
         "onboarding_v4": {
-            "text_welcome": "",
-            "button_start": "",
-            "text_scanning": "",
-            "header_setup": "",
-            "subtitle_careful": "",
-            "header_download": "",
-            "text_download": "",
-            "button_ddlc_website": "",
-            "text_s2_next": "",
-            "text_modification_warning": "",
-            "header_safari_warning": "",
-            "text_safari_warning": "",
-            "link_safari_warning": "",
-            "button_next": "",
-            "button_previous": "",
-            "button_finish": "",
-            "text_select": "",
-            "text_dropzone": "",
+            "text_welcome": "Laipni lūdzam labākajā Doki Doki Mod Manager versijā.",
+            "button_start": "Sāc",
+            "text_scanning": "Lūdzu uzgaidiet…",
+            "header_setup": "Pirmā iestatīšana",
+            "subtitle_careful": "Lūdzu, uzmanīgi izlasiet tālāk sniegtos norādījumus.",
+            "header_download": "Lejupielādēt DDLC",
+            "text_download": "Apmeklējiet DDLC vietni, noklikšķiniet uz Lejupielādēt tūlīt un izpildiet norādījumus. Kad jums tiek prasīts, izvēlieties failu ar nosaukumu {0} un saglabājiet to viegli atrodamā vietā.",
+            "button_ddlc_website": "Apmeklējiet DDLC vietni",
+            "text_s2_next": "Kad lejupielāde ir pabeigta, lūdzu, turpiniet ar nākamo darbību.",
+            "text_modification_warning": "Neveiciet nekādas izmaiņas lejupielādētajā failā.",
+            "header_safari_warning": "Svarīga informācija Safari lietotājiem",
+            "text_safari_warning": "Safari var automātiski izvilkt lejupielādēto spēli. Šī funkcija ir jāatspējo, jo tā traucē iestatīšanas procesu. To var izdarīt no Safari preferenču ekrāna.",
+            "link_safari_warning": "Noklikšķiniet šeit, lai iegūtu vizuālu ceļvedi",
+            "button_next": "Nākamais",
+            "button_previous": "Iepriekšējais",
+            "button_finish": "Pabeigt",
+            "text_select": "Atveriet mapi, kurā saglabājāt DDLC kopiju, pēc tam velciet un nometiet failu tālāk norādītajā vietā.",
+            "text_dropzone": "Velciet šeit lejupielādēto DDLC kopiju",
             "text_validating": "",
             "header_directory_selected": "",
             "text_directory_selected": "",
