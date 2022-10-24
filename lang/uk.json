@@ -290,7 +290,8 @@
         },
         "modal_error": {
             "title_fatal": "Ой, Doki Doki Mod Manager впав",
-            "title_non_fatal": "Ой, щось пішло не так"
+            "title_non_fatal": "Ой, щось пішло не так",
+            "description_general": "Будь ласка спробуйте те що ви задумали ще раз, і якщо ви будете натикатися на проблеми, повідомте мені про це!"
         },
         "online_error": {
             "button_quit": "Вихід",
