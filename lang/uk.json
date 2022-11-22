@@ -6,7 +6,9 @@
             "tab_mods": "Модифікації",
             "tab_store": "Крамниця",
             "tab_options": "Налаштування",
-            "tab_about": "Про застосунок"
+            "tab_about": "Про застосунок",
+            "tab_play": "Грати",
+            "tab_downloads": "Моди"
         },
         "version": {
             "link_changelog": "Що нового?"
