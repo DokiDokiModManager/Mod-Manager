@@ -39,7 +39,8 @@
             },
             "patreon": "Підтримати Мод Менеджер Doki Doki на Patreon",
             "discord": "Приєднатися до Discord серверу",
-            "guide": "Гайди"
+            "guide": "Гайди",
+            "issue_report": "Повідомити про помилку"
         },
         "crash_cover": {
             "button_close": "Вихід",
