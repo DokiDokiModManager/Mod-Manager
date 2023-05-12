@@ -1,7 +1,7 @@
 {
     "renderer": {
         "online_error": {
-            "title": "",
+            "title": "Si us plau, connecteu-vos a internet",
             "body": "",
             "button_restart": "",
             "button_quit": ""
