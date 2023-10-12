@@ -82,7 +82,8 @@
                 "header_new": "Begynn",
                 "link_install": "Installer DDLC",
                 "header_installed": "Installert",
-                "header_downloaded": "Nedlastinger"
+                "header_downloaded": "Nedlastinger",
+                "link_home": "Hjem"
             },
             "install_contextmenu": {
                 "launch": "",
@@ -166,7 +167,8 @@
                 "title_install_failed": "Installerte modden din seg riktig?",
                 "description_install_failed_launch_again": "Denne meldingen vil forsvinne neste gang du kjører denne modden.",
                 "description_singleton_error": "Forsikre deg om at du ikke kjører mer enn én instans av DDLC og start igjen. Feilsøkingsveiledningen kan ha løsningen hvis problemet vedvarer.",
-                "title_singleton_error": "Lukket spillet ditt seg?"
+                "title_singleton_error": "Lukket spillet ditt seg?",
+                "link_troubleshooting": "Problemløsingsveiledning"
             },
             "mod": {
                 "button_install": "Installer",
@@ -251,7 +253,8 @@
                 "subtitle": "Endre hvor spilldataen din lagres.",
                 "description_moving": "Advarsel! Hvis du velger å endre din installasjonsplassering, vil alle dine modder, installasjoner og lagringsdata bli flyttet. Dette kan ta flere minutter, og kan ikke forstyrres.",
                 "description_current": "Nåværende plassering: {0}",
-                "button_change": "Endre isntallasjonsplassering"
+                "button_change": "Endre isntallasjonsplassering",
+                "button_confirm": "Endre"
             },
             "section_updates": {
                 "title": "Oppdateringer",
@@ -326,7 +329,8 @@
             "support_code": "",
             "link_weblate": "Hjelp til i oversettelsen av Doki Doki Mod Manager. Besøk prosjektets hjemmeside.",
             "title_v4_beta": "Doki Doki Mod Manager 4-betatestere",
-            "title_translators": "Oversettelser ved"
+            "title_translators": "Oversettelser ved",
+            "title_patreon": "Takket være generøs støtte fra følgende kronerullere"
         },
         "tab_downloads": {
             "store": {
@@ -526,6 +530,10 @@
         "modal_download_starting": {
             "description": "Følg anvisningene for å fullføre nedlastingen",
             "title": "Nedlasting starter"
+        },
+        "component_install_folder_selector": {
+            "button_select": "Velg",
+            "label": "Lagringssted"
         }
     },
     "main": {
@@ -543,7 +551,8 @@
             "install_crashed": "Kunne ikke kjøre spillet, eller så krasjet det."
         },
         "move_install": {
-            "title": "Velg ny installasjonsmappe"
+            "title": "Velg ny installasjonsmappe",
+            "error_read": "Kan ikke lese fra denne mappen. Prøv igjen."
         },
         "mod_browse_dialog": {
             "title": "Finn en modd å installere",

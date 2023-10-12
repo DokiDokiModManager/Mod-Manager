@@ -1,19 +1,19 @@
 {
     "renderer": {
         "online_error": {
-            "title": "اتصل بلانترنت",
-            "body": "المدير يسال الاتصال بالانترنت للتحمل لاول مره",
-            "button_restart": "ريست ستارا",
-            "button_quit": "استقال"
+            "title": "Si us plau, connecteu-vos a internet",
+            "body": "",
+            "button_restart": "",
+            "button_quit": ""
         },
         "modal_error": {
-            "title_non_fatal": "عفوا، حدث خطأ ما",
-            "title_fatal": "عفوا، تعطل مدير دوكي دوكي",
-            "description_general": "يرجى تجربة ما كنت تفعله مرة أخرى، وإذا كنت لا تزال تواجه مشاكل - من فضلك أخبرني",
-            "description_stacktrace": "فيما يلي التفاصيل الفنية للخطأ الذي حدث - يرجى تدوينها إذا طلبت المساعدة.",
-            "button_continue": "استمر",
-            "button_restart": "خطأ النسخ إلى الحافظة",
-            "button_copy": "خطأ في النسخ إلى الحافظة"
+            "title_non_fatal": "",
+            "title_fatal": "",
+            "description_general": "",
+            "description_stacktrace": "",
+            "button_continue": "",
+            "button_restart": "",
+            "button_copy": ""
         },
         "modal_language_switch": {
             "title": "",

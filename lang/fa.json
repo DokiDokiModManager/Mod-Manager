@@ -5,11 +5,14 @@
             "tab_home": "خانه",
             "tab_mods": "مادها",
             "tab_store": "فروشگاه",
-            "tab_options": "گزینه ها",
-            "tab_about": "درباره"
+            "tab_options": "تنظیمات",
+            "tab_about": "درباره",
+            "tab_downloads": "ماد ها",
+            "tab_play": "شروع بازی",
+            "tab_experiments": "آزمایش ها"
         },
         "version": {
-            "link_changelog": "چیز جدید چیا هست؟"
+            "link_changelog": "چه چیز جدیدی هست؟"
         },
         "help_menu": {
             "option_help": "مشاهده سایت کمکی",
@@ -22,8 +25,8 @@
         },
         "window_controls": {
             "close": "بستن",
-            "maximise": "بزرگ کردن",
-            "minimise": "کوچک کردن",
+            "maximise": "بزرگنمایی",
+            "minimise": "کوچکنمایی",
             "help": "کمک گرفتن",
             "announcement": "خواندن اخرین اعلان",
             "language": "زبان",
@@ -33,14 +36,18 @@
                 "available": "به روزرسانی ای موجود می باشد. برای دانلود آن اینجا کلیک کنید.",
                 "downloading": "در حال دانلود به روزرسانی...",
                 "downloaded": "هنگامی خروج از نرم افزار به روزرسانی ای آماده ی نصب می شود."
-            }
+            },
+            "patreon": "از برنامه روی پلتفرم Patreon حمایت کنید",
+            "discord": "به سرور دیسکورد ملحق شوید",
+            "issue_report": "گزارش مشکل",
+            "guide": "راهنمای کاربر"
         },
         "crash_cover": {
             "button_close": "خروج",
             "button_continue": "ادامه"
         },
         "drop_cover": {
-            "text": "برای نصب آن یک مود را اینجا رها کنید"
+            "text": "فایل ماد را اینجا رها کنید تا نصب شود"
         },
         "announcement": {
             "button_open": "بازکردن لینک",
@@ -272,17 +279,96 @@
             "support_donate": "",
             "support_steelseries": "",
             "support_code": ""
+        },
+        "online_error": {
+            "body": "برنامه برای اجرای اولیه نیاز به اتصال اینترنت دارد. لطفا ارتباط خود را چک کرده و برنامه را مجددا اجرا کنید.",
+            "button_restart": "شروع مجدد",
+            "title": "لطفا به اینترنت متصل شوید",
+            "button_quit": "خروج"
+        },
+        "modal_error": {
+            "title_non_fatal": "خطایی رخ داد",
+            "description_general": "لطفا همان کاری که مشغول انجام دادنش بودید را دوباره انجام دهید و اگر باز هم به مشکل خوردید، به من اطلاع دهید!",
+            "button_restart": "شروع مجدد",
+            "description_stacktrace": "این جزئیات فنی خطایی است که پیش آمد - لطفا برای درخواست کمک، این ها را جایی کپی کنید.",
+            "button_continue": "ادامه",
+            "button_copy": "کپی متن خطا به حافظه موقت",
+            "title_fatal": "برنامه به طور غیرمنتظره ای متوقف شد"
+        },
+        "modal_download_starting": {
+            "title": "در حال شروع دانلود",
+            "description": "لطفا درخواست های نمایش داده شده را به منظور اتمام دانلود انجام دهید"
+        },
+        "modal_language_switch": {
+            "title": "در حال تعویض زبان ها",
+            "description": "لطفا چند لحظه صبر کنید…"
+        },
+        "onboarding_v4": {
+            "header_setup": "راه اندازی اولین اجرا",
+            "text_download": "به وب سایت DDLC بروید، روی دکمه Download Now کلیک کرده و مراحل آن را دنبال کنید. هنگامی که از شما پرسیده شد، فایلی که نام {0} دارد را انتخاب کرده و آن را در مکانی در دسترس ذخیره کنید.",
+            "header_download": "دانلود DDLC",
+            "button_start": "شروع کنید",
+            "text_scanning": "لطفا صبر کنید…",
+            "text_welcome": "به بهترین نسخه فعلی از برنامه مدیریت ماد Doki Doki خوش آمدید.",
+            "subtitle_careful": "لطفا دستورالعمل های زیر را با دقت بخوانید.",
+            "button_ddlc_website": "ورود به وب سایت DDLC",
+            "text_modification_warning": "هیچ تغییری روی فایل دانلود شده اعمال نکنید.",
+            "text_s2_next": "هنگامی که دانلودتان به اتمام رسید، به قدم بعدی بروید.",
+            "header_hash_mismatch": "بنظر نمیاد این فایل مدنظر باشد",
+            "button_previous": "قبلی",
+            "subtitle_last": "این انتخاب ها را بعدا میتوانید هر زمانی تغییر دهید.",
+            "button_next": "بعدی",
+            "text_dropzone": "نسخه کپی دانلود شده DDLC را اینجا درگ کنید",
+            "text_save_location": "اگر میخواهید مود های خود را در درایو دیگری ذخیره کنید، الان میتوانید انتخابش کنید.",
+            "option_waifu_yuri": "یوری",
+            "header_waifu": "کرکتر محبوبتون کیست؟",
+            "header_directory_selected": "شما یک پوشه را بجای فایل زیپ DDLC انتخاب کردید",
+            "text_hash_mismatch": "لطفا دوباره چک کنید که فایل درست را انتخاب کردید و دوباره امتحان کنید.",
+            "button_finish": "پایان",
+            "text_version_mismatch": "شما احتمالا نسخه اشتباهی DDLC را برای سیستم عامل خود دانلود کردید. مطمئن شوید که {0} را دانلود کرده اید و مجدداً امتحان کنید.",
+            "option_waifu_monika": "مانیکا",
+            "option_waifu_natsuki": "ناتسوکی",
+            "text_success": "شما آماده اید که به مرحله بعدی بروید!",
+            "option_waifu_sayori": "سایوری",
+            "header_success": "کپی DDLC شما پیدا شد",
+            "header_save_location": "مکان ذخیره",
+            "option_waifu_all": "همشون!",
+            "label_waifu": "بهترین دختر",
+            "header_version_mismatch": "بنظر نمیاد این فایل زیپ مدنظر باشد",
+            "text_validating": "لطفاً مدتی منتظر بمانید…",
+            "subtitle_waifu": "فکر نکن، فقط جواب بده."
+        },
+        "modal_issue_report": {
+            "placeholder_mod": "لطفا لینک وبسایت یا صفحه دانلود مود را قرار دهید.",
+            "label_type": "نوع اشکال",
+            "description": "اگر اشکال شما نیاز به پاسخ مستقیم دارد، یا در گروه های زیر لیست نشده، لطفا بجای آن ایمیل بفرستید.",
+            "button_cancel": "لغو",
+            "label_body": "جزئیات اشکال",
+            "button_submit": "ارسال گزارش",
+            "title": "گزارش اشکال",
+            "option_bug": "باگ برنامه",
+            "placeholder_body": "لطفا تا جایی که ممکن است اطلاعات درباره ان بدهید. اگر این اشکال مختص شماست، لطفا دستورالعملی برای بازتولید این اشکال ارائه دهید.",
+            "label_mod": "لینک مود",
+            "option_broken_mod": "مود کار نمیکند"
+        },
+        "modal_news": {
+            "button": "تمام"
+        },
+        "modal_rename": {
+            "title": "تغییر نام نصب",
+            "body": "اسم جدیدی برای {0} بنویسید.",
+            "button_affirmative": "تغییر نام"
         }
     },
     "main": {
         "jumplist": {
-            "task_launch": ""
+            "task_launch": "لطفا دوکی دوکی مود منیجر را باز کنید و {0} را اجرا کنید."
         },
         "running_cover": {
-            "title_running": "",
-            "title_crashed": "",
-            "button_browse": "",
-            "button_close": "",
+            "title_running": "DDLC درحال اجرا است",
+            "title_crashed": "اشکالی پیش آمد",
+            "button_browse": "فولدر بازی را باز کنید",
+            "button_close": "اوکی",
             "description_running": "",
             "install_missing": "",
             "install_corrupt": "",
@@ -301,7 +387,7 @@
         },
         "shortcut_dialog": {
             "title": "",
-            "file_format_name": ""
+            "file_format_name": "شورتکات"
         },
         "errors": {
             "exception": {
@@ -310,7 +396,7 @@
             },
             "move_install": {
                 "title": "",
-                "body": ""
+                "body": "مطمئن شوید که اجازه دارید به پوشه مقصد منتقل کنید و دوباره امتحان کنید."
             },
             "shortcut": {
                 "title": "",
@@ -340,6 +426,12 @@
                 "title": "",
                 "body": ""
             }
+        },
+        "discord": {
+            "description_idle": "چیزی پلی نمیدهد",
+            "description_active": "درحال بازی کردن DDLC",
+            "status_active": "داخل گیم",
+            "description_version": "ورژن {0}"
         }
     }
 }
