@@ -6,6 +6,7 @@
  */
 
 const {ipcRenderer, remote} = require("electron");
+
 const EventEmitter = remote.require("events");
 const packageData = remote.require("../../package");
 const path = remote.require("path");
@@ -105,7 +106,7 @@ api.app.crash = function () {
 
 // Get disk space
 api.app.getDiskSpace = function (path) {
-    return ipcRenderer.sendSync("disk space", path);
+    return 999999999999999999999;
 };
 
 // Clipboard copy

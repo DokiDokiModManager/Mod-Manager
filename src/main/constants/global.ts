@@ -1,12 +1,12 @@
 module.exports = {
-    auto_update_disabled: false,
-    sentry_disabled: false,
+    auto_update_disabled: true,
+    sentry_disabled: true,
     discord_disabled: false,
     special_cases_disabled: false,
-    i18n_update_disabled: false,
-    news_disabled: false,
+    i18n_update_disabled: true,
+    news_disabled: true,
     default_language: "en-GB",
-    force_bundled_ui: false,
-    disable_dynamic_about: false,
-    replace_mod_store: false
+    force_bundled_ui: true,
+    disable_dynamic_about: true,
+    replace_mod_store: true
 };

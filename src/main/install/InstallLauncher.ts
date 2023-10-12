@@ -3,16 +3,12 @@ import {readFileSync, writeFileSync} from "fs";
 import {ChildProcess, spawn} from "child_process";
 import I18n from "../i18n/i18n";
 import Config from "../utils/Config";
-import SDKDebugConsole from "../sdk/SDKDebugConsole";
-import {LogClass} from "../sdk/LogClass";
-import SDKServer from "../sdk/SDKServer";
 import Logger from "../utils/Logger";
 import IDiscordManager from "../discord/IDiscordManager";
+import SDKDebugConsole from "../sdk/SDKDebugConsole";
+import {LogClass} from "../sdk/LogClass";
 
 const lang: I18n = new I18n();
-
-const SDK_HOST: string = "127.0.0.1";
-const SDK_PORT: number = 41420;
 
 export default class InstallLauncher {
 
@@ -83,17 +79,6 @@ export default class InstallLauncher {
                 logToConsole("[SDK] The SDK server will not be started due to user preference.", LogClass.WARNING);
             }
 
-            let sdkServer: SDKServer;
-
-            if (startSDKServer) {
-                logToConsole("Starting SDK server on " + SDK_PORT);
-                sdkServer = new SDKServer(SDK_PORT, SDK_HOST, folderName);
-
-                sdkServer.on("log", (data: { clazz: LogClass, text: string }) => {
-                    logToConsole("[SDK] " + data.text, data.clazz);
-                });
-            }
-
             // get the path to the game executable, .exe on windows and .sh on Linux
             let gameExecutable: string;
 
@@ -155,9 +140,6 @@ export default class InstallLauncher {
             });
 
             this.procHandle.on("error", e => {
-                if (sdkServer) {
-                    sdkServer.shutdown();
-                }
                 richPresence.setIdleStatus();
                 rj(e);
             });
@@ -168,10 +150,6 @@ export default class InstallLauncher {
                 const totalTime: number = installData.playTime ? installData.playTime + sessionTime : sessionTime;
 
                 if (code !== 0) installFailedCheck = true;
-
-                if (sdkServer) {
-                    sdkServer.shutdown();
-                }
 
                 // read again, so sdk data isn't overwritten
                 const newInstallData: any = JSON.parse(readFileSync(joinPath(installFolder, "install.json")).toString("utf8"));

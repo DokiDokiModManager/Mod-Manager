@@ -10,7 +10,6 @@ import {
     SaveDialogReturnValue,
     OpenDialogReturnValue,
     shell,
-    DownloadItem
 } from "electron";
 
 if (!app.isPackaged) {
@@ -53,7 +52,6 @@ if (existsSync(joinPath(app.getPath("appData"), "Doki Doki Mod Manager!"))) {
 }
 
 import DummyDiscordManager from "./discord/DummyDiscordManager";
-import {autoUpdater, UpdateCheckResult} from "electron-updater";
 import {sync as getDataURI} from "datauri";
 import ModList from "./mod/ModList";
 import I18n from "./i18n/i18n";
@@ -64,12 +62,8 @@ import InstallCreator from "./install/InstallCreator";
 import ModInstaller from "./mod/ModInstaller";
 import InstallManager from "./install/InstallManager";
 import DiscordManager from "./discord/DiscordManager";
-import DownloadManager from "./net/DownloadManager";
 import OnboardingManager from "./onboarding/OnboardingManager";
-import {checkSync, DiskUsage} from "diskusage";
 import IntegrityCheck from "./onboarding/IntegrityCheck";
-import {downloadLanguageFile} from "./i18n/TranslationDownload";
-import FeatureFlags from "./utils/FeatureFlags";
 import SpecialCaseManager from "./mod/SpecialCaseManager";
 import IDiscordManager from "./discord/IDiscordManager";
 import BundledUIServer from "./utils/BundledUIServer";
@@ -95,20 +89,11 @@ richPresence.setIdleStatus();
 // url to load the UI from
 const uiURL: string = require("../../ddmm.json").ui;
 
-// Feature flags
-let featureFlags: FeatureFlags = new FeatureFlags();
-
 // Special case data
 const specialCaseManager: SpecialCaseManager = new SpecialCaseManager();
 
 // Mod list
 let modList: ModList;
-
-// Download manager
-let downloadManager: DownloadManager;
-
-// Onboarding manager
-let onboardingManager: OnboardingManager;
 
 // Install launcher
 let installLauncher: InstallLauncher;
@@ -117,10 +102,6 @@ let installLauncher: InstallLauncher;
 mkdirpSync(joinPath(app.getPath("userData"), "language"));
 
 let lang: I18n = new I18n();
-
-downloadLanguageFile(Config.readConfigValue("language")).catch(err => {
-    console.warn("Language update failed", err);
-});
 
 // endregion
 
@@ -213,7 +194,7 @@ ipcMain.on("read config", (ev: IpcMainEvent, key: string) => {
 });
 
 ipcMain.on("get feature flag", (ev: IpcMainEvent, flag: string) => {
-    ev.returnValue = featureFlags.get(flag);
+    ev.returnValue = true;
 });
 
 // Launch install
@@ -224,35 +205,6 @@ ipcMain.on("launch install", (ev: IpcMainEvent, folderName: string) => {
 // Kill game
 ipcMain.on("kill game", () => {
     installLauncher.forceKill();
-});
-
-function sendDownloads() {
-    appWindow.webContents.send("got downloads", downloadManager.getActiveDownloads().map((dl: DownloadItem) => {
-        return {
-            filename: dl.getFilename(),
-            downloaded: dl.getReceivedBytes(),
-            total: dl.getTotalBytes(),
-            startTime: dl.getStartTime() * 1000
-        }
-    }));
-}
-
-ipcMain.on("get downloads", () => {
-    sendDownloads();
-});
-
-ipcMain.on("start download", (ev: IpcMainEvent, data: { url: string, interaction?: boolean }) => {
-    if (data.interaction) {
-        downloadManager.downloadFileWithInteraction(data.url).then(() => {
-            appWindow.webContents.send("download started");
-        });
-    } else {
-        downloadManager.downloadFile(data.url);
-    }
-});
-
-ipcMain.on("preload download name", (ev: IpcMainEvent, name: string) => {
-    downloadManager.preloadFilename(name);
 });
 
 // Browse for a mod
@@ -306,7 +258,7 @@ ipcMain.on("select folder", (ev: IpcMainEvent) => {
 ipcMain.on("create install", (ev: IpcMainEvent, install: { folderName: string, installName: string, globalSave: boolean, mod: string }) => {
     appWindow.setClosable(false);
     Logger.info("IPC", "Creating install in folder " + install.folderName)
-    InstallCreator.createInstall(install.folderName, install.installName, install.globalSave, featureFlags.get("hookInjector")).then(() => {
+    InstallCreator.createInstall(install.folderName, install.installName, install.globalSave, false).then(() => {
         if (!install.mod) {
             refreshInstalls();
             appWindow.setClosable(true);
@@ -533,14 +485,8 @@ ipcMain.on("debug crash", () => {
 
 // Disk space check
 ipcMain.on("disk space", (ev: IpcMainEvent, path: string) => {
-    try {
-        const usage: DiskUsage = checkSync(path);
-        Logger.debug("Disk Usage", "Remaining space in " + path + " is " + usage.free);
-        ev.returnValue = usage.free;
-    } catch (e) {
-        Logger.warn("Disk Usage", "Unable to read disk usage from " + path);
-        ev.returnValue = 999999; // assume there is space
-    }
+    // sorry!
+    ev.returnValue = 999999; // assume there is space
 });
 
 ipcMain.on("import mas", (ev: IpcMainEvent, folderName: string) => {
@@ -587,12 +533,8 @@ ipcMain.on("export mas", (ev: IpcMainEvent, folderName: string) => {
 });
 
 ipcMain.on("reload languages", () => {
-    downloadLanguageFile(Config.readConfigValue("language")).catch(err => {
-        console.warn("Language update failed", err);
-    }).finally(() => {
-        lang = new I18n();
-        appWindow.webContents.send("languages reloaded");
-    });
+    lang = new I18n();
+    appWindow.webContents.send("languages reloaded");
 });
 
 // endregion
@@ -661,32 +603,6 @@ ipcMain.on("onboarding finalise", (ev: IpcMainEvent, ddlcPath: string) => {
     mkdirpSync(joinPath(Config.readConfigValue("installFolder"), "downloads"));
     copyFileSync(ddlcPath, joinPath(Config.readConfigValue("installFolder"), "ddlc.zip"));
 });
-
-ipcMain.on("download mod", (ev, url) => {
-    downloadManager.downloadFile(url);
-});
-
-// endregion
-
-// region Updates etc.
-autoUpdater.autoDownload = false;
-
-autoUpdater.on("download-progress", () => {
-    appWindow.webContents.send("update status", "downloading");
-});
-
-autoUpdater.on("update-downloaded", () => {
-    appWindow.webContents.send("update status", "downloaded");
-});
-
-ipcMain.on("download update", () => {
-    autoUpdater.checkForUpdates().then((update: UpdateCheckResult) => {
-        if (update) {
-            autoUpdater.downloadUpdate();
-        }
-    })
-});
-
 // endregion
 
 // region Global exception handler
@@ -711,15 +627,6 @@ function handleURL(forcedArg?: string) {
         if (command === "launch-install") {
             const installFolder: string = commandParts[0];
             launchInstall(installFolder);
-        } else if (command === "download-mod") {
-            const data: any = JSON.parse(Buffer.from(commandParts.join("/"), "base64").toString());
-            if (data.filename && data.url) {
-                const oldFilename: string = downloadManager.getPreloadedFilename();
-                downloadManager.preloadFilename(data.filename);
-                downloadManager.downloadFileWithInteraction(data.url).then(() => {
-                    downloadManager.preloadFilename(oldFilename);
-                });
-            }
         }
     }
 }
@@ -759,6 +666,7 @@ app.on("ready", () => {
             nodeIntegration: false,
             nativeWindowOpen: true,
             webviewTag: true,
+            enableRemoteModule: true,
             preload: joinPath(__dirname, "../../src/renderer/js-preload/preload.js") // contains all the IPC scripts
         },
         titleBarStyle: "hiddenInset",
@@ -770,29 +678,11 @@ app.on("ready", () => {
         event.preventDefault();
     });
 
-    // Activate download manager
-    downloadManager = new DownloadManager(appWindow, lang);
-
-    // ...and the onboarding manager
-    onboardingManager = new OnboardingManager();
-
     // ...and the mod list
-    modList = new ModList(downloadManager);
+    modList = new ModList();
 
     // ...and the install launcher
     installLauncher = new InstallLauncher();
-
-    downloadManager.on("started", () => {
-        appWindow.webContents.send("download started");
-    });
-
-    downloadManager.on("updated", () => {
-        sendDownloads();
-    });
-
-    downloadManager.on("finished", () => {
-        appWindow.webContents.send("got modlist", modList.getModList());
-    });
 
     appWindow.webContents.on("will-navigate", (ev, url) => {
         console.warn("Prevented navigation from app container", url);
@@ -822,12 +712,6 @@ app.on("ready", () => {
         freezeNotif.show();
     });
 
-    appWindow.on("close", (ev: Event) => {
-        if (downloadManager.hasActiveDownloads()) {
-            ev.preventDefault();
-        }
-    });
-
     appWindow.on("closed", () => {
         appWindow = null;
         app.quit();
@@ -855,30 +739,24 @@ app.on("ready", () => {
             appWindow.loadURL(uiURL);
         } else {
             Logger.warn("UI", "Displaying offline message.");
-            if (global.ddmm_constants.force_bundled_ui) {
-                appWindow.loadFile(joinPath(__dirname, "../../src/renderer/html/offline.html"))
-            } else {
-                BundledUIServer.start().then(port => {
-                    appWindow.loadURL(`http://localhost:${port}/`);
-                });
-            }
+            appWindow.loadFile(joinPath(__dirname, "../../src/renderer/html/offline.html"))
         }
     });
 
     if (Config.readConfigValue("localUI")) {
         appWindow.loadURL(Config.readConfigValue("localUI"));
     } else {
-        if (global.ddmm_constants.force_bundled_ui) {
-            BundledUIServer.start().then(port => {
-                appWindow.loadURL(`http://localhost:${port}/`);
-            });
-        } else {
-            appWindow.loadURL(uiURL);
-        }
+        BundledUIServer.start().then(port => {
+            appWindow.loadURL(`http://localhost:${port}/`);
+        });
     }
 
     if (!Config.readConfigValue("installFolder", true)) {
         Config.saveConfigValue("installFolder", Config.readConfigValue("installFolder"));
+    }
+
+    if (process.env.DDMM_DEVTOOLS) {
+        appWindow.webContents.openDevTools();
     }
 
     Logger.info("Startup", "Application startup complete!");

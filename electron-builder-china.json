@@ -8,11 +8,7 @@
     "!**/*.rpy"
   ],
   "extraFiles": [
-    "dist/ui/**/*.*",
-    {
-      "from": "src/renpy/ddmm.rpy",
-      "to": "ddmm.rpy"
-    }
+    "ui/**/*.*"
   ],
   "extraMetadata": {
     "description": "中国用户的Doki Doki Mod Manager版本",
@@ -50,8 +46,6 @@
     "synopsis": "Doki Doki Mod Manager",
     "target": [
       "AppImage",
-      "deb",
-      "rpm",
       "tar.gz"
     ],
     "publish": [

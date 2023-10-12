@@ -1,17 +1,9 @@
 import {readdirSync} from "fs";
 import {join as joinPath} from "path";
 import Config from "../utils/Config";
-import DownloadManager from "../net/DownloadManager";
 import Logger from "../utils/Logger";
 
 export default class ModList {
-
-    private readonly downloadManager: DownloadManager;
-
-    constructor(downloadManager: DownloadManager) {
-        this.downloadManager = downloadManager;
-    }
-
     /**
      * Reads the mod directory and returns the contents (filtered to only include archive files)
      * @returns string[] A list of mod filenames

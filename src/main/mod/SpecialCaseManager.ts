@@ -1,46 +1,40 @@
-import fetch from "node-fetch";
-import {join as joinPath} from "path";
-import {app} from "electron";
-import {readFileSync, writeFileSync} from "fs";
-import Logger from "../utils/Logger";
 import FileHash from "../utils/FileHash";
 
-const SPECIAL_CASES_URL: string = "https://raw.githubusercontent.com/DokiDokiModManager/Meta/master/specialCases.txt";
+// final version
+const casesDataRaw = `
+# This file specifies special case installation actions for some mods.
+# Empty lines and lines beginning with # are ignored.
+# Format - tab delimited: [sha1-hash] (preinstall|postinstall) (delete) [file-path]
 
-const SPECIAL_CASES_PATH: string = joinPath(app.getPath("userData"), "specialCases.json");
+# Deletion Rewrite
+1e4f7f42f6e9b198063bc64f7c1b38a555706851\tpostinstall\tdelete\tgame/scripts.rpa
+
+# Dimensions
+e967ecc313f2f92b434f8ff8464d8dc8f634fa01\tpostinstall\tdelete\tgame/scripts.rpa
+
+# Just Yuri
+c766d2251365ad145c8987d59bfff3cd89f58c0e\tpostinstall\tdelete\tgame/scripts.rpa
+
+# Club Meetings Season 1
+5fb3e9cc250c78b3f19e1af1e8fb8d485d4bf1c5\tpostinstall\tdelete\tgame/scripts.rpa
+
+# Second Chances
+96f54d546ae8f5fee03ba4c4f2ad7bad8a92dabe\tpostinstall\tdelete\tgame/scripts.rpa
+`.trim();
 
 export default class SpecialCaseManager {
 
-    private ready: boolean = false;
     private specialCasesData: any = {};
 
     constructor() {
-        if (global.ddmm_constants.special_cases_disabled) return;
-        fetch(SPECIAL_CASES_URL).then(res => res.text()).then(casesDataRaw => {
-            Logger.info("Special Cases", "Using live special case data");
-            const lines = casesDataRaw.split("\n").filter(line => line && !line.startsWith("#"));
+        const lines = casesDataRaw.split("\n").filter(line => line && !line.startsWith("#"));
 
-            lines.forEach(line => {
-                const [hash, time, action, parameter] = line.split("\t");
-                if (!this.specialCasesData[hash]) {
-                    this.specialCasesData[hash] = [];
-                }
-                this.specialCasesData[hash].push({time, action, parameter});
-            });
-
-            console.log(this.specialCasesData);
-
-            writeFileSync(SPECIAL_CASES_PATH, JSON.stringify(this.specialCasesData));
-        }).catch(() => {
-            try {
-                const cachedData: string = readFileSync(SPECIAL_CASES_PATH, "utf-8");
-                this.specialCasesData = JSON.parse(cachedData);
-                Logger.info("Special Cases", "Using cached special case data");
-            } catch (e) {
-                Logger.warn("Special Cases", "Using cached special case data was found or unable to load. ");
+        lines.forEach(line => {
+            const [hash, time, action, parameter] = line.split("\t");
+            if (!this.specialCasesData[hash]) {
+                this.specialCasesData[hash] = [];
             }
-        }).finally(() => {
-            this.ready = true;
+            this.specialCasesData[hash].push({time, action, parameter});
         });
     }
 

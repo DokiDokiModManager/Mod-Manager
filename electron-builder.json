@@ -8,11 +8,7 @@
     "!**/*.rpy"
   ],
   "extraFiles": [
-    "dist/ui/**/*.*",
-    {
-      "from": "src/renpy/ddmm.rpy",
-      "to": "ddmm.rpy"
-    }
+    "ui/**/*.*"
   ],
   "protocols": [
     {
@@ -46,14 +42,10 @@
     "synopsis": "Doki Doki Mod Manager",
     "target": [
       "AppImage",
-      "snap",
-      "deb",
-      "rpm",
       "tar.gz"
     ],
     "publish": [
-      "github",
-      "snapStore"
+      "github"
     ]
   },
   "mac": {

@@ -6,7 +6,6 @@ import Config from "../utils/Config";
 import unzip from "../archive/Unzipper";
 import InstallManager from "./InstallManager";
 import Logger from "../utils/Logger";
-import ModManagerHookInjector from "./ModManagerHookInjector";
 
 export default class InstallCreator {
 
@@ -109,11 +108,8 @@ export default class InstallCreator {
                         }
 
                     }
-                    if (injectScript) {
-                        ModManagerHookInjector.injectScript(folderName).finally(finish);
-                    } else {
-                        finish();
-                    }
+
+                    finish();
                 });
             } catch (e) {
                 rj(e);
