@@ -2,7 +2,7 @@
     "renderer": {
         "online_error": {
             "title": "請連接到網路",
-            "body": "心跳心跳模組管理器需要網絡連接以在首次啟動時下載資源。請檢查網絡連接，然後重啟。",
+            "body": "心跳心跳模組管理器需要網路連接以在首次啟動時下載資源。請檢查網路連接，然後重啟。",
             "button_restart": "重新啟動",
             "button_quit": "退出"
         },
@@ -10,14 +10,14 @@
             "title_non_fatal": "糟糕，好像有什麼出錯了",
             "title_fatal": "糟糕，心跳心跳模組管理器崩潰了",
             "description_general": "請再試一次你之前的操作。如果仍然遇到問題，請聯繫我！",
-            "description_stacktrace": "以下是問題的技術性詳情。如果您需要尋求幫助，請記下這些詳細信息。",
+            "description_stacktrace": "以下是問題的技術性詳情。如果您需要尋求幫助，請記下這些詳細訊息。",
             "button_continue": "繼續",
             "button_restart": "重新啟動",
             "button_copy": "將錯誤日誌複製到剪貼板"
         },
         "modal_language_switch": {
             "title": "正在切換語言",
-            "description": "请稍等一下…"
+            "description": "請稍等一下…"
         },
         "modal_download_starting": {
             "title": "開始下載",
@@ -69,25 +69,25 @@
             "button_ddlc_website": "訪問心跳心跳文學部網站",
             "text_s2_next": "下載完成後，請繼續下一步。",
             "text_modification_warning": "不要對下載的文件進行任何更改。",
-            "header_safari_warning": "對於 Safari 用戶的重要信息",
+            "header_safari_warning": "對於 Safari 用戶的重要訊息",
             "text_safari_warning": "Safari 可能會自動解壓下載的遊戲，這樣會干擾模組管理器的設置過程。請在 Safari 的首選項頁面關閉這個功能。",
             "link_safari_warning": "單擊此處查看視覺上的指導",
             "button_next": "下一步",
             "button_previous": "上一步",
             "button_finish": "完成",
-            "text_select": "打開您下載的心跳心跳文學部副本所在的文件夾，然後將該副本拖放到下面的空白處。",
+            "text_select": "開啟您下載的心跳心跳文學部副本所在的資料夾，然後將該副本拖放到下面的空白處。",
             "text_dropzone": "將已下載的心跳心跳文學部副本拖入此處",
             "text_validating": "請稍候片刻…",
-            "header_directory_selected": "您選擇了一個文件夾，而不是 ddlc-win 的 zip 文件",
+            "header_directory_selected": "您選擇了一個資料夾，而不是 ddlc-win 的 zip 文件",
             "text_directory_selected": "請最佳確保您沒有選擇遊戲解壓後的副本，然後重試。",
             "header_version_mismatch": "這好像不是正確的zip檔案",
             "text_version_mismatch": "您可能下載了錯誤的心跳心跳文學部版本。請確保您下載的是{0}這個文件，然後重試。",
             "header_success": "找到了你的心跳心跳文學部副本",
             "text_success": "你現在可以進行下一步了！",
             "header_hash_mismatch": "這好像不是正確的文件",
-            "text_hash_mismatch": "請仔細檢查您是否選擇了正確的文件，然後重試。",
+            "text_hash_mismatch": "請仔細檢查您是否選擇了正確的檔案，然後重試。",
             "subtitle_last": "您隨時可以更改這些選項。",
-            "header_save_location": "保存位置",
+            "header_save_location": "儲存位置",
             "text_save_location": "現在，你可以在這裡選擇你想要的存儲模組的驅動器。",
             "header_waifu": "你最喜歡這個角色？",
             "subtitle_waifu": "不要想太多，選完就可以了。",
@@ -105,245 +105,245 @@
             "title": "報告問題",
             "description": "如果您需要一個直接的答复，或者您的問題類別沒有被列出，請轉換發送電子郵件。",
             "label_type": "問題類型",
-            "option_bug": "應用程序錯誤",
-            "option_broken_mod": "模組不能正常運行",
+            "option_bug": "應用程式錯誤",
+            "option_broken_mod": "模組不能正常執行",
             "label_mod": "",
             "placeholder_mod": "",
-            "label_body": "",
-            "placeholder_body": "",
-            "button_submit": "",
-            "button_cancel": ""
+            "label_body": "問題詳情",
+            "placeholder_body": "請盡可能提供詳細內容。如果相關的話，也請提供重現問題的說明。",
+            "button_submit": "發送報告",
+            "button_cancel": "取消"
         },
         "modal_rename": {
             "title": "",
             "body": "",
-            "button_affirmative": "",
-            "button_negative": ""
+            "button_affirmative": "重新命名",
+            "button_negative": "取消"
         },
         "modal_uninstall": {
-            "title": "",
+            "title": "您確定要解除安裝嗎？",
             "body": "",
             "body_globalsave": "",
-            "confirmation": "",
-            "button_affirmative": "",
-            "button_negative": ""
+            "confirmation": "了解。",
+            "button_affirmative": "解除安裝",
+            "button_negative": "取消"
         },
         "modal_archive": {
             "title": "",
             "body": "",
             "body_warning": "",
-            "confirmation": "",
+            "confirmation": "了解。",
             "button_affirmative": "",
-            "button_negative": ""
+            "button_negative": "取消"
         },
         "modal_save_delete": {
-            "title": "",
+            "title": "您確定要刪除存檔嗎？",
             "body": "",
-            "confirmation": "",
-            "button_affirmative": "",
-            "button_negative": ""
+            "confirmation": "了解。",
+            "button_affirmative": "刪除",
+            "button_negative": "取消"
         },
         "modal_installing": {
-            "title": "",
-            "description": ""
+            "title": "正在安裝",
+            "description": "請等待遊戲安裝，這需要一分鐘左右。"
         },
         "modal_unarchive": {
-            "title": "",
+            "title": "啟動遊戲",
             "description": "",
-            "button_launch": "",
-            "button_cancel": ""
+            "button_launch": "啟動",
+            "button_cancel": "取消"
         },
         "modal_unarchiving": {
-            "title": "",
-            "description": ""
+            "title": "重新安裝遊戲中",
+            "description": "遊戲將在完成重新安裝後開始。"
         },
         "modal_category": {
             "title": "",
             "label_none": "",
             "placeholder_category": "",
-            "button_save": "",
-            "button_cancel": ""
+            "button_save": "儲存",
+            "button_cancel": "取消"
         },
         "modal_running": {
-            "title": "",
-            "description": "",
-            "button_browse": "",
-            "link_more": "",
-            "button_kill": ""
+            "title": "遊戲執行中",
+            "description": "關閉遊戲以便對模組做出變更。",
+            "button_browse": "瀏覽遊戲檔案",
+            "link_more": "點擊檢視更多選項",
+            "button_kill": "強制離開"
         },
         "menu_install_options": {
-            "launch": "",
-            "rename": "",
+            "launch": "啟動",
+            "rename": "重新命名",
             "category": "",
             "archive": "",
-            "shortcut": "",
-            "delete_save": "",
-            "uninstall": "",
-            "cancel": ""
+            "shortcut": "建立捷徑",
+            "delete_save": "刪除存檔",
+            "uninstall": "解除安裝",
+            "cancel": "取消"
         },
         "menu_mod_options": {
-            "install": "",
-            "delete": "",
-            "cancel": ""
+            "install": "安裝",
+            "delete": "刪除",
+            "cancel": "取消"
         },
         "modal_mod_delete": {
-            "title": "",
-            "body": "",
-            "button_affirmative": "",
-            "button_negative": ""
+            "title": "您確定要刪除模組？",
+            "body": "如果您想要重新安裝，需要重新下載 {0}。",
+            "button_affirmative": "安裝",
+            "button_negative": "取消"
         },
         "modal_mod_preview": {
-            "button_close": "",
-            "button_download_direct": "",
-            "button_download_external": "",
-            "text_loading": ""
+            "button_close": "關閉",
+            "button_download_direct": "下載",
+            "button_download_external": "在瀏覽器中下載",
+            "text_loading": "載入下載選項中…"
         },
         "tab_mods": {
             "list": {
-                "placeholder_search": "",
+                "placeholder_search": "搜尋模組…",
                 "header_new": "",
-                "link_install": "",
-                "link_home": "",
-                "header_installed": "",
-                "header_downloaded": ""
+                "link_install": "安裝 DDLC",
+                "link_home": "首頁",
+                "header_installed": "已安裝",
+                "header_downloaded": "下載"
             },
             "launch_lock_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "正在使用雲端存檔！",
+                "details": "如果現在啟動，可能會遺失進度。",
+                "button_affirmative": "仍要啟動",
+                "button_negative": "取消"
             },
             "launch_noauth_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "您尚未登入！",
+                "details": "如果現在啟動，存檔將不會同步至雲端。",
+                "button_affirmative": "仍要啟動",
+                "button_negative": "取消"
             },
             "launch_offline_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "您處於離線狀態！",
+                "details": "如果現在啟動，存檔將不會同步至雲端。",
+                "button_affirmative": "仍要啟動",
+                "button_negative": "取消"
             },
             "mod_delete_confirmation": {
-                "message": "",
+                "message": "您確定要刪除模組？",
                 "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "button_affirmative": "刪除",
+                "button_negative": "取消"
             },
             "install": {
-                "button_launch": "",
-                "button_settings": "",
-                "tag_global_save": "",
+                "button_launch": "啟動",
+                "button_settings": "設定",
+                "tag_global_save": "全域儲存",
                 "tag_sdk": "",
                 "tag_archived": "",
-                "title_achievements": "",
-                "description_achievements": "",
-                "description_achievements_complete": "",
-                "description_achievement_earned": "",
-                "description_achievement_not_earned": "",
-                "title_screenshots_none": "",
+                "title_achievements": "成就（{0}/{1}）",
+                "description_achievements": "繼續遊玩以便解鎖更多成就。",
+                "description_achievements_complete": "您已經解鎖全部成就。恭喜！",
+                "description_achievement_earned": "完成",
+                "description_achievement_not_earned": "未完成",
+                "title_screenshots_none": "沒有擷圖",
                 "title_screenshots_one": "",
                 "title_screenshots": "",
                 "description_screenshots": "",
                 "description_sdk": "",
                 "description_author": "",
-                "link_discord": "",
-                "link_website": "",
-                "description_external": "",
+                "link_discord": "Discord（{0}）",
+                "link_website": "網站（{0}）",
+                "description_external": "開啟資料夾",
                 "title_mas_export": "",
                 "description_mas_export": "",
                 "button_mas_export": "",
                 "button_mas_import": "",
-                "title_install_failed": "",
+                "title_install_failed": "模組是否正確安裝？",
                 "description_install_failed": "",
                 "link_troubleshooting": "",
-                "title_singleton_error": "",
+                "title_singleton_error": "遊戲是否關閉了？",
                 "description_singleton_error": "",
-                "description_install_failed_launch_again": ""
+                "description_install_failed_launch_again": "下次執行此模組時將不再顯示此訊息。"
             },
             "mod": {
-                "button_install": "",
-                "button_settings": "",
-                "description_external": ""
+                "button_install": "安裝",
+                "button_settings": "設定",
+                "description_external": "開啟資料夾"
             },
             "install_creation": {
-                "title": "",
-                "status_exists": "",
+                "title": "安裝 DDLC",
+                "status_exists": "資料夾名稱已使用。",
                 "warning_no_space": "",
-                "label_install_name": "",
-                "placeholder_install_name": "",
-                "label_folder_name": "",
-                "label_has_mod": "",
-                "label_mod": "",
-                "option_local_save": "",
-                "option_global_save": "",
-                "modlist_none": "",
-                "modlist_library": "",
-                "modlist_custom": "",
-                "description_mod": "",
-                "warning_global_save": "",
-                "button_install": "",
-                "button_installing": ""
+                "label_install_name": "安裝名稱",
+                "placeholder_install_name": "您在遊戲中模組的名稱，或想要其它內容。",
+                "label_folder_name": "資料夾名稱",
+                "label_has_mod": "安裝模組",
+                "label_mod": "模組",
+                "option_local_save": "本地儲存（推薦）",
+                "option_global_save": "全域儲存",
+                "modlist_none": "一般 DDLC－無模組",
+                "modlist_library": "模組庫",
+                "modlist_custom": "此處未列出模組",
+                "description_mod": "點擊瀏覽模組。",
+                "warning_global_save": "使用全域儲存可能會導致遊戲的其它副本出現問題，因為它會將您的進度儲存在一般資料夾中。只有在您有特定原因時才使用它。",
+                "button_install": "安裝",
+                "button_installing": "安裝中…"
             }
         },
         "tab_options": {
             "list": {
-                "header_appearance": "",
-                "link_background": "",
-                "link_advanced_appearance": "",
-                "header_account": "",
-                "link_cloudsaves": "",
-                "link_accmanagement": "",
+                "header_appearance": "外觀",
+                "link_background": "背景",
+                "link_advanced_appearance": "進階",
+                "header_account": "帳戶",
+                "link_cloudsaves": "雲端存檔",
+                "link_accmanagement": "管理帳戶",
                 "header_enhancements": "",
                 "link_sdk": "",
-                "link_discord": "",
-                "header_application": "",
-                "link_updates": "",
-                "link_storage": "",
-                "link_language": "",
-                "header_developers": "",
-                "link_testing": ""
+                "link_discord": "Discord",
+                "header_application": "應用程式",
+                "link_updates": "更新",
+                "link_storage": "儲存位置",
+                "link_language": "語言",
+                "header_developers": "開發人員",
+                "link_testing": "除錯選項"
             },
             "section_backgrounds": {
-                "title": "",
+                "title": "背景",
                 "subtitle": "",
-                "button_none": "",
-                "button_custom": "",
+                "button_none": "無背景",
+                "button_custom": "自訂背景",
                 "checkbox_modbg": "",
                 "description_credit": "",
                 "description_custom": ""
             },
             "section_advanced_appearance": {
-                "title": "",
-                "subtitle": "",
+                "title": "進階",
+                "subtitle": "在此尋找其它介面選項。",
                 "button_enable_sysborders": ""
             },
             "section_storage": {
-                "title": "",
-                "subtitle": "",
+                "title": "儲存位置",
+                "subtitle": "變更遊戲檔案的儲存位置。",
                 "description": "",
                 "description_moving": "",
                 "button_confirm": ""
             },
             "section_updates": {
-                "title": "",
+                "title": "更新",
                 "subtitle": "",
-                "description_current_version": "",
-                "description_latest_version": "",
+                "description_current_version": "目前版本：{0}",
+                "description_latest_version": "最新版本：{0}",
                 "description_has_update": "",
                 "description_no_update": "",
-                "description_downloading": "",
-                "description_downloaded": "",
-                "description_error": "",
-                "button_check": "",
-                "button_download": ""
+                "description_downloading": "正在下載更新－等待時可以繼續使用該應用程式。",
+                "description_downloaded": "更新已下載，將在您退出時安裝。",
+                "description_error": "目前無法檢查更新，請稍後重試。",
+                "button_check": "再次檢查",
+                "button_download": "下載更新"
             },
             "section_language": {
-                "title": "",
-                "subtitle": "",
+                "title": "語言",
+                "subtitle": "選擇您的首選語言。翻譯可能並非完全準確或完整。",
                 "link_contribute": "",
-                "label_language": ""
+                "label_language": "語言"
             },
             "section_sdk": {
                 "title": "",
@@ -355,30 +355,30 @@
             },
             "section_discord": {
                 "title": "",
-                "subtitle": "",
+                "subtitle": "分享正在遊玩的模組給 Discord 好友。",
                 "description": "",
                 "button_enable": ""
             },
             "section_testing": {
-                "title": "",
+                "title": "除錯選項",
                 "subtitle": "",
                 "checkbox_logging": "",
                 "header_mod_debug": "",
                 "description_mod_debug": "",
                 "header_renpy": "",
                 "description_renpy": "",
-                "checkbox_renpy_skipsplash": "",
-                "checkbox_renpy_skipmenu": ""
+                "checkbox_renpy_skipsplash": "跳過啟動畫面",
+                "checkbox_renpy_skipmenu": "跳過選單"
             }
         },
         "tab_about": {
-            "title": "",
+            "title": "關於",
             "description": "",
             "title_disclaimer": "",
             "disclaimer_1": "",
             "disclaimer_2": "",
             "title_socials": "",
-            "social_discord": "",
+            "social_discord": "加入 Discord 伺服器",
             "social_reddit": "",
             "social_email": "",
             "title_translators": "",
@@ -390,53 +390,53 @@
         "tab_downloads": {
             "list": {
                 "header_library": "",
-                "link_downloaded": "",
+                "link_downloaded": "您的模組",
                 "link_downloads": "",
-                "header_browse": "",
+                "header_browse": "尋找模組",
                 "link_featured": "",
                 "link_ddmc": ""
             },
             "downloaded": {
-                "title": "",
-                "button_install": "",
-                "button_options": "",
-                "description_type": "",
-                "placeholder_search": "",
-                "message_none": ""
+                "title": "您的模組",
+                "button_install": "安裝",
+                "button_options": "選項",
+                "description_type": "檔案類型：{0}",
+                "placeholder_search": "搜尋模組…",
+                "message_none": "您目前沒有模組。去下載一些吧！"
             },
             "downloads": {
                 "title": "",
                 "status_text_downloading": "",
                 "status_text_downloading_uncertain": "",
-                "message_none": ""
+                "message_none": "沒有正在進行的下載。"
             },
             "featured": {
                 "title": "",
-                "button_download": ""
+                "button_download": "下載"
             },
             "store": {
                 "title_ddmc": "",
                 "description_ddmc": "",
                 "link_ddmc": "",
                 "description_featured": "",
-                "text_loading": "",
-                "error_loading": "",
-                "placeholder_search": ""
+                "text_loading": "載入模組列表中…",
+                "error_loading": "目前無法載入任何模組。",
+                "placeholder_search": "搜尋模組…"
             }
         },
         "component_install_folder_selector": {
-            "label": "",
-            "button_select": "",
-            "error_disk_space": ""
+            "label": "儲存位置",
+            "button_select": "選擇",
+            "error_disk_space": "磁碟剩餘空間不足 2 GB"
         }
     },
     "main": {
         "discord": {
-            "status_idle": "",
-            "status_active": "",
+            "status_idle": "管理模組",
+            "status_active": "遊戲中",
             "description_idle": "",
-            "description_active": "",
-            "description_version": ""
+            "description_active": "正在玩 DDLC",
+            "description_version": "版本 {0}"
         },
         "jumplist": {
             "task_launch": ""
@@ -444,21 +444,21 @@
         "running_cover": {
             "title_running": "",
             "title_crashed": "",
-            "button_browse": "",
+            "button_browse": "開啟遊戲資料夾",
             "button_close": "",
-            "description_running": "",
-            "install_missing": "",
-            "install_corrupt": "",
-            "install_crashed": ""
+            "description_running": "關閉遊戲以便對模組做出變更。",
+            "install_missing": "無法找到安裝檔案。",
+            "install_corrupt": "安裝未完成或損壞。",
+            "install_crashed": "遊戲無法啟動或崩潰。"
         },
         "move_install": {
-            "title": "",
-            "error_not_empty": "",
+            "title": "選擇新安裝資料夾",
+            "error_not_empty": "資料夾內有其它檔案。請選擇一個空白的資料夾。",
             "error_read": ""
         },
         "mod_browse_dialog": {
             "title": "",
-            "file_format_name": ""
+            "file_format_name": "模組"
         },
         "game_browse_dialog": {
             "title": "",
@@ -466,7 +466,7 @@
         },
         "shortcut_dialog": {
             "title": "",
-            "file_format_name": ""
+            "file_format_name": "捷徑"
         },
         "import_mas": {
             "title": "",
@@ -477,10 +477,10 @@
             "filter": ""
         },
         "redownload_confirmation": {
-            "message": "",
+            "message": "模組已下載",
             "detail": "",
-            "button_confirm": "",
-            "button_cancel": ""
+            "button_confirm": "下載",
+            "button_cancel": "取消"
         },
         "errors": {
             "dev_ui_load_fail": {
@@ -492,7 +492,7 @@
                 "body": ""
             },
             "move_install": {
-                "title": "",
+                "title": "移動安裝資料夾失敗",
                 "body": ""
             }
         }

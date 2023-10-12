@@ -7,7 +7,8 @@
             "tab_options": "オプション",
             "tab_about": "概要",
             "tab_downloads": "MOD",
-            "tab_play": "プレイ"
+            "tab_play": "プレイ",
+            "tab_experiments": "実験"
         },
         "version": {
             "link_changelog": "更新内容"
@@ -81,7 +82,8 @@
                 "header_new": "追加",
                 "link_install": "インストール",
                 "header_installed": "インストール済み",
-                "header_downloaded": "ダウンロード済み"
+                "header_downloaded": "ダウンロード済み",
+                "link_home": "ホーム"
             },
             "install_contextmenu": {
                 "launch": "起動",
@@ -155,10 +157,19 @@
                 "link_discord": "Discord ({0})",
                 "link_website": "Webサイト ({0})",
                 "description_external": "フォルダを開く",
-                "description_mas_export": "",
-                "title_mas_export": "",
-                "button_mas_export": "",
-                "button_mas_import": ""
+                "description_mas_export": "モニカはあなたと一緒にお出かけする準備が出来ています。",
+                "title_mas_export": "モニカと一緒に",
+                "button_mas_export": "モニカのコピーと出掛ける",
+                "button_mas_import": "",
+                "tag_archived": "アーカイブ",
+                "description_install_failed_launch_again": "次回mod起動時からメッセージが表示されなくなります。",
+                "description_achievement_earned": "完了",
+                "description_achievement_not_earned": "未完了",
+                "title_install_failed": "modは正しくインストールしていますか？",
+                "description_install_failed": "modが正しくインストールされていない可能性があります。トラブルシューティングガイドを読んで、問題の解決に役立ててください。",
+                "link_troubleshooting": "トラブルシューティングガイド",
+                "title_singleton_error": "ゲームを終了しましたか？",
+                "description_singleton_error": "DDLCが複数していないかを確認し、再度起動してみてください。問題が解決しない場合は、トラブルシューティングガイドをお読みください。"
             },
             "mod": {
                 "button_install": "インストール",
@@ -193,7 +204,8 @@
                 "option_global_save": "グローバルセーブ",
                 "option_local_save": "ローカルセーブ (推奨)",
                 "modlist_library": "MODライブラリ",
-                "modlist_none": "ドキドキ文芸部本編 - MOD なし"
+                "modlist_none": "ドキドキ文芸部本編 - MOD なし",
+                "warning_no_space": "申し訳ありませんが、DDLCをインストールするには、少なくとも2GBの空き容量が必要です。Doki Doki Mod Managerを閉じて、空き容量を確保してからもう一度試してみてください。または、[オプション] > [ストレージ]の場所 で、別のドライブにインストールしてください。"
             }
         },
         "tab_store_placeholder": {
@@ -217,7 +229,10 @@
                 "header_developers": "開発者向け",
                 "link_testing": "デバッグオプション",
                 "link_debug": "アプリケーション情報",
-                "link_language": "言語"
+                "link_language": "言語",
+                "link_cloudsaves": "クラウド保存",
+                "link_accmanagement": "アカウント管理",
+                "header_account": "アカウント"
             },
             "section_backgrounds": {
                 "title": "背景画像",
@@ -313,7 +328,11 @@
             "description_support": "Doki Doki Mod Managerはいつでも無料でダウンロードできます。もしあなたが更新の手助けをしたいなら、以下の方法があります。",
             "support_donate": "1回限りの寄付をする",
             "support_steelseries": "SteelSeriesのゲーミング周辺機器が1割引 (アフィリエイトリンク)",
-            "support_code": "プロジェクトへの貢献 (コードまたは翻訳)"
+            "support_code": "プロジェクトへの貢献 (コードまたは翻訳)",
+            "title_translators": "翻訳協力",
+            "title_patreon": "以下のパトロン・サポーターの皆様のご協力を得ています",
+            "link_patreon": "Doki Doki Mod Managerのさらなる開発をPatreonで支援する",
+            "link_weblate": "Doki Doki Mod Managerの翻訳を手伝ってください - ホームページプロジェクトに訪れましょう"
         },
         "language_change_instruction": "言語の変更は再起動後に反映されます",
         "modal_rename": {
@@ -360,7 +379,9 @@
             "rename": "名前の変更"
         },
         "modal_unarchive": {
-            "button_launch": "起動"
+            "button_launch": "起動",
+            "button_cancel": "キャンセル",
+            "title": "起動"
         },
         "modal_installing": {
             "description": "インストールが完了するまで、1分程かかります。",
@@ -396,7 +417,8 @@
             "label_body": "詳細",
             "title": "問題を報告",
             "button_submit": "送信",
-            "button_cancel": "キャンセル"
+            "button_cancel": "キャンセル",
+            "label_mod": "modのリンク"
         },
         "tab_downloads": {
             "downloaded": {
@@ -404,7 +426,8 @@
                 "placeholder_search": "MODを検索……",
                 "button_options": "オプション",
                 "button_install": "インストール",
-                "description_type": "ファイルの種類: {0}"
+                "description_type": "ファイルの種類: {0}",
+                "message_none": "Modが入っていません。ダウンロードしましょう!"
             },
             "list": {
                 "link_downloaded": "保存済みMOD",
@@ -415,13 +438,23 @@
                 "link_downloads": "ダウンロード中"
             },
             "featured": {
-                "button_download": "ダウンロード"
+                "button_download": "ダウンロード",
+                "title": "注目のMod"
             },
             "downloads": {
                 "status_text_downloading_uncertain": "ダウンロード中 - {0} MB ダウンロード済み {1} MB/s",
                 "status_text_downloading": "ダウンロード中 - {0}% {1} MB/s (残り {2})",
                 "title": "ダウンロード中",
                 "message_none": "ダウンロード中のMODはありません。"
+            },
+            "store": {
+                "description_ddmc": "Doki Doki Modクラブが提供するModのデータベースを閲覧できます。",
+                "placeholder_search": "modを検索中…",
+                "link_ddmc": "ウェブサイトをご覧いただき、ご自身のMODをご投稿ください。",
+                "title_ddmc": "Doki Doki Modクラブ",
+                "description_featured": "困ったら注目のModsを試してみましょう！",
+                "error_loading": "今はmodを読み込むことができません。",
+                "text_loading": "modリストを読み込んでいます…"
             }
         },
         "modal_category": {
@@ -452,7 +485,29 @@
             "header_download": "ドキドキ文芸部！をダウンロード",
             "subtitle_careful": "以下の説明をお読みください。",
             "header_setup": "初回セットアップ",
-            "text_scanning": "お待ち下さい……"
+            "text_scanning": "お待ち下さい……",
+            "option_waifu_sayori": "サヨリ",
+            "header_version_mismatch": "これは正しいzipファイルではありません",
+            "text_welcome": "最新版のDoki Doki Mod Managerへようこそ。",
+            "button_start": "はじめに",
+            "link_safari_warning": "ビジュアルガイドはこちらからどうぞ",
+            "text_select": "DDLCのコピーを保存したフォルダを開き、ファイルの中にドラッグ＆ドロップしてください。",
+            "text_validating": "少々お待ちください…",
+            "text_dropzone": "ダウンロードしたDDLCをこちらにドラッグしてください",
+            "text_directory_selected": "解凍したものを選択していないか確認し、再度お試しください。",
+            "header_directory_selected": "DDLCのzipファイルではなく、フォルダを選択した場合",
+            "header_success": "DDLCのコピーを発見しました",
+            "text_success": "次のステップに進みましょう!",
+            "header_hash_mismatch": "正しいファイルではありません",
+            "text_hash_mismatch": "間違ったファイルを選択している可能性があります、もう一度お試しください。",
+            "subtitle_last": "これらの設定はいつでも変更可能です。",
+            "header_waifu": "好きなキャラクターは誰ですか？",
+            "subtitle_waifu": "ありのままで答えましょう。",
+            "label_waifu": "推し",
+            "option_waifu_yuri": "ユリ",
+            "option_waifu_all": "全て!",
+            "option_waifu_monika": "モニカ",
+            "option_waifu_natsuki": "ナツキ"
         },
         "modal_download_starting": {
             "description": "指示に従ってダウンロードしてください",
@@ -461,6 +516,23 @@
         "modal_language_switch": {
             "description": "少々お待ち下さい……",
             "title": "言語の切り替え中"
+        },
+        "modal_mod_delete": {
+            "button_negative": "キャンセル",
+            "button_affirmative": "インストール",
+            "title": "このmodを削除しますか？"
+        },
+        "component_install_folder_selector": {
+            "label": "保存場所",
+            "error_disk_space": "このドライブには2GBの空き容量がありません",
+            "button_select": "選択"
+        },
+        "modal_news": {
+            "button": "完了"
+        },
+        "modal_unarchiving": {
+            "title": "再インストール",
+            "description": "再インストールが完了するとゲームが起動します。"
         }
     },
     "main": {
@@ -478,7 +550,9 @@
             "install_crashed": "ゲームの起動に失敗したか、クラッシュしました。"
         },
         "move_install": {
-            "title": "新しいインストールフォルダを選択"
+            "title": "新しいインストールフォルダを選択",
+            "error_not_empty": "このフォルダは空ではありません。空のフォルダーを選んでください。",
+            "error_read": "このフォルダから読み取ることができません。もう一度やり直してください。"
         },
         "mod_browse_dialog": {
             "title": "インストールするMODを選択",
@@ -528,11 +602,30 @@
             "renderer_freeze": {
                 "title": "Doki Doki Mod Managerが応答しません",
                 "body": "この問題が長く続く場合はアプリを再起動してください。"
+            },
+            "dev_ui_load_fail": {
+                "title": "開発用サーバーからの読み込みに失敗しました",
+                "body": "代わりにライブUIサーバーから読み込みします。"
             }
         },
         "redownload_confirmation": {
             "button_cancel": "キャンセル",
-            "button_confirm": "ダウンロード"
+            "button_confirm": "ダウンロード",
+            "message": "Modはダウンロード済みです"
+        },
+        "discord": {
+            "status_active": "ゲーム中",
+            "description_idle": "何もプレイしていません",
+            "status_idle": "Modの管理",
+            "description_active": "DDLCをプレイする"
+        },
+        "import_mas": {
+            "filter": "モニカだけ",
+            "title": "キャラクターファイルを確認する"
+        },
+        "export_mas": {
+            "title": "Monikaをコピーする場所を選択する",
+            "filter": "モニカだけ"
         }
     }
 }

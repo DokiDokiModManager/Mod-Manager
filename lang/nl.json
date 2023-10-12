@@ -1,136 +1,136 @@
 {
     "renderer": {
         "online_error": {
-            "title": "اتصل بلانترنت",
-            "body": "المدير يسال الاتصال بالانترنت للتحمل لاول مره",
-            "button_restart": "ريست ستارا",
-            "button_quit": "استقال"
+            "title": "Verbind met het internet",
+            "body": "Doki Doki Mod Manager vereist een internet verbinding om middelen voor de eerste keer te downloaded. Kijk alstublieft na of u verbonden bent en start de applicatie dan opnieuw.",
+            "button_restart": "Opnieuw Opstarten",
+            "button_quit": "Afsluiten"
         },
         "modal_error": {
-            "title_non_fatal": "عفوا، حدث خطأ ما",
-            "title_fatal": "عفوا، تعطل مدير دوكي دوكي",
-            "description_general": "يرجى تجربة ما كنت تفعله مرة أخرى، وإذا كنت لا تزال تواجه مشاكل - من فضلك أخبرني",
-            "description_stacktrace": "فيما يلي التفاصيل الفنية للخطأ الذي حدث - يرجى تدوينها إذا طلبت المساعدة.",
-            "button_continue": "استمر",
-            "button_restart": "خطأ النسخ إلى الحافظة",
-            "button_copy": "خطأ في النسخ إلى الحافظة"
+            "title_non_fatal": "Oeps, hier ging iets verkeerd",
+            "title_fatal": "Oeps, Doki Doki Mod Manager is gecrashed",
+            "description_general": "Probeer wat u aan het doen was opnieuw. Als u nog steeds problemen tegen komt, laat het me dan weten!",
+            "description_stacktrace": "Hier zijn de technische details van wat er fout ging - Houd deze bij u als je om hulp vraagt.",
+            "button_continue": "Doorgaan",
+            "button_restart": "Opnieuw Opstarten",
+            "button_copy": "Kopieer fout naar klembord"
         },
         "modal_language_switch": {
-            "title": "",
-            "description": ""
+            "title": "Talen verwisselen",
+            "description": "Een moment a.u.b. …"
         },
         "modal_download_starting": {
-            "title": "",
-            "description": ""
+            "title": "Download begint",
+            "description": "Volg a.u.b. eventuele aanwijzingen om de download te voltooien"
         },
         "tabs": {
-            "tab_play": "",
-            "tab_downloads": "",
-            "tab_options": "",
-            "tab_about": "",
-            "tab_experiments": ""
+            "tab_play": "Speel",
+            "tab_downloads": "Mods",
+            "tab_options": "Opties",
+            "tab_about": "Over",
+            "tab_experiments": "Experimenten"
         },
         "version": {
-            "link_changelog": ""
+            "link_changelog": "Wat is er nieuw?"
         },
         "help_menu": {
-            "option_help": "",
-            "option_feedback": "",
-            "option_discord": ""
+            "option_help": "Zie hulp website",
+            "option_feedback": "Verzend privé feedback",
+            "option_discord": "Neem deel aan de Discord Server"
         },
         "user_menu": {
-            "option_rename": "",
-            "option_logout": ""
+            "option_rename": "Verander gebruikersnaam",
+            "option_logout": "Log uit"
         },
         "window_controls": {
-            "close": "",
-            "maximise": "",
-            "minimise": "",
-            "issue_report": "",
-            "guide": "",
-            "discord": "",
-            "patreon": ""
+            "close": "Sluit af",
+            "maximise": "Maximaliseer",
+            "minimise": "Minimaliseer",
+            "issue_report": "Meld een fout",
+            "guide": "Gebruikershandleiding",
+            "discord": "Neem deel aan de Discord server",
+            "patreon": "Steun Doki Doki Mod Manager op Patreon"
         },
         "drop_cover": {
-            "text": ""
+            "text": "Zet hier uw mod neer om het te installeren"
         },
         "announcement": {
-            "button_open": "",
-            "button_close": ""
+            "button_open": "Open Link",
+            "button_close": "Sluit af"
         },
         "onboarding_v4": {
-            "text_welcome": "",
-            "button_start": "",
-            "text_scanning": "",
-            "header_setup": "",
-            "subtitle_careful": "",
-            "header_download": "",
-            "text_download": "",
-            "button_ddlc_website": "",
-            "text_s2_next": "",
-            "text_modification_warning": "",
-            "header_safari_warning": "",
-            "text_safari_warning": "",
-            "link_safari_warning": "",
-            "button_next": "",
-            "button_previous": "",
-            "button_finish": "",
-            "text_select": "",
-            "text_dropzone": "",
-            "text_validating": "",
-            "header_directory_selected": "",
-            "text_directory_selected": "",
-            "header_version_mismatch": "",
-            "text_version_mismatch": "",
-            "header_success": "",
-            "text_success": "",
-            "header_hash_mismatch": "",
-            "text_hash_mismatch": "",
-            "subtitle_last": "",
-            "header_save_location": "",
-            "text_save_location": "",
-            "header_waifu": "",
-            "subtitle_waifu": "",
-            "label_waifu": "",
-            "option_waifu_all": "",
-            "option_waifu_monika": "",
-            "option_waifu_natsuki": "",
-            "option_waifu_sayori": "",
-            "option_waifu_yuri": ""
+            "text_welcome": "Welkom bij de tot nu toe beste versie van Doki Doki Mod Manager.",
+            "button_start": "Aan de slag",
+            "text_scanning": "Een moment a.u.b. …",
+            "header_setup": "Eerste Installatie",
+            "subtitle_careful": "Lees a.u.b. de volgende instructies.",
+            "header_download": "Download DDLC",
+            "text_download": "Bezoek de DDLC website, klik Download Nu en volg de instructies. Wanneer gevraagd, kies het bestand genaamd {0} en sla het op waar het makkelijk te vinden is.",
+            "button_ddlc_website": "Bezoek de DDLC website",
+            "text_s2_next": "Ga naar de volgende stap zodra uw download compleet is.",
+            "text_modification_warning": "Maak geen modificaties aan het gedownloade bestand.",
+            "header_safari_warning": "Belangrijke informatie voor Safari gebruikers",
+            "text_safari_warning": "Safari zou mogelijk automatisch de gedownloade game kunnen uitpakken. U zult deze functie uit moeten zetten aangezien het interfereert met het proces. Dit kan gedaan worden vanuit Safari's instellingen scherm.",
+            "link_safari_warning": "Klik hier voor de visuele handleiding",
+            "button_next": "Volgende",
+            "button_previous": "Vorige",
+            "button_finish": "Beëindig",
+            "text_select": "Open de folder waar u de DDLC kopie heeft opgeslagen en sleep het bestand in het vlak hieronder.",
+            "text_dropzone": "Sleep uw kopie van DDLC hier",
+            "text_validating": "Een moment a.u.b. …",
+            "header_directory_selected": "U heeft een folder geselecteerd in plaats van het DDLC zip-bestand",
+            "text_directory_selected": "Zorg er a.u.b. voor dat u niet een uitgepakte kopie van het spel selecteert en probeer opnieuw.",
+            "header_version_mismatch": "Dat ziet er niet uit als het juiste zip-bestand",
+            "text_version_mismatch": "Het kan zijn dat u de verkeerde versie van DDLC voor uw systeem heeft gedownload. Zorg ervoor dat u {0} heeft gedownload en probeer opnieuw.",
+            "header_success": "Uw DDLC kopie is gevonden",
+            "text_success": "U kunt nu door naar de volgende stap!",
+            "header_hash_mismatch": "Dat lijkt niet op het juiste bestand",
+            "text_hash_mismatch": "Kijk a.u.b. na of u het correcte bestand geselecteerd heeft en probeer opnieuw.",
+            "subtitle_last": "Deze instellingen kunnen op elk moment gewijzigd worden.",
+            "header_save_location": "Sla locatie op",
+            "text_save_location": "Als u uw mods op een andere schijf wilt opslaan, is dit uw kans om die te kiezen.",
+            "header_waifu": "Wat is uw favoriete karakter?",
+            "subtitle_waifu": "Niet denken, gewoon antwoorden.",
+            "label_waifu": "Best Girl",
+            "option_waifu_all": "Allemaal!",
+            "option_waifu_monika": "Monika",
+            "option_waifu_natsuki": "Natsuki",
+            "option_waifu_sayori": "Sayori",
+            "option_waifu_yuri": "Yuri"
         },
         "modal_news": {
-            "button": ""
+            "button": "Klaar"
         },
         "modal_issue_report": {
-            "title": "",
-            "description": "",
-            "label_type": "",
-            "option_bug": "",
-            "option_broken_mod": "",
-            "label_mod": "",
-            "placeholder_mod": "",
-            "label_body": "",
-            "placeholder_body": "",
-            "button_submit": "",
-            "button_cancel": ""
+            "title": "Vermeld een fout",
+            "description": "Als uw probleem rechtstreeks een antwoord nodig heeft, of niet onder deze categorieën valt, stuur dan alstublieft een email.",
+            "label_type": "Soort probleem",
+            "option_bug": "Applicatie bug",
+            "option_broken_mod": "Mod werkt niet",
+            "label_mod": "Link naar mod",
+            "placeholder_mod": "Plak a.u.b. een link naar de mod's website of download pagina.",
+            "label_body": "Probleem details",
+            "placeholder_body": "Geef a.u.b. zo veel mogelijk detail. Indien relevant, geef dan instructies om het probleem te reproduceren.",
+            "button_submit": "Verzend melding",
+            "button_cancel": "Annuleer"
         },
         "modal_rename": {
-            "title": "",
-            "body": "",
-            "button_affirmative": "",
-            "button_negative": ""
+            "title": "Installatie hernoemen",
+            "body": "Voer de nieuwe naam voor {0} in.",
+            "button_affirmative": "Hernoem",
+            "button_negative": "Annuleer"
         },
         "modal_uninstall": {
-            "title": "",
-            "body": "",
-            "body_globalsave": "",
-            "confirmation": "",
-            "button_affirmative": "",
-            "button_negative": ""
+            "title": "Weet u zeker dat u dit wil deïnstalleren?",
+            "body": "Uw opgeslagen data voor {0} zal worden verwijderd, en u zult een kopie van de mod nodig hebben om het nogmaals te installeren.",
+            "body_globalsave": "Uw opgeslagen data voor {0} zal niet worden verwijderd, maar u zult wel een kopie van de mod nodig hebben om het nogmaals te installeren.",
+            "confirmation": "Ik begrijp het.",
+            "button_affirmative": "Deïnstalleren",
+            "button_negative": "Annuleren"
         },
         "modal_archive": {
-            "title": "",
-            "body": "",
+            "title": "Weet u zeker dat u het wil archiveren?",
+            "body": "Het archiveren zal de data van {0} verwijderen om opslagruimte vrij te maken. Uw opgeslagen data wordt niet verwijderd, maar u zult een kopie van de mod nodig hebben om het nogmaals te installeren.",
             "body_warning": "",
             "confirmation": "",
             "button_affirmative": "",

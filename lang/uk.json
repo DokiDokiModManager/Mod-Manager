@@ -6,7 +6,10 @@
             "tab_mods": "Модифікації",
             "tab_store": "Крамниця",
             "tab_options": "Налаштування",
-            "tab_about": "Про застосунок"
+            "tab_about": "Про застосунок",
+            "tab_play": "Грати",
+            "tab_downloads": "Моди",
+            "tab_experiments": "Експерименти"
         },
         "version": {
             "link_changelog": "Що нового?"
@@ -33,7 +36,11 @@
                 "available": "Оновлення доступно. Натисніть тут, щоб завантажити його.",
                 "downloading": "Завантаження оновлення...",
                 "downloaded": "Оновлення готово встановитись, коли ви вийдете."
-            }
+            },
+            "patreon": "Підтримати Doki Doki Mod Manager на Patreon",
+            "discord": "Долучитися до сервера у Discord",
+            "guide": "Посібник користувача",
+            "issue_report": "Повідомити про помилку"
         },
         "crash_cover": {
             "button_close": "Вихід",
@@ -72,11 +79,12 @@
         },
         "tab_mods": {
             "list": {
-                "placeholder_search": "",
-                "header_new": "",
-                "link_install": "",
-                "header_installed": "",
-                "header_downloaded": ""
+                "placeholder_search": "Пошук модів…",
+                "header_new": "Почати",
+                "link_install": "Інсталювати ДДЛК",
+                "header_installed": "Інстальовано",
+                "header_downloaded": "Завантаження",
+                "link_home": "Домівка"
             },
             "install_contextmenu": {
                 "launch": "",
@@ -102,28 +110,28 @@
                 "button_negative": ""
             },
             "launch_lock_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Файл збереження в хмарі використовується!",
+                "details": "Якщо ви запустите зараз, ви можете втратити свій прогрес.",
+                "button_affirmative": "Все одно запустити",
+                "button_negative": "Скасувати"
             },
             "launch_noauth_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Ви не авторизовані!",
+                "details": "Якщо ви запустите зараз, ваш файл збереження не буде синхронізовано з хмарним сховищем.",
+                "button_affirmative": "Все одно запустити",
+                "button_negative": "Скасувати"
             },
             "launch_offline_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Ви не в мережі!",
+                "details": "Якщо ви запустите зараз, ваш файл збереження не буде синхронізовано з хмарним сховищем.",
+                "button_affirmative": "Все одно запустити",
+                "button_negative": "Скасувати"
             },
             "mod_delete_confirmation": {
-                "message": "",
-                "details": "",
-                "button_affirmative": "",
-                "button_negative": ""
+                "message": "Ви впевнені, що хочете видалити мод?",
+                "details": "Вам потрібно буде завантажити іншу копію мода, щоб знову встановити його.",
+                "button_affirmative": "Видалити",
+                "button_negative": "Скасувати"
             },
             "save_delete_confirmation": {
                 "message": "",
@@ -132,42 +140,55 @@
                 "button_negative": ""
             },
             "install": {
-                "button_launch": "",
-                "button_settings": "",
-                "tag_global_save": "",
-                "tag_sdk": "",
+                "button_launch": "Запустити",
+                "button_settings": "Налаштування",
+                "tag_global_save": "Глобальні збереження",
+                "tag_sdk": "Набір розробника",
                 "tag_cloud": "",
                 "description_locked": "",
-                "title_achievements": "",
-                "description_achievements": "",
-                "description_achievements_complete": "",
-                "title_screenshots_none": "",
-                "title_screenshots_one": "",
-                "title_screenshots": "",
-                "description_screenshots": "",
-                "description_sdk": "",
-                "description_author": "",
-                "link_discord": "",
-                "link_website": "",
-                "description_external": ""
+                "title_achievements": "Досягнення ({0}/{1})",
+                "description_achievements": "Продовжуйте грати, щоб розблокувати більше досягнень.",
+                "description_achievements_complete": "Ви розблокували всі досягнення. Щиро вітаю!",
+                "title_screenshots_none": "Немає скриншотів",
+                "title_screenshots_one": "1 скриншот",
+                "title_screenshots": "{0} скриншотів",
+                "description_screenshots": "Натисніть S під час гри, щоб зробити знімок екрана.",
+                "description_sdk": "Цей мод підтримує спеціальні функції Doki Doki Mod Manager SDK!",
+                "description_author": "Робота від {0}",
+                "link_discord": "Діскорд ({0})",
+                "link_website": "Веб-сайт ({0})",
+                "description_external": "Показати в папці",
+                "description_achievement_earned": "Завершений",
+                "description_install_failed": "Схоже, мод, який ви намагалися відтворити, міг бути встановлений неправильно. Ви можете прочитати посібник з усунення несправностей, щоб отримати допомогу у вирішенні проблеми.",
+                "button_mas_export": "Копіювати Моніку",
+                "description_achievement_not_earned": "Не завершений",
+                "title_mas_export": "Взяти Моніку з собою",
+                "tag_archived": "Заархівовано",
+                "link_troubleshooting": "Посібник з усунення несправностей",
+                "description_singleton_error": "Переконайтеся, що ви використовуєте не більше одного екземпляра DDLC, і спробуйте запустити знову. Ви можете прочитати посібник з усунення несправностей, якщо проблема не зникне.",
+                "title_singleton_error": "Ваша гра закрилася?",
+                "description_install_failed_launch_again": "Це повідомлення зникне, коли ви наступного разу запустите цей мод.",
+                "description_mas_export": "Моніка готова піти з вами.",
+                "button_mas_import": "Додати Моніку назад",
+                "title_install_failed": "Чи правильно встановлено ваш мод?"
             },
             "mod": {
-                "button_install": "",
-                "button_settings": "",
-                "description_external": ""
+                "button_install": "Інсталювати",
+                "button_settings": "Налаштування",
+                "description_external": "Показати в папці"
             },
             "install_creation": {
-                "title": "",
-                "label_install_name": "",
-                "label_folder_name": "",
+                "title": "Інсталювати ДДЛК",
+                "label_install_name": "Назва установки",
+                "label_folder_name": "Назва папки",
                 "label_global_save": "",
-                "label_has_mod": "",
-                "label_mod": "",
+                "label_has_mod": "Інсталювати мод",
+                "label_mod": "Мод",
                 "label_has_cloudsave": "",
                 "label_cloudsave": "",
                 "option_new_cloudsave": "",
                 "label_existing_saves": "",
-                "description_mod": "",
+                "description_mod": "Натисніть, щоб переглянути мод.",
                 "header_summary": "",
                 "description_vanilla": "",
                 "description_vanilla_global_save": "",
@@ -175,9 +196,17 @@
                 "description_modded": "",
                 "description_modded_global_save": "",
                 "description_modded_cloudsave": "",
-                "button_install": "",
-                "button_installing": "",
-                "status_exists": ""
+                "button_install": "Інсталювати",
+                "button_installing": "Встановлення…",
+                "status_exists": "Назва папки вже використовується.",
+                "modlist_custom": "Мод не вказано у списку",
+                "modlist_library": "Бібліотека модів",
+                "warning_no_space": "На жаль, вам потрібно принаймні 2 ГіБ вільного місця для встановлення DDLC. Закрийте Doki Doki Mod Manager, звільніть місце та повторіть спробу. Або встановіть на інший диск у Налаштування > Місце зберігання.",
+                "placeholder_install_name": "Назва мода, у який ви граєте, або будь-що інше, що ви хочете.",
+                "option_local_save": "Локальні збереження (рекомендовано)",
+                "option_global_save": "Глобальні збереження",
+                "modlist_none": "Звичайний DDLC - без модів",
+                "warning_global_save": "Використання глобального збереження може спричинити проблеми з іншими копіями гри, оскільки воно збереже ваш прогрес у звичайній папці даних збереження. Використовуйте його, лише якщо у вас є для цього конкретна причина."
             }
         },
         "tab_store_placeholder": {
@@ -189,38 +218,46 @@
         },
         "tab_options": {
             "list": {
-                "header_appearance": "",
-                "link_background": "",
-                "link_advanced_appearance": "",
-                "header_enhancements": "",
-                "link_sdk": "",
-                "link_discord": "",
-                "header_application": "",
+                "header_appearance": "Зовнішній вигляд",
+                "link_background": "Фон",
+                "link_advanced_appearance": "Додатково",
+                "header_enhancements": "Покращення",
+                "link_sdk": "Досягнення та SDK",
+                "link_discord": "Діскорд",
+                "header_application": "Застосунок",
                 "link_updates": "Оновлення",
-                "link_storage": "",
-                "header_developers": "",
-                "link_testing": "",
+                "link_storage": "Місце зберігання",
+                "header_developers": "Розробники",
+                "link_testing": "Відлажувальні налаштування",
                 "link_debug": "",
-                "link_language": "Мова"
+                "link_language": "Мова",
+                "link_accmanagement": "Керування обліковим записом",
+                "link_cloudsaves": "Хмарні збереження",
+                "header_account": "Обліковий запис"
             },
             "section_backgrounds": {
-                "title": "",
-                "subtitle": "",
-                "button_none": "",
-                "description_credit": ""
+                "title": "Фон",
+                "subtitle": "Персоналізуйте копію Doki Doki Mod Manager за допомогою одного з цих фонів.",
+                "button_none": "Без фону",
+                "description_credit": "Оригінальні фони DDLC ласкаво надані Team Salvato.",
+                "description_custom": "Якщо ви перемістите або видалите спеціальне фонове зображення, ваш фон буде скинуто.",
+                "button_custom": "Свій фон",
+                "checkbox_modbg": "Дозволити модам показувати свої фони (зі скріншотів або від авторів модифікації)"
             },
             "section_advanced_appearance": {
-                "title": "",
-                "subtitle": "",
-                "button_enable_sysborders": "",
+                "title": "Додатково",
+                "subtitle": "Знайдіть інші налаштування інтерфейсу тут.",
+                "button_enable_sysborders": "Використовувати межі вікна (потрібно перезапустити)",
                 "button_disable_sysborders": ""
             },
             "section_storage": {
-                "title": "",
-                "subtitle": "",
-                "description_moving": "",
+                "title": "Місце зберігання",
+                "subtitle": "Змініть місце зберігання даних гри.",
+                "description_moving": "Увага! Якщо ви вирішите змінити місце встановлення, всі ваші модифікації, інсталяції та збережені дані буде переміщено. Це може зайняти кілька хвилин і не може бути перервано.",
                 "description_current": "",
-                "button_change": ""
+                "button_change": "",
+                "button_confirm": "Змінити",
+                "description": "Ви можете вибрати, де зберігатимуться ваші дані про встановлення Doki Doki Mod Manager, наприклад, якщо ви хочете використовувати інший жорсткий диск. Виберіть порожню папку для переміщення даних встановлення."
             },
             "section_updates": {
                 "title": "Оновлення",
@@ -239,25 +276,32 @@
                 "description_latest_version": "Остання версія: {0}"
             },
             "section_sdk": {
-                "title": "",
-                "subtitle": "",
-                "description_mode": "",
+                "title": "Досягнення та SDK",
+                "subtitle": "Змініть спосіб обробки досягнень.",
+                "description_mode": "Увімкнути досягнення:",
                 "checkbox_always": "Завжди (рекомендовано)",
-                "checkbox_specified": "",
+                "checkbox_specified": "Коли мод вказує, що він підтримує їх",
                 "checkbox_never": "Ніколи"
             },
             "section_discord": {
-                "title": "",
-                "subtitle": "",
+                "title": "Ігрова активність у Діскорді",
+                "subtitle": "Покажіть своїм друзям у Діскорді, в який мод ви граєте.",
                 "description": "Зміни будуть прийняті після перезапуску Doki Doki Mod Manager.",
-                "button_enable": "",
+                "button_enable": "Увімкнути відображення ігрової активності",
                 "button_disable": ""
             },
             "section_testing": {
                 "title": "Відлажувальні налаштування",
                 "subtitle": "Увімкнути відлажувальні налаштування для розробників.",
                 "button_enable": "",
-                "button_disable": ""
+                "button_disable": "",
+                "checkbox_logging": "Увімкнути журнал налагодження",
+                "header_renpy": "Налаштування запуску Ren'Py",
+                "checkbox_renpy_skipsplash": "Пропустити заставку",
+                "checkbox_renpy_skipmenu": "Пропустити меню",
+                "header_mod_debug": "Налагодження мода",
+                "description_renpy": "Встановити спеціальні параметри налагодження для Ren'Py.",
+                "description_mod_debug": "Показати вікно налагодження з консольним виведенням вашого мода. Корисно при тестуванні DDMM SDK."
             },
             "section_debug": {
                 "title": "",
@@ -271,62 +315,263 @@
             }
         },
         "tab_about": {
-            "title": "",
-            "description": "",
-            "title_disclaimer": "",
-            "disclaimer_1": "",
-            "disclaimer_2": "",
-            "title_socials": "",
-            "social_discord": "",
+            "title": "Про застосунок",
+            "description": "Doki Doki Mod Manager — це проект, розроблений спільнотою, який допомагає вам знаходити, встановлювати та грати в моди для \"Докі Докі Літературний Клуб\", безкоштовної візуальної новели від Team Salvato.",
+            "title_disclaimer": "Відмова від відповідальності",
+            "disclaimer_1": "Doki Doki Mod Manager є фанатською роботою по \"Докі Докі Літературний Клуб\" і не пов’язана з Team Salvato. Це робота фанатів, як визначено в Інструкціях щодо інтелектуальної власності Team Salvato.",
+            "disclaimer_2": "Doki Doki Mod Manager не несе відповідальності за будь-яку шкоду, заподіяну вашим файлам або комп’ютеру в результаті гри в мод або іншим чином. Ви повинні переконатися, що моди безпечні для гри.",
+            "title_socials": "Будемо на зв'язку",
+            "social_discord": "Приєднуйтесь до серверу у Діскорді",
             "social_twitter": "",
-            "social_reddit": "",
-            "social_email": "",
+            "social_reddit": "Пишіть мені в Реддіті",
+            "social_email": "Відправте мені листа на електронну пошту",
             "title_support": "",
             "description_support": "",
             "support_donate": "",
             "support_steelseries": "",
             "support_code": "",
-            "link_weblate": "Допоможіть перекласти Doki Doki Mod Manager на Вашу рідну мову - відвідайте домашню сторінку проєкта"
+            "link_weblate": "Допоможіть перекласти Doki Doki Mod Manager на Вашу рідну мову - відвідайте домашню сторінку проєкта",
+            "title_translators": "Великий вклад в переклад був зроблений наступними людьми",
+            "title_v4_beta": "Бета-тестери Doki Doki Mod Manager 4",
+            "title_patreon": "Дякуємо за люб’язну підтримку наступних прихильників Patreon",
+            "link_patreon": "Підтримати подальшу розробку Doki Doki Mod Manager на Patreon"
         },
         "modal_error": {
             "title_fatal": "Ой, Doki Doki Mod Manager впав",
-            "title_non_fatal": "Ой, щось пішло не так"
+            "title_non_fatal": "Ой, щось пішло не так",
+            "description_general": "Будь ласка спробуйте те що ви задумали ще раз, і якщо ви будете натикатися на проблеми, повідомте мені про це!",
+            "description_stacktrace": "Перед вами технічні деталі даної помилки - майте їх на увазі якщо ви спробуєте звернутися за допомогою.",
+            "button_copy": "Скопіювати помилку",
+            "button_restart": "Перезагрузити",
+            "button_continue": "Продовжити"
         },
         "online_error": {
             "button_quit": "Вихід",
             "button_restart": "Перезапустити",
             "body": "Doki Doki Mod Manager потребує інтернет-з'єднання для завантаження ресурсів у перший раз. Будь ласка, перевірте Ваше інтернет-з'єднання та перезапустіть програму.",
             "title": "Будь ласка, з'єднайтеся з Інтернетом"
+        },
+        "modal_language_switch": {
+            "title": "Обрати мову",
+            "description": "Зачекайте, будь ласка…"
+        },
+        "modal_download_starting": {
+            "title": "Завантаження починається",
+            "description": "Будь ласка позначте будь які форми що появляться на екрані для того щоб закінчити загрузку"
+        },
+        "onboarding_v4": {
+            "text_success": "Тепер ви готові переходити до наступного кроку!",
+            "header_hash_mismatch": "Це не схоже на правильний файл",
+            "text_hash_mismatch": "Будь ласка, перевірте, чи вибрали ви правильний файл, і спробуйте ще раз.",
+            "subtitle_last": "Ці параметри можуть бути змінені в будь-який час.",
+            "text_save_location": "Якщо ви хочете зберігати свої модифікації на іншому диску, зараз у вас є можливість вибрати його.",
+            "subtitle_waifu": "Не думай, просто відповідай.",
+            "text_select": "Відкрийте папку, в якій ви зберегли копію DDLC, а потім перетягніть файл у місце нижче.",
+            "text_s2_next": "Після завершення завантаження, будь ласка, перейдіть до наступного кроку.",
+            "subtitle_careful": "Будь ласка, уважно прочитайте наступні інструкції.",
+            "text_directory_selected": "Будь ласка, переконайтеся, що ви не вибираєте розпаковану копію гри, і спробуйте ще раз.",
+            "text_version_mismatch": "Можливо, ви завантажили неправильну версію DDLC для вашої операційної системи. Переконайтеся, що ви завантажили {0} і спробуйте ще раз.",
+            "text_welcome": "Вітаємо у найкращій версії Doki Doki Mod Manager на даний момент.",
+            "text_scanning": "Зачекайте…",
+            "header_setup": "Перша установка",
+            "text_download": "Перейдіть на сайт DDLC, натисніть на «Download Now» і дотримуйтесь інструкцій. Коли вас запитають, виберіть файл з назвою {0} и збережіть його десь, де його легко знайти.",
+            "text_modification_warning": "Ніяк не змінюйте завантажений файл.",
+            "button_ddlc_website": "Веб-сайт DDLC",
+            "header_safari_warning": "Важлива інформація для користувачів браузера Safari",
+            "text_safari_warning": "Safari може автоматично розпакувати завантажену гру. Вам слід вимкнути цю функцію, оскільки вона заважає процесу встановлення. Це можна зробити на екрані налаштувань Safari.",
+            "link_safari_warning": "Натисніть сюди, для наглядного гайду",
+            "button_finish": "Закінчити",
+            "option_waifu_monika": "Моніка",
+            "button_next": "Далі",
+            "button_previous": "Назад",
+            "text_dropzone": "Перетягніть свою копію DDLC сюди",
+            "text_validating": "Почекайте…",
+            "label_waifu": "Найкраща дівчинка",
+            "header_download": "Завантажити DDLC",
+            "header_waifu": "Хто твій улюблений персонаж?",
+            "button_start": "Почати",
+            "option_waifu_natsuki": "Нацукі",
+            "option_waifu_all": "Усі!",
+            "option_waifu_yuri": "Юрі",
+            "option_waifu_sayori": "Сайорі",
+            "header_save_location": "Зберегти місцезнаходження",
+            "header_directory_selected": "Ви вибрали папку замість zip файлу DDLC",
+            "header_success": "Ваша копія DDLC знайдена",
+            "header_version_mismatch": "Це не схоже на правильний zip-файл"
+        },
+        "modal_issue_report": {
+            "description": "Якщо Ваше питання потребує прямої відповіді або не підпадає під жодну з перелічених тут категорій, будь ласка, надішліть електронного листа.",
+            "option_broken_mod": "Мод не працює",
+            "placeholder_mod": "Будь ласка, вставте посилання на веб-сайт або сторінку завантаження мода.",
+            "placeholder_body": "Будь ласка, надайте якомога більше деталей. Якщо це актуально, будь ласка, надайте інструкції щодо відтворення проблеми.",
+            "button_submit": "Надіслати звіт",
+            "button_cancel": "Скасувати",
+            "label_type": "Тип помилки",
+            "option_bug": "Помилка програми",
+            "title": "Повідомити про помилку",
+            "label_mod": "Посилання на мод",
+            "label_body": "Деталі помилки"
+        },
+        "modal_uninstall": {
+            "body_globalsave": "Ваші збережені дані для {0} не будуть видалені. Однак вам знадобиться копія мода, щоб встановити його знову.",
+            "body": "Ваші збережені дані для {0} буде видалено, і вам знадобиться копія моду, щоб установити його знову.",
+            "confirmation": "Я розумію.",
+            "button_affirmative": "Видалити",
+            "button_negative": "Скасувати",
+            "title": "Ви впевнені, що хочете це видалити?"
+        },
+        "modal_rename": {
+            "title": "Перейменувати встановлену копію",
+            "button_affirmative": "Перейменувати",
+            "body": "Введіть нове ім'я для {0}.",
+            "button_negative": "Скасувати"
+        },
+        "modal_archive": {
+            "body": "Архівація дозволить видалити ігрові дані для {0} для економії дискового простору. Ваші дані збереження не будуть видалені, але вам знадобиться копія мода, щоб встановити їх знову.",
+            "title": "Ви впевнені, що хочете архівувати його?",
+            "button_affirmative": "Архів",
+            "button_negative": "Скасувати",
+            "body_warning": "Будь-які зміни, внесені до інших даних, наприклад файлів персонажів, буде скасовано, якщо ви заархівуєте гру. Будьте обережними!",
+            "confirmation": "Я зрозумів."
+        },
+        "tab_downloads": {
+            "store": {
+                "link_ddmc": "Відвідайте веб-сайт, щоб додати свій власний мод.",
+                "text_loading": "Завантаження списку модів…",
+                "title_ddmc": "Doki Doki Mod Club",
+                "error_loading": "Зараз не вдається завантажити моди.",
+                "placeholder_search": "Пошук мода…",
+                "description_ddmc": "Перегляньте цю базу даних модів, надану Doki Doki Mod Club.",
+                "description_featured": "Дуже великий вибір? Спробуйте один із найкращих модів!"
+            },
+            "downloads": {
+                "message_none": "Немає завантажень.",
+                "status_text_downloading_uncertain": "Завантаження - {0} МБ завантажено при швидкості {1} МБ/с",
+                "title": "Завантаження",
+                "status_text_downloading": "Завантаження - {0}% при швидкості {1} МБ/с (залишилось {2})"
+            },
+            "featured": {
+                "title": "Обрані моди",
+                "button_download": "Завантажити"
+            },
+            "list": {
+                "link_downloaded": "Ваші моди",
+                "link_downloads": "Завантаження",
+                "link_featured": "Обрані моди",
+                "header_library": "Бібліотека",
+                "header_browse": "Пошук модів",
+                "link_ddmc": "Клуб модів"
+            },
+            "downloaded": {
+                "button_options": "Налаштування",
+                "description_type": "Тип файлу: {0}",
+                "button_install": "Інсталювати",
+                "title": "Ваші моди",
+                "placeholder_search": "Пошук мода…",
+                "message_none": "У вас немає модів. Вийдіть і завантажте трохи!"
+            }
+        },
+        "component_install_folder_selector": {
+            "button_select": "Вибрати",
+            "label": "Зберегти місцезнаходження",
+            "error_disk_space": "На цьому накопичувачі немає щонайменше 2 ГБ вільного місця"
+        },
+        "modal_news": {
+            "button": "Готово"
+        },
+        "modal_category": {
+            "button_save": "Зберегти",
+            "title": "Змінити категорію",
+            "button_cancel": "Скасувати",
+            "label_none": "нічого",
+            "placeholder_category": "Введіть нову категорію…"
+        },
+        "modal_installing": {
+            "title": "Триває встановлення",
+            "description": "Будь ласка, зачекайте близько хвилини, поки гра встановиться."
+        },
+        "modal_save_delete": {
+            "title": "Ви впевнені, що хочете видалити дані своїх збережень?",
+            "button_affirmative": "Видалити",
+            "confirmation": "Я розумію.",
+            "body": "Вам доведеться почати {0} знову з нуля.",
+            "button_negative": "Скасувати"
+        },
+        "menu_install_options": {
+            "shortcut": "Створити ярлик",
+            "cancel": "Скасувати",
+            "category": "Змінити категорію",
+            "rename": "Перейменувати",
+            "launch": "Запустити",
+            "delete_save": "Видалити збереження",
+            "uninstall": "Деінсталювати",
+            "archive": "Архів"
+        },
+        "modal_unarchiving": {
+            "description": "Гра запуститься після завершення перевстановлення.",
+            "title": "Перевстановлення гри"
+        },
+        "modal_mod_delete": {
+            "button_negative": "Скасувати",
+            "title": "Ви впевнені, що хочете видалити цей мод?",
+            "button_affirmative": "Інсталювати",
+            "body": "Вам потрібно буде повторно завантажити {0}, якщо ви захочете встановити його знову."
+        },
+        "modal_unarchive": {
+            "button_cancel": "Скасувати",
+            "button_launch": "Запустити",
+            "title": "Запустити гру",
+            "description": "Будь ласка, оберіть мод, який був встановлений, а потім натисніть «Запустити». {0} більше не буде заархівований."
+        },
+        "modal_running": {
+            "title": "Запуск гри",
+            "button_kill": "Примусовий вихід",
+            "description": "Закрийте гру, щоб внести зміни у свої моди.",
+            "link_more": "Натисніть для детальніших налаштуваннь",
+            "button_browse": "Перегляньте файли гри"
+        },
+        "modal_mod_preview": {
+            "button_download_external": "Завантажити в браузері",
+            "text_loading": "Завантаження параметрів завантаження…",
+            "button_close": "Закрити",
+            "button_download_direct": "Завантажити"
+        },
+        "menu_mod_options": {
+            "delete": "Видалити",
+            "cancel": "Скасувати",
+            "install": "Інсталювати"
         }
     },
     "main": {
         "jumplist": {
-            "task_launch": ""
+            "task_launch": "Відкрити Мод Менеджер Doki Doki і запустити {0}."
         },
         "running_cover": {
-            "title_running": "",
-            "title_crashed": "",
-            "button_browse": "",
-            "button_close": "",
-            "description_running": "",
-            "install_missing": "",
-            "install_corrupt": "",
-            "install_crashed": ""
+            "title_running": "Запускається DDLC",
+            "title_crashed": "Щось пішло не так",
+            "button_browse": "Відкрити Папку З Грою",
+            "button_close": "ОК",
+            "description_running": "Закрийте гру, щоб внести зміни у ваші моди.",
+            "install_missing": "Не вдалося знайти встановлення.",
+            "install_corrupt": "Установка неповна або пошкоджена.",
+            "install_crashed": "Гра не змогла запуститися або з'явилася помилка."
         },
         "move_install": {
-            "title": ""
+            "title": "Вибрати нову папку для встановлення",
+            "error_not_empty": "Ця папка не порожня. Оберіть порожню папку.",
+            "error_read": "Не вдається прочитати з цієї папки. Будь ласка, спробуйте ще раз."
         },
         "mod_browse_dialog": {
-            "title": "",
-            "file_format_name": ""
+            "title": "Знайти мод для встановлення",
+            "file_format_name": "Моди"
         },
         "game_browse_dialog": {
-            "title": "",
-            "file_format_name": ""
+            "title": "Знайдіть копію zip файлу DDLC",
+            "file_format_name": "DDLC"
         },
         "shortcut_dialog": {
-            "title": "",
-            "file_format_name": ""
+            "title": "Виберіть, де розмістити ваш ярлик",
+            "file_format_name": "Ярлик"
         },
         "errors": {
             "exception": {
@@ -334,8 +579,8 @@
                 "body": ""
             },
             "move_install": {
-                "title": "",
-                "body": ""
+                "title": "Не вдалося перемістити папку з завантаженням",
+                "body": "Переконайтеся, що у вас є дозвіл на перехід до папки призначення, і спробуйте ще раз."
             },
             "shortcut": {
                 "title": "",
@@ -362,9 +607,34 @@
                 "body": ""
             },
             "renderer_freeze": {
-                "title": "",
-                "body": ""
+                "title": "Мод Менеджер Doki Doki перестав працювати",
+                "body": "Якщо ця проблема триває довгий час, закрийте додаток та запустіть його заново."
+            },
+            "dev_ui_load_fail": {
+                "body": "Завантаження з живих серверів інтерфейсу.",
+                "title": "Не вдалося завантажити з сервера розробки"
             }
+        },
+        "redownload_confirmation": {
+            "button_confirm": "Завантажити",
+            "detail": "У вашій бібліотеці модів вже є копія {0}. Хочете завантажити його ще раз? (Це перезапише стару копію)",
+            "message": "Мод вже завантажений",
+            "button_cancel": "Скасувати"
+        },
+        "export_mas": {
+            "title": "Оберіть, куди ви хочете скопіювати Моніку",
+            "filter": "Тільки Моніка"
+        },
+        "discord": {
+            "status_active": "У Грі",
+            "description_active": "Грає у DDLC",
+            "description_idle": "Ні в що не грає",
+            "description_version": "Версія {0}",
+            "status_idle": "Керує Модами"
+        },
+        "import_mas": {
+            "filter": "Тільки Моніка",
+            "title": "Знайдіть скопійований вами файл персонажа Моніки"
         }
     }
 }
