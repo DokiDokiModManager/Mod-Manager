@@ -2,9 +2,6 @@ name: Build and release
 
 on: push
 
-env:
-  SNAPCRAFT_BUILD_ENVIRONMENT: host
-
 jobs:
   release:
     runs-on: ${{ matrix.os }}
@@ -14,10 +11,6 @@ jobs:
         os: [ macos-latest, ubuntu-latest, windows-latest ]
 
     steps:
-      - name: Install rpmbuild
-        if: startsWith(matrix.os, 'ubuntu')
-        run: sudo apt install rpm
-
       - name: Check out repo
         uses: actions/checkout@v1
 
@@ -25,12 +18,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 10
-
-      - name: Install Snapcraft
-        uses: samuelmeuli/action-snapcraft@v1
-        if: startsWith(matrix.os, 'ubuntu')
-        with:
-          snapcraft_token: ${{ secrets.snapcraft_token }}
 
       - name: Build and release
         uses: samuelmeuli/action-electron-builder@v1
